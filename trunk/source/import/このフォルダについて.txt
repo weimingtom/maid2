@@ -1,0 +1,56 @@
+ここには boost など、外部のライブラリを入れておきます。
+パスは各自通すこと。
+
+特にＤＬＬとか作らずにプロジェクトに突っ込んでコンパイルしてしまいます。
+ほとんどのサイトはZIPファイルで一つに固まっているので
+それを展開→フォルダの中身を丸ごとコピー
+
+いけるようになってます
+
+
+
+コピーする必要のあるライブラリ
+
+boost
+  http://www.boost.org/ のDawnload から拾ってくる
+  解凍したファイルの boostXXXXXXX/boost と
+  このディレクトリを一致させる。
+
+
+sfmt
+  http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/mt.html
+  高品質な乱数を生成してくれるライブラリ
+
+
+zlib
+  http://www.zlib.net/
+  圧縮・展開ライブラリ
+
+
+libpng
+  http://www.libpng.org/pub/png/libpng.html
+  PNGファイルの展開、作成ライブラリ
+
+libvorbis	
+  http://www.xiph.org/
+  OggVorbis の Vorbis 部分
+
+libogg	
+  http://www.xiph.org/
+  OggVorbis の ogg 部分
+
+ijg
+  http://www.ijg.org/
+  Jpeg 展開ライブラリ
+  jmorecfg.hの314行目を
+  #define RGB_RED		2	/* Offset of Red in an RGB scanline element */
+  #define RGB_GREEN	1	/* Offset of Green */
+  #define RGB_BLUE	0	/* Offset of Blue */
+  にしておくこと
+
+
+babel
+  http://tricklib.com/cxx/ex/babel/
+  文字コード変換ライブラリ
+
+
