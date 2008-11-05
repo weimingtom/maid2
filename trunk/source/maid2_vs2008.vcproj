@@ -357,6 +357,26 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="framework"
+			>
+			<File
+				RelativePath=".\framework\win32\messagehook.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\messagehook.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\messagehookmanager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\messagehookmanager.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>
