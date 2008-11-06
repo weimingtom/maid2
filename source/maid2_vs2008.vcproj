@@ -361,6 +361,18 @@
 			Name="framework"
 			>
 			<File
+				RelativePath=".\framework\win32\application.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\application.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\com_ptr.h"
+				>
+			</File>
+			<File
 				RelativePath=".\framework\win32\messagehook.cpp"
 				>
 			</File>
@@ -374,6 +386,22 @@
 			</File>
 			<File
 				RelativePath=".\framework\win32\messagehookmanager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\registry.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\registry.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\shell.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\shell.h"
 				>
 			</File>
 		</Filter>
