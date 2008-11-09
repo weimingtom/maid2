@@ -88,6 +88,9 @@ namespace Maid
     void AddProc( HWND hWnd );
     void DelProc();
 
+    void EnterInterruptMode();
+    void LeaveInterruptMode();
+
     //! プロシージャにコールバックしてもらう関数
     /*!
         この関数を継承先で実装します

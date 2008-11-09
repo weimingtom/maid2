@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auxiliary\mathematics.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\streambuffer.cpp"
 				>
 			</File>
@@ -253,6 +257,94 @@
 				</File>
 				<File
 					RelativePath=".\auxiliary\thread\win32\threadmutex.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="mathematics"
+				>
+				<File
+					RelativePath=".\auxiliary\mathematics\function.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\line.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\line2d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\line3d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\matrix.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\matrix4d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\point.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\point2d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\point3d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\point4d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\quaternion.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\rect.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\rect2d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\rect3d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\size.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\size2d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\size3d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\vector.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\vector2d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\vector3d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\mathematics\vector4d.h"
 					>
 				</File>
 			</Filter>
@@ -402,6 +494,14 @@
 			</File>
 			<File
 				RelativePath=".\framework\win32\shell.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\window.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\win32\window.h"
 				>
 			</File>
 		</Filter>
