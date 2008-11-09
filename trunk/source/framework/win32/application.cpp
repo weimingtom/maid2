@@ -107,7 +107,7 @@ int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
 
 			Shell::SetCurrentDirectory( ExeDir );
       String::Initialize();
-
+      m_HookManager.Initialize();
 		//	CRand::SetSeed(::GetTickCount());
 		}
 

@@ -57,4 +57,15 @@ void MessageHook::DelProc()
   }
 }
 
+void MessageHook::EnterInterruptMode()
+{
+  GlobalPointer<MessageHookManager>::Get()->SetInterruptHook( this );
+}
+
+void MessageHook::LeaveInterruptMode()
+{
+  GlobalPointer<MessageHookManager>::Get()->SetInterruptHook( NULL );
+}
+
+
 }
