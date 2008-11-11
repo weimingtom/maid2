@@ -1,6 +1,6 @@
 /*!
- 	@file
- 	@brief Windows用フレームワークベースクラス
+    @file
+    @brief Windows用フレームワークベースクラス
  */
 
 #ifndef framework_win32_application_h

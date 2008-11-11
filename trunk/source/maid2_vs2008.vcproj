@@ -453,57 +453,93 @@
 			Name="framework"
 			>
 			<File
-				RelativePath=".\framework\win32\application.cpp"
+				RelativePath=".\framework\gamethread.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\win32\application.h"
+				RelativePath=".\framework\gamethread.h"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\win32\com_ptr.h"
+				RelativePath=".\framework\osmessage.h"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\win32\messagehook.cpp"
+				RelativePath=".\framework\osmessageimpl1.h"
 				>
 			</File>
-			<File
-				RelativePath=".\framework\win32\messagehook.h"
+			<Filter
+				Name="win32"
 				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\messagehookmanager.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\messagehookmanager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\registry.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\registry.h"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\shell.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\shell.h"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\window.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\win32\window.h"
-				>
-			</File>
+				<File
+					RelativePath=".\framework\win32\application.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\application.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\com_ptr.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\gameframework.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\gameframework1.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\gameframework2.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\gameframework3.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\messagehook.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\messagehook.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\messagehookmanager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\messagehookmanager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\registry.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\registry.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\shell.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\shell.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\window.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\window.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>
