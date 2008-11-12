@@ -23,6 +23,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0040framework", "sample\004
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0050gameframework", "sample\0050gameframework\0050gameframework.vcproj", "{B1AC1DBC-1C4E-492C-A680-FACB49139515}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -49,6 +54,10 @@ Global
 		{4A9B2297-87AE-40DA-BB7B-62F8D79043BB}.Debug|Win32.Build.0 = Debug|Win32
 		{4A9B2297-87AE-40DA-BB7B-62F8D79043BB}.Release|Win32.ActiveCfg = Release|Win32
 		{4A9B2297-87AE-40DA-BB7B-62F8D79043BB}.Release|Win32.Build.0 = Release|Win32
+		{B1AC1DBC-1C4E-492C-A680-FACB49139515}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B1AC1DBC-1C4E-492C-A680-FACB49139515}.Debug|Win32.Build.0 = Debug|Win32
+		{B1AC1DBC-1C4E-492C-A680-FACB49139515}.Release|Win32.ActiveCfg = Release|Win32
+		{B1AC1DBC-1C4E-492C-A680-FACB49139515}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

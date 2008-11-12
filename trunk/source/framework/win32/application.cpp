@@ -4,6 +4,7 @@
 #include"../../auxiliary/debug/warning.h"
 #include"../../auxiliary/debug/assert.h"
 #include"../../auxiliary/exception.h"
+#include"../../storage/storage.h"
 #include<shellapi.h>
 
 namespace Maid
@@ -99,6 +100,9 @@ void Application::ApplicationExit()
 int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
 {
   Set();
+  String::Initialize();
+
+  Storage strage;
 	try
 	{
 		{	//	èâä˙ê›íË
@@ -106,9 +110,10 @@ int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
 			String ExeDir  = String::GetDirectory(ExePath);
 
 			Shell::SetCurrentDirectory( ExeDir );
-      String::Initialize();
       m_HookManager.Initialize();
 		//	CRand::SetSeed(::GetTickCount());
+
+      strage.Initialize();
 		}
 
 		m_Instance = hInstance;
