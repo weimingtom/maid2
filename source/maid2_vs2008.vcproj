@@ -484,6 +484,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\win32\dllwrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\dllwrapper.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\win32\gameframework.h"
 					>
 				</File>
