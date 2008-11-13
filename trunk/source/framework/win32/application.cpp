@@ -1,4 +1,4 @@
-#include"applicationwin32.h"
+#include"application.h"
 
 #include"shell.h"
 #include"../../auxiliary/debug/warning.h"
@@ -17,16 +17,9 @@ Application* GlobalPointer<Application>::s_pPointer;
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 /*!
- 	  @param	hInstance		[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
- 	  @param	hPrevInstance	[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
- 	  @param	lpCmdLine		[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
- 	  @param	nCmdShow		[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
  */
-Application::Application( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+Application::Application()
 {
-	m_Instance = hInstance;
-	m_PrevInstance = hPrevInstance;
-	m_CommandShow = nCmdShow;
   
 }
 
@@ -48,6 +41,23 @@ String	Application::GetCmdLine( int no )const
 	if( !(no<(int)m_DivComdList.size()) ) { return String(); }
 
 	return m_DivComdList[no];
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! Às
+/*!
+ 	  @param	hInstance		[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
+ 	  @param	hPrevInstance	[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
+ 	  @param	lpCmdLine		[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
+ 	  @param	nCmdShow		[i ]	WinMain() ‚©‚ç“n‚³‚ê‚½ˆø”
+ */
+int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+{
+	m_Instance = hInstance;
+	m_PrevInstance = hPrevInstance;
+	m_CommandShow = nCmdShow;
+
+  return ApplicationLib::Run();
 }
 
 
@@ -82,6 +92,7 @@ void Application::LocalExit()
 
 void Application::OnSetup()
 {
+  Set();
   Shell::CoInitialize();
 	Shell::InitCommonControls();
 
@@ -132,16 +143,19 @@ void Application::OnSetup()
 			MAID_THROWEXCEPTION(MAIDTEXT("RegisterClassEx ‚É¸”s"));
 		}
 	}
+
+  LocalSetup();
 }
 
 
 void Application::OnLoop()
 {
-
+  LocalLoop();
 }
 
 void Application::OnCleanup()
 {
+  LocalCleanup();
 	Shell::CoUninitialize();
 }
 
@@ -149,7 +163,7 @@ void Application::OnCleanup()
 LRESULT CALLBACK Application::ProcessProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
 	WindowsMessage mess(hWnd,msg,wParam,lParam);
-  return GlobalPointer<ApplicationWin32>::Get()->m_HookManager.OnMessage( mess );
+  return GlobalPointer<Application>::Get()->m_HookManager.OnMessage( mess );
 }
 
 }
