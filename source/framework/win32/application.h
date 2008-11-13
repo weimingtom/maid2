@@ -3,27 +3,28 @@
     @brief Windows用フレームワークベースクラス
  */
 
-#ifndef framework_win32_application32_h
-#define framework_win32_application32_h
+#ifndef framework_win32_application_h
+#define framework_win32_application_h
 
 #include"../../config/define.h"
 #include"../../config/Win32.h"
 #include"../../auxiliary/globalpointer.h"
 #include"../../auxiliary/string.h"
 
-#include"../application.h"
+#include"../applicationlib.h"
 
 #include"messagehookmanager.h"
 #include<vector>
 
 namespace Maid
 {
-  class Application : public _Application,  public GlobalPointer<Application>
+  class Application : public ApplicationLib,  public GlobalPointer<Application>
 	{
 	public:
-		Application( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+		Application();
 		virtual ~Application();
 
+		int Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
 
 		HINSTANCE		GetHINSTANCE()	const;
 		const String	GetClassName()	const;
@@ -38,7 +39,10 @@ namespace Maid
 		virtual void OnLoop();
 		virtual void OnCleanup();
 		virtual bool IsValid();
-
+	protected:
+		virtual void LocalSetup()=0;
+		virtual void LocalLoop()=0;
+		virtual void LocalCleanup()=0;
 	private:
 		static LRESULT CALLBACK ProcessProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
