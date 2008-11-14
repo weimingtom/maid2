@@ -457,11 +457,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\framework\applicationlib.cpp"
+				RelativePath=".\framework\applicationbase.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\applicationlib.h"
+				RelativePath=".\framework\applicationbase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\gameframework.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\gameframeworkbase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\gameframeworkbase1.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\gameframeworkbase2.cpp"
 				>
 			</File>
 			<File
@@ -470,6 +486,10 @@
 			</File>
 			<File
 				RelativePath=".\framework\gamethread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\osdriver.h"
 				>
 			</File>
 			<File
@@ -516,10 +536,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\framework\win32\gameframework3.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\framework\win32\messagehook.cpp"
 					>
 				</File>
@@ -533,6 +549,14 @@
 				</File>
 				<File
 					RelativePath=".\framework\win32\messagehookmanager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\osdriverwin32.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\osdriverwin32.h"
 					>
 				</File>
 				<File

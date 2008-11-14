@@ -8,52 +8,21 @@
 
 #include"../../config/define.h"
 #include"../../config/Win32.h"
+
+#include<vector>
+
 #include"../../auxiliary/globalpointer.h"
 #include"../../auxiliary/string.h"
 
-#include"../applicationlib.h"
+#include"../applicationbase.h"
 
-#include"messagehookmanager.h"
-#include<vector>
 
 namespace Maid
 {
-  class Application : public ApplicationLib,  public GlobalPointer<Application>
+  class Application : public ApplicationBase
 	{
 	public:
-		Application();
-		virtual ~Application();
-
-		int Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
-
-		HINSTANCE		GetHINSTANCE()	const;
-		const String	GetClassName()	const;
-		const String&	GetCmdLineALL()	const;
-		const std::vector<String>&	GetCmdLine()const;
-		String	GetCmdLine( int no )const;
-
-
-	protected:
-		virtual void LocalExit();
-		virtual void OnSetup();
-		virtual void OnLoop();
-		virtual void OnCleanup();
-		virtual bool IsValid();
-	protected:
-		virtual void LocalSetup()=0;
-		virtual void LocalLoop()=0;
-		virtual void LocalCleanup()=0;
-	private:
-		static LRESULT CALLBACK ProcessProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
-
-		HINSTANCE	m_Instance;
-		HINSTANCE	m_PrevInstance;
-		String		m_CommandLine;
-		int			  m_CommandShow;
-
-		std::vector<String>	m_DivComdList;	//	分割されたコマンドライン
-
-		MessageHookManager	m_HookManager;
-	};
+    int Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+  };
 }
 #endif
