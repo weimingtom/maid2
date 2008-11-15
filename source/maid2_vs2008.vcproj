@@ -608,6 +608,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphic\color\color_a02b10g10r10i.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphic\color\color_a02r10g10b10i.h"
 					>
 				</File>
@@ -617,6 +621,10 @@
 				</File>
 				<File
 					RelativePath=".\graphic\color\color_a08r08g08b08i.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphic\color\color_a16b16g16r16i.h"
 					>
 				</File>
 				<File
@@ -641,10 +649,6 @@
 				</File>
 				<File
 					RelativePath=".\graphic\color\color_x01r05g05b05i.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphic\color\color_x02r10g10b10i.h"
 					>
 				</File>
 				<File
