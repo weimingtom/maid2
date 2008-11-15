@@ -628,7 +628,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphic\color\color_a32r32g32b32f.h"
+					RelativePath=".\graphic\color\color_a32b32g32r32f.h"
 					>
 				</File>
 				<File
