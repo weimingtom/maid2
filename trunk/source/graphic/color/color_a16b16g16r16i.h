@@ -49,16 +49,10 @@ namespace Maid
 		template <class PIXEL>
 		COLOR_A16B16G16R16I& operator = (const PIXEL &src)
 		{
-			SetARGB(src.GetA(),src.GetR(),src.GetG(),src.GetB());
+			SetABGR(src.GetA(),src.GetR(),src.GetG(),src.GetB());
 			return *this;
 		}
 
-		//!	同じピクセルフォーマットとのコピー
-		COLOR_A16B16G16R16I& operator = (const COLOR_A16B16G16R16I& src)
-		{
-			*(unt64*)(&m_Blue) = *(unt64*)(&src.m_Blue);
-			return *this;
-		}
 	private:
 		unt16 m_Red;
 		unt16 m_Green;

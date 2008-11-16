@@ -38,7 +38,7 @@ namespace Maid
   inline unt08 BITCONVERT16Ito05I( unt16 s ) { return (unt08)(_CLIP16I(s,0x03FF)>>11); }
   inline unt08 BITCONVERT16Ito06I( unt16 s ) { return (unt08)(_CLIP16I(s,0x01FF)>>10); }
   inline unt08 BITCONVERT16Ito08I( unt16 s ) { return (unt08)(_CLIP16I(s,0x00FF)>> 8); }
-  inline unt08 BITCONVERT16Ito10I( unt16 s ) { return        (_CLIP16I(s,0x003F)>> 6); }
+  inline unt16 BITCONVERT16Ito10I( unt16 s ) { return        (_CLIP16I(s,0x003F)>> 6); }
 
 }
 
