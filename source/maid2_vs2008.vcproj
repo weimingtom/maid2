@@ -663,6 +663,10 @@
 			<Filter
 				Name="core"
 				>
+				<File
+					RelativePath=".\graphic\core\videocardlistbase.h"
+					>
+				</File>
 				<Filter
 					Name="driver"
 					>
@@ -715,6 +719,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\graphic\core\driver\vertexdeclarationbuffermemory.h"
+						>
+					</File>
+					<File
 						RelativePath=".\graphic\core\driver\vertexshaderbuffer.h"
 						>
 					</File>
@@ -722,6 +730,18 @@
 						RelativePath=".\graphic\core\driver\videocard.h"
 						>
 					</File>
+					<Filter
+						Name="win32"
+						>
+						<File
+							RelativePath=".\graphic\core\driver\win32\videocardlist.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphic\core\driver\win32\videocardlist.h"
+							>
+						</File>
+					</Filter>
 				</Filter>
 			</Filter>
 		</Filter>

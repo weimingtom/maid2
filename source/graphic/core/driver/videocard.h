@@ -13,17 +13,17 @@
 #include"../../color.h"
 #include"../../pixelformat.h"
 
-/*
-#include"CSurfaceBuffer.h"
-#include"CSurfaceBufferMemory.h"
-#include"CVertexBuffer.h"
-#include"CIndexBuffer.h"
-#include"CTextureBuffer.h"
-#include"CTextureBufferMemory.h"
-#include"CVertexShaderBuffer.h"
-#include"CPixelShaderBuffer.h"
-#include"CVertexDeclarationBuffer.h"
-*/
+#include"surfacebuffer.h"
+#include"surfacebuffermemory.h"
+#include"vertexbuffer.h"
+#include"indexbuffer.h"
+#include"texturebuffer.h"
+#include"texturebuffermemory.h"
+#include"vertexshaderbuffer.h"
+#include"pixelshaderbuffer.h"
+#include"vertexdeclarationbuffer.h"
+#include"vertexdeclarationbuffermemory.h"
+
 
 
 
@@ -51,12 +51,17 @@ namespace Maid
   public:
     struct SCREENMODE
     {
-      bool  IsFullScreen; //!<  フルスクリーンか？
-      SIZE2DI Size;       //!<  画面解像度
-      PIXELFORMAT Format; //!<  ピクセルフォーマット
-      int		RefreshRate;  //!<  リフレッシュレート
-      bool	IsWaitVSync;  //!<  VSync同期するか？
-      bool	IsSoftwareVertexProcessing; //!<  頂点変換をソフトウェアで行うか？
+      enum DISPLAY
+      {
+        DISPLAY_FULL16,
+        DISPLAY_FULL32,
+        DISPLAY_FULL32EX,  //!<  RGB10bitモード
+        DISPLAY_WINDOW,
+      };
+      SIZE2DI  ScreenSize;   //!<  画面解像度
+      DISPLAY  ScreenMode;   //!<  スクリーンモード
+      int      RefreshRate;  //!<  リフレッシュレート
+      bool     IsWaitVSync;  //!<  VSync同期するか？
     };
 
 
@@ -75,7 +80,7 @@ namespace Maid
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スクリーンモードの変更
     /*!
-        デバイスがロストしたときも呼ばれます
+        デバイスロストからの復帰にも呼んで下さい
 
         @param	mode	[i ]	あたらしい解像度
 
@@ -138,7 +143,7 @@ namespace Maid
 
       @return	作成されたテクスチャバッファ
      */
-    virtual SPTEXTUREBUFFER CreateTextureBuffer( const CTextureBufferMemory& buffer )=0;
+    virtual SPTEXTUREBUFFER CreateTextureBuffer( const TextureBufferMemory& buffer )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -156,11 +161,11 @@ namespace Maid
     //! インデックスバッファの作成
     /*!
       @param	data	[i ]	インデックスデータ
-      @param	Format	[i ]	１インデックスあたりのバイト数
+      @param	Format	[i ]	１インデックスあたりのビット数
 
       @return	作成されたインデックスバッファ
      */
-    virtual SPINDEXBUFFER CreateIndexBuffer( const MySTL::vector<unt08>& data, int Format )=0;
+    virtual SPINDEXBUFFER CreateIndexBuffer( const std::vector<unt08>& data, int Format )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファの作成
@@ -170,57 +175,25 @@ namespace Maid
 
       @return	作成された頂点バッファ
      */
-    virtual SPVERTEXBUFFER CreateVertexBuffer( const MySTL::vector<unt08>& data, VERTEXFORMAT Format )=0;
-
-    enum SHADERCOMPILE
-    {
-      SHADERCOMPILE_COPY,		//!<	コンパイルせずそのままコピー
-      SHADERCOMPILE_ASSEMBLE,	//!<	アセンブル
-      SHADERCOMPILE_COMPILE,	//!<	コンパイル
-    };
-
+    virtual SPVERTEXBUFFER CreateVertexBuffer( const std::vector<unt08>& data, unt32 Format )=0;
+    
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ドライバ側で用意されているバーテックスシェーダーの作成
-    /*!
-      @param	Name	[i ]	デフォルト名
-
-      @return	作成されたバーテックスシェーダー
-     */
-    virtual SPVERTEXSHADERBUFFER CreateVertexShader( const mstring& Name )=0;
-
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ゲーム側独自のバーテックスシェーダーの作成
+    //! バーテックスシェーダーの作成
     /*!
       @param	Code	[i ]	コード
-      @param	type	[i ]	コンパイル
 
       @return	作成されたバーテックスシェーダー
      */
-    virtual SPVERTEXSHADERBUFFER CreateVertexShader( const MySTL::vector<unt08>& Code, SHADERCOMPILE type )=0;
-
-
-
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ドライバ側で用意されているピクセルシェーダーの作成
-    /*!
-      @param	Name	[i ]	デフォルト名
-
-      @return	作成されたピクセルシェーダー
-     */
-    virtual SPPIXELSHADERBUFFER CreatePixelShader( const mstring& Name )=0;
-
+    virtual SPVERTEXSHADERBUFFER CreateVertexShader( const std::vector<unt08>& Code )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ゲーム側独自のピクセルシェーダーの作成
     /*!
       @param	Code	[i ]	コード
-      @param	type	[i ]	コンパイル
 
       @return	作成されたピクセルシェーダー
      */
-    virtual SPPIXELSHADERBUFFER CreatePixelShader( const MySTL::vector<unt08>& Code, SHADERCOMPILE type )=0;
+    virtual SPPIXELSHADERBUFFER CreatePixelShader( const std::vector<unt08>& Code )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -230,13 +203,13 @@ namespace Maid
 
       @return	作成された頂点定義
      */
-    virtual SPVERTEXDECLARATIONBUFFER CreateVertexDeclarationBuffer( const mstring& Name )=0;
+    virtual SPVERTEXDECLARATIONBUFFER CreateVertexDeclarationBuffer( const VertexDeclarationBufferMemory& buffer )=0;
 
 
-    virtual void SetRenderTarget( const ISurfaceBuffer* pBuffer )=0;
+    virtual void SetRenderTarget( const SurfaceBuffer* pBuffer )=0;
     virtual void ResetRenderTarget()=0;
 
-    virtual void SetDepthStencil( const ISurfaceBuffer* pBuffer )=0;
+    virtual void SetDepthStencil( const SurfaceBuffer* pBuffer )=0;
     virtual void ResetDepthStencil()=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -296,7 +269,7 @@ namespace Maid
 
     virtual void CopySurface( const SPSURFACEBUFFER& pSrc, SPSURFACEBUFFERMEMORY& pDst )=0;
 
-    virtual mstring GetVideoInfo()=0;
+    virtual String GetVideoInfo()=0;
 
 
     enum RENDERSTATE
@@ -376,7 +349,7 @@ namespace Maid
     /*!
       @param	Color	[i ]	塗りつぶす色
      */
-    virtual void ClearColor( const COLOR_R08G08B08I& Color )=0;
+    virtual void ClearColor( const COLOR_A32B32G32R32F& Color )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 現在の Zバッファ を塗りつぶす
@@ -433,7 +406,7 @@ namespace Maid
 
   };
 
-  typedef	boost::shared_ptr<IVideoCardDriver>	SPVIDEOCARDDRIVER;
+  typedef	boost::shared_ptr<VideoCard>	SPVIDEOCARD;
 
 }
 
