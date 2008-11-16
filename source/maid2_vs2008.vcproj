@@ -592,6 +592,10 @@
 				RelativePath=".\graphic\color.h"
 				>
 			</File>
+			<File
+				RelativePath=".\graphic\pixelformat.h"
+				>
+			</File>
 			<Filter
 				Name="color"
 				>
@@ -659,6 +663,66 @@
 			<Filter
 				Name="core"
 				>
+				<Filter
+					Name="driver"
+					>
+					<File
+						RelativePath=".\graphic\core\driver\indexbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\pixelshaderbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\surfacebuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\surfacebufferlockinfo.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\surfacebufferlockinfo.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\surfacebuffermemory.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\surfacebuffermemory.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\texturebuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\texturebuffermemory.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\texturebuffermemory.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\vertexbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\vertexdeclarationbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\vertexshaderbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\videocard.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 	</Files>

@@ -30,12 +30,12 @@ namespace Maid
 		unt16 GetG() const	{ return BITCONVERT10Ito16I((m_ARGB&0x000FFC00)>>10);	}	//!<	—Î¬•ª‚ÌŽæ“¾
 		unt16 GetB() const	{ return BITCONVERT10Ito16I((m_ARGB&0x3FF00000)>>20);	}	//!<	Â¬•ª‚ÌŽæ“¾
 
-		operator unt32() const { return *((unt32*)&m_Blue); }	//!<	ˆêŠ‡•ÏŠ·
+		operator unt32() const { return m_ARGB; }	//!<	ˆêŠ‡•ÏŠ·
 
 		void SetA( unt16 a )	{ m_ARGB = (m_ARGB&~0xC0000000)|(BITCONVERT16Ito02I(a)<<30);	}	//!<	ƒAƒ‹ƒtƒ@¬•ª‚ÌÝ’è
-		void SetR( unt16 r )	{ m_ARGB = (m_ARGB&~0x000003FF)|(BITCONVERT16Ito10I(a)<< 0);	}	//!<	Ô¬•ª‚ÌÝ’è
-		void SetG( unt16 g )	{ m_ARGB = (m_ARGB&~0x000FFC00)|(BITCONVERT16Ito10I(a)<<10);	}	//!<	—Î¬•ª‚ÌÝ’è
-		void SetB( unt16 b )	{ m_ARGB = (m_ARGB&~0x3FF00000)|(BITCONVERT16Ito10I(a)<<20);	}	//!<	Â¬•ª‚ÌÝ’è
+		void SetR( unt16 r )	{ m_ARGB = (m_ARGB&~0x000003FF)|(BITCONVERT16Ito10I(r)<< 0);	}	//!<	Ô¬•ª‚ÌÝ’è
+		void SetG( unt16 g )	{ m_ARGB = (m_ARGB&~0x000FFC00)|(BITCONVERT16Ito10I(g)<<10);	}	//!<	—Î¬•ª‚ÌÝ’è
+		void SetB( unt16 b )	{ m_ARGB = (m_ARGB&~0x3FF00000)|(BITCONVERT16Ito10I(b)<<20);	}	//!<	Â¬•ª‚ÌÝ’è
 
 		void SetARGB( unt16 a, unt16 r, unt16 g, unt16 b )	//!<	‚¢‚Á‚«‚ÉÝ’è
 		{
