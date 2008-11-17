@@ -49,33 +49,49 @@ namespace Maid
   class VideoCard
   {
   public:
-    struct SCREENMODE
+
+    struct DISPLAYMODE
     {
-      enum DISPLAY
+      enum TYPE
       {
-        DISPLAY_FULL16,
-        DISPLAY_FULL32,
-        DISPLAY_FULL32EX,  //!<  RGB10bitモード
-        DISPLAY_WINDOW,
+        TYPE_FULL16,
+        TYPE_FULL32,
+        TYPE_FULL32EX,  //!<  RGB10bitモード
+        TYPE_WINDOW,
       };
-      SIZE2DI  ScreenSize;   //!<  画面解像度
-      DISPLAY  ScreenMode;   //!<  スクリーンモード
-      int      RefreshRate;  //!<  リフレッシュレート
-      bool     IsWaitVSync;  //!<  VSync同期するか？
+      SIZE2DI Size;         //!<  画面解像度
+      TYPE    TYPE;         //!<  スクリーンモード
+      int     RefreshRate;  //!<  リフレッシュレート
     };
 
+    struct SCREENMODE
+    {
+      DISPLAYMODE DisplayMode;  //!<  解像度
+      bool        IsWaitVSync;  //!<  VSync同期するか？
+    };
+
+    struct BUFFERFORMAT
+    {
+      std::vector<PIXELFORMAT>  Texture;
+      std::vector<PIXELFORMAT>  DepthStencil;
+      std::vector<PIXELFORMAT>  RenderTarget;
+    };
 
     virtual ~VideoCard(){};
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバの初期化
     /*!
-        @param	mode	[i ]	初期化して欲しい解像度
-
         @exception Exception 初期化に失敗した場合
      */
-    virtual void Initialize( const SCREENMODE& mode )=0;
+    void Initialize();
 
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ドライバの開放
+    /*!
+        @exception Exception 開放に失敗した場合
+     */
+    void Finalize();
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スクリーンモードの変更
@@ -95,12 +111,6 @@ namespace Maid
      */
     virtual void Restore()=0;
 
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ドライバの開放
-    /*!
-        @exception Exception 開放に失敗した場合
-     */
-    virtual void Finalize()=0;
 
     enum DEVICESTATE
     {
@@ -390,19 +400,39 @@ namespace Maid
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ポリゴンの描画
     /*!
-      @param	prim			[i ]	描画の形
-      @param	BaseVertexOffset[i ]	VertexBuffer上の MinIndex のオフセット
-      @param	MinIndex		[i ]	インデックスの最小の値
-      @param	NumVertices		[i ]	呼び出しで使用される頂点の数
-      @param	StartIndex		[i ]	何個目のインデックスから描画を開始するか？
-      @param	PrimitiveCount	[i ]	描画する数
+        @param	prim            [i ]	描画の形
+        @param	BaseVertexOffset[i ]	VertexBuffer上の MinIndex のオフセット
+        @param	MinIndex        [i ]	インデックスの最小の値
+        @param	NumVertices     [i ]	呼び出しで使用される頂点の数
+        @param	StartIndex      [i ]	何個目のインデックスから描画を開始するか？
+        @param	PrimitiveCount  [i ]	描画する数
      */
     virtual void DrawIndexedPrimitive( PRIMITIVE prim, int BaseVertexOffset, unt MinIndex, unt NumVertices, unt StartIndex, unt PrimitiveCount )=0;
 
 
     virtual void DrawIndexPrimitiveUP( PRIMITIVE prim, int MinIndex, int NumVertices, const void* pVertex, int VertexSize, int PrimitiveCount, const void* pIndex, int IndexSize  )=0;
 
+  protected:
+
+    struct VIDEOCAPS
+    {
+      std::vector<DISPLAYMODE>  EnableDisplayMode;    //!<  作成可能な解像度
+      BUFFERFORMAT              BufferFormatFull16;   //!<  Full16のときに作れる各種バッファフォーマット
+      BUFFERFORMAT              BufferFormatFull32;   //!<  Full32のときに作れる各種バッファフォーマット
+      BUFFERFORMAT              BufferFormatFull32Ex; //!<  Full32Exのときに作れる各種バッファフォーマット
+      BUFFERFORMAT              BufferFormatWindow;   //!<  Windowのときに作れる各種バッファフォーマット
+    };
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ビデオカードの性能を調べる
+    /*!
+        @param	caps [ o]	判明した性能の設定先
+     */
+    virtual void SerchVideoCaps( VIDEOCAPS& caps ) = 0;
+
   private:
+
+    VIDEOCAPS m_VideoCaps;
 
   };
 
