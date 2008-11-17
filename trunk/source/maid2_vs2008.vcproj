@@ -593,6 +593,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphic\customvertextemplate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphic\pixelformat.h"
 				>
 			</File>
@@ -741,6 +745,18 @@
 							RelativePath=".\graphic\core\driver\win32\videocardlist.h"
 							>
 						</File>
+						<Filter
+							Name="direct3d09"
+							>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\d3d09include.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\videocardd3d09.h"
+								>
+							</File>
+						</Filter>
 					</Filter>
 				</Filter>
 			</Filter>
