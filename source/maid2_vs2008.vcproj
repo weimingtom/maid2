@@ -761,6 +761,22 @@
 								>
 							</File>
 							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\indexbufferd3d09.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\indexbufferd3d09.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\pixelshaderbufferd3d09.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\pixelshaderbufferd3d09.h"
+								>
+							</File>
+							<File
 								RelativePath=".\graphic\core\driver\win32\direct3d09\surfacebufferd3d09.cpp"
 								>
 							</File>
@@ -774,6 +790,30 @@
 							</File>
 							<File
 								RelativePath=".\graphic\core\driver\win32\direct3d09\texturebufferd3d09.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\vertexbufferd3d09.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\vertexbufferd3d09.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\vertexdeclarationbufferd3d09.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\vertexdeclarationbufferd3d09.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\vertexshaderbufferd3d09.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\vertexshaderbufferd3d09.h"
 								>
 							</File>
 							<File
