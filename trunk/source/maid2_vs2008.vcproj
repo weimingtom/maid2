@@ -668,7 +668,11 @@
 				Name="core"
 				>
 				<File
-					RelativePath=".\graphic\core\videocardlistbase.h"
+					RelativePath=".\graphic\core\videodevicelist.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphic\core\videodevicelistbase.h"
 					>
 				</File>
 				<Filter
@@ -731,18 +735,22 @@
 						>
 					</File>
 					<File
-						RelativePath=".\graphic\core\driver\videocard.h"
+						RelativePath=".\graphic\core\driver\videodevice.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\videodevice.h"
 						>
 					</File>
 					<Filter
 						Name="win32"
 						>
 						<File
-							RelativePath=".\graphic\core\driver\win32\videocardlist.cpp"
+							RelativePath=".\graphic\core\driver\win32\videodevicelist.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\graphic\core\driver\win32\videocardlist.h"
+							RelativePath=".\graphic\core\driver\win32\videodevicelist.h"
 							>
 						</File>
 						<Filter
@@ -753,7 +761,31 @@
 								>
 							</File>
 							<File
-								RelativePath=".\graphic\core\driver\win32\direct3d09\videocardd3d09.h"
+								RelativePath=".\graphic\core\driver\win32\direct3d09\surfacebufferd3d09.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\surfacebufferd3d09.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\texturebufferd3d09.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\texturebufferd3d09.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\videodeviced3d09.h"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\videodeviced3d09_1.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\graphic\core\driver\win32\direct3d09\videodeviced3d09_2.cpp"
 								>
 							</File>
 						</Filter>

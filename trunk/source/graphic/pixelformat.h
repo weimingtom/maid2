@@ -19,7 +19,7 @@ namespace Maid
    */
   enum PIXELFORMAT
   {
-    PIXELFORMAT_NONE,	//!<	不明　大概はエラー
+    PIXELFORMAT_NONE=0,	//!<	不明　大概はエラー
 
 
     //  unt 08bit/pixel
@@ -68,20 +68,26 @@ namespace Maid
 
     // 圧縮カラーフォーマットが増えた場合はここに追加
     //	↓の GetPixelBPP() にも追加しておくこと
-
-
-
-
-    PIXELFORMAT_D16,      //!<	16bit/Pixel の ZBuffer
-    PIXELFORMAT_D32,      //!<	32bit/Pixel の ZBuffer
-    PIXELFORMAT_D24X8,    //!<	32bit/Pixel (有効範囲24Bit) の ZBuffer
-    PIXELFORMAT_D24S8,    //!<	32bit/Pixel のうち、 24Bitの ZBuffer 8Bit のステンシルバッファ
-
-    // 深度フォーマットが増えた場合はここに追加
-    //	↓の GetPixelBPP() にも追加しておくこと
-
-
   };
+
+  /*!
+      @enum	  DEPTHSTENCILFORMAT pixelformat.h
+      @brief	深度バッファのピクセルフォーマットを表すenum
+   */
+  enum DEPTHSTENCILFORMAT
+  {
+    DEPTHSTENCILFORMAT_NONE = 0,
+
+    DEPTHSTENCILFORMAT_D15IS1, //!<	整数16bit/Pixel のうち、 15Bitの ZBuffer 1Bit のステンシルバッファ
+    DEPTHSTENCILFORMAT_D16I,   //!<	整数16bit/Pixel の ZBuffer
+    DEPTHSTENCILFORMAT_D32I,   //!<	整数32bit/Pixel の ZBuffer
+    DEPTHSTENCILFORMAT_D24IX8, //!<	整数32bit/Pixel (有効範囲24Bit) の ZBuffer
+    DEPTHSTENCILFORMAT_D24IS8, //!<	整数32bit/Pixel のうち、 24Bitの ZBuffer 8Bit のステンシルバッファ
+    DEPTHSTENCILFORMAT_D24IX4S4, //!<	整数32bit/Pixel のうち、 24Bitの ZBuffer 4Bit のステンシルバッファ
+
+    DEPTHSTENCILFORMAT_D24FS8, //!<	32bit/Pixel のうち、 小数24Bitの ZBuffer 8Bit のステンシルバッファ
+  };
+
 
   /*!
     @brief  ピクセルフォーマットから１ピクセルあたりに使用する
@@ -125,11 +131,6 @@ namespace Maid
     case PIXELFORMAT_DXT3:			{ return  8; }break;
     case PIXELFORMAT_DXT4:			{ return  8; }break;
     case PIXELFORMAT_DXT5:			{ return  8; }break;
-
-    case PIXELFORMAT_D16:       { return 16; }break;
-    case PIXELFORMAT_D32:       { return 32; }break;
-    case PIXELFORMAT_D24X8:			{ return 32; }break;
-    case PIXELFORMAT_D24S8:			{ return 32; }break;
 
     }
     MAID_ASSERT( true, "不明なフォーマットです" );
