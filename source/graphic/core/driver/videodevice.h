@@ -1,5 +1,5 @@
-#ifndef maid2_graphic_core_driver_h
-#define maid2_graphic_core_driver_h
+#ifndef maid2_graphic_core_driver_videodevice_h
+#define maid2_graphic_core_driver_videodevice_h
 
 
 #include"../../../config/define.h"
@@ -10,20 +10,21 @@
 
 #include"../../../auxiliary/exception.h"
 #include"../../../auxiliary/mathematics.h"
+#include"../../../auxiliary/macro.h"
 #include"../../color.h"
 #include"../../pixelformat.h"
 
 #include"surfacebuffer.h"
-#include"surfacebuffermemory.h"
 #include"vertexbuffer.h"
 #include"indexbuffer.h"
 #include"texturebuffer.h"
-#include"texturebuffermemory.h"
 #include"vertexshaderbuffer.h"
 #include"pixelshaderbuffer.h"
 #include"vertexdeclarationbuffer.h"
-#include"vertexdeclarationbuffermemory.h"
 
+#include"surfacebuffermemory.h"
+#include"texturebuffermemory.h"
+#include"vertexdeclarationbuffermemory.h"
 
 
 
@@ -31,7 +32,7 @@ namespace Maid
 {
   /*!	
       @brief	デバイスがロストしたときに飛んでくる例外
-  \n			これを拾ったら VideoCard::Reset() で復帰を試みる
+  \n			これを拾ったら VideoDevice::Reset() で復帰を試みる
   */
   class DeviceLost : public Exception
   {
@@ -39,29 +40,23 @@ namespace Maid
   };
 
   /*!	
-      @class	VideoCard videocard.h
+      @class	VideoDevice videodevice.h
       @brief	ビデオドライバ
   \n    			ドライバによってはできること、できないことがありますが
   \n		    	できない場合はエラーを出すのではなく、華麗にスルーするようにしてください
   \n			    ランタイムエラーが起こった場合は Exception を投げること
   */
 
-  class VideoCard
+  class VideoDevice
   {
   public:
 
     struct DISPLAYMODE
     {
-      enum TYPE
-      {
-        TYPE_FULL16,
-        TYPE_FULL32,
-        TYPE_FULL32EX,  //!<  RGB10bitモード
-        TYPE_WINDOW,
-      };
-      SIZE2DI Size;         //!<  画面解像度
-      TYPE    TYPE;         //!<  スクリーンモード
-      int     RefreshRate;  //!<  リフレッシュレート
+      SIZE2DI     Size;         //!<  画面解像度
+      PIXELFORMAT Format;       //!<  スクリーンモード
+      int         RefreshRate;  //!<  リフレッシュレート
+      bool        IsFullScreen; //!<  フルスクリーンにするか？
     };
 
     struct SCREENMODE
@@ -70,28 +65,23 @@ namespace Maid
       bool        IsWaitVSync;  //!<  VSync同期するか？
     };
 
-    struct BUFFERFORMAT
-    {
-      std::vector<PIXELFORMAT>  Texture;
-      std::vector<PIXELFORMAT>  DepthStencil;
-      std::vector<PIXELFORMAT>  RenderTarget;
-    };
 
-    virtual ~VideoCard(){};
+    virtual ~VideoDevice(){};
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバの初期化
     /*!
         @exception Exception 初期化に失敗した場合
      */
-    void Initialize();
+    virtual void Initialize()=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバの開放
     /*!
         @exception Exception 開放に失敗した場合
      */
-    void Finalize();
+    virtual void Finalize()=0;
+
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スクリーンモードの変更
@@ -103,14 +93,6 @@ namespace Maid
         @exception Exception 初期化に失敗した場合
      */
     virtual void Reset( const SCREENMODE& mode )=0;
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ロストからの復帰
-    /*!
-        @exception Exception 復帰に失敗した場合
-     */
-    virtual void Restore()=0;
-
 
     enum DEVICESTATE
     {
@@ -133,16 +115,49 @@ namespace Maid
      */
     virtual void Flip()=0;
 
+    enum SAMPLETYPE
+    {
+      SAMPLETYPE_01SAMPLES,
+      SAMPLETYPE_02SAMPLES,
+      SAMPLETYPE_03SAMPLES,
+      SAMPLETYPE_04SAMPLES,
+      SAMPLETYPE_05SAMPLES,
+      SAMPLETYPE_06SAMPLES,
+      SAMPLETYPE_07SAMPLES,
+      SAMPLETYPE_08SAMPLES,
+      SAMPLETYPE_09SAMPLES,
+      SAMPLETYPE_10SAMPLES,
+      SAMPLETYPE_11SAMPLES,
+      SAMPLETYPE_12SAMPLES,
+      SAMPLETYPE_13SAMPLES,
+      SAMPLETYPE_14SAMPLES,
+      SAMPLETYPE_15SAMPLES,
+      SAMPLETYPE_16SAMPLES,
+    };
+
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! サーフェスバッファの作成
+    //! レンダーターゲットバッファの作成
     /*!
-      @param	size	[i ]	テクスチャの大きさ
-      @param	fmt		[i ]	ピクセルフォーマット
+      @param	size    [i ]	サーフェスの大きさ
+      @param	fmt     [i ]	ピクセルフォーマット
+      @param	type    [i ]	サンプル数
+      @param	Quality	[i ]	サンプルクオリティ
 
       @return	作成されたサーフェスバッファ
      */
-    virtual SPSURFACEBUFFER CreateSurface( const SIZE2DI& size, PIXELFORMAT fmt )=0;
+    virtual SurfaceBuffer* CreateRenderTargetSurface( const SIZE2DI& size, PIXELFORMAT fmt, SAMPLETYPE type, int Quality )=0;
 
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 深度バッファの作成
+    /*!
+      @param	size	  [i ]	サーフェスの大きさ
+      @param	fmt     [i ]	ピクセルフォーマット
+      @param	type    [i ]	サンプル数
+      @param	Quality	[i ]	サンプルクオリティ
+
+      @return	作成されたサーフェスバッファ
+     */
+    virtual SurfaceBuffer* CreateDepthStencileSurface( const SIZE2DI& size, PIXELFORMAT fmt, SAMPLETYPE type, int Quality )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! テクスチャバッファの作成
@@ -153,7 +168,7 @@ namespace Maid
 
       @return	作成されたテクスチャバッファ
      */
-    virtual SPTEXTUREBUFFER CreateTextureBuffer( const TextureBufferMemory& buffer )=0;
+    virtual TextureBuffer* CreateTextureBuffer( const TextureBufferMemory& buffer )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -164,7 +179,7 @@ namespace Maid
 
       @return	作成されたテクスチャバッファ
      */
-    virtual SPTEXTUREBUFFER CreateRTTextureBuffer( const SIZE2DI& size, PIXELFORMAT fmt )=0;
+    virtual TextureBuffer* CreateRenderTargetTextureBuffer( const SIZE2DI& size, PIXELFORMAT fmt )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -175,7 +190,7 @@ namespace Maid
 
       @return	作成されたインデックスバッファ
      */
-    virtual SPINDEXBUFFER CreateIndexBuffer( const std::vector<unt08>& data, int Format )=0;
+    virtual IndexBuffer* CreateIndexBuffer( const std::vector<unt08>& data, int Format )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファの作成
@@ -185,7 +200,7 @@ namespace Maid
 
       @return	作成された頂点バッファ
      */
-    virtual SPVERTEXBUFFER CreateVertexBuffer( const std::vector<unt08>& data, unt32 Format )=0;
+    virtual VertexBuffer* CreateVertexBuffer( const std::vector<unt08>& data, unt32 Format )=0;
     
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! バーテックスシェーダーの作成
@@ -194,7 +209,7 @@ namespace Maid
 
       @return	作成されたバーテックスシェーダー
      */
-    virtual SPVERTEXSHADERBUFFER CreateVertexShader( const std::vector<unt08>& Code )=0;
+    virtual VertexShaderBuffer* CreateVertexShader( const std::vector<unt08>& Code )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ゲーム側独自のピクセルシェーダーの作成
@@ -203,7 +218,7 @@ namespace Maid
 
       @return	作成されたピクセルシェーダー
      */
-    virtual SPPIXELSHADERBUFFER CreatePixelShader( const std::vector<unt08>& Code )=0;
+    virtual PixelShaderBuffer* CreatePixelShader( const std::vector<unt08>& Code )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -213,7 +228,7 @@ namespace Maid
 
       @return	作成された頂点定義
      */
-    virtual SPVERTEXDECLARATIONBUFFER CreateVertexDeclarationBuffer( const VertexDeclarationBufferMemory& buffer )=0;
+    virtual VertexDeclarationBuffer* CreateVertexDeclarationBuffer( const VertexDeclarationBufferMemory& buffer )=0;
 
 
     virtual void SetRenderTarget( const SurfaceBuffer* pBuffer )=0;
@@ -223,47 +238,40 @@ namespace Maid
     virtual void ResetDepthStencil()=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! テクスチャバッファの開放
-    /*!
-      @param	stage	[i ]	設定するステージ
-     */
-    virtual void UnsetTextureBuffer( int stage )=0;
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! テクスチャバッファのセット
     /*!
+      @param	stage   [i ]	設定するステージ
       @param	pBuffer	[i ]	設定するバッファ
-      @param	stage	[i ]	設定するステージ
      */
-    virtual void SetTextureBuffer( const SPTEXTUREBUFFER& pBuffer, int stage )=0;
+    virtual void SetTextureBuffer( int stage, const TextureBuffer* pBuffer )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! インデックスバッファのセット
     /*!
       @param	pBuffer	[i ]	設定するインデックス
      */
-    virtual void SetIndexBuffer( const SPINDEXBUFFER& pBuffer )=0;
+    virtual void SetIndexBuffer( const IndexBuffer* pBuffer )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファのセット
     /*!
       @param	pBuffer	[i ]	設定するバッファ
      */
-    virtual void SetVertexBuffer( const SPVERTEXBUFFER& pBuffer, int pos )=0;
+    virtual void SetVertexBuffer( int pos, const VertexBuffer* pBuffer )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! バーテックスシェーダーのセット
     /*!
       @param	pShader	[i ]	設定するシェーダー
      */
-    virtual void SetVertexShader( const SPVERTEXSHADERBUFFER& pShader )=0;
+    virtual void SetVertexShader( const VertexShaderBuffer* pShader )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ピクセルシェーダーのセット
     /*!
       @param	pShader	[i ]	設定するシェーダー
      */
-    virtual void SetPixelShader( const SPPIXELSHADERBUFFER& pShader )=0;
+    virtual void SetPixelShader( const PixelShaderBuffer* pShader )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -271,15 +279,13 @@ namespace Maid
     /*!
       @param	pDecl	[i ]	設定する定義
      */
-    virtual void SetVertexDeclaration( const SPVERTEXDECLARATIONBUFFER& pDecl )=0;
+    virtual void SetVertexDeclaration( const VertexDeclarationBuffer* pDecl )=0;
 
     virtual void SetVertexShaderConstF( int pos, const VECTOR4DF& vec )=0;
 
     virtual void SetViewPort( const RECT2DI& screen, float MinZ, float MaxZ ) = 0;
 
-    virtual void CopySurface( const SPSURFACEBUFFER& pSrc, SPSURFACEBUFFERMEMORY& pDst )=0;
-
-    virtual String GetVideoInfo()=0;
+    virtual void CopySurface( const SurfaceBuffer* pSrc, SurfaceBufferMemory& Dst )=0;
 
 
     enum RENDERSTATE
@@ -401,7 +407,7 @@ namespace Maid
     //! ポリゴンの描画
     /*!
         @param	prim            [i ]	描画の形
-        @param	BaseVertexOffset[i ]	VertexBuffer上の MinIndex のオフセット
+        @param	BaseVertexOffset[i ]	VertexBuffer*上の MinIndex のオフセット
         @param	MinIndex        [i ]	インデックスの最小の値
         @param	NumVertices     [i ]	呼び出しで使用される頂点の数
         @param	StartIndex      [i ]	何個目のインデックスから描画を開始するか？
@@ -414,29 +420,46 @@ namespace Maid
 
   protected:
 
-    struct VIDEOCAPS
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! デバイスの準備をする
+    /*!
+     */
+    virtual void SetupDevice() =0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 使用可能なディスプレイモードを調べる
+    /*!
+        @param	mode [ o]	判明した性能の設定先
+     */
+    virtual void SerchDisplayMode( std::vector<DISPLAYMODE>& mode ) = 0;
+
+
+    struct ENABLEFORMAT
     {
-      std::vector<DISPLAYMODE>  EnableDisplayMode;    //!<  作成可能な解像度
-      BUFFERFORMAT              BufferFormatFull16;   //!<  Full16のときに作れる各種バッファフォーマット
-      BUFFERFORMAT              BufferFormatFull32;   //!<  Full32のときに作れる各種バッファフォーマット
-      BUFFERFORMAT              BufferFormatFull32Ex; //!<  Full32Exのときに作れる各種バッファフォーマット
-      BUFFERFORMAT              BufferFormatWindow;   //!<  Windowのときに作れる各種バッファフォーマット
+      std::vector<PIXELFORMAT>  Texture;              //!<  作成可能なテクスチャフォーマット
+      std::vector<PIXELFORMAT>  RenderTargetTexture;  //!<  作成可能なレンダーテクスチャフォーマット
+      std::vector<PIXELFORMAT>  RenderTargetSurface;  //!<  作成可能なレンダーサーフェスフォーマット
+      std::vector<DEPTHSTENCILFORMAT>  DepthStencil;  //!<  作成可能なDepthStencilフォーマット
+      std::vector<int>          IndexBit;             //!<  作成可能な１インデックスあたりのビット数
     };
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ビデオカードの性能を調べる
+    //! 現在のディスプレイモードで作成可能な各種フォーマットを調べる
     /*!
         @param	caps [ o]	判明した性能の設定先
      */
-    virtual void SerchVideoCaps( VIDEOCAPS& caps ) = 0;
+    virtual void SerchEnableFormat( ENABLEFORMAT& caps ) = 0;
+
+
 
   private:
 
-    VIDEOCAPS m_VideoCaps;
+    std::vector<DISPLAYMODE>  m_DisplayMode;
+    ENABLEFORMAT              m_EnableFormat;
 
   };
 
-  typedef	boost::shared_ptr<VideoCard>	SPVIDEOCARD;
+  typedef	boost::shared_ptr<VideoDevice>	SPVIDEODEVICE;
 
 }
 
