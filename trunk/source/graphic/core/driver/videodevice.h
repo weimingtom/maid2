@@ -56,31 +56,31 @@ namespace Maid
       SIZE2DI     Size;         //!<  画面解像度
       PIXELFORMAT Format;       //!<  スクリーンモード
       int         RefreshRate;  //!<  リフレッシュレート
-      bool        IsFullScreen; //!<  フルスクリーンにするか？
     };
 
     struct SCREENMODE
     {
       DISPLAYMODE DisplayMode;  //!<  解像度
+      bool        IsFullScreen; //!<  フルスクリーンにするか？
       bool        IsWaitVSync;  //!<  VSync同期するか？
     };
 
 
-    virtual ~VideoDevice(){};
+    virtual ~VideoDevice();
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバの初期化
     /*!
         @exception Exception 初期化に失敗した場合
      */
-    virtual void Initialize()=0;
+    void Initialize();
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバの開放
     /*!
         @exception Exception 開放に失敗した場合
      */
-    virtual void Finalize()=0;
+    void Finalize();
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -110,10 +110,18 @@ namespace Maid
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! フロントバッファに更新する
     /*!
-      @exception DeviceLost	デバイスがロストした場合
-      @exception Exception	ランタイムエラーにしたい場合
+        @exception DeviceLost	デバイスがロストした場合
+        @exception Exception	ランタイムエラーにしたい場合
      */
     virtual void Flip()=0;
+
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 現在のスクリーンモードの取得
+    /*!
+        @return 現在のスクリーンモード
+     */
+    virtual SCREENMODE GetScreenMode()=0;
 
     enum SAMPLETYPE
     {
@@ -423,6 +431,8 @@ namespace Maid
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! デバイスの準備をする
     /*!
+        デバイスの対応しているフォーマット調べたり
+        深度バッファを作ったりするといいでしょう。
      */
     virtual void SetupDevice() =0;
 
@@ -453,7 +463,6 @@ namespace Maid
 
 
   private:
-
     std::vector<DISPLAYMODE>  m_DisplayMode;
     ENABLEFORMAT              m_EnableFormat;
 
