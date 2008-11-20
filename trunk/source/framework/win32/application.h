@@ -14,14 +14,14 @@
 #include"../../auxiliary/globalpointer.h"
 #include"../../auxiliary/string.h"
 
-#include"../applicationbase.h"
+#include"../iapplication.h"
 
 
 namespace Maid
 {
-  class Application : public ApplicationBase
-	{
-	public:
+  class Application : public IApplication
+  {
+  public:
     int Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
   };
 }

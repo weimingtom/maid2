@@ -17,7 +17,7 @@ int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
 {
   SetOSDriver( SPOSDRIVER(new OSDriverWin32(hInstance,hPrevInstance,lpCmdLine,nCmdShow)) );
 
-  return ApplicationBase::Run();
+  return IApplication::Run();
 }
 
 }

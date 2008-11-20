@@ -1,22 +1,22 @@
-#include"videodevice.h"
+#include"ivideodevice.h"
 
 
 namespace Maid
 {
-VideoDevice::~VideoDevice()
+IVideoDevice::~IVideoDevice()
 {
   Finalize();
 }
 
 
-void VideoDevice::Initialize()
+void IVideoDevice::Initialize()
 {
   SerchDisplayMode( m_DisplayMode );
   SerchEnableFormat(m_EnableFormat);
   SetupDevice();
 }
 
-void VideoDevice::Finalize()
+void IVideoDevice::Finalize()
 {
 }
 

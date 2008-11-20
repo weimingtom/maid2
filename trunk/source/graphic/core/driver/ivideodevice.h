@@ -1,5 +1,5 @@
-#ifndef maid2_graphic_core_driver_videodevice_h
-#define maid2_graphic_core_driver_videodevice_h
+#ifndef maid2_graphic_core_driver_ivideodevice_h
+#define maid2_graphic_core_driver_ivideodevice_h
 
 
 #include"../../../config/define.h"
@@ -14,13 +14,13 @@
 #include"../../color.h"
 #include"../../pixelformat.h"
 
-#include"surfacebuffer.h"
-#include"vertexbuffer.h"
-#include"indexbuffer.h"
-#include"texturebuffer.h"
-#include"vertexshaderbuffer.h"
-#include"pixelshaderbuffer.h"
-#include"vertexdeclarationbuffer.h"
+#include"isurfacebuffer.h"
+#include"ivertexbuffer.h"
+#include"iindexbuffer.h"
+#include"itexturebuffer.h"
+#include"ivertexshaderbuffer.h"
+#include"ipixelshaderbuffer.h"
+#include"ivertexdeclarationbuffer.h"
 
 #include"surfacebuffermemory.h"
 #include"texturebuffermemory.h"
@@ -40,14 +40,14 @@ namespace Maid
   };
 
   /*!	
-      @class	VideoDevice videodevice.h
+      @class	VideoDevice ivideodevice.h
       @brief	ビデオドライバ
   \n    			ドライバによってはできること、できないことがありますが
   \n		    	できない場合はエラーを出すのではなく、華麗にスルーするようにしてください
   \n			    ランタイムエラーが起こった場合は Exception を投げること
   */
 
-  class VideoDevice
+  class IVideoDevice
   {
   public:
 
@@ -66,7 +66,7 @@ namespace Maid
     };
 
 
-    virtual ~VideoDevice();
+    virtual ~IVideoDevice();
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバの初期化
@@ -153,7 +153,7 @@ namespace Maid
 
       @return	作成されたサーフェスバッファ
      */
-    virtual SurfaceBuffer* CreateRenderTargetSurface( const SIZE2DI& size, PIXELFORMAT fmt, SAMPLETYPE type, int Quality )=0;
+    virtual ISurfaceBuffer* CreateRenderTargetSurface( const SIZE2DI& size, PIXELFORMAT fmt, SAMPLETYPE type, int Quality )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 深度バッファの作成
@@ -165,7 +165,7 @@ namespace Maid
 
       @return	作成されたサーフェスバッファ
      */
-    virtual SurfaceBuffer* CreateDepthStencileSurface( const SIZE2DI& size, PIXELFORMAT fmt, SAMPLETYPE type, int Quality )=0;
+    virtual ISurfaceBuffer* CreateDepthStencileSurface( const SIZE2DI& size, PIXELFORMAT fmt, SAMPLETYPE type, int Quality )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! テクスチャバッファの作成
@@ -176,7 +176,7 @@ namespace Maid
 
       @return	作成されたテクスチャバッファ
      */
-    virtual TextureBuffer* CreateTextureBuffer( const TextureBufferMemory& buffer )=0;
+    virtual ITextureBuffer* CreateTextureBuffer( const TextureBufferMemory& buffer )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -187,7 +187,7 @@ namespace Maid
 
       @return	作成されたテクスチャバッファ
      */
-    virtual TextureBuffer* CreateRenderTargetTextureBuffer( const SIZE2DI& size, PIXELFORMAT fmt )=0;
+    virtual ITextureBuffer* CreateRenderTargetTextureBuffer( const SIZE2DI& size, PIXELFORMAT fmt )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -198,7 +198,7 @@ namespace Maid
 
       @return	作成されたインデックスバッファ
      */
-    virtual IndexBuffer* CreateIndexBuffer( const std::vector<unt08>& data, int Format )=0;
+    virtual IIndexBuffer* CreateIndexBuffer( const std::vector<unt08>& data, int Format )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファの作成
@@ -208,7 +208,7 @@ namespace Maid
 
       @return	作成された頂点バッファ
      */
-    virtual VertexBuffer* CreateVertexBuffer( const std::vector<unt08>& data, unt32 Format )=0;
+    virtual IVertexBuffer* CreateVertexBuffer( const std::vector<unt08>& data, unt32 Format )=0;
     
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! バーテックスシェーダーの作成
@@ -217,7 +217,7 @@ namespace Maid
 
       @return	作成されたバーテックスシェーダー
      */
-    virtual VertexShaderBuffer* CreateVertexShader( const std::vector<unt08>& Code )=0;
+    virtual IVertexShaderBuffer* CreateVertexShader( const std::vector<unt08>& Code )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ゲーム側独自のピクセルシェーダーの作成
@@ -226,7 +226,7 @@ namespace Maid
 
       @return	作成されたピクセルシェーダー
      */
-    virtual PixelShaderBuffer* CreatePixelShader( const std::vector<unt08>& Code )=0;
+    virtual IPixelShaderBuffer* CreatePixelShader( const std::vector<unt08>& Code )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -236,13 +236,13 @@ namespace Maid
 
       @return	作成された頂点定義
      */
-    virtual VertexDeclarationBuffer* CreateVertexDeclarationBuffer( const VertexDeclarationBufferMemory& buffer )=0;
+    virtual IVertexDeclarationBuffer* CreateVertexDeclarationBuffer( const VertexDeclarationBufferMemory& buffer )=0;
 
 
-    virtual void SetRenderTarget( const SurfaceBuffer* pBuffer )=0;
+    virtual void SetRenderTarget( const ISurfaceBuffer* pBuffer )=0;
     virtual void ResetRenderTarget()=0;
 
-    virtual void SetDepthStencil( const SurfaceBuffer* pBuffer )=0;
+    virtual void SetDepthStencil( const ISurfaceBuffer* pBuffer )=0;
     virtual void ResetDepthStencil()=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -251,35 +251,35 @@ namespace Maid
       @param	stage   [i ]	設定するステージ
       @param	pBuffer	[i ]	設定するバッファ
      */
-    virtual void SetTextureBuffer( int stage, const TextureBuffer* pBuffer )=0;
+    virtual void SetTextureBuffer( int stage, const ITextureBuffer* pBuffer )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! インデックスバッファのセット
     /*!
       @param	pBuffer	[i ]	設定するインデックス
      */
-    virtual void SetIndexBuffer( const IndexBuffer* pBuffer )=0;
+    virtual void SetIndexBuffer( const IIndexBuffer* pBuffer )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファのセット
     /*!
       @param	pBuffer	[i ]	設定するバッファ
      */
-    virtual void SetVertexBuffer( int pos, const VertexBuffer* pBuffer )=0;
+    virtual void SetVertexBuffer( int pos, const IVertexBuffer* pBuffer )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! バーテックスシェーダーのセット
     /*!
       @param	pShader	[i ]	設定するシェーダー
      */
-    virtual void SetVertexShader( const VertexShaderBuffer* pShader )=0;
+    virtual void SetVertexShader( const IVertexShaderBuffer* pShader )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ピクセルシェーダーのセット
     /*!
       @param	pShader	[i ]	設定するシェーダー
      */
-    virtual void SetPixelShader( const PixelShaderBuffer* pShader )=0;
+    virtual void SetPixelShader( const IPixelShaderBuffer* pShader )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -287,13 +287,13 @@ namespace Maid
     /*!
       @param	pDecl	[i ]	設定する定義
      */
-    virtual void SetVertexDeclaration( const VertexDeclarationBuffer* pDecl )=0;
+    virtual void SetVertexDeclaration( const IVertexDeclarationBuffer* pDecl )=0;
 
     virtual void SetVertexShaderConstF( int pos, const VECTOR4DF& vec )=0;
 
     virtual void SetViewPort( const RECT2DI& screen, float MinZ, float MaxZ ) = 0;
 
-    virtual void CopySurface( const SurfaceBuffer* pSrc, SurfaceBufferMemory& Dst )=0;
+    virtual void CopySurface( const ISurfaceBuffer* pSrc, SurfaceBufferMemory& Dst )=0;
 
 
     enum RENDERSTATE
@@ -468,7 +468,7 @@ namespace Maid
 
   };
 
-  typedef	boost::shared_ptr<VideoDevice>	SPVIDEODEVICE;
+  typedef	boost::shared_ptr<IVideoDevice>	SPVIDEODEVICE;
 
 }
 
