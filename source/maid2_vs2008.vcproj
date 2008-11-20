@@ -597,6 +597,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphic\devicemessage.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphic\devicemessagebase.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphic\devicemessagebase.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphic\pixelformat.h"
 				>
 			</File>
@@ -667,6 +679,10 @@
 			<Filter
 				Name="core"
 				>
+				<File
+					RelativePath=".\graphic\core\graphiccore.h"
+					>
+				</File>
 				<File
 					RelativePath=".\graphic\core\videodevicelist.h"
 					>
