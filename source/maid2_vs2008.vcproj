@@ -412,10 +412,6 @@
 				Name="fileio"
 				>
 				<File
-					RelativePath=".\storage\fileio\filereadinterface.h"
-					>
-				</File>
-				<File
 					RelativePath=".\storage\fileio\filereadmemory.cpp"
 					>
 				</File>
@@ -447,6 +443,10 @@
 					RelativePath=".\storage\fileio\filewrite.h"
 					>
 				</File>
+				<File
+					RelativePath=".\storage\fileio\ifileread.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -457,39 +457,39 @@
 				>
 			</File>
 			<File
-				RelativePath=".\framework\applicationbase.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\applicationbase.h"
-				>
-			</File>
-			<File
 				RelativePath=".\framework\gameframework.h"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\gameframeworkbase.h"
+				RelativePath=".\framework\iapplication.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\gameframeworkbase1.cpp"
+				RelativePath=".\framework\iapplication.h"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\gameframeworkbase2.cpp"
+				RelativePath=".\framework\igameframework.h"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\gamethread.cpp"
+				RelativePath=".\framework\igameframework1.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\gamethread.h"
+				RelativePath=".\framework\igameframework2.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\framework\osdriver.h"
+				RelativePath=".\framework\igamethread.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\igamethread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\iosdriver.h"
 				>
 			</File>
 			<File
@@ -597,18 +597,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphic\devicemessage.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphic\devicemessagebase.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\graphic\devicemessagebase.h"
-				>
-			</File>
-			<File
 				RelativePath=".\graphic\pixelformat.h"
 				>
 			</File>
@@ -684,26 +672,50 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphic\core\videodevicelist.h"
+					RelativePath=".\graphic\core\ivideodevicelist.h"
 					>
 				</File>
 				<File
-					RelativePath=".\graphic\core\videodevicelistbase.h"
+					RelativePath=".\graphic\core\videodevicelist.h"
 					>
 				</File>
 				<Filter
 					Name="driver"
 					>
 					<File
-						RelativePath=".\graphic\core\driver\indexbuffer.h"
+						RelativePath=".\graphic\core\driver\iindexbuffer.h"
 						>
 					</File>
 					<File
-						RelativePath=".\graphic\core\driver\pixelshaderbuffer.h"
+						RelativePath=".\graphic\core\driver\ipixelshaderbuffer.h"
 						>
 					</File>
 					<File
-						RelativePath=".\graphic\core\driver\surfacebuffer.h"
+						RelativePath=".\graphic\core\driver\isurfacebuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\itexturebuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\ivertexbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\ivertexdeclarationbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\ivertexshaderbuffer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\ivideodevice.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\graphic\core\driver\ivideodevice.h"
 						>
 					</File>
 					<File
@@ -723,10 +735,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\graphic\core\driver\texturebuffer.h"
-						>
-					</File>
-					<File
 						RelativePath=".\graphic\core\driver\texturebuffermemory.cpp"
 						>
 					</File>
@@ -735,27 +743,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\graphic\core\driver\vertexbuffer.h"
-						>
-					</File>
-					<File
-						RelativePath=".\graphic\core\driver\vertexdeclarationbuffer.h"
-						>
-					</File>
-					<File
 						RelativePath=".\graphic\core\driver\vertexdeclarationbuffermemory.h"
-						>
-					</File>
-					<File
-						RelativePath=".\graphic\core\driver\vertexshaderbuffer.h"
-						>
-					</File>
-					<File
-						RelativePath=".\graphic\core\driver\videodevice.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\graphic\core\driver\videodevice.h"
 						>
 					</File>
 					<Filter
