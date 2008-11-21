@@ -397,15 +397,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\storage\storagemessage.h"
-				>
-			</File>
-			<File
 				RelativePath=".\storage\storagemessage1.h"
 				>
 			</File>
 			<File
 				RelativePath=".\storage\storagemessage2.h"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\storagemessagebase.h"
 				>
 			</File>
 			<Filter
@@ -597,6 +597,26 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphic\graphicreturnmessage1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphic\graphicreturnmessagebase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphic\graphicsendmessage1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphic\graphicsendmessagebase.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphic\graphicsendmessagebase.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphic\pixelformat.h"
 				>
 			</File>
@@ -672,11 +692,15 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphic\core\ivideodevicelist.h"
+					RelativePath=".\graphic\core\graphiccore1.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\graphic\core\videodevicelist.h"
+					RelativePath=".\graphic\core\graphiccore2.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphic\core\ivideodevicelist.h"
 					>
 				</File>
 				<Filter
