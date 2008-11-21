@@ -239,11 +239,8 @@ namespace Maid
     virtual IVertexDeclarationBuffer* CreateVertexDeclarationBuffer( const VertexDeclarationBufferMemory& buffer )=0;
 
 
-    virtual void SetRenderTarget( const ISurfaceBuffer* pBuffer )=0;
+    virtual void SetRenderTarget( const ISurfaceBuffer* pColor, const ISurfaceBuffer* pDepth )=0;
     virtual void ResetRenderTarget()=0;
-
-    virtual void SetDepthStencil( const ISurfaceBuffer* pBuffer )=0;
-    virtual void ResetDepthStencil()=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! テクスチャバッファのセット
@@ -373,14 +370,15 @@ namespace Maid
     /*!
       @param	Color	[i ]	塗りつぶす色
      */
-    virtual void ClearColor( const COLOR_A32B32G32R32F& Color )=0;
+    virtual void ClearRenderTarget( const COLOR_A32B32G32R32F& Color )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 現在の Zバッファ を塗りつぶす
+    //! 現在の 深度バッファ を塗りつぶす
     /*!
-      @param	val	[i ]	塗りつぶす値
+      @param	Depth 	[i ]	塗りつぶす値
+      @param	Stencil	[i ]	塗りつぶす値
      */
-    virtual void ClearZ( float val )=0;
+    virtual void ClearDepthStencil( float Depth, unt32 Stencil )=0;
 
     enum PRIMITIVE
     {
@@ -465,7 +463,6 @@ namespace Maid
   private:
     std::vector<DISPLAYMODE>  m_DisplayMode;
     ENABLEFORMAT              m_EnableFormat;
-
   };
 
   typedef	boost::shared_ptr<IVideoDevice>	SPVIDEODEVICE;

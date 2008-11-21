@@ -11,9 +11,9 @@ IVideoDevice::~IVideoDevice()
 
 void IVideoDevice::Initialize()
 {
+  SetupDevice();
   SerchDisplayMode( m_DisplayMode );
   SerchEnableFormat(m_EnableFormat);
-  SetupDevice();
 }
 
 void IVideoDevice::Finalize()
