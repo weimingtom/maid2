@@ -12,12 +12,13 @@ namespace Maid
  	  @param	lpCmdLine		  [i ]	WinMain() Ç©ÇÁìnÇ≥ÇÍÇΩà¯êî
  	  @param	nCmdShow		  [i ]	WinMain() Ç©ÇÁìnÇ≥ÇÍÇΩà¯êî
  */
-Application::Application( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
-  :m_Device(hInstance,hPrevInstance,lpCmdLine,nCmdShow)
+int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
 {
+  m_OSDevice.SetParam( hInstance,hPrevInstance,lpCmdLine,nCmdShow );
+
+  return IApplication::Run();
 }
 
-
-IOSDevice& Application::GetOSDevice() { return m_Device; }
+IOSDevice& Application::GetOSDevice() { return m_OSDevice; }
 
 }

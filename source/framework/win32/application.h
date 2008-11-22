@@ -23,12 +23,12 @@ namespace Maid
   class Application : public IApplication
   {
   public:
-    Application( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+    int Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
 
   protected:
     IOSDevice& GetOSDevice();
   private:
-    OSDevice  m_Device;
+    OSDevice  m_OSDevice;
   };
 }
 #endif

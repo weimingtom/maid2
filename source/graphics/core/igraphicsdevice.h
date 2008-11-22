@@ -1,18 +1,18 @@
-#ifndef maid2_graphic_core_igraphicsdevice_h
-#define maid2_graphic_core_igraphicsdevice_h
+#ifndef maid2_graphics_core_igraphicsdevice_h
+#define maid2_graphics_core_igraphicsdevice_h
 
 
-#include"../../../config/define.h"
-#include"../../../config/typedef.h"
+#include"../../config/define.h"
+#include"../../config/typedef.h"
 
 #include<boost/smart_ptr.hpp>
 #include<vector>
 
-#include"../../../auxiliary/exception.h"
-#include"../../../auxiliary/mathematics.h"
-#include"../../../auxiliary/macro.h"
-#include"../../color.h"
-#include"../../pixelformat.h"
+#include"../../auxiliary/exception.h"
+#include"../../auxiliary/mathematics.h"
+#include"../../auxiliary/macro.h"
+#include"../color.h"
+#include"../pixelformat.h"
 
 #include"isurfacebuffer.h"
 #include"ivertexbuffer.h"
@@ -66,7 +66,7 @@ namespace Maid
     };
 
 
-    virtual ~IVideoDevice();
+    virtual ~IGraphicsDevice();
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ÉhÉâÉCÉoÇÃèâä˙âª
@@ -465,7 +465,7 @@ namespace Maid
     ENABLEFORMAT              m_EnableFormat;
   };
 
-  typedef	boost::shared_ptr<IVideoDevice>	SPVIDEODEVICE;
+  typedef	boost::shared_ptr<IGraphicsDevice>	SPGRAPHICSDEVICE;
 
 }
 

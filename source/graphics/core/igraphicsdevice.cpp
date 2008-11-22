@@ -9,7 +9,7 @@ IGraphicsDevice::~IGraphicsDevice()
 }
 
 
-void IGraphicsDevice::IGraphicsDevice()
+void IGraphicsDevice::Initialize()
 {
   SetupDevice();
   SerchDisplayMode( m_DisplayMode );

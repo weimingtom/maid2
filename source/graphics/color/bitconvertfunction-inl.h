@@ -7,6 +7,7 @@ namespace Maid
   inline unt08 BITCONVERT06Ito08I( unt08 s ){ return (s<<2)|(s>>4); }
 
   inline unt16 BITCONVERT01Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT01Ito08I(s)); }
+  inline unt16 BITCONVERT02Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT02Ito08I(s)); }
   inline unt16 BITCONVERT04Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT04Ito08I(s)); }
   inline unt16 BITCONVERT05Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT05Ito08I(s)); }
   inline unt16 BITCONVERT06Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT06Ito08I(s)); }
@@ -34,6 +35,7 @@ namespace Maid
   }
 
   inline unt08 BITCONVERT16Ito01I( unt16 s ) { return (unt08)(_CLIP16I(s,0x3FFF)>>15); }
+  inline unt08 BITCONVERT16Ito02I( unt16 s ) { return (unt08)(_CLIP16I(s,0x1FFF)>>14); }
   inline unt08 BITCONVERT16Ito04I( unt16 s ) { return (unt08)(_CLIP16I(s,0x07FF)>>12); }
   inline unt08 BITCONVERT16Ito05I( unt16 s ) { return (unt08)(_CLIP16I(s,0x03FF)>>11); }
   inline unt08 BITCONVERT16Ito06I( unt16 s ) { return (unt08)(_CLIP16I(s,0x01FF)>>10); }
