@@ -1,5 +1,4 @@
 #include"application.h"
-#include"osdriverwin32.h"
 
 
 namespace Maid
@@ -13,11 +12,12 @@ namespace Maid
  	  @param	lpCmdLine		  [i ]	WinMain() Ç©ÇÁìnÇ≥ÇÍÇΩà¯êî
  	  @param	nCmdShow		  [i ]	WinMain() Ç©ÇÁìnÇ≥ÇÍÇΩà¯êî
  */
-int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+Application::Application( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+  :m_Device(hInstance,hPrevInstance,lpCmdLine,nCmdShow)
 {
-  SetOSDriver( SPOSDRIVER(new OSDriverWin32(hInstance,hPrevInstance,lpCmdLine,nCmdShow)) );
-
-  return IApplication::Run();
 }
+
+
+IOSDevice& Application::GetOSDevice() { return m_Device; }
 
 }

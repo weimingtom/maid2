@@ -16,13 +16,19 @@
 
 #include"../iapplication.h"
 
+#include"osdevice.h"
 
 namespace Maid
 {
   class Application : public IApplication
   {
   public:
-    int Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+    Application( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+
+  protected:
+    IOSDevice& GetOSDevice();
+  private:
+    OSDevice  m_Device;
   };
 }
 #endif
