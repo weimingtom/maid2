@@ -597,30 +597,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\customvertextemplate.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicsreturnmessage1.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicsreturnmessagebase.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicssendmessage1.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicssendmessagebase.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicssendmessagebase.h"
-				>
-			</File>
-			<File
 				RelativePath=".\graphics\pixelformat.h"
 				>
 			</File>
@@ -692,96 +668,24 @@
 				Name="core"
 				>
 				<File
-					RelativePath=".\graphics\core\graphicscore.h"
+					RelativePath=".\graphics\core\idevice.h"
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\graphicscore1.cpp"
+					RelativePath=".\graphics\core\idrawcommand.h"
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\graphicscore2.cpp"
+					RelativePath=".\graphics\core\idrawcommandplayer.h"
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\igraphicsdevice.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\igraphicsdevice.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\igraphicsdevicelist.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\iindexbuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\ipixelshaderbuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\isurfacebuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\itexturebuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\ivertexbuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\ivertexdeclarationbuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\ivertexshaderbuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\surfacebufferlockinfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\surfacebufferlockinfo.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\surfacebuffermemory.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\surfacebuffermemory.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\texturebuffermemory.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\texturebuffermemory.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\vertexdeclarationbuffermemory.h"
+					RelativePath=".\graphics\core\idrawcommandrecorder.h"
 					>
 				</File>
 				<Filter
 					Name="win32"
 					>
-					<File
-						RelativePath=".\graphics\core\win32\graphicsdevicelist.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\graphics\core\win32\graphicsdevicelist.h"
-						>
-					</File>
 					<Filter
 						Name="direct3d09"
 						>
@@ -790,79 +694,19 @@
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\graphicsdeviced3d09.h"
+							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09.h"
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\graphicsdeviced3d09_1.cpp"
+							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09_1.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\graphicsdeviced3d09_2.cpp"
+							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09_2.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\graphicsdeviced3d09_3.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\graphicsdeviced3d09_4.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\indexbufferd3d09.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\indexbufferd3d09.h"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\pixelshaderbufferd3d09.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\pixelshaderbufferd3d09.h"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\surfacebufferd3d09.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\surfacebufferd3d09.h"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\texturebufferd3d09.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\texturebufferd3d09.h"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\vertexbufferd3d09.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\vertexbufferd3d09.h"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\vertexdeclarationbufferd3d09.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\vertexdeclarationbufferd3d09.h"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\vertexshaderbufferd3d09.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\vertexshaderbufferd3d09.h"
+							RelativePath=".\graphics\core\win32\direct3d09\object.h"
 							>
 						</File>
 					</Filter>
