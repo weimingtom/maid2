@@ -597,6 +597,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\core.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\core1.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\pixelformat.h"
 				>
 			</File>
