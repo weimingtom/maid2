@@ -16,7 +16,6 @@
 
 
 
-
 namespace Maid { namespace Graphics {
 
   /*!	
@@ -35,6 +34,9 @@ namespace Maid { namespace Graphics {
   \n		    	できない場合はエラーを出すのではなく、華麗にスルーするようにしてください
   \n			    ランタイムエラーが起こった場合は Exception を投げること
   */
+
+  class IDrawCommandPlayer;
+  class IDrawCommandRecorder;
 
   class IDevice
   {
@@ -63,7 +65,7 @@ namespace Maid { namespace Graphics {
       OBJECT():ID(ID_NONE){}
       OBJECT( uintptr_t id ):ID(id){}
       OBJECT( const OBJECT& obj ):ID(obj.ID){}
-      const uintptr_t ID;
+      uintptr_t ID;
     };
 
     /*
@@ -520,6 +522,9 @@ namespace Maid { namespace Graphics {
     };
     virtual INPUTLAYOUT CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
 
+
+    virtual IDrawCommandPlayer* CreateDrawCommandPlayer()=0;
+    virtual IDrawCommandRecorder* CreateDrawCommandRecorder()=0;
 
 
   };
