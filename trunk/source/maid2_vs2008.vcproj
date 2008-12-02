@@ -706,6 +706,18 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d09\drawcommandplayerd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\drawcommandplayerd3d09_1.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\drawcommandplayerd3d09_2.cpp"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d09\object.h"
 							>
 						</File>

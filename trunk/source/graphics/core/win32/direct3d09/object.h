@@ -39,26 +39,26 @@ namespace Maid { namespace Graphics {
 
   struct VertexBufferInfo : public IObjectInfo
   {
-    IndexBufferInfo():IObjectInfo(TYPE_VERTEX){}
-    SPD3D09VERTEXBUFFER pIndex;
+    VertexBufferInfo():IObjectInfo(TYPE_VERTEX){}
+    SPD3D09VERTEXBUFFER pVertex;
   };
 
-  struct TextureInfo : public IObjectInfo
+  struct Texture2DInfo : public IObjectInfo
   {
-    IndexBufferInfo():IObjectInfo(TYPE_TEXTURE2D){}
-    SPD3D09TEXTURE pIndex;
+    Texture2DInfo():IObjectInfo(TYPE_TEXTURE2D){}
+    SPD3D09TEXTURE pTexture;
   };
 
   struct RenderTargetInfo : public IObjectInfo
   {
-    IndexBufferInfo():IObjectInfo(TYPE_RENDERTARGET){}
-    SPD3D09SURFACE pResource;
+    RenderTargetInfo():IObjectInfo(TYPE_RENDERTARGET){}
+    SPD3D09SURFACE pSurface;
   };
 
   struct DepthStencilInfo : public IObjectInfo
   {
-    IndexBufferInfo():IObjectInfo(TYPE_DEPTHSTENCIL){}
-    SPD3D09SURFACE pResource;
+    DepthStencilInfo():IObjectInfo(TYPE_DEPTHSTENCIL){}
+    SPD3D09SURFACE pSurface;
   };
 
 /*
