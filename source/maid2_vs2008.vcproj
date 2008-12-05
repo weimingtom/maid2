@@ -597,14 +597,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\core.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\core1.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\graphics\pixelformat.h"
 				>
 			</File>
@@ -676,7 +668,19 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\graphics\core\core.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\core1.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\core\idevice.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\idevicelist.h"
 					>
 				</File>
 				<File
@@ -694,6 +698,14 @@
 				<Filter
 					Name="win32"
 					>
+					<File
+						RelativePath=".\graphics\core\win32\devicelist.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\graphics\core\win32\devicelist.h"
+						>
+					</File>
 					<Filter
 						Name="direct3d09"
 						>
