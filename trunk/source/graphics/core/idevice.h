@@ -97,7 +97,7 @@ namespace Maid { namespace Graphics {
     #undef OBJECTDEFINE //  ここ以外ではいらないでしょう
 
 
-    virtual ~IDevice();
+    virtual ~IDevice(){}
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバの初期化
@@ -183,7 +183,7 @@ namespace Maid { namespace Graphics {
     /*!
         @param Object [i ] 削除するオブジェクト
      */
-    virtual void DeleteObject( const OBJECT& Object );
+    virtual void DeleteObject( const OBJECT& Object )=0;
 
     struct OBJECTDESC
     {
@@ -210,7 +210,7 @@ namespace Maid { namespace Graphics {
 
         @return 指定したオブジェクトの情報
      */
-    virtual const OBJECTDESC& GetObjectDesc( const OBJECT& Object );
+    virtual const OBJECTDESC& GetObjectDesc( const OBJECT& Object )=0;
 
 
 
@@ -269,7 +269,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual RESOURCE CreateResource( const CREATERESOURCEPARAM& param );
+    virtual RESOURCE CreateResource( const CREATERESOURCEPARAM& param )=0;
 
 
     struct CREATERENDERTARGETPARAM
