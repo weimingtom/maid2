@@ -481,10 +481,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\framework\igameframework2.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\framework\igamethread.cpp"
 				>
 			</File>

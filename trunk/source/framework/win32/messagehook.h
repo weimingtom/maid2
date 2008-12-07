@@ -81,8 +81,8 @@ namespace Maid
      */
     enum RETURNCODE
     {
-      RETURNCODE_RETURN=0,    //!<	メッセージは処理されたのでこれ以降は呼ばない
-      RETURNCODE_CONTINUE,    //!<	メッセージループを続ける
+      RETURNCODE_RETURN=0,   //!<	メッセージは処理されたのでこれ以降は呼ばない
+      RETURNCODE_DEFAULT,    //!<	メッセージをOSに戻す
     };
 
     void AddProc( HWND hWnd );
@@ -98,7 +98,7 @@ namespace Maid
         @param	mess	[i ]	送られてきたメッセージ情報
 
         @retval	 RETURNCODE_EXIT		これ以降メッセージ処理を行いません
-        @retval	 RETURNCODE_CONTINUE	まだ続けます
+        @retval	 RETURNCODE_DEFAULT	まだ続けます
      */
 	  virtual RETURNCODE OnMessage( WindowsMessage& mess )=0;
 
