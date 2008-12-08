@@ -593,7 +593,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphicsrender.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphicsrender1.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\idepthstencil.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\irendertarget.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\pixelformat.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\rendertargetscreen.h"
 				>
 			</File>
 			<Filter
