@@ -58,14 +58,15 @@ namespace Maid { namespace Graphics {
 
     struct OBJECT
     {
+      typedef uintptr_t INSTANCEID;
       enum
       {
         ID_NONE = ~0  //  無効なオブジェクトＩＤの場合
       };
       OBJECT():ID(ID_NONE){}
-      OBJECT( uintptr_t id ):ID(id){}
+      OBJECT( INSTANCEID id ):ID(id){}
       OBJECT( const OBJECT& obj ):ID(obj.ID){}
-      uintptr_t ID;
+      INSTANCEID ID;
     };
 
     /*
@@ -526,6 +527,8 @@ namespace Maid { namespace Graphics {
     virtual IDrawCommandPlayer* CreateDrawCommandPlayer()=0;
     virtual IDrawCommandRecorder* CreateDrawCommandRecorder()=0;
 
+    virtual RENDERTARGET GetDefaultRenderTarget()=0;
+    virtual DEPTHSTENCIL GetDefaultDepthStencil()=0;
 
   };
 
