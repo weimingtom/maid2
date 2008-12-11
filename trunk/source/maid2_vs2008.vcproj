@@ -593,6 +593,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphicobjecttemplate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicsrender.h"
 				>
 			</File>
@@ -704,11 +708,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\idrawcommandplayer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\idrawcommandrecorder.h"
+					RelativePath=".\graphics\core\iobject.h"
 					>
 				</File>
 				<Filter

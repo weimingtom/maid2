@@ -14,18 +14,10 @@
 #include"../color.h"
 #include"../pixelformat.h"
 
+#include"iobject.h"
 
 
 namespace Maid { namespace Graphics {
-
-  /*!	
-      @brief	デバイスがロストしたときに飛んでくる例外
-  \n			これを拾ったら VideoDevice::Reset() で復帰を試みる
-  */
-  class DeviceLost : public Exception
-  {
-
-  };
 
   /*!	
       @class	IDevice idevice.h
@@ -55,48 +47,6 @@ namespace Maid { namespace Graphics {
       bool        IsFullScreen; //!<  フルスクリーンにするか？
       bool        IsWaitVSync;  //!<  VSync同期するか？
     };
-
-    struct OBJECT
-    {
-      typedef uintptr_t INSTANCEID;
-      enum
-      {
-        ID_NONE = ~0  //  無効なオブジェクトＩＤの場合
-      };
-      OBJECT():ID(ID_NONE){}
-      OBJECT( INSTANCEID id ):ID(id){}
-      OBJECT( const OBJECT& obj ):ID(obj.ID){}
-      INSTANCEID ID;
-    };
-
-    /*
-       こうゆう定義を行うマクロ
-        struct RESOURCEBUFFER : public OBJECT
-        {
-          RESOURCEBUFFER( uintptr_t id ):OBJECT(id){}
-        };
-    */
-    #define OBJECTDEFINE(parent,child)  struct child : public parent { child(uintptr_t id):parent(id){} };
-
-    OBJECTDEFINE(OBJECT,RESOURCE);
-    OBJECTDEFINE(OBJECT,RENDERTARGET);
-    OBJECTDEFINE(OBJECT,DEPTHSTENCIL);
-    OBJECTDEFINE(OBJECT,SHADERMATERIAL);
-
-    OBJECTDEFINE(OBJECT,SAMPLERSTATE);
-    OBJECTDEFINE(OBJECT,RASTERIZERSTATE);
-    OBJECTDEFINE(OBJECT,BLENDSTATE);
-
-    OBJECTDEFINE(OBJECT,INPUTLAYOUT);
-    OBJECTDEFINE(OBJECT,VERTEXSHADER);
-    OBJECTDEFINE(OBJECT,HULLSHADER);
-    OBJECTDEFINE(OBJECT,DOMAINSHADER);
-    OBJECTDEFINE(OBJECT,GEOMETRYSHADER);
-    OBJECTDEFINE(OBJECT,PIXELSHADER);
-
-
-    #undef OBJECTDEFINE //  ここ以外ではいらないでしょう
-
 
     virtual ~IDevice(){}
 
@@ -149,26 +99,12 @@ namespace Maid { namespace Graphics {
      */
     virtual void Reset( const SCREENMODE& mode )=0;
 
-    enum DEVICESTATE
-    {
-      DEVICESTATE_OK,       //!<  問題なく動いている
-      DEVICESTATE_NOTRESET, //!<  復帰できるように準備できた
-      DEVICESTATE_LOST,     //!<  ロスト中
-    };
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ドライバの状態を取得する
-    /*!
-     */
-    virtual DEVICESTATE TestCooperativeLevel()=0;
-
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! フロントバッファに更新する
     /*!
-        @exception DeviceLost	デバイスがロストした場合
-        @exception Exception	ランタイムエラーにしたい場合
      */
-    virtual void Flip()=0;
+    virtual void Present()=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -184,71 +120,46 @@ namespace Maid { namespace Graphics {
     /*!
         @param Object [i ] 削除するオブジェクト
      */
-    virtual void DeleteObject( const OBJECT& Object )=0;
+    virtual void DeleteObject( const IObject& Object )=0;
 
-    struct OBJECTDESC
+
+
+    struct CREATEVERTEXPARAM
     {
-      enum TYPE
-      {
-        TYPE_VERTEX,
-        TYPE_INDEX,
-        TYPE_TEXTURE2D,
-        TYPE_CONSTANT,
-        TYPE_RENDERTARGET,
-        TYPE_DEPTHSTENCIL,
-        TYPE_SHADERMATERIAL,
-      };
-
-      OBJECTDESC( TYPE t ):Type(t){}
-
-      const TYPE Type;
-    };
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 指定したオブジェクトの情報を取得する
-    /*!
-        @param Object [i ] 取得するオブジェクト
-
-        @return 指定したオブジェクトの情報
-     */
-    virtual const OBJECTDESC& GetObjectDesc( const OBJECT& Object )=0;
-
-
-
-
-    struct CREATERESOURCEPARAM
-    {
-      enum TYPE
-      {
-        TYPE_VERTEX,
-        TYPE_INDEX,
-        TYPE_TEXTURE2D,
-        TYPE_CONSTANT,
-      };
-      CREATERESOURCEPARAM( TYPE t ):Type(t){}
-      const TYPE Type;
-    };
-
-
-    struct CREATEVERTEXPARAM : public CREATERESOURCEPARAM
-    {
-      CREATEVERTEXPARAM():CREATERESOURCEPARAM(TYPE_VERTEX){}
       const void* pData;  //  頂点データ
       size_t Length;      //  データの長さ(byte単位)
       unt32 Format;       //  頂点フォーマット
     };
 
-    struct CREATEREINDEXPARAM : public CREATERESOURCEPARAM
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 頂点バッファの作成
+    /*!
+        @param	param   [i ]	作成したいリソース
+
+        @return	作成されたリソース
+     */
+    virtual const IVertex& CreateVertex( const CREATEVERTEXPARAM& param )=0;
+
+
+    struct CREATEREINDEXPARAM
     {
-      CREATEREINDEXPARAM():CREATERESOURCEPARAM(TYPE_INDEX){}
       const void* pData;  //  インデックスデータ
       size_t  Length;     //  データの長さ(byte単位)
       unt32   Format;     //  １インデックスあたりのビット数
     };
 
-    struct CREATERETEXTURE2DPARAM : public CREATERESOURCEPARAM
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! インデックスバッファの作成
+    /*!
+        @param	param   [i ]	作成したいリソース
+
+        @return	作成されたリソース
+     */
+    virtual const IIndex& CreateIndex( const CREATEREINDEXPARAM& param )=0;
+
+
+    struct CREATERETEXTURE2DPARAM
     {
-      CREATERETEXTURE2DPARAM():CREATERESOURCEPARAM(TYPE_TEXTURE2D){}
       const void* pData;  //  ピクセルデータ
       PIXELFORMAT Format; //  ピクセルフォーマット
       int   ArraySize;    //  何枚あるか？
@@ -256,21 +167,30 @@ namespace Maid { namespace Graphics {
       int   Slice;        //  １平面あたりの大きさ(byte単位)
     };
 
-    struct CREATERECONSTANTPARAM : public CREATERESOURCEPARAM
-    {
-      CREATERECONSTANTPARAM():CREATERESOURCEPARAM(TYPE_CONSTANT){}
-      const void* pData;  //  バッファデータ
-      size_t  Length;     //  データの長さ(byte単位)
-    };
-
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! リソースの作成
+    //! ２Ｄテクスチャの作成
     /*!
         @param	param   [i ]	作成したいリソース
 
         @return	作成されたリソース
      */
-    virtual RESOURCE CreateResource( const CREATERESOURCEPARAM& param )=0;
+    virtual const ITexture2D& CreateTexture2D( const CREATERETEXTURE2DPARAM& param )=0;
+
+
+    struct CREATERECONSTANTPARAM
+    {
+      const void* pData;  //  バッファデータ
+      size_t  Length;     //  データの長さ(byte単位)
+    };
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 定数バッファの作成
+    /*!
+        @param	param   [i ]	作成したいリソース
+
+        @return	作成されたリソース
+     */
+    virtual const IConstant& CreateConstant( const CREATERECONSTANTPARAM& param )=0;
 
 
     struct CREATERENDERTARGETPARAM
@@ -292,7 +212,7 @@ namespace Maid { namespace Graphics {
       unt32       Param[4];
     };
 
-    virtual RENDERTARGET CreateRenderTarget( const RESOURCE& resource, const CREATERENDERTARGETPARAM& param )=0;
+    virtual RENDERTARGET CreateRenderTarget( const IResource& resource, const CREATERENDERTARGETPARAM& param )=0;
 
 
     struct CREATEDEPTHSTENCILPARAM
@@ -318,7 +238,7 @@ namespace Maid { namespace Graphics {
       unt32       Param[4];
     };
 
-    virtual DEPTHSTENCIL CreateDepthStencil( const RESOURCE& resource, const CREATEDEPTHSTENCILPARAM& param )=0;
+    virtual DEPTHSTENCIL CreateDepthStencil( const IResource& resource, const CREATEDEPTHSTENCILPARAM& param )=0;
 
    struct CREATESHADERMATERIALPARAM
     {
@@ -346,7 +266,7 @@ namespace Maid { namespace Graphics {
       DIMENSION          Dimension;
       unt32       Param[4];
     };
-    virtual SHADERMATERIAL CreateShaderMaterial( const RESOURCE& resource, const CREATESHADERMATERIALPARAM& param )=0;
+    virtual SHADERMATERIAL CreateShaderMaterial( const IResource& resource, const CREATESHADERMATERIALPARAM& param )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -357,7 +277,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたバーテックスシェーダー
      */
-    virtual VERTEXSHADER CreateVertexShader( const void* pData, size_t Length )=0;
+    virtual IVertexShader CreateVertexShader( const void* pData, size_t Length )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ゲーム側独自のピクセルシェーダーの作成
@@ -367,7 +287,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたピクセルシェーダー
      */
-    virtual PIXELSHADER CreatePixelShader( const void* pData, size_t Length )=0;
+    virtual IPixelShader CreatePixelShader( const void* pData, size_t Length )=0;
 
     enum COMPARISON
     {
@@ -416,7 +336,7 @@ namespace Maid { namespace Graphics {
       float MinLOD;
       float MaxLOD;
     };
-    virtual SAMPLERSTATE CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
+    virtual ISamplerState CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
 
     struct RASTERIZERSTATEPARAM
     {
@@ -430,7 +350,7 @@ namespace Maid { namespace Graphics {
       CULLING Culling;
       bool MultiSample;
     };
-    virtual RASTERIZERSTATE CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
+    virtual IRasterizerState CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
 
     struct BLENDSTATEPARAM
     {
@@ -485,7 +405,7 @@ namespace Maid { namespace Graphics {
       unt08 RenderTargetWriteMask[8];
     };
 
-    virtual BLENDSTATE& CreateBlendState( const BLENDSTATEPARAM& Option )=0;
+    virtual IBlendState& CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバ側で用意されている頂点定義の作成
@@ -527,8 +447,8 @@ namespace Maid { namespace Graphics {
     virtual IDrawCommandPlayer* CreateDrawCommandPlayer()=0;
     virtual IDrawCommandRecorder* CreateDrawCommandRecorder()=0;
 
-    virtual RENDERTARGET GetDefaultRenderTarget()=0;
-    virtual DEPTHSTENCIL GetDefaultDepthStencil()=0;
+    virtual const IRenderTarget& GetDefaultRenderTarget()=0;
+    virtual const IDepthStencil& GetDefaultDepthStencil()=0;
 
   };
 

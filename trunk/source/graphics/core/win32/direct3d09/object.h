@@ -4,85 +4,24 @@
 #include"../../../../config/define.h"
 #include"../../../../config/typedef.h"
 
-#include"../../idevice.h"
+#include"../../iobject.h"
 
 #include"d3d09include.h"
 
 
 namespace Maid { namespace Graphics {
 
-  struct IObjectInfo
+  class SamplerState : public ISamplerState
   {
-    virtual ~IObjectInfo(){}
-
-    enum TYPE
-    {
-      TYPE_INDEX,
-      TYPE_VERTEX,
-      TYPE_TEXTURE2D,
-      TYPE_RENDERTARGET,
-      TYPE_DEPTHSTENCIL,
-      TYPE_VERTEXSHADER,
-      TYPE_PIXELSHADER,
-    };
-
-    IObjectInfo( TYPE t ) : Type(t){}
-
-    const TYPE Type;
   };
 
-  struct IndexBufferInfo : public IObjectInfo
+  class RasterizerState : public IRasterizerState
   {
-    IndexBufferInfo():IObjectInfo(TYPE_INDEX){}
-    SPD3D09INDEXBUFFER pIndex;
+  };
+  class BlendState : public IBlendState
+  {
   };
 
-  struct VertexBufferInfo : public IObjectInfo
-  {
-    VertexBufferInfo():IObjectInfo(TYPE_VERTEX){}
-    SPD3D09VERTEXBUFFER pVertex;
-  };
-
-  struct Texture2DInfo : public IObjectInfo
-  {
-    Texture2DInfo():IObjectInfo(TYPE_TEXTURE2D){}
-    SPD3D09TEXTURE pTexture;
-  };
-
-  struct RenderTargetInfo : public IObjectInfo
-  {
-    RenderTargetInfo():IObjectInfo(TYPE_RENDERTARGET){}
-    SPD3D09SURFACE pSurface;
-  };
-
-  struct DepthStencilInfo : public IObjectInfo
-  {
-    DepthStencilInfo():IObjectInfo(TYPE_DEPTHSTENCIL){}
-    SPD3D09SURFACE pSurface;
-  };
-
-/*
-  //  D3D9はテクスチャしか使えないのでいらない
-  struct ShaderMaterialInfo : public IObjectInfo
-  {
-    SPD3D09SURFACE pResource;
-  };
-*/
-
-  struct PixelShaderInfo : public IObjectInfo
-  {
-    PixelShaderInfo():IObjectInfo(TYPE_PIXELSHADER){}
-    SPD3D09PIXELSHADER pShader;
-  };
-
-  struct VertexShaderInfo : public IObjectInfo
-  {
-    VertexShaderInfo():IObjectInfo(TYPE_VERTEXSHADER){}
-    SPD3D09VERTEXSHADER pShader;
-  };
-
-
-  typedef boost::shared_ptr<IObjectInfo>  SPOBJECTINFO;
 }}
 
 #endif
