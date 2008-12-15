@@ -6,7 +6,7 @@
 
 #include"../../iobject.h"
 
-#include"d3d09include.h"
+#include"common.h"
 
 
 namespace Maid { namespace Graphics {
