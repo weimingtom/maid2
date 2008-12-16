@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="0040framework"
-	ProjectGUID="{4A9B2297-87AE-40DA-BB7B-62F8D79043BB}"
-	RootNamespace="framework"
+	Name="0060Draw2D"
+	ProjectGUID="{F242CA98-5AAF-4A62-91A7-FAEF97E61E31}"
+	RootNamespace="My0060Draw2D"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>

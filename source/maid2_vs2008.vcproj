@@ -409,6 +409,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\storage\storagemessage3.h"
+				>
+			</File>
+			<File
 				RelativePath=".\storage\storagemessagebase.h"
 				>
 			</File>
@@ -605,6 +609,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphicsrender2.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\pixelformat.h"
 				>
 			</File>
@@ -614,6 +622,10 @@
 			</File>
 			<File
 				RelativePath=".\graphics\rendertargetscreen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\vertexshader.h"
 				>
 			</File>
 			<Filter
