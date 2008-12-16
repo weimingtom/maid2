@@ -593,7 +593,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\graphicobjecttemplate.h"
+				RelativePath=".\graphics\graphicsobjecttemplate.h"
 				>
 			</File>
 			<File
@@ -605,15 +605,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\idepthstencil.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\irendertarget.h"
-				>
-			</File>
-			<File
 				RelativePath=".\graphics\pixelformat.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\rendertargetscreen.cpp"
 				>
 			</File>
 			<File
@@ -696,6 +692,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\core\hObject.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\core\idevice.h"
 					>
 				</File>
@@ -708,7 +708,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\iobject.h"
+					RelativePath=".\graphics\core\idrawcommandcapture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\idrawcommandexecute.h"
 					>
 				</File>
 				<Filter
@@ -726,7 +730,7 @@
 						Name="direct3d09"
 						>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\d3d09include.h"
+							RelativePath=".\graphics\core\win32\direct3d09\common.h"
 							>
 						</File>
 						<File
@@ -742,15 +746,15 @@
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\drawcommandplayerd3d09.h"
+							RelativePath=".\graphics\core\win32\direct3d09\drawcommandexecuted3d09.h"
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\drawcommandplayerd3d09_1.cpp"
+							RelativePath=".\graphics\core\win32\direct3d09\drawcommandexecuted3d09_1.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\drawcommandplayerd3d09_2.cpp"
+							RelativePath=".\graphics\core\win32\direct3d09\drawcommandexecuted3d09_2.cpp"
 							>
 						</File>
 						<File

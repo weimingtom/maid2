@@ -4,21 +4,27 @@
 #include"../../../../config/define.h"
 #include"../../../../config/typedef.h"
 
-#include"../../iobject.h"
+#include"../../hObject.h"
 
 #include"common.h"
 
 
 namespace Maid { namespace Graphics {
 
-  class SamplerState : public ISamplerState
+  struct IOtherObject
+  {
+
+  };
+
+  struct SamplerStateD3D09 : public IOtherObject
   {
   };
 
-  class RasterizerState : public IRasterizerState
+  struct RasterizerStateD3D09 : public IOtherObject
   {
   };
-  class BlendState : public IBlendState
+
+  struct BlendStateD3D09 : public IOtherObject
   {
   };
 
