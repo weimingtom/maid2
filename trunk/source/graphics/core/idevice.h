@@ -14,7 +14,9 @@
 #include"../color.h"
 #include"../pixelformat.h"
 
-#include"iobject.h"
+#include"hObject.h"
+#include"iDrawCommandexecute.h"
+#include"iDrawCommandcapture.h"
 
 
 namespace Maid { namespace Graphics {
@@ -26,9 +28,6 @@ namespace Maid { namespace Graphics {
   \n		    	できない場合はエラーを出すのではなく、華麗にスルーするようにしてください
   \n			    ランタイムエラーが起こった場合は Exception を投げること
   */
-
-  class IDrawCommandPlayer;
-  class IDrawCommandRecorder;
 
   class IDevice
   {
@@ -97,7 +96,7 @@ namespace Maid { namespace Graphics {
 
         @exception Exception 初期化に失敗した場合
      */
-    virtual void Reset( const SCREENMODE& mode )=0;
+    virtual void SetScreenMode( const SCREENMODE& mode )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -120,8 +119,15 @@ namespace Maid { namespace Graphics {
     /*!
         @param Object [i ] 削除するオブジェクト
      */
-    virtual void DeleteObject( const IObject& Object )=0;
+    virtual void DeleteObject( const hObject& Object )=0;
 
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 指定したオブジェクトの情報を取得する
+    /*!
+        @param Object [i ] 取得するオブジェクト
+        @param Desc   [ o] 設定する情報先
+     */
+    virtual void GetObjectDesc( const hObject& Object, ObjectDesc& desc )=0;
 
 
     struct CREATEVERTEXPARAM
@@ -138,7 +144,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual const IVertex& CreateVertex( const CREATEVERTEXPARAM& param )=0;
+    virtual hVertex CreateVertex( const CREATEVERTEXPARAM& param )=0;
 
 
     struct CREATEREINDEXPARAM
@@ -155,7 +161,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual const IIndex& CreateIndex( const CREATEREINDEXPARAM& param )=0;
+    virtual hIndex CreateIndex( const CREATEREINDEXPARAM& param )=0;
 
 
     struct CREATERETEXTURE2DPARAM
@@ -174,7 +180,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual const ITexture2D& CreateTexture2D( const CREATERETEXTURE2DPARAM& param )=0;
+    virtual hTexture2D CreateTexture2D( const CREATERETEXTURE2DPARAM& param )=0;
 
 
     struct CREATERECONSTANTPARAM
@@ -190,7 +196,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual const IConstant& CreateConstant( const CREATERECONSTANTPARAM& param )=0;
+    virtual hConstant CreateConstant( const CREATERECONSTANTPARAM& param )=0;
 
 
     struct CREATERENDERTARGETPARAM
@@ -212,7 +218,7 @@ namespace Maid { namespace Graphics {
       unt32       Param[4];
     };
 
-    virtual RENDERTARGET CreateRenderTarget( const IResource& resource, const CREATERENDERTARGETPARAM& param )=0;
+    virtual hRenderTarget CreateRenderTarget( const hResource& resource, const CREATERENDERTARGETPARAM& param )=0;
 
 
     struct CREATEDEPTHSTENCILPARAM
@@ -238,7 +244,7 @@ namespace Maid { namespace Graphics {
       unt32       Param[4];
     };
 
-    virtual DEPTHSTENCIL CreateDepthStencil( const IResource& resource, const CREATEDEPTHSTENCILPARAM& param )=0;
+    virtual hDepthStencil CreateDepthStencil( const hResource& resource, const CREATEDEPTHSTENCILPARAM& param )=0;
 
    struct CREATESHADERMATERIALPARAM
     {
@@ -266,7 +272,7 @@ namespace Maid { namespace Graphics {
       DIMENSION          Dimension;
       unt32       Param[4];
     };
-    virtual SHADERMATERIAL CreateShaderMaterial( const IResource& resource, const CREATESHADERMATERIALPARAM& param )=0;
+    virtual hMaterial CreateShaderMaterial( const hResource& resource, const CREATESHADERMATERIALPARAM& param )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -277,7 +283,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたバーテックスシェーダー
      */
-    virtual IVertexShader CreateVertexShader( const void* pData, size_t Length )=0;
+    virtual hVertexShader CreateVertexShader( const void* pData, size_t Length )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ゲーム側独自のピクセルシェーダーの作成
@@ -287,7 +293,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたピクセルシェーダー
      */
-    virtual IPixelShader CreatePixelShader( const void* pData, size_t Length )=0;
+    virtual hPixelShader CreatePixelShader( const void* pData, size_t Length )=0;
 
     enum COMPARISON
     {
@@ -336,7 +342,7 @@ namespace Maid { namespace Graphics {
       float MinLOD;
       float MaxLOD;
     };
-    virtual ISamplerState CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
+    virtual hSamplerState CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
 
     struct RASTERIZERSTATEPARAM
     {
@@ -350,7 +356,7 @@ namespace Maid { namespace Graphics {
       CULLING Culling;
       bool MultiSample;
     };
-    virtual IRasterizerState CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
+    virtual hRasterizerState CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
 
     struct BLENDSTATEPARAM
     {
@@ -405,7 +411,7 @@ namespace Maid { namespace Graphics {
       unt08 RenderTargetWriteMask[8];
     };
 
-    virtual IBlendState& CreateBlendState( const BLENDSTATEPARAM& Option )=0;
+    virtual hBlendState CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ドライバ側で用意されている頂点定義の作成
@@ -441,14 +447,14 @@ namespace Maid { namespace Graphics {
       int    Offset;
       METHOD Method;
     };
-    virtual INPUTLAYOUT CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
+    virtual hInputLayout CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
 
 
-    virtual IDrawCommandPlayer* CreateDrawCommandPlayer()=0;
-    virtual IDrawCommandRecorder* CreateDrawCommandRecorder()=0;
+    virtual IDrawCommandExecute* CreateDrawCommandExecute()=0;
+    virtual IDrawCommandCapture* CreateDrawCommandCapture()=0;
 
-    virtual const IRenderTarget& GetDefaultRenderTarget()=0;
-    virtual const IDepthStencil& GetDefaultDepthStencil()=0;
+    virtual hRenderTarget GetDefaultRenderTarget()=0;
+    virtual hDepthStencil GetDefaultDepthStencil()=0;
 
   };
 
