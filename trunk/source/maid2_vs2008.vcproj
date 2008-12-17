@@ -416,6 +416,10 @@
 				RelativePath=".\storage\storagemessagebase.h"
 				>
 			</File>
+			<File
+				RelativePath=".\storage\storageobjecttemplate.h"
+				>
+			</File>
 			<Filter
 				Name="fileio"
 				>
@@ -622,6 +626,10 @@
 			</File>
 			<File
 				RelativePath=".\graphics\rendertargetscreen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\vertexshader.cpp"
 				>
 			</File>
 			<File
