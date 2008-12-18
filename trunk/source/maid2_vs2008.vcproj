@@ -621,6 +621,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\pixelshader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\pixelshader.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\rendertargetscreen.cpp"
 				>
 			</File>

@@ -11,20 +11,27 @@
 
 namespace Maid { namespace Graphics {
 
-  struct IOtherObject
+  class IOtherObject
   {
-
+  public:
+    virtual ~IOtherObject(){}
   };
 
-  struct SamplerStateD3D09 : public IOtherObject
+  class PixelShaderD3D09 : public IOtherObject
+  {
+  public:
+    virtual void Setup( const SPD3D09DEVICE& pDevice ) = 0;
+  };
+
+  class SamplerStateD3D09 : public IOtherObject
   {
   };
 
-  struct RasterizerStateD3D09 : public IOtherObject
+  class RasterizerStateD3D09 : public IOtherObject
   {
   };
 
-  struct BlendStateD3D09 : public IOtherObject
+  class BlendStateD3D09 : public IOtherObject
   {
   };
 

@@ -295,6 +295,19 @@ namespace Maid { namespace Graphics {
      */
     virtual hPixelShader CreatePixelShader( const void* pData, size_t Length )=0;
 
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 各種シェーダー語をコンパイルする
+    /*!
+      @param	Source  [i ]	コード
+      @param	Binary  [ o]	コンパイルされたデータ
+      @param	ErrorMessage  [ o]	コンパイルが失敗したときのエラーメッセージ
+
+      @return	コンパイルに成功したら true
+    \n        失敗したら false
+     */
+    virtual bool CompileShaderLanguage( const String& Source, std::vector<unt08>& Binary, String& ErrorMessage )=0;
+
     enum COMPARISON
     {
       COMPARISON_NEVER        = 1,	//!<	常に通る
