@@ -17,6 +17,15 @@ namespace Maid { namespace Graphics {
     virtual ~IOtherObject(){}
   };
 
+  class VertexShaderD3D09 : public IOtherObject
+  {
+  public:
+    VertexShaderD3D09( IDirect3DVertexShader9* p, DWORD v):pShader(p),Version(v){}
+    SPD3D09VERTEXSHADER pShader;
+    DWORD  Version;
+  };
+
+
   class PixelShaderD3D09 : public IOtherObject
   {
   public:

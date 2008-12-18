@@ -762,6 +762,10 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d09\defaultpixelshader.h"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09.h"
 							>
 						</File>
