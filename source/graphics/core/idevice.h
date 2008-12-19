@@ -360,6 +360,12 @@ namespace Maid { namespace Graphics {
 
     struct RASTERIZERSTATEPARAM
     {
+      enum FILL
+      {
+        FILL_WIREFRAME,
+        FILL_SOLID,
+      };
+
       enum CULLING
       {
         CULLING_NONE=0,
@@ -367,9 +373,11 @@ namespace Maid { namespace Graphics {
         CULLING_RIGHT	//!<	時計回りにカリング
       };
 
+      FILL    Fill;
       CULLING Culling;
       bool MultiSample;
     };
+
     virtual hRasterizerState CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
 
     struct BLENDSTATEPARAM
@@ -428,9 +436,12 @@ namespace Maid { namespace Graphics {
     virtual hBlendState CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ドライバ側で用意されている頂点定義の作成
+    //! 頂点定義の作成
     /*!
-      @param	Name	[i ]	デフォルト名
+      @param	Element	  [i ]	セットアップ情報
+      @param	Count	    [i ]	Element の個数
+      @param	pShaderBytecodeWithInputSignature	[i ]	Elementを対応させるためのシェーダー
+      @param	BytecodeLength	[i ]	pShaderBytecodeWithInputSignature の長さ
 
       @return	作成された頂点定義
      */

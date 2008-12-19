@@ -641,6 +641,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\rasterizerstate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\rasterizerstate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\rendertargetscreen.cpp"
 				>
 			</File>
@@ -807,6 +815,10 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d09\drawcommandexecuted3d09_2.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\drawcommandexecuted3d09_3.cpp"
 							>
 						</File>
 						<File
