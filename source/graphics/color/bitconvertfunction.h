@@ -47,6 +47,12 @@ namespace Maid
   unt08 BITCONVERT16Ito06I( unt16 s );
   unt08 BITCONVERT16Ito08I( unt16 s );
   unt16 BITCONVERT16Ito10I( unt16 s );
+
+  unt08 BITCONVERT32Fto08I( float s );
+  unt16 BITCONVERT32Fto16I( float s );
+  float32 BITCONVERT08Ito32F( unt08 s );
+  float32 BITCONVERT16Ito32F( unt16 s );
+
 }
 
 #include"bitconvertfunction-inl.h"

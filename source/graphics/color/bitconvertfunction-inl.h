@@ -42,5 +42,26 @@ namespace Maid
   inline unt08 BITCONVERT16Ito08I( unt16 s ) { return (unt08)(_CLIP16I(s,0x00FF)>> 8); }
   inline unt16 BITCONVERT16Ito10I( unt16 s ) { return        (_CLIP16I(s,0x003F)>> 6); }
 
+  inline unt08 BITCONVERT32Fto08I( float s )
+  {
+    return BITCONVERT16Ito08I(BITCONVERT32Fto16I(s)); 
+  }
+  inline unt16 BITCONVERT32Fto16I( float s )
+  {
+    if( s>1.0f ) { return 0xFFFF; }
+    if( s<0.0f ) { return 0x0000; }
+
+    const int no = int(s*65535.0f+0.5f);
+    return (unt16)no;
+  }
+
+  inline float32 BITCONVERT08Ito32F( unt08 s )
+  {
+    return BITCONVERT16Ito32F(BITCONVERT08Ito16I(s)); 
+  }
+  inline float32 BITCONVERT16Ito32F( unt16 s )
+  {
+    return float32(s) / 65535.0f;
+  }
 }
 
