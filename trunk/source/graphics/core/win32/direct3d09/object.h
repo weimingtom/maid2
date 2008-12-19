@@ -36,8 +36,18 @@ namespace Maid { namespace Graphics {
   {
   };
 
+  struct RENDERSTATE
+  {
+    D3DRENDERSTATETYPE  Type;
+    DWORD               Value;
+  };
+  typedef std::vector<RENDERSTATE> RENDERSTATELIST;
+
   class RasterizerStateD3D09 : public IOtherObject
   {
+  public:
+    RasterizerStateD3D09( const RENDERSTATELIST& list ):RenderState(list){}
+    RENDERSTATELIST  RenderState;
   };
 
   class BlendStateD3D09 : public IOtherObject
