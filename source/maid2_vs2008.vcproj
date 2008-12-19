@@ -597,6 +597,14 @@
 			Name="graphics"
 			>
 			<File
+				RelativePath=".\graphics\blendstate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\blendstate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\color.h"
 				>
 			</File>
@@ -728,6 +736,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\color\color_r32g32b32a32f.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\color\color_x01r05g05b05i.h"
 					>
 				</File>
@@ -748,7 +760,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\hObject.h"
+					RelativePath=".\graphics\core\createparam.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\hobject.h"
 					>
 				</File>
 				<File

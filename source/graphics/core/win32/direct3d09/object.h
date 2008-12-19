@@ -34,10 +34,13 @@ namespace Maid { namespace Graphics {
 
   class SamplerStateD3D09 : public IOtherObject
   {
+  public:
   };
 
   struct RENDERSTATE
   {
+    RENDERSTATE(){}
+    RENDERSTATE( D3DRENDERSTATETYPE t, DWORD v ):Type(t),Value(v){}
     D3DRENDERSTATETYPE  Type;
     DWORD               Value;
   };
@@ -52,6 +55,9 @@ namespace Maid { namespace Graphics {
 
   class BlendStateD3D09 : public IOtherObject
   {
+  public:
+    BlendStateD3D09( const RENDERSTATELIST& list ):RenderState(list){}
+    RENDERSTATELIST  RenderState;
   };
 
 }}

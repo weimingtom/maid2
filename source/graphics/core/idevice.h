@@ -14,7 +14,8 @@
 #include"../color.h"
 #include"../pixelformat.h"
 
-#include"hObject.h"
+#include"hobject.h"
+#include"createparam.h"
 #include"iDrawCommandexecute.h"
 #include"iDrawCommandcapture.h"
 
@@ -33,19 +34,6 @@ namespace Maid { namespace Graphics {
   {
   public:
 
-    struct DISPLAYMODE
-    {
-      SIZE2DI     Size;         //!<  画面解像度
-      PIXELFORMAT Format;       //!<  スクリーンモード
-      int         RefreshRate;  //!<  リフレッシュレート
-    };
-
-    struct SCREENMODE
-    {
-      DISPLAYMODE DisplayMode;  //!<  解像度
-      bool        IsFullScreen; //!<  フルスクリーンにするか？
-      bool        IsWaitVSync;  //!<  VSync同期するか？
-    };
 
     virtual ~IDevice(){}
 
@@ -71,14 +59,6 @@ namespace Maid { namespace Graphics {
     virtual void SerchDisplayMode( std::vector<DISPLAYMODE>& mode ) = 0;
 
 
-    struct ENABLEFORMAT
-    {
-      std::vector<PIXELFORMAT>  Texture;              //!<  作成可能なテクスチャフォーマット
-      std::vector<PIXELFORMAT>  RenderTargetTexture;  //!<  作成可能なレンダーテクスチャフォーマット
-      std::vector<PIXELFORMAT>  RenderTargetSurface;  //!<  作成可能なレンダーサーフェスフォーマット
-      std::vector<DEPTHSTENCILFORMAT>  DepthStencil;  //!<  作成可能なDepthStencilフォーマット
-      std::vector<int>          IndexBit;             //!<  作成可能な１インデックスあたりのビット数
-    };
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 現在のディスプレイモードで作成可能な各種フォーマットを調べる
@@ -90,8 +70,6 @@ namespace Maid { namespace Graphics {
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スクリーンモードの変更
     /*!
-        デバイスロストからの復帰にも呼んで下さい
-
         @param	mode	[i ]	あたらしい解像度
 
         @exception Exception 初期化に失敗した場合
@@ -131,12 +109,17 @@ namespace Maid { namespace Graphics {
     virtual void GetObjectDesc( const hObject& Object, ObjectDesc& desc )=0;
 
 
-    struct CREATEVERTEXPARAM
-    {
-      const void* pData;  //  頂点データ
-      size_t Length;      //  データの長さ(byte単位)
-      unt32 Format;       //  頂点フォーマット
-    };
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 頂点定義の作成
+    /*!
+        @param	Element	  [i ]	セットアップ情報
+        @param	Count	    [i ]	Element の個数
+        @param	pShaderBytecodeWithInputSignature	[i ]	Elementを対応させるためのシェーダー
+        @param	BytecodeLength	[i ]	pShaderBytecodeWithInputSignature の長さ
+
+        @return	作成された頂点定義
+     */
+    virtual hInputLayout CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファの作成
@@ -147,14 +130,6 @@ namespace Maid { namespace Graphics {
      */
     virtual hVertex CreateVertex( const CREATEVERTEXPARAM& param )=0;
 
-
-    struct CREATEREINDEXPARAM
-    {
-      const void* pData;  //  インデックスデータ
-      size_t  Length;     //  データの長さ(byte単位)
-      unt32   Format;     //  １インデックスあたりのビット数
-    };
-
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! インデックスバッファの作成
     /*!
@@ -163,16 +138,6 @@ namespace Maid { namespace Graphics {
         @return	作成されたリソース
      */
     virtual hIndex CreateIndex( const CREATEREINDEXPARAM& param )=0;
-
-
-    struct CREATERETEXTURE2DPARAM
-    {
-      const void* pData;  //  ピクセルデータ
-      PIXELFORMAT Format; //  ピクセルフォーマット
-      int   ArraySize;    //  何枚あるか？
-      int   Pitch;        //  １ラインあたりの大きさ(byte単位)
-      int   Slice;        //  １平面あたりの大きさ(byte単位)
-    };
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ２Ｄテクスチャの作成
@@ -183,13 +148,6 @@ namespace Maid { namespace Graphics {
      */
     virtual hTexture2D CreateTexture2D( const CREATERETEXTURE2DPARAM& param )=0;
 
-
-    struct CREATERECONSTANTPARAM
-    {
-      const void* pData;  //  バッファデータ
-      size_t  Length;     //  データの長さ(byte単位)
-    };
-
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 定数バッファの作成
     /*!
@@ -199,81 +157,9 @@ namespace Maid { namespace Graphics {
      */
     virtual hConstant CreateConstant( const CREATERECONSTANTPARAM& param )=0;
 
-
-    struct CREATERENDERTARGETPARAM
-    {
-      enum DIMENSION
-      {
-        DIMENSION_BUFFER,
-        DIMENSION_TEXTURE1D,
-        DIMENSION_TEXTURE1DARRAY,
-        DIMENSION_TEXTURE2D,
-        DIMENSION_TEXTURE2DARRAY,
-        DIMENSION_TEXTURE2DMS,
-        DIMENSION_TEXTURE2DMSARRAY,
-        DIMENSION_TEXTURE3D,
-      };
-
-      PIXELFORMAT Format; //  想定させるフォーマット
-      DIMENSION   Dimension;
-      unt32       Param[4];
-    };
-
     virtual hRenderTarget CreateRenderTarget( const hResource& resource, const CREATERENDERTARGETPARAM& param )=0;
-
-
-    struct CREATEDEPTHSTENCILPARAM
-    {
-      enum DIMENSION
-      {
-        DIMENSION_TEXTURE1D,
-        DIMENSION_TEXTURE1DARRAY,
-        DIMENSION_TEXTURE2D,
-        DIMENSION_TEXTURE2DARRAY,
-        DIMENSION_TEXTURE2DMS,
-        DIMENSION_TEXTURE2DMSARRAY,
-      };
-      enum FLAG
-      {
-        FLAG_READ_ONLY_DEPTH   = 0x01,
-        FLAG_READ_ONLY_STENCIL = 0x02,
-      };
-
-      DEPTHSTENCILFORMAT Format; //  想定させるフォーマット
-      DIMENSION          Dimension;
-      unt32       ReadOnlyUsage;
-      unt32       Param[4];
-    };
-
     virtual hDepthStencil CreateDepthStencil( const hResource& resource, const CREATEDEPTHSTENCILPARAM& param )=0;
-
-   struct CREATESHADERMATERIALPARAM
-    {
-      enum DIMENSION
-      {
-        DIMENSION_BUFFER,
-        DIMENSION_TEXTURE1D,
-        DIMENSION_TEXTURE1DARRAY,
-        DIMENSION_TEXTURE2D,
-        DIMENSION_TEXTURE2DARRAY,
-        DIMENSION_TEXTURE2DMS,
-        DIMENSION_TEXTURE2DMSARRAY,
-        DIMENSION_TEXTURE3D,
-        DIMENSION_TEXTURECUBE,
-        DIMENSION_TEXTURECUBEARRAY,
-        DIMENSION_BUFFEREX,
-      };
-      enum FLAG
-      {
-        FLAG_READ_ONLY_DEPTH   = 0x01,
-        FLAG_READ_ONLY_STENCIL = 0x02,
-      };
-
-      DEPTHSTENCILFORMAT Format; //  想定させるフォーマット
-      DIMENSION          Dimension;
-      unt32       Param[4];
-    };
-    virtual hMaterial CreateShaderMaterial( const hResource& resource, const CREATESHADERMATERIALPARAM& param )=0;
+    virtual hMaterial     CreateMaterial( const hResource& resource, const CREATESHADERMATERIALPARAM& param )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -300,179 +186,20 @@ namespace Maid { namespace Graphics {
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 各種シェーダー語をコンパイルする
     /*!
-      @param	Source  [i ]	コード
-      @param	Binary  [ o]	コンパイルされたデータ
-      @param	ErrorMessage  [ o]	コンパイルが失敗したときのエラーメッセージ
+        @param	Source  [i ]	コード
+        @param	Binary  [ o]	コンパイルされたデータ
+        @param	ErrorMessage  [ o]	コンパイルが失敗したときのエラーメッセージ
 
-      @return	コンパイルに成功したら true
-    \n        失敗したら false
+        @return	コンパイルに成功したら true
+    \n          失敗したら false
      */
     virtual bool CompileShaderLanguage( const String& Source, std::vector<unt08>& Binary, String& ErrorMessage )=0;
 
-    enum COMPARISON
-    {
-      COMPARISON_NEVER        = 1,	//!<	常に通る
-      COMPARISON_LESS         = 2,	//!<	o >  n
-      COMPARISON_EQUAL		    = 3,	//!<	o == n
-      COMPARISON_LESSEQUAL	  = 4,	//!<	o >= n
-      COMPARISON_GREATER		  = 5,	//!<	o <  n
-      COMPARISON_NOTEQUAL     = 6,	//!<	o != n
-      COMPARISON_GREATEREQUAL = 7,	//!<	o <= n
-      COMPARISON_ALWAYS       = 8,	//!<	常にダメ
-    };
 
-    struct SAMPLERSTATEPARAM
-    {
-      enum FILTER
-      {
-        FILTER_POINT,
-        FILTER_LINEAR,
-        FILTER_ANISOTROPIC,
-      };
+    virtual hSamplerState     CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
+    virtual hRasterizerState  CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
+    virtual hBlendState       CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
-      enum ADDRESS
-      {
-        ADDRESS_WRAP,
-        ADDRESS_MIRROR,
-        ADDRESS_CLAMP,
-        ADDRESS_BORDER,
-        ADDRESS_MIRROR_ONCE,
-      };
-
-
-
-      FILTER  MinFilter;
-      FILTER  MagFilter;
-
-      int   MaxAnisotropy;
-
-      ADDRESS AddressU;
-      ADDRESS AddressV;
-      ADDRESS AddressW;
-
-      float MipLODBias;
-      COMPARISON   ComparisonFunc;
-      float BorderColor[4];
-      float MinLOD;
-      float MaxLOD;
-    };
-    virtual hSamplerState CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
-
-    struct RASTERIZERSTATEPARAM
-    {
-      enum FILL
-      {
-        FILL_WIREFRAME,
-        FILL_SOLID,
-      };
-
-      enum CULLING
-      {
-        CULLING_NONE=0,
-        CULLING_LEFT,	//!<	反時計回りにカリング
-        CULLING_RIGHT	//!<	時計回りにカリング
-      };
-
-      FILL    Fill;
-      CULLING Culling;
-      bool MultiSample;
-    };
-
-    virtual hRasterizerState CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
-
-    struct BLENDSTATEPARAM
-    {
-      enum BLEND
-      {
-        BLEND_ZERO,
-        BLEND_ONE,
-        BLEND_SRC_COLOR,
-        BLEND_INV_SRC_COLOR,
-        BLEND_SRC_ALPHA,
-        BLEND_INV_SRC_ALPHA,
-        BLEND_DEST_ALPHA,
-        BLEND_INV_DEST_ALPHA,
-        BLEND_DEST_COLOR,
-        BLEND_INV_DEST_COLOR,
-        BLEND_SRC_ALPHA_SAT,
-        BLEND_BLEND_FACTOR,
-        BLEND_INV_BLEND_FACTOR,
-        BLEND_SRC1_COLOR,
-        BLEND_INV_SRC1_COLOR,
-        BLEND_SRC1_ALPHA,
-        BLEND_INV_SRC1_ALPHA,
-      };
-
-      enum OPERATION
-      {
-        OPERATION_ADD,
-        OPERATION_SUBTRACT,
-        OPERATION_REV_SUBTRACT,
-        OPERATION_MIN,
-        OPERATION_MAX,
-      };
-
-      enum MASK
-      {
-        MASK_RED  =0x01,
-        MASK_GREEN=0x02,
-        MASK_BLUE =0x04,
-        MASK_ALPHA=0x08,
-        MASK_ALL = MASK_RED|MASK_GREEN|MASK_BLUE|MASK_ALPHA
-      };
-
-      bool  AlphaToCoverageEnable;
-      bool  BlendEnable[8];
-
-      BLEND SrcBlend;
-      BLEND DestBlend;
-      OPERATION BlendOp;
-      BLEND SrcBlendAlpha;
-      BLEND DestBlendAlpha;
-      OPERATION BlendOpAlpha;
-      unt08 RenderTargetWriteMask[8];
-    };
-
-    virtual hBlendState CreateBlendState( const BLENDSTATEPARAM& Option )=0;
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 頂点定義の作成
-    /*!
-      @param	Element	  [i ]	セットアップ情報
-      @param	Count	    [i ]	Element の個数
-      @param	pShaderBytecodeWithInputSignature	[i ]	Elementを対応させるためのシェーダー
-      @param	BytecodeLength	[i ]	pShaderBytecodeWithInputSignature の長さ
-
-      @return	作成された頂点定義
-     */
-    struct INPUT_ELEMENT
-    {
-      enum TYPE
-      {
-        TYPE_FLOAT1,
-        TYPE_FLOAT2,
-        TYPE_FLOAT3,
-        TYPE_FLOAT4,
-        TYPE_COLOR,
-      };
-      enum METHOD {
-          METHOD_DEFAULT = 0,
-          METHOD_PARTIALU = 1,
-          METHOD_PARTIALV = 2,
-          METHOD_CROSSUV = 3,
-          METHOD_UV = 4,
-          METHOD_LOOKUP,
-          METHOD_LOOKUPPRESAMPLED
-      };
-
-      char*  SemanticName;
-      int    SemanticIndex;
-      TYPE   Type;
-      int    SlotNo;
-      int    Offset;
-      METHOD Method;
-    };
-    virtual hInputLayout CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
 
 
     virtual IDrawCommandExecute* CreateDrawCommandExecute()=0;
