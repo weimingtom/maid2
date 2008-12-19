@@ -117,7 +117,8 @@ namespace Maid { namespace Graphics {
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 指定したオブジェクトを削除する
     /*!
-        @param Object [i ] 削除するオブジェクト
+        @param Object [i ]  削除するオブジェクト
+    \n                      Object.ID==ID_NONE の場合はなにもしない
      */
     virtual void DeleteObject( const hObject& Object )=0;
 

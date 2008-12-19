@@ -601,6 +601,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\customvertextemplate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicsobjecttemplate.h"
 				>
 			</File>
@@ -614,6 +618,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\graphicsrender2.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\inputlayout.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\inputlayout.h"
 				>
 			</File>
 			<File
@@ -634,6 +646,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\rendertargetscreen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\vertex.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\vertex.h"
 				>
 			</File>
 			<File
