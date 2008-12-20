@@ -1,9 +1,9 @@
-#ifndef graphic_core_driver_win32_direct3d09_defaultpixelshader_h
-#define graphic_core_driver_win32_direct3d09_defaultpixelshader_h
+#ifndef graphic_core_driver_win32_direct3d09_pixelshaderd3dfixed_h
+#define graphic_core_driver_win32_direct3d09_pixelshaderd3dfixed_h
 
 #include"../../../../config/define.h"
 #include"common.h"
-#include"object.h"
+#include"pixelshaderd3d09.h"
 
 namespace Maid { namespace Graphics {
 

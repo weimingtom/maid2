@@ -772,10 +772,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\hobject.h"
-					>
-				</File>
-				<File
 					RelativePath=".\graphics\core\iblendstate.h"
 					>
 				</File>
@@ -870,11 +866,19 @@
 						Name="direct3d09"
 						>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d09\blendstated3d09.h"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d09\common.h"
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\defaultpixelshader.h"
+							RelativePath=".\graphics\core\win32\direct3d09\constantd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\depthstencild3d09.h"
 							>
 						</File>
 						<File
@@ -906,7 +910,47 @@
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\object.h"
+							RelativePath=".\graphics\core\win32\direct3d09\indexd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\inputlayoutd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\materiald3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\pixelshaderd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\pixelshaderd3d09fixed.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\rasterizerstated3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\rendertargetd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\samplerstated3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\texture2dd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\vertexd3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\vertexshaderd3d09.h"
 							>
 						</File>
 					</Filter>
