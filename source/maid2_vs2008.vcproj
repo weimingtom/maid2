@@ -181,6 +181,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auxiliary\jobcachetemplate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\jobpool.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\jobpool.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\macro.h"
 				>
 			</File>
@@ -239,30 +251,34 @@
 			<Filter
 				Name="thread"
 				>
-				<File
-					RelativePath=".\auxiliary\thread\win32\processmutex.cpp"
+				<Filter
+					Name="win32"
 					>
-				</File>
-				<File
-					RelativePath=".\auxiliary\thread\win32\processmutex.h"
-					>
-				</File>
-				<File
-					RelativePath=".\auxiliary\thread\win32\threadcontroller.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\auxiliary\thread\win32\threadcontroller.h"
-					>
-				</File>
-				<File
-					RelativePath=".\auxiliary\thread\win32\threadmutex.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\auxiliary\thread\win32\threadmutex.h"
-					>
-				</File>
+					<File
+						RelativePath=".\auxiliary\thread\win32\processmutex.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\auxiliary\thread\win32\processmutex.h"
+						>
+					</File>
+					<File
+						RelativePath=".\auxiliary\thread\win32\threadcontroller.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\auxiliary\thread\win32\threadcontroller.h"
+						>
+					</File>
+					<File
+						RelativePath=".\auxiliary\thread\win32\threadmutex.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\auxiliary\thread\win32\threadmutex.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="mathematics"
@@ -409,15 +425,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\storage\storagemessage3.h"
-				>
-			</File>
-			<File
 				RelativePath=".\storage\storagemessagebase.h"
-				>
-			</File>
-			<File
-				RelativePath=".\storage\storageobjecttemplate.h"
 				>
 			</File>
 			<Filter
