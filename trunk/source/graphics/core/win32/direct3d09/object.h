@@ -4,8 +4,6 @@
 #include"../../../../config/define.h"
 #include"../../../../config/typedef.h"
 
-#include"../../hObject.h"
-
 #include"common.h"
 
 
