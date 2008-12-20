@@ -14,10 +14,23 @@
 #include"../color.h"
 #include"../pixelformat.h"
 
-#include"hobject.h"
 #include"createparam.h"
-#include"iDrawCommandexecute.h"
-#include"iDrawCommandcapture.h"
+
+#include"iindex.h"
+#include"ivertex.h"
+#include"itexture2d.h"
+#include"iconstant.h"
+#include"irendertarget.h"
+#include"idepthstencil.h"
+#include"imaterial.h"
+#include"iinputlayout.h"
+#include"irasterizerstate.h"
+#include"isamplerstate.h"
+#include"iblendstate.h"
+#include"ivertexshader.h"
+#include"ipixelshader.h"
+#include"idrawcommandexecute.h"
+#include"idrawcommandcapture.h"
 
 
 namespace Maid { namespace Graphics {
@@ -93,23 +106,6 @@ namespace Maid { namespace Graphics {
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 指定したオブジェクトを削除する
-    /*!
-        @param Object [i ]  削除するオブジェクト
-    \n                      Object.ID==ID_NONE の場合はなにもしない
-     */
-    virtual void DeleteObject( const hObject& Object )=0;
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 指定したオブジェクトの情報を取得する
-    /*!
-        @param Object [i ] 取得するオブジェクト
-        @param Desc   [ o] 設定する情報先
-     */
-    virtual void GetObjectDesc( const hObject& Object, ObjectDesc& desc )=0;
-
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点定義の作成
     /*!
         @param	Element	  [i ]	セットアップ情報
@@ -119,7 +115,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成された頂点定義
      */
-    virtual hInputLayout CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
+    virtual IInputLayout* CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファの作成
@@ -128,7 +124,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual hVertex CreateVertex( const CREATEVERTEXPARAM& param )=0;
+    virtual IVertex* CreateVertex( const CREATEVERTEXPARAM& param )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! インデックスバッファの作成
@@ -137,7 +133,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual hIndex CreateIndex( const CREATEREINDEXPARAM& param )=0;
+    virtual IIndex* CreateIndex( const CREATEREINDEXPARAM& param )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ２Ｄテクスチャの作成
@@ -146,7 +142,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual hTexture2D CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE& data )=0;
+    virtual ITexture2D* CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE& data )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 定数バッファの作成
@@ -155,11 +151,11 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual hConstant CreateConstant( const CREATERECONSTANTPARAM& param )=0;
+    virtual IConstant* CreateConstant( const CREATERECONSTANTPARAM& param )=0;
 
-    virtual hRenderTarget CreateRenderTarget( const hResource& resource, const CREATERENDERTARGETPARAM& param )=0;
-    virtual hDepthStencil CreateDepthStencil( const hResource& resource, const CREATEDEPTHSTENCILPARAM& param )=0;
-    virtual hMaterial     CreateMaterial( const hResource& resource, const CREATESHADERMATERIALPARAM& param )=0;
+    virtual IRenderTarget* CreateRenderTarget( const IResource* resource, const CREATERENDERTARGETPARAM& param )=0;
+    virtual IDepthStencil* CreateDepthStencil( const IResource* resource, const CREATEDEPTHSTENCILPARAM& param )=0;
+    virtual IMaterial*     CreateMaterial( const IResource* resource, const CREATESHADERMATERIALPARAM& param )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -170,7 +166,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたバーテックスシェーダー
      */
-    virtual hVertexShader CreateVertexShader( const void* pData, size_t Length )=0;
+    virtual IVertexShader* CreateVertexShader( const void* pData, size_t Length )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ゲーム側独自のピクセルシェーダーの作成
@@ -180,7 +176,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたピクセルシェーダー
      */
-    virtual hPixelShader CreatePixelShader( const void* pData, size_t Length )=0;
+    virtual IPixelShader* CreatePixelShader( const void* pData, size_t Length )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -196,17 +192,15 @@ namespace Maid { namespace Graphics {
     virtual bool CompileShaderLanguage( const String& Source, std::vector<unt08>& Binary, String& ErrorMessage )=0;
 
 
-    virtual hSamplerState     CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
-    virtual hRasterizerState  CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
-    virtual hBlendState       CreateBlendState( const BLENDSTATEPARAM& Option )=0;
-
-
+    virtual ISamplerState*     CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
+    virtual IRasterizerState*  CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
+    virtual IBlendState*       CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
     virtual IDrawCommandExecute* CreateDrawCommandExecute()=0;
     virtual IDrawCommandCapture* CreateDrawCommandCapture()=0;
 
-    virtual hRenderTarget GetDefaultRenderTarget()=0;
-    virtual hDepthStencil GetDefaultDepthStencil()=0;
+    virtual IRenderTarget* GetDefaultRenderTarget()=0;
+    virtual IDepthStencil* GetDefaultDepthStencil()=0;
 
   };
 
