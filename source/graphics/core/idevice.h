@@ -146,7 +146,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual hTexture2D CreateTexture2D( const CREATERETEXTURE2DPARAM& param )=0;
+    virtual hTexture2D CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE& data )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 定数バッファの作成
