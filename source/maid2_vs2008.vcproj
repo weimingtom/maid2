@@ -776,7 +776,23 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\core\iblendstate.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\iconstant.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\idepthstencil.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\core\idevice.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\idevicechild.h"
 					>
 				</File>
 				<File
@@ -793,6 +809,50 @@
 				</File>
 				<File
 					RelativePath=".\graphics\core\idrawcommandexecute.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\iindex.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\iinputlayout.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\imaterial.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\ipixelshader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\irasterizerstate.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\irendertarget.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\iresource.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\isamplerstate.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\itexture2d.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\ivertex.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\core\ivertexshader.h"
 					>
 				</File>
 				<Filter
