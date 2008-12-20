@@ -776,6 +776,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\core\ibuffer.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\core\iconstant.h"
 					>
 				</File>
@@ -805,10 +809,6 @@
 				</File>
 				<File
 					RelativePath=".\graphics\core\idrawcommandexecute.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\iindex.h"
 					>
 				</File>
 				<File
@@ -844,10 +844,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\core\ivertex.h"
-					>
-				</File>
-				<File
 					RelativePath=".\graphics\core\ivertexshader.h"
 					>
 				</File>
@@ -867,6 +863,10 @@
 						>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d09\blendstated3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\bufferd3d09.h"
 							>
 						</File>
 						<File
@@ -910,10 +910,6 @@
 							>
 						</File>
 						<File
-							RelativePath=".\graphics\core\win32\direct3d09\indexd3d09.h"
-							>
-						</File>
-						<File
 							RelativePath=".\graphics\core\win32\direct3d09\inputlayoutd3d09.h"
 							>
 						</File>
@@ -943,10 +939,6 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d09\texture2dd3d09.h"
-							>
-						</File>
-						<File
-							RelativePath=".\graphics\core\win32\direct3d09\vertexd3d09.h"
 							>
 						</File>
 						<File

@@ -16,8 +16,7 @@
 
 #include"createparam.h"
 
-#include"iindex.h"
-#include"ivertex.h"
+#include"ibuffer.h"
 #include"itexture2d.h"
 #include"iconstant.h"
 #include"irendertarget.h"
@@ -124,16 +123,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual IVertex* CreateVertex( const CREATEVERTEXPARAM& param )=0;
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! インデックスバッファの作成
-    /*!
-        @param	param   [i ]	作成したいリソース
-
-        @return	作成されたリソース
-     */
-    virtual IIndex* CreateIndex( const CREATEREINDEXPARAM& param )=0;
+    virtual IBuffer* CreateBuffer( const CREATEBUFFERPARAM& param, const SUBRESOURCE* data )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ２Ｄテクスチャの作成
@@ -142,16 +132,8 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual ITexture2D* CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE& data )=0;
+    virtual ITexture2D* CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE* data )=0;
 
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 定数バッファの作成
-    /*!
-        @param	param   [i ]	作成したいリソース
-
-        @return	作成されたリソース
-     */
-    virtual IConstant* CreateConstant( const CREATERECONSTANTPARAM& param )=0;
 
     virtual IRenderTarget* CreateRenderTarget( const IResource* resource, const CREATERENDERTARGETPARAM& param )=0;
     virtual IDepthStencil* CreateDepthStencil( const IResource* resource, const CREATEDEPTHSTENCILPARAM& param )=0;
