@@ -27,6 +27,7 @@
 #include"irasterizerstate.h"
 #include"isamplerstate.h"
 #include"iblendstate.h"
+#include"idepthstencilstate.h"
 #include"ivertexshader.h"
 #include"ipixelshader.h"
 #include"idrawcommandexecute.h"
@@ -173,9 +174,10 @@ namespace Maid { namespace Graphics {
     virtual bool CompileShaderLanguage( const String& Source, std::vector<unt08>& Binary, String& ErrorMessage )=0;
 
 
-    virtual SPSAMPLERSTATE     CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
-    virtual SPRASTERIZERSTATE  CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
-    virtual SPBLENDSTATE       CreateBlendState( const BLENDSTATEPARAM& Option )=0;
+    virtual SPSAMPLERSTATE      CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
+    virtual SPRASTERIZERSTATE   CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
+    virtual SPDEPTHSTENCILSTATE CreateDepthStencilState( const DEPTHSTENCILSTATEPARAM& Option )=0;
+    virtual SPBLENDSTATE        CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
     virtual SPDRAWCOMMANDEXECUTE GetDrawCommandExecute()=0;
     virtual SPDRAWCOMMANDCAPTURE CreateDrawCommandCapture()=0;

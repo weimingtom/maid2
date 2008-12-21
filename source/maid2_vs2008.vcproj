@@ -621,6 +621,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\depthstencilstate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\depthstencilstate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicsobjecttemplate.h"
 				>
 			</File>
@@ -788,6 +796,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\core\idepthstencilstate.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\core\idevice.h"
 					>
 				</File>
@@ -879,6 +891,10 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d09\depthstencild3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\depthstencilstated3d09.h"
 							>
 						</File>
 						<File
