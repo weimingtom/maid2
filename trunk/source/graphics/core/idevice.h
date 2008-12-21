@@ -11,6 +11,7 @@
 #include"../../auxiliary/exception.h"
 #include"../../auxiliary/mathematics.h"
 #include"../../auxiliary/macro.h"
+#include"../../auxiliary/string.h"
 #include"../color.h"
 #include"../pixelformat.h"
 
@@ -45,8 +46,6 @@ namespace Maid { namespace Graphics {
   class IDevice
   {
   public:
-
-
     virtual ~IDevice(){}
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -114,7 +113,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成された頂点定義
      */
-    virtual IInputLayout* CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
+    virtual SPINPUTLAYOUT CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点バッファの作成
@@ -123,7 +122,7 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual IBuffer* CreateBuffer( const CREATEBUFFERPARAM& param, const SUBRESOURCE* data )=0;
+    virtual SPBUFFER CreateBuffer( const CREATEBUFFERPARAM& param, const SUBRESOURCE* data )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ２Ｄテクスチャの作成
@@ -132,12 +131,12 @@ namespace Maid { namespace Graphics {
 
         @return	作成されたリソース
      */
-    virtual ITexture2D* CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE* data )=0;
+    virtual SPTEXTURE2D CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE* data )=0;
 
 
-    virtual IRenderTarget* CreateRenderTarget( const IResource* resource, const CREATERENDERTARGETPARAM& param )=0;
-    virtual IDepthStencil* CreateDepthStencil( const IResource* resource, const CREATEDEPTHSTENCILPARAM& param )=0;
-    virtual IMaterial*     CreateMaterial( const IResource* resource, const CREATESHADERMATERIALPARAM& param )=0;
+    virtual SPRENDERTARGET CreateRenderTarget( const SPRESOURCE& resource, const CREATERENDERTARGETPARAM& param )=0;
+    virtual SPDEPTHSTENCIL CreateDepthStencil( const SPRESOURCE& resource, const CREATEDEPTHSTENCILPARAM& param )=0;
+    virtual SPMATERIAL     CreateMaterial( const SPRESOURCE& resource, const CREATESHADERMATERIALPARAM& param )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -148,7 +147,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたバーテックスシェーダー
      */
-    virtual IVertexShader* CreateVertexShader( const void* pData, size_t Length )=0;
+    virtual SPVERTEXSHADER CreateVertexShader( const void* pData, size_t Length )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ゲーム側独自のピクセルシェーダーの作成
@@ -158,7 +157,7 @@ namespace Maid { namespace Graphics {
 
       @return	作成されたピクセルシェーダー
      */
-    virtual IPixelShader* CreatePixelShader( const void* pData, size_t Length )=0;
+    virtual SPPIXELSHADER CreatePixelShader( const void* pData, size_t Length )=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -174,15 +173,15 @@ namespace Maid { namespace Graphics {
     virtual bool CompileShaderLanguage( const String& Source, std::vector<unt08>& Binary, String& ErrorMessage )=0;
 
 
-    virtual ISamplerState*     CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
-    virtual IRasterizerState*  CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
-    virtual IBlendState*       CreateBlendState( const BLENDSTATEPARAM& Option )=0;
+    virtual SPSAMPLERSTATE     CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
+    virtual SPRASTERIZERSTATE  CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
+    virtual SPBLENDSTATE       CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
-    virtual IDrawCommandExecute* CreateDrawCommandExecute()=0;
-    virtual IDrawCommandCapture* CreateDrawCommandCapture()=0;
+    virtual SPDRAWCOMMANDEXECUTE GetDrawCommandExecute()=0;
+    virtual SPDRAWCOMMANDCAPTURE CreateDrawCommandCapture()=0;
 
-    virtual IRenderTarget* GetDefaultRenderTarget()=0;
-    virtual IDepthStencil* GetDefaultDepthStencil()=0;
+    virtual SPRENDERTARGET GetDefaultRenderTarget()const=0;
+    virtual SPDEPTHSTENCIL GetDefaultDepthStencil()const=0;
 
   };
 
