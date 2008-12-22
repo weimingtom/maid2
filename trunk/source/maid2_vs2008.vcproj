@@ -681,6 +681,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\shadercompiler.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\shadercompiler.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\vertex.cpp"
 				>
 			</File>

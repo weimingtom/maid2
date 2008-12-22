@@ -33,6 +33,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0060Fill2D", "sample\0060Fi
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0070bltsprite", "sample\0070bltsprite\0070bltsprite.vcproj", "{5BBC7195-270E-4E12-9750-4D4F487FE393}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -62,6 +67,10 @@ Global
 		{BE3091F8-D69D-426B-A021-83A56E43635F}.Debug|Win32.Build.0 = Debug|Win32
 		{BE3091F8-D69D-426B-A021-83A56E43635F}.Release|Win32.ActiveCfg = Release|Win32
 		{BE3091F8-D69D-426B-A021-83A56E43635F}.Release|Win32.Build.0 = Release|Win32
+		{5BBC7195-270E-4E12-9750-4D4F487FE393}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5BBC7195-270E-4E12-9750-4D4F487FE393}.Debug|Win32.Build.0 = Debug|Win32
+		{5BBC7195-270E-4E12-9750-4D4F487FE393}.Release|Win32.ActiveCfg = Release|Win32
+		{5BBC7195-270E-4E12-9750-4D4F487FE393}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
