@@ -20,7 +20,7 @@ namespace Maid
 	{
 	public:
 		COLOR_A16B16G16R16I(){}	//!<	コンストラクタ
-		COLOR_A16B16G16R16I( unt16 a, unt16 b, unt16 g, unt16 r ){ SetABGR( a, b, g, r ); }	//!<	コンストラクタ
+		COLOR_A16B16G16R16I( unt16 a, unt16 b, unt16 g, unt16 r ){ SetARGB( a, r, g, b ); }	//!<	コンストラクタ
 		template <class COLOR>
 		COLOR_A16B16G16R16I( const COLOR& Col ){  SetARGB( Col.GetA(), Col.GetR(), Col.GetG(), Col.GetB() );  }	//!<	コンストラクタ
 
@@ -37,7 +37,7 @@ namespace Maid
 		void SetG( unt16 g )	{ m_Green = g;	}	//!<	緑成分の設定
 		void SetB( unt16 b )	{ m_Blue  = b;	}	//!<	青成分の設定
 
-		void SetABGR( unt16 a, unt16 b, unt16 g, unt16 r )	//!<	いっきに設定
+		void SetARGB( unt16 a, unt16 r, unt16 g, unt16 b )	//!<	いっきに設定
 		{
 			SetA( a );
 			SetR( r );
@@ -49,7 +49,7 @@ namespace Maid
 		template <class PIXEL>
 		COLOR_A16B16G16R16I& operator = (const PIXEL &src)
 		{
-			SetABGR(src.GetA(),src.GetR(),src.GetG(),src.GetB());
+			SetARGB(src.GetA(),src.GetR(),src.GetG(),src.GetB());
 			return *this;
 		}
 

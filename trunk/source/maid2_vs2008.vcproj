@@ -645,6 +645,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\imagefile.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\inputlayout.cpp"
 				>
 			</File>
@@ -689,6 +693,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\texture2d.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\texture2d.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\vertex.cpp"
 				>
 			</File>
@@ -713,6 +725,10 @@
 				</File>
 				<File
 					RelativePath=".\graphics\color\bitconvertfunction.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\color\color_a01b05g05r05i.h"
 					>
 				</File>
 				<File
@@ -769,6 +785,10 @@
 				</File>
 				<File
 					RelativePath=".\graphics\color\color_x08r08g08b08i.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\color\colorconvert.h"
 					>
 				</File>
 			</Filter>
@@ -979,6 +999,26 @@
 						</File>
 					</Filter>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="imagefile"
+				>
+				<File
+					RelativePath=".\graphics\imagefile\bitmap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\imagefile\bitmap.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\imagefile\surface.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\imagefile\surface.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>
