@@ -11,6 +11,7 @@ boost
   http://www.boost.org/ のDawnload から拾ってくる
   解凍したファイルの boostXXXXXXX/boost と
   このディレクトリを一致させる。
+  このリポジトリに入っているのは 1.37.0
 
 
 sfmt
