@@ -14,6 +14,18 @@ namespace Maid
   typedef SIZE3D_TEMPLATE<int>      SIZE3DI;
   typedef SIZE3D_TEMPLATE<float>    SIZE3DF;
   typedef SIZE3D_TEMPLATE<double>   SIZE3DD;
+
+    //	”äŠr‰‰ŽZŽq
+  template<typename TYPE>
+  bool operator==( const SIZE2D_TEMPLATE<TYPE>& lha, const SIZE2D_TEMPLATE<TYPE>& rha ) { return lha.w==rha.w && lha.h==rha.h; }
+  template<typename TYPE>
+  bool operator!=( const SIZE2D_TEMPLATE<TYPE>& lha, const SIZE2D_TEMPLATE<TYPE>& rha ) { return !(lha==rha); }
+
+  template<typename TYPE>
+  bool operator==( const SIZE3D_TEMPLATE<TYPE>& lha, const SIZE3D_TEMPLATE<TYPE>& rha ) { return lha.w==rha.w && lha.h==rha.h; }
+  template<typename TYPE>
+  bool operator!=( const SIZE3D_TEMPLATE<TYPE>& lha, const SIZE3D_TEMPLATE<TYPE>& rha ) { return !(lha==rha); }
+
 }
 
 

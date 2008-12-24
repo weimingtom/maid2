@@ -35,10 +35,6 @@ namespace Maid
       h = (TYPE)rha.h;
       d = (TYPE)rha.d;
     }
-
-    //	”äŠr‰‰ŽZŽq
-    bool operator==( const SIZE& rha ) { return w==rha.w && h==rha.h && d==rha.d; }
-    bool operator!=( const SIZE& rha ) { return !(*this==rha); }
 	};
 }
 
