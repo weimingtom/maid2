@@ -637,6 +637,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphicscore.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphicscore1.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicsobjecttemplate.h"
 				>
 			</File>
@@ -650,6 +658,10 @@
 			</File>
 			<File
 				RelativePath=".\graphics\graphicsrender2.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphicsrender3.cpp"
 				>
 			</File>
 			<File
