@@ -393,6 +393,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\storage\filereadersync.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\filereadersync.h"
+				>
+			</File>
+			<File
 				RelativePath=".\storage\filewriter.cpp"
 				>
 			</File>
@@ -795,14 +803,6 @@
 			<Filter
 				Name="core"
 				>
-				<File
-					RelativePath=".\graphics\core\core.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\core\core1.cpp"
-					>
-				</File>
 				<File
 					RelativePath=".\graphics\core\createparam.h"
 					>
