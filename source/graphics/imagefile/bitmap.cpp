@@ -74,8 +74,7 @@ void   Bitmap::Load( const std::vector<unt08>& FileImage, Surface& surface )
 		Pitch = (Pitch +3)&~3;					//	ビットマップのピッチは４の倍数である
 
     //	転送先の作成
-    //  bitmapの画像は上下反転してるので、こうしておく
-    surface.Create( PlaneSize, Format, Pitch, true );
+    surface.Create( PlaneSize, Format, Pitch );
     pCurrent += sizeof(BITMAPINFOHEADER);
   }
 
@@ -92,15 +91,14 @@ void   Bitmap::Load( const std::vector<unt08>& FileImage, Surface& surface )
       pCurrent += clutsize;
     }
 
-		//	ビットマップは上下反転してるけど、 dst.SetReverseSurface( true ) のおかげで
-		//	Srcの先頭ラインを Dst の一番下のラインに転送してくれる
-
+		//	ビットマップは上下反転してるので、それに気をつけながらコピーする
     const int height= surface.GetSize().h;
     const int pitch = surface.GetPitch();
 
 		for( int y=0; y<height; ++y )
 		{
-      memcpy( surface.GetLinePTR(y), pCurrent, pitch );
+      const int pos = (height-(y+1));
+      memcpy( surface.GetLinePTR(pos), pCurrent, pitch );
       pCurrent += pitch;
 		}
 	}
