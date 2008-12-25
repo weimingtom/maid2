@@ -165,6 +165,10 @@
 			Name="auxiliary"
 			>
 			<File
+				RelativePath=".\auxiliary\cachemanager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\collision.h"
 				>
 			</File>
@@ -497,6 +501,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\framework\ifontdevice.h"
+				>
+			</File>
+			<File
 				RelativePath=".\framework\igameframework.h"
 				>
 			</File>
@@ -545,6 +553,14 @@
 				</File>
 				<File
 					RelativePath=".\framework\win32\dllwrapper.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\fontdevice.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\fontdevice.h"
 					>
 				</File>
 				<File
@@ -600,6 +616,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\win32\surfacedib.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\surfacedib.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\win32\window.cpp"
 					>
 				</File>
@@ -634,6 +658,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\depthstencilstate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\fonttexturemanager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\fonttexturemanager.h"
 				>
 			</File>
 			<File
@@ -1024,11 +1056,19 @@
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\imagefile\surface.cpp"
+					RelativePath=".\graphics\imagefile\isurface.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\graphics\imagefile\surface.h"
+					RelativePath=".\graphics\imagefile\isurface.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\imagefile\surfacesystemmemory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\imagefile\surfacesystemmemory.h"
 					>
 				</File>
 			</Filter>
