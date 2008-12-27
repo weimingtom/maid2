@@ -697,6 +697,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphicsrender4.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\imagefile.h"
 				>
 			</File>
