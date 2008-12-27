@@ -86,7 +86,7 @@ bool  SurfaceDIB::IsEmpty() const
 
 void SurfaceDIB::Create( const SIZE2DI& size, PIXELFORMAT fmt )
 {
-  MAID_ASSERT( fmt!=PIXELFORMAT_X08R08G08B08I, "PIXELFORMAT_X08R08G08B08I以外受け付けません" );
+  MAID_ASSERT( fmt!=PIXELFORMAT_A08R08G08B08I, "PIXELFORMAT_A08R08G08B08I以外受け付けません" );
 
   Destroy();
 
