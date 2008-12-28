@@ -616,14 +616,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\framework\win32\surfacedib.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\win32\surfacedib.h"
-					>
-				</File>
-				<File
 					RelativePath=".\framework\win32\window.cpp"
 					>
 				</File>
@@ -746,6 +738,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\shadercompiler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\surface.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\surface.h"
 				>
 			</File>
 			<File
@@ -1057,22 +1057,6 @@
 				</File>
 				<File
 					RelativePath=".\graphics\imagefile\bitmap.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\imagefile\isurface.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\imagefile\isurface.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\imagefile\surfacesystemmemory.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\graphics\imagefile\surfacesystemmemory.h"
 					>
 				</File>
 			</Filter>
