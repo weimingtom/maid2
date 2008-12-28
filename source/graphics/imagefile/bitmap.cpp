@@ -30,7 +30,7 @@ bool  Bitmap::Check( const std::vector<unt08>& FileImage )
     @param	FileImage	[i ]  ファイル名
     @param	dst       [i ]  転送先
  */
-void   Bitmap::Load( const std::vector<unt08>& FileImage, SurfaceSystemMemory& surface )
+void   Bitmap::Load( const std::vector<unt08>& FileImage, Surface& surface )
 {
   MAID_ASSERT( !Check(FileImage), "ビットマップではありません" );
 
