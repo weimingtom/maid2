@@ -181,6 +181,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auxiliary\fpstimer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\fpstimer.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\globalpointer.h"
 				>
 			</File>
@@ -222,6 +230,10 @@
 			</File>
 			<File
 				RelativePath=".\auxiliary\thread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\timer.h"
 				>
 			</File>
 			<Filter
@@ -369,6 +381,18 @@
 				</File>
 				<File
 					RelativePath=".\auxiliary\mathematics\vector4d.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="win32"
+				>
+				<File
+					RelativePath=".\auxiliary\win32\timer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\win32\timer.h"
 					>
 				</File>
 			</Filter>
