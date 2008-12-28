@@ -757,6 +757,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\transiter.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\vertex.cpp"
 				>
 			</File>
@@ -1018,6 +1022,10 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d09\pixelshaderd3d09fixed.cpp"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d09\pixelshaderd3d09fixed.h"
 							>
 						</File>
@@ -1057,6 +1065,42 @@
 				</File>
 				<File
 					RelativePath=".\graphics\imagefile\bitmap.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="transiter"
+				>
+				<File
+					RelativePath=".\graphics\transiter\bilinear.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\bilinear.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\common.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\common.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\copy.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\copy.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\fill.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\fill.h"
 					>
 				</File>
 			</Filter>
