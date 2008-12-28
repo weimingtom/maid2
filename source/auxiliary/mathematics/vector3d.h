@@ -142,6 +142,7 @@ namespace Maid
 }
 	//	Windows のときのみ DXLIB を使ったバージョンを存在させる
   #ifdef USE_DIRECT3DX9
+  #include"../../config/win32.h"
     #include<d3dx9.h>
     #pragma comment( lib, "d3dx9.lib" )
 

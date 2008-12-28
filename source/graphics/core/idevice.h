@@ -11,11 +11,13 @@
 #include"../../auxiliary/exception.h"
 #include"../../auxiliary/mathematics.h"
 #include"../../auxiliary/macro.h"
+
 #include"../../auxiliary/string.h"
 #include"../color.h"
 #include"../pixelformat.h"
 
 #include"createparam.h"
+
 
 #include"ibuffer.h"
 #include"itexture2d.h"
