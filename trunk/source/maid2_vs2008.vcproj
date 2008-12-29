@@ -549,6 +549,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\framework\iscene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\isceneadmin.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\isceneadmin.h"
+				>
+			</File>
+			<File
 				RelativePath=".\framework\osmessage.h"
 				>
 			</File>
@@ -757,6 +769,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\rendertargettexture.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\rendertargettexture.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\shadercompiler.cpp"
 				>
 			</File>
@@ -778,6 +798,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\texture2d.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\texture2dbase.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\texture2dbase.h"
 				>
 			</File>
 			<File
