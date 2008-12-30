@@ -43,6 +43,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0080drawtext", "sample\0080
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0090scenesample", "sample\0090scenesample\0090scenesample.vcproj", "{73999978-E15A-44AE-811E-2F71FEF7E13E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -79,6 +84,10 @@ Global
 		{C832A320-53DB-4DCD-867F-62E1D9FA0315}.Debug|Win32.Build.0 = Debug|Win32
 		{C832A320-53DB-4DCD-867F-62E1D9FA0315}.Release|Win32.ActiveCfg = Release|Win32
 		{C832A320-53DB-4DCD-867F-62E1D9FA0315}.Release|Win32.Build.0 = Release|Win32
+		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Debug|Win32.Build.0 = Debug|Win32
+		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Release|Win32.ActiveCfg = Release|Win32
+		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
