@@ -173,6 +173,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auxiliary\counter.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\exception.cpp"
 				>
 			</File>
@@ -393,6 +397,18 @@
 				</File>
 				<File
 					RelativePath=".\auxiliary\win32\timer.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="counter"
+				>
+				<File
+					RelativePath=".\auxiliary\counter\linearcounter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\counter\loopcounter.h"
 					>
 				</File>
 			</Filter>
@@ -678,6 +694,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\customvertextemplate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\depthstencil.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\depthstencil.h"
 				>
 			</File>
 			<File
