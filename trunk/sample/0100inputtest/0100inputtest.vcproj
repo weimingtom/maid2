@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="0080drawtext"
-	ProjectGUID="{C832A320-53DB-4DCD-867F-62E1D9FA0315}"
-	RootNamespace="My0080drawtext"
+	Name="0100inputtest"
+	ProjectGUID="{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}"
+	RootNamespace="My0100inputtest"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -60,7 +60,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)\bin\$(ProjectName).exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -133,7 +132,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)\bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
