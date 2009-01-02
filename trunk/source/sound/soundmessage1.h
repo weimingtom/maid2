@@ -3,6 +3,7 @@
 
 #include"soundmessagebase.h"
 #include"isoundobject.h"
+#include"pcmdecoder/ipcmdecoder.h"
 
 #include"core/ibuffer.h"
 
@@ -25,7 +26,7 @@ namespace Maid
 			CreatePCMStream() : Base(CREATE_PCMSTREAM){}
 
       Sound::CREATEBUFFERPARAM Param;
-//			SPSOUNDDECODER	pDecoder;	//	デコーダ
+      SPPCMDECODER	pDecoder;	//	デコーダ
 		};
 
 		class CreateClone : public Base

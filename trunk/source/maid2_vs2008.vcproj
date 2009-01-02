@@ -1261,6 +1261,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sound\pcmdecoder.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sound\soundcore.h"
 				>
 			</File>
@@ -1281,12 +1285,32 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sound\soundobjectlocal.h"
+				RelativePath=".\sound\soundobjectnull.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundobjectpcmstatic.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundobjectpcmstatic.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundobjectpcmstream.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundobjectpcmstream.h"
 				>
 			</File>
 			<Filter
 				Name="core"
 				>
+				<File
+					RelativePath=".\sound\core\common.h"
+					>
+				</File>
 				<File
 					RelativePath=".\sound\core\ibuffer.h"
 					>
@@ -1343,6 +1367,22 @@
 						</File>
 					</Filter>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="pcmdecoder"
+				>
+				<File
+					RelativePath=".\sound\pcmdecoder\ipcmdecoder.h"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmdecoder\riffpcm.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmdecoder\riffpcm.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>
