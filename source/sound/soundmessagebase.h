@@ -7,12 +7,31 @@
 */
 
 #include"../config/define.h"
+#include"../config/typedef.h"
 #include<boost/smart_ptr.hpp>
 #include<vector>
 
 namespace Maid
 {
   class SoundCore;
+
+  class SoundObjectInfo
+  {
+    friend SoundCore;
+  public:
+    SoundObjectInfo( unt id ):m_ID(id),m_IsPlay(false),m_Position(0){}
+
+    unt  GetID()  const { return m_ID; }
+    bool IsPlay() const { return m_IsPlay; }
+    float GetPosition() const { return m_Position; }
+
+  private:
+    unt   m_ID;
+    bool  m_IsPlay;
+    float m_Position;
+  };
+  typedef	boost::shared_ptr<SoundObjectInfo>	SPSOUNDOBJECTINFO;
+
 	namespace SoundMessage
 	{
 		class Base
@@ -42,6 +61,7 @@ namespace Maid
 			Base( MESSAGE mess ) : Message(mess){}
 
 			const MESSAGE	Message;
+      SPSOUNDOBJECTINFO pInfo;
     private:
 			int		ID;
 		};

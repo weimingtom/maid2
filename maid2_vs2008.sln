@@ -53,6 +53,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0100inputtest", "sample\010
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0110soundtest", "sample\0110soundtest\0110soundtest.vcproj", "{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -95,6 +100,10 @@ Global
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Debug|Win32.Build.0 = Debug|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Release|Win32.ActiveCfg = Release|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Release|Win32.Build.0 = Release|Win32
+		{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}.Debug|Win32.Build.0 = Debug|Win32
+		{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}.Release|Win32.ActiveCfg = Release|Win32
+		{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

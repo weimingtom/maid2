@@ -34,7 +34,7 @@ namespace Maid
 		public:
 			CreateClone() : Base(CREATE_CLONE){}
 
-			int	SrcID;
+      SPSOUNDOBJECTINFO pSrc;
 		};
 
     class DeleteObject : public Base

@@ -1229,6 +1229,14 @@
 								ObjectFile="$(IntDir)\inputdevicelist.obj"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\inputdevicelist.obj"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\input\core\win32\devicelist.h"
@@ -1274,6 +1282,14 @@
 			</File>
 			<File
 				RelativePath=".\sound\soundcore2.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundfile.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundfile.h"
 				>
 			</File>
 			<File
@@ -1331,6 +1347,14 @@
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sounddevicelist"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
