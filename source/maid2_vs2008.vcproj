@@ -541,10 +541,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\framework\ifontdevice.h"
-				>
-			</File>
-			<File
 				RelativePath=".\framework\igameframework.h"
 				>
 			</File>
@@ -605,14 +601,6 @@
 				</File>
 				<File
 					RelativePath=".\framework\win32\dllwrapper.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\win32\fontdevice.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\win32\fontdevice.h"
 					>
 				</File>
 				<File
@@ -980,6 +968,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\core\ifontdevice.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\core\iinputlayout.h"
 					>
 				</File>
@@ -1028,6 +1020,14 @@
 					</File>
 					<File
 						RelativePath=".\graphics\core\win32\devicelist.h"
+						>
+					</File>
+					<File
+						RelativePath=".\graphics\core\win32\fontdevice.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\graphics\core\win32\fontdevice.h"
 						>
 					</File>
 					<Filter
