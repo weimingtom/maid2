@@ -181,7 +181,7 @@ namespace Maid { namespace Graphics {
     virtual SPDEPTHSTENCILSTATE CreateDepthStencilState( const DEPTHSTENCILSTATEPARAM& Option )=0;
     virtual SPBLENDSTATE        CreateBlendState( const BLENDSTATEPARAM& Option )=0;
 
-    virtual SPDRAWCOMMANDEXECUTE GetDrawCommandExecute()=0;
+    virtual SPDRAWCOMMANDEXECUTE GetDrawCommandExecute()const=0;
     virtual SPDRAWCOMMANDCAPTURE CreateDrawCommandCapture()=0;
 
     virtual SPRENDERTARGET GetDefaultRenderTarget()const=0;
