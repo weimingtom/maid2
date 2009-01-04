@@ -701,6 +701,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\font.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\font.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\fonttexturemanager.cpp"
 				>
 			</File>
