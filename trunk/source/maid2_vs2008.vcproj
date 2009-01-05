@@ -1054,6 +1054,10 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d09\depthstencild3d09.cpp"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d09\depthstencild3d09.h"
 							>
 						</File>
@@ -1090,6 +1094,14 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d09\id3d09object.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\id3d09object.h"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d09\indexd3d09.h"
 							>
 						</File>
@@ -1123,6 +1135,10 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d09\samplerstated3d09.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\texture2dd3d09.cpp"
 							>
 						</File>
 						<File

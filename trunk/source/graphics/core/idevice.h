@@ -70,7 +70,7 @@ namespace Maid { namespace Graphics {
     /*!
         @param	mode [ o]	判明した性能の設定先
      */
-    virtual void SerchDisplayMode( std::vector<DISPLAYMODE>& mode ) = 0;
+    virtual void SerchDisplayMode( std::vector<DISPLAYMODE>& mode ) const= 0;
 
 
 
@@ -79,7 +79,7 @@ namespace Maid { namespace Graphics {
     /*!
         @param	caps [ o]	判明した性能の設定先
      */
-    virtual void SerchEnableFormat( ENABLEFORMAT& caps ) = 0;
+    virtual void SerchEnableFormat( ENABLEFORMAT& caps )  const= 0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スクリーンモードの変更
@@ -103,7 +103,7 @@ namespace Maid { namespace Graphics {
     /*!
         @return 現在のスクリーンモード
      */
-    virtual SCREENMODE GetScreenMode()=0;
+    virtual SCREENMODE GetScreenMode() const=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -185,8 +185,6 @@ namespace Maid { namespace Graphics {
     virtual SPDRAWCOMMANDCAPTURE CreateDrawCommandCapture()=0;
 
     virtual SPRENDERTARGET GetDefaultRenderTarget()const=0;
-    virtual SPDEPTHSTENCIL GetDefaultDepthStencil()const=0;
-
   };
 
   typedef	boost::shared_ptr<IDevice>	SPDEVICE;
