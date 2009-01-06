@@ -781,6 +781,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\rendertargetbase.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\rendertargetbase.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\rendertargetscreen.cpp"
 				>
 			</File>
