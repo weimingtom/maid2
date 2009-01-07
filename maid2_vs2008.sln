@@ -58,6 +58,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0110soundtest", "sample\011
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0120screenchange", "sample\0120screenchange\0120screenchange.vcproj", "{45579860-B049-47C2-A448-0B4834CE4463}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -115,8 +120,7 @@ Global
 		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Debug|Win32.Build.0 = Debug|Win32
 		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Release|Win32.ActiveCfg = Release|Win32
 		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Release|Win32.Build.0 = Release|Win32
-		{73999978-E15A-44AE-811E-2F71FEF7E13E}.好き勝手設定|Win32.ActiveCfg = Release|Win32
-		{73999978-E15A-44AE-811E-2F71FEF7E13E}.好き勝手設定|Win32.Build.0 = Release|Win32
+		{73999978-E15A-44AE-811E-2F71FEF7E13E}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Debug|Win32.ActiveCfg = Debug|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Debug|Win32.Build.0 = Debug|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Release|Win32.ActiveCfg = Release|Win32
@@ -127,6 +131,12 @@ Global
 		{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}.Release|Win32.ActiveCfg = Release|Win32
 		{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}.Release|Win32.Build.0 = Release|Win32
 		{96CC9278-A4BD-4810-A6BA-CA5BA063D03B}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{45579860-B049-47C2-A448-0B4834CE4463}.Debug|Win32.ActiveCfg = Debug|Win32
+		{45579860-B049-47C2-A448-0B4834CE4463}.Debug|Win32.Build.0 = Debug|Win32
+		{45579860-B049-47C2-A448-0B4834CE4463}.Release|Win32.ActiveCfg = Release|Win32
+		{45579860-B049-47C2-A448-0B4834CE4463}.Release|Win32.Build.0 = Release|Win32
+		{45579860-B049-47C2-A448-0B4834CE4463}.好き勝手設定|Win32.ActiveCfg = Release|Win32
+		{45579860-B049-47C2-A448-0B4834CE4463}.好き勝手設定|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

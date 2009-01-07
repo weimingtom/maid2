@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="0090scenesample"
-	ProjectGUID="{73999978-E15A-44AE-811E-2F71FEF7E13E}"
-	RootNamespace="My0090scenesample"
+	Name="0120screenchange"
+	ProjectGUID="{45579860-B049-47C2-A448-0B4834CE4463}"
+	RootNamespace="My0120screenchange"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -115,7 +115,6 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				WholeProgramOptimization="false"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -168,52 +167,8 @@
 	<References>
 	</References>
 	<Files>
-		<Filter
-			Name="scene"
-			>
-			<Filter
-				Name="text"
-				>
-				<File
-					RelativePath=".\scene\text\scenetext.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\scene\text\scenetext.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="image"
-				>
-				<File
-					RelativePath=".\scene\image\sceneimage.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\scene\image\sceneimage.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<File
-			RelativePath=".\app.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\app.h"
-			>
-		</File>
 		<File
 			RelativePath=".\main.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\sceneadmin.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\sceneadmin.h"
 			>
 		</File>
 	</Files>
