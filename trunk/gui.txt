@@ -1,0 +1,47 @@
+mana.init( mouse, key, fep )
+
+
+
+mana.regist( obj )
+	obj.set( mouse, key, fep )
+	mana.list += obj
+
+
+mana.update()
+
+	登録されているオブジェクトのフレームを進める
+
+	現在の座標と、ウィンドウのＺオーダーからオブジェクトを調べてポストしていく
+	１フレーム前に載っていたオブジェクトにも、mouse.out メッセージ投げる
+	起きたマウスイベントを探す＆キューに貯める
+	mouse.move
+	mouse.in
+	mouse.out
+	mouse.down
+	mouse.up
+
+	起きたキーボードイベントを探す＆キューに貯める
+	key.down
+	key.up
+	keyfocusin
+	keyfocusout
+	
+	fepstatus;
+
+	キーボードはキーボードフォーカスを持っているオブジェクトに投げる
+	obj.onmessage
+
+
+
+mana.setkeyfocus( obj )
+	mona.keyfocus = obj
+
+
+
+
+
+//////
+
+obj.onmessage
+	メッセージを自分のクラスで処理
+	if( 親にも伝える ) { window.parent.onmessage; }
