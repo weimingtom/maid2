@@ -26,6 +26,7 @@ namespace Maid
 			CreatePCMStream() : Base(CREATE_PCMSTREAM){}
 
       Sound::CREATEBUFFERPARAM Param;
+			boost::shared_ptr<std::vector<unt08> >	pData;	//	PCMデータ
       SPPCMDECODER	pDecoder;	//	デコーダ
 		};
 
