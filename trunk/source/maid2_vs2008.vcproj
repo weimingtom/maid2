@@ -534,6 +534,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\framework\gui.h"
+				>
+			</File>
+			<File
 				RelativePath=".\framework\iapplication.cpp"
 				>
 			</File>
@@ -662,6 +666,38 @@
 				</File>
 				<File
 					RelativePath=".\framework\win32\window.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="gui"
+				>
+				<File
+					RelativePath=".\framework\gui\guibutton.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guibutton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guimanager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guimanager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guimessage.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguiparts.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguiparts.h"
 					>
 				</File>
 			</Filter>
