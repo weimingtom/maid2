@@ -19,13 +19,21 @@ namespace Maid
   {
     friend SoundCore;
   public:
-    SoundObjectInfo( unt id ):m_ID(id),m_IsPlay(false),m_Position(0){}
+    SoundObjectInfo( unt id )
+      :m_ID(id)
+      ,m_IsPlay(false)
+      ,m_Position(0)
+      ,m_MessageCount(0)
+    {}
 
     unt  GetID()  const { return m_ID; }
     bool IsPlay() const { return m_IsPlay; }
     float GetPosition() const { return m_Position; }
 
+    bool IsMessageExecuting() const { return m_MessageCount!=0; }
+
   private:
+    int   m_MessageCount; //  まだ処理してないメッセージ数
     unt   m_ID;
     bool  m_IsPlay;
     float m_Position;
