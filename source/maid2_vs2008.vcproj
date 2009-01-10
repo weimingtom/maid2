@@ -1334,6 +1334,10 @@
 			Name="sound"
 			>
 			<File
+				RelativePath=".\sound\common.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sound\isoundobject.h"
 				>
 			</File>
