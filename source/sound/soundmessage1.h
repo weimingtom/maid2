@@ -79,6 +79,7 @@ namespace Maid
 		public:
 			SetVolume() : Base(SETVOLUME){}
 			float	Volume;
+      float Time;
 		};
 
 		class SetLoopState : public Base

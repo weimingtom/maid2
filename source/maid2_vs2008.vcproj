@@ -1338,6 +1338,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sound\gamesound.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\gamesound.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\gamesoundmanager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\gamesoundmanager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sound\isoundobject.h"
 				>
 			</File>
