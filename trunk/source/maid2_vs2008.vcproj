@@ -689,6 +689,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\guimessage.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\guimessage.h"
 					>
 				</File>
