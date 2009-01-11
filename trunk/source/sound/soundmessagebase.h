@@ -37,6 +37,13 @@ namespace Maid
     unt   m_ID;
     bool  m_IsPlay;
     float m_Position;
+    float m_Volume;
+
+    unt   m_VolumeChangeBeginTime;
+    unt   m_VolumeChangeEndTime;
+    float m_VolumeChangeBeginVolume;
+    float m_VolumeChangeBeginEnd;
+
   };
   typedef	boost::shared_ptr<SoundObjectInfo>	SPSOUNDOBJECTINFO;
 
