@@ -170,6 +170,22 @@
 	</References>
 	<Files>
 		<File
+			RelativePath=".\app.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\app.h"
+			>
+		</File>
+		<File
+			RelativePath=".\buttonsample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\buttonsample.h"
+			>
+		</File>
+		<File
 			RelativePath=".\main.cpp"
 			>
 		</File>
