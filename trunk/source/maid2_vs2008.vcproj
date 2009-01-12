@@ -45,7 +45,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
@@ -108,7 +108,7 @@
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -678,6 +678,14 @@
 				</File>
 				<File
 					RelativePath=".\framework\gui\guibutton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guicheckbox.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guicheckbox.h"
 					>
 				</File>
 				<File
