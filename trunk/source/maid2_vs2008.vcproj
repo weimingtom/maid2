@@ -766,6 +766,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphicscore2.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicsobjecttemplate.h"
 				>
 			</File>
@@ -819,6 +823,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\rasterizerstate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\rendertarget.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\rendertarget.h"
 				>
 			</File>
 			<File
