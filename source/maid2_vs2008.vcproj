@@ -705,6 +705,22 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\guiradiobutton.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guiradiobutton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guiradiogroup.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guiradiogroup.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\iguiparts.cpp"
 					>
 				</File>

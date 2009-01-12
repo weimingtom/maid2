@@ -197,6 +197,14 @@
 			RelativePath=".\main.cpp"
 			>
 		</File>
+		<File
+			RelativePath=".\radiobuttonsample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\radiobuttonsample.h"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
