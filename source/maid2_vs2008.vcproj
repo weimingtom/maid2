@@ -705,6 +705,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\guimessageque.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guimessageque.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\guiradiobutton.cpp"
 					>
 				</File>
