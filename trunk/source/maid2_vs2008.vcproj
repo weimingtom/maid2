@@ -681,6 +681,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\guicallback.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guicallback.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\guicheckbox.cpp"
 					>
 				</File>
