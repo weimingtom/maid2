@@ -205,6 +205,14 @@
 			RelativePath=".\radiobuttonsample.h"
 			>
 		</File>
+		<File
+			RelativePath=".\slidersample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\slidersample.h"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
