@@ -206,6 +206,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\scrollersample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\scrollersample.h"
+			>
+		</File>
+		<File
 			RelativePath=".\slidersample.cpp"
 			>
 		</File>
