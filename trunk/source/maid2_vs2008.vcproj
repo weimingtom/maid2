@@ -737,6 +737,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\guiscroller.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\guiscroller.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\guislider.cpp"
 					>
 				</File>
