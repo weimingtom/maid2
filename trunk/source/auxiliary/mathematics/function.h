@@ -11,6 +11,7 @@
 #include"../../config/define.h"
 
 #include<cmath>
+#include<vector>
 
 namespace Maid
 { 
@@ -39,6 +40,7 @@ namespace Maid
 
       return (it*it*x1) + (2*t*it*x2) + (t*t*x3);
     }
+
   };
 }
 

@@ -29,6 +29,7 @@ namespace Maid
     VECTOR2D_TEMPLATE(){}		//!	コンストラクタ
     VECTOR2D_TEMPLATE( TYPE _x, TYPE _y ): x(_x), y(_y){}
     VECTOR2D_TEMPLATE( const POINT& Start, const POINT& End ) { Reset(Start,End); }
+    VECTOR2D_TEMPLATE( const POINT& pos ) { Reset(pos); }
   	
     //! 正規化する
     /*!
@@ -112,6 +113,48 @@ namespace Maid
   {
     return (lha.x*rha.x) + (lha.y*rha.y);
   }
+
+  //! 外積を求める
+  /*!
+      @param	lha		[i ]	ベクトルその１
+      @param	rha		[i ]	ベクトルその２
+     
+      @return	外積の値（0だと同じベクトル)
+   */
+  template<typename TYPE>
+  inline TYPE VectorCross( const VECTOR2D_TEMPLATE<TYPE>& lha, const VECTOR2D_TEMPLATE<TYPE>& rha )
+  {
+    //  ２次の外積なんてなので、(x,y,0)にして求める
+    const VECTOR3D_TEMPLATE<TYPE> ret(
+        (lha.y*    0) - (    0*rha.y),
+        (    0*rha.x) - (lha.x*    0),
+        (lha.x*rha.y) - (lha.y*rha.x)
+      ); 
+
+    return ret.z;
+  }
+
+  template<typename TYPE>
+  inline VECTOR2D_TEMPLATE<TYPE> VectorRotate( const VECTOR2D_TEMPLATE<TYPE>& lha, float rad )
+  {
+    /*
+      行列計算は
+      |x,y|| cos, sin|
+           |-sin, cos|
+      x' = x * cosθ - y * sinθ
+      y' = x * sinθ + y * cosθ
+      です。
+      普通に図を描いて、加法定理を使えばわかるかと。
+    */
+
+    const TYPE cos = Math<TYPE>::cos(rad);
+    const TYPE sin = Math<TYPE>::sin(rad);
+
+    const TYPE x = lha.x * cos - lha.y * sin;
+    const TYPE y = lha.x * sin + lha.y * cos;
+
+    return VECTOR2D_TEMPLATE<TYPE>(x,y);
+  }
 }
 
 //	Windows のときのみ DXLIB を使ったバージョンを存在させる
@@ -131,6 +174,11 @@ namespace Maid
     inline FLOAT VectorDot( const VECTOR2D_TEMPLATE<FLOAT>& lha, const VECTOR2D_TEMPLATE<FLOAT>& rha )
     {
       return D3DXVec2Dot( (D3DXVECTOR2*)&lha, (D3DXVECTOR2*)&rha );
+    }
+
+    inline FLOAT VectorCross( const VECTOR2D_TEMPLATE<FLOAT>& lha, const VECTOR2D_TEMPLATE<FLOAT>& rha )
+    {
+      return D3DXVec2CCW( (D3DXVECTOR2*)&lha, (D3DXVECTOR2*)&rha );
     }
   }
 #endif
