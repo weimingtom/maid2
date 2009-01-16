@@ -752,6 +752,14 @@
 					RelativePath=".\framework\gui\iguislider.h"
 					>
 				</File>
+				<File
+					RelativePath=".\framework\gui\iguiwindow.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguiwindow.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
