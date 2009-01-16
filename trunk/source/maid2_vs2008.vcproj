@@ -673,27 +673,11 @@
 				Name="gui"
 				>
 				<File
-					RelativePath=".\framework\gui\guibutton.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\gui\guibutton.h"
-					>
-				</File>
-				<File
 					RelativePath=".\framework\gui\guicallback.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\framework\gui\guicallback.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\gui\guicheckbox.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\gui\guicheckbox.h"
 					>
 				</File>
 				<File
@@ -721,14 +705,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\framework\gui\guiradiobutton.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\gui\guiradiobutton.h"
-					>
-				</File>
-				<File
 					RelativePath=".\framework\gui\guiradiogroup.cpp"
 					>
 				</File>
@@ -737,11 +713,19 @@
 					>
 				</File>
 				<File
-					RelativePath=".\framework\gui\guislider.cpp"
+					RelativePath=".\framework\gui\iguibutton.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\framework\gui\guislider.h"
+					RelativePath=".\framework\gui\iguibutton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguicheckbox.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguicheckbox.h"
 					>
 				</File>
 				<File
@@ -750,6 +734,22 @@
 				</File>
 				<File
 					RelativePath=".\framework\gui\iguiparts.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguiradiobutton.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguiradiobutton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguislider.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguislider.h"
 					>
 				</File>
 			</Filter>
