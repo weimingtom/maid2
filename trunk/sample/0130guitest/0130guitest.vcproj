@@ -213,6 +213,14 @@
 			RelativePath=".\slidersample.h"
 			>
 		</File>
+		<File
+			RelativePath=".\windowsample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\windowsample.h"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
