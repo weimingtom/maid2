@@ -1345,7 +1345,15 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\input\core\icharcodedevice.h"
+					>
+				</File>
+				<File
 					RelativePath=".\input\core\idevicelist.h"
+					>
+				</File>
+				<File
+					RelativePath=".\input\core\iinputmethoddevice.h"
 					>
 				</File>
 				<File
@@ -1359,6 +1367,14 @@
 				<Filter
 					Name="win32"
 					>
+					<File
+						RelativePath=".\input\core\win32\charcodedevicewindows.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\input\core\win32\charcodedevicewindows.h"
+						>
+					</File>
 					<File
 						RelativePath=".\input\core\win32\devicelist.cpp"
 						>
