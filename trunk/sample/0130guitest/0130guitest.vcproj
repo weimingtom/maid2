@@ -214,6 +214,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\textboxsample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\textboxsample.h"
+			>
+		</File>
+		<File
 			RelativePath=".\windowsample.cpp"
 			>
 		</File>

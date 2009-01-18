@@ -753,6 +753,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\iguitextbox.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguitextbox.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\iguiwindow.cpp"
 					>
 				</File>
@@ -1341,6 +1349,14 @@
 				RelativePath=".\input\mouse.h"
 				>
 			</File>
+			<File
+				RelativePath=".\input\textinput.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\input\textinput.h"
+				>
+			</File>
 			<Filter
 				Name="core"
 				>
@@ -1397,6 +1413,14 @@
 					</File>
 					<File
 						RelativePath=".\input\core\win32\devicelist.h"
+						>
+					</File>
+					<File
+						RelativePath=".\input\core\win32\inputmethoddevicewindows.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\input\core\win32\inputmethoddevicewindows.h"
 						>
 					</File>
 					<File

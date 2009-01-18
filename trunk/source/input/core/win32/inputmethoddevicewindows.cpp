@@ -5,8 +5,8 @@
 #pragma comment(lib, "imm32.lib")
 
 
-namespace Maid
-{
+namespace Maid{ namespace Input {
+
 /*!
  	@class	InputMethodDeviceWindows inputmethoddevicewindows.h
  	@brief	FEP管理クラス
@@ -41,8 +41,7 @@ namespace Maid
 /*!
  */
 InputMethodDeviceWindows::InputMethodDeviceWindows( const Window& hWnd )
-  :m_hWnd(NULL)
-  ,m_pCandidateList(NULL)
+  :m_pCandidateList(NULL)
   ,m_Window(hWnd)
 {
 }
@@ -63,7 +62,6 @@ InputMethodDeviceWindows::~InputMethodDeviceWindows()
 */
 void InputMethodDeviceWindows::Finalize()
 {
-	m_hWnd = NULL;
 	m_pCandidateList = NULL;
 	DelProc();
 }
@@ -75,7 +73,7 @@ void InputMethodDeviceWindows::Finalize()
  */
 void InputMethodDeviceWindows::Initialize()
 {
-  Release();
+  Finalize();
 
 	AddProc( m_Window.GetHWND() );
 }
@@ -121,17 +119,6 @@ bool InputMethodDeviceWindows::IsOpen() const
 	return IsOpen;
 }
 
-/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-//! 現在入力中か？
-/*!
- 	@return	入力中なら true
- */
-bool InputMethodDeviceWindows::IsInput() const
-{
-	return m_IsInput;
-}
-
-
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! ＦＥＰの変換状態を取得する
@@ -164,29 +151,33 @@ int InputMethodDeviceWindows::GetConvertPos() const
 /*!
  	@return	カーソル位置
  */
-int CInputMethodDriverWindows::GetCursorPos() const
+int InputMethodDeviceWindows::GetCursorPos() const
 {
-	IMCHandle hImc(m_Window);
-    DWORD count = ::ImmGetCompositionString(hImc.Get(),GCS_CURSORPOS,NULL,0);
+  IMCHandle hImc(m_Window);
 
-	// ここの戻り値はバイト数で戻ってくるので
-	//	文字数に変換する
+  DWORD count = ::ImmGetCompositionString(hImc.Get(),GCS_CURSORPOS,NULL,0);
 
-	const mstring str = GetCompString();
+  return count;
+/*
+  // ↑の戻り値はバイト数で戻ってくるので
+  // 文字数に変換する
 
-	int index = 0;
+  const String str = GetCompString();
+  if( str.empty() ) { return 0; }
 
-	while( true )
-	{
-		if( count==0 ) { break; }
+  int index = 0;
 
-		if( str[index]<=0xFF )	{ count -= 1; }
-		else					{ count -= 2; }
+  while( true )
+  {
+    if( count==0 ) { break; }
 
-		++index;
-	}
+    if( str[index]<=0xFF )	{ count -= 1; }
+    else					{ count -= 2; }
 
-	return index;
+    ++index;
+  }
+  return index;
+*/
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -199,17 +190,17 @@ int CInputMethodDriverWindows::GetCursorPos() const
 \n GetCandidateEnd()
 \n	を使う前に呼んでおくこと
  */
-void CInputMethodDriverWindows::UpdateCandidate()
+void InputMethodDeviceWindows::UpdateCandidate()
 {
-	IMCHandle hImc(m_Window);
-   //変換候補の取得
-	const INT iCandidateSize = ::ImmGetCandidateList(hImc.Get(),0,NULL,0);
-	if(iCandidateSize==0) { return; }
+  IMCHandle hImc(m_Window);
+  //変換候補の取得
+  const INT iCandidateSize = ::ImmGetCandidateList(hImc.Get(),0,NULL,0);
+  if(iCandidateSize==0) { return; }
 
-	m_pCandidateBuff.reset( new unt08[iCandidateSize] );
-    m_pCandidateList = (LPCANDIDATELIST)m_pCandidateBuff.get();
+  m_pCandidateBuff.reset( new unt08[iCandidateSize] );
+  m_pCandidateList = (LPCANDIDATELIST)m_pCandidateBuff.get();
 
-    ::ImmGetCandidateList(hImc.Get(),0,m_pCandidateList,iCandidateSize);
+  ::ImmGetCandidateList(hImc.Get(),0,m_pCandidateList,iCandidateSize);
 }
 
 
@@ -218,7 +209,7 @@ void CInputMethodDriverWindows::UpdateCandidate()
 /*!
  	@return 変換候補数
  */
-int CInputMethodDriverWindows::GetCandidateCount() const
+int InputMethodDeviceWindows::GetCandidateCount() const
 {
 	if( m_pCandidateList==NULL ) { return 0; }
 	return m_pCandidateList->dwCount;
@@ -229,7 +220,7 @@ int CInputMethodDriverWindows::GetCandidateCount() const
 /*!
  	@return 変換候補位置
  */
-int CInputMethodDriverWindows::GetCandidateSelect() const
+int InputMethodDeviceWindows::GetCandidateSelect() const
 {
 	if(m_pCandidateList==NULL) { return 0; }
     return m_pCandidateList->dwSelection;
@@ -241,21 +232,19 @@ int CInputMethodDriverWindows::GetCandidateSelect() const
 /*!
  	@return	入力中の文字列
  */
-mstring CInputMethodDriverWindows::GetCompString() const
+String InputMethodDeviceWindows::GetCompString() const
 {
-	if( !IsInput() ) { return mstring(); }
+  IMCHandle hImc(m_Window);
+  const LONG lByte = ::ImmGetCompositionString(hImc.Get(),GCS_COMPSTR,NULL,0);
 
-	IMCHandle hImc(m_Window);
-    const LONG lByte = ::ImmGetCompositionString(hImc.Get(),GCS_COMPSTR,NULL,0);
+  if( lByte==0 ) { return String(); }
 
-	if( lByte==0 ) { return mstring(); }
+  std::wstring	Buff;
+  Buff.resize(lByte);
 
-	MySTL::string	Buff;
-	Buff.resize(lByte);
+  ::ImmGetCompositionString( hImc.Get(), GCS_COMPSTR, &Buff[0], lByte);
 
-    ::ImmGetCompositionString( hImc.Get(), GCS_COMPSTR, &Buff[0], lByte);
- 
-	return CString::ConvertSJIStoMAID(Buff);
+  return String::ConvertUNICODEtoMAID(Buff);
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -263,25 +252,30 @@ mstring CInputMethodDriverWindows::GetCompString() const
 /*!
  	@return 変換候補文字
  */
-mstring CInputMethodDriverWindows::GetCandidateString(int Index) const
+String InputMethodDeviceWindows::GetCandidateString(int Index) const
 {
-	if(m_pCandidateList==NULL) { return mstring(); }
+	if(m_pCandidateList==NULL) { return String(); }
 
-	MySTL::string ret = (char*)m_pCandidateList+m_pCandidateList->dwOffset[Index];
+  unt08* p = (unt08*)m_pCandidateList+m_pCandidateList->dwOffset[Index];
 
-  return CString::ConvertSJIStoMAID( ret );
+	std::wstring ret = (wchar_t*)p;
+
+  return String::ConvertUNICODEtoMAID( ret );
 }
 
-void CInputMethodDriverWindows::SetResultCodeFunction( const RESULTCODEFUNCTION& Function )
+
+void InputMethodDeviceWindows::Flush( String& buffer )
 {
-	m_Function = Function;
+  buffer = m_EnterString;
+  m_EnterString.clear();
 }
+
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! ウィンドウプロシージャ
 /*!
  */
-RETURNCODE CInputMethodDriverWindows::OnMessage( CWindowsMessage& Param )
+InputMethodDeviceWindows::RETURNCODE InputMethodDeviceWindows::OnMessage( WindowsMessage& Param )
 {
 	switch( Param.GetMSG() )
 	{
@@ -294,19 +288,19 @@ RETURNCODE CInputMethodDriverWindows::OnMessage( CWindowsMessage& Param )
 		{
       if( Param.GetLPARAM()&GCS_RESULTSTR )
 			{
-				IMCHandle hImc(m_hWnd);
+        return RETURNCODE_DEFAULT;
+/*
+				IMCHandle hImc(m_Window);
 				const LONG lByte = ::ImmGetCompositionString(hImc.Get(),GCS_RESULTSTR,NULL,0);
 				if( lByte==0 ) { break; }
 
-				MySTL::string	str;
+				std::wstring	str;
 				str.resize(lByte);
 
 				::ImmGetCompositionString( hImc.Get(), GCS_RESULTSTR, &str[0], lByte);
 
-				if( !IsEmptyFunc )
-				{
-					m_Function( CString::ConvertSJIStoMAID(str) );
-				}
+        m_EnterString += String::ConvertUNICODEtoMAID(str);
+*/
 			}
 			return RETURNCODE_RETURN;
 		}
@@ -340,8 +334,14 @@ RETURNCODE CInputMethodDriverWindows::OnMessage( CWindowsMessage& Param )
 	return RETURNCODE_DEFAULT;
 }
 
-}
+}}
 
+
+/*
+  http://nienie.com/~masapico/api_ImmGetCompositionString.html
+  このへんを参考
+
+*/
 
 
 /*
@@ -533,6 +533,31 @@ wParam
 lParam 
 常に0
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 http://www.honet.ne.jp/~tri/program/noime.html
 のこぴぺ
