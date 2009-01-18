@@ -6,15 +6,15 @@
 #ifndef maid2_input_core_win32_inputmethoddevicewindows_h
 #define maid2_input_core_win32_inputmethoddevicewindows_h
 
-#include"../../config/define.h"
+#include"../../../config/define.h"
 #include"../iinputmethoddevice.h"
 
 #include"../../../frameWork/win32/messagehook.h"
 #include"../../../framework/win32/window.h"
 
 
-namespace Maid
-{
+namespace Maid{ namespace Input {
+
 	class InputMethodDeviceWindows 
     : public IInputMethodDevice
     , MessageHook
@@ -48,10 +48,11 @@ namespace Maid
 		void UpdateCandidate();
 		
 		const Window& m_Window;
+    String  m_EnterString;  //  Šm’è‚µ‚½Œ‹‰Ê
 
 		LPCANDIDATELIST m_pCandidateList;
 		boost::shared_array<unt08>	m_pCandidateBuff;
 	};
-}
+}}
 
 #endif
