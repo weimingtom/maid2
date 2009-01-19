@@ -109,16 +109,12 @@ void   Bitmap::Load( const std::vector<unt08>& FileImage, Surface& surface )
 //! 読み込んであるサーフェスをビットマップとして保存する
 /*!
  */
-/*
-void CBitmapLoader::Save( const mstring& FileName, const CTextureBufferMemory& src )
+void Bitmap::Save( const String& FileName, const Surface& src )
 {
-	ISurfaceBuffer& surf = const_cast<CTextureBufferMemory&>(src).GetSurface( 0 );
-
-	Save( FileName, surf );
-
+  MAID_ASSERT( true, "未実装" );
 }
-
-void   CBitmapLoader::Save( const mstring& FileName, ISurfaceBuffer& surf )
+/*
+void   Bitmap::Save( const mstring& FileName, ISurfaceBuffer& surf )
 {
 	SPSURFACEBUFFERINFO pInfo;
 
