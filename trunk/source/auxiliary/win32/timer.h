@@ -20,8 +20,8 @@ namespace Maid
 		Timer( const Timer& rha );
 		~Timer();
 
-		virtual unt Get() const;
-		virtual void Sleep( unt time );
+		unt Get() const;
+		void Sleep( unt time );
 
 
 		Timer& operator = ( const Timer& rha );
