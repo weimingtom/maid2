@@ -1525,10 +1525,6 @@
 				Name="core"
 				>
 				<File
-					RelativePath=".\sound\core\common.h"
-					>
-				</File>
-				<File
 					RelativePath=".\sound\core\ibuffer.h"
 					>
 				</File>
