@@ -922,6 +922,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\samplerstate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\samplerstate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\shadercompiler.cpp"
 				>
 			</File>
@@ -1200,6 +1208,10 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09_2.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09_3.cpp"
 							>
 						</File>
 						<File
