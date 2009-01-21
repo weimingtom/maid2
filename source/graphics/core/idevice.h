@@ -82,6 +82,13 @@ namespace Maid { namespace Graphics {
     virtual void SerchEnableFormat( ENABLEFORMAT& caps )  const= 0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ディスプレイのアスペクト比を取得する
+    /*!
+        @return アスペクト比（といっても縦と横の大きさがあるだけです)
+     */
+    virtual SIZE2DI GetAspectRatio() const=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スクリーンモードの変更
     /*!
         @param	mode	[i ]	あたらしい解像度
@@ -184,6 +191,20 @@ namespace Maid { namespace Graphics {
     virtual SPDRAWCOMMANDCAPTURE CreateDrawCommandCapture()=0;
 
     virtual SPRENDERTARGET GetDefaultRenderTarget()const=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! RenderTarget間の転送
+    /*!
+        D3D10の仕様を考えるとかなり微妙なＡＰＩになってるので、あんまつかわないこと
+
+        @param	pSrc  [i ]	転送元データ
+        @param	SrcRc [i ]	転送元範囲
+        @param	pDst  [i ]	転送先データ
+        @param	DstRc [i ]	転送先範囲
+
+     */
+    virtual void StretchRect( const SPRENDERTARGET& pSrc, const RECT2DI& SrcRc, const SPRENDERTARGET& pDst, const RECT2DI& DstRc )=0;
+
   };
 
   typedef	boost::shared_ptr<IDevice>	SPDEVICE;
