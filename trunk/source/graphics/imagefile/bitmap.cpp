@@ -17,7 +17,7 @@ namespace Maid
     @return ビットマップならtrue
             違うならfalse
 */
-bool  Bitmap::Check( const std::vector<unt08>& FileImage )
+bool  Check( const std::vector<unt08>& FileImage )
 {
   if( FileImage.size()<2 ) { return false; }
 
@@ -30,7 +30,7 @@ bool  Bitmap::Check( const std::vector<unt08>& FileImage )
     @param	FileImage	[i ]  ファイル名
     @param	dst       [i ]  転送先
  */
-void   Bitmap::Load( const std::vector<unt08>& FileImage, Surface& surface )
+void   Load( const std::vector<unt08>& FileImage, Surface& surface )
 {
   MAID_ASSERT( !Check(FileImage), "ビットマップではありません" );
 
@@ -109,7 +109,7 @@ void   Bitmap::Load( const std::vector<unt08>& FileImage, Surface& surface )
 //! 読み込んであるサーフェスをビットマップとして保存する
 /*!
  */
-void Bitmap::Save( const String& FileName, const Surface& src )
+void Save( const String& FileName, const Surface& src )
 {
   MAID_ASSERT( true, "未実装" );
 }
