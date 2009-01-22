@@ -190,20 +190,11 @@ namespace Maid { namespace Graphics {
     virtual SPDRAWCOMMANDEXECUTE GetDrawCommandExecute()const=0;
     virtual SPDRAWCOMMANDCAPTURE CreateDrawCommandCapture()=0;
 
-    virtual SPRENDERTARGET GetDefaultRenderTarget()const=0;
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! RenderTarget間の転送
+    //! 次のPresent()時に表に出てくるRenderTargetを取得する
     /*!
-        D3D10の仕様を考えるとかなり微妙なＡＰＩになってるので、あんまつかわないこと
-
-        @param	pSrc  [i ]	転送元データ
-        @param	SrcRc [i ]	転送元範囲
-        @param	pDst  [i ]	転送先データ
-        @param	DstRc [i ]	転送先範囲
-
+        @return	RenderTarget
      */
-    virtual void StretchRect( const SPRENDERTARGET& pSrc, const RECT2DI& SrcRc, const SPRENDERTARGET& pDst, const RECT2DI& DstRc )=0;
+    virtual SPRENDERTARGET GetCurrentRenderTarget()const=0;
 
   };
 
