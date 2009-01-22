@@ -1717,6 +1717,14 @@
 				Name="transiter"
 				>
 				<File
+					RelativePath=".\graphics\transiter\average.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\transiter\average.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\transiter\bilinear.cpp"
 					>
 				</File>
