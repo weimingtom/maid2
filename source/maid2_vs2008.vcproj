@@ -1182,6 +1182,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\camera.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\camera.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\color.h"
 				>
 			</File>
@@ -1243,6 +1251,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\graphics3drender.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics3drender1.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics3drender2.cpp"
 				>
 			</File>
 			<File
@@ -1355,6 +1371,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\shadercompiler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\shaderconstant.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\shaderconstant.h"
 				>
 			</File>
 			<File
