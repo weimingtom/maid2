@@ -1238,27 +1238,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\graphicsrender.h"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicsrender1.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicsrender2.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicsrender3.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\graphics\graphicsrender4.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\graphics\imagefile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\index.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\index.h"
 				>
 			</File>
 			<File
@@ -1267,6 +1255,14 @@
 			</File>
 			<File
 				RelativePath=".\graphics\inputlayout.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\modelmqo.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\modelmqo.h"
 				>
 			</File>
 			<File
@@ -1754,6 +1750,18 @@
 				</File>
 				<File
 					RelativePath=".\graphics\transiter\fill.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="modelfile"
+				>
+				<File
+					RelativePath=".\graphics\modelfile\metasequoia.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\modelfile\metasequoia.h"
 					>
 				</File>
 			</Filter>
