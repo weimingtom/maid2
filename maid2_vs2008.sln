@@ -75,6 +75,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0140gamesound", "sample\014
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0150collision", "sample\0150collision\0150collision.vcproj", "{0E06C7C3-795C-4856-AEB2-77CA96976299}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0160blt3dmodel", "sample\0160blt3dmodel\0160blt3dmodel.vcproj", "{BCDC0C40-8494-4700-95B1-63032318F000}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -133,7 +138,6 @@ Global
 		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Release|Win32.ActiveCfg = Release|Win32
 		{73999978-E15A-44AE-811E-2F71FEF7E13E}.Release|Win32.Build.0 = Release|Win32
 		{73999978-E15A-44AE-811E-2F71FEF7E13E}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
-		{73999978-E15A-44AE-811E-2F71FEF7E13E}.好き勝手設定|Win32.Build.0 = Debug|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Debug|Win32.ActiveCfg = Debug|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Debug|Win32.Build.0 = Debug|Win32
 		{0F81FDF1-AA0E-4A8A-9C21-0D8BDF77B4E1}.Release|Win32.ActiveCfg = Release|Win32
@@ -149,13 +153,11 @@ Global
 		{45579860-B049-47C2-A448-0B4834CE4463}.Release|Win32.ActiveCfg = Release|Win32
 		{45579860-B049-47C2-A448-0B4834CE4463}.Release|Win32.Build.0 = Release|Win32
 		{45579860-B049-47C2-A448-0B4834CE4463}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
-		{45579860-B049-47C2-A448-0B4834CE4463}.好き勝手設定|Win32.Build.0 = Debug|Win32
 		{92396B09-B616-4A97-B67A-1544E36164C0}.Debug|Win32.ActiveCfg = Debug|Win32
 		{92396B09-B616-4A97-B67A-1544E36164C0}.Debug|Win32.Build.0 = Debug|Win32
 		{92396B09-B616-4A97-B67A-1544E36164C0}.Release|Win32.ActiveCfg = Release|Win32
 		{92396B09-B616-4A97-B67A-1544E36164C0}.Release|Win32.Build.0 = Release|Win32
 		{92396B09-B616-4A97-B67A-1544E36164C0}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
-		{92396B09-B616-4A97-B67A-1544E36164C0}.好き勝手設定|Win32.Build.0 = Debug|Win32
 		{E1D9A7BF-A220-4DEA-A327-F4F217EEB083}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E1D9A7BF-A220-4DEA-A327-F4F217EEB083}.Debug|Win32.Build.0 = Debug|Win32
 		{E1D9A7BF-A220-4DEA-A327-F4F217EEB083}.Release|Win32.ActiveCfg = Release|Win32
@@ -166,6 +168,12 @@ Global
 		{0E06C7C3-795C-4856-AEB2-77CA96976299}.Release|Win32.ActiveCfg = Release|Win32
 		{0E06C7C3-795C-4856-AEB2-77CA96976299}.Release|Win32.Build.0 = Release|Win32
 		{0E06C7C3-795C-4856-AEB2-77CA96976299}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{BCDC0C40-8494-4700-95B1-63032318F000}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BCDC0C40-8494-4700-95B1-63032318F000}.Debug|Win32.Build.0 = Debug|Win32
+		{BCDC0C40-8494-4700-95B1-63032318F000}.Release|Win32.ActiveCfg = Release|Win32
+		{BCDC0C40-8494-4700-95B1-63032318F000}.Release|Win32.Build.0 = Release|Win32
+		{BCDC0C40-8494-4700-95B1-63032318F000}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{BCDC0C40-8494-4700-95B1-63032318F000}.好き勝手設定|Win32.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
