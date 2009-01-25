@@ -1222,6 +1222,30 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphics2drender.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics2drender1.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics2drender2.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics2drender3.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics2drender4.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics3drender.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicscore.h"
 				>
 			</File>
