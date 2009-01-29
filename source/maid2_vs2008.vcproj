@@ -1262,6 +1262,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphics3drenderlocal.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicscore.h"
 				>
 			</File>
