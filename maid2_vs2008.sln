@@ -109,6 +109,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_lpng", "source\impor
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_zlib", "source\import_zlib.vcproj", "{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0170playtheora", "sample\0170playtheora\0170playtheora.vcproj", "{A2A9C0FE-4050-4AF7-AA97-B14F96B7D83F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -202,7 +207,6 @@ Global
 		{BCDC0C40-8494-4700-95B1-63032318F000}.Release|Win32.ActiveCfg = Release|Win32
 		{BCDC0C40-8494-4700-95B1-63032318F000}.Release|Win32.Build.0 = Release|Win32
 		{BCDC0C40-8494-4700-95B1-63032318F000}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
-		{BCDC0C40-8494-4700-95B1-63032318F000}.好き勝手設定|Win32.Build.0 = Debug|Win32
 		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.Debug|Win32.ActiveCfg = Debug|Win32
 		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.Debug|Win32.Build.0 = Debug|Win32
 		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.Release|Win32.ActiveCfg = Release|Win32
@@ -239,6 +243,12 @@ Global
 		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Release|Win32.Build.0 = Release|Win32
 		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
 		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.好き勝手設定|Win32.Build.0 = Debug|Win32
+		{A2A9C0FE-4050-4AF7-AA97-B14F96B7D83F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A2A9C0FE-4050-4AF7-AA97-B14F96B7D83F}.Debug|Win32.Build.0 = Debug|Win32
+		{A2A9C0FE-4050-4AF7-AA97-B14F96B7D83F}.Release|Win32.ActiveCfg = Release|Win32
+		{A2A9C0FE-4050-4AF7-AA97-B14F96B7D83F}.Release|Win32.Build.0 = Release|Win32
+		{A2A9C0FE-4050-4AF7-AA97-B14F96B7D83F}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{A2A9C0FE-4050-4AF7-AA97-B14F96B7D83F}.好き勝手設定|Win32.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
