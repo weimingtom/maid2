@@ -2,6 +2,14 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C++ Express 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maid2_vs2008", "source\maid2_vs2008.vcproj", "{B80AC4DE-9464-4D83-8E4A-ADFDA820007F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5} = {BCD9B71E-65D3-4E17-89C6-DED23F1724A5}
+		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA} = {0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}
+		{19885B5A-CB29-4639-9EDD-586C98AC2256} = {19885B5A-CB29-4639-9EDD-586C98AC2256}
+		{DE726979-31CA-4851-99D3-8D5C9E722D66} = {DE726979-31CA-4851-99D3-8D5C9E722D66}
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF} = {DABEA2A8-72AD-4532-82F3-C40BBED02FDF}
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6} = {8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0010stringtest", "sample\0010stringtest\stringtest.vcproj", "{EC789C62-BB0C-4629-8A3A-C2FCC3ABC0C6}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -79,6 +87,27 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0160blt3dmodel", "sample\01
 	ProjectSection(ProjectDependencies) = postProject
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_babel", "source\import_babel.vcproj", "{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_libogg", "source\import_libogg.vcproj", "{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_libtheora", "source\import_libtheora.vcproj", "{19885B5A-CB29-4639-9EDD-586C98AC2256}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6} = {8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_libvorbis", "source\import_libvorbis.vcproj", "{DE726979-31CA-4851-99D3-8D5C9E722D66}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6} = {8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_lpng", "source\import_lpng.vcproj", "{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF} = {DABEA2A8-72AD-4532-82F3-C40BBED02FDF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_zlib", "source\import_zlib.vcproj", "{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -174,6 +203,42 @@ Global
 		{BCDC0C40-8494-4700-95B1-63032318F000}.Release|Win32.Build.0 = Release|Win32
 		{BCDC0C40-8494-4700-95B1-63032318F000}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
 		{BCDC0C40-8494-4700-95B1-63032318F000}.好き勝手設定|Win32.Build.0 = Debug|Win32
+		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.Debug|Win32.Build.0 = Debug|Win32
+		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.Release|Win32.ActiveCfg = Release|Win32
+		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.Release|Win32.Build.0 = Release|Win32
+		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5}.好き勝手設定|Win32.Build.0 = Debug|Win32
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}.Debug|Win32.Build.0 = Debug|Win32
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}.Release|Win32.ActiveCfg = Release|Win32
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}.Release|Win32.Build.0 = Release|Win32
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{8A0D95C1-C157-4CC6-81F1-1A06A25ABAD6}.好き勝手設定|Win32.Build.0 = Debug|Win32
+		{19885B5A-CB29-4639-9EDD-586C98AC2256}.Debug|Win32.ActiveCfg = Debug|Win32
+		{19885B5A-CB29-4639-9EDD-586C98AC2256}.Debug|Win32.Build.0 = Debug|Win32
+		{19885B5A-CB29-4639-9EDD-586C98AC2256}.Release|Win32.ActiveCfg = Release|Win32
+		{19885B5A-CB29-4639-9EDD-586C98AC2256}.Release|Win32.Build.0 = Release|Win32
+		{19885B5A-CB29-4639-9EDD-586C98AC2256}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{19885B5A-CB29-4639-9EDD-586C98AC2256}.好き勝手設定|Win32.Build.0 = Debug|Win32
+		{DE726979-31CA-4851-99D3-8D5C9E722D66}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DE726979-31CA-4851-99D3-8D5C9E722D66}.Debug|Win32.Build.0 = Debug|Win32
+		{DE726979-31CA-4851-99D3-8D5C9E722D66}.Release|Win32.ActiveCfg = Release|Win32
+		{DE726979-31CA-4851-99D3-8D5C9E722D66}.Release|Win32.Build.0 = Release|Win32
+		{DE726979-31CA-4851-99D3-8D5C9E722D66}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{DE726979-31CA-4851-99D3-8D5C9E722D66}.好き勝手設定|Win32.Build.0 = Debug|Win32
+		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}.Debug|Win32.Build.0 = Debug|Win32
+		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}.Release|Win32.ActiveCfg = Release|Win32
+		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}.Release|Win32.Build.0 = Release|Win32
+		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}.好き勝手設定|Win32.Build.0 = Debug|Win32
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Debug|Win32.Build.0 = Debug|Win32
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Release|Win32.ActiveCfg = Release|Win32
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Release|Win32.Build.0 = Release|Win32
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.好き勝手設定|Win32.ActiveCfg = Debug|Win32
+		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.好き勝手設定|Win32.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
