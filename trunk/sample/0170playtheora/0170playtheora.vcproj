@@ -60,6 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="$(SolutionDir)\bin\$(ProjectName).exe"
 				LinkIncremental="2"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -133,6 +134,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="$(SolutionDir)\bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -167,6 +169,14 @@
 	<References>
 	</References>
 	<Files>
+		<File
+			RelativePath=".\decoder.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\decoder.h"
+			>
+		</File>
 		<File
 			RelativePath=".\main.cpp"
 			>
