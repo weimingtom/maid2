@@ -178,7 +178,59 @@
 			>
 		</File>
 		<File
+			RelativePath=".\ioggdecoder.h"
+			>
+		</File>
+		<File
 			RelativePath=".\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\oggbuffer.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\oggbuffer.h"
+			>
+		</File>
+		<File
+			RelativePath=".\oggpacket.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\oggpacket.h"
+			>
+		</File>
+		<File
+			RelativePath=".\oggpage.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\oggpage.h"
+			>
+		</File>
+		<File
+			RelativePath=".\oggstream.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\oggstream.h"
+			>
+		</File>
+		<File
+			RelativePath=".\theoradecoder.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\theoradecoder.h"
+			>
+		</File>
+		<File
+			RelativePath=".\vorbisdecoder.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\vorbisdecoder.h"
 			>
 		</File>
 	</Files>
