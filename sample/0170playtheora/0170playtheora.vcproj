@@ -194,6 +194,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\oggdecodernull.h"
+			>
+		</File>
+		<File
 			RelativePath=".\oggpacket.cpp"
 			>
 		</File>
@@ -215,22 +219,6 @@
 		</File>
 		<File
 			RelativePath=".\oggstream.h"
-			>
-		</File>
-		<File
-			RelativePath=".\theoradecoder.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\theoradecoder.h"
-			>
-		</File>
-		<File
-			RelativePath=".\vorbisdecoder.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\vorbisdecoder.h"
 			>
 		</File>
 	</Files>
