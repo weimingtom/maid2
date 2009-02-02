@@ -18,7 +18,7 @@ namespace Maid
   {
     bool  Check( const std::vector<unt08>& FileImage );
     void  Load( const std::vector<unt08>& FileImage, Surface& dst );
-    void  Save( const String& FileName, const Surface& src );
+    void  Save( const Surface& src, std::vector<unt08>& FileImage );
   };
 }
 

@@ -109,66 +109,60 @@ void   Load( const std::vector<unt08>& FileImage, Surface& surface )
 //! 読み込んであるサーフェスをビットマップとして保存する
 /*!
  */
-void Save( const String& FileName, const Surface& src )
+void Save( const Surface& src, std::vector<unt08>& FileImage )
 {
-  MAID_ASSERT( true, "未実装" );
-}
-/*
-void   Bitmap::Save( const mstring& FileName, ISurfaceBuffer& surf )
-{
-	SPSURFACEBUFFERINFO pInfo;
+	const SIZE2DI ImageSize = src.GetSize();
+	const PIXELFORMAT fmt = src.GetPixelFormat();
 
-	surf.Lock( pInfo );
-
-	const SIZE2DI ImageSize(pInfo->GetWidth(),pInfo->GetHeight());
-	const PIXELFORMAT fmt = pInfo->GetPixelFormat();
-
-	const int ImageWidthByte = ImageSize.w * GetPixelBPP(fmt) / 8;
-	const int FilePitch = (ImageWidthByte+3)&(~3);
+	const int ImagePitch = ImageSize.w * GetPixelBPP(fmt) / 8;
+	const int FilePitch = (ImagePitch+3)&(~3);
 	const int PlaneByte   = FilePitch * ImageSize.h;
-	const int PaletteByte = GetCLUTBPP(fmt) / 8 * GetCLUTLength(fmt);
+	const int PaletteByte = GetCLUTbyte(fmt);
 
 
-	BITMAPFILEHEADER	BmpFile = {0};
-	BITMAPINFOHEADER	BmpInfo = {0};
+  const int filesize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + PaletteByte + PlaneByte;
+  FileImage.resize( filesize );
 
-	BmpFile.bfType = 0x4D42;
-	BmpFile.bfSize = sizeof(BmpFile)+sizeof(BmpInfo)+PaletteByte + PlaneByte;
-	BmpFile.bfOffBits = sizeof(BmpFile)+sizeof(BmpInfo)+PaletteByte;
+  unt08* pCurrentPos = &(FileImage[0]);
 
-	BmpInfo.biSize  = sizeof(BmpInfo);
-	BmpInfo.biWidth = ImageSize.w;
-	BmpInfo.biHeight = ImageSize.h;
-	BmpInfo.biPlanes = 1;
-	BmpInfo.biBitCount = GetPixelBPP(fmt);
-	BmpInfo.biCompression = BI_RGB;
+  ZERO( pCurrentPos, filesize );
 
-	CFileWrite hFile;
+  {
+	  BITMAPFILEHEADER*	pBmpFile = (BITMAPFILEHEADER*)pCurrentPos;
 
-	hFile.Open( FileName, CFileWrite::OPENOPTION_NEW );
-	hFile.Write( &BmpFile, sizeof(BmpFile) );
-	hFile.Write( &BmpInfo, sizeof(BmpInfo) );
+	  pBmpFile->bfType = 0x4D42;
+	  pBmpFile->bfSize = sizeof(BITMAPFILEHEADER)+sizeof(BITMAPINFOHEADER)+PaletteByte + PlaneByte;
+	  pBmpFile->bfOffBits = sizeof(BITMAPFILEHEADER)+sizeof(BITMAPINFOHEADER)+PaletteByte;
+
+    pCurrentPos += sizeof(BITMAPFILEHEADER);
+  }
+
+  {
+    BITMAPINFOHEADER*	pBmpInfo = (BITMAPINFOHEADER*)pCurrentPos;
+
+	  pBmpInfo->biSize  = sizeof(BITMAPINFOHEADER);
+	  pBmpInfo->biWidth = ImageSize.w;
+	  pBmpInfo->biHeight = ImageSize.h;
+	  pBmpInfo->biPlanes = 1;
+	  pBmpInfo->biBitCount = GetPixelBPP(fmt);
+	  pBmpInfo->biCompression = BI_RGB;
+
+    pCurrentPos += sizeof(BITMAPINFOHEADER);
+  }
 
 	if( PaletteByte!=0 )
 	{
-		hFile.Write( pInfo->GetCLUT(), PaletteByte );
-	}
-
-	MySTL::vector<unt08> tmp( FilePitch - ImageWidthByte, 0x00 );
-
+    ::memcpy( pCurrentPos, src.GetCLUTPTR(), PaletteByte );
+    pCurrentPos += PaletteByte;
+  }
 
 	//	ビットマップは上下逆
 	for( int y=0; y<ImageSize.h; ++y )
 	{
-		hFile.Write( pInfo->GetLinePtr((ImageSize.h-1)-y), ImageWidthByte );
-
-		if( !tmp.empty() )
-		{
-			hFile.Write( &(tmp[0]), (int)tmp.size() );
-		}
+    ::memcpy( pCurrentPos, src.GetLinePTR((ImageSize.h-1)-y), ImagePitch );
+    pCurrentPos += FilePitch;
 	}
-
 }
-*/
+
   }
 }
