@@ -178,6 +178,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\ioggbuffer.h"
+			>
+		</File>
+		<File
 			RelativePath=".\ioggdecoder.h"
 			>
 		</File>
@@ -186,11 +190,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\oggbuffer.cpp"
+			RelativePath=".\oggcontainer.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\oggbuffer.h"
+			RelativePath=".\oggcontainer.h"
 			>
 		</File>
 		<File
