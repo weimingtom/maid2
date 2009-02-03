@@ -210,14 +210,6 @@
 			>
 		</File>
 		<File
-			RelativePath=".\oggdecodervorbis.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggdecodervorbis.h"
-			>
-		</File>
-		<File
 			RelativePath=".\oggpacket.cpp"
 			>
 		</File>
