@@ -1634,6 +1634,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sound\soundmemory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundmemory.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sound\soundmessage1.h"
 				>
 			</File>
@@ -1742,6 +1750,14 @@
 				</File>
 				<File
 					RelativePath=".\sound\pcmdecoder\oggvorbis.h"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmdecoder\pcmdecodermemory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmdecoder\pcmdecodermemory.h"
 					>
 				</File>
 				<File
