@@ -166,6 +166,14 @@
 			Name="auxiliary"
 			>
 			<File
+				RelativePath=".\auxiliary\buffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\buffer.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\cachemanager.h"
 				>
 			</File>
@@ -1610,6 +1618,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sound\pcmwriter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\pcmwriter.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sound\soundcore.h"
 				>
 			</File>
@@ -1622,19 +1638,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sound\soundcore3.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sound\soundfile.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\sound\soundfile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\sound\soundmemory.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\sound\soundmemory.h"
 				>
 			</File>
 			<File
@@ -1732,6 +1744,38 @@
 						</File>
 					</Filter>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="pcmreader"
+				>
+				<File
+					RelativePath=".\sound\pcmreader\ipcmreader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmreader\pcmbufferlist.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmreader\pcmbufferlist.h"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmreader\vorbisfile.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmreader\vorbisfile.h"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmreader\wavefile.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmreader\wavefile.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>

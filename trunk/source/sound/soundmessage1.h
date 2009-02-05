@@ -3,9 +3,10 @@
 
 #include"soundmessagebase.h"
 #include"isoundobject.h"
-#include"pcmdecoder/ipcmdecoder.h"
+#include"pcmreader/ipcmreader.h"
 
 #include"core/ibuffer.h"
+#include"../auxiliary/buffer.h"
 
 namespace Maid
 {
@@ -17,7 +18,7 @@ namespace Maid
 			CreatePCMStatic() : Base(CREATE_PCMSTATIC){}
 
       Sound::CREATEBUFFERPARAM Param;
-			boost::shared_ptr<std::vector<unt08> >	pData;	//	PCMデータ
+			SPBUFFER	pData;	//	PCMデータ
 		};
 
 		class CreatePCMStream : public Base
@@ -26,8 +27,9 @@ namespace Maid
 			CreatePCMStream() : Base(CREATE_PCMSTREAM){}
 
       Sound::CREATEBUFFERPARAM Param;
-			boost::shared_ptr<std::vector<unt08> >	pData;	//	PCMデータ
-      SPPCMDECODER	pDecoder;	//	デコーダ
+    #pragma COMPILERMSG("TODO:pDecoder が pData を持ったり持たなかったりすればいいかも？")	
+			SPBUFFER    pData;	//	PCMデータ
+      SPPCMREADER	pDecoder;	//	デコーダ
 		};
 
 		class CreateClone : public Base
