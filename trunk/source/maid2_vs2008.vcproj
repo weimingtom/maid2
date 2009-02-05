@@ -1610,10 +1610,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sound\pcmdecoder.h"
-				>
-			</File>
-			<File
 				RelativePath=".\sound\soundcore.h"
 				>
 			</File>
@@ -1736,22 +1732,6 @@
 						</File>
 					</Filter>
 				</Filter>
-			</Filter>
-			<Filter
-				Name="pcmdecoder"
-				>
-				<File
-					RelativePath=".\sound\pcmdecoder\ipcmdecoder.h"
-					>
-				</File>
-				<File
-					RelativePath=".\sound\pcmdecoder\pcmdecodermemory.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\sound\pcmdecoder\pcmdecodermemory.h"
-					>
-				</File>
 			</Filter>
 		</Filter>
 	</Files>
