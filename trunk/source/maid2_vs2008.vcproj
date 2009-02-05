@@ -1745,27 +1745,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\sound\pcmdecoder\oggvorbis.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\sound\pcmdecoder\oggvorbis.h"
-					>
-				</File>
-				<File
 					RelativePath=".\sound\pcmdecoder\pcmdecodermemory.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\sound\pcmdecoder\pcmdecodermemory.h"
-					>
-				</File>
-				<File
-					RelativePath=".\sound\pcmdecoder\riffpcm.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\sound\pcmdecoder\riffpcm.h"
 					>
 				</File>
 			</Filter>
