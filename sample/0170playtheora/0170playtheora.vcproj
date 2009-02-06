@@ -170,75 +170,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\decoder.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\decoder.h"
-			>
-		</File>
-		<File
-			RelativePath=".\ioggbuffer.h"
-			>
-		</File>
-		<File
-			RelativePath=".\ioggdecoder.h"
-			>
-		</File>
-		<File
 			RelativePath=".\main.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggcontainer.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggcontainer.h"
-			>
-		</File>
-		<File
-			RelativePath=".\oggdecodernull.h"
-			>
-		</File>
-		<File
-			RelativePath=".\oggdecodertheora.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggdecodertheora.h"
-			>
-		</File>
-		<File
-			RelativePath=".\oggdecodervorbis.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggdecodervorbis.h"
-			>
-		</File>
-		<File
-			RelativePath=".\oggpacket.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggpacket.h"
-			>
-		</File>
-		<File
-			RelativePath=".\oggpage.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggpage.h"
-			>
-		</File>
-		<File
-			RelativePath=".\oggstream.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\oggstream.h"
 			>
 		</File>
 	</Files>
