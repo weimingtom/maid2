@@ -598,10 +598,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\framework\oggplayer.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\framework\oggplayer.h"
 				>
 			</File>
@@ -865,14 +861,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\framework\xiph\isamplecache.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\isamplecache.h"
-					>
-				</File>
-				<File
 					RelativePath=".\framework\xiph\oggcontainer.cpp"
 					>
 				</File>
@@ -902,6 +890,14 @@
 				</File>
 				<File
 					RelativePath=".\framework\xiph\oggstream.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\xiph\samplecache.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\xiph\samplecache.h"
 					>
 				</File>
 			</Filter>
