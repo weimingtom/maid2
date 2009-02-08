@@ -64,7 +64,7 @@ namespace Maid
 		{
 		public:
 			SetPosition() : Base(SETPOSITION){}
-			float	Position;
+			double	Position;
 		};
 
 
@@ -80,8 +80,8 @@ namespace Maid
 		{
 		public:
 			SetVolume() : Base(SETVOLUME){}
-			float	Volume;
-      float Time;
+			double	Volume;
+      double Time;
 		};
 
 		class SetLoopState : public Base

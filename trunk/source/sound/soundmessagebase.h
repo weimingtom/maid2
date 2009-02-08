@@ -28,7 +28,7 @@ namespace Maid
 
     unt  GetID()  const { return m_ID; }
     bool IsPlay() const { return m_IsPlay; }
-    float GetPosition() const { return m_Position; }
+    double GetPosition() const { return m_Position; }
 
     bool IsMessageExecuting() const { return m_MessageCount!=0; }
 
@@ -36,14 +36,8 @@ namespace Maid
     int   m_MessageCount; //  まだ処理してないメッセージ数
     unt   m_ID;
     bool  m_IsPlay;
-    float m_Position;
-    float m_Volume;
-
-    unt   m_VolumeChangeBeginTime;
-    unt   m_VolumeChangeEndTime;
-    float m_VolumeChangeBeginVolume;
-    float m_VolumeChangeBeginEnd;
-
+    double m_Position;
+    double m_Volume;
   };
   typedef	boost::shared_ptr<SoundObjectInfo>	SPSOUNDOBJECTINFO;
 
@@ -87,8 +81,8 @@ namespace Maid
 
   struct JUMPPOINT
   {
-	  float	Boot;
-	  float	Jump;
+	  double	Boot;
+	  double	Jump;
   };
 }
 
