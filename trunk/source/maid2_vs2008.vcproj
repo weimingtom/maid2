@@ -896,14 +896,6 @@
 					RelativePath=".\framework\xiph\oggstream.h"
 					>
 				</File>
-				<File
-					RelativePath=".\framework\xiph\samplecache.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\samplecache.h"
-					>
-				</File>
 			</Filter>
 		</Filter>
 		<Filter
