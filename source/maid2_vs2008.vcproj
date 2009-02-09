@@ -845,10 +845,6 @@
 				Name="xiph"
 				>
 				<File
-					RelativePath=".\framework\xiph\decodernull.h"
-					>
-				</File>
-				<File
 					RelativePath=".\framework\xiph\decodertheora.cpp"
 					>
 				</File>
