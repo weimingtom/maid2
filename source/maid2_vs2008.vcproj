@@ -626,6 +626,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\framework\oggplayerlocal.h"
+				>
+			</File>
+			<File
 				RelativePath=".\framework\osmessage.h"
 				>
 			</File>
