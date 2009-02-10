@@ -261,6 +261,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\auxiliary\debug\profile.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\debug\profile.h"
+					>
+				</File>
+				<File
 					RelativePath=".\auxiliary\debug\trace.cpp"
 					>
 				</File>
