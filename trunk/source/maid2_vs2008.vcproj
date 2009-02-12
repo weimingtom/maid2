@@ -630,6 +630,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\framework\oggtimer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\framework\oggtimer.h"
+				>
+			</File>
+			<File
 				RelativePath=".\framework\osmessage.h"
 				>
 			</File>
