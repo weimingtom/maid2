@@ -4,8 +4,8 @@
  */
 
 
-#ifndef framework_win32_messagehook_h
-#define framework_win32_messagehook_h
+#ifndef maid2_framework_win32_messagehook_h
+#define maid2_framework_win32_messagehook_h
 
 #include"../../config/define.h"
 #include"../../config/win32.h"
