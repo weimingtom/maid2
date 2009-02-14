@@ -3,8 +3,8 @@
     @brief Windows用フレームワークベースクラス
  */
 
-#ifndef framework_win32_application_h
-#define framework_win32_application_h
+#ifndef maid2_framework_win32_application_h
+#define maid2_framework_win32_application_h
 
 #include"../../config/define.h"
 #include"../../config/Win32.h"
