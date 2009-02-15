@@ -46,8 +46,6 @@ namespace Maid
     Xiph::SampleCache  m_Cache;
     Xiph::SPSAMPLECACHECHECKER m_pChecker;
 
-    mutable ThreadMutex m_SampleMutex;
-    //  同期待ちが頻繁に起こらないようにするキャッシュ
     double m_TotalTime;
     size_t m_SampleCount;
 

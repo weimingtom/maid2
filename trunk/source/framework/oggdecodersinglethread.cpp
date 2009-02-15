@@ -59,7 +59,6 @@ bool OggDecoderSingleThread::IsPacketEmpty() const
 
 bool OggDecoderSingleThread::IsCacheFull() const
 {
-  ThreadMutexLocker lock(m_SampleMutex);
   return m_pChecker->IsFull(m_Cache);
 }
 
@@ -69,7 +68,6 @@ bool OggDecoderSingleThread::IsCacheFull() const
 int OggDecoderSingleThread::PopCache( double EndTime, Xiph::SAMPLELIST& Out )
 {
   MAID_PROFILE();
-  ThreadMutexLocker lock(m_SampleMutex);
   const int ret = m_Cache.Pop( EndTime, Out );
 
   m_TotalTime   = m_Cache.GetTotalTime();
@@ -95,10 +93,7 @@ int  OggDecoderSingleThread::GetPacketCount() const
 
 void OggDecoderSingleThread::PushBack( const Xiph::SAMPLE& sample )
 {
-  {
-    ThreadMutexLocker lock(m_SampleMutex);
-    m_Cache.PushBack( sample );
-  }
+  m_Cache.PushBack( sample );
 
   const double begin = sample.BeginTime;
   const double end   = sample.EndTime;
@@ -150,7 +145,6 @@ void OggDecoderSingleThread::Update()
       m_pDecoder->BeginSeekMode( now + time );
     }
   }
-
 }
 
 #if 0
