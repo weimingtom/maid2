@@ -51,12 +51,6 @@ namespace Maid
 
   private:
     void PushBack( const Xiph::SAMPLE& sample );
-
-    void OnStateDecoding();
-    void OnStatePageWait();
-    void OnStateCacheFull();
-    void OnStateEndOfStream();
-    void OnStateSeek(volatile ThreadController::BRIGEDATA& state);
   };
 }
 
