@@ -606,38 +606,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\framework\oggdecoder.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\oggdecoder.h"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\oggplayer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\oggplayer1.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\oggplayer2.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\oggplayerlocal.h"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\oggtimer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\framework\oggtimer.h"
-				>
-			</File>
-			<File
 				RelativePath=".\framework\osmessage.h"
 				>
 			</File>
@@ -858,74 +826,6 @@
 				</File>
 				<File
 					RelativePath=".\framework\gui\iguiwindow.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="xiph"
-				>
-				<File
-					RelativePath=".\framework\xiph\decodertheora.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\decodertheora.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\decodervorbis.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\decodervorbis.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\ibuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\idecoder.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggcontainer.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggcontainer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggpacket.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggpacket.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggpage.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggpage.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggstream.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\oggstream.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\samplecache.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\xiph\samplecache.h"
 					>
 				</File>
 			</Filter>
