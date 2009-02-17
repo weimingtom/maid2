@@ -833,11 +833,35 @@
 				Name="movie"
 				>
 				<File
+					RelativePath=".\framework\movie\isample.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\mediatimer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\mediatimer.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\movie\streamdecoder.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\framework\movie\streamdecoder.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\streamdecodermultithread.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\streamsamplecache.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\streamsamplecache.h"
 					>
 				</File>
 				<Filter
