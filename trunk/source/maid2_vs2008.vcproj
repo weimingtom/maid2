@@ -857,6 +857,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\movie\streamdecodermultithread1.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\streamdecodermultithread2.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\movie\streamsamplecache.cpp"
 					>
 				</File>
