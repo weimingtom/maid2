@@ -845,6 +845,22 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\movie\movieplayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\movieplayer1.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\movieplayer2.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\movie\movieplayerlocal.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\movie\streamdecoder.cpp"
 					>
 				</File>
