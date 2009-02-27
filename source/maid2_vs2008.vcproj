@@ -1527,6 +1527,14 @@
 							>
 						</File>
 					</Filter>
+					<Filter
+						Name="direct3d10"
+						>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\common.h"
+							>
+						</File>
+					</Filter>
 				</Filter>
 			</Filter>
 			<Filter
