@@ -1538,6 +1538,38 @@
 							RelativePath=".\graphics\core\win32\direct3d10\common.h"
 							>
 						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0_1.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0_2.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0_3.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_1.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_1.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_1warp.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_1warp.h"
+							>
+						</File>
 					</Filter>
 				</Filter>
 			</Filter>
