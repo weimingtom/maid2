@@ -1400,6 +1400,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\graphics\core\win32\dxgitypedef.h"
+						>
+					</File>
+					<File
 						RelativePath=".\graphics\core\win32\fontdevice.cpp"
 						>
 					</File>
