@@ -1535,7 +1535,23 @@
 						Name="direct3d10"
 						>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d10\blendstated3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\bufferd3d10.h"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d10\common.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\depthstencild3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\depthstencilstated3d10.h"
 							>
 						</File>
 						<File
@@ -1568,6 +1584,38 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_1warp.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\inputlayoutd3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\materiald3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\pixelshaderd3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\rasterizerstated3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\rendertargetd3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\samplerstated3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\texture2dd3d10.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\vertexshaderd3d10.h"
 							>
 						</File>
 					</Filter>
