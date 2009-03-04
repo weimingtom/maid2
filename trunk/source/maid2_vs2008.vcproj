@@ -1595,6 +1595,14 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d10\drawcommandexecuted3d10_2.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\drawcommandexecuted3d10_3.cpp"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d10\inputlayoutd3d10.h"
 							>
 						</File>
