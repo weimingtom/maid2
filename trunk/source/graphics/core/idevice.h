@@ -72,6 +72,13 @@ namespace Maid { namespace Graphics {
      */
     virtual void SerchDisplayMode( std::vector<DISPLAYMODE>& mode ) const= 0;
 
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! このアダプタが使用可能なディスプレイモニタを調べる
+    /*!
+        @param	info [ o] モニタの列挙
+     */
+    virtual void SerchDisplayInfo( std::vector<DISPLAYINFO>& info ) const=0;
+
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
