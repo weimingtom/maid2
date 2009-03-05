@@ -1547,6 +1547,14 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d10\debug.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\debug.h"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d10\depthstencild3d10.h"
 							>
 						</File>
@@ -1568,6 +1576,18 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0_3.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0_4.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0warp.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d10\deviced3d10_0warp.h"
 							>
 						</File>
 						<File
