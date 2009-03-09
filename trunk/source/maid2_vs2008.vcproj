@@ -1249,6 +1249,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\color\color_a08b08g08r08i.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\color\color_a08r08g08b08i.h"
 					>
 				</File>
@@ -1392,6 +1396,10 @@
 					Name="win32"
 					>
 					<File
+						RelativePath=".\graphics\core\win32\defaultshader.h"
+						>
+					</File>
+					<File
 						RelativePath=".\graphics\core\win32\devicelist.cpp"
 						>
 					</File>
@@ -1452,6 +1460,10 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09_3.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\deviced3d09_4.cpp"
 							>
 						</File>
 						<File
