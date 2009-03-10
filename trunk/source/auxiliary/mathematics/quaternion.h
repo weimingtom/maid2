@@ -190,39 +190,58 @@ namespace Maid
 
 }
 	//	Windows のときのみ DXLIB を使ったバージョンを存在させる
-#ifdef USE_DIRECT3D9X_LIB
+#ifdef USE_DIRECT3DX9
   #include"../../config/win32.h"
   #include<d3dx9.h>
-  #pragma comment( lib, "d3dx9.lib" )
 
   namespace Maid
   {
+    namespace d3dxquaternion
+    {
+      typedef D3DXQUATERNION* (WINAPI *ROTATIONAXIS)(D3DXQUATERNION*,CONST D3DXVECTOR3*,FLOAT);
+      typedef D3DXQUATERNION* (WINAPI *NORMALIZE)(D3DXQUATERNION*,CONST D3DXQUATERNION*);
+      typedef D3DXQUATERNION* (WINAPI *INVERSE)(D3DXQUATERNION*,CONST D3DXQUATERNION*);
+      typedef FLOAT (WINAPI *LENGTHAQ)(CONST D3DXQUATERNION *);
+      typedef D3DXMATRIX * (WINAPI *MATRIXROTATIONQUATERNION)(D3DXMATRIX *,CONST D3DXQUATERNION*);
+      typedef D3DXQUATERNION* (WINAPI *MULTIPLY)(D3DXQUATERNION*,CONST D3DXQUATERNION*,CONST D3DXQUATERNION*);
+
+      extern ROTATIONAXIS RotationAxis;
+      extern NORMALIZE Normalize;
+      extern INVERSE Inverse;
+      extern LENGTHAQ LengthSq;
+      extern MATRIXROTATIONQUATERNION MatrixRotationQuaternion;
+      extern MULTIPLY Multiply;
+
+      void Initialize( HMODULE hModule );
+      void Finalize();
+    }
+
 
     const QUATERNION_TEMPLATE<FLOAT>& QUATERNION_TEMPLATE<FLOAT>::SetRotation( const VECTOR3D_TEMPLATE<FLOAT>& axis, FLOAT angle )
     {
-	    D3DXQuaternionRotationAxis( (D3DXQUATERNION*)this, (const D3DXVECTOR3*)&axis, angle );
+      d3dxquaternion::RotationAxis( (D3DXQUATERNION*)this, (const D3DXVECTOR3*)&axis, angle );
 	    return *this;
     }
     const QUATERNION_TEMPLATE<FLOAT>& QUATERNION_TEMPLATE<FLOAT>::Normalize()
     {
-	    D3DXQuaternionNormalize( (D3DXQUATERNION*)this, (D3DXQUATERNION*)this );
+	    d3dxquaternion::Normalize( (D3DXQUATERNION*)this, (D3DXQUATERNION*)this );
 	    return *this;
     }
 
     QUATERNION_TEMPLATE<FLOAT> QUATERNION_TEMPLATE<FLOAT>::GetInverse() const
     {
 	    QUATERNION_TEMPLATE<FLOAT> r;
-	    D3DXQuaternionInverse( (D3DXQUATERNION*)&r, (D3DXQUATERNION*)this );
+	    d3dxquaternion::Inverse( (D3DXQUATERNION*)&r, (D3DXQUATERNION*)this );
 	    return r;
     }
     FLOAT QUATERNION_TEMPLATE<FLOAT>::GetNorm() const
     {
-	    return D3DXQuaternionLengthSq( (D3DXQUATERNION*)this );
+	    return d3dxquaternion::LengthSq( (D3DXQUATERNION*)this );
     }
     MATRIX4D_TEMPLATE<FLOAT> QUATERNION_TEMPLATE<FLOAT>::GetMatrix4D( const VECTOR3D_TEMPLATE<FLOAT>& v) const
     {
 	    MATRIX4D_TEMPLATE<FLOAT> tmp;
-	    D3DXMatrixRotationQuaternion( (D3DXMATRIX*)&tmp, (D3DXQUATERNION*)this );
+	    d3dxquaternion::MatrixRotationQuaternion( (D3DXMATRIX*)&tmp, (D3DXQUATERNION*)this );
 	    tmp.m41 = v.x;
 	    tmp.m42 = v.y;
 	    tmp.m43 = v.z;
@@ -232,7 +251,7 @@ namespace Maid
     inline QUATERNION_TEMPLATE<FLOAT> operator*( const QUATERNION_TEMPLATE<FLOAT>& lha, const QUATERNION_TEMPLATE<FLOAT>& rha )
     {
 	    QUATERNION_TEMPLATE<FLOAT> r;
-	    D3DXQuaternionMultiply( (D3DXQUATERNION*)&r, (D3DXQUATERNION*)&lha, (D3DXQUATERNION*)&rha );
+	    d3dxquaternion::Multiply( (D3DXQUATERNION*)&r, (D3DXQUATERNION*)&lha, (D3DXQUATERNION*)&rha );
 	    return r;
     }
 }

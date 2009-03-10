@@ -222,6 +222,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auxiliary\mathematics.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\mathematics.h"
 				>
 			</File>
@@ -320,6 +324,10 @@
 			<Filter
 				Name="mathematics"
 				>
+				<File
+					RelativePath=".\auxiliary\mathematics\d3dxfunction.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\auxiliary\mathematics\function.h"
 					>
