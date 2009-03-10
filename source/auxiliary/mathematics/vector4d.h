@@ -122,25 +122,35 @@ namespace Maid
 
 }
 	//	Windows のときのみ DXLIB を使ったバージョンを存在させる
-  #ifdef USE_DIRECT3DX9
+#ifdef USE_DIRECT3DX9
   #include"../../config/win32.h"
-    #include<d3dx9.h>
-    #pragma comment( lib, "d3dx9.lib" )
+  #include<d3dx9.h>
 
-    namespace Maid
+  namespace Maid
+  {
+    namespace d3dxvector4d
     {
-      const VECTOR4D_TEMPLATE<FLOAT>& VECTOR4D_TEMPLATE<FLOAT>::Normalize()
-      {
-	      D3DXVec4Normalize( (D3DXVECTOR4*)this, (D3DXVECTOR4*)this );
-	      return *this;
-      }
+      typedef D3DXVECTOR4* (WINAPI *NORMALIZE)(D3DXVECTOR4*,CONST D3DXVECTOR4*);
+      typedef FLOAT (WINAPI *DOT)(CONST D3DXVECTOR4*,CONST D3DXVECTOR4*);
+      extern NORMALIZE Normalize;
+      extern DOT Dot;
 
-      inline FLOAT VectorDot( const VECTOR4D_TEMPLATE<FLOAT>& lha, const VECTOR4D_TEMPLATE<FLOAT>& rha )
-      {
-	      return D3DXVec4Dot( (D3DXVECTOR4*)&lha, (D3DXVECTOR4*)&rha );
-      }
+      void Initialize( HMODULE hModule );
+      void Finalize();
     }
-  #endif
+
+    const VECTOR4D_TEMPLATE<FLOAT>& VECTOR4D_TEMPLATE<FLOAT>::Normalize()
+    {
+      D3DXVec4Normalize( (D3DXVECTOR4*)this, (D3DXVECTOR4*)this );
+      return *this;
+    }
+
+    inline FLOAT VectorDot( const VECTOR4D_TEMPLATE<FLOAT>& lha, const VECTOR4D_TEMPLATE<FLOAT>& rha )
+    {
+      return D3DXVec4Dot( (D3DXVECTOR4*)&lha, (D3DXVECTOR4*)&rha );
+    }
+  }
+#endif
 
 
 #endif

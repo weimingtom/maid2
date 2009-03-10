@@ -186,7 +186,14 @@ namespace Maid { namespace Graphics {
         @return	ÉRÉìÉpÉCÉãÇ…ê¨å˜ÇµÇΩÇÁ true
     \n          é∏îsÇµÇΩÇÁ false
      */
-    virtual bool CompileShaderLanguage( const String& Source, std::vector<unt08>& Binary, String& ErrorMessage )=0;
+
+    enum CODETYPE
+    {
+      CODETYPE_VERTEXSHADER,
+      CODETYPE_PIXELSHADER,
+    };
+
+    virtual bool CompileShaderLanguage( const String& Source, CODETYPE type, std::vector<unt08>& Binary, String& ErrorMessage )=0;
 
 
     virtual SPSAMPLERSTATE      CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
