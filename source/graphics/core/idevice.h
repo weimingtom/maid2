@@ -66,39 +66,43 @@ namespace Maid { namespace Graphics {
     virtual void Finalize() = 0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 使用可能なディスプレイモードを調べる
+    //! 使用可能なディスプレイを調べる
     /*!
-        @param	mode [ o]	判明したディスプレイ性能
+        @param	mode [ o]	判明したディスプレイ
      */
-    virtual void SerchDisplayMode( std::vector<DISPLAYINFO>& mode ) const= 0;
-
+    virtual void SerchDisplayInfo( std::vector<DISPLAYINFO>& mode ) const= 0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 現在のディスプレイモードで作成可能な各種フォーマットを調べる
+    //! スワップチェインのサーフェスとして作れるピクセルフォーマットの列挙
+    /*!
+        @param	mode [ o]	判明したフォーマット
+     */
+    virtual void SerchSwapChainSurfaceFormat( std::vector<PIXELFORMAT>& mode )  const= 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 現在のスワップチェインで作成可能な各種フォーマットを調べる
     /*!
         @param	caps [ o]	判明した性能の設定先
      */
     virtual void SerchEnableFormat( ENABLEFORMAT& caps )  const= 0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! ディスプレイのアスペクト比を取得する
+    //! スワップチェインの変更
     /*!
-        @return アスペクト比（といっても縦と横の大きさがあるだけです)
+        @param	mode	[i ]	あたらしいフォーマット
      */
-    virtual SIZE2DI GetAspectRatio() const=0;
+    virtual void SetSwapChainFormat( const SWAPCHAINFORMAT& mode )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! スクリーンモードの変更
+    //! 表示先の設定
     /*!
-        @param	mode	[i ]	あたらしい解像度
-
-        @exception Exception 初期化に失敗した場合
+        @param  Name  [i ]  表示先にするディスプレイ名(SerchDisplayInfo()で取得した名前)
+    \n                      空文字(= String()) でウィンドウモード
      */
-    virtual void SetScreenMode( const SCREENMODE& mode )=0;
-
+    virtual void SetFullScreenDisplay( const String& Name )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! フロントバッファに更新する
+    //! ディスプレイに表示する
     /*!
      */
     virtual void Present()=0;
@@ -109,7 +113,7 @@ namespace Maid { namespace Graphics {
     /*!
         @return 現在のスクリーンモード
      */
-    virtual SCREENMODE GetScreenMode() const=0;
+    virtual SWAPCHAINFORMAT GetSwapChainFormat() const=0;
 
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
