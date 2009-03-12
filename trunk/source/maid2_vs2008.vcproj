@@ -1443,6 +1443,30 @@
 							>
 						</File>
 						<File
+							RelativePath=".\graphics\core\win32\direct3d09\debug.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\d3d09debug.obj"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\d3d09debug.obj"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d09\debug.h"
+							>
+						</File>
+						<File
 							RelativePath=".\graphics\core\win32\direct3d09\depthstencild3d09.cpp"
 							>
 						</File>
