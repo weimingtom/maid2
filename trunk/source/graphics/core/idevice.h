@@ -66,13 +66,6 @@ namespace Maid { namespace Graphics {
     virtual void Finalize() = 0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 使用可能なディスプレイを調べる
-    /*!
-        @param	mode [ o]	判明したディスプレイ
-     */
-    virtual void SerchDisplayInfo( std::vector<DISPLAYINFO>& mode ) const= 0;
-
-    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スワップチェインのサーフェスとして作れるピクセルフォーマットの列挙
     /*!
         @param	mode [ o]	判明したフォーマット
@@ -94,12 +87,18 @@ namespace Maid { namespace Graphics {
     virtual void SetSwapChainFormat( const SWAPCHAINFORMAT& mode )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-    //! 表示先の設定
+    //! フルスクリーンにするか？
     /*!
-        @param  Name  [i ]  表示先にするディスプレイ名(SerchDisplayInfo()で取得した名前)
-    \n                      空文字(= String()) でウィンドウモード
+        @param  IsFullScreen  [i ]  true でフルスクリーン false でウィンドウモード
      */
-    virtual void SetFullScreenDisplay( const String& Name )=0;
+    virtual void SetFullScreenState( bool IsFullScreen )=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! フルスクリーン中か？
+    /*!
+        @return  true でフルスクリーン false でウィンドウモード
+     */
+    virtual bool IsFullScreen() const=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! ディスプレイに表示する
@@ -115,6 +114,12 @@ namespace Maid { namespace Graphics {
      */
     virtual SWAPCHAINFORMAT GetSwapChainFormat() const=0;
 
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ディスプレイのアスペクト比の取得
+    /*!
+        @return アスペクト比(約分されてません)
+     */
+    virtual SIZE2DI GetDisplayAspect() const=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! 頂点定義の作成
