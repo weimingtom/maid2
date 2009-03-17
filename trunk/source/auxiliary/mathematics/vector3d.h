@@ -150,11 +150,7 @@ namespace Maid
     namespace d3dxvector3d
     {
       typedef D3DXVECTOR3* (WINAPI *NORMALIZE)(D3DXVECTOR3*,CONST D3DXVECTOR3*);
-      typedef FLOAT (WINAPI *DOT)(CONST D3DXVECTOR3*,CONST D3DXVECTOR3*);
-      typedef D3DXVECTOR3* (WINAPI *CROSS)(CONST D3DXVECTOR3*,CONST D3DXVECTOR3*,CONST D3DXVECTOR3*);
       extern NORMALIZE Normalize;
-      extern DOT Dot;
-      extern CROSS Cross;
 
       void Initialize( HMODULE hModule );
       void Finalize();
@@ -164,18 +160,6 @@ namespace Maid
     {
       d3dxvector3d::Normalize( (D3DXVECTOR3*)this, (D3DXVECTOR3*)this );
       return *this;
-    }
-
-    inline FLOAT VectorDot( const VECTOR3D_TEMPLATE<FLOAT>& lha, const VECTOR3D_TEMPLATE<FLOAT>& rha )
-    {
-      return d3dxvector3d::Dot( (D3DXVECTOR3*)&lha, (D3DXVECTOR3*)&rha );
-    }
-
-    inline VECTOR3D_TEMPLATE<FLOAT> VectorCross( const VECTOR3D_TEMPLATE<FLOAT>& lha, const VECTOR3D_TEMPLATE<FLOAT>& rha )
-    {
-      VECTOR3D_TEMPLATE<FLOAT> tmp;
-      d3dxvector3d::Cross( (D3DXVECTOR3*)&tmp, (D3DXVECTOR3*)&lha, (D3DXVECTOR3*)&rha );
-      return tmp;
     }
   }
 #endif

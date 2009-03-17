@@ -131,9 +131,7 @@ namespace Maid
     namespace d3dxvector4d
     {
       typedef D3DXVECTOR4* (WINAPI *NORMALIZE)(D3DXVECTOR4*,CONST D3DXVECTOR4*);
-      typedef FLOAT (WINAPI *DOT)(CONST D3DXVECTOR4*,CONST D3DXVECTOR4*);
       extern NORMALIZE Normalize;
-      extern DOT Dot;
 
       void Initialize( HMODULE hModule );
       void Finalize();
@@ -143,11 +141,6 @@ namespace Maid
     {
       D3DXVec4Normalize( (D3DXVECTOR4*)this, (D3DXVECTOR4*)this );
       return *this;
-    }
-
-    inline FLOAT VectorDot( const VECTOR4D_TEMPLATE<FLOAT>& lha, const VECTOR4D_TEMPLATE<FLOAT>& rha )
-    {
-      return D3DXVec4Dot( (D3DXVECTOR4*)&lha, (D3DXVECTOR4*)&rha );
     }
   }
 #endif

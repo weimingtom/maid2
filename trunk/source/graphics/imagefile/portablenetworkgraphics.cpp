@@ -58,9 +58,9 @@ void  Load( const std::vector<unt08>& FileImage, Surface& dst )
 	pStruct = ::png_create_read_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
 	pInfo	= ::png_create_info_struct(pStruct);
 
-  boost::shared_ptr<FileReadMemory> pRead( new FileReadMemory );
+  boost::shared_ptr<FileReadMemory> pRead( new FileReadMemory(&(FileImage[0]), FileImage.size()) );
 
-	pRead->OpenNoOwner( &(FileImage[0]), FileImage.size() );
+	pRead->Open();
 
 	TPngFileBuffer	buf;
 	buf.pFile = pRead;
