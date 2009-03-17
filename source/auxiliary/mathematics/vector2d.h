@@ -167,11 +167,7 @@ namespace Maid
     namespace d3dxvector2d
     {
       typedef D3DXVECTOR2* (WINAPI *NORMALIZE)(D3DXVECTOR2*,CONST D3DXVECTOR2*);
-      typedef FLOAT (WINAPI *DOT)(CONST D3DXVECTOR2*,CONST D3DXVECTOR2*);
-      typedef FLOAT (WINAPI *CCW)(CONST D3DXVECTOR2*,CONST D3DXVECTOR2*);
       extern NORMALIZE Normalize;
-      extern DOT Dot;
-      extern CCW ccw;
 
       void Initialize( HMODULE hModule );
       void Finalize();
@@ -181,16 +177,6 @@ namespace Maid
     {
       d3dxvector2d::Normalize( (D3DXVECTOR2*)this, (D3DXVECTOR2*)this );
       return *this;
-    }
-
-    inline FLOAT VectorDot( const VECTOR2D_TEMPLATE<FLOAT>& lha, const VECTOR2D_TEMPLATE<FLOAT>& rha )
-    {
-      return d3dxvector2d::Dot( (D3DXVECTOR2*)&lha, (D3DXVECTOR2*)&rha );
-    }
-
-    inline FLOAT VectorCross( const VECTOR2D_TEMPLATE<FLOAT>& lha, const VECTOR2D_TEMPLATE<FLOAT>& rha )
-    {
-      return d3dxvector2d::ccw( (D3DXVECTOR2*)&lha, (D3DXVECTOR2*)&rha );
     }
   }
 #endif

@@ -207,7 +207,15 @@
 			>
 		</File>
 		<File
+			RelativePath=".\hardwareconfig.rc"
+			>
+		</File>
+		<File
 			RelativePath=".\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\resource.h"
 			>
 		</File>
 		<File
@@ -216,6 +224,14 @@
 		</File>
 		<File
 			RelativePath=".\sceneadmin.h"
+			>
+		</File>
+		<File
+			RelativePath=".\startupdialog.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\startupdialog.h"
 			>
 		</File>
 	</Files>

@@ -194,6 +194,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\hardwareconfig.rc"
+			>
+		</File>
+		<File
 			RelativePath=".\main.cpp"
 			>
 		</File>
@@ -206,11 +210,23 @@
 			>
 		</File>
 		<File
+			RelativePath=".\resource.h"
+			>
+		</File>
+		<File
 			RelativePath=".\slidersample.cpp"
 			>
 		</File>
 		<File
 			RelativePath=".\slidersample.h"
+			>
+		</File>
+		<File
+			RelativePath=".\startupdialog.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\startupdialog.h"
 			>
 		</File>
 		<File
