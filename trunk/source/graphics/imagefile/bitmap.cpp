@@ -30,7 +30,7 @@ bool  Check( const std::vector<unt08>& FileImage )
     @param	FileImage	[i ]  ファイル名
     @param	dst       [i ]  転送先
  */
-void   Load( const std::vector<unt08>& FileImage, Surface& surface )
+FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, Surface& surface )
 {
   MAID_ASSERT( !Check(FileImage), "ビットマップではありません" );
 
@@ -66,7 +66,7 @@ void   Load( const std::vector<unt08>& FileImage, Surface& surface )
 		default: 
       {
         MAID_WARNING( MAIDTEXT("識別できないピクセルフォーマットです ") << pBmpInfo->biBitCount );
-        return ;
+        return FUCTIONRESULT_ERROR;
       }break;
 		}
 		
@@ -103,13 +103,14 @@ void   Load( const std::vector<unt08>& FileImage, Surface& surface )
 		}
 	}
 
+  return FUCTIONRESULT_OK;
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! 読み込んであるサーフェスをビットマップとして保存する
 /*!
  */
-void Save( const Surface& src, std::vector<unt08>& FileImage )
+FUCTIONRESULT Save( const Surface& src, std::vector<unt08>& FileImage )
 {
 	const SIZE2DI ImageSize = src.GetSize();
 	const PIXELFORMAT fmt = src.GetPixelFormat();
@@ -162,6 +163,8 @@ void Save( const Surface& src, std::vector<unt08>& FileImage )
     ::memcpy( pCurrentPos, src.GetLinePTR((ImageSize.h-1)-y), ImagePitch );
     pCurrentPos += FilePitch;
 	}
+
+  return FUCTIONRESULT_OK;
 }
 
   }

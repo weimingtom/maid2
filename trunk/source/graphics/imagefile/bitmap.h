@@ -9,6 +9,7 @@
 
 #include"../../config/define.h"
 #include"../../auxiliary/string.h"
+#include"../../auxiliary/functionresult.h"
 #include"../surface.h"
 
 
@@ -17,8 +18,8 @@ namespace Maid
   namespace Bitmap
   {
     bool  Check( const std::vector<unt08>& FileImage );
-    void  Load( const std::vector<unt08>& FileImage, Surface& dst );
-    void  Save( const Surface& src, std::vector<unt08>& FileImage );
+    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, Surface& dst );
+    FUCTIONRESULT  Save( const Surface& src, std::vector<unt08>& FileImage );
   };
 }
 
