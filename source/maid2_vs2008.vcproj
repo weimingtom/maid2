@@ -202,6 +202,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auxiliary\functionresult.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\globalpointer.h"
 				>
 			</File>

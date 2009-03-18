@@ -50,7 +50,7 @@ bool  Check( const std::vector<unt08>& FileImage )
 	@param	FileImage	[i ]	ファイルイメージ
 	@param	dst 			[ o]	ピクセルデータ
  */
-void  Load( const std::vector<unt08>& FileImage, Surface& dst )
+FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, Surface& dst )
 {
 	png_struct*	pStruct = NULL;
 	png_info*	pInfo   = NULL;
@@ -78,12 +78,12 @@ void  Load( const std::vector<unt08>& FileImage, Surface& dst )
 	if( BitDepth!=8 )	// <- これ１カラー（赤など）のビット数です
   {
     MAID_WARNING( MAIDTEXT("BitDepth!=8") );
-    return ;
+    return FUCTIONRESULT_ERROR;
   }
 	if( InterlaceType!=PNG_INTERLACE_NONE ) //	インターレースも知らん
   {
     MAID_WARNING( MAIDTEXT("PNG_INTERLACE_NONE") );
-    return ;
+    return FUCTIONRESULT_ERROR;
   }
 
 	const bool UsePalette = IsFlag(ColorType,0x01);
@@ -130,6 +130,8 @@ void  Load( const std::vector<unt08>& FileImage, Surface& dst )
 
 		::png_destroy_read_struct( &pStruct, &pInfo, NULL );
 	}
+
+  return FUCTIONRESULT_OK;
 }
 
 
