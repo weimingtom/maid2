@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="0160blt3dmodel"
-	ProjectGUID="{BCDC0C40-8494-4700-95B1-63032318F000}"
-	RootNamespace="My0160blt3dmodel"
+	Name="advediter"
+	ProjectGUID="{EAB6051A-9357-4E9A-929C-5C61F59542CA}"
+	RootNamespace="advediter"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -60,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)\bin\$(ProjectName).exe"
+				OutputFile="$(InputDir)\..\bin\$(ProjectName)_d.exe"
 				LinkIncremental="2"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -95,7 +95,7 @@
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -134,9 +134,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)\bin\$(ProjectName).exe"
+				OutputFile="$(InputDir)\..\bin\$(ProjectName)_r.exe"
 				LinkIncremental="1"
-				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"

@@ -801,6 +801,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\iguicontextmenu.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguicontextmenu.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\iguiparts.cpp"
 					>
 				</File>
