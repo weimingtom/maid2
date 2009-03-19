@@ -32,6 +32,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_lpng", "source\impor
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_zlib", "source\import_zlib.vcproj", "{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "advediter", "tool\advediter\source\advediter.vcproj", "{EAB6051A-9357-4E9A-929C-5C61F59542CA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -66,6 +71,10 @@ Global
 		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Debug|Win32.Build.0 = Debug|Win32
 		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Release|Win32.ActiveCfg = Release|Win32
 		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Release|Win32.Build.0 = Release|Win32
+		{EAB6051A-9357-4E9A-929C-5C61F59542CA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EAB6051A-9357-4E9A-929C-5C61F59542CA}.Debug|Win32.Build.0 = Debug|Win32
+		{EAB6051A-9357-4E9A-929C-5C61F59542CA}.Release|Win32.ActiveCfg = Release|Win32
+		{EAB6051A-9357-4E9A-929C-5C61F59542CA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
