@@ -194,6 +194,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\contextmenusample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\contextmenusample.h"
+			>
+		</File>
+		<File
 			RelativePath=".\hardwareconfig.rc"
 			>
 		</File>
