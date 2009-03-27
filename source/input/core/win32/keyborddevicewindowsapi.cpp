@@ -56,6 +56,10 @@ void KeybordDeviceWindowsAPI::IsDown( std::vector<bool>& KeyList )	    const
 {
   for( int i=0; i<256; ++i )
   {
+    //  マウスボタンはスルーするかな。設計的におかしい
+    if( i==VK_LBUTTON ) { continue; }
+    if( i==VK_RBUTTON ) { continue; }
+    if( i==VK_MBUTTON ) { continue; }
     KeyList[i] = IsFlag(::GetAsyncKeyState(i),0x8000);
   }
 }
