@@ -1285,6 +1285,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphics\color\color_b08g08r08i.h"
+					>
+				</File>
+				<File
 					RelativePath=".\graphics\color\color_p08.cpp"
 					>
 				</File>
@@ -1722,6 +1726,14 @@
 				</File>
 				<File
 					RelativePath=".\graphics\imagefile\bitmap.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\imagefile\jpeg.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\graphics\imagefile\jpeg.h"
 					>
 				</File>
 				<File
