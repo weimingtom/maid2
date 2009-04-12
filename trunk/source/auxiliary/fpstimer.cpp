@@ -15,7 +15,7 @@ namespace Maid
  */
 FPSTimer::FPSTimer()
 {
-	m_FPS = 60;
+  SetFPS( 60 );
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -71,7 +71,7 @@ void FPSTimer::Sleep()
 		m_TimeOverCount++;
 
 		//	余りにもオーバーしてたらリセットしておく
-		if( m_TimeOverCount>60 )
+		if( m_TimeOverCount>120 )
 		{
 			Reset();
 		}
