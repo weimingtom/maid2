@@ -170,6 +170,22 @@
 	</References>
 	<Files>
 		<File
+			RelativePath=".\app.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\app.h"
+			>
+		</File>
+		<File
+			RelativePath=".\configwindow.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\configwindow.h"
+			>
+		</File>
+		<File
 			RelativePath=".\hardwareconfig.rc"
 			>
 		</File>
@@ -187,6 +203,14 @@
 		</File>
 		<File
 			RelativePath=".\startupdialog.h"
+			>
+		</File>
+		<File
+			RelativePath=".\textbutton.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\textbutton.h"
 			>
 		</File>
 	</Files>
