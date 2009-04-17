@@ -80,6 +80,13 @@ namespace Maid { namespace Graphics {
     virtual void SerchEnableFormat( ENABLEFORMAT& caps )  const= 0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! dot by dot するときのテクセルとピクセルのずれの値を取得する
+    /*!
+        @return 値
+     */
+    virtual float GetTexelMapValue() const = 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! スワップチェインの変更
     /*!
         @param	mode	[i ]	あたらしいフォーマット

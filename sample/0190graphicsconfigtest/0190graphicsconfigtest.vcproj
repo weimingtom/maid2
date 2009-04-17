@@ -178,6 +178,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\checkbox.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\checkbox.h"
+			>
+		</File>
+		<File
 			RelativePath=".\configwindow.cpp"
 			>
 		</File>
@@ -191,6 +199,14 @@
 		</File>
 		<File
 			RelativePath=".\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qualityslider.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qualityslider.h"
 			>
 		</File>
 		<File
@@ -211,6 +227,14 @@
 		</File>
 		<File
 			RelativePath=".\textbutton.h"
+			>
+		</File>
+		<File
+			RelativePath=".\textradiobutton.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\textradiobutton.h"
 			>
 		</File>
 	</Files>
