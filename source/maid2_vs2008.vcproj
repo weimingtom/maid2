@@ -465,6 +465,42 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="xml"
+				>
+				<File
+					RelativePath=".\auxiliary\xml\xmldocument.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\xml\xmldocument.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\xml\xmlnode.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\xml\xmlnode.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\xml\xmlreader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\xml\xmlreader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\xml\xmlwriter.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\auxiliary\xml\xmlwriter.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="storage"
