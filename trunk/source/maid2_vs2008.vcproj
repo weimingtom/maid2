@@ -257,6 +257,10 @@
 				RelativePath=".\auxiliary\timer.h"
 				>
 			</File>
+			<File
+				RelativePath=".\auxiliary\xml.h"
+				>
+			</File>
 			<Filter
 				Name="debug"
 				>
@@ -555,6 +559,14 @@
 			</File>
 			<File
 				RelativePath=".\storage\storagemessagebase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\xmlfile.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\xmlfile.h"
 				>
 			</File>
 			<Filter
