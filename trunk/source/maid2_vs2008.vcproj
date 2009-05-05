@@ -534,6 +534,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\storage\packfilecreater.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\packfilecreater.h"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\packfileinfo.h"
+				>
+			</File>
+			<File
 				RelativePath=".\storage\storage.h"
 				>
 			</File>
