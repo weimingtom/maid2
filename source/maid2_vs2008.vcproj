@@ -585,6 +585,14 @@
 				Name="fileio"
 				>
 				<File
+					RelativePath=".\storage\fileio\filereadfiles.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\storage\fileio\filereadfiles.h"
+					>
+				</File>
+				<File
 					RelativePath=".\storage\fileio\filereadmemory.cpp"
 					>
 				</File>
