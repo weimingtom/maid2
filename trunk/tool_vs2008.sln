@@ -37,7 +37,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "advediter", "tool\advediter
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filearchiver", "tool\filearchiver\filearchiver.vcproj", "{5D9BE47B-C2E8-4B92-BD88-22B1D6EDDB79}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filearchiver", "tool\filearchiver\filearchiver.vcproj", "{ADD078B7-7FF4-4FF0-8132-1D95D0837569}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,10 +78,10 @@ Global
 		{DABEA2A8-72AD-4532-82F3-C40BBED02FDF}.Release|Win32.Build.0 = Release|Win32
 		{EAB6051A-9357-4E9A-929C-5C61F59542CA}.Debug|Win32.ActiveCfg = Debug|Win32
 		{EAB6051A-9357-4E9A-929C-5C61F59542CA}.Release|Win32.ActiveCfg = Release|Win32
-		{5D9BE47B-C2E8-4B92-BD88-22B1D6EDDB79}.Debug|Win32.ActiveCfg = Debug|Win32
-		{5D9BE47B-C2E8-4B92-BD88-22B1D6EDDB79}.Debug|Win32.Build.0 = Debug|Win32
-		{5D9BE47B-C2E8-4B92-BD88-22B1D6EDDB79}.Release|Win32.ActiveCfg = Release|Win32
-		{5D9BE47B-C2E8-4B92-BD88-22B1D6EDDB79}.Release|Win32.Build.0 = Release|Win32
+		{ADD078B7-7FF4-4FF0-8132-1D95D0837569}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ADD078B7-7FF4-4FF0-8132-1D95D0837569}.Debug|Win32.Build.0 = Debug|Win32
+		{ADD078B7-7FF4-4FF0-8132-1D95D0837569}.Release|Win32.ActiveCfg = Release|Win32
+		{ADD078B7-7FF4-4FF0-8132-1D95D0837569}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<root>
+  <ArchiveName>value</ArchiveName>
+  <DivideSize>10485760</DivideSize>
+  <NoCompless>jpeg</NoCompless>
+  <NoCompless>jpg</NoCompless>
+  <NoCompless>png</NoCompless>
+  <NoArchive>dat</NoArchive>
+  <Archive>sample</Archive>
+</root>
+
