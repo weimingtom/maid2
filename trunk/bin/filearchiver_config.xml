@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="shift_jis"?>
 <root>
-  <ArchiveName>value</ArchiveName>
+  <ArchiveName>arc.dat</ArchiveName>
   <DivideSize>10485760</DivideSize>
-  <NoComplessExtension>jpeg</NoComplessExtension>
-  <NoComplessExtension>jpg</NoComplessExtension>
-  <NoComplessExtension>png</NoComplessExtension>
-  <NoArchiveExtension>dat</NoArchiveExtension>
-  <ArchiveDirectory>archive</ArchiveDirectory>
+  <ArchiveFile>archive\*</ArchiveFile>
+  
+  <NoArchiveFile>.*\.dat</NoArchiveFile>
+  
+  <NoComplessFile>.*\.jpeg</NoComplessFile>
+  <NoComplessFile>.*\.jpg</NoComplessFile>
+  <NoComplessFile>.*\.png</NoComplessFile>
 </root>
 
