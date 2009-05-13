@@ -2,10 +2,10 @@
 <root>
   <ArchiveName>value</ArchiveName>
   <DivideSize>10485760</DivideSize>
-  <NoCompless>jpeg</NoCompless>
-  <NoCompless>jpg</NoCompless>
-  <NoCompless>png</NoCompless>
-  <NoArchive>dat</NoArchive>
-  <Archive>sample</Archive>
+  <NoComplessExtension>jpeg</NoComplessExtension>
+  <NoComplessExtension>jpg</NoComplessExtension>
+  <NoComplessExtension>png</NoComplessExtension>
+  <NoArchiveExtension>dat</NoArchiveExtension>
+  <ArchiveDirectory>archive</ArchiveDirectory>
 </root>
 
