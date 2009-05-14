@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="shift_jis"?>
 <root>
   <ArchiveName>arc.dat</ArchiveName>
-  <DivideSize>10485760</DivideSize>
-  <ArchiveFile>archive\*</ArchiveFile>
+  <DivideSize>102400</DivideSize>
+  <RootDirectory>D:\works\maid2\bin</RootDirectory>
+  
+  <ArchiveFile>archive.*</ArchiveFile>
   
   <NoArchiveFile>.*\.dat</NoArchiveFile>
   

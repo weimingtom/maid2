@@ -3,6 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C++ Express 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maid2_vs2008", "source\maid2_vs2008.vcproj", "{B80AC4DE-9464-4D83-8E4A-ADFDA820007F}"
 	ProjectSection(ProjectDependencies) = postProject
+		{6900D515-996A-404A-86BD-C5E31318B5AD} = {6900D515-996A-404A-86BD-C5E31318B5AD}
 		{BCD9B71E-65D3-4E17-89C6-DED23F1724A5} = {BCD9B71E-65D3-4E17-89C6-DED23F1724A5}
 		{0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA} = {0E1BD625-E36E-4438-B3BF-B6DA9FB1B8AA}
 		{19885B5A-CB29-4639-9EDD-586C98AC2256} = {19885B5A-CB29-4639-9EDD-586C98AC2256}
@@ -41,6 +42,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filearchiver", "tool\filear
 	ProjectSection(ProjectDependencies) = postProject
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_boost_regex", "source\import_boost_regex.vcproj", "{6900D515-996A-404A-86BD-C5E31318B5AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +85,10 @@ Global
 		{ADD078B7-7FF4-4FF0-8132-1D95D0837569}.Debug|Win32.Build.0 = Debug|Win32
 		{ADD078B7-7FF4-4FF0-8132-1D95D0837569}.Release|Win32.ActiveCfg = Release|Win32
 		{ADD078B7-7FF4-4FF0-8132-1D95D0837569}.Release|Win32.Build.0 = Release|Win32
+		{6900D515-996A-404A-86BD-C5E31318B5AD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6900D515-996A-404A-86BD-C5E31318B5AD}.Debug|Win32.Build.0 = Debug|Win32
+		{6900D515-996A-404A-86BD-C5E31318B5AD}.Release|Win32.ActiveCfg = Release|Win32
+		{6900D515-996A-404A-86BD-C5E31318B5AD}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
