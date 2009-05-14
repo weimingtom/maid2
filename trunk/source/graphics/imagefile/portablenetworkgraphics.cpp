@@ -99,7 +99,7 @@ FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, Surface& dst )
 
 //	if( UsePalette ){ fmt = PIXELFORMAT_P08X08R08G08B08I; }	//	パレットがあるなら８ＢＩＴ
 	if( UsePalette ){ MAID_ASSERT( true, "でも未対応" );  }
-	ef( UseAlpha   ){ fmt = PIXELFORMAT_A08R08G08B08I;	  }	//	パレット無し＋アルファありなら３２ＢＩＴ
+	else if( UseAlpha   ){ fmt = PIXELFORMAT_A08R08G08B08I;	  }	//	パレット無し＋アルファありなら３２ＢＩＴ
 	else			{ fmt = PIXELFORMAT_R08G08B08I;		  }	//	それ以外は２４ＢＩＴ
 
 	{
