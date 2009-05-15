@@ -546,6 +546,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\storage\packfilereader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\packfilereader.h"
+				>
+			</File>
+			<File
 				RelativePath=".\storage\storage.h"
 				>
 			</File>
