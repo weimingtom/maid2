@@ -8,6 +8,6 @@
   
   <NoArchiveFile>.*\.svn</NoArchiveFile>
   
-  <NoComplessFile>.*\.cpp</NoComplessFile>
+  <NoComplessFile>.*\.txt</NoComplessFile>
 </root>
 
