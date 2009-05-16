@@ -6,10 +6,8 @@
   
   <ArchiveFile>archive.*</ArchiveFile>
   
-  <NoArchiveFile>.*\.dat</NoArchiveFile>
+  <NoArchiveFile>.*\.svn</NoArchiveFile>
   
-  <NoComplessFile>.*\.jpeg</NoComplessFile>
-  <NoComplessFile>.*\.jpg</NoComplessFile>
-  <NoComplessFile>.*\.png</NoComplessFile>
+  <NoComplessFile>.*\.cpp</NoComplessFile>
 </root>
 
