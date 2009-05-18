@@ -9,5 +9,6 @@
   <NoArchiveFile>.*\.svn</NoArchiveFile>
   
   <NoComplessFile>.*\.txt</NoComplessFile>
+  <NoComplessFile>.*\.cpp</NoComplessFile>
 </root>
 
