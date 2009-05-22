@@ -733,6 +733,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\win32\fileselectdialog.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\win32\fileselectdialog.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\win32\gameframework.h"
 					>
 				</File>
