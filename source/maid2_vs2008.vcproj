@@ -1154,6 +1154,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphics3drender3.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphics3drenderlocal.h"
 				>
 			</File>
