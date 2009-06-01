@@ -234,6 +234,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auxiliary\rand.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\rand.h"
+				>
+			</File>
+			<File
 				RelativePath=".\auxiliary\streambuffer.cpp"
 				>
 			</File>
