@@ -1174,6 +1174,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphicscommandcontrol.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphicscommandcontrol.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphicscore.h"
 				>
 			</File>
