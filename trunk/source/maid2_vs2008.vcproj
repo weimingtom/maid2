@@ -1150,6 +1150,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphics2drender5.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics2drender6.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphics3drender.h"
 				>
 			</File>
@@ -1167,6 +1175,10 @@
 			</File>
 			<File
 				RelativePath=".\graphics\graphics3drender4.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphics3drender_.cpp"
 				>
 			</File>
 			<File
