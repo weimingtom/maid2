@@ -1178,6 +1178,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\graphics3drender5.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\graphics3drender_.cpp"
 				>
 			</File>
