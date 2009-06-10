@@ -6,7 +6,7 @@
 #include"pcmreader/ipcmreader.h"
 
 #include"core/ibuffer.h"
-#include"../auxiliary/buffer.h"
+#include"../auxiliary/memorybuffer.h"
 
 namespace Maid
 {
@@ -18,7 +18,7 @@ namespace Maid
 			CreatePCMStatic() : Base(CREATE_PCMSTATIC){}
 
       Sound::CREATEBUFFERPARAM Param;
-			SPBUFFER	pData;	//	PCMデータ
+			SPMEMORYBUFFER	pData;	//	PCMデータ
 		};
 
 		class CreatePCMStream : public Base
@@ -28,7 +28,7 @@ namespace Maid
 
       Sound::CREATEBUFFERPARAM Param;
     #pragma COMPILERMSG("TODO:pDecoder が pData を持ったり持たなかったりすればいいかも？")	
-			SPBUFFER    pData;	//	PCMデータ
+			SPMEMORYBUFFER    pData;	//	PCMデータ
       SPPCMREADER	pDecoder;	//	デコーダ
 		};
 

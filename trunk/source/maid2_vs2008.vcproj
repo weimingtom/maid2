@@ -166,14 +166,6 @@
 			Name="auxiliary"
 			>
 			<File
-				RelativePath=".\auxiliary\buffer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\auxiliary\buffer.h"
-				>
-			</File>
-			<File
 				RelativePath=".\auxiliary\cachemanager.h"
 				>
 			</File>
@@ -231,6 +223,14 @@
 			</File>
 			<File
 				RelativePath=".\auxiliary\mathematics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\memorybuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\auxiliary\memorybuffer.h"
 				>
 			</File>
 			<File
