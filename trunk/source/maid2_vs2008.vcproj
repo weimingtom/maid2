@@ -2205,6 +2205,14 @@
 				Name="pcmreader"
 				>
 				<File
+					RelativePath=".\sound\pcmreader\custompcmreader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\sound\pcmreader\custompcmreader.h"
+					>
+				</File>
+				<File
 					RelativePath=".\sound\pcmreader\ipcmreader.h"
 					>
 				</File>
