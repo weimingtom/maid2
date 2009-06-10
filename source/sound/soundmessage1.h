@@ -4,6 +4,7 @@
 #include"soundmessagebase.h"
 #include"isoundobject.h"
 #include"pcmreader/ipcmreader.h"
+#include"pcmreader/custompcmreader.h"
 
 #include"core/ibuffer.h"
 #include"../auxiliary/memorybuffer.h"
@@ -29,7 +30,7 @@ namespace Maid
       Sound::CREATEBUFFERPARAM Param;
     #pragma COMPILERMSG("TODO:pDecoder が pData を持ったり持たなかったりすればいいかも？")	
 			SPMEMORYBUFFER    pData;	//	PCMデータ
-      SPPCMREADER	pDecoder;	//	デコーダ
+      SPCUSTOMPCMREADER	pDecoder;	//	デコーダ
 		};
 
 		class CreateClone : public Base
