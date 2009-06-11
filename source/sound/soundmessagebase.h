@@ -83,6 +83,8 @@ namespace Maid
   {
 	  double	Boot;
 	  double	Jump;
+
+    JUMPPOINT():Boot(-1),Jump(-1){}
   };
 	typedef	std::vector<JUMPPOINT>			SOUNDJUMPPOINTLIST;
 }
