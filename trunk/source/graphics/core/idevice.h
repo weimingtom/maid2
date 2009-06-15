@@ -162,6 +162,7 @@ namespace Maid { namespace Graphics {
     virtual SPDEPTHSTENCIL CreateDepthStencil( const SPRESOURCE& resource, const CREATEDEPTHSTENCILPARAM* param )=0;
     virtual SPMATERIAL     CreateMaterial( const SPRESOURCE& resource, const CREATEMATERIALPARAM* param )=0;
 
+    virtual void GenerateMips( const SPMATERIAL& pMaterial )=0;
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     //! バーテックスシェーダーの作成
