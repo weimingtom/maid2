@@ -1354,6 +1354,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\texture2dmemory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\texture2dmemory.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\transiter.h"
 				>
 			</File>
