@@ -1346,11 +1346,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\texture2dmemory.cpp"
+				RelativePath=".\graphics\texture2ddynamic.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\texture2dmemory.h"
+				RelativePath=".\graphics\texture2ddynamic.h"
 				>
 			</File>
 			<File
