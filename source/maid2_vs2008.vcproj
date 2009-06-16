@@ -1190,11 +1190,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\graphicscommandcontrol.cpp"
+				RelativePath=".\graphics\graphicscommandcontrol.h"
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\graphicscommandcontrol.h"
+				RelativePath=".\graphics\graphicscommandcontrol1.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\graphicscommandcontrol2.cpp"
 				>
 			</File>
 			<File
