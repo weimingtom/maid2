@@ -18,8 +18,9 @@ namespace Maid
   namespace Bitmap
   {
     bool  Check( const std::vector<unt08>& FileImage );
-    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, Surface& dst );
-    FUCTIONRESULT  Save( const Surface& src, std::vector<unt08>& FileImage );
+    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst );
+    FUCTIONRESULT  CheckSave( const SurfaceInstance& src, std::vector<unt08>& FileImage );
+    FUCTIONRESULT  Save( const SurfaceInstance& src, std::vector<unt08>& FileImage );
   };
 }
 

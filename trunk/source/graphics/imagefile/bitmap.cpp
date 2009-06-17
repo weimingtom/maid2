@@ -2,6 +2,7 @@
 
 #include"../../config/win32.h"
 #include"../../auxiliary/debug/warning.h"
+#include"../transiter.h"
 
 
 namespace Maid
@@ -30,7 +31,7 @@ bool  Check( const std::vector<unt08>& FileImage )
     @param	FileImage	[i ]  ファイル名
     @param	dst       [i ]  転送先
  */
-FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, Surface& surface )
+FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
 {
   MAID_ASSERT( !Check(FileImage), "ビットマップではありません" );
 
@@ -106,11 +107,57 @@ FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, Surface& surface )
   return FUCTIONRESULT_OK;
 }
 
+
+FUCTIONRESULT  CheckSave( const SurfaceInstance& src, std::vector<unt08>& FileImage )
+{
+
+  PIXELFORMAT fmt = PIXELFORMAT_NONE;
+
+  switch( src.GetPixelFormat() )
+  {
+  case PIXELFORMAT_R05G06B05I:
+  case PIXELFORMAT_X01R05G05B05I:
+  case PIXELFORMAT_A01R05G05B05I:
+  case PIXELFORMAT_A01B05G05R05I:
+  case PIXELFORMAT_A04R04G04B04I:
+//  case PIXELFORMAT_R08G08B08I:
+  case PIXELFORMAT_B08G08R08I:
+  case PIXELFORMAT_A08R08G08B08I:
+  case PIXELFORMAT_X08R08G08B08I:
+  case PIXELFORMAT_A08B08G08R08I:
+  case PIXELFORMAT_A02R10G10B10I:
+  case PIXELFORMAT_A02B10G10R10I:
+  case PIXELFORMAT_A16B16G16R16I:
+  case PIXELFORMAT_A16B16G16R16F:
+  case PIXELFORMAT_A32B32G32R32F:
+    {
+      fmt = PIXELFORMAT_R08G08B08I;
+    }break;
+  }
+
+  if( fmt!=PIXELFORMAT_NONE )
+  {
+    SurfaceInstance tmp;
+
+    tmp.Create( src.GetSize(), fmt );
+
+    Transiter::Copy( src, tmp );
+
+    return Save( tmp, FileImage );
+  }
+
+  return Save( src, FileImage );
+}
+
+
+
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! 読み込んであるサーフェスをビットマップとして保存する
 /*!
+    フォーマットはビットマップの仕様を満たしていると仮定します
+    満たしているかわからないなら CheckSave() を使ってください
  */
-FUCTIONRESULT Save( const Surface& src, std::vector<unt08>& FileImage )
+FUCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
 {
 	const SIZE2DI ImageSize = src.GetSize();
 	const PIXELFORMAT fmt = src.GetPixelFormat();

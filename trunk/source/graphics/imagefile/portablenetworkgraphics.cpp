@@ -50,7 +50,7 @@ bool  Check( const std::vector<unt08>& FileImage )
 	@param	FileImage	[i ]	ファイルイメージ
 	@param	dst 			[ o]	ピクセルデータ
  */
-FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, Surface& dst )
+FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst )
 {
 	png_struct*	pStruct = NULL;
 	png_info*	pInfo   = NULL;

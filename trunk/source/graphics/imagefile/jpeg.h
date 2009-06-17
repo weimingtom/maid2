@@ -18,8 +18,8 @@ namespace Maid
   namespace Jpeg
   {
     bool  Check( const std::vector<unt08>& FileImage );
-    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, Surface& dst );
-    FUCTIONRESULT  Save( const Surface& src, std::vector<unt08>& FileImage );
+    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst );
+    FUCTIONRESULT  Save( const SurfaceInstance& src, std::vector<unt08>& FileImage );
   };
 }
 
