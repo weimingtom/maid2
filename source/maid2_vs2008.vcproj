@@ -2130,6 +2130,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sound\soundobjectpcmrealtime.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sound\soundobjectpcmrealtime.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sound\soundobjectpcmstatic.cpp"
 				>
 			</File>
