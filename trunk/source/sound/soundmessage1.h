@@ -5,6 +5,7 @@
 #include"isoundobject.h"
 #include"pcmreader/ipcmreader.h"
 #include"pcmreader/custompcmreader.h"
+#include"pcmreader/pcmbufferlist.h"
 
 #include"core/ibuffer.h"
 #include"../auxiliary/memorybuffer.h"
@@ -31,6 +32,15 @@ namespace Maid
     #pragma COMPILERMSG("TODO:pDecoder が pData を持ったり持たなかったりすればいいかも？")	
 			SPMEMORYBUFFER    pData;	//	PCMデータ
       SPCUSTOMPCMREADER	pDecoder;	//	デコーダ
+		};
+
+		class CreatePCMRealTime : public Base
+		{
+		public:
+			CreatePCMRealTime() : Base(CREATE_PCMREALTIME){}
+
+      Sound::CREATEBUFFERPARAM Param;
+			SPPCMBUFFERLIST	pData;	//	PCMデータ
 		};
 
 		class CreateClone : public Base
