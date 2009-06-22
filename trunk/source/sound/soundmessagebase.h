@@ -24,6 +24,7 @@ namespace Maid
       ,m_IsPlay(false)
       ,m_Position(0)
       ,m_MessageCount(0)
+      ,m_Volume(0)
     {}
 
     unt  GetID()  const { return m_ID; }
@@ -72,9 +73,8 @@ namespace Maid
 
 			const MESSAGE	Message;
       SPSOUNDOBJECTINFO pInfo;
-    private:
-			int		ID;
-		};
+
+    };
 	}
 
 	typedef	boost::shared_ptr<SoundMessage::Base>	SPSOUNDMESSAGE;
