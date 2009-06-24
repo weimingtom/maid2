@@ -1,1 +1,67 @@
-﻿椣湦敤⁦慭摩弲牧灡楨獣损汯牯损汯牯慟㄰ぢ朵㔰ひ椵桟਍搣晥湩⁥慭摩弲牧灡楨獣损汯牯损汯牯慟㄰ぢ朵㔰ひ椵桟਍਍⨯ഡ †䀠楦敬਍††所楲晥舉荐荳荎荚芋苰芠苧苭获荎莉൘尊⁮††††䄠㄰あ䜵㔰げ‵湩整敧⁲璃䢃宁綃抃枃嘠牥മ ⼪਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮潣普杩琯灹摥晥栮ഢഊ⌊湩汣摵≥楢捴湯敶瑲畦据楴湯栮ഢഊ渊浡獥慰散䴠楡൤笊਍⼉K਍†††捀慬獳䌉䱏剏䅟㄰あ䜵㔰げ䤵挠汯牯慟㄰ぢ朵㔰ひ椵栮਍ ⼪਍†汣獡⁳佃佌归ぁ䈱㔰ぇ刵㔰൉ऊൻऊ異汢捩ഺऊ䌉䱏剏䅟㄰あ䜵㔰げ䤵⤨絻⼉ℯ़劃鎃境枃覃亃広਍उ佃佌归ぁ䈱㔰ぇ刵㔰⡉甠瑮㘱愠‬湵ㅴ‶Ɫ甠瑮㘱朠‬湵ㅴ‶⁲笩匠瑥剁䉇 ⱡ爠‬Ⱨ戠⤠※ॽ⼯㰡茉荒莓荘荧莉荎൞ऊ琉浥汰瑡⁥挼慬獳䌠䱏剏ാऊ䌉䱏剏䅟㄰あ䜵㔰げ䤵 潣獮⁴佃佌♒䌠汯⤠⁻敓䅴䝒⡂䌠汯䜮瑥⡁Ⱙ䌠汯䜮瑥⡒Ⱙ䌠汯䜮瑥⡇Ⱙ䌠汯䜮瑥⡂ 㬩素⼉ℯ़劃鎃境枃覃亃広਍਍उ湵ㅴ‶敇䅴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㄰瑉ㅯ䤶⠨彭䉁則〦㡸〰⤰㸾㔱㬩紉⼉ℯ़䆃讃璃䂃겐ꪕ첂뺓਍उ湵ㅴ‶敇剴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㔰瑉ㅯ䤶⠨彭䉁則〦へ㄰⥆㰼㌠㬩紉⼉ℯ़풐겐ꪕ첂뺓਍उ湵ㅴ‶敇䝴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㔰瑉ㅯ䤶⠨彭䉁則〦へ䔳⤰㸾㔠㬩紉⼉ℯ़캗겐ꪕ첂뺓਍उ湵ㅴ‶敇䉴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㔰瑉ㅯ䤶⠨彭䉁則〦㝸ぃ⤰㸾〱㬩紉⼉ℯ़슐겐ꪕ첂뺓਍਍उ灯牥瑡牯甠瑮㘱⤨挠湯瑳笠爠瑥牵⁮彭䉁則※ॽ⼯㰡蠉諪閇諏භഊऊ瘉楯⁤敓䅴 湵ㅴ‶⁡ऩ⁻彭䉁則㴠⠠彭䉁則縦砰〸〰簩䈨呉佃噎剅ㅔ䤶潴㄰⡉⥡㰼㔱㬩紉⼉ℯ़䆃讃璃䂃겐ꪕ첂�਍उ潶摩匠瑥⡒甠瑮㘱爠⤠笉洠䅟䝂⁒‽洨䅟䝂♒まへ㄰⥆⡼䥂䍔乏䕖呒㘱瑉は䤵爨㰩‼⤰ऻॽ⼯㰡选郔閬芪郌鋝෨ऊ瘉楯⁤敓䝴 湵ㅴ‶⁧ऩ⁻彭䉁則㴠⠠彭䉁則縦砰㌰ぅ簩䈨呉佃噎剅ㅔ䤶潴㔰⡉⥧㰼㔠㬩紉⼉ℯ़캗겐ꪕ첂�਍उ潶摩匠瑥⡂甠瑮㘱戠⤠笉洠䅟䝂⁒‽洨䅟䝂♒ま㝸ぃ⤰⡼䥂䍔乏䕖呒㘱瑉は䤵戨㰩ㄼ⤰ऻॽ⼯㰡选郂閬芪郌鋝෨ഊऊ瘉楯⁤敓䅴䝒⡂甠瑮㘱愠‬湵ㅴ‶Ⱳ甠瑮㘱朠‬湵ㅴ‶⁢ऩ⼯㰡舉芢苁芫郉鋝෨ऊ笉਍उ匉瑥⡁愠⤠഻ऊउ敓剴 ⁲㬩਍उ匉瑥⡇朠⤠഻ऊउ敓䉴 ⁢㬩਍उൽഊऊ⼉ℯ蠉苡莤荳荎荚莋荴腈荛荽荢艧苆菌荒腳൛ऊ琉浥汰瑡⁥挼慬獳倠塉䱅ാऊ䌉䱏剏䅟㄰あ䜵㔰げ䤵…灯牥瑡牯㴠⠠潣獮⁴䥐䕘⁌猦捲ഩऊ笉਍उ匉瑥剁䉇猨捲䜮瑥⡁Ⱙ猠捲䜮瑥⡒Ⱙ牳⹣敇䝴⤨猬捲䜮瑥⡂⤩഻ऊउ敲畴湲⨠桴獩഻ऊ紉਍਍उ⼯ड꾓뚂玃亃媃讃璃䢃宁綃抃枃욂첂劃玃宁਍उ佃佌归ぁ䈱㔰ぇ刵㔰♉漠数慲潴⁲‽挨湯瑳䌠䱏剏䅟㄰あ䜵㔰げ䤵…牳⥣਍उൻऊउ彭䉁則㴠猠捲洮䅟䝂㭒਍उ爉瑥牵⁮琪楨㭳਍उൽഊऊ牰癩瑡㩥਍उ湵ㅴ‶彭䉁則഻ऊ㭽਍ൽഊ⌊湥楤൦
+﻿#ifndef maid2_graphics_color_color_a01b05g05r05i_h
+#define maid2_graphics_color_color_a01b05g05r05i_h
+
+/*!
+    @file
+    @brief	１ピクセルをあらわすクラス
+\n          A01B05G05R05 integer フォーマット Ver.
+ */
+#include"../../config/define.h"
+#include"../../config/typedef.h"
+
+#include"bitconvertfunction.h"
+
+namespace Maid
+{
+	/*!
+      @class	COLOR_A01B05G05R05I color_a01b05g05r05i.h
+	 */
+  class COLOR_A01B05G05R05I
+	{
+	public:
+		COLOR_A01B05G05R05I(){}	//!<	コンストラクタ
+		COLOR_A01B05G05R05I( unt16 a, unt16 b, unt16 g, unt16 r ){ SetARGB( a, r, g, b ); }	//!<	コンストラクタ
+		template <class COLOR>
+		COLOR_A01B05G05R05I( const COLOR& Col ){ SetARGB( Col.GetA(), Col.GetR(), Col.GetG(), Col.GetB() ); }	//!<	コンストラクタ
+
+		unt16 GetA() const	{ return BITCONVERT01Ito16I((m_ABGR&0x8000)>>15);	}	//!<	アルファ成分の取得
+		unt16 GetR() const	{ return BITCONVERT05Ito16I((m_ABGR&0x001F)<< 3);	}	//!<	赤成分の取得
+		unt16 GetG() const	{ return BITCONVERT05Ito16I((m_ABGR&0x03E0)>> 5);	}	//!<	緑成分の取得
+		unt16 GetB() const	{ return BITCONVERT05Ito16I((m_ABGR&0x7C00)>>10);	}	//!<	青成分の取得
+
+		operator unt16() const { return m_ABGR; }	//!<	一括変換
+
+		void SetA( unt16 a )	{ m_ABGR = (m_ABGR&~0x8000)|(BITCONVERT16Ito01I(a)<<15);	}	//!<	アルファ成分の設定
+		void SetR( unt16 r )	{ m_ABGR = (m_ABGR&~0x001F)|(BITCONVERT16Ito05I(r)<< 0);	}	//!<	赤成分の設定
+		void SetG( unt16 g )	{ m_ABGR = (m_ABGR&~0x03E0)|(BITCONVERT16Ito05I(g)<< 5);	}	//!<	緑成分の設定
+		void SetB( unt16 b )	{ m_ABGR = (m_ABGR&~0x7C00)|(BITCONVERT16Ito05I(b)<<10);	}	//!<	青成分の設定
+
+		void SetARGB( unt16 a, unt16 r, unt16 g, unt16 b )	//!<	いっきに設定
+		{
+			SetA( a );
+			SetR( r );
+			SetG( g );
+			SetB( b );
+		}
+
+		//!	違うピクセルフォーマットとのコピー
+		template <class PIXEL>
+		COLOR_A01B05G05R05I& operator = (const PIXEL &src)
+		{
+			SetARGB(src.GetA(), src.GetR(),src.GetG(),src.GetB());
+			return *this;
+		}
+
+		//!	同じピクセルフォーマットとのコピー
+		COLOR_A01B05G05R05I& operator = (const COLOR_A01B05G05R05I& src)
+		{
+			m_ABGR = src.m_ABGR;
+			return *this;
+		}
+
+	private:
+		unt16 m_ABGR;
+	};
+}
+
+#endif

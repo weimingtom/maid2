@@ -1,1 +1,221 @@
-﻿椣据畬敤樢数⹧≨਍਍硥整湲∠≃笠਍搣晥湩⁥䵘彄ൈ⌊湩汣摵≥⸮ⸯ⼮浩潰瑲椯杪樯数汧扩栮ഢ紊਍਍椣据畬敤⸢⼮⸮愯硵汩慩祲搯扥杵眯牡楮杮栮ഢഊഊഊഊ⼊ 枎ꊂﮕ춂䂁瑨灴⼺眯睷献畹楨畴漮杲漯桴牥樯数⽧灪来栮浴腬艀軰轑ෆഊ渊浡獥慰散䴠楡൤笊਍†慮敭灳捡⁥灊来਍†ൻഊ⼊⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍⼯‡瞎떂붂暃宁広ꪂ犃抃枃綃抃皃ꦂ늒힂਍⨯ഡ †䀠慰慲७楆敬浉条॥楛崠†暃宁広਍਍††牀瑥牵⁮犃抃枃綃抃皃좂牴敵਍††††††ꒂ좂慦獬൥⨊യ戊潯⁬䌠敨正 潣獮⁴瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条⁥ഩ笊਍†晩 楆敬浉条⹥楳敺⤨㈼⤠笠爠瑥牵⁮慦獬㭥素਍਍爉瑥牵⁮楆敬浉条孥崰㴽砰䙆☠…䘠汩䥥慭敧ㅛ㵝〽䑸㬸਍ൽഊഊഊഊऊ⼯氉扩灪来舠菰莁莂芊芩軧艧芦苩苦芤苉芷菩莉荢൰ഊഊ⼊‪膃芃誃岃宁境ꦂ첂偊䝅垓䪊炗綃沃宁垃莃⨠യ琊灹摥晥猠牴捵⁴ൻऊ瑳畲瑣樠数彧潳牵散浟牧瀠扵ऻ⨯瀠扵楬⁣楦汥獤⨠യഊऊ佊呃呅⨠戠晵敦㭲਍甉獮杩敮⁤潬杮戠晵敦彲敬杮桴഻紊洠浥牯役潳牵散浟牧഻琊灹摥晥洠浥牯役潳牵散浟牧⨠敭潭祲獟捲灟牴഻ഊഊ䴊呅佈䑄䙅瘨楯⥤洠浥牯役湩瑩獟畯捲⁥樨摟捥浯牰獥彳瑰⁲楣普⥯਍ൻ紊਍਍਍䕍䡔䑏䕄⡆潢汯慥⥮洠浥牯役楦汬楟灮瑵扟晵敦⁲樨摟捥浯牰獥彳瑰⁲楣普⥯਍ൻऊ敭潭祲獟捲灟牴猠捲㴠⠠敭潭祲獟捲灟牴 楣普ⵯ猾捲഻ഊऊ晩 牳ⵣ瀾扵戮瑹獥楟彮畢晦牥㴼‰ഩऊൻऊ猉捲㸭畢晦牥せ⁝‽䨨䍏䕔⥔〠䙸㭆਍उ牳ⵣ戾晵敦孲崱㴠⠠佊呃呅 偊䝅䕟䥏഻ऊ猉捲㸭異⹢敮瑸楟灮瑵扟瑹⁥‽牳ⵣ戾晵敦㭲਍उ牳ⵣ瀾扵戮瑹獥楟彮畢晦牥㴠㈠഻ऊൽഊऊ敲畴湲吠啒㭅਍ൽഊഊ䴊呅佈䑄䙅瘨楯⥤洠浥牯役歳灩楟灮瑵摟瑡⁡樨摟捥浯牰獥彳瑰⁲楣普Ɐ氠湯⁧畮彭祢整⥳਍ൻऊ敭潭祲獟捲灟牴猠捲㴠⠠敭潭祲獟捲灟牴 楣普ⵯ猾捲഻ഊऊ晩⠠畮彭祢整⁳‾⤰笠਍उ牳ⵣ瀾扵渮硥彴湩異彴祢整⬠‽猨穩彥⥴渠浵扟瑹獥഻ഊऊ椉⡦猠捲㸭異⹢祢整彳湩扟晵敦⁲‼猨穩彥⥴渠浵扟瑹獥⤠਍उൻऊउ牳ⵣ瀾扵戮瑹獥楟彮畢晦牥㴠〠഻ऊ紉汥敳਍उൻऊउ牳ⵣ瀾扵戮瑹獥楟彮畢晦牥ⴠ‽猨穩彥⥴渠浵扟瑹獥഻ऊ紉਍紉਍ൽഊ䴊呅佈䑄䙅瘨楯⥤洠浥牯役整浲獟畯捲⁥樨摟捥浯牰獥彳瑰⁲楣普⥯਍ൻ紊਍਍䱇䉏䱁瘨楯⥤਍灪来浟浥牯役牳⁣樨摟捥浯牰獥彳瑰⁲楣普Ɐ挠湯瑳瘠楯⩤搠瑡ⱡ甠獮杩敮⁤潬杮氠湥ഩ笊਍洉浥牯役牳彣瑰⁲牳㭣਍਍椉⁦挨湩潦㸭牳⁣㴽丠䱕⥌笠⼉‪楦獲⁴楴敭映牯琠楨⁳偊䝅漠橢捥㽴⨠യऊ按湩潦㸭牳⁣‽猨牴捵⁴灪来獟畯捲彥杭⁲⤪਍उ⨨楣普ⵯ派浥㸭污潬彣浳污⥬⠠樨损浯潭彮瑰⥲挠湩潦‬偊住彌䕐䵒乁久ⱔ਍उ†楳敺景洨浥牯役潳牵散浟牧⤩഻ऊ猉捲㴠⠠敭潭祲獟捲灟牴 楣普ⵯ猾捲഻ऊ猉捲㸭畢晦牥㴠⠠佊呃呅⨠ഩऊ⠉挪湩潦㸭敭⵭愾汬捯獟慭汬 ⠨彪潣浭湯灟牴 楣普Ɐ䨠佐䱏偟剅䅍䕎呎ബऊ 氠湥⨠猠穩潥⡦佊呃呅⤩഻ऊൽഊഊऊ牳⁣‽洨浥牯役牳彣瑰⥲挠湩潦㸭牳㭣਍਍猉捲㸭異⹢湩瑩獟畯捲⁥‽敭潭祲楟楮彴潳牵散഻ऊ牳ⵣ瀾扵昮汩彬湩異彴畢晦牥㴠洠浥牯役楦汬楟灮瑵扟晵敦㭲਍猉捲㸭異⹢歳灩楟灮瑵摟瑡⁡‽敭潭祲獟楫彰湩異彴慤慴഻ऊ牳ⵣ瀾扵爮獥湹彣潴牟獥慴瑲㴠樠数彧敲祳据瑟彯敲瑳牡㭴⼠‪獵⁥敤慦汵⁴敭桴摯⨠യऊ牳ⵣ瀾扵琮牥彭潳牵散㴠洠浥牯役整浲獟畯捲㭥਍਍猉捲㸭異⹢祢整彳湩扟晵敦⁲‽敬㭮਍猉捲㸭異⹢敮瑸楟灮瑵扟瑹⁥‽䨨䍏䕔⩔搩瑡㭡਍ൽഊഊ猊牴捵⁴祭敟牲牯浟牧笠਍†瑳畲瑣樠数彧牥潲彲杭⁲異㭢⼉‪瀢扵楬≣映敩摬⁳⼪਍਍㭽਍਍祴数敤⁦瑳畲瑣洠役牥潲彲杭⁲‪祭敟牲牯灟牴഻ഊ䴊呅佈䑄䙅瘨楯⥤਍祭敟牲牯敟楸⁴樨损浯潭彮瑰⁲楣普⥯਍ൻഊ紊਍਍਍਍਍਍਍਍਍਍਍਍਍਍਍਍⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ⼊ℯ茠荲荢荧荽荢艶闰諏芷芷෩⼊K਍††灀牡浡䘉汩䥥慭敧嬉⁩⁝茠荴荀荃隋඼ †䀠慰慲७獤⁴†††楛崠†嶓鞑਍⨠യ䘊䍕䥔乏䕒啓呌†䰠慯⡤挠湯瑳猠摴㨺敶瑣牯甼瑮㠰☾䘠汩䥥慭敧‬畓晲捡䥥獮慴据♥猠牵慦散⤠਍ൻഊऊ祭敟牲牯浟牧樠牥㭲਍樉数彧敤潣灭敲獳獟牴捵⁴楣普㭯਍਍按湩潦攮牲㴠樠数彧瑳彤牥潲⡲樦牥⹲異⥢഻ऊ敪牲瀮扵攮牲牯敟楸⁴‽祭敟牲牯敟楸㭴਍਍樉数彧牣慥整摟捥浯牰獥⡳挦湩潦㬩਍਍樉数彧敭潭祲獟捲☨楣普Ɐ☠䘨汩䥥慭敧せ⥝‬椨瑮䘩汩䥥慭敧献穩⡥ 㬩਍਍樉数彧敲摡桟慥敤⡲挦湩潦‬剔䕕㬩਍樉数彧瑳牡彴敤潣灭敲獳☨楣普⥯഻ഊऊ潣獮⁴湩⁴潲彷瑳楲敤㴠挠湩潦漮瑵異彴楷瑤⁨‪楣普⹯畯灴瑵损浯潰敮瑮㭳਍਍按湯瑳匠婉㉅䥄猠穩⡥楣普⹯畯灴瑵睟摩桴‬楣普⹯畯灴瑵桟楥桧⥴഻ऊ䥐䕘䙌剏䅍⁔浦⁴‽䥐䕘䙌剏䅍彔あ䜸㠰げ䤸഻ഊऊ晩 楣普⹯畯彴潣潬彲潣灭湯湥獴㴽″ഩऊॻ⼯茉荏膌荛荘腐荛芋苈⃧楣普⹯畯彴潣潬彲潣灭湯湥獴㴽‱਍उ⼯舉芻苌苆芫苉⃍楣普⹯潣潬浲灡舠郠鋝苨芳苪෩ऊ昉瑭㴠倠塉䱅但䵒呁䉟㠰ぇ券㠰㭉਍紉汥敳਍笉਍उ䅍䑉䅟卓剅⡔琠畲ⱥ∠ꊖ캑麉•㬩਍紉਍ഉऊ畳晲捡⹥牃慥整 楳敺‬浦⁴㬩਍਍甉瑮㠰‪印牵慦散㴠⠠湵ぴ⨸猩牵慦散䜮瑥汐湡健剔⤨഻ഊऊൻऊ猉摴㨺敶瑣牯䨼䅓偍䕌ा畢晦牥⠨潲彷瑳楲敤ㄫ⤵⠦ㅾ⤵㬩਍਍उ半䵁䱐⩅瀠畂晦㴠☠畢晦牥せ㭝਍਍उ湵ぴ⨸瀠獄⁴‽印牵慦散഻ഊऊ眉楨敬⠠楣普⹯畯灴瑵獟慣汮湩⁥‼楣普⹯畯灴瑵桟楥桧⥴笠਍उ樉数彧敲摡獟慣汮湩獥☨楣普Ɐ☠䉰晵ⱦㄠ㬩਍਍उ洉浥灣⡹瀠獄ⱴ瀠畂晦‬潲彷瑳楲敤⤠഻ऊउ䑰瑳⬠‽潲彷瑳楲敤഻ऊ紉਍紉਍਍樉数彧楦楮桳摟捥浯牰獥⡳挦湩潦㬩਍樉数彧敤瑳潲役敤潣灭敲獳☨楣普⥯഻ഊ 爠瑥牵⁮商呃佉剎卅䱕彔䭏഻紊਍਍⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ⼊ℯ錠苇距芞英苅芠菩腔荛荴荆艘菰荲荢荧荽荢艶苆芵闄釛芶芷෩⼊K਍⨠യ䘊䍕䥔乏䕒啓呌匠癡⡥挠湯瑳匠牵慦散湉瑳湡散…牳Ᵽ猠摴㨺敶瑣牯甼瑮㠰☾䘠汩䥥慭敧⤠਍ൻ 䴠䥁彄十䕓呒 牴敵‬阢躢釀⊕⤠഻ 爠瑥牵⁮商呃佉剎卅䱕彔䭏഻紊਍਍†ൽ紊
+﻿#include"jpeg.h"
+
+extern "C" {
+#define XMD_H
+#include"../../import/ijg/jpeglib.h"
+}
+
+#include"../../auxiliary/debug/warning.h"
+
+
+
+
+// 使い方は　http://www.syuhitu.org/other/jpeg/jpeg.html　を参照
+
+namespace Maid
+{
+  namespace Jpeg
+  {
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 指定したデータがビットマップか調べる
+/*!
+    @param	FileImage	[i ]  データ
+
+    @return ビットマップならtrue
+            違うならfalse
+*/
+bool  Check( const std::vector<unt08>& FileImage )
+{
+  if( FileImage.size()<2 ) { return false; }
+
+	return FileImage[0]==0xFF &&  FileImage[1]==0xD8;
+}
+
+
+
+
+	//	libjpeg をメモリから使えるようにするラッパ
+
+
+/* メモリソースからのJPEG展開用マネージャ */
+typedef struct {
+	struct jpeg_source_mgr pub;	/* public fields */
+
+	JOCTET * buffer;
+	unsigned long buffer_length;
+} memory_source_mgr;
+typedef memory_source_mgr *memory_src_ptr;
+
+
+METHODDEF(void) memory_init_source (j_decompress_ptr cinfo)
+{
+}
+
+
+METHODDEF(boolean) memory_fill_input_buffer (j_decompress_ptr cinfo)
+{
+	memory_src_ptr src = (memory_src_ptr) cinfo->src;
+
+	if( src->pub.bytes_in_buffer<=0 )
+	{
+		src->buffer[0] = (JOCTET) 0xFF;
+		src->buffer[1] = (JOCTET) JPEG_EOI;
+		src->pub.next_input_byte = src->buffer;
+		src->pub.bytes_in_buffer = 2;
+	}
+
+	return TRUE;
+}
+
+
+METHODDEF(void) memory_skip_input_data (j_decompress_ptr cinfo, long num_bytes)
+{
+	memory_src_ptr src = (memory_src_ptr) cinfo->src;
+
+	if (num_bytes > 0) {
+		src->pub.next_input_byte += (size_t) num_bytes;
+
+		if( src->pub.bytes_in_buffer < (size_t) num_bytes )
+		{
+			src->pub.bytes_in_buffer = 0;
+		}else
+		{
+			src->pub.bytes_in_buffer -= (size_t) num_bytes;
+		}
+	}
+}
+
+METHODDEF(void) memory_term_source (j_decompress_ptr cinfo)
+{
+}
+
+GLOBAL(void)
+jpeg_memory_src (j_decompress_ptr cinfo, const void* data, unsigned long len)
+{
+	memory_src_ptr src;
+
+	if (cinfo->src == NULL) {	/* first time for this JPEG object? */
+		cinfo->src = (struct jpeg_source_mgr *)
+		(*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_PERMANENT,
+		  sizeof(memory_source_mgr));
+		src = (memory_src_ptr) cinfo->src;
+		src->buffer = (JOCTET *)
+		(*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_PERMANENT,
+		  len * sizeof(JOCTET));
+	}
+
+
+	src = (memory_src_ptr) cinfo->src;
+
+	src->pub.init_source = memory_init_source;
+	src->pub.fill_input_buffer = memory_fill_input_buffer;
+	src->pub.skip_input_data = memory_skip_input_data;
+	src->pub.resync_to_restart = jpeg_resync_to_restart; /* use default method */
+	src->pub.term_source = memory_term_source;
+
+	src->pub.bytes_in_buffer = len;
+	src->pub.next_input_byte = (JOCTET*)data;
+}
+
+
+struct my_error_mgr {
+  struct jpeg_error_mgr pub;	/* "public" fields */
+
+};
+
+typedef struct my_error_mgr * my_error_ptr;
+
+METHODDEF(void)
+my_error_exit (j_common_ptr cinfo)
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! ビットマップを変換する
+/*!
+    @param	FileImage	[i ]  ファイル名
+    @param	dst       [i ]  転送先
+ */
+FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
+{
+
+	my_error_mgr jerr;
+	jpeg_decompress_struct cinfo;
+
+	cinfo.err = jpeg_std_error(&jerr.pub);
+	jerr.pub.error_exit = my_error_exit;
+
+	jpeg_create_decompress(&cinfo);
+
+	jpeg_memory_src(&cinfo, &(FileImage[0]), (int)FileImage.size() );
+
+	jpeg_read_header(&cinfo, TRUE);
+	jpeg_start_decompress(&cinfo);
+
+	const int row_stride = cinfo.output_width * cinfo.output_components;
+
+	const SIZE2DI size(cinfo.output_width, cinfo.output_height);
+	PIXELFORMAT fmt = PIXELFORMAT_B08G08R08I;
+
+	if( cinfo.out_color_components==3 )
+	{	//	グレースケールなら cinfo.out_color_components==1 
+		//	そのときには cinfo.colormap も設定される
+		fmt = PIXELFORMAT_B08G08R08I;
+	}else
+	{
+		MAID_ASSERT( true, "未対応" );
+	}
+	
+	surface.Create( size, fmt );
+
+	unt08* pSurface = (unt08*)surface.GetPlanePTR();
+
+	{
+		std::vector<JSAMPLE>	buffer((row_stride+15)&(~15));
+
+		JSAMPLE* pBuff = &buffer[0];
+
+		unt08* pDst = pSurface;
+
+		while (cinfo.output_scanline < cinfo.output_height) {
+			jpeg_read_scanlines(&cinfo, &pBuff, 1);
+
+			memcpy( pDst, pBuff, row_stride );
+			pDst += row_stride;
+		}
+	}
+
+	jpeg_finish_decompress(&cinfo);
+	jpeg_destroy_decompress(&cinfo);
+
+  return FUCTIONRESULT_OK;
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 読み込んであるサーフェスをビットマップとして保存する
+/*!
+ */
+FUCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
+{
+  MAID_ASSERT( true, "未実装" );
+  return FUCTIONRESULT_OK;
+}
+
+  }
+}

@@ -1,1 +1,129 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥䌉䵏霠荰荘腽荛荧荼荃莓൞ ⼪਍਍椣湦敤⁦慭摩弲牦浡睥牯彫楷㍮弲潣彭瑰彲൨⌊敤楦敮洠楡㉤晟慲敭潷歲睟湩㈳损浯灟牴桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹敤畢⽧獡敳瑲栮ഢ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹硥散瑰潩⹮≨਍椣据畬敤漼橢慢敳栮ാഊ渊浡獥慰散䴠楡൤笊ഠऊ⨯ഡ ††䀠牢敩०佃⁍炗境綃宁枃粃䎃鎃広਍†湜उ踉轑苆芪苈芭苈苁芽苆芫⃉敒敬獡⡥ 뎂�랂਍ ⼪਍†整灭慬整㰠汣獡⁳潃佭橢捥㹴਍†汣獡⁳潣彭瑰൲ 笠਍†異汢捩ഺ †挠浯灟牴⤨㨠洠灟湉整晲捡⡥啎䱌 絻उउउउ⼯㰡茉荒莓荘荧莉荎艞芻苌൐ †攠灸楬楣⁴潣彭瑰⡲䌠浯扏敪瑣‪䥰瑮牥慦散⤠㨠洠灟湉整晲捡⡥䥰瑮牥慦散笩ॽ⼯㰡茉荒莓荘荧莉荎艞芻苌൑ †挠浯灟牴挨湯瑳挠浯灟牴䌼浯扏敪瑣☾瀠扏敪瑣⤠उउउ⼯㰡茉荒莓荘荧莉荎艞芻苌൒ †笠਍†††彭䥰瑮牥慦散㴠瀠扏敪瑣洮灟湉整晲捡㭥਍†††晩 䤡乳汵⡬ ഩ ††笠਍ ††洠灟湉整晲捡ⵥ䄾摤敒⡦㬩਍†††ൽ †素਍਍††捾浯灟牴⤨⼉ℯ़暃境枃覃亃広਍††ൻ ††爠獥瑥⤨഻ †素਍਍††⼯‡놂첂亃覃境첂規慠뮉਍††⨯ഡ †††䀠慰慲७䥰瑮牥慦散嬉⁩ढ़嚐떂궂잊鶗랂抂溂沂榁暃璃䢃讃枃얂涂璂殂殂檁਍††⨠യ †瘠楯⁤敲敳⡴䌠浯扏敪瑣‪䥰瑮牥慦散丽䱕⁌ऩ⼯㰡茉荦荘荧莉荎൞ †笠਍†††晩 彭䥰瑮牥慦散㴽䥰瑮牥慦散⤠笠爠瑥牵⁮※ൽഊ ††椠⡦℠獉畎汬⤨⤠਍†††ൻऊ†††彭䥰瑮牥慦散㸭敒敬獡⡥㬩਍†††ൽ ††洠灟湉整晲捡⁥‽䥰瑮牥慦散഻ †素਍਍††⼯‡劃玃宁਍††⨯ഡ †††䀠慰慲७敎䍷浯嬉⁩ढ़ꒋ䲗랂抂溂沂਍††⨠യ †挠浯灟牴䌼浯扏敪瑣☾漠数慲潴㵲 潣彭瑰㱲潃佭橢捥㹴挠湯瑳☠丠睥潃⁭ഩ †笠਍†††晩 彭䥰瑮牥慦散㴽敎䍷浯朮瑥⤨⤠笠爠瑥牵⁮琪楨㭳素਍†††敲敳⡴㬩਍†††彭䥰瑮牥慦散㴠丠睥潃⹭敧⡴㬩਍†††彭䥰瑮牥慦散㸭摁剤晥⤨഻ ††爠瑥牵⁮琪楨㭳਍††ൽഊ †戠潯⁬獉畎汬⤨挠湯瑳笠爠瑥牵⁮彭䥰瑮牥慦散㴽啎䱌※ॽ⼯㰡褉芽諠韇芝芵苄芢苈芢膩ൈഊ †䌠浯扏敪瑣‪敧⡴ 潣獮⁴笉爠瑥牵⁮彭䥰瑮牥慦散ऻॽ⼯㰡舉艢艮蹬鏦඾ †䌠浯扏敪瑣‪灯牥瑡牯㸭⤨挠湯瑳⼠ℯ़�鶎떂쒂ꊂ抂溂沂ꞓ�䦓즂떈ꒂ਍††ൻ ††䴠䥁彄十䕓呒 敧⡴㴩丽䱕ⱌ∠�뺂�뎂쒂ꊂ�릂•㬩਍†††敲畴湲朠瑥⤨※ഠ †素उ਍਍††⼯‡佃荍草荵荗荆荎艧跌郬ඬ †⼠K਍††††灀牡浡†汃獡䥳⁄†††楛崠䌉䍯敲瑡䥥獮慴据⡥ 첂瞃讃皃冎욏਍††††灀牡浡瀉湕湫睯⁮††嬠⁩ढ़潃牃慥整湉瑳湡散⤨舠菌荷莋艶軰轑ෆ †††䀠慰慲७汃獡䍳湯整瑸†楛崠䌉䍯敲瑡䥥獮慴据⡥ 첂瞃讃皃冎욏਍††††灀牡浡爉楩⁤††††嬠⁩ढ़潃牃慥整湉瑳湡散⤨舠菌荷莋艶軰轑ෆഊ †††䀠硥散瑰潩⁮硅散瑰潩⁮佃荍草荵荗荆荎艧跌郬芬軉钸艳芵辽跪ඇ ††⼪਍††潶摩䌠䍯敲瑡䥥獮慴据⡥删䙅䱃䥓⁄汃獡䥳ⱄ䰠啐䭎低乗瀠湕湫睯Ɱ䐠佗䑒䌠慬獳潃瑮硥ⱴ删䙅䥉⁄楲摩⤠਍††ൻ ††爠獥瑥⤨഻ ††挠湯瑳䠠䕒啓呌爠瑥㴠㨠䌺䍯敲瑡䥥獮慴据⡥䌠慬獳䑉‬啰歮潮湷‬汃獡䍳湯整瑸‬楲摩‬瘨楯⁤⨪☩彭䥰瑮牥慦散⤠഻ഊ ††椠⡦䘠䥁䕌⡄敲⥴⤠笠䴠䥁彄䡔佒䕗䍘偅䥔乏䴨䥁呄塅⡔䌢䍯敲瑡䥥獮慴据⡥ 즂뢎玔⤢⤠※ൽ †素਍਍††⼯‡佃荍草荵荗荆荎艧跌郬ඬ †⼠K਍†††灀牡浡爉楩।嬉⁩ढ़畑牥䥹瑮牥慦散⤨舠菌荷莋艶軰轑ෆ ††䀠慰慲७佰橢उ⁛嵯贉郬芬芳苪䎽䵏䦃疃垃䚃亃枃਍਍†††敀捸灥楴湯䔠捸灥楴湯䌠䵏䦃疃垃䚃亃枃첂겐즂뢎玔떂붂融਍††⨠യ †琠浥汰瑡⁥挼慬獳儠敵祲扏敪瑣ാ †瘠楯⁤畑牥䥹瑮牥慦散 䕒䥆䑉爠楩Ɽ挠浯灟牴儼敵祲扏敪瑣☾瀠扏⁪ഩ †笠਍†††䅍䑉䅟卓剅⡔朠瑥⤨㴽啎䱌‬舢苜邾鋝苨芳苪苄芢苜芹⋱⤠഻ഊ ††儠敵祲扏敪瑣‪㭰਍†††潣獮⁴剈卅䱕⁔敲⁴‽彭䥰瑮牥慦散㸭畑牥䥹瑮牥慦散 楲摩‬瘨楯⁤⨪☩⁰㬩਍†††晩 䅆䱉䑅爨瑥  ⁻䅍䑉呟剈坏塅䕃呐佉⡎䅍䑉䕔员∨畑牥䥹瑮牥慦散⤨舠軉钸≳ 㬩素਍਍†††佰橢爮獥瑥瀨㬩਍††ൽഊ 瀠楲慶整ഺऊ†潃佭橢捥⩴洉灟湉整晲捡㭥਍†㭽਍਍†整灭慬整挼慬獳䌠浯扏敪瑣‾਍†湩楬敮戠潯⁬灯牥瑡牯㴽挨湯瑳挠浯灟牴䌼浯扏敪瑣‾☠氠獨‬潣獮⁴潣彭瑰㱲潃佭橢捥㹴†…桲⥳਍†ൻ †爠瑥牵⁮桬⹳敧⡴ 㴽爠獨朮瑥⤨഻ 素਍਍†整灭慬整挼慬獳䌠浯扏敪瑣‾਍†湩楬敮戠潯⁬灯牥瑡牯㴡挨湯瑳挠浯灟牴䌼浯扏敪瑣‾☠氠獨‬潣獮⁴潣彭瑰㱲潃佭橢捥㹴†…桲⥳਍†ൻ †爠瑥牵⁮⠡桬⁳㴽爠獨㬩਍†ൽ紊਍攣摮晩਍
+﻿/*!
+    @file
+    @brief	COM 用スマートポインタ
+ */
+
+#ifndef maid2_framework_win32_com_ptr_h
+#define maid2_framework_win32_com_ptr_h
+
+#include"../../config/define.h"
+#include"../../auxiliary/debug/assert.h"
+#include"../../auxiliary/exception.h"
+#include<objbase.h>
+
+namespace Maid
+{ 
+	/*!
+      @brief	COM 用スマートポインタ
+  \n			参照がなくなったときに Release() されます
+	 */
+  template <class ComObject>
+  class com_ptr
+  {
+  public:
+    com_ptr() : m_pInterface(NULL) {}								//!<	コンストラクタその１
+    explicit com_ptr( ComObject* pInterface ) : m_pInterface(pInterface){}	//!<	コンストラクタその２
+    com_ptr(const com_ptr<ComObject>& pObject )						//!<	コンストラクタその３
+    {
+      m_pInterface = pObject.m_pInterface;
+      if( !IsNull() )
+      {
+	      m_pInterface->AddRef();
+      }
+    }
+
+    ~com_ptr()	//!<	デストラクタ
+    {
+      reset();
+    }
+
+    //! このクラスの初期化
+    /*!
+        @param	pInterface	[i ]	新しく管理するＣＯＭ（デフォルトでＮＵＬＬ）
+     */
+    void reset( ComObject* pInterface=NULL )	//!<	デストラクタ
+    {
+      if( m_pInterface==pInterface ) { return ; }
+
+      if( !IsNull() )
+      {
+	      m_pInterface->Release();
+      }
+      m_pInterface = pInterface;
+    }
+
+    //! コピー
+    /*!
+        @param	NewCom	[i ]	共有するＣＯＭ
+     */
+    com_ptr<ComObject>& operator=( com_ptr<ComObject> const & NewCom )
+    {
+      if( m_pInterface==NewCom.get() ) { return *this; }
+      reset();
+      m_pInterface = NewCom.get();
+      m_pInterface->AddRef();
+      return *this;
+    }
+
+    bool IsNull() const { return m_pInterface==NULL; }	//!<	何も管理していないか？
+
+    ComObject* get() const 	{ return m_pInterface;	}	//!<	ＣＯＭ取得
+    ComObject* operator->() const //!<	保持しているＣＯＭを透過的に扱う
+    {
+      MAID_ASSERT( get()==NULL, "まだ設定されていません" );
+      return get();  
+    }		
+
+    //! COMオブジェクトの作成
+    /*!
+        @param  ClassID       [i ]	CoCreateInstance() のヘルプを参照
+        @param	pUnknown      [i ]	CoCreateInstance() のヘルプを参照
+        @param	ClassContext  [i ]	CoCreateInstance() のヘルプを参照
+        @param	riid          [i ]	CoCreateInstance() のヘルプを参照
+
+        @exception Exception COMオブジェクトの作成に失敗した場合
+     */
+    void CoCreateInstance( REFCLSID ClassID, LPUNKNOWN pUnknown, DWORD ClassContext, REFIID riid )
+    {
+      reset();
+      const HRESULT ret = ::CoCreateInstance( ClassID, pUnknown, ClassContext, riid, (void **)&m_pInterface );
+
+      if( FAILED(ret) ) { MAID_THROWEXCEPTION(MAIDTEXT("CoCreateInstance() に失敗") ); }
+    }
+
+    //! COMオブジェクトの作成
+    /*!
+      @param	riid		[i ]	QueryInterface() のヘルプを参照
+      @param	pObj		[ o]	作成されたCOMオブジェクト
+
+      @exception Exception COMオブジェクトの作成に失敗した場合
+     */
+    template <class QueryObject>
+    void QueryInterface( REFIID riid, com_ptr<QueryObject>& pObj )
+    {
+      MAID_ASSERT( get()==NULL, "まだ設定されていません" );
+
+      QueryObject* p;
+      const HRESULT ret = m_pInterface->QueryInterface( riid, (void **)&p );
+      if( FAILED(ret) ) { MAID_THROWEXCEPTION(MAIDTEXT("QueryInterface() に失敗") ); }
+
+      pObj.reset(p);
+    }
+
+  private:
+	  ComObject*	m_pInterface;
+  };
+
+  template<class ComObject> 
+  inline bool operator==(const com_ptr<ComObject>  & lhs, const com_ptr<ComObject>  & rhs)
+  {
+    return lhs.get() == rhs.get();
+  }
+
+  template<class ComObject> 
+  inline bool operator!=(const com_ptr<ComObject>  & lhs, const com_ptr<ComObject>  & rhs)
+  {
+    return !(lhs == rhs);
+  }
+}
+#endif

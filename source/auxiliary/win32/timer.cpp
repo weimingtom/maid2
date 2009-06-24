@@ -1,1 +1,81 @@
-﻿⨯ഡऊ晀汩൥ऊ所楲晥茉荞荃荽荎莉⁘楴敭敇呴浩⡥ 敖⹲਍⼪਍਍椣据畬敤琢浩牥栮ഢഊ⼊圯义㈳䱟䅅彎乁彄䕍乁舠軰鉷苨芵苄苩芽⃟瞃抃徃ꪂ湩汣摵艥芳苪苈ජ⌊湩汣摵㱥浭祳瑳浥栮ാഊ⌊牰条慭挠浯敭瑮⠠楬Ɫ眢湩浭氮扩•ഩഊഊ渊浡獥慰散䴠楡൤笊਍਍湩⁴楔敭㩲猺剟晥牡湥散潃湵㭴਍਍楔敭㩲吺浩牥⤨਍ൻऊ晩 彳敒慦敲据䍥畯瑮㴽‰ഩऊൻऊ㨉吺䵉䍅偁⁓楔敭慃獰഻ऊ㨉琺浩䝥瑥敄䍶灡⡳否浩䍥灡ⱳ楳敺景㨨吺䵉䍅偁⥓㬩†††ഠऊ㨉琺浩䉥来湩敐楲摯吨浩䍥灡⹳偷牥潩䵤湩㬩਍紉਍਍⬉猫剟晥牡湥散潃湵㭴਍ൽഊ吊浩牥㨺楔敭⡲挠湯瑳吠浩牥…桲⁡ഩ笊਍⬉猫剟晥牡湥散潃湵㭴਍ൽഊ吊浩牥㨺呾浩牥⤨਍ൻऊⴭ彳敒慦敲据䍥畯瑮഻ഊऊ晩 彳敒慦敲据䍥畯瑮㴽‰ഩऊൻऊ㨉吺䵉䍅偁⁓楔敭慃獰഻ऊ㨉琺浩䝥瑥敄䍶灡⡳否浩䍥灡ⱳ楳敺景㨨吺䵉䍅偁⥓㬩†††ഠऊ㨉琺浩䕥摮敐楲摯吨浩䍥灡⹳偷牥潩䵤湩㬩਍紉਍ൽഊഊ⼊⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍⼯‡麎풊첂뺓਍⨯ഡ †䀠敲畴湲舉艮色讪鍎芮芵苄芩苧軌語⣔纃誃投ഩ ⼪਍湵⁴楔敭㩲䜺瑥⤨挠湯瑳਍ൻऊ敲畴湲㨠琺浩䝥瑥楔敭⤨഻紊਍਍⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ⼊ℯ茠荘莌荢艨郰艑芩芹෩⼊K਍††ꂂ�뎐涊얂춂좂ꊂ떂ꊂ꾂잂䆁ꮂ즂좂좂ꊂꦂ좂䊁਍਍††灀牡浡琉浩⁥楛崠造艑芩芹軩語⣔纃誃投ഩ ⼪਍潶摩吠浩牥㨺汓敥⡰甠瑮琠浩⁥ഩ笊਍㨉区敬灥 楴敭⤠഻紊਍਍਍楔敭♲吠浩牥㨺灯牥瑡牯㴠⠠挠湯瑳吠浩牥…桲⁡ഩ笊਍⬉猫剟晥牡湥散潃湵㭴਍਍爉瑥牵⁮琪楨㭳਍ൽഊ紊਍਍਍
+﻿/*!
+	@file
+	@brief	タイマクラス timeGetTime() Ver.
+*/
+
+#include"timer.h"
+
+//WIN32_LEAN_AND_MEAN を指定してるため ヘッダがincludeされない
+#include<mmsystem.h>
+
+#pragma comment (lib,"winmm.lib" )
+
+
+namespace Maid
+{
+
+int Timer::s_RefarenceCount;
+
+Timer::Timer()
+{
+	if( s_RefarenceCount==0 )
+	{
+		::TIMECAPS TimeCaps;
+		::timeGetDevCaps(&TimeCaps,sizeof(::TIMECAPS));       
+		::timeBeginPeriod(TimeCaps.wPeriodMin);
+	}
+
+	++s_RefarenceCount;
+}
+
+Timer::Timer( const Timer& rha )
+{
+	++s_RefarenceCount;
+}
+
+Timer::~Timer()
+{
+	--s_RefarenceCount;
+
+	if( s_RefarenceCount==0 )
+	{
+		::TIMECAPS TimeCaps;
+		::timeGetDevCaps(&TimeCaps,sizeof(::TIMECAPS));       
+		::timeEndPeriod(TimeCaps.wPeriodMin);
+	}
+}
+
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 時間の取得
+/*!
+    @return	ＯＳが起動してからの時間(ミリ秒)
+ */
+unt Timer::Get() const
+{
+	return ::timeGetTime();
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! スレッドを寝かせる
+/*!
+    あんまり正確ではないらしいけど、きにならないかな。
+
+    @param	time [i ] 寝かせる時間(ミリ秒)
+ */
+void Timer::Sleep( unt time )
+{
+	::Sleep( time );
+}
+
+
+Timer& Timer::operator = ( const Timer& rha )
+{
+	++s_RefarenceCount;
+
+	return *this;
+}
+
+}
+
+

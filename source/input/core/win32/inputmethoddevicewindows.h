@@ -1,1 +1,58 @@
-﻿⨯ഡ 䀉楦敬਍ठ所楲晥䤠䕍茠莉荢荰荎莉൘ ⼪਍਍椣湦敤⁦慭摩弲湩異彴潣敲睟湩㈳楟灮瑵敭桴摯敤楶散楷摮睯彳൨⌊敤楦敮洠楡㉤楟灮瑵损牯彥楷㍮弲湩異浴瑥潨摤癥捩睥湩潤獷桟਍਍椣据畬敤⸢⼮⸮ⸯ⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮楩灮瑵敭桴摯敤楶散栮ഢഊ⌊湩汣摵≥⸮ⸯ⼮⸮是慲敭潗歲眯湩㈳洯獥慳敧潨歯栮ഢ⌊湩汣摵≥⸮ⸯ⼮⸮是慲敭潷歲眯湩㈳眯湩潤⹷≨਍਍਍慮敭灳捡⁥慍摩⁻慮敭灳捡⁥湉異⁴ൻഊऊ汣獡⁳湉異䵴瑥潨䑤癥捩坥湩潤獷ഠ †㨠瀠扵楬⁣䥉灮瑵敍桴摯敄楶散਍††‬敍獳条䡥潯൫ऊൻऊ異汢捩ഺऊ䤉灮瑵敍桴摯敄楶散楗摮睯⡳挠湯瑳圠湩潤♷栠湗⁤㬩਍उ楶瑲慵⁬䥾灮瑵敍桴摯敄楶散楗摮睯⡳㬩਍उ楶瑲慵⁬潶摩䤠楮楴污穩⡥㬩਍उ楶瑲慵⁬潶摩䘠湩污穩⡥㬩਍਍उ潶摩䜠瑥瑓瑡獵 坄剏⩄瀠潃癮牥楳湯‬坄剏⩄瀠敓瑮湥散 潣獮㭴਍਍उ楶瑲慵⁬潶摩传数⡮ ഻ऊ瘉物畴污瘠楯⁤汃獯⡥㬩਍਍उ楶瑲慵⁬潢汯䤠佳数⡮ 潣獮㭴਍उ楶瑲慵⁬湩⁴敇䍴湯敶瑲潐⡳ 潣獮㭴਍उ楶瑲慵⁬湩⁴敇䍴牵潳偲獯⤨挠湯瑳഻ഊഊऊ瘉物畴污椠瑮䜠瑥慃摮摩瑡䍥畯瑮⤨挠湯瑳഻ऊ瘉物畴污椠瑮䜠瑥慃摮摩瑡卥汥捥⡴ 潣獮㭴਍उ楶瑲慵⁬瑓楲杮䜠瑥慃摮摩瑡卥牴湩⡧湩⁴䥩摮硥 潣獮㭴਍उ楶瑲慵⁬瑓楲杮䜠瑥潃灭瑓楲杮⤨挠湯瑳഻ഊ †瘠物畴污瘠楯⁤汆獵⡨匠牴湩♧戠晵敦⁲㬩਍਍उ楶瑲慵⁬䕒啔乒佃䕄传䵮獥慳敧 楗摮睯䵳獥慳敧…慐慲⁭㬩਍਍瀉楲慶整ഺऊ瘉楯⁤灕慤整慃摮摩瑡⡥㬩਍उ਍उ潣獮⁴楗摮睯…彭楗摮睯഻ †匠牴湩⁧洠䕟瑮牥瑓楲杮※⼠ 訠鉭苨芵貽見්ഊऊ䰉䍐乁䥄䅄䕔䥌呓洠灟慃摮摩瑡䱥獩㭴਍उ潢獯㩴猺慨敲彤牡慲㱹湵ぴ㸸洉灟慃摮摩瑡䉥晵㭦਍紉഻紊ൽഊ⌊湥楤൦
+﻿/*!
+ 	@file
+ 	@brief IME ラッパクラス
+ */
+
+#ifndef maid2_input_core_win32_inputmethoddevicewindows_h
+#define maid2_input_core_win32_inputmethoddevicewindows_h
+
+#include"../../../config/define.h"
+#include"../iinputmethoddevice.h"
+
+#include"../../../frameWork/win32/messagehook.h"
+#include"../../../framework/win32/window.h"
+
+
+namespace Maid{ namespace Input {
+
+	class InputMethodDeviceWindows 
+    : public IInputMethodDevice
+    , MessageHook
+	{
+	public:
+		InputMethodDeviceWindows( const Window& hWnd );
+		virtual ~InputMethodDeviceWindows();
+		virtual void Initialize();
+		virtual void Finalize();
+
+		void GetStatus( DWORD* pConversion, DWORD* pSentence) const;
+
+		virtual void Open() ;
+		virtual void Close();
+
+		virtual bool IsOpen() const;
+		virtual int GetConvertPos() const;
+		virtual int GetCursorPos() const;
+
+
+		virtual int GetCandidateCount() const;
+		virtual int GetCandidateSelect() const;
+		virtual String GetCandidateString(int iIndex) const;
+		virtual String GetCompString() const;
+
+    virtual void Flush( String& buffer );
+
+		virtual RETURNCODE OnMessage( WindowsMessage& Param );
+
+	private:
+		void UpdateCandidate();
+		
+		const Window& m_Window;
+    String  m_EnterString;  //  確定した結果
+
+		LPCANDIDATELIST m_pCandidateList;
+		boost::shared_array<unt08>	m_pCandidateBuff;
+	};
+}}
+
+#endif

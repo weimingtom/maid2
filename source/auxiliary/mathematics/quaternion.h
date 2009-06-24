@@ -1,1 +1,258 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥茉荎腈荛荞荪草莓荎莉൘ ⼪਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳畱瑡牥楮湯桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳畱瑡牥楮湯桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢഊ⌊湩汣摵≥慭牴硩搴栮ഢ⌊湩汣摵≥敶瑣牯搳栮ഢ⌊湩汣摵≥畦据楴湯栮ഢഊ渊浡獥慰散䴠楡൤笊ഠ ⼠K਍††䀠牢敩⁦亃䢃宁広檃䦃鎃�鶎랂岍ꊑ첑਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†瑳畲瑣儠䅕䕔乒佉彎䕔偍䅌䕔਍†ൻ †琠灹摥晥嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅嘠䍅佔㭒਍††祴数敤⁦䅍剔塉䐴呟䵅䱐呁㱅奔䕐‾䅍剔塉഻ †琠灹摥晥儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅儠䅕䕔乒佉㭎਍਍††奔䕐椠഻ †吠偙⁅㭪਍††奔䕐欠഻ †吠偙⁅㭷਍਍††啑呁剅䥎乏呟䵅䱐呁⡅笩ൽ †儠䅕䕔乒佉彎䕔偍䅌䕔 奔䕐张Ⱪ吠偙⁅機‬奔䕐张Ⱬ吠偙⁅睟⤠㨠⡩楟Ⱙ⡪機Ⱙ⡫歟Ⱙ⡷睟笩†ൽ †儠䅕䕔乒佉彎䕔偍䅌䕔 潣獮⁴䕖呃剏…硡獩‬奔䕐愠杮敬⤠਍††ൻ ††匠瑥潒慴楴湯 硡獩‬湡汧⁥㬩਍††ൽ †儠䅕䕔乒佉彎䕔偍䅌䕔 潣獮⁴䕖呃剏…ぶ挬湯瑳嘠䍅佔♒瘠‱ഩ †笠਍†††敓剴瑯瑡潩䅮捲 ぶ‬ㅶ⤠഻ †素਍਍††⼯‡亃䢃宁広檃䦃鎃�랂਍††⨯ഡ †††灀牡浡愉楸ॳ楛崠褉鏱蹝膲適讳襋芻芵苄芨芭花臆൪ †††灀牡浡愉杮敬嬉⁩ढ़嶓쪗榁覃垃䆃鎃檁਍††⨠യ †挠湯瑳儠䅕䕔乒佉♎匠瑥潒慴楴湯 潣獮⁴䕖呃剏…硡獩‬奔䕐愠杮敬⤠਍††ൻ †⼠य䕄彎十䕓呒 ぶ砮瘪⸰⭸ぶ礮瘪⸰⭹ぶ種瘪⸰ⅺ〽‬逢讳襋芻芳苪苄芢苜芹⋱⤠഻ഊ ††挠湯瑳吠偙⁅⁳‽慍桴吼偙㹅㨺楳⡮湡汧⽥⤲഻ഊ ††眠㴠䴠瑡㱨奔䕐㨾挺獯愨杮敬㈯㬩਍†††⁩‽⩳硡獩砮഻ ††樠㴠猠愪楸⹳㭹਍†††⁫‽⩳硡獩種഻ ††爠瑥牵⁮琪楨㭳਍††ൽഊ †⼠ℯ舠芠軩芲芩苧芠軩芲觖鏱艝芷菩荎腈荛荞荪草芓郰鋝苨芷෩ †⼠K਍††††灀牡浡瘉र楛崠舉芠軩芲腐適讳襋芻芵苄芨芭花臆൪ †††䀠慰慲७ㅶ嬉⁩ढ़ꂂ늎冂榁뎐䮋뮉떂쒂ꢂ궂놂욂檁਍††⨠യ †挠湯瑳儠䅕䕔乒佉♎匠瑥潒慴楴湯牁⡣潣獮⁴䕖呃剏…ぶ挬湯瑳嘠䍅佔♒瘠⤱਍††ൻ †⼠य䕄彎十䕓呒 ぶ砮瘪⸰⭸ぶ礮瘪⸰⭹ぶ種瘪⸰ⅺ〽‬逢讳襋芻芳苪苄芢苜芹⋱⤠഻ †⼠य䕄彎十䕓呒 ㅶ砮瘪⸱⭸ㅶ礮瘪⸱⭹ㅶ種瘪⸱ⅺ〽‬逢讳襋芻芳苪苄芢苜芹⋱⤠഻ഊ ††挠湯瑳嘠䍅佔⁒⁣‽敖瑣牯牃獯⡳ぶ瘬⤱഻ ††挠湯瑳吠偙⁅†⁤‽敖瑣牯潄⡴ぶ瘬⤱഻ ††挠湯瑳吠偙⁅†⁳‽吨偙⥅煳瑲⠨⬱⥤㈪㬩਍†††⁩‽⹣⁸ 㭳਍†††⁪‽⹣⁹ 㭳਍†††⁫‽⹣⁺ 㭳਍†††⁷‽⁳㈯〮㭦਍†††敲畴湲⨠桴獩഻ †素਍††⼯‡뎐䮋뮉랂਍††⨯ഡ †⨠യ †挠湯瑳儠䅕䕔乒佉♎丠牯慭楬敺⤨਍††ൻ ††吠偙⁅⁮‽慍桴吼偙㹅㨺煳瑲䜨瑥潎浲⤨㬩਍਍†††⁩㴯渠഻ ††樠⼠‽㭮਍†††⁫㴯渠഻ ††眠⼠‽㭮਍਍†††敲畴湲⨠桴獩഻ †素਍਍††⼯‡ꒋ膋�਍††⨯ഡ †⨠യ †儠䅕䕔乒佉⁎敇䍴湯番慧整⤨挠湯瑳਍††ൻ ††爠瑥牵⁮啑呁剅䥎乏 椭‬樭‬欭‬⁷㬩਍††ൽ †⼠ℯ謠荴荎腈荛荞荪草芓诰芁苟෩ †⼠K਍††⼪਍††啑呁剅䥎乏䜠瑥湉敶獲⡥ 潣獮൴ †笠਍†††啑呁剅䥎乏†⡲䜠瑥潃橮杵瑡⡥ 㬩਍†††潣獮⁴奔䕐渠㴠䜠瑥潎浲⤨഻ഊ ††爠椮⼠‽㭮਍†††⹲⁪㴯渠഻ ††爠欮⼠‽㭮਍†††⹲⁷㴯渠഻ഊ ††爠瑥牵⁮㭲਍††ൽഊഊ †⼠ℯ茠荭莋芀诰芁苟෩ †⼠K਍††⼪਍††奔䕐䜠瑥潎浲⤨挠湯瑳਍††ൻ ††爠瑥牵⁮⩩⁩‫⩪⁪‫⩫⁫‫⩷㭷਍††ൽഊ †⼠ℯ舠花菌荎腈荛荞荪草芓鏆芯覶鏱艝闰艜获荽荧莊荎艘跰郬芬芷෩ †⼠K਍††††灀牡浡瘉嬉⁩ढ़슂ꊂ얂즂�랂붕玍�꺓쪗榁暃璃䢃讃枃얂ⰰⰰ脰൪ ††⼪਍††䅍剔塉䜠瑥慍牴硩䐴 潣獮⁴䕖呃剏…㵶䕖呃剏〨〬〬⤩挠湯瑳਍††ൻ ††爠瑥牵⁮䅍剔塉਍ ††⠠਍उ†††ⴱ⨲樨横欫欪Ⱙ†㈠⠪⩩⭪⩷⥫‬†⨲椨欪眭横Ⱙ〠ബऊ †††㈠⠪⩩⵪⩷⥫‬ⴱ⨲椨椪欫欪Ⱙ†㈠⠪⩪⭫⩷⥩‬ⰰ਍उ††††⨲椨欪眫横Ⱙ†㈠⠪⩪⵫⩷⥩‬ⴱ⨲椨椪樫横Ⱙ〠ബऊ †††††††瘠砮‬†††††⹶ⱹ†††††瘠種‬റऊ†††㬩਍††ൽഊ 素഻ഊഊ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†潢汯漠数慲潴㵲⠽挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅…桲⁡⼩ℯ़犊਍†ൻ †爠瑥牵⁮桬⹡㵩爽慨椮☠…桬⹡㵪爽慨樮☠…桬⹡㵫爽慨欮☠…桬⹡㵷爽慨眮※਍†ൽ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†潢汯漠数慲潴ⅲ⠽挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅…桲⁡⼩ℯ़犊਍†ൻ †爠瑥牵⁮⠡桬㵡爽慨㬩ഠ 素਍਍†整灭慬整琼灹湥浡⁥奔䕐ാ 儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅漠数慲潴⭲ 潣獮⁴啑呁剅䥎乏呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴啑呁剅䥎乏呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅爠഻ †爠椮㴠氠慨椮⬠爠慨椮഻ †爠樮㴠氠慨樮⬠爠慨樮഻ †爠欮㴠氠慨欮⬠爠慨欮഻ †爠眮㴠氠慨眮⬠爠慨眮഻ഊ †爠瑥牵⁮㭲਍†ൽ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†啑呁剅䥎乏呟䵅䱐呁㱅奔䕐‾灯牥瑡牯⠭挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅…桲⁡ഩ 笠਍††啑呁剅䥎乏呟䵅䱐呁㱅奔䕐‾㭲਍††⹲⁩‽桬⹡⁩‭桲⹡㭩਍††⹲⁪‽桬⹡⁪‭桲⹡㭪਍††⹲⁫‽桬⹡⁫‭桲⹡㭫਍††⹲⁷‽桬⹡⁷‭桲⹡㭷਍਍††敲畴湲爠഻ 素਍†整灭慬整琼灹湥浡⁥奔䕐ാ 儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅漠数慲潴⩲ 潣獮⁴啑呁剅䥎乏呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴啑呁剅䥎乏呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †儠䅕䕔乒佉彎䕔偍䅌䕔吼偙㹅爠഻ഊ †爠椮㴠氠慨眮爪慨椮⬠氠慨砮爪慨眮⬠氠慨礮爪慨欮ⴠ氠慨種爪慨樮※਍††⹲⁪‽桬⹡⩷桲⹡⁪‭桬⹡⩸桲⹡⁫‫桬⹡⩹桲⹡⁷‫桬⹡⩺桲⹡㭩ഠ †爠欮㴠氠慨眮爪慨欮⬠氠慨砮爪慨樮ⴠ氠慨礮爪慨椮⬠氠慨種爪慨眮※਍††⹲⁷‽桬⹡⩷桲⹡⁷‭桬⹡⩸桲⹡⁩‭桬⹡⩹桲⹡⁪‭桬⹡⩺桲⹡㭫ഠഊ †爠瑥牵⁮㭲਍†ൽഊ紊਍⼉य楗摮睯⁳첂욂ꮂ첂�䐠䱘䉉舠軰艧苁莽腯荛荗莇芓釰趶苝芳芹෩⌊晩敤⁦单彅䥄䕒呃䐳㥘਍†椣据畬敤⸢⼮⸮振湯楦⽧楷㍮⸲≨਍†椣据畬敤搼搳㥸栮ാഊ 渠浡獥慰散䴠楡൤ 笠਍††慮敭灳捡⁥㍤硤畱瑡牥楮湯਍††ൻ ††琠灹摥晥䐠䐳兘䅕䕔乒佉⩎⠠䥗䅎䥐⨠佒䅔䥔乏塁卉⠩㍄塄啑呁剅䥎乏Ⱚ佃华⁔㍄塄䕖呃剏⨳䘬佌呁㬩਍†††祴数敤⁦㍄塄啑呁剅䥎乏‪在义偁⁉个剏䅍䥌䕚⠩㍄塄啑呁剅䥎乏Ⱚ佃华⁔㍄塄啑呁剅䥎乏⤪഻ ††琠灹摥晥䐠䐳兘䅕䕔乒佉⩎⠠䥗䅎䥐⨠义䕖卒⥅䐨䐳兘䅕䕔乒佉⩎䌬乏呓䐠䐳兘䅕䕔乒佉⩎㬩਍†††祴数敤⁦㍄塄䅍剔塉⨠⠠䥗䅎䥐⨠䅍剔塉佒䅔䥔乏啑呁剅䥎乏⠩㍄塄䅍剔塉⨠䌬乏呓䐠䐳兘䅕䕔乒佉⩎㬩਍†††祴数敤⁦㍄塄啑呁剅䥎乏‪在义偁⁉䴪䱕䥔䱐⥙䐨䐳兘䅕䕔乒佉⩎䌬乏呓䐠䐳兘䅕䕔乒佉⩎䌬乏呓䐠䐳兘䅕䕔乒佉⩎㬩਍਍†††硥整湲删呏呁佉䅎䥘⁓潒慴楴湯硁獩഻ ††攠瑸牥⁮低䵒䱁婉⁅潎浲污穩㭥਍†††硥整湲䤠噎剅䕓䤠癮牥敳഻ ††攠瑸牥⁮䅍剔塉佒䅔䥔乏啑呁剅䥎乏䴠瑡楲剸瑯瑡潩兮慵整湲潩㭮਍†††硥整湲䴠䱕䥔䱐⁙畍瑬灩祬഻ഊ ††瘠楯⁤湉瑩慩楬敺 䵈䑏䱕⁅䵨摯汵⁥㬩਍†††潶摩䘠湩污穩⡥㬩਍††ൽഊഊ †挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁☾儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁㨾区瑥潒慴楴湯 潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅䱆䅏㹔…硡獩‬䱆䅏⁔湡汧⁥ഩ †笠਍†††㍤硤畱瑡牥楮湯㨺潒慴楴湯硁獩 䐨䐳兘䅕䕔乒佉⩎琩楨ⱳ⠠潣獮⁴㍄塄䕖呃剏⨳☩硡獩‬湡汧⁥㬩਍ †爠瑥牵⁮琪楨㭳਍††ൽ †挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁☾儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁㨾为牯慭楬敺⤨਍††ൻऊ††㍤硤畱瑡牥楮湯㨺潎浲污穩⡥⠠㍄塄啑呁剅䥎乏⤪桴獩‬䐨䐳兘䅕䕔乒佉⩎琩楨⁳㬩਍ †爠瑥牵⁮琪楨㭳਍††ൽഊ †儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁‾啑呁剅䥎乏呟䵅䱐呁㱅䱆䅏㹔㨺敇䥴癮牥敳⤨挠湯瑳਍††ൻऊ††啑呁剅䥎乏呟䵅䱐呁㱅䱆䅏㹔爠഻ऊ††㍤硤畱瑡牥楮湯㨺湉敶獲⡥⠠㍄塄啑呁剅䥎乏⤪爦‬䐨䐳兘䅕䕔乒佉⩎琩楨⁳㬩਍ †爠瑥牵⁮㭲਍††ൽഊഊ †䴠呁䥒㑘彄䕔偍䅌䕔䘼佌呁‾啑呁剅䥎乏呟䵅䱐呁㱅䱆䅏㹔㨺敇䵴瑡楲㑸⡄挠湯瑳嘠䍅佔㍒彄䕔偍䅌䕔䘼佌呁☾瘠 潣獮൴ †笠਍ †䴠呁䥒㑘彄䕔偍䅌䕔䘼佌呁‾浴㭰਍ †搠搳煸慵整湲潩㩮䴺瑡楲剸瑯瑡潩兮慵整湲潩⡮⠠㍄塄䅍剔塉⤪琦灭‬䐨䐳兘䅕䕔乒佉⩎琩楨⁳㬩਍ †琠灭洮ㄴ㴠瘠砮഻ऊ††浴⹰㑭′‽⹶㭹਍ †琠灭洮㌴㴠瘠種഻ऊ††敲畴湲琠灭഻ †素਍਍††湩楬敮儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁‾灯牥瑡牯⠪挠湯瑳儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁☾氠慨‬潣獮⁴啑呁剅䥎乏呟䵅䱐呁㱅䱆䅏㹔…桲⁡ഩ †笠਍ †儠䅕䕔乒佉彎䕔偍䅌䕔䘼佌呁‾㭲਍ †搠搳煸慵整湲潩㩮䴺汵楴汰⡹⠠㍄塄啑呁剅䥎乏⤪爦‬䐨䐳兘䅕䕔乒佉⩎☩桬ⱡ⠠㍄塄啑呁剅䥎乏⤪爦慨⤠഻ऊ††敲畴湲爠഻ †素਍ൽഊऊ攣摮晩਍਍਍攣摮晩
+﻿/*!
+    @file
+    @brief	クォータニオンクラス
+ */
+
+#ifndef maid2_auxiliary_mathematics_quaternion_h
+#define maid2_auxiliary_mathematics_quaternion_h
+
+#include"../../config/define.h"
+
+#include"matrix4d.h"
+#include"vector3d.h"
+#include"function.h"
+
+namespace Maid
+{ 
+  /*!
+     @brief クォータニオンを保持する構造体
+   */
+  template<typename TYPE>
+  struct QUATERNION_TEMPLATE
+  {
+    typedef VECTOR3D_TEMPLATE<TYPE> VECTOR;
+    typedef MATRIX4D_TEMPLATE<TYPE> MATRIX;
+    typedef QUATERNION_TEMPLATE<TYPE> QUATERNION;
+
+    TYPE i;
+    TYPE j;
+    TYPE k;
+    TYPE w;
+
+    QUATERNION_TEMPLATE(){}
+    QUATERNION_TEMPLATE( TYPE _i, TYPE _j, TYPE _k, TYPE _w ) :i(_i),j(_j),k(_k),w(_w){  }
+    QUATERNION_TEMPLATE( const VECTOR& axis, TYPE angle )
+    {
+      SetRotation( axis, angle );
+    }
+    QUATERNION_TEMPLATE( const VECTOR& v0,const VECTOR& v1 )
+    {
+      SetRotationArc( v0, v1 );
+    }
+
+    //! クォータニオンを設定する
+    /*!
+       @param	axis	[i ]	回転軸（正規化しておくこと）
+       @param	angle	[i ]	回転量（ラジアン）
+     */
+    const QUATERNION& SetRotation( const VECTOR& axis, TYPE angle )
+    {
+    //	DEN_ASSERT( v0.x*v0.x+v0.y*v0.y+v0.z*v0.z!=0, "正規化されていません" );
+
+      const TYPE s = Math<TYPE>::sin(angle/2);
+
+      w = Math<TYPE>::cos(angle/2);
+      i = s*axis.x;
+      j = s*axis.y;
+      k = s*axis.z;
+      return *this;
+    }
+
+    //! ある軸からある軸へ回転するクォータニオンを設定する
+    /*!
+        @param	v0	[i ]	ある軸１（正規化しておくこと）
+        @param	v1	[i ]	ある軸２（正規化しておくこと）
+     */
+    const QUATERNION& SetRotationArc(const VECTOR& v0,const VECTOR& v1)
+    {
+    //	DEN_ASSERT( v0.x*v0.x+v0.y*v0.y+v0.z*v0.z!=0, "正規化されていません" );
+    //	DEN_ASSERT( v1.x*v1.x+v1.y*v1.y+v1.z*v1.z!=0, "正規化されていません" );
+
+      const VECTOR c = VectorCross(v0,v1);
+      const TYPE   d = VectorDot(v0,v1);
+      const TYPE   s = (TYPE)sqrt((1+d)*2);
+      i = c.x / s;
+      j = c.y / s;
+      k = c.z / s;
+      w = s /2.0f;
+      return *this;
+    }
+    //! 正規化する
+    /*!
+    */
+    const QUATERNION& Normalize()
+    {
+      TYPE n = Math<TYPE>::sqrt(GetNorm());
+
+      i /= n;
+      j /= n;
+      k /= n;
+      w /= n;
+
+      return *this;
+    }
+
+    //! 共役を求める
+    /*!
+    */
+    QUATERNION GetConjugate() const
+    {
+      return QUATERNION( -i, -j, -k, w );
+    }
+    //! 逆クォータニオンを求める
+    /*!
+    */
+    QUATERNION GetInverse() const
+    {
+      QUATERNION  r( GetConjugate() );
+      const TYPE n = GetNorm();
+
+      r.i /= n;
+      r.j /= n;
+      r.k /= n;
+      r.w /= n;
+
+      return r;
+    }
+
+
+    //! ノルムを求める
+    /*!
+    */
+    TYPE GetNorm() const
+    {
+      return i*i + j*j + k*k + w*w;
+    }
+
+    //! このクォータニオンと同じ回転を表すマトリクスを作成する
+    /*!
+        @param	v	[i ]	ついでに設定する平行移動量（デフォルトで0,0,0）
+     */
+    MATRIX GetMatrix4D( const VECTOR& v=VECTOR(0,0,0)) const
+    {
+      return MATRIX
+	      (
+		      1-2*(j*j+k*k),   2*(i*j+w*k),   2*(i*k-w*j), 0,
+		        2*(i*j-w*k), 1-2*(i*i+k*k),   2*(j*k+w*i), 0,
+		        2*(i*k+w*j),   2*(j*k-w*i), 1-2*(i*i+j*j), 0,
+		                v.x,           v.y,           v.z, 1
+	      );
+    }
+
+  };
+
+
+  template<typename TYPE>
+  bool operator==( const QUATERNION_TEMPLATE<TYPE>& lha, const QUATERNION_TEMPLATE<TYPE>& rha )//!<	比較
+  {
+    return lha.i==rha.i && lha.j==rha.j && lha.k==rha.k && lha.w==rha.w; 
+  }
+  template<typename TYPE>
+  bool operator!=( const QUATERNION_TEMPLATE<TYPE>& lha, const QUATERNION_TEMPLATE<TYPE>& rha )//!<	比較
+  {
+    return !(lha==rha); 
+  }
+
+  template<typename TYPE>
+  QUATERNION_TEMPLATE<TYPE> operator+( const QUATERNION_TEMPLATE<TYPE>& lha, const QUATERNION_TEMPLATE<TYPE>& rha )
+  {
+    QUATERNION_TEMPLATE<TYPE> r;
+    r.i = lha.i + rha.i;
+    r.j = lha.j + rha.j;
+    r.k = lha.k + rha.k;
+    r.w = lha.w + rha.w;
+
+    return r;
+  }
+  template<typename TYPE>
+  QUATERNION_TEMPLATE<TYPE> operator-( const QUATERNION_TEMPLATE<TYPE>& lha, const QUATERNION_TEMPLATE<TYPE>& rha )
+  {
+    QUATERNION_TEMPLATE<TYPE> r;
+    r.i = lha.i - rha.i;
+    r.j = lha.j - rha.j;
+    r.k = lha.k - rha.k;
+    r.w = lha.w - rha.w;
+
+    return r;
+  }
+  template<typename TYPE>
+  QUATERNION_TEMPLATE<TYPE> operator*( const QUATERNION_TEMPLATE<TYPE>& lha, const QUATERNION_TEMPLATE<TYPE>& rha )
+  {
+    QUATERNION_TEMPLATE<TYPE> r;
+
+    r.i = lha.w*rha.i + lha.x*rha.w + lha.y*rha.k - lha.z*rha.j; 
+    r.j = lha.w*rha.j - lha.x*rha.k + lha.y*rha.w + lha.z*rha.i; 
+    r.k = lha.w*rha.k + lha.x*rha.j - lha.y*rha.i + lha.z*rha.w; 
+    r.w = lha.w*rha.w - lha.x*rha.i - lha.y*rha.j - lha.z*rha.k; 
+
+    return r;
+  }
+
+}
+	//	Windows のときのみ DXLIB を使ったバージョンを存在させる
+#ifdef USE_DIRECT3DX9
+  #include"../../config/win32.h"
+  #include<d3dx9.h>
+
+  namespace Maid
+  {
+    namespace d3dxquaternion
+    {
+      typedef D3DXQUATERNION* (WINAPI *ROTATIONAXIS)(D3DXQUATERNION*,CONST D3DXVECTOR3*,FLOAT);
+      typedef D3DXQUATERNION* (WINAPI *NORMALIZE)(D3DXQUATERNION*,CONST D3DXQUATERNION*);
+      typedef D3DXQUATERNION* (WINAPI *INVERSE)(D3DXQUATERNION*,CONST D3DXQUATERNION*);
+      typedef D3DXMATRIX * (WINAPI *MATRIXROTATIONQUATERNION)(D3DXMATRIX *,CONST D3DXQUATERNION*);
+      typedef D3DXQUATERNION* (WINAPI *MULTIPLY)(D3DXQUATERNION*,CONST D3DXQUATERNION*,CONST D3DXQUATERNION*);
+
+      extern ROTATIONAXIS RotationAxis;
+      extern NORMALIZE Normalize;
+      extern INVERSE Inverse;
+      extern MATRIXROTATIONQUATERNION MatrixRotationQuaternion;
+      extern MULTIPLY Multiply;
+
+      void Initialize( HMODULE hModule );
+      void Finalize();
+    }
+
+
+    const QUATERNION_TEMPLATE<FLOAT>& QUATERNION_TEMPLATE<FLOAT>::SetRotation( const VECTOR3D_TEMPLATE<FLOAT>& axis, FLOAT angle )
+    {
+      d3dxquaternion::RotationAxis( (D3DXQUATERNION*)this, (const D3DXVECTOR3*)&axis, angle );
+	    return *this;
+    }
+    const QUATERNION_TEMPLATE<FLOAT>& QUATERNION_TEMPLATE<FLOAT>::Normalize()
+    {
+	    d3dxquaternion::Normalize( (D3DXQUATERNION*)this, (D3DXQUATERNION*)this );
+	    return *this;
+    }
+
+    QUATERNION_TEMPLATE<FLOAT> QUATERNION_TEMPLATE<FLOAT>::GetInverse() const
+    {
+	    QUATERNION_TEMPLATE<FLOAT> r;
+	    d3dxquaternion::Inverse( (D3DXQUATERNION*)&r, (D3DXQUATERNION*)this );
+	    return r;
+    }
+
+
+    MATRIX4D_TEMPLATE<FLOAT> QUATERNION_TEMPLATE<FLOAT>::GetMatrix4D( const VECTOR3D_TEMPLATE<FLOAT>& v) const
+    {
+	    MATRIX4D_TEMPLATE<FLOAT> tmp;
+	    d3dxquaternion::MatrixRotationQuaternion( (D3DXMATRIX*)&tmp, (D3DXQUATERNION*)this );
+	    tmp.m41 = v.x;
+	    tmp.m42 = v.y;
+	    tmp.m43 = v.z;
+	    return tmp;
+    }
+
+    inline QUATERNION_TEMPLATE<FLOAT> operator*( const QUATERNION_TEMPLATE<FLOAT>& lha, const QUATERNION_TEMPLATE<FLOAT>& rha )
+    {
+	    QUATERNION_TEMPLATE<FLOAT> r;
+	    d3dxquaternion::Multiply( (D3DXQUATERNION*)&r, (D3DXQUATERNION*)&lha, (D3DXQUATERNION*)&rha );
+	    return r;
+    }
+}
+
+	#endif
+
+
+#endif

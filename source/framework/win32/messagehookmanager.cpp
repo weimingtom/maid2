@@ -1,1 +1,79 @@
-﻿椣据畬敤洢獥慳敧潨歯慭慮敧⹲≨਍椣据畬敤⸢⼮⸮愯硵汩慩祲搯扥杵愯獳牥⹴≨਍਍਍慮敭灳捡⁥慍摩਍ൻഊ䴊獥慳敧潈歯慍慮敧⩲䜠潬慢偬楯瑮牥䴼獥慳敧潈歯慍慮敧㹲㨺彳偰楯瑮牥഻ഊഊ䴊獥慳敧潈歯慍慮敧㩲䴺獥慳敧潈歯慍慮敧⡲ഩ笊਍洉灟湉整牲灵䡴潯⁫‽啎䱌഻紊਍਍敍獳条䡥潯䵫湡条牥㨺䵾獥慳敧潈歯慍慮敧⡲ഩ笊਍䘉湩污穩⡥㬩਍ൽഊ瘊楯⁤敍獳条䡥潯䵫湡条牥㨺湉瑩慩楬敺⤨਍ൻ 匠瑥⤨഻紊਍਍潶摩䴠獥慳敧潈歯慍慮敧㩲䘺湩污穩⡥ഩ笊਍†汃慥⡲㬩਍ൽഊ瘊楯⁤敍獳条䡥潯䵫湡条牥㨺摁䡤潯⡫䴠獥慳敧潈歯‪䡰潯Ⱬ䠠乗⁄坨摮⤠਍ൻ 洠偟潲䵣灡桛湗嵤瀮獵彨牦湯⡴瀠潈歯⤠഻紊਍਍潶摩䴠獥慳敧潈歯慍慮敧㩲䐺汥潈歯 敍獳条䡥潯⩫瀠潈歯‬坈䑎栠湗⁤ഩ笊਍†潣獮⁴坈䑎䅍㩐椺整慲潴⁲瑩⁥‽彭牐捯慍⹰楦摮栨湗⥤഻ഊ 䴠䥁彄十䕓呒椨整㴽彭牐捯慍⹰湥⡤Ⱙ∠澓庘뎂쒂ꊂ좂ꊂ亃覃境ꪂ鲏뎂ꒂ욂떂쒂ꊂ�랂•㬩਍਍†佈䭏䥌呓…楌瑳㴠椠整㸭敳潣摮഻ഊ 䰠獩⹴敲潭敶 䡰潯⁫㬩਍ൽഊ ⼠ℯ圉彍剃䅅䕔馓䖏ꒂ욂ꮂ炗첂蒊麍�璃抃亃਍†⨯ड਍ †䀠慰慲⁭䡰潯⁫嬠⁩⁝圠彍剃䅅䕔ꪂ얂궂욂涊떂쒂ꊂ粃䎃鎃広਍†⼪਍潶摩䴠獥慳敧潈歯慍慮敧㩲区瑥湉整牲灵䡴潯⡫䴠獥慳敧潈歯‪䡰潯⁫ഩ笊਍†彭䥰瑮牥畲瑰潈歯㴠瀠潈歯഻紊਍਍਍剌卅䱕⁔䅃䱌䅂䭃䴠獥慳敧潈歯慍慮敧㩲伺䵮獥慳敧 楗摮睯䵳獥慳敧…敭獳†ഩ笊਍†晩 彭䥰瑮牥畲瑰潈歯㴡啎䱌⤠਍†ൻ †椠⡦洠灟湉整牲灵䡴潯⵫伾䵮獥慳敧 敭獳⤠㴽敍獳条䡥潯㩫刺呅剕䍎䑏彅䕒啔乒⤠笠爠瑥牵⁮㬰素਍†敽獬൥ 笠਍††坈䑎䅍㩐椺整慲潴⁲牐捯楌瑳㴠洠偟潲䵣灡昮湩⡤洠獥⹳敇䡴乗⡄ 㬩਍††晩 牐捯楌瑳㴡彭牐捯慍⹰湥⡤ ഩ †笠਍†††佈䭏䥌呓…楌瑳㴠倠潲䱣獩⵴猾捥湯㭤਍਍†††潦⡲䠠住䱋卉㩔椺整慲潴⁲瑩㵥楌瑳戮来湩⤨※瑩Ⅵ䰽獩⹴湥⡤㬩⬠椫整⤠਍†††ॻ⼯錉芊芰苧苪莽莁荢腚荛艗述鞈芝芵芽⃧敄坦湩潤偷潲⁣춂쒌캂좂ꊂ਍††††晩 ⨨瑩⥥㸭湏敍獳条⡥洠獥⁳㴩䴽獥慳敧潈歯㨺䕒啔乒佃䕄剟呅剕⁎ ⁻敲畴湲〠※ൽ ††素਍††⁽ഠ 素਍਍爉瑥牵⁮㨺敄坦湩潤偷潲⡣敭獳䜮瑥坈䑎⤨洬獥⹳敇䵴䝓⤨洬獥⹳敇坴䅐䅒⡍Ⱙ敭獳䜮瑥偌剁䵁⤨㬩਍ൽഊ紊
+﻿#include"messagehookmanager.h"
+#include"../../auxiliary/debug/assert.h"
+
+
+namespace Maid
+{
+
+MessageHookManager* GlobalPointer<MessageHookManager>::s_pPointer;
+
+
+MessageHookManager::MessageHookManager()
+{
+	m_pInterruptHook = NULL;
+}
+
+MessageHookManager::~MessageHookManager()
+{
+	Finalize();
+}
+
+void MessageHookManager::Initialize()
+{
+  Set();
+}
+
+void MessageHookManager::Finalize()
+{
+  Clear();
+}
+
+void MessageHookManager::AddHook( MessageHook* pHook, HWND hWnd )
+{
+  m_ProcMap[hWnd].push_front( pHook );
+}
+
+void MessageHookManager::DelHook( MessageHook* pHook, HWND hWnd )
+{
+  const HWNDMAP::iterator ite = m_ProcMap.find(hWnd);
+
+  MAID_ASSERT(ite==m_ProcMap.end(), "登録されていないクラスが削除されようとしています" );
+
+  HOOKLIST& List = ite->second;
+
+  List.remove( pHook );
+}
+
+  //!	WM_CREATE等を拾うとき用の割り込みフック
+  /*!	
+	    @param pHook  [i ]  WM_CREATEが飛んでくると確定しているポインタ
+  */
+void MessageHookManager::SetInterruptHook( MessageHook* pHook )
+{
+  m_pInterruptHook = pHook;
+}
+
+
+LRESULT CALLBACK MessageHookManager::OnMessage( WindowsMessage& mess  )
+{
+  if( m_pInterruptHook!=NULL )
+  {
+    if( m_pInterruptHook->OnMessage( mess )==MessageHook::RETURNCODE_RETURN ) { return 0; }
+  }else
+  {
+    HWNDMAP::iterator ProcList = m_ProcMap.find( mess.GetHWND() );
+    if( ProcList!=m_ProcMap.end() )
+    {
+      HOOKLIST& List = ProcList->second;
+
+      for( HOOKLIST::iterator ite=List.begin(); ite!=List.end(); ++ite )
+      {	//	投げられたメッセージを処理したら DefWindowProc は呼ばない
+        if( (*ite)->OnMessage( mess )==MessageHook::RETURNCODE_RETURN ) { return 0; }
+      }
+    }  
+  }
+
+	return ::DefWindowProc(mess.GetHWND(),mess.GetMSG(),mess.GetWPARAM(),mess.GetLPARAM());
+}
+
+}

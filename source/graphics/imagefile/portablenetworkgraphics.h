@@ -1,1 +1,24 @@
-﻿⨯ഡ 䀉楦敬਍ठ所楲晥倉䝎璃䂃䎃讃肑਍⨠യഊ⌊晩摮晥洠楡㉤束慲桰捩彳浩条晥汩彥潰瑲扡敬敮睴牯杫慲桰捩彳൨⌊敤楦敮洠楡㉤束慲桰捩彳浩条晥汩彥潰瑲扡敬敮睴牯杫慲桰捩彳൨ഊ⌊湩汣摵≥⸮ⸯ⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮⸮愯硵汩慩祲猯牴湩⹧≨਍椣据畬敤⸢⼮⸮愯硵汩慩祲是湵瑣潩牮獥汵⹴≨਍椣据畬敤⸢⼮畳晲捡⹥≨਍਍慮敭灳捡⁥慍摩਍ൻऊ慮敭灳捡⁥乐േऊൻ †戠潯⁬䌠敨正 潣獮⁴瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条⁥㬩਍††商呃佉剎卅䱕⁔䰠慯⡤挠湯瑳猠摴㨺敶瑣牯甼瑮㠰☾䘠汩䥥慭敧‬畓晲捡䥥獮慴据♥搠瑳⤠഻ †䘠䍕䥔乏䕒啓呌†慓敶 潣獮⁴瑓楲杮…楆敬慎敭‬潣獮⁴畓晲捡䥥獮慴据♥猠捲⤠഻ऊ㭽਍ൽഊ⌊湥楤൦
+﻿/*!
+ 	@file
+ 	@brief	PNGファイル操作
+ */
+
+#ifndef maid2_graphics_imagefile_portablenetworkgraphics_h
+#define maid2_graphics_imagefile_portablenetworkgraphics_h
+
+#include"../../config/define.h"
+#include"../../auxiliary/string.h"
+#include"../../auxiliary/functionresult.h"
+#include"../surface.h"
+
+namespace Maid
+{
+	namespace PNG
+	{
+    bool  Check( const std::vector<unt08>& FileImage );
+    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst );
+    FUCTIONRESULT  Save( const String& FileName, const SurfaceInstance& src );
+	};
+}
+
+#endif

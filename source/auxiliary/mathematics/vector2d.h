@@ -1,1 +1,184 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥舉蹑貟莳荸荎荧莋荥莓荶膌荛൧ ⼪਍਍਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳敶瑣牯搲桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳敶瑣牯搲桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥潰湩㉴⹤≨਍椣据畬敤昢湵瑣潩⹮≨਍਍慮敭灳捡⁥慍摩਍⁻਍†⨯ഡ ††䀠牢敩०冂龎뎌碃亃枃讃�鶎랂岍ꊑ첑਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†瑳畲瑣嘠䍅佔㉒彄䕔偍䅌䕔਍†⁻਍††祴数敤⁦䕖呃剏䐲呟䵅䱐呁㱅奔䕐‾䕖呃剏഻ †琠灹摥晥倠䥏呎䐲呟䵅䱐呁㱅奔䕐‾倠䥏呎഻ഊ †吠偙ॅ㭸उ⼯㰡褉ඡ †吠偙ॅ㭹उ⼯㰡載ൣഊ †嘠䍅佔㉒彄䕔偍䅌䕔⤨絻उ⼯ड劃鎃境枃覃亃広਍††䕖呃剏䐲呟䵅䱐呁⡅吠偙⁅硟‬奔䕐张⁹㨩砠弨⥸‬⡹祟笩ൽ †嘠䍅佔㉒彄䕔偍䅌䕔 潣獮⁴佐义♔匠慴瑲‬潣獮⁴佐义♔䔠摮⤠笠删獥瑥匨慴瑲䔬摮㬩素਍††䕖呃剏䐲呟䵅䱐呁⡅挠湯瑳倠䥏呎…潰⁳ ⁻敒敳⡴潰⥳※ൽ ठ਍††⼯‡뎐䮋뮉랂਍††⨯ഡ †⨠യ †挠湯瑳嘠䍅佔♒丠牯慭楬敺⤨਍††ൻऊ††潣獮⁴奔䕐映㴠䴠瑡㱨奔䕐㨾猺牱⡴⩸⭸⩹⥹഻ऊ††琪楨⁳㴯映഻ऊ††敲畴湲⨠桴獩഻ †素਍਍††⼯‡삍垕碃亃枃讃즂쾕랊랂਍††⨯ഡ  ††䀠慰慲७瑓牡⁴楛崠茉荸荎荧芋諌蹊赮闀ൗ  ††䀠慰慲७湅⁤†楛崠茉荸荎荧芋迌靉趹闀ൗ ††⼪਍††潶摩删獥瑥 潣獮⁴佐义♔匠慴瑲‬潣獮⁴佐义♔䔠摮⤠਍††ൻऊ††⁸‽湅⹤⵸瑓牡⹴㭸਍ †礠㴠䔠摮礮匭慴瑲礮഻ †素਍਍††⼯‡삍垕碃亃枃讃즂쾕랊랂਍††⨯ഡ  ††䀠慰慲७潰⁳楛崠茉荸荎荧芋諌蹊赮闀ൗ ††⼪਍††潶摩删獥瑥 潣獮⁴佐义♔瀠獯⤠਍††ൻऊ††⁸‽潰⹳㭸਍ †礠㴠瀠獯礮഻ †素਍਍††佐义⁔潃癮牥側䥏呎䐲⤨笠爠瑥牵⁮佐义⡔ⱸ⥹※ൽഊ †⼠य傒肍覉媎熎਍††䕖呃剏漠数慲潴⵲⤨挠湯瑳⁻敲畴湲嘠䍅佔⡒砭⴬⥹※ൽഊ †⼠य犊覉媎熎਍††潢汯漠数慲潴㵲⠽挠湯瑳嘠䍅佔♒爠慨⤠挠湯瑳⁻敲畴湲砠㴽桲⹡⁸☦礠㴽桲⹡㭹素਍††潢汯漠数慲潴ⅲ⠽挠湯瑳嘠䍅佔♒爠慨⤠挠湯瑳⁻敲畴湲℠⨨桴獩㴽桲⥡※ൽഊ †⼠य쒍�਍††䕖呃剏…灯牥瑡牯㴫 潣獮⁴䕖呃剏…桲⥡笉⨠桴獩㴠⨠桴獩爫慨※敲畴湲⨠桴獩※ൽ †嘠䍅佔♒漠数慲潴⵲⠽挠湯瑳嘠䍅佔♒爠慨ऩ⁻琪楨⁳‽琪楨⵳桲㭡爠瑥牵⁮琪楨㭳素਍††䕖呃剏…灯牥瑡牯㴪 潣獮⁴奔䕐…慶⥬笉⨠桴獩㴠⨠桴獩瘪污※敲畴湲⨠桴獩※ൽ †嘠䍅佔♒漠数慲潴⽲⠽挠湯瑳吠偙♅瘠污ऩ⁻琪楨⁳‽琪楨⽳慶㭬爠瑥牵⁮琪楨㭳素਍†㭽਍਍਍†⼯錉跱覀躉蹚൱ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†䕖呃剏䐲呟䵅䱐呁㱅奔䕐‾灯牥瑡牯⠫挠湯瑳嘠䍅佔㉒彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳嘠䍅佔㉒彄䕔偍䅌䕔吼偙㹅…桲⁡ഩ 笠਍††敲畴湲嘠䍅佔㉒彄䕔偍䅌䕔吼偙㹅 桬⹡⭸桲⹡ⱸ氠慨礮爫慨礮㬩ഠ 素਍†整灭慬整琼灹湥浡⁥奔䕐ാ 嘠䍅佔㉒彄䕔偍䅌䕔吼偙㹅漠数慲潴⵲ 潣獮⁴䕖呃剏䐲呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䕖呃剏䐲呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐲呟䵅䱐呁㱅奔䕐⠾氠慨砮爭慨砮‬桬⹡⵹桲⹡⥹※਍†ൽ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†䕖呃剏䐲呟䵅䱐呁㱅奔䕐‾灯牥瑡牯⠪挠湯瑳嘠䍅佔㉒彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳吠偙♅爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐲呟䵅䱐呁㱅奔䕐⠾氠慨砮爪慨‬桬⹡⩹桲⥡※਍†ൽ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†䕖呃剏䐲呟䵅䱐呁㱅奔䕐‾灯牥瑡牯⠯挠湯瑳嘠䍅佔㉒彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳吠偙♅爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐲呟䵅䱐呁㱅奔䕐⠾氠慨砮爯慨‬桬⹡⽹桲⥡※਍†ൽഊ ⼠ℯ錠郠苏诰芁苟෩ ⼠K਍†††灀牡浡氉慨उ楛崠茉荸荎荧芋芻苌൐ ††䀠慰慲७桲ॡ嬉⁩ढ़碃亃枃讃뮂첂冂਍††ഠ ††䀠敲畴湲錉郠苏鋌൬ †⼪਍†整灭慬整琼灹湥浡⁥奔䕐ാ 椠汮湩⁥奔䕐嘠捥潴䑲瑯 潣獮⁴䕖呃剏䐲呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䕖呃剏䐲呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †爠瑥牵⁮氨慨砮爪慨砮 ‫氨慨礮爪慨礮㬩਍†ൽഊ ⼠ℯ訠遏苏诰芁苟෩ ⼠K਍†††灀牡浡氉慨उ楛崠茉荸荎荧芋芻苌൐ ††䀠慰慲७桲ॡ嬉⁩ढ़碃亃枃讃뮂첂冂਍††ഠ ††䀠敲畴湲訉遏苏鋌腬ど뺂욂꾓뚂碃亃枃讃ഩ †⼪਍†整灭慬整琼灹湥浡⁥奔䕐ാ 椠汮湩⁥奔䕐嘠捥潴䍲潲獳 潣獮⁴䕖呃剏䐲呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䕖呃剏䐲呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †⼠ 舠蹑芟諌遏苏苈英苄苈苌臅⡁ⱸⱹ⤰즂떂쒂膋�਍††潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐‾敲⡴਍††††氨慨礮‪†〠 ‭ †〠爪慨礮Ⱙ਍†††† †〠爪慨砮 ‭氨慨砮‪†〠Ⱙ਍††††氨慨砮爪慨礮 ‭氨慨礮爪慨砮ഩ ††⤠※਍਍††敲畴湲爠瑥種഻ 素਍਍†整灭慬整琼灹湥浡⁥奔䕐ാ 椠汮湩⁥䕖呃剏䐲呟䵅䱐呁㱅奔䕐‾敖瑣牯潒慴整 潣獮⁴䕖呃剏䐲呟䵅䱐呁㱅奔䕐☾氠慨‬汦慯⁴慲⁤ഩ 笠਍††⨯਍†††玍皌媎춂਍†††硼礬籼挠獯‬楳籮਍†††††簠猭湩‬潣米਍†††❸㴠砠⨠挠獯욃ⴠ礠⨠猠湩욃਍†††❹㴠砠⨠猠湩욃⬠礠⨠挠獯욃਍†††얂랂䊁਍†††膕쪒즂綐悕ꊂ쒂䆁솉䂖鶗枎Ꚃ캂ꦂꦂ욂䊁਍††⼪਍਍††潣獮⁴奔䕐挠獯㴠䴠瑡㱨奔䕐㨾挺獯爨摡㬩਍††潣獮⁴奔䕐猠湩㴠䴠瑡㱨奔䕐㨾猺湩爨摡㬩਍਍††潣獮⁴奔䕐砠㴠氠慨砮⨠挠獯ⴠ氠慨礮⨠猠湩഻ †挠湯瑳吠偙⁅⁹‽桬⹡⁸‪楳⁮‫桬⹡⁹‪潣㭳਍਍††敲畴湲嘠䍅佔㉒彄䕔偍䅌䕔吼偙㹅砨礬㬩਍†ൽ紊਍਍⼯圉湩潤獷舠苌苆芫苌⃝塄䥌⁂枎솂붂澃宁垃螃鎃뚑�뎂릂਍椣摦晥唠䕓䑟剉䍅㍔塄ഹ ⌠湩汣摵≥⸮ⸯ⼮潣普杩眯湩㈳栮ഢ ⌠湩汣摵㱥㍤硤⸹㹨਍਍†慮敭灳捡⁥慍摩਍†ൻ †渠浡獥慰散搠搳癸捥潴㉲൤ †笠਍†††祴数敤⁦㍄塄䕖呃剏⨲⠠䥗䅎䥐⨠低䵒䱁婉⥅䐨䐳噘䍅佔㉒Ⱚ佃华⁔㍄塄䕖呃剏⨲㬩਍†††硥整湲丠剏䅍䥌䕚丠牯慭楬敺഻ഊ ††瘠楯⁤湉瑩慩楬敺 䵈䑏䱕⁅䵨摯汵⁥㬩਍†††潶摩䘠湩污穩⡥㬩਍††ൽഊ †挠湯瑳嘠䍅佔㉒彄䕔偍䅌䕔䘼佌呁☾嘠䍅佔㉒彄䕔偍䅌䕔䘼佌呁㨾为牯慭楬敺⤨਍††ൻ ††搠搳癸捥潴㉲㩤为牯慭楬敺 䐨䐳噘䍅佔㉒⤪桴獩‬䐨䐳噘䍅佔㉒⤪桴獩⤠഻ ††爠瑥牵⁮琪楨㭳਍††ൽ 素਍攣摮晩਍਍攣摮晩਍
+﻿/*!
+    @file
+    @brief	２次元ベクトルテンプレート
+ */
+
+
+
+#ifndef maid2_auxiliary_mathematics_vector2d_h
+#define maid2_auxiliary_mathematics_vector2d_h
+
+#include"../../config/define.h"
+#include"point2d.h"
+#include"function.h"
+
+namespace Maid
+{ 
+  /*!
+      @brief	２次元ベクトルを保持する構造体
+   */
+  template<typename TYPE>
+  struct VECTOR2D_TEMPLATE
+  { 
+    typedef VECTOR2D_TEMPLATE<TYPE> VECTOR;
+    typedef POINT2D_TEMPLATE<TYPE>  POINT;
+
+    TYPE	x;		//!<	横
+    TYPE	y;		//!<	縦
+
+    VECTOR2D_TEMPLATE(){}		//!	コンストラクタ
+    VECTOR2D_TEMPLATE( TYPE _x, TYPE _y ): x(_x), y(_y){}
+    VECTOR2D_TEMPLATE( const POINT& Start, const POINT& End ) { Reset(Start,End); }
+    VECTOR2D_TEMPLATE( const POINT& pos ) { Reset(pos); }
+  	
+    //! 正規化する
+    /*!
+    */
+    const VECTOR& Normalize()
+    {
+	    const TYPE f = Math<TYPE>::sqrt(x*x+y*y);
+	    *this /= f;
+	    return *this;
+    }
+
+    //! 座標をベクトルに変換する
+    /*!
+ 	      @param	Start [i ]	ベクトルの開始座標
+ 	      @param	End   [i ]	ベクトルの終了座標
+     */
+    void Reset( const POINT& Start, const POINT& End )
+    {
+	    x = End.x-Start.x;
+	    y = End.y-Start.y;
+    }
+
+    //! 座標をベクトルに変換する
+    /*!
+ 	      @param	pos [i ]	ベクトルの開始座標
+     */
+    void Reset( const POINT& pos )
+    {
+	    x = pos.x;
+	    y = pos.y;
+    }
+
+    POINT ConvertPOINT2D() { return POINT(x,y); }
+
+    //	単項演算子
+    VECTOR operator-() const{ return VECTOR(-x,-y); }
+
+    //	比較演算子
+    bool operator==( const VECTOR& rha ) const{ return x==rha.x && y==rha.y; }
+    bool operator!=( const VECTOR& rha ) const{ return !(*this==rha); }
+
+    //	再設定
+    VECTOR& operator+=( const VECTOR& rha)	{ *this = *this+rha; return *this; }
+    VECTOR& operator-=( const VECTOR& rha)	{ *this = *this-rha; return *this; }
+    VECTOR& operator*=( const TYPE& val)	{ *this = *this*val; return *this; }
+    VECTOR& operator/=( const TYPE& val)	{ *this = *this/val; return *this; }
+  };
+
+
+  //	二項演算子
+  template<typename TYPE>
+  VECTOR2D_TEMPLATE<TYPE> operator+( const VECTOR2D_TEMPLATE<TYPE>& lha, const VECTOR2D_TEMPLATE<TYPE>& rha )
+  {
+    return VECTOR2D_TEMPLATE<TYPE>( lha.x+rha.x, lha.y+rha.y); 
+  }
+  template<typename TYPE>
+  VECTOR2D_TEMPLATE<TYPE> operator-( const VECTOR2D_TEMPLATE<TYPE>& lha, const VECTOR2D_TEMPLATE<TYPE>& rha )
+  {
+    return VECTOR2D_TEMPLATE<TYPE>( lha.x-rha.x, lha.y-rha.y); 
+  }
+  template<typename TYPE>
+  VECTOR2D_TEMPLATE<TYPE> operator*( const VECTOR2D_TEMPLATE<TYPE>& lha, const TYPE& rha )
+  {
+    return VECTOR2D_TEMPLATE<TYPE>( lha.x*rha, lha.y*rha); 
+  }
+  template<typename TYPE>
+  VECTOR2D_TEMPLATE<TYPE> operator/( const VECTOR2D_TEMPLATE<TYPE>& lha, const TYPE& rha )
+  {
+    return VECTOR2D_TEMPLATE<TYPE>( lha.x/rha, lha.y/rha); 
+  }
+
+  //! 内積を求める
+  /*!
+      @param	lha		[i ]	ベクトルその１
+      @param	rha		[i ]	ベクトルその２
+     
+      @return	内積の値
+   */
+  template<typename TYPE>
+  inline TYPE VectorDot( const VECTOR2D_TEMPLATE<TYPE>& lha, const VECTOR2D_TEMPLATE<TYPE>& rha )
+  {
+    return (lha.x*rha.x) + (lha.y*rha.y);
+  }
+
+  //! 外積を求める
+  /*!
+      @param	lha		[i ]	ベクトルその１
+      @param	rha		[i ]	ベクトルその２
+     
+      @return	外積の値（0だと同じベクトル)
+   */
+  template<typename TYPE>
+  inline TYPE VectorCross( const VECTOR2D_TEMPLATE<TYPE>& lha, const VECTOR2D_TEMPLATE<TYPE>& rha )
+  {
+    //  ２次の外積なんてなので、(x,y,0)にして求める
+    const VECTOR3D_TEMPLATE<TYPE> ret(
+        (lha.y*    0) - (    0*rha.y),
+        (    0*rha.x) - (lha.x*    0),
+        (lha.x*rha.y) - (lha.y*rha.x)
+      ); 
+
+    return ret.z;
+  }
+
+  template<typename TYPE>
+  inline VECTOR2D_TEMPLATE<TYPE> VectorRotate( const VECTOR2D_TEMPLATE<TYPE>& lha, float rad )
+  {
+    /*
+      行列計算は
+      |x,y|| cos, sin|
+           |-sin, cos|
+      x' = x * cosθ - y * sinθ
+      y' = x * sinθ + y * cosθ
+      です。
+      普通に図を描いて、加法定理を使えばわかるかと。
+    */
+
+    const TYPE cos = Math<TYPE>::cos(rad);
+    const TYPE sin = Math<TYPE>::sin(rad);
+
+    const TYPE x = lha.x * cos - lha.y * sin;
+    const TYPE y = lha.x * sin + lha.y * cos;
+
+    return VECTOR2D_TEMPLATE<TYPE>(x,y);
+  }
+}
+
+//	Windows のときのみ DXLIB を使ったバージョンを存在させる
+#ifdef USE_DIRECT3DX9
+  #include"../../config/win32.h"
+  #include<d3dx9.h>
+
+  namespace Maid
+  {
+    namespace d3dxvector2d
+    {
+      typedef D3DXVECTOR2* (WINAPI *NORMALIZE)(D3DXVECTOR2*,CONST D3DXVECTOR2*);
+      extern NORMALIZE Normalize;
+
+      void Initialize( HMODULE hModule );
+      void Finalize();
+    }
+
+    const VECTOR2D_TEMPLATE<FLOAT>& VECTOR2D_TEMPLATE<FLOAT>::Normalize()
+    {
+      d3dxvector2d::Normalize( (D3DXVECTOR2*)this, (D3DXVECTOR2*)this );
+      return *this;
+    }
+  }
+#endif
+
+#endif

@@ -1,1 +1,45 @@
-﻿⨯ഡ 䀉楦敬਍ठ所楲晥䘉卐舠諰韇芝芷菩荞荃腽൛⨊യഊ⌊晩摮晥洠楡㉤慟硵汩慩祲晟獰楴敭彲൨⌊敤楦敮洠楡㉤慟硵汩慩祲晟獰楴敭彲൨ഊഊ⌊湩汣摵≥⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮振湯楦⽧祴数敤⹦≨਍椣据畬敤琢浩牥栮ഢഊ渊浡獥慰散䴠楡൤笊਍†汣獡⁳偆呓浩牥਍†ൻ 瀠扵楬㩣਍††偆呓浩牥⤨഻ †縠偆呓浩牥⤨഻ഊ †瘠楯⁤湉瑩慩楬敺⤨഻ഊ †瘠楯⁤敒敳⡴㬩਍††潢汯䤠味浩牥癏牥⤨挠湯瑳഻ഊ †瘠楯⁤汓敥⡰㬩਍਍††潶摩匠瑥偆⡓甠瑮映獰⤠഻ഊ 瀠楲慶整ഺ †吠浩牥洉呟浩牥഻ഊ †甠瑮洉䉟来湩楔敭※†⼠ℯ़傂璃貃宁肃�첂䪊溎麎풊਍††湵ॴ彭楔敭癏牥潃湵㭴⼯㰡霉鉜軨趞芏飰酁花觅苟芬苄芢觩郱ඔ †甠瑮洉也睯牆浡㭥††⼠ℯ़뮌�첂璃貃宁肃钐਍਍††湵ॴ彭偆㭓†††††⼯㰡蠉軛芝芷苩艥良൲ 素഻ഊഊ紊਍਍਍攣摮晩਍
+﻿/*!
+ 	@file
+ 	@brief	FPS を管理するタイマー
+*/
+
+#ifndef maid2_auxiliary_fpstimer_h
+#define maid2_auxiliary_fpstimer_h
+
+
+#include"../config/define.h"
+#include"../config/typedef.h"
+#include"timer.h"
+
+namespace Maid
+{
+  class FPSTimer
+  {
+  public:
+    FPSTimer();
+    ~FPSTimer();
+
+    void Initialize();
+
+    void Reset();
+    bool IsTimerOver() const;
+
+    void Sleep();
+
+    void SetFPS( unt fps );
+
+  private:
+    Timer	m_Timer;
+
+    unt	m_BeginTime;    //!<	１フレーム目の開始時間
+    unt	m_TimeOverCount;//!<	予定時刻を連続で過ぎている回数
+    unt	m_NowFrame;     //!<	現在のフレーム数
+
+    unt	m_FPS;          //!<	維持するＦＰＳ
+  };
+
+
+}
+
+
+#endif

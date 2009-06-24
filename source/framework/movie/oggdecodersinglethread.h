@@ -1,1 +1,57 @@
-﻿椣湦敤⁦慭摩弲牦浡睥牯彫杯摧捥摯牥楳杮敬桴敲摡桟਍搣晥湩⁥慭摩弲牦浡睥牯彫杯摧捥摯牥楳杮敬桴敲摡桟਍਍椣据畬敤⸢⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮畡楸楬牡⽹桴敲摡栮ഢഊ⌊湩汣摵≥楸桰漯杧瑳敲浡栮ഢ⌊湩汣摵≥楸桰猯浡汰捥捡敨栮ഢ⌊湩汣摵≥楸桰椯敤潣敤⹲≨਍椣据畬敤漢杧楴敭⹲≨਍਍椣据畬敤瘼捥潴㹲਍椣据畬敤氼獩㹴਍椣据畬敤戼潯瑳猯慭瑲灟牴栮灰ാഊ渊浡獥慰散䴠楡൤笊਍†汣獡⁳杏䑧捥摯牥楓杮敬桔敲摡਍†ൻ 瀠扵楬㩣਍††杏䑧捥摯牥楓杮敬桔敲摡 潣獮⁴佉杧楔敭♲吠浩牥⤠഻ †縠杏䑧捥摯牥楓杮敬桔敲摡⤨഻ഊ †瘠楯⁤湉瑩慩楬敺 潣獮⁴楘桰㨺偓䝏升剔䅅♍瀠瑓敲浡‬潣獮⁴楘桰㨺偓䕄佃䕄♒瀠敄潣敤Ⱳ挠湯瑳堠灩㩨区卐䵁䱐䍅䍁䕈䡃䍅䕋♒瀠桃捥敫⁲㬩਍††潶摩䘠湩污穩⡥㬩਍††潶摩倠条䥥⡮挠湯瑳堠灩㩨伺杧慐敧…慰敧⤠഻ †椠瑮†潐䍰捡敨 潤扵敬䔠摮楔敭‬楘桰㨺䅓偍䕌䥌呓…畏⁴㬩਍਍††潶摩匠敥⡫搠畯汢⁥楴敭⤠഻ഊ †椠瑮†敇側捡敫䍴畯瑮⤨挠湯瑳഻ഊ †瘠楯⁤灕慤整⤨഻ഊ †戠潯⁬獉瑓敲浡湅⡤ 潣獮㭴਍††潢汯䤠偳捡敫䕴灭祴⤨挠湯瑳഻ †戠潯⁬獉慃档䙥汵⡬ 潣獮㭴਍਍਍†牰癩瑡㩥਍††潣獮⁴佉杧楔敭♲†彭楔敭㭲਍਍਍††楘桰㨺偓䝏升剔䅅⁍洠灟瑓敲浡഻ †堠灩㩨区䑐䍅䑏剅††彭䑰捥摯牥഻ †堠灩㩨区浡汰䍥捡敨†彭慃档㭥਍††楘桰㨺偓䅓偍䕌䅃䡃䍅䕈䭃剅洠灟桃捥敫㭲਍਍††潤扵敬洠呟瑯污楔敭഻ †猠穩彥⁴彭慓灭敬潃湵㭴਍਍†牰癩瑡㩥਍††潶摩倠獵䉨捡⡫挠湯瑳堠灩㩨区䵁䱐♅猠浡汰⁥㬩਍†㭽਍ൽഊ⌊湥楤൦
+﻿#ifndef maid2_framework_oggdecodersinglethread_h
+#define maid2_framework_oggdecodersinglethread_h
+
+#include"../config/define.h"
+#include"../auxiliary/thread.h"
+
+#include"xiph/oggstream.h"
+#include"xiph/samplecache.h"
+#include"xiph/idecoder.h"
+#include"oggtimer.h"
+
+#include<vector>
+#include<list>
+#include<boost/smart_ptr.hpp>
+
+namespace Maid
+{
+  class OggDecoderSingleThread
+  {
+  public:
+    OggDecoderSingleThread( const IOggTimer& Timer );
+    ~OggDecoderSingleThread();
+
+    void Initialize( const Xiph::SPOGGSTREAM& pStream, const Xiph::SPDECODER& pDecoder, const Xiph::SPSAMPLECACHECHECKER& pChecker );
+    void Finalize();
+    void PageIn( const Xiph::OggPage& page );
+    int  PopCache( double EndTime, Xiph::SAMPLELIST& Out );
+
+    void Seek( double time );
+
+    int  GetPacketCount() const;
+
+    void Update();
+
+    bool IsStreamEnd() const;
+    bool IsPacketEmpty() const;
+    bool IsCacheFull() const;
+
+
+  private:
+    const IOggTimer&  m_Timer;
+
+
+    Xiph::SPOGGSTREAM  m_pStream;
+    Xiph::SPDECODER    m_pDecoder;
+    Xiph::SampleCache  m_Cache;
+    Xiph::SPSAMPLECACHECHECKER m_pChecker;
+
+    double m_TotalTime;
+    size_t m_SampleCount;
+
+  private:
+    void PushBack( const Xiph::SAMPLE& sample );
+  };
+}
+
+#endif

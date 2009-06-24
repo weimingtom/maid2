@@ -1,1 +1,149 @@
-﻿⨯ഡ  䀠楦敬਍ठ†所楲晥舉蹓貟莳荸荎荧莋荥莓荶膌荛൧ ⼪਍਍਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳敶瑣牯搴桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳敶瑣牯搴桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥潰湩㑴⹤≨਍椣据畬敤昢湵瑣潩⹮≨਍਍਍慮敭灳捡⁥慍摩਍⁻਍†⨯ഡ ††䀠牢敩०厂龎뎌碃亃枃讃�鶎랂岍ꊑ첑਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†瑳畲瑣嘠䍅佔㑒彄䕔偍䅌䕔਍†⁻਍††祴数敤⁦䕖呃剏䐴呟䵅䱐呁㱅奔䕐‾䕖呃剏഻ †琠灹摥晥倠䥏呎䐴呟䵅䱐呁㱅奔䕐‾倠䥏呎഻ഊ †吠偙ॅ㭸उ⼯㰡褉ඡ †吠偙ॅ㭹उ⼯㰡載ൣ †吠偙ॅ㭺उ⼯㰡褉ග †吠偙ॅ㭷उ⼯㰡眉ിഊ †嘠䍅佔㑒彄䕔偍䅌䕔⤨絻਍††⼯ड劃鎃境枃覃亃広਍††䕖呃剏䐴呟䵅䱐呁⡅吠偙⁅硟‬奔䕐张ⱹ吠偙⁅穟‬奔䕐张⁷㨩砠弨⥸‬⡹祟Ⱙ稠弨⥺‬⡷睟笩ൽ †嘠䍅佔㑒彄䕔偍䅌䕔 潣獮⁴佐义♔匠慴瑲‬潣獮⁴佐义♔䔠摮⤠笠刉獥瑥匨慴瑲䔬摮㬩素਍†ഉഊ †⼠ℯ造讳襋芻芷෩ †⼠K਍††⼪਍††潣獮⁴䕖呃剏…潎浲污穩⡥ഩ †笠਍†††潣獮⁴奔䕐映㴠䴠瑡㱨奔䕐㨾猺牱⡴⩸⭸⩹⭹⩺⭺⩷⥷഻ ††⨠桴獩⼠‽㭦਍†††敲畴湲⨠桴獩഻ †素਍਍††⼯‡삍垕碃亃枃讃즂쾕랊랂਍††⨯ഡ †††䀠慰慲७瑓牡⁴楛崠茉荸荎荧芋諌蹊赮闀ൗ †††䀠慰慲७湅⁤†楛崠茉荸荎荧芋迌靉趹闀ൗ ††⼪਍††潶摩删獥瑥 潣獮⁴佐义♔匠慴瑲‬潣獮⁴佐义♔䔠摮⤠਍††ൻ ††砠㴠䔠摮砮匭慴瑲砮഻ ††礠㴠䔠摮礮匭慴瑲礮഻ ††稠㴠䔠摮種匭慴瑲種഻ ††眠㴠䔠摮眮匭慴瑲眮഻ †素਍††⼯‡삍垕碃亃枃讃즂쾕랊랂਍††⨯ഡ †††䀠慰慲७潰⁳楛崠茉荸荎荧芋諌蹊赮闀ൗ ††⼪਍††潶摩删獥瑥 潣獮⁴佐义♔瀠獯⤠਍††ൻ ††砠㴠瀠獯砮഻ ††礠㴠瀠獯礮഻ ††稠㴠瀠獯種഻ ††眠㴠瀠獯眮഻ †素਍਍††⼯鈉赐覀躉蹚൱ †嘠䍅佔⁒灯牥瑡牯⠭ 潣獮筴爠瑥牵⁮䕖呃剏⴨ⱸ礭⴬ⱺ眭㬩素਍਍††⼯鐉諤襲躉蹚൱ †戠潯⁬灯牥瑡牯㴽 潣獮⁴䕖呃剏…桲⁡ 潣獮筴爠瑥牵⁮㵸爽慨砮☠…㵹爽慨礮☠…㵺爽慨種☠…㵷爽慨眮※ൽ †戠潯⁬灯牥瑡牯㴡 潣獮⁴䕖呃剏…桲⁡ 潣獮筴爠瑥牵⁮⠡琪楨㵳爽慨㬩素਍਍††⼯贉郄鋝෨ †嘠䍅佔♒漠数慲潴⭲⠽挠湯瑳嘠䍅佔♒爠慨ऩ⁻琪楨⁳‽琪楨⭳桲㭡爠瑥牵⁮琪楨㭳素਍††䕖呃剏…灯牥瑡牯㴭 潣獮⁴䕖呃剏…桲⥡笉⨠桴獩㴠⨠桴獩爭慨※敲畴湲⨠桴獩※ൽ †嘠䍅佔♒漠数慲潴⩲⠽挠湯瑳吠偙♅瘠污ऩ⁻琪楨⁳‽琪楨⩳慶㭬爠瑥牵⁮琪楨㭳素਍††䕖呃剏…灯牥瑡牯㴯 潣獮⁴奔䕐…慶⥬笉⨠桴獩㴠⨠桴獩瘯污※敲畴湲⨠桴獩※ൽഊ 素഻ഊ ⼠य肍覉媎熎਍†整灭慬整琼灹湥浡⁥奔䕐ാ 嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅漠数慲潴⵲ 潣獮⁴䕖呃剏䐴呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䕖呃剏䐴呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐴呟䵅䱐呁㱅奔䕐⠾氠慨砮爭慨砮‬桬⹡⵹桲⹡ⱹ氠慨種爭慨種‬桬⹡⵷桲⹡⥷※਍†ൽ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†䕖呃剏䐴呟䵅䱐呁㱅奔䕐‾灯牥瑡牯⠫挠湯瑳嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅…桲⁡ഩ 笠਍††敲畴湲嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅 桬⹡⭸桲⹡ⱸ氠慨礮爫慨礮‬桬⹡⭺桲⹡ⱺ氠慨眮爫慨眮㬩ഠ 素਍†整灭慬整琼灹湥浡⁥奔䕐ാ 嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅漠数慲潴⩲ 潣獮⁴䕖呃剏䐴呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴奔䕐…桲⁡ഩ 笠਍††敲畴湲嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅 桬⹡⩸桲ⱡ氠慨礮爪慨‬桬⹡⩺桲ⱡ氠慨眮爪慨㬩ഠ 素਍†整灭慬整琼灹湥浡⁥奔䕐ാ 嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅漠数慲潴⽲ 潣獮⁴䕖呃剏䐴呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴奔䕐…桲⁡ഩ 笠਍††敲畴湲嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅 桬⹡⽸桲ⱡ氠慨礮爯慨‬桬⹡⽺桲ⱡ氠慨眮爯慨㬩ഠ 素਍਍†⼯‡쾐膋�਍†⨯ഡ ††䀠慰慲७桬ॡ嬉⁩ढ़碃亃枃讃뮂첂傂਍†††灀牡浡爉慨उ楛崠茉荸荎荧芋芻苌൑ ††਍†††牀瑥牵८쾐첂沒਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†湩楬敮吠偙⁅敖瑣牯潄⡴挠湯瑳嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅…桲⁡ഩ 笠਍††敲畴湲⠠桬⹡⩸桲⹡⥸⬠⠠桬⹡⩹桲⹡⥹⬠⠠桬⹡⩺桲⹡⥺⬠⠠桬⹡⩷桲⹡⥷഻ 素਍਍਍ൽऊ⼯圉湩潤獷舠苌苆芫苌⃝塄䥌⁂枎솂붂澃宁垃螃鎃뚑�뎂릂਍椣摦晥唠䕓䑟剉䍅㍔塄ഹ ⌠湩汣摵≥⸮ⸯ⼮潣普杩眯湩㈳栮ഢ ⌠湩汣摵㱥㍤硤⸹㹨਍਍†慮敭灳捡⁥慍摩਍†ൻ †渠浡獥慰散搠搳癸捥潴㑲൤ †笠਍†††祴数敤⁦㍄塄䕖呃剏⨴⠠䥗䅎䥐⨠低䵒䱁婉⥅䐨䐳噘䍅佔㑒Ⱚ佃华⁔㍄塄䕖呃剏⨴㬩਍†††硥整湲丠剏䅍䥌䕚丠牯慭楬敺഻ഊ ††瘠楯⁤湉瑩慩楬敺 䵈䑏䱕⁅䵨摯汵⁥㬩਍†††潶摩䘠湩污穩⡥㬩਍††ൽഊ †挠湯瑳嘠䍅佔㑒彄䕔偍䅌䕔䘼佌呁☾嘠䍅佔㑒彄䕔偍䅌䕔䘼佌呁㨾为牯慭楬敺⤨਍††ൻ ††䐠䐳噘捥临牯慭楬敺 䐨䐳噘䍅佔㑒⤪桴獩‬䐨䐳噘䍅佔㑒⤪桴獩⤠഻ ††爠瑥牵⁮琪楨㭳਍††ൽ 素਍攣摮晩਍਍਍攣摮晩਍
+﻿/*!
+ 	  @file
+ 	  @brief	４次元ベクトルテンプレート
+ */
+
+
+
+#ifndef maid2_auxiliary_mathematics_vector4d_h
+#define maid2_auxiliary_mathematics_vector4d_h
+
+#include"../../config/define.h"
+#include"point4d.h"
+#include"function.h"
+
+
+namespace Maid
+{ 
+  /*!
+      @brief	４次元ベクトルを保持する構造体
+   */
+  template<typename TYPE>
+  struct VECTOR4D_TEMPLATE
+  { 
+    typedef VECTOR4D_TEMPLATE<TYPE> VECTOR;
+    typedef POINT4D_TEMPLATE<TYPE>  POINT;
+
+    TYPE	x;		//!<	横
+    TYPE	y;		//!<	縦
+    TYPE	z;		//!<	奥
+    TYPE	w;		//!<	w?
+
+    VECTOR4D_TEMPLATE(){}
+    //!	コンストラクタ
+    VECTOR4D_TEMPLATE( TYPE _x, TYPE _y, TYPE _z, TYPE _w ): x(_x), y(_y), z(_z), w(_w){}
+    VECTOR4D_TEMPLATE( const POINT& Start, const POINT& End ) {	Reset(Start,End); }
+  	
+
+    //! 正規化する
+    /*!
+    */
+    const VECTOR& Normalize()
+    {
+      const TYPE f = Math<TYPE>::sqrt(x*x+y*y+z*z+w*w);
+      *this /= f;
+      return *this;
+    }
+
+    //! 座標をベクトルに変換する
+    /*!
+        @param	Start [i ]	ベクトルの開始座標
+        @param	End   [i ]	ベクトルの終了座標
+     */
+    void Reset( const POINT& Start, const POINT& End )
+    {
+      x = End.x-Start.x;
+      y = End.y-Start.y;
+      z = End.z-Start.z;
+      w = End.w-Start.w;
+    }
+    //! 座標をベクトルに変換する
+    /*!
+        @param	pos [i ]	ベクトルの開始座標
+     */
+    void Reset( const POINT& pos )
+    {
+      x = pos.x;
+      y = pos.y;
+      z = pos.z;
+      w = pos.w;
+    }
+
+    //	単項演算子
+    VECTOR operator-() const{ return VECTOR(-x,-y,-z,-w); }
+
+    //	比較演算子
+    bool operator==( const VECTOR& rha ) const{ return x==rha.x && y==rha.y && z==rha.z && w==rha.w; }
+    bool operator!=( const VECTOR& rha ) const{ return !(*this==rha); }
+
+    //	再設定
+    VECTOR& operator+=( const VECTOR& rha)	{ *this = *this+rha; return *this; }
+    VECTOR& operator-=( const VECTOR& rha)	{ *this = *this-rha; return *this; }
+    VECTOR& operator*=( const TYPE& val)	{ *this = *this*val; return *this; }
+    VECTOR& operator/=( const TYPE& val)	{ *this = *this/val; return *this; }
+
+  };
+
+  //	二項演算子
+  template<typename TYPE>
+  VECTOR4D_TEMPLATE<TYPE> operator-( const VECTOR4D_TEMPLATE<TYPE>& lha, const VECTOR4D_TEMPLATE<TYPE>& rha )
+  {
+    return VECTOR4D_TEMPLATE<TYPE>( lha.x-rha.x, lha.y-rha.y, lha.z-rha.z, lha.w-rha.w); 
+  }
+  template<typename TYPE>
+  VECTOR4D_TEMPLATE<TYPE> operator+( const VECTOR4D_TEMPLATE<TYPE>& lha, const VECTOR4D_TEMPLATE<TYPE>& rha )
+  {
+    return VECTOR4D_TEMPLATE<TYPE>( lha.x+rha.x, lha.y+rha.y, lha.z+rha.z, lha.w+rha.w); 
+  }
+  template<typename TYPE>
+  VECTOR4D_TEMPLATE<TYPE> operator*( const VECTOR4D_TEMPLATE<TYPE>& lha, const TYPE& rha )
+  {
+    return VECTOR4D_TEMPLATE<TYPE>( lha.x*rha, lha.y*rha, lha.z*rha, lha.w*rha); 
+  }
+  template<typename TYPE>
+  VECTOR4D_TEMPLATE<TYPE> operator/( const VECTOR4D_TEMPLATE<TYPE>& lha, const TYPE& rha )
+  {
+    return VECTOR4D_TEMPLATE<TYPE>( lha.x/rha, lha.y/rha, lha.z/rha, lha.w/rha); 
+  }
+
+  //! 内積を求める
+  /*!
+      @param	lha		[i ]	ベクトルその１
+      @param	rha		[i ]	ベクトルその２
+     
+      @return	内積の値
+   */
+  template<typename TYPE>
+  inline TYPE VectorDot( const VECTOR4D_TEMPLATE<TYPE>& lha, const VECTOR4D_TEMPLATE<TYPE>& rha )
+  {
+    return (lha.x*rha.x) + (lha.y*rha.y) + (lha.z*rha.z) + (lha.w*rha.w);
+  }
+
+
+}
+	//	Windows のときのみ DXLIB を使ったバージョンを存在させる
+#ifdef USE_DIRECT3DX9
+  #include"../../config/win32.h"
+  #include<d3dx9.h>
+
+  namespace Maid
+  {
+    namespace d3dxvector4d
+    {
+      typedef D3DXVECTOR4* (WINAPI *NORMALIZE)(D3DXVECTOR4*,CONST D3DXVECTOR4*);
+      extern NORMALIZE Normalize;
+
+      void Initialize( HMODULE hModule );
+      void Finalize();
+    }
+
+    const VECTOR4D_TEMPLATE<FLOAT>& VECTOR4D_TEMPLATE<FLOAT>::Normalize()
+    {
+      D3DXVec4Normalize( (D3DXVECTOR4*)this, (D3DXVECTOR4*)this );
+      return *this;
+    }
+  }
+#endif
+
+
+#endif

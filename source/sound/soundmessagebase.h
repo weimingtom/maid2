@@ -1,1 +1,93 @@
-﻿椣湦敤⁦慭摩弲潳湵彤潳湵浤獥慳敧慢敳桟਍搣晥湩⁥慭摩弲潳湵彤潳湵浤獥慳敧慢敳桟਍਍⨯ड਍䀉楦敬਍䀉牢敩०膃抃媃宁垃袏鶗횊钐첂碃宁境਍⼪਍਍椣据畬敤⸢⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮潣普杩琯灹摥晥栮ഢ⌊湩汣摵㱥潢獯⽴浳牡彴瑰⹲灨㹰਍椣据畬敤瘼捥潴㹲਍਍慮敭灳捡⁥慍摩਍ൻ 挠慬獳匠畯摮潃敲഻ഊ 挠慬獳匠畯摮扏敪瑣湉潦਍†ൻ †映楲湥⁤潓湵䍤牯㭥਍†異汢捩ഺ †匠畯摮扏敪瑣湉潦 湵⁴摩⤠਍†††洺䥟⡄摩ഩ ††Ⱐ彭獉汐祡昨污敳ഩ ††Ⱐ彭潐楳楴湯〨ഩ ††Ⱐ彭敍獳条䍥畯瑮〨ഩ ††Ⱐ彭潖畬敭〨ഩ †笠ൽഊ †甠瑮†敇䥴⡄ 挠湯瑳笠爠瑥牵⁮彭䑉※ൽ †戠潯⁬獉汐祡⤨挠湯瑳笠爠瑥牵⁮彭獉汐祡※ൽ †搠畯汢⁥敇側獯瑩潩⡮ 潣獮⁴⁻敲畴湲洠偟獯瑩潩㭮素਍਍††潢汯䤠䵳獥慳敧硅捥瑵湩⡧ 潣獮⁴⁻敲畴湲洠䵟獥慳敧潃湵ⅴ〽※ൽഊ 瀠楲慶整ഺ †椠瑮†洠䵟獥慳敧潃湵㭴⼠ 舠苜达鞈芝芵苄苈莢莁荢腚荛遗ඔ †甠瑮†洠䥟㭄਍††潢汯†彭獉汐祡഻ †搠畯汢⁥彭潐楳楴湯഻ †搠畯汢⁥彭潖畬敭഻ 素഻ 琠灹摥晥戉潯瑳㨺桳牡摥灟牴匼畯摮扏敪瑣湉潦ा偓体乕佄䩂䍅䥔䙎㭏਍਍渉浡獥慰散匠畯摮敍獳条൥ऊൻऊ按慬獳䈠獡൥ऊ笉਍†††牦敩摮†潓湵䍤牯㭥਍उ異汢捩ഺऊउ⼯茉荔荅莓荨莁荢腚荛ൗऊउ湥浵䴠卅䅓䕇਍उ笉਍उउ低䕎बउ⼉ℯ़붉떂좂ꊂ਍਍उउ剃䅅䕔偟䵃呓呁䍉‬⼯㰡茉草莓莁莂莊荔荅莓艨苆芵郄邶ඬऊउ䌉䕒呁彅䍐卍剔䅅ⱍ⼠ℯ़境枃誃宁肃咃䖃鎃梃욂떂쒂뚐겐਍उउ剃䅅䕔偟䵃䕒䱁䥔䕍‬⼯㰡选閶釺莗荘荧膊荛芀苆芵郄邶ඬऊउ䌉䕒呁彅䱃乏ⱅ††⼠ℯ़亃趃宁鎃겐਍਍उउ䕄䕌䕔䉏䕊呃‬††⼯㰡鐉詪෼ഊऊउ倉䅌ⱙउ⼯㰡贉郄শ਍उउ呓偏ब⼉ℯ़境枃抃皃਍उउ䕓偔协呉佉ⱎ⼯㰡贉郄辶迪芊裌鏚ථऊउ匉呅佖啌䕍ब⼉ℯ़箃誃薃宁肃첂쾕墍਍਍††††䕓䱔住卐䅔䕔‬⼯㰡†讃宁皃쒍뚐랂ꦂ䢁਍††††䕓䩔䵕偐䥏呎‬⼯㰡†瞎떂붂粃䎃鎃枃�얂ꮂ붂�쪈疒਍उ紉഻ഊऊउ慂敳 䕍卓䝁⁅敭獳⤠㨠䴠獥慳敧洨獥⥳絻਍਍उ按湯瑳䴠卅䅓䕇䴉獥慳敧഻ ††匠卐問䑎䉏䕊呃义但瀠湉潦഻ഊ †素഻ऊൽഊऊ祴数敤०潢獯㩴猺慨敲彤瑰㱲潓湵䵤獥慳敧㨺慂敳ा偓体乕䵄卅䅓䕇഻ऊ祴数敤०瑳㩤瘺捥潴㱲偓体乕䵄卅䅓䕇ाउ体乕䵄卅䅓䕇啑㭅਍਍†瑳畲瑣䨠䵕偐䥏呎਍†ൻऊ†潤扵敬䈉潯㭴਍ 搠畯汢॥畊灭഻ഊ †䨠䵕偐䥏呎⤨䈺潯⡴ㄭⰩ畊灭⴨⤱絻਍†㭽਍琉灹摥晥猉摴㨺敶瑣牯䨼䵕偐䥏呎ाउ体乕䩄䵕偐䥏呎䥌呓഻紊਍਍攣摮晩਍
+﻿#ifndef maid2_sound_soundmessagebase_h
+#define maid2_sound_soundmessagebase_h
+
+/*!	
+	@file
+	@brief	メッセージ処理関数のベース
+*/
+
+#include"../config/define.h"
+#include"../config/typedef.h"
+#include<boost/smart_ptr.hpp>
+#include<vector>
+
+namespace Maid
+{
+  class SoundCore;
+
+  class SoundObjectInfo
+  {
+    friend SoundCore;
+  public:
+    SoundObjectInfo( unt id )
+      :m_ID(id)
+      ,m_IsPlay(false)
+      ,m_Position(0)
+      ,m_MessageCount(0)
+      ,m_Volume(0)
+    {}
+
+    unt  GetID()  const { return m_ID; }
+    bool IsPlay() const { return m_IsPlay; }
+    double GetPosition() const { return m_Position; }
+
+    bool IsMessageExecuting() const { return m_MessageCount!=0; }
+
+  private:
+    int   m_MessageCount; //  まだ処理してないメッセージ数
+    unt   m_ID;
+    bool  m_IsPlay;
+    double m_Position;
+    double m_Volume;
+  };
+  typedef	boost::shared_ptr<SoundObjectInfo>	SPSOUNDOBJECTINFO;
+
+	namespace SoundMessage
+	{
+		class Base
+		{
+      friend  SoundCore;
+		public:
+			//	サウンドメッセージ
+			enum MESSAGE
+			{
+				NONE,				//!<	何もしない
+
+				CREATE_PCMSTATIC, //!<	オンメモリサウンドとして生成
+				CREATE_PCMSTREAM, //!<	ストリームサウンドとして生成
+				CREATE_PCMREALTIME, //!<	生放送ストリームとして生成
+				CREATE_CLONE,     //!<	クローンを作成
+
+				DELETEOBJECT,     //!<	破棄
+
+				PLAY,		//!<	再生	
+				STOP,		//!<	ストップ
+				SETPOSITION,//!<	再生場所の移動
+				SETVOLUME,		//!<	ボリュームの変更
+
+        SETLOOPSTATE, //!<  ループ再生するか？
+        SETJUMPPOINT, //!<  指定したポイントまできたら戻る位置
+			};
+
+			Base( MESSAGE mess ) : Message(mess){}
+
+			const MESSAGE	Message;
+      SPSOUNDOBJECTINFO pInfo;
+
+    };
+	}
+
+	typedef	boost::shared_ptr<SoundMessage::Base>	SPSOUNDMESSAGE;
+	typedef	std::vector<SPSOUNDMESSAGE>			SOUNDMESSAGEQUE;
+
+  struct JUMPPOINT
+  {
+	  double	Boot;
+	  double	Jump;
+
+    JUMPPOINT():Boot(-1),Jump(-1){}
+  };
+	typedef	std::vector<JUMPPOINT>			SOUNDJUMPPOINTLIST;
+}
+
+#endif

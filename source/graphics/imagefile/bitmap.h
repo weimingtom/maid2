@@ -1,1 +1,27 @@
-﻿⨯ഡ 䀉楦敬਍ठ所楲晥茉荲荢荧荽荢荶荴荀荃醋趀෬ ⼪਍਍椣湦敤⁦慭摩弲牧灡楨獣楟慭敧楦敬扟瑩慭彰൨⌊敤楦敮洠楡㉤束慲桰捩彳浩条晥汩彥楢浴灡桟਍਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹瑳楲杮栮ഢ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹畦据楴湯敲畳瑬栮ഢ⌊湩汣摵≥⸮猯牵慦散栮ഢഊഊ渊浡獥慰散䴠楡൤笊਍†慮敭灳捡⁥楂浴灡਍†ൻ †戠潯⁬䌠敨正 潣獮⁴瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条⁥㬩਍††商呃佉剎卅䱕⁔䰠慯⡤挠湯瑳猠摴㨺敶瑣牯甼瑮㠰☾䘠汩䥥慭敧‬畓晲捡䥥獮慴据♥搠瑳⤠഻ †䘠䍕䥔乏䕒啓呌†桃捥卫癡⡥挠湯瑳匠牵慦散湉瑳湡散…牳Ᵽ猠摴㨺敶瑣牯甼瑮㠰☾䘠汩䥥慭敧⤠഻ †䘠䍕䥔乏䕒啓呌†慓敶 潣獮⁴畓晲捡䥥獮慴据♥猠捲‬瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条⁥㬩਍†㭽਍ൽഊ⌊湥楤൦
+﻿/*!
+ 	@file
+ 	@brief	ビットマップファイル操作
+ */
+
+#ifndef maid2_graphics_imagefile_bitmap_h
+#define maid2_graphics_imagefile_bitmap_h
+
+
+#include"../../config/define.h"
+#include"../../auxiliary/string.h"
+#include"../../auxiliary/functionresult.h"
+#include"../surface.h"
+
+
+namespace Maid
+{
+  namespace Bitmap
+  {
+    bool  Check( const std::vector<unt08>& FileImage );
+    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst );
+    FUCTIONRESULT  CheckSave( const SurfaceInstance& src, std::vector<unt08>& FileImage );
+    FUCTIONRESULT  Save( const SurfaceInstance& src, std::vector<unt08>& FileImage );
+  };
+}
+
+#endif

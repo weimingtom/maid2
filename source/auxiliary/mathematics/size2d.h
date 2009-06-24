@@ -1,1 +1,40 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥舉蹑貟莳荔荃荙荥莓荶膌荛൧ ⼪਍਍਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳楳敺搲桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳楳敺搲桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢഊ渊浡獥慰散䴠楡൤笊ഠ ⼠K਍†††所楲晥褉閡膝轁镣芝闰軛芝芷跩酜醢෌ †⼪਍†整灭慬整琼灹湥浡⁥奔䕐ാ 猠牴捵⁴䥓䕚䐲呟䵅䱐呁൅ 笠਍††祴数敤⁦䥓䕚䐲呟䵅䱐呁㱅奔䕐‾䥓䕚഻ഊ †吠偙ॅ㭷उ⼯㰡褉閡ඝ †吠偙ॅ㭨उ⼯㰡載镣ඝഊ †匠婉㉅彄䕔偍䅌䕔⤨絻उउठ †††⼠ℯ़劃鎃境枃覃亃広਍††䥓䕚䐲呟䵅䱐呁⡅吠偙⁅睟‬奔䕐张⁨ †⼯㰡茉荒莓荘荧莉荎൞ ††㨠眠弨⥷‬⡨桟笩ൽ †琠浥汰瑡㱥祴数慮敭吠偙㉅ാ †匠婉㉅彄䕔偍䅌䕔 潣獮⁴䥓䕚䐲呟䵅䱐呁㱅奔䕐㸲…桲⁡ ⼉ℯ़劃鎃境枃覃亃広਍††ൻ ††眠㴠⠠奔䕐爩慨眮഻ ††栠㴠⠠奔䕐爩慨栮഻ †素਍਍਍紉഻紊਍਍攣摮晩਍
+﻿/*!
+    @file
+    @brief	２次元サイズテンプレート
+ */
+
+
+
+#ifndef maid2_auxiliary_mathematics_size2d_h
+#define maid2_auxiliary_mathematics_size2d_h
+
+#include"../../config/define.h"
+
+namespace Maid
+{ 
+  /*!
+      @brief	横幅、縦幅を保持する構造体
+   */
+  template<typename TYPE>
+  struct SIZE2D_TEMPLATE
+  {
+    typedef SIZE2D_TEMPLATE<TYPE> SIZE;
+
+    TYPE	w;		//!<	横幅
+    TYPE	h;		//!<	縦幅
+
+    SIZE2D_TEMPLATE(){}				 		        //!<	コンストラクタ
+    SIZE2D_TEMPLATE( TYPE _w, TYPE _h )   //!<	コンストラクタ
+      : w(_w), h(_h){}
+    template<typename TYPE2>
+    SIZE2D_TEMPLATE( const SIZE2D_TEMPLATE<TYPE2>& rha ) 	//!<	コンストラクタ
+    {
+      w = (TYPE)rha.w;
+      h = (TYPE)rha.h;
+    }
+
+
+	};
+}
+
+#endif

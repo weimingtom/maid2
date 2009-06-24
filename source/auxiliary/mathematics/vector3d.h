@@ -1,1 +1,168 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥舉蹒貟莳荸荎荧莋荥莓荶膌荛൧ ⼪਍਍਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳敶瑣牯搳桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳敶瑣牯搳桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥潰湩㍴⹤≨਍椣据畬敤瘢捥潴㑲⹤≨਍椣据畬敤昢湵瑣潩⹮≨਍਍਍慮敭灳捡⁥慍摩਍⁻਍†⨯ഡ ††䀠牢敩०劂龎뎌碃亃枃讃�鶎랂岍ꊑ첑਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†瑳畲瑣嘠䍅佔㍒彄䕔偍䅌䕔਍†⁻਍††祴数敤⁦䕖呃剏䐳呟䵅䱐呁㱅奔䕐‾䕖呃剏഻ †琠灹摥晥倠䥏呎䐳呟䵅䱐呁㱅奔䕐‾倠䥏呎഻ഊ †吠偙ॅ㭸उ⼯㰡褉ඡ †吠偙ॅ㭹उ⼯㰡載ൣ †吠偙ॅ㭺उ⼯㰡褉ගഊ †嘠䍅佔㍒彄䕔偍䅌䕔⤨絻਍††䕖呃剏䐳呟䵅䱐呁⡅吠偙⁅硟‬奔䕐张ⱹ吠偙⁅穟⤠›⡸硟Ⱙ礠弨⥹‬⡺穟笩ൽ †嘠䍅佔㍒彄䕔偍䅌䕔 潣獮⁴佐义♔匠慴瑲‬潣獮⁴佐义♔䔠摮⤠笠删獥瑥匨慴瑲䔬摮㬩素਍਍††⼯‡뎐䮋뮉랂਍††⨯ഡ †⨠യ †挠湯瑳嘠䍅佔♒丠牯慭楬敺⤨਍††ൻ ††挠湯瑳吠偙⁅⁦‽慍桴吼偙㹅㨺煳瑲砨砪礫礪稫稪㬩਍†††琪楨⁳㴯映഻ ††爠瑥牵⁮琪楨㭳਍††ൽഊ †⼠ℯ贠闀艗菰荸荎荧芋闉諏芷芷෩ †⼠K਍††††灀牡浡匉慴瑲嬠⁩ढ़碃亃枃讃첂䪊溎삍垕਍††††灀牡浡䔉摮†嬠⁩ढ़碃亃枃讃첂䦏릗삍垕਍††⨠യ †瘠楯⁤敒敳⡴挠湯瑳倠䥏呎…瑓牡ⱴ挠湯瑳倠䥏呎…湅⁤ഩ †笠਍†††⁸‽湅⹤⵸瑓牡⹴㭸਍†††⁹‽湅⹤⵹瑓牡⹴㭹਍†††⁺‽湅⹤⵺瑓牡⹴㭺਍††ൽ †⼠ℯ贠闀艗菰荸荎荧芋闉諏芷芷෩ †⼠K਍††††灀牡浡瀉獯嬠⁩ढ़碃亃枃讃첂䪊溎삍垕਍††⨠യ †瘠楯⁤敒敳⡴挠湯瑳倠䥏呎…潰⁳ഩ †笠਍†††⁸‽潰⹳㭸਍†††⁹‽潰⹳㭹਍†††⁺‽潰⹳㭺਍††ൽഊ †嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅䌠湯敶瑲䐴⤨潣獮൴ †笠਍†††敲畴湲嘠䍅佔㑒彄䕔偍䅌䕔吼偙㹅砨礬稬ㄬ㬩਍††ൽഊ †⼠य傒肍覉媎熎਍††䕖呃剏漠数慲潴⵲⤨挠湯瑳⁻敲畴湲嘠䍅佔⡒砭⴬ⱹ稭㬩素਍਍††⼯鐉諤襲躉蹚൱ †戠潯⁬灯牥瑡牯㴽 潣獮⁴䕖呃剏…桲⁡ 潣獮筴爠瑥牵⁮㵸爽慨砮☠…㵹爽慨礮☠…㵺爽慨種※ൽ †戠潯⁬灯牥瑡牯㴡 潣獮⁴䕖呃剏…桲⁡ 潣獮筴爠瑥牵⁮⠡琪楨㵳爽慨㬩素਍਍††⼯贉郄鋝෨ †嘠䍅佔♒漠数慲潴⭲⠽挠湯瑳嘠䍅佔♒爠慨ऩ⁻琪楨⁳‽琪楨⭳桲㭡爠瑥牵⁮琪楨㭳素਍††䕖呃剏…灯牥瑡牯㴭 潣獮⁴䕖呃剏…桲⥡笉⨠桴獩㴠⨠桴獩爭慨※敲畴湲⨠桴獩※ൽ †嘠䍅佔♒漠数慲潴⩲⠽挠湯瑳吠偙♅瘠污ऩ⁻琪楨⁳‽琪楨⩳慶㭬爠瑥牵⁮琪楨㭳素਍††䕖呃剏…灯牥瑡牯㴯 潣獮⁴奔䕐…慶⥬笉⨠桴獩㴠⨠桴獩瘯污※敲畴湲⨠桴獩※ൽ 素഻ഊഊ ⼠य肍覉媎熎਍†整灭慬整琼灹湥浡⁥奔䕐ാ 嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅漠数慲潴⭲ 潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐳呟䵅䱐呁㱅奔䕐⠾氠慨砮爫慨砮‬桬⹡⭹桲⹡ⱹ氠慨種爫慨種㬩ഠ 素਍†整灭慬整琼灹湥浡⁥奔䕐ാ 嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅漠数慲潴⵲ 潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐳呟䵅䱐呁㱅奔䕐⠾氠慨砮爭慨砮‬桬⹡⵹桲⹡ⱹ氠慨種爭慨種㬩ഠ 素਍†整灭慬整琼灹湥浡⁥奔䕐ാ 嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅漠数慲潴⩲ 潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴奔䕐…桲⁡ഩ 笠਍††敲畴湲嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅 桬⹡⩸桲ⱡ氠慨礮爪慨‬桬⹡⩺桲⥡※਍†ൽ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†䕖呃剏䐳呟䵅䱐呁㱅奔䕐‾灯牥瑡牯⠯挠湯瑳嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳吠偙♅爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐳呟䵅䱐呁㱅奔䕐⠾氠慨砮爯慨‬桬⹡⽹桲ⱡ氠慨種爯慨㬩ഠ 素਍਍†⼯‡쾐膋�਍†⨯ഡ ††䀠慰慲७桬ॡ嬉⁩ढ़碃亃枃讃뮂첂傂਍†††灀牡浡爉慨उ楛崠茉荸荎荧芋芻苌൑ ††਍†††牀瑥牵८쾐첂沒਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†湩楬敮吠偙⁅敖瑣牯潄⡴挠湯瑳嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅…桲⁡ഩ 笠਍††敲畴湲⠠桬⹡⩸桲⹡⥸⬠⠠桬⹡⩹桲⹡⥹⬠⠠桬⹡⩺桲⹡⥺഻ 素਍਍†⼯‡侊쾐膋�਍†⨯ഡ ††贠躶跨闀豗艮苅賌蹶艚苅භ ††䀠慰慲७桬ॡ嬉⁩ढ़碃亃枃讃뮂첂傂਍†††灀牡浡爉慨उ楛崠茉荸荎荧芋芻苌൑ ††਍†††牀瑥牵८侊쾐첂碃亃枃讃਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†湩楬敮嘠䍅佔㍒彄䕔偍䅌䕔吼偙㹅嘠捥潴䍲潲獳 潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅奔䕐☾爠慨⤠਍†ൻ †爠瑥牵⁮䕖呃剏䐳呟䵅䱐呁㱅奔䕐⠾਍††††氨慨礮爪慨種 ‭氨慨種爪慨礮Ⱙ਍††††氨慨種爪慨砮 ‭氨慨砮爪慨種Ⱙ਍††††氨慨砮爪慨礮 ‭氨慨礮爪慨砮ഩ ††⤠※਍†ൽഊഊ紊਍⼉य楗摮睯⁳첂욂ꮂ첂�䐠䱘䉉舠軰艧苁莽腯荛荗莇芓釰趶苝芳芹෩⌊晩敤⁦单彅䥄䕒呃䐳㥘਍†椣据畬敤⸢⼮⸮振湯楦⽧楷㍮⸲≨਍†椣据畬敤搼搳㥸栮ാഊ 渠浡獥慰散䴠楡൤ 笠਍††慮敭灳捡⁥㍤硤敶瑣牯搳਍††ൻ ††琠灹摥晥䐠䐳噘䍅佔㍒‪在义偁⁉个剏䅍䥌䕚⠩㍄塄䕖呃剏⨳䌬乏呓䐠䐳噘䍅佔㍒⤪഻ ††攠瑸牥⁮低䵒䱁婉⁅潎浲污穩㭥਍਍†††潶摩䤠楮楴污穩⡥䠠位啄䕌栠潍畤敬⤠഻ ††瘠楯⁤楆慮楬敺⤨഻ †素਍਍††潣獮⁴䕖呃剏䐳呟䵅䱐呁㱅䱆䅏㹔…䕖呃剏䐳呟䵅䱐呁㱅䱆䅏㹔㨺潎浲污穩⡥ഩ †笠਍†††㍤硤敶瑣牯搳㨺潎浲污穩⡥⠠㍄塄䕖呃剏⨳琩楨ⱳ⠠㍄塄䕖呃剏⨳琩楨⁳㬩਍†††敲畴湲⨠桴獩഻ †素਍†ൽ⌊湥楤൦ഊഊ⌊湥楤൦
+﻿/*!
+    @file
+    @brief	３次元ベクトルテンプレート
+ */
+
+
+
+#ifndef maid2_auxiliary_mathematics_vector3d_h
+#define maid2_auxiliary_mathematics_vector3d_h
+
+#include"../../config/define.h"
+#include"point3d.h"
+#include"vector4d.h"
+#include"function.h"
+
+
+namespace Maid
+{ 
+  /*!
+      @brief	３次元ベクトルを保持する構造体
+   */
+  template<typename TYPE>
+  struct VECTOR3D_TEMPLATE
+  { 
+    typedef VECTOR3D_TEMPLATE<TYPE> VECTOR;
+    typedef POINT3D_TEMPLATE<TYPE>  POINT;
+
+    TYPE	x;		//!<	横
+    TYPE	y;		//!<	縦
+    TYPE	z;		//!<	奥
+
+    VECTOR3D_TEMPLATE(){}
+    VECTOR3D_TEMPLATE( TYPE _x, TYPE _y, TYPE _z ): x(_x), y(_y), z(_z){}
+    VECTOR3D_TEMPLATE( const POINT& Start, const POINT& End ) { Reset(Start,End); }
+
+    //! 正規化する
+    /*!
+    */
+    const VECTOR& Normalize()
+    {
+      const TYPE f = Math<TYPE>::sqrt(x*x+y*y+z*z);
+      *this /= f;
+      return *this;
+    }
+
+    //! 座標をベクトルに変換する
+    /*!
+        @param	Start [i ]	ベクトルの開始座標
+        @param	End   [i ]	ベクトルの終了座標
+     */
+    void Reset( const POINT& Start, const POINT& End )
+    {
+      x = End.x-Start.x;
+      y = End.y-Start.y;
+      z = End.z-Start.z;
+    }
+    //! 座標をベクトルに変換する
+    /*!
+        @param	pos [i ]	ベクトルの開始座標
+     */
+    void Reset( const POINT& pos )
+    {
+      x = pos.x;
+      y = pos.y;
+      z = pos.z;
+    }
+
+    VECTOR4D_TEMPLATE<TYPE> Convert4D()const
+    {
+      return VECTOR4D_TEMPLATE<TYPE>(x,y,z,1);
+    }
+
+    //	単項演算子
+    VECTOR operator-() const{ return VECTOR(-x,-y,-z); }
+
+    //	比較演算子
+    bool operator==( const VECTOR& rha ) const{ return x==rha.x && y==rha.y && z==rha.z; }
+    bool operator!=( const VECTOR& rha ) const{ return !(*this==rha); }
+
+    //	再設定
+    VECTOR& operator+=( const VECTOR& rha)	{ *this = *this+rha; return *this; }
+    VECTOR& operator-=( const VECTOR& rha)	{ *this = *this-rha; return *this; }
+    VECTOR& operator*=( const TYPE& val)	{ *this = *this*val; return *this; }
+    VECTOR& operator/=( const TYPE& val)	{ *this = *this/val; return *this; }
+  };
+
+
+  //	二項演算子
+  template<typename TYPE>
+  VECTOR3D_TEMPLATE<TYPE> operator+( const VECTOR3D_TEMPLATE<TYPE>& lha, const VECTOR3D_TEMPLATE<TYPE>& rha )
+  {
+    return VECTOR3D_TEMPLATE<TYPE>( lha.x+rha.x, lha.y+rha.y, lha.z+rha.z); 
+  }
+  template<typename TYPE>
+  VECTOR3D_TEMPLATE<TYPE> operator-( const VECTOR3D_TEMPLATE<TYPE>& lha, const VECTOR3D_TEMPLATE<TYPE>& rha )
+  {
+    return VECTOR3D_TEMPLATE<TYPE>( lha.x-rha.x, lha.y-rha.y, lha.z-rha.z); 
+  }
+  template<typename TYPE>
+  VECTOR3D_TEMPLATE<TYPE> operator*( const VECTOR3D_TEMPLATE<TYPE>& lha, const TYPE& rha )
+  {
+    return VECTOR3D_TEMPLATE<TYPE>( lha.x*rha, lha.y*rha, lha.z*rha); 
+  }
+  template<typename TYPE>
+  VECTOR3D_TEMPLATE<TYPE> operator/( const VECTOR3D_TEMPLATE<TYPE>& lha, const TYPE& rha )
+  {
+    return VECTOR3D_TEMPLATE<TYPE>( lha.x/rha, lha.y/rha, lha.z/rha); 
+  }
+
+  //! 内積を求める
+  /*!
+      @param	lha		[i ]	ベクトルその１
+      @param	rha		[i ]	ベクトルその２
+     
+      @return	内積の値
+   */
+  template<typename TYPE>
+  inline TYPE VectorDot( const VECTOR3D_TEMPLATE<TYPE>& lha, const VECTOR3D_TEMPLATE<TYPE>& rha )
+  {
+    return (lha.x*rha.x) + (lha.y*rha.y) + (lha.z*rha.z);
+  }
+
+  //! 外積を求める
+  /*!
+      左手座標系での計算です
+      @param	lha		[i ]	ベクトルその１
+      @param	rha		[i ]	ベクトルその２
+     
+      @return	外積のベクトル
+   */
+  template<typename TYPE>
+  inline VECTOR3D_TEMPLATE<TYPE> VectorCross( const VECTOR3D_TEMPLATE<TYPE>& lha, const VECTOR3D_TEMPLATE<TYPE>& rha )
+  {
+    return VECTOR3D_TEMPLATE<TYPE>(
+        (lha.y*rha.z) - (lha.z*rha.y),
+        (lha.z*rha.x) - (lha.x*rha.z),
+        (lha.x*rha.y) - (lha.y*rha.x)
+      ); 
+  }
+
+
+}
+	//	Windows のときのみ DXLIB を使ったバージョンを存在させる
+#ifdef USE_DIRECT3DX9
+  #include"../../config/win32.h"
+  #include<d3dx9.h>
+
+  namespace Maid
+  {
+    namespace d3dxvector3d
+    {
+      typedef D3DXVECTOR3* (WINAPI *NORMALIZE)(D3DXVECTOR3*,CONST D3DXVECTOR3*);
+      extern NORMALIZE Normalize;
+
+      void Initialize( HMODULE hModule );
+      void Finalize();
+    }
+
+    const VECTOR3D_TEMPLATE<FLOAT>& VECTOR3D_TEMPLATE<FLOAT>::Normalize()
+    {
+      d3dxvector3d::Normalize( (D3DXVECTOR3*)this, (D3DXVECTOR3*)this );
+      return *this;
+    }
+  }
+#endif
+
+
+#endif

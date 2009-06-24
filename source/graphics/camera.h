@@ -1,1 +1,56 @@
-﻿椣湦敤⁦慭摩弲牧灡楨獣损浡牥彡൨⌊敤楦敮洠楡㉤束慲桰捩彳慣敭慲桟਍਍⨯ഡ †䀠楦敬਍††所楲晥舉艒荣荊莁ඉ ⼪਍਍椣据畬敤⸢⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮畡楸楬牡⽹慭桴浥瑡捩⽳潰湩⹴≨਍椣据畬敤⸢⼮畡楸楬牡⽹慭桴浥瑡捩⽳敶瑣牯栮ഢ⌊湩汣摵≥⸮愯硵汩慩祲洯瑡敨慭楴獣洯瑡楲⹸≨਍਍慮敭灳捡⁥慍摩਍ൻऊ汣獡⁳慃敭慲਍笉਍瀉扵楬㩣਍उ慃敭慲⤨഻ऊ瘉物畴污縠慃敭慲⤨഻ഊऊ瘉楯⁤敓側牥灳捥楴敶 汦慯⁴潆ⱶ映潬瑡䄠灳捥ⱴ映潬瑡丠慥Ⱳ映潬瑡䘠牡⤠഻ऊ瘉楯⁤敓佴瑲潨潧慮⡬映潬瑡䘠癯‬汦慯⁴獁数瑣‬汦慯⁴敎牡‬汦慯⁴慆Ⱳ映潬瑡倠潲敪瑣潩䑮灥桴⤠഻ഊऊ瘉楯⁤敓側獯瑩潩⡮挠湯瑳倠䥏呎䐳♆†潰⁳㬩਍उ潶摩匠瑥慔杲瑥† 潣獮⁴佐义㍔䙄…瀠獯⤠഻ऊ瘉楯⁤敓啴噰捥潴⡲挠湯瑳嘠䍅佔㍒䙄…敶⁣㬩਍਍उ潶摩匠瑥䐲潐楳楴湯 湩⁴楗瑤ⱨ椠瑮䠠楥桧ⱴ映潬瑡丠慥Ⱳ映潬瑡䘠牡⤠഻ഊऊ按湯瑳䴠呁䥒㑘䙄…敇噴敩䵷瑡楲⡸ 潣獮㭴਍उ潣獮⁴䅍剔塉䐴♆䜠瑥牐橯捥楴湯慍牴硩⤨挠湯瑳഻ഊऊ瘉楯⁤䴠癯⡥挠湯瑳嘠䍅佔㍒䙄…景獦瑥⤠഻ऊ瘉楯⁤䴠癯⡥挠湯瑳嘠䍅佔㍒䙄…潰ⱳ挠湯瑳嘠䍅佔㍒䙄…慴杲瑥⤠഻ഊऊ按湯瑳倠䥏呎䐳♆†敇側獯瑩潩⡮ 潣獮㭴਍उ潣獮⁴佐义㍔䙄…䜠瑥慔杲瑥†⤨挠湯瑳഻ऊ按湯瑳嘠䍅佔㍒䙄…敇啴噰捥潴⡲ 潣獮㭴਍਍उ潢汯䤉䍳浡牥䥡⡮挠湯瑳倠䥏呎䐳♆瀠獯⤠潣獮㭴਍਍瀉楲慶整ഺऊ倉䥏呎䐳ॆ彭潐㭳उ⼯茠荊莁芉裌鋊൵ऊ倉䥏呎䐳ॆ彭慔杲瑥ऻ⼯茠荊莁芉鋌隍鏚ൟऊ嘉䍅佔㍒䙄洉啟㭰उ⼯輠苣賌苼ණഊऊ䴉呁䥒㑘䙄洉噟敩䵷瑡楲㭸਍उ䅍剔塉䐴ॆ彭牐橯捥楴湯慍牴硩഻ഊऊ戉潯६彭獉慃捬楖睥慍牴硩ऻ⼯㰡洉噟敩䵷瑡楲艸跰賄蹶艚芵芽膩ൈऊ㭽਍਍਍ൽ⌊湥楤
+﻿#ifndef maid2_graphics_camera_h
+#define maid2_graphics_camera_h
+
+/*!
+    @file
+    @brief	３Ｄカメラ
+ */
+
+#include"../config/define.h"
+#include"../auxiliary/mathematics/point.h"
+#include"../auxiliary/mathematics/vector.h"
+#include"../auxiliary/mathematics/matrix.h"
+
+namespace Maid
+{
+	class Camera
+	{
+	public:
+		Camera();
+		virtual ~Camera();
+
+		void SetPerspective( float Fov, float Aspect, float Near, float Far );
+		void SetOrthogonal( float Fov, float Aspect, float Near, float Far, float ProjectionDepth );
+
+		void SetPosition( const POINT3DF&  pos );
+		void SetTarget  ( const POINT3DF&  pos );
+		void SetUpVector( const VECTOR3DF& vec );
+
+		void Set2DPosition( int Width, int Height, float Near, float Far );
+
+		const MATRIX4DF& GetViewMatrix() const;
+		const MATRIX4DF& GetProjectionMatrix() const;
+
+		void  Move( const VECTOR3DF& offset );
+		void  Move( const VECTOR3DF& pos, const VECTOR3DF& target );
+
+		const POINT3DF&  GetPosition() const;
+		const POINT3DF&  GetTarget  () const;
+		const VECTOR3DF& GetUpVector() const;
+
+		bool	IsCameraIn( const POINT3DF& pos )const;
+
+	private:
+		POINT3DF	m_Pos;		// カメラの位置
+		POINT3DF	m_Target;	// カメラの注目点
+		VECTOR3DF	m_Up;		// 上の向き
+
+		MATRIX4DF	m_ViewMatrix;
+		MATRIX4DF	m_ProjectionMatrix;
+
+		bool	m_IsCalcViewMatrix;	//!<	m_ViewMatrixを再計算したか？
+	};
+
+
+}
+#endif

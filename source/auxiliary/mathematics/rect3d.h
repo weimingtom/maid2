@@ -1,1 +1,56 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥舉蹒貟讳賩荠荥莓荶膌荛൧ ⼪਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳敲瑣搳桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳敲瑣搳桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢഊ⌊湩汣摵≥潰湩㍴⹤≨਍椣据畬敤猢穩㍥⹤≨਍਍慮敭灳捡⁥慍摩਍⁻਍†⨯ഡ ††䀠牢敩०벒ﮕ첑ꂂ랂岍ꊑ첑਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†瑳畲瑣删䍅㍔彄䕔偍䅌䕔਍†ൻ †吠偙⁅㭸⼉य肏従਍††奔䕐礠഻ †吠偙⁅㭺਍਍††奔䕐眠ऻ⼯锉ඝ †吠偙⁅㭨਍††奔䕐搠഻ഊ †删䍅㍔彄䕔偍䅌䕔⤨絻਍††䕒呃䐳呟䵅䱐呁⡅吠偙⁅硟‬奔䕐张ⱹ吠偙⁅穟‬奔䕐张ⱷ吠偙⁅桟‬奔䕐张⁤ ⼯㰡茉荒莓荘荧莉荎൞ ††㨠砠弨⥸礬弨⥹稬弨⥺眬弨⥷栬弨⥨搬弨⥤਍††ൻ †素ഉഊ †琠浥汰瑡㱥祴数慮敭吠偙㉅ാ †删䍅㍔彄䕔偍䅌䕔 潣獮⁴䕒呃䐳呟䵅䱐呁㱅奔䕐㸲…桲⁡ ⼉ℯ़劃鎃境枃覃亃広਍††ൻ ††砠㴠⠠奔䕐爩慨砮഻ ††礠㴠⠠奔䕐爩慨礮഻ ††稠㴠⠠奔䕐爩慨種഻ ††眠㴠⠠奔䕐爩慨眮഻ ††栠㴠⠠奔䕐爩慨栮഻ ††搠㴠⠠奔䕐爩慨搮഻ †素਍਍††奔䕐䜠瑥楒桧⡴ 潣獮⁴笠爠瑥牵⁮⁸‫㭷素਍††奔䕐䜠瑥潂瑴浯⤨潣獮⁴⁻敲畴湲礠⬠栠※ൽ †吠偙⁅敇䉴捡⡫ऩ潣獮⁴⁻敲畴湲稠⬠搠※ൽഊ †倠䥏呎䐳呟䵅䱐呁㱅奔䕐‾敇側楯瑮⤨潣獮筴爠瑥牵⁮佐义㍔彄䕔偍䅌䕔吼偙㹅砨礬稬㬩素਍††䥓䕚䐳呟䵅䱐呁㱅奔䕐‾䜠瑥楓敺⤨挠湯瑳⁻敲畴湲匠婉㍅彄䕔偍䅌䕔吼偙㹅眨栬搬㬩素਍†㭽਍਍ൽ⌊湥楤൦
+﻿/*!
+    @file
+    @brief	３次元矩形テンプレート
+ */
+
+#ifndef maid2_auxiliary_mathematics_rect3d_h
+#define maid2_auxiliary_mathematics_rect3d_h
+
+#include"../../config/define.h"
+
+#include"point3d.h"
+#include"size3d.h"
+
+namespace Maid
+{ 
+  /*!
+      @brief	直方体をあらわす構造体
+   */
+  template<typename TYPE>
+  struct RECT3D_TEMPLATE
+  {
+    TYPE x;	//	基準点
+    TYPE y;
+    TYPE z;
+
+    TYPE w;	//	幅
+    TYPE h;
+    TYPE d;
+
+    RECT3D_TEMPLATE(){}
+    RECT3D_TEMPLATE( TYPE _x, TYPE _y, TYPE _z, TYPE _w, TYPE _h, TYPE _d ) //!<	コンストラクタ
+      : x(_x),y(_y),z(_z),w(_w),h(_h),d(_d)
+    {
+    }	
+
+    template<typename TYPE2>
+    RECT3D_TEMPLATE( const RECT3D_TEMPLATE<TYPE2>& rha ) 	//!<	コンストラクタ
+    {
+      x = (TYPE)rha.x;
+      y = (TYPE)rha.y;
+      z = (TYPE)rha.z;
+      w = (TYPE)rha.w;
+      h = (TYPE)rha.h;
+      d = (TYPE)rha.d;
+    }
+
+    TYPE GetRight() const  { return x + w; }
+    TYPE GetBottom()const { return y + h; }
+    TYPE GetBack()	const { return z + d; }
+
+    POINT3D_TEMPLATE<TYPE> GetPoint()const{ return POINT3D_TEMPLATE<TYPE>(x,y,z); }
+    SIZE3D_TEMPLATE<TYPE>  GetSize() const{ return SIZE3D_TEMPLATE<TYPE>(w,h,d); }
+  };
+
+}
+#endif
