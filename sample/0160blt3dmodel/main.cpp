@@ -15,6 +15,13 @@ using namespace Maid;
 
 class MyApp : public IGameThread
 {
+public:
+ MyApp::MyApp()
+    :m_Render(m_Command)
+  {
+
+  }
+
 protected:
   bool SelectDevice( const DEVICELIST& DeviceList, DEFAULTCONFIG& conf )
   {
@@ -24,6 +31,7 @@ protected:
 
   void Initialize()
   {
+    m_Command.Initialize();
     m_Render.Initialize( );
     m_Model.Load( MAIDTEXT("box.mqo") );
 
@@ -53,17 +61,17 @@ protected:
     const RenderTargetBase& rt = GetGraphicsCore().GetBackBuffer();
     const IDepthStencil& ds = GetGraphicsCore().GetDepthStencil();
 
-    m_Render.SetRenderTarget( rt, ds );
-    m_Render.ClearRenderTarget( COLOR_A32B32G32R32F(1,0.5f,0,0) );
-    m_Render.ClearDepthStencil( 1.0f, 0x00 );
+    m_Command.SetRenderTarget( rt, ds );
+    m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,0.5f,0,0) );
+    m_Command.ClearDepthStencil( 1.0f, 0x00 );
 
-    m_Render.Begin();
+    m_Command.Begin();
 
     m_Render.SetCamera(m_Camera);
     m_Render.Blt( POINT3DF(0,0,0), m_Model );
 //    m_Render.Fill();
 
-    m_Render.End();
+    m_Command.End();
 
   }
 
@@ -73,6 +81,7 @@ protected:
   }
 
 private:
+  GraphicsCommandControl  m_Command;
   Graphics3DRender  m_Render;
   ModelMQO          m_Model;
 
