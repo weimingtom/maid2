@@ -1,24 +1,1 @@
-#ifndef maid2_graphics_core_win32_direct3d10_depthstencilstated3d10_h
-#define maid2_graphics_core_win32_direct3d10_depthstencilstated3d10_h
-
-
-#include"../../../../config/define.h"
-#include"../../idepthstencilstate.h"
-
-#include"common.h"
-
-
-namespace Maid { namespace Graphics {
-
-  class DepthStencilStateD3D10 
-    : public IDepthStencilState
-  {
-  public:
-    DepthStencilStateD3D10( const SPD3D10DEPTHSTENCILSTATE& p ) : pState(p){}
-    SPD3D10DEPTHSTENCILSTATE pState;
-  };
-
-
-}}
-
-#endif
+﻿椣湦敤⁦慭摩弲牧灡楨獣损牯彥楷㍮弲楤敲瑣搳〱摟灥桴瑳湥楣獬慴整㍤ㅤ弰൨⌊敤楦敮洠楡㉤束慲桰捩彳潣敲睟湩㈳摟物捥㍴ㅤ弰敤瑰獨整据汩瑳瑡摥搳〱桟਍਍਍椣据畬敤⸢⼮⸮ⸯ⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮摩灥桴瑳湥楣獬慴整栮ഢഊ⌊湩汣摵≥潣浭湯栮ഢഊഊ渊浡獥慰散䴠楡⁤⁻慮敭灳捡⁥片灡楨獣笠਍਍†汣獡⁳敄瑰卨整据汩瑓瑡䑥䐳〱ഠ †㨠瀠扵楬⁣䑉灥桴瑓湥楣卬慴整਍†ൻ 瀠扵楬㩣਍††敄瑰卨整据汩瑓瑡䑥䐳〱 潣獮⁴偓㍄ㅄ䐰偅䡔呓久䥃卌䅔䕔…⁰ ›印慴整瀨笩ൽ †匠䑐䐳〱䕄呐午䕔䍎䱉呓呁⁅印慴整഻ 素഻ഊഊ紊ൽഊ⌊湥楤

@@ -1,8 +1,1 @@
-#ifndef maid2_auxiliary_timer_h
-#define maid2_auxiliary_timer_h
-
-#include"../config/define.h"
-#include"win32/timer.h"
-
-
-#endif
+﻿椣湦敤⁦慭摩弲畡楸楬牡役楴敭彲൨⌊敤楦敮洠楡㉤慟硵汩慩祲瑟浩牥桟਍਍椣据畬敤⸢⼮潣普杩搯晥湩⹥≨਍椣据畬敤眢湩㈳琯浩牥栮ഢഊഊ⌊湥楤൦

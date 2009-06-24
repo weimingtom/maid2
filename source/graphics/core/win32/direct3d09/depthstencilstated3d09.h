@@ -1,22 +1,1 @@
-#ifndef maid2_graphics_core_depthstencilstated3d09_h
-#define maid2_graphics_core_depthstencilstated3d09_h
-
-
-#include"../../../../config/define.h"
-#include"../../idepthstencilstate.h"
-
-#include<boost/smart_ptr.hpp>
-
-namespace Maid { namespace Graphics {
-
-  class DepthStencilStateD3D09 : public IDepthStencilState
-  {
-  public:
-    DepthStencilStateD3D09( const RENDERSTATELIST& v ) : RenderState(v){}
-    RENDERSTATELIST RenderState;
-  };
-
-
-}}
-
-#endif
+﻿椣湦敤⁦慭摩弲牧灡楨獣损牯彥敤瑰獨整据汩瑳瑡摥搳㤰桟਍搣晥湩⁥慭摩弲牧灡楨獣损牯彥敤瑰獨整据汩瑳瑡摥搳㤰桟਍਍਍椣据畬敤⸢⼮⸮ⸯ⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮摩灥桴瑳湥楣獬慴整栮ഢഊ⌊湩汣摵㱥潢獯⽴浳牡彴瑰⹲灨㹰਍਍慮敭灳捡⁥慍摩笠渠浡獥慰散䜠慲桰捩⁳ൻഊ 挠慬獳䐠灥桴瑓湥楣卬慴整㍄い‹›異汢捩䤠敄瑰卨整据汩瑓瑡൥ 笠਍†異汢捩ഺ †䐠灥桴瑓湥楣卬慴整㍄い⠹挠湯瑳删久䕄卒䅔䕔䥌呓…⁶ ›敒摮牥瑓瑡⡥⥶絻਍††䕒䑎剅呓呁䱅卉⁔敒摮牥瑓瑡㭥਍†㭽਍਍਍絽਍਍攣摮晩

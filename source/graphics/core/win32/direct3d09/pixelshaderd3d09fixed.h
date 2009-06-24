@@ -1,38 +1,1 @@
-#ifndef graphic_core_driver_win32_direct3d09_pixelshaderd3dfixed_h
-#define graphic_core_driver_win32_direct3d09_pixelshaderd3dfixed_h
-
-#include"../../../../config/define.h"
-#include"common.h"
-#include"pixelshaderd3d09.h"
-
-namespace Maid { namespace Graphics {
-
-	class PS_SHADERCODE : public PixelShaderD3D09
-  {
-	public:
-    PS_SHADERCODE( IDirect3DPixelShader9* p ):pPixelShader(p){}
-    virtual void Setup( const SPD3D09DEVICE& pDevice )
-    {
-			pDevice->SetPixelShader( pPixelShader.get() );
-    }
-
-    SPD3D09PIXELSHADER  pPixelShader;
-  };
-
-
-
-
-  
-	class PS_FIXED : public PixelShaderD3D09
-	{
-	public:
-    PS_FIXED( int no );
-    virtual void Setup( const SPD3D09DEVICE& pDevice );
-
-  private:
-    const int m_No;
-	};
-
-}}
-
-#endif
+﻿椣湦敤⁦牧灡楨彣潣敲摟楲敶彲楷㍮弲楤敲瑣搳㤰灟硩汥桳摡牥㍤晤硩摥桟਍搣晥湩⁥牧灡楨彣潣敲摟楲敶彲楷㍮弲楤敲瑣搳㤰灟硩汥桳摡牥㍤晤硩摥桟਍਍椣据畬敤⸢⼮⸮ⸯ⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥潣浭湯栮ഢ⌊湩汣摵≥楰數獬慨敤摲搳㤰栮ഢഊ渊浡獥慰散䴠楡⁤⁻慮敭灳捡⁥片灡楨獣笠਍਍按慬獳倠当䡓䑁剅佃䕄㨠瀠扵楬⁣楐數卬慨敤䑲䐳㤰਍†ൻऊ異汢捩ഺ †倠当䡓䑁剅佃䕄 䑉物捥㍴偄硩汥桓摡牥⨹瀠⤠瀺楐數卬慨敤⡲⥰絻਍††楶瑲慵⁬潶摩匠瑥灵 潣獮⁴偓㍄い䐹噅䍉♅瀠敄楶散⤠਍††ൻऊउ䑰癥捩ⵥ匾瑥楐數卬慨敤⡲瀠楐數卬慨敤⹲敧⡴ 㬩਍††ൽഊ †匠䑐䐳㤰䥐䕘卌䅈䕄⁒瀠楐數卬慨敤㭲਍†㭽਍਍਍਍਍†਍按慬獳倠当䥆䕘⁄›異汢捩倠硩汥桓摡牥㍄いഹऊൻऊ異汢捩ഺ †倠当䥆䕘⡄椠瑮渠⁯㬩਍††楶瑲慵⁬潶摩匠瑥灵 潣獮⁴偓㍄い䐹噅䍉♅瀠敄楶散⤠഻ഊ 瀠楲慶整ഺ †挠湯瑳椠瑮洠也㭯਍紉഻ഊ紊ൽഊ⌊湥楤

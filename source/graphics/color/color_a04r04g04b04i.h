@@ -1,67 +1,1 @@
-#ifndef maid2_graphics_color_color_a04r04g04b04i_h
-#define maid2_graphics_color_color_a04r04g04b04i_h
-
-/*!
-    @file
-    @brief	�P�s�N�Z��������킷�N���X
-\n          A04R04G04B04 intger �t�H�[�}�b�g Ver.
- */
-
-#include"../../config/define.h"
-#include"../../config/typedef.h"
-
-#include"bitconvertfunction.h"
-
-namespace Maid
-{
-	/*!
-      @class	COLOR_A08R08G08B08I color_a04r04g04b04i.h
-	 */
-	class COLOR_A04R04G04B04I
-	{
-	public:
-		COLOR_A04R04G04B04I(){}	//!<	�R���X�g���N�^
-		COLOR_A04R04G04B04I( unt16 a, unt16 r, unt16 g, unt16 b ){ SetARGB( a, r, g, b ); }	//!<	�R���X�g���N�^
-		template <class COLOR>
-		COLOR_A04R04G04B04I( const COLOR& Col ){ SetARGB( Col.GetA(), Col.GetR(), Col.GetG(), Col.GetB() ); }	//!<	�R���X�g���N�^
-
-		unt16 GetA() const	{ return BITCONVERT04Ito16I((m_ARGB&0xF000)>>12);	}	//!<	�A���t�@�����̎擾
-		unt16 GetR() const	{ return BITCONVERT04Ito16I((m_ARGB&0x0F00)>> 8);	}	//!<	�Ԑ����̎擾
-		unt16 GetG() const	{ return BITCONVERT04Ito16I((m_ARGB&0x00F0)>> 4);	}	//!<	�ΐ����̎擾
-		unt16 GetB() const	{ return BITCONVERT04Ito16I((m_ARGB&0x000F)>> 0);	}	//!<	�����̎擾
-
-		operator unt16() const { return m_ARGB; }	//!<	�ꊇ�ϊ�
-
-		void SetA( unt16 a )	{ m_ARGB = (m_ARGB&~0xF000)|(BITCONVERT16Ito04I(a)<<12);	}	//!<	�A���t�@�����̐ݒ�
-		void SetR( unt16 r )	{ m_ARGB = (m_ARGB&~0x0F00)|(BITCONVERT16Ito04I(r)<< 8);	}	//!<	�Ԑ����̐ݒ�
-		void SetG( unt16 g )	{ m_ARGB = (m_ARGB&~0x00F0)|(BITCONVERT16Ito04I(g)<< 4);	}	//!<	�ΐ����̐ݒ�
-		void SetB( unt16 b )	{ m_ARGB = (m_ARGB&~0x000F)|(BITCONVERT16Ito04I(b)<< 0);	}	//!<	�����̐ݒ�
-
-		void SetARGB( unt16 a, unt16 r, unt16 g, unt16 b )	//!<	�������ɐݒ�
-		{
-			SetA( a );
-			SetR( r );
-			SetG( g );
-			SetB( b );
-		}
-
-		//!	�Ⴄ�s�N�Z���t�H�[�}�b�g�Ƃ̃R�s�[
-		template <class PIXEL>
-		COLOR_A04R04G04B04I& operator = (const PIXEL &src)
-		{
-			SetARGB(src.GetA(), src.GetR(),src.GetG(),src.GetB());
-			return *this;
-		}
-
-		//!	�����s�N�Z���t�H�[�}�b�g�Ƃ̃R�s�[
-		COLOR_A04R04G04B04I& operator = (const COLOR_A04R04G04B04I& src)
-		{
-			m_ARGB = src.m_ARGB;
-			return *this;
-		}
-	private:
-		unt16 m_ARGB;
-	};
-}
-
-#endif
+﻿椣湦敤⁦慭摩弲牧灡楨獣损汯牯损汯牯慟㐰ひ朴㐰ぢ椴桟਍搣晥湩⁥慭摩弲牧灡楨獣损汯牯损汯牯慟㐰ひ朴㐰ぢ椴桟਍਍⨯ഡ †䀠楦敬਍††所楲晥舉荐荳荎荚芋苰芠苧苭获荎莉൘尊⁮††††䄠㐰げ䜴㐰あ‴湩杴牥茠荴腈荛荽荢⁧敖⹲਍⨠യഊ⌊湩汣摵≥⸮ⸯ⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮⸮振湯楦⽧祴数敤⹦≨਍਍椣据畬敤戢瑩潣癮牥晴湵瑣潩⹮≨਍਍慮敭灳捡⁥慍摩਍ൻऊ⨯ഡ ††䀠汣獡ॳ佃佌归ぁ券㠰ぇ䈸㠰⁉潣潬彲ち爴㐰で戴㐰⹩൨ऊ⨠യऊ汣獡⁳佃佌归ぁ刴㐰ぇ䈴㐰൉ऊൻऊ異汢捩ഺऊ䌉䱏剏䅟㐰げ䜴㐰あ䤴⤨絻⼉ℯ़劃鎃境枃覃亃広਍उ佃佌归ぁ刴㐰ぇ䈴㐰⡉甠瑮㘱愠‬湵ㅴ‶Ⱳ甠瑮㘱朠‬湵ㅴ‶⁢笩匠瑥剁䉇 ⱡ爠‬Ⱨ戠⤠※ॽ⼯㰡茉荒莓荘荧莉荎൞ऊ琉浥汰瑡⁥挼慬獳䌠䱏剏ാऊ䌉䱏剏䅟㐰げ䜴㐰あ䤴 潣獮⁴佃佌♒䌠汯⤠⁻敓䅴䝒⡂䌠汯䜮瑥⡁Ⱙ䌠汯䜮瑥⡒Ⱙ䌠汯䜮瑥⡇Ⱙ䌠汯䜮瑥⡂ 㬩素⼉ℯ़劃鎃境枃覃亃広਍਍उ湵ㅴ‶敇䅴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㐰瑉ㅯ䤶⠨彭剁䉇〦䙸〰⤰㸾㈱㬩紉⼉ℯ़䆃讃璃䂃겐ꪕ첂뺓਍उ湵ㅴ‶敇剴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㐰瑉ㅯ䤶⠨彭剁䉇〦へう⤰㸾㠠㬩紉⼉ℯ़풐겐ꪕ첂뺓਍उ湵ㅴ‶敇䝴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㐰瑉ㅯ䤶⠨彭剁䉇〦へ䘰⤰㸾㐠㬩紉⼉ℯ़캗겐ꪕ첂뺓਍उ湵ㅴ‶敇䉴⤨挠湯瑳笉爠瑥牵⁮䥂䍔乏䕖呒㐰瑉ㅯ䤶⠨彭剁䉇〦へ〰⥆㸾〠㬩紉⼉ℯ़슐겐ꪕ첂뺓਍਍उ灯牥瑡牯甠瑮㘱⤨挠湯瑳笠爠瑥牵⁮彭剁䉇※ॽ⼯㰡蠉諪閇諏භഊऊ瘉楯⁤敓䅴 湵ㅴ‶⁡ऩ⁻彭剁䉇㴠⠠彭剁䉇縦砰う〰簩䈨呉佃噎剅ㅔ䤶潴㐰⡉⥡㰼㈱㬩紉⼉ℯ़䆃讃璃䂃겐ꪕ첂�਍उ潶摩匠瑥⡒甠瑮㘱爠⤠笉洠䅟䝒⁂‽洨䅟䝒♂まへう⤰⡼䥂䍔乏䕖呒㘱瑉は䤴爨㰩‼⤸ऻॽ⼯㰡选郔閬芪郌鋝෨ऊ瘉楯⁤敓䝴 湵ㅴ‶⁧ऩ⁻彭剁䉇㴠⠠彭剁䉇縦砰〰う簩䈨呉佃噎剅ㅔ䤶潴㐰⡉⥧㰼㐠㬩紉⼉ℯ़캗겐ꪕ첂�਍उ潶摩匠瑥⡂甠瑮㘱戠⤠笉洠䅟䝒⁂‽洨䅟䝒♂まへ〰⥆⡼䥂䍔乏䕖呒㘱瑉は䤴戨㰩‼⤰ऻॽ⼯㰡选郂閬芪郌鋝෨ഊऊ瘉楯⁤敓䅴䝒⡂甠瑮㘱愠‬湵ㅴ‶Ⱳ甠瑮㘱朠‬湵ㅴ‶⁢ऩ⼯㰡舉芢苁芫郉鋝෨ऊ笉਍उ匉瑥⡁愠⤠഻ऊउ敓剴 ⁲㬩਍उ匉瑥⡇朠⤠഻ऊउ敓䉴 ⁢㬩਍उൽഊऊ⼉ℯ蠉苡莤荳荎荚莋荴腈荛荽荢艧苆菌荒腳൛ऊ琉浥汰瑡⁥挼慬獳倠塉䱅ാऊ䌉䱏剏䅟㐰げ䜴㐰あ䤴…灯牥瑡牯㴠⠠潣獮⁴䥐䕘⁌猦捲ഩऊ笉਍उ匉瑥剁䉇猨捲䜮瑥⡁Ⱙ猠捲䜮瑥⡒Ⱙ牳⹣敇䝴⤨猬捲䜮瑥⡂⤩഻ऊउ敲畴湲⨠桴獩഻ऊ紉਍਍उ⼯ड꾓뚂玃亃媃讃璃䢃宁綃抃枃욂첂劃玃宁਍उ佃佌归ぁ刴㐰ぇ䈴㐰♉漠数慲潴⁲‽挨湯瑳䌠䱏剏䅟㐰げ䜴㐰あ䤴…牳⥣਍उൻऊउ彭剁䉇㴠猠捲洮䅟䝒㭂਍उ爉瑥牵⁮琪楨㭳਍उൽऊ牰癩瑡㩥਍उ湵ㅴ‶彭剁䉇഻ऊ㭽਍ൽഊ⌊湥楤൦
