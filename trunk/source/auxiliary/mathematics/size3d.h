@@ -1,1 +1,41 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥舉蹒貟莳荔荃荙荥莓荶膌荛൧ ⼪਍਍਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳楳敺搳桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳楳敺搳桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢഊഊ渊浡獥慰散䴠楡൤笊ഠ ⼠K਍†††所楲晥褉閡膝轁镣ⲝ鲉鶕�鶎랂岍ꊑ첑਍†⨠യ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†瑳畲瑣匠婉㍅彄䕔偍䅌䕔਍†ൻ †琠灹摥晥匠婉㍅彄䕔偍䅌䕔吼偙㹅匠婉㭅਍਍††奔䕐眉ऻ⼉ℯ़ꆉ鶕਍††奔䕐栉ऻ⼉ℯ़掏鶕਍††奔䕐搉ऻ⼉ℯ़鲉鶕਍਍††䥓䕚䐳呟䵅䱐呁⡅笩ൽ †匠婉㍅彄䕔偍䅌䕔 奔䕐张ⱷ吠偙⁅桟‬奔䕐张⁤ ⼉ℯ़劃鎃境枃覃亃広਍†††›⡷睟Ⱙ栠弨⥨搬弨⥤絻਍††整灭慬整琼灹湥浡⁥奔䕐㸲਍††䥓䕚䐳呟䵅䱐呁⡅挠湯瑳匠婉㍅彄䕔偍䅌䕔吼偙㉅☾爠慨⤠ठ⼯㰡茉荒莓荘荧莉荎൞ †笠਍†††⁷‽吨偙⥅桲⹡㭷਍†††⁨‽吨偙⥅桲⹡㭨਍†††⁤‽吨偙⥅桲⹡㭤਍††ൽऊ㭽਍ൽഊ⌊湥楤൦
+﻿/*!
+    @file
+    @brief	３次元サイズテンプレート
+ */
+
+
+
+#ifndef maid2_auxiliary_mathematics_size3d_h
+#define maid2_auxiliary_mathematics_size3d_h
+
+#include"../../config/define.h"
+
+
+namespace Maid
+{ 
+  /*!
+      @brief	横幅、縦幅,奥幅を保持する構造体
+   */
+  template<typename TYPE>
+  struct SIZE3D_TEMPLATE
+  {
+    typedef SIZE3D_TEMPLATE<TYPE> SIZE;
+
+    TYPE	w;		//!<	横幅
+    TYPE	h;		//!<	縦幅
+    TYPE	d;		//!<	奥幅
+
+    SIZE3D_TEMPLATE(){}
+    SIZE3D_TEMPLATE( TYPE _w, TYPE _h, TYPE _d ) 	//!<	コンストラクタ
+      : w(_w), h(_h),d(_d){}
+    template<typename TYPE2>
+    SIZE3D_TEMPLATE( const SIZE3D_TEMPLATE<TYPE2>& rha ) 	//!<	コンストラクタ
+    {
+      w = (TYPE)rha.w;
+      h = (TYPE)rha.h;
+      d = (TYPE)rha.d;
+    }
+	};
+}
+
+#endif

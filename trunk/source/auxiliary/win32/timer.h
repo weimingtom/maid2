@@ -1,1 +1,36 @@
-﻿⨯ഡऊ晀汩൥ऊ所楲晥茉荞荃荽荎莉⁘楴敭敇呴浩⡥ 敖⹲਍⼪਍਍椣湦敤⁦慭摩弲畡楸楬牡役楷㍮弲楴敭彲൨⌊敤楦敮洠楡㉤慟硵汩慩祲睟湩㈳瑟浩牥桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮潣普杩琯灹摥晥栮ഢ⌊湩汣摵≥⸮ⸯ⼮潣普杩眯湩㈳栮ഢഊ渊浡獥慰散䴠楡൤笊਍਍按慬獳吠浩牥਍笉਍瀉扵楬㩣਍उ楔敭⡲㬩਍उ楔敭⡲挠湯瑳吠浩牥…桲⁡㬩਍उ呾浩牥⤨഻ഊऊ甉瑮䜠瑥⤨挠湯瑳഻ऊ瘉楯⁤汓敥⡰甠瑮琠浩⁥㬩਍਍਍उ楔敭♲漠数慲潴⁲‽ 潣獮⁴楔敭♲爠慨⤠഻ऊ牰癩瑡㩥਍उ瑳瑡捩椠瑮猉剟晥牡湥散潃湵㭴਍紉഻ഊഊ紊਍਍਍攣摮晩਍
+﻿/*!
+	@file
+	@brief	タイマクラス timeGetTime() Ver.
+*/
+
+#ifndef maid2_auxiliary_win32_timer_h
+#define maid2_auxiliary_win32_timer_h
+
+#include"../../config/define.h"
+#include"../../config/typedef.h"
+#include"../../config/win32.h"
+
+namespace Maid
+{
+
+	class Timer
+	{
+	public:
+		Timer();
+		Timer( const Timer& rha );
+		~Timer();
+
+		unt Get() const;
+		void Sleep( unt time );
+
+
+		Timer& operator = ( const Timer& rha );
+	private:
+		static int	s_RefarenceCount;
+	};
+
+
+}
+
+
+#endif

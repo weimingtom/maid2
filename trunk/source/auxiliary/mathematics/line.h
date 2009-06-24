@@ -1,1 +1,19 @@
-﻿椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳楬敮桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳楬敮桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥楬敮搲栮ഢ⌊湩汣摵≥楬敮搳栮ഢഊ渊浡獥慰散䴠楡൤笊਍†祴数敤⁦䥌䕎䐲呟䵅䱐呁㱅湩㹴†††䥌䕎䐲㭉਍†祴数敤⁦䥌䕎䐲呟䵅䱐呁㱅汦慯㹴††䥌䕎䐲㭆਍†祴数敤⁦䥌䕎䐲呟䵅䱐呁㱅潤扵敬‾†䥌䕎䐲㭄਍਍†祴数敤⁦䥌䕎䐳呟䵅䱐呁㱅湩㹴†††䥌䕎䐳㭉਍†祴数敤⁦䥌䕎䐳呟䵅䱐呁㱅汦慯㹴††䥌䕎䐳㭆਍†祴数敤⁦䥌䕎䐳呟䵅䱐呁㱅潤扵敬‾†䥌䕎䐳㭄਍ൽഊ⌊湥楤
+﻿#ifndef maid2_auxiliary_mathematics_line_h
+#define maid2_auxiliary_mathematics_line_h
+
+#include"../../config/define.h"
+#include"line2d.h"
+#include"line3d.h"
+
+namespace Maid
+{
+  typedef LINE2D_TEMPLATE<int>      LINE2DI;
+  typedef LINE2D_TEMPLATE<float>    LINE2DF;
+  typedef LINE2D_TEMPLATE<double>   LINE2DD;
+
+  typedef LINE3D_TEMPLATE<int>      LINE3DI;
+  typedef LINE3D_TEMPLATE<float>    LINE3DF;
+  typedef LINE3D_TEMPLATE<double>   LINE3DD;
+}
+
+#endif

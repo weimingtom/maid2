@@ -1,1 +1,84 @@
-﻿椣据畬敤瀢硩汥桳摡牥㍤つ昹硩摥栮ഢഊ渊浡獥慰散䴠楡⁤⁻慮敭灳捡⁥片灡楨獣笠਍਍਍਍卐䙟塉䑅㨺卐䙟塉䑅 湩⁴潮⤠਍㨠彭潎渨⥯਍ൻ紊਍਍潶摩倠当䥆䕘㩄区瑥灵 潣獮⁴偓㍄い䐹噅䍉♅瀠敄楶散⤠਍ൻ 猠楷捴⡨洠也⁯ഩ 笠਍†慣敳㈠〰ഺ †笠⼠य뢒従䚐뮂첂��겗랂਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当佃佌佒ⱐ䐉䐳佔彐䕓䕌呃剁ㅇ⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䍟䱏剏剁ㅇ‬㍄呄彁䥄䙆单⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当佃佌䅒䝒ⰲ䐠䐳䅔䑟䙉商䕓⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥ㄠ‬㍄呄卓䍟䱏剏偏ब㍄呄偏䑟卉䉁䕌⤠഻ഊऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䅟偌䅈偏ब㍄呄偏卟䱅䍅䅔䝒‱㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当䱁䡐䅁䝒ⰱ䐠䐳䅔䑟䙉商䕓⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䅟偌䅈剁㉇‬㍄呄彁䥄䙆单⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰱ䐠䐳協当䱁䡐佁ⱐ䐉䐳佔彐䥄䅓䱂⁅㬩਍††扽敲歡഻ഊഊ 挠獡⁥ㄲ㨰਍††ൻ ††⼠य斃亃境悃莃욂뢒従䚐첂融겐਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当佃佌佒ⱐ䐠䐳佔彐位啄䅌䕔⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䍟䱏剏剁ㅇ‬㍄呄彁䕔员剕⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当佃佌䅒䝒ⰲ䐠䐳䅔䑟䙉商䕓⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥ㄠ‬㍄呄卓䍟䱏剏偏ब㍄呄偏䑟卉䉁䕌⤠഻ഊऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䅟偌䅈偏‬㍄呄偏䵟䑏䱕呁⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当䱁䡐䅁䝒ⰱ䐠䐳䅔呟塅啔䕒⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䅟偌䅈剁㉇‬㍄呄彁䥄䙆单⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰱ䐠䐳協当䱁䡐佁ⱐ䐉䐳佔彐䥄䅓䱂⁅㬩਍††扽敲歡഻ഊ 挠獡⁥ㄲ㨱਍††ൻ ††⼠य斃亃境悃莃욂뢒従䚐첂融겐਍†††⼯†ꦂ슂䆁즂䆃讃璃䂃ꦂ꾂쒂떂�ꒂ਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当佃佌佒ⱐ䐠䐳佔彐位啄䅌䕔⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䍟䱏剏剁ㅇ‬㍄呄彁䕔员剕⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当佃佌䅒䝒ⰲ䐠䐳䅔䑟䙉商䕓⤠഻ഊऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥ㄠ‬㍄呄卓䍟䱏剏偏ब㍄呄偏䵟䑏䱕呁⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰱ䐠䐳協当佃佌䅒䝒ⰱ䐠䐳䅔䍟剕䕒呎䑼䐳䅔䅟偌䅈䕒䱐䍉呁⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰱ䐠䐳協当佃佌䅒䝒ⰲ䐠䐳䅔䍟剕䕒呎⤠഻ഊऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥㈠‬㍄呄卓䍟䱏剏偏ब㍄呄偏䑟卉䉁䕌⤠഻ഊऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䅟偌䅈偏‬㍄呄偏䵟䑏䱕呁⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当䱁䡐䅁䝒ⰱ䐠䐳䅔呟塅啔䕒⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䅟偌䅈剁㉇‬㍄呄彁䥄䙆单⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰱ䐠䐳協当䱁䡐佁ⱐ䐉䐳佔彐䥄䅓䱂⁅㬩਍਍††扽敲歡഻ഊ 搠晥畡瑬ഺ †笠਍†††⼯舉芻里芼苍芢芽苁闄銁苊෉ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䍟䱏剏偏‬㍄呄偏䵟䑏䱕呁⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当佃佌䅒䝒ⰱ䐠䐳䅔呟塅啔䕒⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䍟䱏剏剁㉇‬㍄呄彁䥄䙆单⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰱ䐠䐳協当佃佌佒ⱐ䐉䐳佔彐䥄䅓䱂⁅㬩਍਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当䱁䡐佁ⱐ䐠䐳佔彐位啄䅌䕔⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥〠‬㍄呄卓䅟偌䅈剁ㅇ‬㍄呄彁䕔员剕⁅㬩਍ †瀠敄楶散㸭敓呴硥畴敲瑓条卥慴整 ⰰ䐠䐳協当䱁䡐䅁䝒ⰲ䐠䐳䅔䑟䙉商䕓⤠഻ऊ††䑰癥捩ⵥ匾瑥敔瑸牵卥慴敧瑓瑡⡥ㄠ‬㍄呄卓䅟偌䅈偏ब㍄呄偏䑟卉䉁䕌⤠഻ †素牢慥㭫਍਍†ൽ紊਍਍਍絽਍਍
+﻿#include"pixelshaderd3d09fixed.h"
+
+namespace Maid { namespace Graphics {
+
+
+
+PS_FIXED::PS_FIXED( int no )
+ :m_No(no)
+{
+}
+
+void PS_FIXED::Setup( const SPD3D09DEVICE& pDevice )
+{
+  switch( m_No )
+  {
+  case 200:
+    { //	頂点色をそのまま流す
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLOROP,	D3DTOP_SELECTARG1 );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_COLOROP,	D3DTOP_DISABLE );
+
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAOP,	D3DTOP_SELECTARG1 );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_ALPHAOP,	D3DTOP_DISABLE );
+    }break;
+
+
+  case 210:
+    {
+      //	テクスチャと頂点色の合成
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_COLOROP,	D3DTOP_DISABLE );
+
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_MODULATE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_ALPHAOP,	D3DTOP_DISABLE );
+    }break;
+
+  case 211:
+    {
+      //	テクスチャと頂点色の合成
+      //  かつ、先にアルファをかけてしまう
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
+
+	    pDevice->SetTextureStageState( 1, D3DTSS_COLOROP,	D3DTOP_MODULATE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_CURRENT|D3DTA_ALPHAREPLICATE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT );
+
+	    pDevice->SetTextureStageState( 2, D3DTSS_COLOROP,	D3DTOP_DISABLE );
+
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_MODULATE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_ALPHAOP,	D3DTOP_DISABLE );
+
+    }break;
+
+  default:
+    {
+      //	その他はいたって普通に
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_COLOROP,	D3DTOP_DISABLE );
+
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_MODULATE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );
+	    pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
+	    pDevice->SetTextureStageState( 1, D3DTSS_ALPHAOP,	D3DTOP_DISABLE );
+    }break;
+
+  }
+}
+
+
+}}
+

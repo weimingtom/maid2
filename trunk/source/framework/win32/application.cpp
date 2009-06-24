@@ -1,1 +1,24 @@
-﻿椣据畬敤愢灰楬慣楴湯栮ഢഊഊ渊浡獥慰散䴠楡൤笊਍਍⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ⼊ℯ踠跀൳⼊K਍ठ†灀牡浡栉湉瑳湡散उ†楛崠圉湩慍湩⤨舠芩鏧艮芳苪袽郸ඔ  䀠慰慲७偨敲䥶獮慴据॥楛崠圉湩慍湩⤨舠芩鏧艮芳苪袽郸ඔ  䀠慰慲७灬浃䱤湩॥ 嬠⁩ढ़楗䵮楡⡮ ꦂ溓뎂붂钐਍ठ†灀牡浡渉浃卤潨ॷ 嬠⁩ढ़楗䵮楡⡮ ꦂ溓뎂붂钐਍⨠യ椊瑮䄠灰楬慣楴湯㨺畒⡮䠠义呓乁䕃栠湉瑳湡散‬䥈华䅔䍎⁅偨敲䥶獮慴据ⱥ䰠卐剔氠䍰摭楌敮‬湩⁴䍮摭桓睯⤠਍ൻ 洠佟䑓癥捩⹥敓側牡浡 䥨獮慴据ⱥ偨敲䥶獮慴据ⱥ灬浃䱤湩ⱥ䍮摭桓睯⤠഻ഊ 爠瑥牵⁮䅉灰楬慣楴湯㨺畒⡮㬩਍ൽഊ䤊协敄楶散…灁汰捩瑡潩㩮䜺瑥协敄楶散⤨笠爠瑥牵⁮彭协敄楶散※ൽഊ紊
+﻿#include"application.h"
+
+
+namespace Maid
+{
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 実行
+/*!
+ 	  @param	hInstance		  [i ]	WinMain() から渡された引数
+ 	  @param	hPrevInstance	[i ]	WinMain() から渡された引数
+ 	  @param	lpCmdLine		  [i ]	WinMain() から渡された引数
+ 	  @param	nCmdShow		  [i ]	WinMain() から渡された引数
+ */
+int Application::Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+{
+  m_OSDevice.SetParam( hInstance,hPrevInstance,lpCmdLine,nCmdShow );
+
+  return IApplication::Run();
+}
+
+IOSDevice& Application::GetOSDevice() { return m_OSDevice; }
+
+}

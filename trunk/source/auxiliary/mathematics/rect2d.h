@@ -1,1 +1,59 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥†冂龎뎌悌斃鎃皃貃宁枃਍⨠യഊ⌊晩摮晥洠楡㉤慟硵汩慩祲浟瑡敨慭楴獣牟捥㉴彤൨⌊敤楦敮洠楡㉤慟硵汩慩祲浟瑡敨慭楴獣牟捥㉴彤൨ഊ⌊湩汣摵≥⸮ⸯ⼮潣普杩搯晥湩⹥≨਍਍椣据畬敤瀢楯瑮搲栮ഢ⌊湩汣摵≥楳敺搲栮ഢഊ渊浡獥慰散䴠楡൤笊ഠ ⼠K਍†††所楲晥鈉閷賻艠苰芠苧苭趷酜醢෌ †⼪਍†整灭慬整琼灹湥浡⁥奔䕐ാ 猠牴捵⁴䕒呃䐲呟䵅䱐呁൅ 笠਍††奔䕐砠ऻ⼯訉迮鎀ൟ †吠偙⁅㭹਍††奔䕐眠ऻ⼯锉ඝ †吠偙⁅㭨਍਍††䕒呃䐲呟䵅䱐呁⡅笩ൽ †删䍅㉔彄䕔偍䅌䕔 奔䕐张ⱸ吠偙⁅祟‬奔䕐张ⱷ吠偙⁅桟⤠⼠ℯ़劃鎃境枃覃亃広਍†††›⡸硟Ⱙ⡹祟Ⱙ⡷睟Ⱙ⡨桟ഩ †笠਍††ॽ਍਍††整灭慬整琼灹湥浡⁥奔䕐㸲਍††䕒呃䐲呟䵅䱐呁⡅挠湯瑳删䍅㉔彄䕔偍䅌䕔吼偙㉅☾爠慨⤠ठ⼯㰡茉荒莓荘荧莉荎൞ †笠਍†††⁸‽吨偙⥅桲⹡㭸਍†††⁹‽吨偙⥅桲⹡㭹਍†††⁷‽吨偙⥅桲⹡㭷਍†††⁨‽吨偙⥅桲⹡㭨਍††ൽഊ †删䍅㉔彄䕔偍䅌䕔 潣獮⁴佐义㉔彄䕔偍䅌䕔吼偙㹅…Ɒ挠湯瑳匠婉㉅彄䕔偍䅌䕔吼偙㹅…⁳ ⼯㰡茉荒莓荘荧莉荎൞ ††㨠砠瀨砮Ⱙ⡹⹰⥹眬猨眮Ⱙ⡨⹳⥨਍††ൻ †素ഉഊ †吠偙⁅敇剴杩瑨⤨挠湯瑳†⁻敲畴湲砠⬠眠※ൽ †吠偙⁅敇䉴瑯潴⡭ 潣獮⁴⁻敲畴湲礠⬠栠※ൽഊ †倠䥏呎䐲呟䵅䱐呁㱅奔䕐‾敇側楯瑮⤨潣獮筴爠瑥牵⁮佐义㉔彄䕔偍䅌䕔吼偙㹅砨礬㬩素਍††䥓䕚䐲呟䵅䱐呁㱅奔䕐‾䜠瑥楓敺⤨挠湯瑳⁻敲畴湲匠婉㉅彄䕔偍䅌䕔吼偙㹅眨栬㬩素਍਍††佐义㉔彄䕔偍䅌䕔吼偙㹅䜠瑥呌⤨潣獮筴爠瑥牵⁮佐义㉔彄䕔偍䅌䕔吼偙㹅砨†礬†㬩素਍††佐义㉔彄䕔偍䅌䕔吼偙㹅䜠瑥呒⤨潣獮筴爠瑥牵⁮佐义㉔彄䕔偍䅌䕔吼偙㹅砨眫礬†㬩素਍††佐义㉔彄䕔偍䅌䕔吼偙㹅䜠瑥䉌⤨潣獮筴爠瑥牵⁮佐义㉔彄䕔偍䅌䕔吼偙㹅砨†礬栫㬩素਍††佐义㉔彄䕔偍䅌䕔吼偙㹅䜠瑥䉒⤨潣獮筴爠瑥牵⁮佐义㉔彄䕔偍䅌䕔吼偙㹅砨眫礬栫㬩素਍†㭽਍ൽ⌊湥楤൦
+﻿/*!
+    @file
+    @brief  ２次元矩形テンプレート
+ */
+
+#ifndef maid2_auxiliary_mathematics_rect2d_h
+#define maid2_auxiliary_mathematics_rect2d_h
+
+#include"../../config/define.h"
+
+#include"point2d.h"
+#include"size2d.h"
+
+namespace Maid
+{ 
+  /*!
+      @brief	長方形をあらわす構造体
+   */
+  template<typename TYPE>
+  struct RECT2D_TEMPLATE
+  {
+    TYPE x;	//	基準点
+    TYPE y;
+    TYPE w;	//	幅
+    TYPE h;
+
+    RECT2D_TEMPLATE(){}
+    RECT2D_TEMPLATE( TYPE _x, TYPE _y, TYPE _w, TYPE _h ) //!<	コンストラクタ
+      : x(_x),y(_y),w(_w),h(_h)
+    {
+    }	
+
+    template<typename TYPE2>
+    RECT2D_TEMPLATE( const RECT2D_TEMPLATE<TYPE2>& rha ) 	//!<	コンストラクタ
+    {
+      x = (TYPE)rha.x;
+      y = (TYPE)rha.y;
+      w = (TYPE)rha.w;
+      h = (TYPE)rha.h;
+    }
+
+    RECT2D_TEMPLATE( const POINT2D_TEMPLATE<TYPE>& p, const SIZE2D_TEMPLATE<TYPE>& s ) //!<	コンストラクタ
+      : x(p.x),y(p.y),w(s.w),h(s.h)
+    {
+    }	
+
+    TYPE GetRight() const  { return x + w; }
+    TYPE GetBottom() const { return y + h; }
+
+    POINT2D_TEMPLATE<TYPE> GetPoint()const{ return POINT2D_TEMPLATE<TYPE>(x,y); }
+    SIZE2D_TEMPLATE<TYPE>  GetSize() const{ return SIZE2D_TEMPLATE<TYPE>(w,h); }
+
+    POINT2D_TEMPLATE<TYPE> GetLT()const{ return POINT2D_TEMPLATE<TYPE>(x  ,y  ); }
+    POINT2D_TEMPLATE<TYPE> GetRT()const{ return POINT2D_TEMPLATE<TYPE>(x+w,y  ); }
+    POINT2D_TEMPLATE<TYPE> GetLB()const{ return POINT2D_TEMPLATE<TYPE>(x  ,y+h); }
+    POINT2D_TEMPLATE<TYPE> GetRB()const{ return POINT2D_TEMPLATE<TYPE>(x+w,y+h); }
+  };
+}
+#endif

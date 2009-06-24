@@ -1,1 +1,229 @@
-﻿椣湦敤⁦慭摩弲牧灡楨獣损牯彥摩癥捩彥൨⌊敤楦敮洠楡㉤束慲桰捩彳潣敲楟敤楶散桟਍਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮潣普杩琯灹摥晥栮ഢഊ⌊湩汣摵㱥潢獯⽴浳牡彴瑰⹲灨㹰਍椣据畬敤瘼捥潴㹲਍਍椣据畬敤⸢⼮⸮愯硵汩慩祲支捸灥楴湯栮ഢ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹慭桴浥瑡捩⹳≨਍椣据畬敤⸢⼮⸮愯硵汩慩祲洯捡潲栮ഢഊ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹瑳楲杮栮ഢ⌊湩汣摵≥⸮振汯牯栮ഢ⌊湩汣摵≥⸮瀯硩汥潦浲瑡栮ഢഊ⌊湩汣摵≥牣慥整慰慲⹭≨਍਍਍椣据畬敤椢畢晦牥栮ഢ⌊湩汣摵≥瑩硥畴敲搲栮ഢ⌊湩汣摵≥捩湯瑳湡⹴≨਍椣据畬敤椢敲摮牥慴杲瑥栮ഢ⌊湩汣摵≥摩灥桴瑳湥楣⹬≨਍椣据畬敤椢慭整楲污栮ഢ⌊湩汣摵≥楩灮瑵慬潹瑵栮ഢ⌊湩汣摵≥物獡整楲敺獲慴整栮ഢ⌊湩汣摵≥獩浡汰牥瑳瑡⹥≨਍椣据畬敤椢汢湥獤慴整栮ഢ⌊湩汣摵≥摩灥桴瑳湥楣獬慴整栮ഢ⌊湩汣摵≥癩牥整獸慨敤⹲≨਍椣据畬敤椢楰數獬慨敤⹲≨਍椣据畬敤椢牤睡潣浭湡敤數畣整栮ഢ⌊湩汣摵≥摩慲捷浯慭摮慣瑰牵⹥≨਍਍਍慮敭灳捡⁥慍摩笠渠浡獥慰散䜠慲桰捩⁳ൻഊ ⼠Kഉ ††䀠汣獡ॳ䑉癥捩⁥摩癥捩⹥൨ ††䀠牢敩०犃暃䦃梃覃䎃澃਍†湜††उ茉荨莉荃良苉苦苁苄苍苅芫苩花臆艁苅芫苈芢花苆芪芠苨苜芷ඪ 尠८ †ठ얂ꮂ좂ꊂ融춂䞃覃宁澏랂첂얂춂좂궂䆁�즂境讃宁랂ꒂ즂떂쒂궂뺂뎂ꊂ਍†湜उ †茠莉莓荞荃莀荇膉艛讪艎花苁辽跪芇⃍硅散瑰潩⁮誓낂놂욂਍†⼪਍਍†汣獡⁳䑉癥捩൥ 笠਍†異汢捩ഺ †瘠物畴污縠䑉癥捩⡥笩ൽഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡梃覃䎃澃첂規慠뮉਍††⨯ഡ †††䀠硥散瑰潩⁮硅散瑰潩⁮規慠뮉즂뢎玔떂붂融਍††⨠യ †瘠物畴污瘠楯⁤湉瑩慩楬敺⤨㴠〠഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡梃覃䎃澃첂䪊歹਍††⨯ഡ †††䀠硥散瑰潩⁮硅散瑰潩⁮䪊歹즂뢎玔떂붂融਍††⨠യ †瘠物畴污瘠楯⁤楆慮楬敺⤨㴠〠഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡境较抃皃悃䚃䎃鎃첂咃宁璃䚃境욂떂쒂玃亃媃讃璃䢃宁綃抃枃첂鎋਍††⨯ഡ †††䀠慰慲७潭敤嬠漠ढ़뮔뺖떂붂璃䢃宁綃抃枃਍††⨠യ †瘠物畴污瘠楯⁤敓捲卨慷䍰慨湩畓晲捡䙥牯慭⡴猠摴㨺敶瑣牯值塉䱅但䵒呁☾洠摯⁥ 挠湯瑳‽㬰਍਍††⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ †⼠ℯ谠趻苝菌荘莏荢荶荠荆荃芓跅郬覬铂艜諈蹥菭荴腈荛荽荢艧鋰芲苗෩ †⼠K਍††††灀牡浡按灡⁳⁛嵯鐉隻芾芵邽钫艜郌鋝部෦ ††⼪਍††楶瑲慵⁬潶摩匠牥档湅扡敬潆浲瑡 久䉁䕌但䵒呁…慣獰⤠†潣獮㵴〠഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡潤⁴祢搠瑯舠芷苩苆芫菌荥荎荚芋菆荳荎荚芋苌芸苪鋌艬軰鏦芾芷෩ †⼠K਍††††牀瑥牵⁮沒਍††⨠യ †瘠物畴污映潬瑡䜠瑥敔數䵬灡慖畬⡥ 潣獮⁴‽㬰਍਍††⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ †⼠ℯ茠荘莏荢荶荠荆荃芓闌跏൘ †⼠K਍††††灀牡浡洉摯॥楛崠舉芠芽苧芵莢荴腈荛荽荢൧ ††⼪਍††楶瑲慵⁬潶摩匠瑥睓灡桃楡䙮牯慭⡴挠湯瑳匠䅗䍐䅈义但䵒呁…潭敤⤠〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡璃讃境亃誃宁鎃즂랂ꦂ䢁਍††⨯ഡ †††䀠慰慲⁭䤠䙳汵卬牣敥⁮嬠⁩⁝琠畲⁥얂璃讃境亃誃宁鎃映污敳舠菅荅荂莓荨荅膂荛൨ ††⼪਍††楶瑲慵⁬潶摩匠瑥畆汬捓敲湥瑓瑡⡥戠潯⁬獉畆汬捓敲湥⤠〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡璃讃境亃誃宁鎃蚒ꦂ䢁਍††⨯ഡ †††䀠敲畴湲†牴敵舠菅荴莋荘荎膊荛ₓ慦獬⁥얂䖃䊃鎃梃䖃芃宁梃਍††⨠യ †瘠物畴污戠潯⁬獉畆汬捓敲湥⤨挠湯瑳〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡暃䊃境皃貃䎃즂岕Ꚏ랂਍††⨯ഡ ††⼪਍††楶瑲慵⁬潶摩倠敲敳瑮⤨〽഻ഊഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡뮌�첂境亃誃宁鎃芃宁梃첂뺓਍††⨯ഡ †††䀠敲畴湲谠趻苝菌荘荎膊荛莓膂荛൨ ††⼪਍††楶瑲慵⁬坓偁䡃䥁䙎剏䅍⁔敇却慷䍰慨湩潆浲瑡⤨挠湯瑳〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡暃䊃境皃貃䎃첂䆃境禃亃枃첂뺓਍††⨯ഡ †††䀠敲畴湲茠荁荘荹荎鑧⣤ꪕ뎂쒂�릂ഩ ††⼪਍††楶瑲慵⁬䥓䕚䐲⁉敇䑴獩汰祡獁数瑣⤨挠湯瑳〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡뢒従悋첂겐਍††⨯ഡ †††䀠慰慲७汅浥湥ॴ†楛崠茉荚荢荧荁荢轶问෱ †††䀠慰慲७潃湵ॴ††楛崠䔉敬敭瑮舠賌郂ඔ †††䀠慰慲७印慨敤䉲瑹捥摯坥瑩䥨灮瑵楓湧瑡牵॥楛崠䔉敬敭瑮캑麉뎂릂붂�첂嚃䚃宁徃宁਍††††灀牡浡䈉瑹捥摯䱥湥瑧२楛崠瀉桓摡牥祂整潣敤楗桴湉異却杩慮畴敲舠鋌芷ඳഊ †††䀠敲畴湲贉郬芬芳苪銽鎸鉟诨ൠ ††⼪਍††楶瑲慵⁬偓义啐䱔奁問⁔牃慥整湉異䱴祡畯⡴挠湯瑳䤠偎呕䕟䕌䕍呎‪汅浥湥ⱴ椠瑮䌠畯瑮‬潣獮⁴潶摩‪印慨敤䉲瑹捥摯坥瑩䥨灮瑵楓湧瑡牵ⱥ猠穩彥⁴祂整潣敤敌杮桴⤠〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡뢒従澃抃璃䂃첂겐਍††⨯ഡ †††䀠慰慲७慰慲⁭†楛崠贉郬芬芵芽莢莊腜荛൘ഊ †††䀠敲畴湲贉郬芬芳苪莽莊腜荛൘ ††⼪਍††楶瑲慵⁬偓啂䙆剅䌠敲瑡䉥晵敦⡲挠湯瑳䌠䕒呁䉅䙕䕆偒剁䵁…慰慲Ɑ挠湯瑳匠䉕䕒体剕䕃‪慤慴⤠〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡冂掂斃亃境悃莃첂겐਍††⨯ഡ †††䀠慰慲७慰慲⁭†楛崠贉郬芬芵芽莢莊腜荛൘ഊ †††䀠敲畴湲贉郬芬芳苪莽莊腜荛൘ ††⼪਍††楶瑲慵⁬偓䕔员剕㉅⁄牃慥整敔瑸牵㉥⡄挠湯瑳䌠䕒呁剅呅塅啔䕒䐲䅐䅒♍瀠牡浡‬潣獮⁴啓剂卅問䍒⩅搠瑡⁡㴩㬰਍਍††楶瑲慵⁬偓䕒䑎剅䅔䝒呅䌠敲瑡剥湥敤呲牡敧⡴挠湯瑳匠剐卅問䍒♅爠獥畯捲ⱥ挠湯瑳䌠䕒呁剅久䕄呒剁䕇偔剁䵁‪慰慲⁭㴩㬰਍††楶瑲慵⁬偓䕄呐午䕔䍎䱉䌠敲瑡䑥灥桴瑓湥楣⡬挠湯瑳匠剐卅問䍒♅爠獥畯捲ⱥ挠湯瑳䌠䕒呁䑅偅䡔呓久䥃偌剁䵁‪慰慲⁭㴩㬰਍††楶瑲慵⁬偓䅍䕔䥒䱁††䌠敲瑡䵥瑡牥慩⡬挠湯瑳匠剐卅問䍒♅爠獥畯捲ⱥ挠湯瑳䌠䕒呁䵅呁剅䅉偌剁䵁‪慰慲⁭㴩㬰਍਍††楶瑲慵⁬潶摩䜠湥牥瑡䵥灩⡳挠湯瑳匠䵐呁剅䅉♌瀠慍整楲污⤠〽഻ഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡澃宁斃抃亃境嚃䚃宁徃宁첂겐਍††⨯ഡ ††䀠慰慲७䑰瑡⁡†楛崠茉腒荛൨ ††䀠慰慲७敌杮桴†楛崠茉腦荛艞鋌芷ඳഊ ††䀠敲畴湲贉郬芬芳苪莽腯荛荥荢荎荘荖腆荛腟൛ ††⼪਍††楶瑲慵⁬偓䕖呒塅䡓䑁剅䌠敲瑡噥牥整卸慨敤⡲挠湯瑳瘠楯⩤瀠慄慴‬楳敺瑟䰠湥瑧⁨㴩㬰਍਍††⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ †⼠ℯ茠腑荛醀鎤軆芩菌荳荎荚莋荖腆荛腟艛跌郬ඬ †⼠K਍†††灀牡浡瀉慄慴†嬠⁩ढ़劃宁梃਍†††灀牡浡䰉湥瑧⁨嬠⁩ढ़暃宁広첂랒뎂਍਍†††牀瑥牵८겐뎂붂玃亃媃讃嚃䚃宁徃宁਍††⨠യ †瘠物畴污匠偐塉䱅䡓䑁剅䌠敲瑡健硩汥桓摡牥 潣獮⁴潶摩‪䑰瑡ⱡ猠穩彥⁴敌杮桴⤠〽഻ഊഊ †⼠⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍††⼯‡斊嚃䚃宁徃宁劃鎃炃䎃讃랂਍††⨯ഡ †††䀠慰慲७潓牵散†楛崠茉腒荛൨ †††䀠慰慲७楂慮祲†⁛嵯茉荒莓荰荃芋芳苪莽腦荛൞ †††䀠慰慲७牅潲䵲獥慳敧†⁛嵯茉荒莓荰荃芋躪钸艳芵芽苆芫菌荇膉荛莁荢腚荛ൗഊ †††䀠敲畴湲茉荒莓荰荃芋郉責苷芵芽⃧牴敵਍††湜†††††뢎玔떂붂映污敳਍††⨠യഊ †攠畮⁭佃䕄奔䕐਍††ൻ ††䌠䑏呅偙彅䕖呒塅䡓䑁剅ബ ††䌠䑏呅偙彅䥐䕘卌䅈䕄ⱒ਍††㭽਍਍††楶瑲慵⁬潢汯䌠浯楰敬桓摡牥慌杮慵敧 潣獮⁴瑓楲杮…潓牵散‬佃䕄奔䕐琠灹ⱥ猠摴㨺敶瑣牯甼瑮㠰☾䈠湩牡ⱹ匠牴湩♧䔠牲牯敍獳条⁥㴩㬰਍਍਍††楶瑲慵⁬偓䅓偍䕌卒䅔䕔†††牃慥整慓灭敬卲慴整 潣獮⁴䅓偍䕌卒䅔䕔䅐䅒♍传瑰潩⁮㴩㬰਍††楶瑲慵⁬偓䅒呓剅婉剅呓呁⁅†牃慥整慒瑳牥穩牥瑓瑡⡥挠湯瑳删十䕔䥒䕚卒䅔䕔䅐䅒♍传瑰潩⁮㴩㬰਍††楶瑲慵⁬偓䕄呐午䕔䍎䱉呓呁⁅牃慥整敄瑰卨整据汩瑓瑡⡥挠湯瑳䐠偅䡔呓久䥃卌䅔䕔䅐䅒♍传瑰潩⁮㴩㬰਍††楶瑲慵⁬偓䱂久卄䅔䕔††††牃慥整求湥卤慴整 潣獮⁴䱂久卄䅔䕔䅐䅒♍传瑰潩⁮㴩㬰਍਍††楶瑲慵⁬偓剄坁佃䵍乁䕄䕘啃䕔䜠瑥牄睡潃浭湡䕤數畣整⤨潣獮㵴㬰਍††楶瑲慵⁬偓剄坁佃䵍乁䍄偁啔䕒䌠敲瑡䑥慲䍷浯慭摮慃瑰牵⡥㴩㬰਍਍††⼯‡龎첂牐獥湥⡴踩芞闉艜迉良苄芭勩湥敤呲牡敧艴軰鏦芾芷෩ †⼠K਍††††牀瑥牵८敒摮牥慔杲瑥਍††⨠യ †瘠物畴污匠剐久䕄呒剁䕇⁔敇䍴牵敲瑮敒摮牥慔杲瑥⤨潣獮㵴㬰਍਍†㭽਍਍†祴数敤०潢獯㩴猺慨敲彤瑰㱲䑉癥捩㹥匉䑐噅䍉㭅਍਍絽਍਍਍攣摮晩
+﻿#ifndef maid2_graphics_core_idevice_h
+#define maid2_graphics_core_idevice_h
+
+
+#include"../../config/define.h"
+#include"../../config/typedef.h"
+
+#include<boost/smart_ptr.hpp>
+#include<vector>
+
+#include"../../auxiliary/exception.h"
+#include"../../auxiliary/mathematics.h"
+#include"../../auxiliary/macro.h"
+
+#include"../../auxiliary/string.h"
+#include"../color.h"
+#include"../pixelformat.h"
+
+#include"createparam.h"
+
+
+#include"ibuffer.h"
+#include"itexture2d.h"
+#include"iconstant.h"
+#include"irendertarget.h"
+#include"idepthstencil.h"
+#include"imaterial.h"
+#include"iinputlayout.h"
+#include"irasterizerstate.h"
+#include"isamplerstate.h"
+#include"iblendstate.h"
+#include"idepthstencilstate.h"
+#include"ivertexshader.h"
+#include"ipixelshader.h"
+#include"idrawcommandexecute.h"
+#include"idrawcommandcapture.h"
+
+
+namespace Maid { namespace Graphics {
+
+  /*!	
+      @class	IDevice idevice.h
+      @brief	ビデオドライバ
+  \n    			ドライバによってはできること、できないことがありますが
+  \n		    	できない場合はエラーを出すのではなく、華麗にスルーするようにしてください
+  \n			    ランタイムエラーが起こった場合は Exception を投げること
+  */
+
+  class IDevice
+  {
+  public:
+    virtual ~IDevice(){}
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ドライバの初期化
+    /*!
+        @exception Exception 初期化に失敗した場合
+     */
+    virtual void Initialize() = 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ドライバの開放
+    /*!
+        @exception Exception 開放に失敗した場合
+     */
+    virtual void Finalize() = 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! スワップチェインのサーフェスとして作れるピクセルフォーマットの列挙
+    /*!
+        @param	mode [ o]	判明したフォーマット
+     */
+    virtual void SerchSwapChainSurfaceFormat( std::vector<PIXELFORMAT>& mode )  const= 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 現在のスワップチェインで作成可能な各種フォーマットを調べる
+    /*!
+        @param	caps [ o]	判明した性能の設定先
+     */
+    virtual void SerchEnableFormat( ENABLEFORMAT& caps )  const= 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! dot by dot するときのテクセルとピクセルのずれの値を取得する
+    /*!
+        @return 値
+     */
+    virtual float GetTexelMapValue() const = 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! スワップチェインの変更
+    /*!
+        @param	mode	[i ]	あたらしいフォーマット
+     */
+    virtual void SetSwapChainFormat( const SWAPCHAINFORMAT& mode )=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! フルスクリーンにするか？
+    /*!
+        @param  IsFullScreen  [i ]  true でフルスクリーン false でウィンドウモード
+     */
+    virtual void SetFullScreenState( bool IsFullScreen )=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! フルスクリーン中か？
+    /*!
+        @return  true でフルスクリーン false でウィンドウモード
+     */
+    virtual bool IsFullScreen() const=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ディスプレイに表示する
+    /*!
+     */
+    virtual void Present()=0;
+
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 現在のスクリーンモードの取得
+    /*!
+        @return 現在のスクリーンモード
+     */
+    virtual SWAPCHAINFORMAT GetSwapChainFormat() const=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ディスプレイのアスペクト比の取得
+    /*!
+        @return アスペクト比(約分されてません)
+     */
+    virtual SIZE2DI GetDisplayAspect() const=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 頂点定義の作成
+    /*!
+        @param	Element	  [i ]	セットアップ情報
+        @param	Count	    [i ]	Element の個数
+        @param	pShaderBytecodeWithInputSignature	[i ]	Elementを対応させるためのシェーダー
+        @param	BytecodeLength	[i ]	pShaderBytecodeWithInputSignature の長さ
+
+        @return	作成された頂点定義
+     */
+    virtual SPINPUTLAYOUT CreateInputLayout( const INPUT_ELEMENT* Element, int Count, const void* pShaderBytecodeWithInputSignature, size_t BytecodeLength )=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 頂点バッファの作成
+    /*!
+        @param	param   [i ]	作成したいリソース
+
+        @return	作成されたリソース
+     */
+    virtual SPBUFFER CreateBuffer( const CREATEBUFFERPARAM& param, const SUBRESOURCE* data )=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ２Ｄテクスチャの作成
+    /*!
+        @param	param   [i ]	作成したいリソース
+
+        @return	作成されたリソース
+     */
+    virtual SPTEXTURE2D CreateTexture2D( const CREATERETEXTURE2DPARAM& param, const SUBRESOURCE* data )=0;
+
+    virtual SPRENDERTARGET CreateRenderTarget( const SPRESOURCE& resource, const CREATERENDERTARGETPARAM* param )=0;
+    virtual SPDEPTHSTENCIL CreateDepthStencil( const SPRESOURCE& resource, const CREATEDEPTHSTENCILPARAM* param )=0;
+    virtual SPMATERIAL     CreateMaterial( const SPRESOURCE& resource, const CREATEMATERIALPARAM* param )=0;
+
+    virtual void GenerateMips( const SPMATERIAL& pMaterial )=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! バーテックスシェーダーの作成
+    /*!
+      @param	pData   [i ]	コード
+      @param	Length  [i ]	データの長さ
+
+      @return	作成されたバーテックスシェーダー
+     */
+    virtual SPVERTEXSHADER CreateVertexShader( const void* pData, size_t Length )=0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ゲーム側独自のピクセルシェーダーの作成
+    /*!
+      @param	pData   [i ]	コード
+      @param	Length  [i ]	データの長さ
+
+      @return	作成されたピクセルシェーダー
+     */
+    virtual SPPIXELSHADER CreatePixelShader( const void* pData, size_t Length )=0;
+
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! 各種シェーダー語をコンパイルする
+    /*!
+        @param	Source  [i ]	コード
+        @param	Binary  [ o]	コンパイルされたデータ
+        @param	ErrorMessage  [ o]	コンパイルが失敗したときのエラーメッセージ
+
+        @return	コンパイルに成功したら true
+    \n          失敗したら false
+     */
+
+    enum CODETYPE
+    {
+      CODETYPE_VERTEXSHADER,
+      CODETYPE_PIXELSHADER,
+    };
+
+    virtual bool CompileShaderLanguage( const String& Source, CODETYPE type, std::vector<unt08>& Binary, String& ErrorMessage )=0;
+
+
+    virtual SPSAMPLERSTATE      CreateSamplerState( const SAMPLERSTATEPARAM& Option )=0;
+    virtual SPRASTERIZERSTATE   CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )=0;
+    virtual SPDEPTHSTENCILSTATE CreateDepthStencilState( const DEPTHSTENCILSTATEPARAM& Option )=0;
+    virtual SPBLENDSTATE        CreateBlendState( const BLENDSTATEPARAM& Option )=0;
+
+    virtual SPDRAWCOMMANDEXECUTE GetDrawCommandExecute()const=0;
+    virtual SPDRAWCOMMANDCAPTURE CreateDrawCommandCapture()=0;
+
+    //! 次のPresent()時に表に出てくるRenderTargetを取得する
+    /*!
+        @return	RenderTarget
+     */
+    virtual SPRENDERTARGET GetCurrentRenderTarget()const=0;
+
+  };
+
+  typedef	boost::shared_ptr<IDevice>	SPDEVICE;
+
+}}
+
+
+#endif

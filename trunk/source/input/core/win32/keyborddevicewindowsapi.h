@@ -1,1 +1,32 @@
-﻿⨯ഡ 䀉楦敬਍ठ所楲晥茠腌荛腻荛荨荨莉荃腯荩荶莍腖荛荗₃얂뺓랂嘠牥‮ഩ ⼪਍਍椣湦敤⁦慭摩弲湩異彴潣敲睟湩㈳歟祥潢摲敤楶散楷摮睯慳楰桟਍搣晥湩⁥慭摩弲湩異彴潣敲睟湩㈳歟祥潢摲敤楶散楷摮睯慳楰桟਍਍椣据畬敤⸢⼮⸮ⸯ⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮⸮ⸯ⼮潣普杩眯湩㈳栮ഢ⌊湩汣摵≥⸮椯敫批牯摤癥捩⹥≨਍椣据畬敤瘼捥潴㹲਍਍਍慮敭灳捡⁥慍摩⁻慮敭灳捡⁥湉異⁴ൻഊऊ汣獡⁳敋批牯䑤癥捩坥湩潤獷偁⁉਍††瀺扵楬⁣䭉祥潢摲敄楶散਍笉਍瀉扵楬㩣਍उ敋批牯䑤癥捩坥湩潤獷偁⡉㬩਍उ楶瑲慵⁬䭾祥潢摲敄楶散楗摮睯䅳䥐⤨഻ഊऊ瘉物畴污瘠楯।湉瑩慩楬敺⤨഻ऊ瘉物畴污瘠楯।楆慮楬敺⤨഻ऊ瘉物畴污瘠楯।獉潄湷 瑳㩤瘺捥潴㱲潢汯☾䬠祥楌瑳⤠按湯瑳഻ऊ瘉物畴污椠瑮उ敇䉴瑵潴湮慍⡸ऩउउउ潣獮㭴਍紉഻ഊ紊ൽഊ⌊湥楤
+﻿/*!
+ 	@file
+ 	@brief キーボードドライバ（プロシージャ で取得する Ver. )
+ */
+
+#ifndef maid2_input_core_win32_keyborddevicewindowsapi_h
+#define maid2_input_core_win32_keyborddevicewindowsapi_h
+
+#include"../../../config/define.h"
+#include"../../../config/win32.h"
+#include"../ikeyborddevice.h"
+#include<vector>
+
+
+namespace Maid{ namespace Input {
+
+	class KeybordDeviceWindowsAPI 
+    :public IKeybordDevice
+	{
+	public:
+		KeybordDeviceWindowsAPI();
+		virtual ~KeybordDeviceWindowsAPI();
+
+		virtual void	Initialize();
+		virtual void	Finalize();
+		virtual void	IsDown( std::vector<bool>& KeyList )	const;
+		virtual int		GetButtonnMax()							const;
+	};
+
+}}
+
+#endif

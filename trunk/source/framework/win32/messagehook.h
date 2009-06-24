@@ -1,1 +1,111 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥圠湩㈳霠荰莁荢腚荛荗荶莍腖荛荗ඃ ⼪਍਍਍椣湦敤⁦慭摩弲牦浡睥牯彫楷㍮弲敭獳条桥潯彫൨⌊敤楦敮洠楡㉤晟慲敭潷歲睟湩㈳浟獥慳敧潨歯桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮潣普杩眯湩㈳栮ഢ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹慭牣⹯≨਍椣据畬敤⸢⼮⸮愯硵汩慩祲术潬慢灬楯瑮牥栮ഢഊഊഊ渊浡獥慰散䴠楡൤笊਍†⨯ഡ  䀠汣獡ॳ楗摮睯䵳獥慳敧圠湩潤獷敍獳条⹥൨  䀠牢敩०皃趃嚃宁垃莃炗튕垏亃覃境਍†⨠യ 挠慬獳圠湩潤獷敍獳条൥ 笠਍†異汢捩ഺ †⼠ℯ茉荒莓荘荧莉荎൞ †圠湩潤獷敍獳条⡥䠠乗⁄坨摮‬䥕呎洠杳‬偗剁䵁眠慐慲Ɑ䰠䅐䅒⁍偬牡浡⤠਍†††›彭坨摮栨湗⥤洬䵟杳洨杳Ⱙ彭偷牡浡眨慐慲⥭洬江慐慲⡭偬牡浡ഩ †笠਍਍††ൽഊഊ †䠠乗ॄ敇䡴乗⡄ 潣獮⁴⁻敲畴湲洠桟湗㭤素उ⼯㰡茉莁荢腚荛艗里邗遍菦荮莓荨උ †唠义॔敇䵴䝓⤨挠湯瑳笠爠瑥牵⁮彭獍㭧素उ⼯㰡錉芊芰苧苪莽莁荢腚荛艗軌鏦඾ഊ †攠畮⁭䅐䅒് †笠਍†††䅐䅒彍佌ബ ††倠剁䵁䡟ⱉ਍†††䅐䅒彍䱁ൌ †素഻ഊഊ †圠䅐䅒्敇坴䅐䅒⡍䅐䅒⁍潰㵳䅐䅒彍䱁⥌挠湯瑳ഠ †笠਍†††晩 潰㵳倽剁䵁䱟⁏ ⁻敲畴湲䰠坏剏⡄彭偷牡浡㬩素਍†††晩 潰㵳倽剁䵁䡟⁉ ⁻敲畴湲䠠坉剏⡄彭偷牡浡㬩素਍†††敲畴湲洠睟慐慲㭭ഠ †素਍਍††偌剁䵁䜉瑥偌剁䵁倨剁䵁瀠獯倽剁䵁䅟䱌 潣獮൴ †笠਍†††晩 潰㵳倽剁䵁䱟⁏ ⁻敲畴湲䰠坏剏⡄彭偬牡浡㬩素਍†††晩 潰㵳倽剁䵁䡟⁉ ⁻敲畴湲䠠坉剏⡄彭偬牡浡㬩素਍†††敲畴湲洠江慐慲㭭ഠ †素਍਍††潶摩匠瑥坈䑎 坈䑎栠湗⁤ ⁻彭坨摮㴠栠湗㭤素਍††潶摩匠瑥卍⡇唠义⁔獭⁧ ⁻彭獍⁧‽獭㭧素਍††潶摩匠瑥偗剁䵁 偗剁䵁眠慰慲⁭ ⁻彭偷牡浡㴠眠慰慲㭭素਍††潶摩匠瑥偌剁䵁 偌剁䵁氠慰慲⁭ ⁻彭偬牡浡㴠氠慰慲㭭素਍਍†牰癩瑡㩥਍††坈䑎 洠桟湗㭤਍††䥕呎 洠䵟杳഻ †圠䅐䅒्彭偷牡浡഻ †䰠䅐䅒्彭偬牡浡഻ 素഻ഊഊ 挠慬獳䴠獥慳敧潈歯慍慮敧㭲਍†汣獡⁳敍獳条䡥潯㩫瀠扵楬⁣汇扯污潐湩整㱲敍獳条䡥潯䵫湡条牥ാ 笠਍†異汢捩ഺ †䴠獥慳敧潈歯⤨഻ †瘠物畴污縠敍獳条䡥潯⡫㬩਍਍††⨯ഡ †††圠湩潤偷潲⡣ 얂�솂쒂궂劃宁梃਍††⨠യ †攠畮⁭䕒啔乒佃䕄਍††ൻ ††删呅剕䍎䑏彅䕒啔乒〽‬†⼯㰡茉莁荢腚荛艗迍鞈芝芳苪芽苌苅花裪跈艾賍苄苎苈ජ ††删呅剕䍎䑏彅䕄䅆䱕ⱔ††⼯㰡茉莁荢腚荛艗俰艓雉苟භ †素഻ഊ †瘠楯⁤摁偤潲⡣䠠乗⁄坨摮⤠഻ †瘠楯⁤敄偬潲⡣㬩਍਍††潶摩䔠瑮牥湉整牲灵䵴摯⡥㬩਍††潶摩䰠慥敶湉整牲灵䵴摯⡥㬩਍਍††⼯‡皃趃嚃宁垃莃즂劃宁讃澃抃亃떂쒂ꒂ횊钐਍††⨯ഡ †††舠花諌郖芔賰轰邳苦軅釀芕芵苜භഊ †††䀠慰慲७敭獳嬉⁩ढ़鞑쒂ꮂ붂膃抃媃宁垃਍਍††††牀瑥慶६删呅剕䍎䑏彅塅呉उ놂좈纍膃抃媃宁垃袏鶗玍ꊂ�릂਍††††牀瑥慶६删呅剕䍎䑏彅䕄䅆䱕॔�뺂놑꾂�랂਍††⨠യऊ†楶瑲慵⁬䕒啔乒佃䕄传䵮獥慳敧 楗摮睯䵳獥慳敧…敭獳⤠〽഻ഊ 瀠楲慶整ഺ †戠潯६彭獉潈歯ऻ⼯㰡谉趻菝荴荢艎芳苪苄芢苩ඩ †䠠乗ॄ彭坨摮ऻ⼉ℯ़뮌�첂溃鎃梃讃਍†㭽਍ൽഊ⌊湥楤൦
+﻿/*!
+    @file
+    @brief Win32 用メッセージプロシージャ
+ */
+
+
+#ifndef maid2_framework_win32_messagehook_h
+#define maid2_framework_win32_messagehook_h
+
+#include"../../config/define.h"
+#include"../../config/win32.h"
+#include"../../auxiliary/macro.h"
+#include"../../auxiliary/globalpointer.h"
+
+
+
+namespace Maid
+{
+  /*!
+ 	  @class	WindowsMessage WindowsMessage.h
+ 	  @brief	プロシージャ用編集クラス
+   */
+  class WindowsMessage
+  {
+  public:
+    //!	コンストラクタ
+    WindowsMessage( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
+      : m_hWnd(hWnd),m_Msg(msg),m_wParam(wParam),m_lParam(lParam)
+    {
+
+    }
+
+
+    HWND	GetHWND() const { return m_hWnd; }		//!<	メッセージの送信先ハンドル
+    UINT	GetMSG() const { return m_Msg; }		//!<	投げられたメッセージの取得
+
+    enum PARAM
+    {
+      PARAM_LO,
+      PARAM_HI,
+      PARAM_ALL
+    };
+
+
+    WPARAM	GetWPARAM(PARAM pos=PARAM_ALL) const 
+    {
+      if( pos==PARAM_LO ) { return LOWORD(m_wParam); }
+      if( pos==PARAM_HI ) { return HIWORD(m_wParam); }
+      return m_wParam; 
+    }
+
+    LPARAM	GetLPARAM(PARAM pos=PARAM_ALL) const
+    {
+      if( pos==PARAM_LO ) { return LOWORD(m_lParam); }
+      if( pos==PARAM_HI ) { return HIWORD(m_lParam); }
+      return m_lParam; 
+    }
+
+    void SetHWND( HWND hWnd ) { m_hWnd = hWnd; }
+    void SetMSG( UINT msg ) { m_Msg = msg; }
+    void SetWPARAM( WPARAM wparam ) { m_wParam = wparam; }
+    void SetLPARAM( LPARAM lparam ) { m_lParam = lparam; }
+
+  private:
+    HWND	  m_hWnd;
+    UINT	  m_Msg;
+    WPARAM	m_wParam;
+    LPARAM	m_lParam;
+  };
+
+
+  class MessageHookManager;
+  class MessageHook: public GlobalPointer<MessageHookManager>
+  {
+  public:
+    MessageHook();
+    virtual ~MessageHook();
+
+    /*!
+        WindowProc() で戻ってくるコード
+     */
+    enum RETURNCODE
+    {
+      RETURNCODE_RETURN=0,   //!<	メッセージは処理されたのでこれ以降は呼ばない
+      RETURNCODE_DEFAULT,    //!<	メッセージをOSに戻す
+    };
+
+    void AddProc( HWND hWnd );
+    void DelProc();
+
+    void EnterInterruptMode();
+    void LeaveInterruptMode();
+
+    //! プロシージャにコールバックしてもらう関数
+    /*!
+        この関数を継承先で実装します
+
+        @param	mess	[i ]	送られてきたメッセージ情報
+
+        @retval	 RETURNCODE_EXIT		これ以降メッセージ処理を行いません
+        @retval	 RETURNCODE_DEFAULT	まだ続けます
+     */
+	  virtual RETURNCODE OnMessage( WindowsMessage& mess )=0;
+
+  private:
+    bool	m_IsHook;	//!<	現在フックされているか
+    HWND	m_hWnd;		//!<	現在のハンドル
+  };
+}
+
+#endif

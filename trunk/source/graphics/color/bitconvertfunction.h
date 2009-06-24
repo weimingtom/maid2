@@ -1,1 +1,60 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥茉荲荢遧芔闌諏芷跰艳莤腥荛荵උ ⼪਍椣湦敤⁦慭摩弲牧灡楨獣损汯牯扟瑩潣癮牥晴湵瑣潩彮൨⌊敤楦敮洠楡㉤束慲桰捩彳潣潬彲楢捴湯敶瑲畦据楴湯桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮潣普杩琯灹摥晥栮ഢഊ渊浡獥慰散䴠楡൤笊਍†⨯਍†††횊钐첂ꦌﮕ਍†††塘瑁奯䉙舠苆苈苁苄芢හ ††堠ⱘ奙ꪂ犃抃枃钐਍†††ⱁ⁂ꪂ㵉꺐钐䘠輽邬ඔ ††舠苉苈苁苄苜භ ⨠യഊഊ 甠瑮㠰䈠呉佃噎剅ご䤱潴㠰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤲潴㠰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤴潴㠰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤵潴㠰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤶潴㠰⡉甠瑮㠰猠⤠഻ഊ 甠瑮㘱䈠呉佃噎剅ご䤱潴㘱⡉甠瑮㠰猠⤠഻ 甠瑮㘱䈠呉佃噎剅ご䤲潴㘱⡉甠瑮㠰猠⤠഻ 甠瑮㘱䈠呉佃噎剅ご䤴潴㘱⡉甠瑮㠰猠⤠഻ 甠瑮㘱䈠呉佃噎剅ご䤵潴㘱⡉甠瑮㠰猠⤠഻ 甠瑮㘱䈠呉佃噎剅ご䤶潴㘱⡉甠瑮㠰猠⤠഻ 甠瑮㘱䈠呉佃噎剅ご䤸潴㘱⡉甠瑮㠰猠⤠഻ 甠瑮㘱䈠呉佃噎剅ㅔ䤰潴㘱⡉甠瑮㘱猠⤠഻ഊഊ 甠瑮㠰䈠呉佃噎剅ご䤸潴㄰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤸潴㈰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤸潴㐰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤸潴㔰⡉甠瑮㠰猠⤠഻ 甠瑮㠰䈠呉佃噎剅ご䤸潴㘰⡉甠瑮㠰猠⤠഻ഊ 甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㄰⡉甠瑮㘱猠⤠഻ 甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㈰⡉甠瑮㘱猠⤠഻ 甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㐰⡉甠瑮㘱猠⤠഻ 甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㔰⡉甠瑮㘱猠⤠഻ 甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㘰⡉甠瑮㘱猠⤠഻ 甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㠰⡉甠瑮㘱猠⤠഻ 甠瑮㘱䈠呉佃噎剅ㅔ䤶潴〱⡉甠瑮㘱猠⤠഻ഊ 甠瑮㠰䈠呉佃噎剅㍔䘲潴㠰⡉映潬瑡猠⤠഻ 甠瑮㘱䈠呉佃噎剅㍔䘲潴㘱⡉映潬瑡猠⤠഻ 映潬瑡㈳䈠呉佃噎剅ご䤸潴㈳⡆甠瑮㠰猠⤠഻ 映潬瑡㈳䈠呉佃噎剅ㅔ䤶潴㈳⡆甠瑮㘱猠⤠഻ഊ紊਍਍椣据畬敤戢瑩潣癮牥晴湵瑣潩⵮湩⹬≨਍਍攣摮晩਍
+﻿/*!
+    @file
+    @brief	ビット数の変換を行うテーブル
+ */
+#ifndef maid2_graphics_color_bitconvertfunction_h
+#define maid2_graphics_color_bitconvertfunction_h
+
+#include"../../config/define.h"
+#include"../../config/typedef.h"
+
+namespace Maid
+{
+  /*
+      関数の見方
+      XXAtoYYB となっていて
+      XX,YYがビット数
+      A,B がI=整数 F=小数
+      になってます
+  */
+
+
+  unt08 BITCONVERT01Ito08I( unt08 s );
+  unt08 BITCONVERT02Ito08I( unt08 s );
+  unt08 BITCONVERT04Ito08I( unt08 s );
+  unt08 BITCONVERT05Ito08I( unt08 s );
+  unt08 BITCONVERT06Ito08I( unt08 s );
+
+  unt16 BITCONVERT01Ito16I( unt08 s );
+  unt16 BITCONVERT02Ito16I( unt08 s );
+  unt16 BITCONVERT04Ito16I( unt08 s );
+  unt16 BITCONVERT05Ito16I( unt08 s );
+  unt16 BITCONVERT06Ito16I( unt08 s );
+  unt16 BITCONVERT08Ito16I( unt08 s );
+  unt16 BITCONVERT10Ito16I( unt16 s );
+
+
+  unt08 BITCONVERT08Ito01I( unt08 s );
+  unt08 BITCONVERT08Ito02I( unt08 s );
+  unt08 BITCONVERT08Ito04I( unt08 s );
+  unt08 BITCONVERT08Ito05I( unt08 s );
+  unt08 BITCONVERT08Ito06I( unt08 s );
+
+  unt08 BITCONVERT16Ito01I( unt16 s );
+  unt08 BITCONVERT16Ito02I( unt16 s );
+  unt08 BITCONVERT16Ito04I( unt16 s );
+  unt08 BITCONVERT16Ito05I( unt16 s );
+  unt08 BITCONVERT16Ito06I( unt16 s );
+  unt08 BITCONVERT16Ito08I( unt16 s );
+  unt16 BITCONVERT16Ito10I( unt16 s );
+
+  unt08 BITCONVERT32Fto08I( float s );
+  unt16 BITCONVERT32Fto16I( float s );
+  float32 BITCONVERT08Ito32F( unt08 s );
+  float32 BITCONVERT16Ito32F( unt16 s );
+
+}
+
+#include"bitconvertfunction-inl.h"
+
+#endif

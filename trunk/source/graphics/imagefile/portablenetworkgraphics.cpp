@@ -1,1 +1,139 @@
-﻿椣据畬敤瀢牯慴汢湥瑥潷歲牧灡楨獣栮ഢഊ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹敤畢⽧慷湲湩⹧≨਍椣据畬敤⸢⼮⸮愯硵汩慩祲搯扥杵愯獳牥⹴≨਍椣据畬敤⸢⼮⸮猯潴慲敧是汩楥⽯楦敬敲摡敭潭祲栮ഢഊ⌊湩汣摵㱥湰⹧㹨਍椣据畬敤瘼捥潴㹲਍਍਍⼯ड乐⁇잓�麍�炗岍ꊑ첑਍瑳畲瑣吠湐䙧汩䉥晵敦൲笊਍†慍摩㨺偓䥆䕌䕒䑁उ䙰汩㭥਍㭽਍਍瑳瑡捩瘠楯⁤湐剧慥䙤湵⡣瀠杮獟牴捵⁴倪杮‬湰彧祢整⁰畢ⱦ瀠杮獟穩彥⁴楳敺⤠਍ൻ 吠湐䙧汩䉥晵敦⩲倠杮楆敬畂晦牥㴠⠠偔杮楆敬畂晦牥⤪湰彧敧彴潩灟牴倨杮㬩਍਍†湐䙧汩䉥晵敦⵲瀾楆敬㸭敒摡 畢ⱦ猠穩⁥㬩਍ൽഊ渊浡獥慰散䴠楡൤笊਍渉浡獥慰散倠䝎਍笉਍਍⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ⼊ℯ踠鉷苨芵莽腦荛艞傪䝎ꦂ늒힂਍⨯ഡ †䀠慰慲७楆敬浉条॥楛崠†暃宁広਍਍††牀瑥牵⁮犃抃枃綃抃皃좂牴敵਍††††††ꒂ좂慦獬൥⨊യ戊潯⁬䌠敨正 潣獮⁴瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条⁥ഩ笊਍†潣獮⁴湵ぴ‸敨摡嵛㴠笠〠㡸ⰹ〠㕸ⰰ〠㑸ⱅ〠㑸ⰷ〠へⱄ〠へⱁ〠ㅸⱁ〠へⱁ素഻ഊ 椠⡦䘠汩䥥慭敧献穩⡥㰩啎䕍䕌䕍呎⡓敨摡  ⁻敲畴湲映污敳※ൽഊ 爠瑥牵⁮㨺敭捭灭 ⠦楆敬浉条孥崰Ⱙ栠慥Ɽ丠䵕䱅䵅久協栨慥⥤⤠㴽㬰਍ൽഊഊ⼊⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍⼯‡乐荇荴荀荃芋鏰詗艊芷෩⼊K਍䀉慰慲७楆敬浉条॥楛崠茉荴荀荃莋荃膁荛ൗऊ灀牡浡搉瑳ठउ⁛嵯茉荳荎荚莋腦荛൞ ⼪਍商呃佉剎卅䱕⁔䰠慯⡤挠湯瑳猠摴㨺敶瑣牯甼瑮㠰☾䘠汩䥥慭敧‬畓晲捡䥥獮慴据♥搠瑳⤠਍ൻऊ湰彧瑳畲瑣प印牴捵⁴‽啎䱌഻ऊ湰彧湩潦प䥰普⁯†‽啎䱌഻ഊऊ印牴捵⁴‽㨺湰彧牣慥整牟慥彤瑳畲瑣倨䝎䱟䉉乐彇䕖归呓䥒䝎丬䱕ⱌ啎䱌丬䱕⥌഻ऊ䥰普९‽㨺湰彧牣慥整楟普彯瑳畲瑣瀨瑓畲瑣㬩਍਍†潢獯㩴猺慨敲彤瑰㱲楆敬敒摡敍潭祲‾剰慥⡤渠睥䘠汩剥慥䵤浥牯⡹⠦楆敬浉条孥崰Ⱙ䘠汩䥥慭敧献穩⡥⤩⤠഻ഊऊ剰慥ⵤ伾数⡮㬩਍਍吉湐䙧汩䉥晵敦ॲ畢㭦਍戉晵瀮楆敬㴠瀠敒摡഻ഊऊ㨺湰彧敳彴敲摡晟⡮瀠瑓畲瑣‬瀨杮癟楯灤☩畢ⱦ⠠湰彧睲灟牴倩杮敒摡畆据⤠഻ഊऊ㨺湰彧敲摡楟普⡯瀠瑓畲瑣‬䥰普⁯㬩਍瀉杮畟湩彴㈳圠摩桴䠬楥桧㭴਍椉瑮䈠瑩敄瑰ⱨ潃潬呲灹㭥਍椉瑮䤠瑮牥慬散祔数഻ऊ湩⁴潃灭敲獳潩呮灹㭥਍椉瑮䘠汩整呲灹㭥਍㨉瀺杮束瑥䥟䑈⡒印牴捵ⱴ䥰普Ɐ圦摩桴☬效杩瑨☬楂䑴灥桴☬潃潬呲灹ⱥ䤦瑮牥慬散祔数☬潃灭敲獳潩呮灹ⱥ䘦汩整呲灹⥥഻ഊऊ晩 楂䑴灥桴㴡‸ऩ⼯㰠‭놂傂䪃覃宁榁풐좂잂檁첂犃抃枃钐얂랂਍†ൻ †䴠䥁彄䅗乒义⡇䴠䥁呄塅⡔䈢瑩敄瑰Ⅸ㠽⤢⤠഻ †爠瑥牵⁮商呃佉剎卅䱕彔剅佒㭒਍†ൽऊ晩 湉整汲捡呥灹Ⅵ倽䝎䥟呎剅䅌䕃也乏⁅ ⼯茉荃莓腞荛膌荛艘鋠艭苧෱ 笠਍††䅍䑉坟剁䥎䝎 䅍䑉䕔员∨乐彇义䕔䱒䍁彅低䕎⤢⤠഻ †爠瑥牵⁮商呃佉剎卅䱕彔剅佒㭒਍†ൽഊऊ潣獮⁴潢汯唠敳慐敬瑴⁥‽獉汆条䌨汯牯祔数〬へ⤱഻ऊ潣獮⁴潢汯唠敳潃潬⁲†‽獉汆条䌨汯牯祔数〬へ⤲഻ऊ潣獮⁴潢汯唠敳汁桰⁡†‽獉汆条䌨汯牯祔数〬へ⤴഻ഊऊ晩 唡敳潃潬⁲ ⼉य侃貃宁境傃宁讃좂쒂涒਍†ൻ †䴠䥁彄䅗乒义⡇䴠䥁呄塅⡔™獕䍥汯牯⤢⤠഻ 素਍਍倉塉䱅但䵒呁映瑭഻ഊ⼊य晩 獕健污瑥整⤠⁻浦⁴‽䥐䕘䙌剏䅍彔ぐ堸㠰げ䜸㠰あ䤸※ॽ⼯茉荰莌荢艧芪芠苩苈苧艗艡艨൳ऊ晩 獕健污瑥整⤠⁻䅍䑉䅟卓剅⡔琠畲ⱥ∠얂ꊖ캑麉•㬩†ൽऊ汥敳椠⡦唠敳汁桰⁡†笩映瑭㴠倠塉䱅但䵒呁䅟㠰げ䜸㠰あ䤸ऻ†ॽ⼯茉荰莌荢陧芳膵荻荁莋荴艀芠苨苈苧艒艑艡艨൳ऊ汥敳उ笉映瑭㴠倠塉䱅但䵒呁剟㠰ぇ䈸㠰㭉उ†ॽ⼯舉芻裪諈艏苍艑艓艡艨൳ഊऊൻऊ㨉瀺杮獟瑥扟牧 印牴捵⁴㬩਍਍उ湰彧潣潬灲倠污瑥整഻ऊ椉瑮倠污瑥整潃湵㵴㬰਍उ晩 獕健污瑥整⤠笠瀠杮束瑥偟呌⡅瀠瑓畲瑣‬䥰普Ɐ☠慐敬瑴ⱥ☠慐敬瑴䍥畯瑮⤠※ൽഊऊ搉瑳䌮敲瑡⡥匠婉㉅䥄在摩桴䠬楥桧⥴‬浦⥴഻ഊऊ按湯瑳椠瑮渠浵敢彲慰獳獥㴠瀠杮獟瑥楟瑮牥慬散桟湡汤湩⡧印牴捵⥴഻ഊऊ猉摴㨺敶瑣牯瀼杮扟瑹灥‾楌敮效摡瑐⡲效杩瑨㬩਍਍उ潦⡲椠瑮礠〽※㱹椨瑮䰩湩䡥慥偤牴献穩⡥㬩⬠礫⤠਍उൻऊउ楌敮效摡瑐孲嵹㴠⠠湰彧祢整⥰獤⹴敇䱴湩健剔礨㬩਍उൽഊऊ昉牯⠠湩⁴慰獳㴠〠※慰獳㰠渠浵敢彲慰獳獥※⬫慰獳⤠਍उൻऊउ潦⁲瀨杮畟湩彴㈳礠㴠〠※⁹‼效杩瑨※⬫⥹਍उ笉਍उउ湰彧敲摡牟睯⡳印牴捵ⱴ☠楌敮效摡瑐孲嵹‬湰彧祢整灰也䱕ⱌㄠ㬩਍उ紉਍उൽഊऊ㨉瀺杮摟獥牴祯牟慥彤瑳畲瑣 瀦瑓畲瑣‬瀦湉潦‬啎䱌⤠഻ऊൽഊ 爠瑥牵⁮商呃佉剎卅䱕彔䭏഻紊਍਍਍紉਍
+﻿#include"portablenetworkgraphics.h"
+
+#include"../../auxiliary/debug/warning.h"
+#include"../../auxiliary/debug/assert.h"
+#include"../../storage/fileio/filereadmemory.h"
+
+#include<png.h>
+#include<vector>
+
+
+//!	PNG 読み込み用構造体
+struct TPngFileBuffer
+{
+  Maid::SPFILEREAD		pFile;
+};
+
+static void PngReadFunc( png_struct *Png, png_bytep buf, png_size_t size )
+{
+  TPngFileBuffer* PngFileBuffer = (TPngFileBuffer*)png_get_io_ptr(Png);
+
+  PngFileBuffer->pFile->Read( buf, size );
+}
+
+namespace Maid
+{
+	namespace PNG
+	{
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 指定したデータがPNGか調べる
+/*!
+    @param	FileImage	[i ]  データ
+
+    @return ビットマップならtrue
+            違うならfalse
+*/
+bool  Check( const std::vector<unt08>& FileImage )
+{
+  const unt08 head[] = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, };
+
+  if( FileImage.size()<NUMELEMENTS(head) ) { return false; }
+
+  return ::memcmp( &(FileImage[0]), head, NUMELEMENTS(head) )==0;
+}
+
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! PNGファイルを展開する
+/*!
+	@param	FileImage	[i ]	ファイルイメージ
+	@param	dst 			[ o]	ピクセルデータ
+ */
+FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst )
+{
+	png_struct*	pStruct = NULL;
+	png_info*	pInfo   = NULL;
+
+	pStruct = ::png_create_read_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+	pInfo	= ::png_create_info_struct(pStruct);
+
+  boost::shared_ptr<FileReadMemory> pRead( new FileReadMemory(&(FileImage[0]), FileImage.size()) );
+
+	pRead->Open();
+
+	TPngFileBuffer	buf;
+	buf.pFile = pRead;
+
+	::png_set_read_fn( pStruct, (png_voidp)&buf, (png_rw_ptr)PngReadFunc );
+
+	::png_read_info( pStruct, pInfo );
+	png_uint_32 Width,Height;
+	int BitDepth,ColorType;
+	int InterlaceType;
+	int CompressionType;
+	int FilterType;
+	::png_get_IHDR(pStruct,pInfo,&Width,&Height,&BitDepth,&ColorType,&InterlaceType,&CompressionType,&FilterType);
+
+	if( BitDepth!=8 )	// <- これ１カラー（赤など）のビット数です
+  {
+    MAID_WARNING( MAIDTEXT("BitDepth!=8") );
+    return FUCTIONRESULT_ERROR;
+  }
+	if( InterlaceType!=PNG_INTERLACE_NONE ) //	インターレースも知らん
+  {
+    MAID_WARNING( MAIDTEXT("PNG_INTERLACE_NONE") );
+    return FUCTIONRESULT_ERROR;
+  }
+
+	const bool UsePalette = IsFlag(ColorType,0x01);
+	const bool UseColor   = IsFlag(ColorType,0x02);
+	const bool UseAlpha   = IsFlag(ColorType,0x04);
+
+	if( !UseColor ) 	//	グレースケールなんて知らん
+  {
+    MAID_WARNING( MAIDTEXT("!UseColor") );
+  }
+
+	PIXELFORMAT fmt;
+
+//	if( UsePalette ){ fmt = PIXELFORMAT_P08X08R08G08B08I; }	//	パレットがあるなら８ＢＩＴ
+	if( UsePalette ){ MAID_ASSERT( true, "でも未対応" );  }
+	else if( UseAlpha   ){ fmt = PIXELFORMAT_A08R08G08B08I;	  }	//	パレット無し＋アルファありなら３２ＢＩＴ
+	else			{ fmt = PIXELFORMAT_R08G08B08I;		  }	//	それ以外は２４ＢＩＴ
+
+	{
+		::png_set_bgr( pStruct );
+
+		png_colorp Palette;
+		int PaletteCount=0;
+		if( UsePalette ) { png_get_PLTE( pStruct, pInfo, &Palette, &PaletteCount ); }
+
+		dst.Create( SIZE2DI(Width,Height), fmt);
+
+		const int number_passes = png_set_interlace_handling(pStruct);
+
+		std::vector<png_bytep> LineHeadPtr(Height);
+
+		for( int y=0; y<(int)LineHeadPtr.size(); ++y )
+		{
+			LineHeadPtr[y] = (png_bytep)dst.GetLinePTR(y);
+		}
+
+		for (int pass = 0; pass < number_passes; ++pass )
+		{
+			for (png_uint_32 y = 0; y < Height; ++y)
+			{
+				png_read_rows(pStruct, &LineHeadPtr[y], png_bytepp_NULL, 1);
+			}
+		}
+
+		::png_destroy_read_struct( &pStruct, &pInfo, NULL );
+	}
+
+  return FUCTIONRESULT_OK;
+}
+
+
+	}
+}

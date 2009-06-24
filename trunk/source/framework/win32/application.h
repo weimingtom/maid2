@@ -1,1 +1,34 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥圠湩潤獷炗璃貃宁肃较宁亃碃宁境亃覃境਍⨠യഊ⌊晩摮晥洠楡㉤晟慲敭潷歲睟湩㈳慟灰楬慣楴湯桟਍搣晥湩⁥慭摩弲牦浡睥牯彫楷㍮弲灡汰捩瑡潩彮൨ഊ⌊湩汣摵≥⸮ⸯ⼮潣普杩搯晥湩⹥≨਍椣据畬敤⸢⼮⸮振湯楦⽧楗㍮⸲≨਍਍椣据畬敤瘼捥潴㹲਍਍椣据畬敤⸢⼮⸮愯硵汩慩祲术潬慢灬楯瑮牥栮ഢ⌊湩汣摵≥⸮ⸯ⼮畡楸楬牡⽹瑳楲杮栮ഢഊ⌊湩汣摵≥⸮椯灡汰捩瑡潩⹮≨਍਍椣据畬敤漢摳癥捩⹥≨਍਍慮敭灳捡⁥慍摩਍ൻ 挠慬獳䄠灰楬慣楴湯㨠瀠扵楬⁣䅉灰楬慣楴湯਍†ൻ 瀠扵楬㩣਍††湩⁴畒⡮䠠义呓乁䕃栠湉瑳湡散‬䥈华䅔䍎⁅偨敲䥶獮慴据ⱥ䰠卐剔氠䍰摭楌敮‬湩⁴䍮摭桓睯⤠഻ഊ 瀠潲整瑣摥ഺ †䤠协敄楶散…敇佴䑓癥捩⡥㬩਍†牰癩瑡㩥਍††协敄楶散†彭协敄楶散഻ 素഻紊਍攣摮晩਍
+﻿/*!
+    @file
+    @brief Windows用フレームワークベースクラス
+ */
+
+#ifndef maid2_framework_win32_application_h
+#define maid2_framework_win32_application_h
+
+#include"../../config/define.h"
+#include"../../config/Win32.h"
+
+#include<vector>
+
+#include"../../auxiliary/globalpointer.h"
+#include"../../auxiliary/string.h"
+
+#include"../iapplication.h"
+
+#include"osdevice.h"
+
+namespace Maid
+{
+  class Application : public IApplication
+  {
+  public:
+    int Run( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+
+  protected:
+    IOSDevice& GetOSDevice();
+  private:
+    OSDevice  m_OSDevice;
+  };
+}
+#endif

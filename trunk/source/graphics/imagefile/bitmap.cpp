@@ -1,1 +1,218 @@
-﻿椣据畬敤戢瑩慭⹰≨਍਍椣据畬敤⸢⼮⸮振湯楦⽧楷㍮⸲≨਍椣据畬敤⸢⼮⸮愯硵汩慩祲搯扥杵眯牡楮杮栮ഢ⌊湩汣摵≥⸮琯慲獮瑩牥栮ഢഊഊ渊浡獥慰散䴠楡൤笊਍†慮敭灳捡⁥楂浴灡਍†ൻഊ⼊⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍⼯‡瞎떂붂暃宁広ꪂ犃抃枃綃抃皃ꦂ늒힂਍⨯ഡ †䀠慰慲७楆敬浉条॥楛崠†暃宁広਍਍††牀瑥牵⁮犃抃枃綃抃皃좂牴敵਍††††††ꒂ좂慦獬൥⨊യ戊潯⁬䌠敨正 潣獮⁴瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条⁥ഩ笊਍†晩 楆敬浉条⹥楳敺⤨㈼⤠笠爠瑥牵⁮慦獬㭥素਍਍爉瑥牵⁮楆敬浉条孥崰㴽䈧‧☦†楆敬浉条孥崱㴽䴧㬧਍ൽഊ⼊⴪ⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽⴽ⼪਍⼯‡犃抃枃綃抃皃쾕랊랂਍⨯ഡ †䀠慰慲७楆敬浉条॥楛崠†璃䂃䎃讃벖਍††灀牡浡搉瑳†††嬠⁩⁝錠酝邗෦ ⼪਍商呃佉剎卅䱕⁔†潌摡 潣獮⁴瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条ⱥ匠牵慦散湉瑳湡散…畳晲捡⁥ഩ笊਍†䅍䑉䅟卓剅⡔℠桃捥⡫楆敬浉条⥥‬茢荲荢荧荽荢艶苅苍芠苨苜芹⋱⤠഻ഊ 挠湯瑳甠瑮㠰‪䍰牵敲瑮㴠☠䘨汩䥥慭敧せ⥝഻ഊഊऊൻऊ⼉脯荀荲荢荧荽荢豶蹠芮菌腦荛艞莩荠荆荢ൎऊ†䥂䵔偁䥆䕌䕈䑁剅प䉰灭楆敬㴠⠠䥂䵔偁䥆䕌䕈䑁剅⤪䍰牵敲瑮഻ †椠⡦瀠浂䙰汩ⵥ戾呦灹Ⅵ〽㑸㑄′ ⁻䅍䑉坟剁䥎䝎 䅍䑉䕔员∨䥂䵔偁䥆䕌䕈䑁剅㨺晢祔数㴡䵂⤢⤠※ൽഊ †瀠畃牲湥⁴㴫猠穩潥⡦䥂䵔偁䥆䕌䕈䑁剅㬩਍紉਍਍਍笉਍उ⼯䂁斊ﮎ垏랂਍ 䈠呉䅍䥐䙎䡏䅅䕄⩒瀉浂䥰普⁯‽䈨呉䅍䥐䙎䡏䅅䕄⩒瀩畃牲湥㭴਍਍ 匠婉㉅䥄उ汐湡卥穩㭥਍ 倠塉䱅但䵒呁䘠牯慭㭴਍ 椠瑮उ倉瑩档഻ऊ†湩ॴउ䱃呕楓敺〽഻ഊऊ倉慬敮楓敺眮㴠瀠浂䥰普ⵯ戾坩摩桴഻ऊ倉慬敮楓敺栮㴠瀠浂䥰普ⵯ戾䡩楥桧㭴਍਍उ睳瑩档 䉰灭湉潦㸭楢楂䍴畯瑮⤠਍उൻऊ按獡⁥㠠›⁻潆浲瑡㴠倠塉䱅但䵒呁偟㠰じ券㠰ぇ䈸㠰㭉紉牢慥㭫਍उ慣敳㈠㨴笠䘠牯慭⁴‽䥐䕘䙌剏䅍彔げ䜸㠰あ䤸ऻउ†扽敲歡഻ऊ按獡⁥㈳›⁻潆浲瑡㴠倠塉䱅但䵒呁䅟㠰げ䜸㠰あ䤸ऻ紉牢慥㭫਍उ敤慦汵㩴ഠ ††笠਍††††䅍䑉坟剁䥎䝎 䅍䑉䕔员∨꾎쪕얂ꮂ좂ꊂ玃亃媃讃璃䢃宁綃抃枃얂랂∠ 㰼瀠浂䥰普ⵯ戾䉩瑩潃湵⁴㬩਍††††敲畴湲䘠䍕䥔乏䕒啓呌䕟剒剏഻ ††素牢慥㭫਍उൽऊഉऊ倉瑩档㴠瀠浂䥰普ⵯ戾坩摩桴⨠瀠浂䥰普ⵯ戾䉩瑩潃湵⽴㬸਍उ楐捴⁨‽倨瑩档⬠⤳縦㬳उउ⼉य犃抃枃綃抃皃첂玃抃悃춂厂첂箔钐얂ꂂ਍਍††⼯錉酝邗苦跌郬ඬ †猠牵慦散䌮敲瑡⡥倠慬敮楓敺‬潆浲瑡‬楐捴⁨㬩਍††䍰牵敲瑮⬠‽楳敺景䈨呉䅍䥐䙎䡏䅅䕄⥒഻ 素਍਍਍਍笉⼉य螏풔즂嶓鞑떂쒂ꊂ궂䊁਍उ⼯茉荲荢荧荽荢荶荴荀荃芋菍荰莌荢腧荁荳荎荚莋腦荛艞迌芇闉苀英苅芢苩苌ළऊ⼉य뮂ꒂ솂쒂잓얂ꊂ궂਍††潣獮⁴湩⁴汣瑵楳敺㴠䜠瑥䱃呕祢整猨牵慦散䜮瑥楐數䙬牯慭⡴⤩഻ഊ †椠⡦挠畬獴穩Ⅵ〽⤠਍††⁻⼯†�뢂炃貃抃枃਍†††敭捭祰 畳晲捡⹥敇䍴汯牯呐⡒⤰‬䍰牵敲瑮‬汣瑵楳敺⤠഻ ††瀠畃牲湥⁴㴫挠畬獴穩㭥਍††ൽഊऊ⼉य犃抃枃綃抃皃춂몉붔嶓떂쒂첂얂䆁뮂즂䎋슂꾂좂ꪂ劃玃宁랂਍††潣獮⁴湩⁴敨杩瑨‽畳晲捡⹥敇却穩⡥⸩㭨਍††潣獮⁴湩⁴楰捴⁨‽畳晲捡⹥敇側瑩档⤨഻ഊऊ昉牯 湩⁴㵹㬰礠格楥桧㭴⬠礫⤠਍उൻ ††挠湯瑳椠瑮瀠獯㴠⠠敨杩瑨⠭⭹⤱㬩਍†††敭捭祰 畳晲捡⹥敇䱴湩健剔瀨獯Ⱙ瀠畃牲湥ⱴ瀠瑩档⤠഻ ††瀠畃牲湥⁴㴫瀠瑩档഻ऊ紉਍紉਍਍†敲畴湲䘠䍕䥔乏䕒啓呌佟㭋਍ൽഊഊ䘊䍕䥔乏䕒啓呌†桃捥卫癡⡥挠湯瑳匠牵慦散湉瑳湡散…牳Ᵽ猠摴㨺敶瑣牯甼瑮㠰☾䘠汩䥥慭敧⤠਍ൻഊ 倠塉䱅但䵒呁映瑭㴠倠塉䱅但䵒呁也乏㭅਍਍†睳瑩档 牳⹣敇側硩汥潆浲瑡⤨⤠਍†ൻ 挠獡⁥䥐䕘䙌剏䅍彔げ䜵㘰あ䤵ഺ 挠獡⁥䥐䕘䙌剏䅍彔じ刱㔰ぇ䈵㔰㩉਍†慣敳倠塉䱅但䵒呁䅟㄰げ䜵㔰あ䤵ഺ 挠獡⁥䥐䕘䙌剏䅍彔ぁ䈱㔰ぇ刵㔰㩉਍†慣敳倠塉䱅但䵒呁䅟㐰げ䜴㐰あ䤴ഺ⼊ 挠獡⁥䥐䕘䙌剏䅍彔げ䜸㠰あ䤸ഺ 挠獡⁥䥐䕘䙌剏䅍彔あ䜸㠰げ䤸ഺ 挠獡⁥䥐䕘䙌剏䅍彔ぁ券㠰ぇ䈸㠰㩉਍†慣敳倠塉䱅但䵒呁塟㠰げ䜸㠰あ䤸ഺ 挠獡⁥䥐䕘䙌剏䅍彔ぁ䈸㠰ぇ券㠰㩉਍†慣敳倠塉䱅但䵒呁䅟㈰ㅒ䜰〱ㅂ䤰ഺ 挠獡⁥䥐䕘䙌剏䅍彔ぁ䈲〱ㅇ到〱㩉਍†慣敳倠塉䱅但䵒呁䅟㘱ㅂ䜶㘱ㅒ䤶ഺ 挠獡⁥䥐䕘䙌剏䅍彔ㅁ䈶㘱ㅇ制㘱㩆਍†慣敳倠塉䱅但䵒呁䅟㈳㍂䜲㈳㍒䘲ഺ †笠਍†††浦⁴‽䥐䕘䙌剏䅍彔げ䜸㠰あ䤸഻ †素牢慥㭫਍†ൽഊ 椠⡦映瑭㴡䥐䕘䙌剏䅍彔低䕎⤠਍†ൻ †匠牵慦散湉瑳湡散琠灭഻ഊ †琠灭䌮敲瑡⡥猠捲䜮瑥楓敺⤨‬浦⁴㬩਍਍††牔湡楳整㩲䌺灯⡹猠捲‬浴⁰㬩਍਍††敲畴湲匠癡⡥琠灭‬楆敬浉条⁥㬩਍†ൽഊ 爠瑥牵⁮慓敶 牳Ᵽ䘠汩䥥慭敧⤠഻紊਍਍਍਍⨯㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭㴭⨭യ⼊ℯ錠苇距芞英苅芠菩腔荛荴荆艘菰荲荢荧荽荢艶苆芵闄釛芶芷෩⼊K਍††璃䢃宁綃抃枃춂犃抃枃綃抃皃첂撎沗麖붂떂쒂ꊂ욂벉떂�랂਍††麖붂떂쒂ꊂꦂꦂ좂ꊂ좂䌠敨正慓敶⤨舠軰艧苁苄芭芾芳ජ ⼪਍商呃佉剎卅䱕⁔慓敶 潣獮⁴畓晲捡䥥獮慴据♥猠捲‬瑳㩤瘺捥潴㱲湵ぴ㸸…楆敬浉条⁥ഩ笊਍按湯瑳匠婉㉅䥄䤠慭敧楓敺㴠猠捲䜮瑥楓敺⤨഻ऊ潣獮⁴䥐䕘䙌剏䅍⁔浦⁴‽牳⹣敇側硩汥潆浲瑡⤨഻ഊऊ潣獮⁴湩⁴浉条健瑩档㴠䤠慭敧楓敺眮⨠䜠瑥楐數䉬偐昨瑭  㬸਍按湯瑳椠瑮䘠汩健瑩档㴠⠠浉条健瑩档㌫☩縨⤳഻ऊ潣獮⁴湩⁴汐湡䉥瑹⁥†‽楆敬楐捴⁨‪浉条卥穩⹥㭨਍按湯瑳椠瑮倠污瑥整祂整㴠䜠瑥䱃呕祢整昨瑭㬩਍਍਍†潣獮⁴湩⁴楦敬楳敺㴠猠穩潥⡦䥂䵔偁䥆䕌䕈䑁剅 ‫楳敺景䈨呉䅍䥐䙎䡏䅅䕄⥒⬠倠污瑥整祂整⬠倠慬敮祂整഻ 䘠汩䥥慭敧爮獥穩⡥映汩獥穩⁥㬩਍਍†湵ぴ⨸瀠畃牲湥側獯㴠☠䘨汩䥥慭敧せ⥝഻ഊ 娠剅⡏瀠畃牲湥側獯‬楦敬楳敺⤠഻ഊ 笠਍ 䈠呉䅍䙐䱉䡅䅅䕄⩒瀉浂䙰汩⁥‽䈨呉䅍䙐䱉䡅䅅䕄⩒瀩畃牲湥側獯഻ഊऊ†䉰灭楆敬㸭晢祔数㴠〠㑸㑄㬲਍ 瀠浂䙰汩ⵥ戾卦穩⁥‽楳敺景䈨呉䅍䙐䱉䡅䅅䕄⥒猫穩潥⡦䥂䵔偁义但䕈䑁剅⬩慐敬瑴䉥瑹⁥‫汐湡䉥瑹㭥਍ 瀠浂䙰汩ⵥ戾佦晦楂獴㴠猠穩潥⡦䥂䵔偁䥆䕌䕈䑁剅⬩楳敺景䈨呉䅍䥐䙎䡏䅅䕄⥒倫污瑥整祂整഻ഊ †瀠畃牲湥側獯⬠‽楳敺景䈨呉䅍䙐䱉䡅䅅䕄⥒഻ 素਍਍†ൻ †䈠呉䅍䥐䙎䡏䅅䕄⩒瀉浂䥰普⁯‽䈨呉䅍䥐䙎䡏䅅䕄⩒瀩畃牲湥側獯഻ഊऊ†䉰灭湉潦㸭楢楓敺†‽楳敺景䈨呉䅍䥐䙎䡏䅅䕄⥒഻ऊ†䉰灭湉潦㸭楢楗瑤⁨‽浉条卥穩⹥㭷਍ 瀠浂䥰普ⵯ戾䡩楥桧⁴‽浉条卥穩⹥㭨਍ 瀠浂䥰普ⵯ戾偩慬敮⁳‽㬱਍ 瀠浂䥰普ⵯ戾䉩瑩潃湵⁴‽敇側硩汥偂⡐浦⥴഻ऊ†䉰灭湉潦㸭楢潃灭敲獳潩⁮‽䥂剟䉇഻ഊ †瀠畃牲湥側獯⬠‽楳敺景䈨呉䅍䥐䙎䡏䅅䕄⥒഻ 素਍਍椉⡦倠污瑥整祂整㴡‰ഩऊൻ †㨠洺浥灣⡹瀠畃牲湥側獯‬牳⹣敇䍴啌偔剔⤨‬慐敬瑴䉥瑹⁥㬩਍††䍰牵敲瑮潐⁳㴫倠污瑥整祂整഻ 素਍਍⼉य犃抃枃綃抃皃춂몉璋਍昉牯 湩⁴㵹㬰礠䤼慭敧楓敺栮※⬫⁹ഩऊൻ †㨠洺浥灣⡹瀠畃牲湥側獯‬牳⹣敇䱴湩健剔⠨浉条卥穩⹥⵨⤱礭Ⱙ䤠慭敧楐捴⁨㬩਍††䍰牵敲瑮潐⁳㴫䘠汩健瑩档഻ऊൽഊ 爠瑥牵⁮商呃佉剎卅䱕彔䭏഻紊਍਍†ൽ紊
+﻿#include"bitmap.h"
+
+#include"../../config/win32.h"
+#include"../../auxiliary/debug/warning.h"
+#include"../transiter.h"
+
+
+namespace Maid
+{
+  namespace Bitmap
+  {
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 指定したデータがビットマップか調べる
+/*!
+    @param	FileImage	[i ]  データ
+
+    @return ビットマップならtrue
+            違うならfalse
+*/
+bool  Check( const std::vector<unt08>& FileImage )
+{
+  if( FileImage.size()<2 ) { return false; }
+
+	return FileImage[0]=='B' &&  FileImage[1]=='M';
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! ビットマップを変換する
+/*!
+    @param	FileImage	[i ]  ファイル名
+    @param	dst       [i ]  転送先
+ */
+FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
+{
+  MAID_ASSERT( !Check(FileImage), "ビットマップではありません" );
+
+  const unt08* pCurrent = &(FileImage[0]);
+
+
+	{
+		//　ビットマップ形式のデータかチェック
+	  BITMAPFILEHEADER*	pBmpFile = (BITMAPFILEHEADER*)pCurrent;
+    if( pBmpFile->bfType!=0x4D42 ) { MAID_WARNING( MAIDTEXT("BITMAPFILEHEADER::bfType!=BM") ); }
+
+    pCurrent += sizeof(BITMAPFILEHEADER);
+	}
+
+
+	{
+		//　各種情報を収集する
+	  BITMAPINFOHEADER*	pBmpInfo = (BITMAPINFOHEADER*)pCurrent;
+
+	  SIZE2DI		PlaneSize;
+	  PIXELFORMAT Format;
+	  int			Pitch;
+	  int			CLUTSize=0;
+
+		PlaneSize.w = pBmpInfo->biWidth;
+		PlaneSize.h = pBmpInfo->biHeight;
+
+		switch( pBmpInfo->biBitCount )
+		{
+		case  8: { Format = PIXELFORMAT_P08X08R08G08B08I;	}break;
+		case 24: { Format = PIXELFORMAT_R08G08B08I;			  }break;
+		case 32: { Format = PIXELFORMAT_A08R08G08B08I;		}break;
+		default: 
+      {
+        MAID_WARNING( MAIDTEXT("識別できないピクセルフォーマットです ") << pBmpInfo->biBitCount );
+        return FUCTIONRESULT_ERROR;
+      }break;
+		}
+		
+		Pitch = pBmpInfo->biWidth * pBmpInfo->biBitCount/8;
+		Pitch = (Pitch +3)&~3;					//	ビットマップのピッチは４の倍数である
+
+    //	転送先の作成
+    surface.Create( PlaneSize, Format, Pitch );
+    pCurrent += sizeof(BITMAPINFOHEADER);
+  }
+
+
+
+	{	//	順番に転送していく。
+		//	ビットマップファイルはパレット、ピクセルデータの順に並んでいるので
+		//	そうやって読んでいく
+    const int clutsize = GetCLUTbyte(surface.GetPixelFormat());
+
+    if( clutsize!=0 )
+    { //  まずパレット
+      memcpy( surface.GetColorPTR(0), pCurrent, clutsize );
+      pCurrent += clutsize;
+    }
+
+		//	ビットマップは上下反転してるので、それに気をつけながらコピーする
+    const int height= surface.GetSize().h;
+    const int pitch = surface.GetPitch();
+
+		for( int y=0; y<height; ++y )
+		{
+      const int pos = (height-(y+1));
+      memcpy( surface.GetLinePTR(pos), pCurrent, pitch );
+      pCurrent += pitch;
+		}
+	}
+
+  return FUCTIONRESULT_OK;
+}
+
+
+FUCTIONRESULT  CheckSave( const SurfaceInstance& src, std::vector<unt08>& FileImage )
+{
+
+  PIXELFORMAT fmt = PIXELFORMAT_NONE;
+
+  switch( src.GetPixelFormat() )
+  {
+  case PIXELFORMAT_R05G06B05I:
+  case PIXELFORMAT_X01R05G05B05I:
+  case PIXELFORMAT_A01R05G05B05I:
+  case PIXELFORMAT_A01B05G05R05I:
+  case PIXELFORMAT_A04R04G04B04I:
+//  case PIXELFORMAT_R08G08B08I:
+  case PIXELFORMAT_B08G08R08I:
+  case PIXELFORMAT_A08R08G08B08I:
+  case PIXELFORMAT_X08R08G08B08I:
+  case PIXELFORMAT_A08B08G08R08I:
+  case PIXELFORMAT_A02R10G10B10I:
+  case PIXELFORMAT_A02B10G10R10I:
+  case PIXELFORMAT_A16B16G16R16I:
+  case PIXELFORMAT_A16B16G16R16F:
+  case PIXELFORMAT_A32B32G32R32F:
+    {
+      fmt = PIXELFORMAT_R08G08B08I;
+    }break;
+  }
+
+  if( fmt!=PIXELFORMAT_NONE )
+  {
+    SurfaceInstance tmp;
+
+    tmp.Create( src.GetSize(), fmt );
+
+    Transiter::Copy( src, tmp );
+
+    return Save( tmp, FileImage );
+  }
+
+  return Save( src, FileImage );
+}
+
+
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 読み込んであるサーフェスをビットマップとして保存する
+/*!
+    フォーマットはビットマップの仕様を満たしていると仮定します
+    満たしているかわからないなら CheckSave() を使ってください
+ */
+FUCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
+{
+	const SIZE2DI ImageSize = src.GetSize();
+	const PIXELFORMAT fmt = src.GetPixelFormat();
+
+	const int ImagePitch = ImageSize.w * GetPixelBPP(fmt) / 8;
+	const int FilePitch = (ImagePitch+3)&(~3);
+	const int PlaneByte   = FilePitch * ImageSize.h;
+	const int PaletteByte = GetCLUTbyte(fmt);
+
+
+  const int filesize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + PaletteByte + PlaneByte;
+  FileImage.resize( filesize );
+
+  unt08* pCurrentPos = &(FileImage[0]);
+
+  ZERO( pCurrentPos, filesize );
+
+  {
+	  BITMAPFILEHEADER*	pBmpFile = (BITMAPFILEHEADER*)pCurrentPos;
+
+	  pBmpFile->bfType = 0x4D42;
+	  pBmpFile->bfSize = sizeof(BITMAPFILEHEADER)+sizeof(BITMAPINFOHEADER)+PaletteByte + PlaneByte;
+	  pBmpFile->bfOffBits = sizeof(BITMAPFILEHEADER)+sizeof(BITMAPINFOHEADER)+PaletteByte;
+
+    pCurrentPos += sizeof(BITMAPFILEHEADER);
+  }
+
+  {
+    BITMAPINFOHEADER*	pBmpInfo = (BITMAPINFOHEADER*)pCurrentPos;
+
+	  pBmpInfo->biSize  = sizeof(BITMAPINFOHEADER);
+	  pBmpInfo->biWidth = ImageSize.w;
+	  pBmpInfo->biHeight = ImageSize.h;
+	  pBmpInfo->biPlanes = 1;
+	  pBmpInfo->biBitCount = GetPixelBPP(fmt);
+	  pBmpInfo->biCompression = BI_RGB;
+
+    pCurrentPos += sizeof(BITMAPINFOHEADER);
+  }
+
+	if( PaletteByte!=0 )
+	{
+    ::memcpy( pCurrentPos, src.GetCLUTPTR(), PaletteByte );
+    pCurrentPos += PaletteByte;
+  }
+
+	//	ビットマップは上下逆
+	for( int y=0; y<ImageSize.h; ++y )
+	{
+    ::memcpy( pCurrentPos, src.GetLinePTR((ImageSize.h-1)-y), ImagePitch );
+    pCurrentPos += FilePitch;
+	}
+
+  return FUCTIONRESULT_OK;
+}
+
+  }
+}

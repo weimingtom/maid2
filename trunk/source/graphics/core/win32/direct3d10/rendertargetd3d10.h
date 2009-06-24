@@ -1,4 +1,4 @@
-﻿#ifndef maid2_graphics_core_win32_direct3d10_rendertargetd3d10_h
+#ifndef maid2_graphics_core_win32_direct3d10_rendertargetd3d10_h
 #define maid2_graphics_core_win32_direct3d10_rendertargetd3d10_h
 
 

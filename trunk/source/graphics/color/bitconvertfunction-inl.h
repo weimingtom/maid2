@@ -1,1 +1,125 @@
-﻿慮敭灳捡⁥慍摩਍ൻ ⼠ℯ†湩⁴㄰楢⁴㸭椠瑮〠戸瑩਍†湩楬敮甠瑮㠰䈠呉佃噎剅ご䤱潴㠰⡉甠瑮㠰猠⤠⁻敲畴湲⠠獾⬩㬱ൽഊ ⼠ℯ†湩⁴㈰楢⁴㸭椠瑮〠戸瑩਍†湩楬敮甠瑮㠰䈠呉佃噎剅ご䤲潴㠰⡉甠瑮㠰猠⤠⁻敲畴湲⠠㱳㘼簩猨㰼⤴⡼㱳㈼簩㭳ൽഊ ⼠ℯ†湩⁴㐰楢⁴㸭椠瑮〠戸瑩਍†湩楬敮甠瑮㠰䈠呉佃噎剅ご䤴潴㠰⡉甠瑮㠰猠⤠⁻敲畴湲⠠㱳㐼簩㭳紉਍਍†⼯‡椠瑮〠戵瑩ⴠ‾湩⁴㠰楢൴ 椠汮湩⁥湵ぴ‸䥂䍔乏䕖呒㔰瑉は䤸 湵ぴ‸⁳笩爠瑥牵⁮猨㰼⤳⡼㹳㈾㬩素਍਍†⼯‡椠瑮〠戶瑩ⴠ‾湩⁴㠰楢൴ 椠汮湩⁥湵ぴ‸䥂䍔乏䕖呒㘰瑉は䤸 湵ぴ‸⁳笩爠瑥牵⁮猨㰼⤲⡼㹳㐾㬩素਍਍਍਍†⼯‡椠瑮〠戱瑩ⴠ‾湩⁴㘱楢൴ 椠汮湩⁥湵ㅴ‶䥂䍔乏䕖呒㄰瑉ㅯ䤶 湵ぴ‸⁳ ⁻敲畴湲䈠呉佃噎剅ご䤸潴㘱⡉䥂䍔乏䕖呒㄰瑉は䤸猨⤩※ൽഊ ⼠ℯ†湩⁴㈰楢⁴㸭椠瑮ㄠ戶瑩਍†湩楬敮甠瑮㘱䈠呉佃噎剅ご䤲潴㘱⡉甠瑮㠰猠⤠笠爠瑥牵⁮䥂䍔乏䕖呒㠰瑉ㅯ䤶䈨呉佃噎剅ご䤲潴㠰⡉⥳㬩素਍਍†⼯‡椠瑮〠戴瑩ⴠ‾湩⁴㘱楢൴ 椠汮湩⁥湵ㅴ‶䥂䍔乏䕖呒㐰瑉ㅯ䤶 湵ぴ‸⁳ ⁻敲畴湲䈠呉佃噎剅ご䤸潴㘱⡉䥂䍔乏䕖呒㐰瑉は䤸猨⤩※ൽഊ ⼠ℯ†湩⁴㔰楢⁴㸭椠瑮ㄠ戶瑩਍†湩楬敮甠瑮㘱䈠呉佃噎剅ご䤵潴㘱⡉甠瑮㠰猠⤠笠爠瑥牵⁮䥂䍔乏䕖呒㠰瑉ㅯ䤶䈨呉佃噎剅ご䤵潴㠰⡉⥳㬩素਍਍†⼯‡椠瑮〠戶瑩ⴠ‾湩⁴㘱楢൴ 椠汮湩⁥湵ㅴ‶䥂䍔乏䕖呒㘰瑉ㅯ䤶 湵ぴ‸⁳ ⁻敲畴湲䈠呉佃噎剅ご䤸潴㘱⡉䥂䍔乏䕖呒㘰瑉は䤸猨⤩※ൽഊ ⼠ℯ†湩⁴㠰楢⁴㸭椠瑮ㄠ戶瑩਍†湩楬敮甠瑮㘱䈠呉佃噎剅ご䤸潴㘱⡉甠瑮㠰猠⤠笠爠瑥牵⁮用瑮㘱猨㰩㠼簩猨㬩素਍਍†⼯‡椠瑮ㄠ戰瑩ⴠ‾湩⁴㘱楢൴ 椠汮湩⁥湵ㅴ‶䥂䍔乏䕖呒〱瑉ㅯ䤶 湵ㅴ‶⁳ ⁻敲畴湲⠠㱳㘼簩猨㸾⤴※ൽഊഊ ⼠ 戸瑩侖憘覉媎਍†湩楬敮甠瑮㠰张䱃偉㠰⡉甠瑮㠰猠‬湵ぴ‸⁡ഩ 笠਍††晩 ⭳㹡砰䙆⤠笠爠瑥牵⁮砰䙆※ൽ †爠瑥牵⁮⭳㭡਍†ൽഊഊ ⼠ℯ†湩⁴㠰楢⁴㸭椠瑮〠戱瑩਍椉汮湩⁥湵ぴ‸䥂䍔乏䕖呒㠰瑉は䤱 湵ぴ‸⁳笩爠瑥牵⁮䍟䥌ぐ䤸猨〬㍸⥆㸾㬷素਍਍†⼯‡椠瑮〠戸瑩ⴠ‾湩⁴㈰楢൴ऊ湩楬敮甠瑮㠰䈠呉佃噎剅ご䤸潴㈰⡉甠瑮㠰猠⤠⁻敲畴湲张䱃偉㠰⡉ⱳ砰䘱㸩㘾※ൽഊ ⼠ℯ†湩⁴㠰楢⁴㸭椠瑮〠戴瑩਍椉汮湩⁥湵ぴ‸䥂䍔乏䕖呒㠰瑉は䤴 湵ぴ‸⁳笩爠瑥牵⁮䍟䥌ぐ䤸猨〬へ⤷㸾㬴素਍਍†⼯‡椠瑮〠戸瑩ⴠ‾湩⁴㔰楢൴ऊ湩楬敮甠瑮㠰䈠呉佃噎剅ご䤸潴㔰⡉甠瑮㠰猠⤠⁻敲畴湲张䱃偉㠰⡉ⱳ砰㌰㸩㌾※ൽഊ ⼠ℯ†湩⁴㠰楢⁴㸭椠瑮〠戶瑩਍椉汮湩⁥湵ぴ‸䥂䍔乏䕖呒㠰瑉は䤶 湵ぴ‸⁳笩爠瑥牵⁮䍟䥌ぐ䤸猨〬へ⤱㸾㬲素਍਍਍਍†⼯ㄠ戶瑩侖憘覉媎਍†湩楬敮甠瑮㘱张䱃偉㘱⡉甠瑮㘱猠‬湵ㅴ‶⁡ഩ 笠਍††晩 ⭳㹡砰䙆䙆⤠笠爠瑥牵⁮砰䙆䙆※ൽ †爠瑥牵⁮⭳㭡਍†ൽഊ ⼠ℯ†湩⁴㘱楢⁴㸭椠瑮〠戱瑩਍†湩楬敮甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㄰⡉甠瑮㘱猠⤠笠爠瑥牵⁮用瑮㠰⠩䍟䥌ㅐ䤶猨〬㍸䙆⥆㸾㔱㬩素਍਍†⼯‡椠瑮ㄠ戶瑩ⴠ‾湩⁴㈰楢൴ 椠汮湩⁥湵ぴ‸䥂䍔乏䕖呒㘱瑉は䤲 湵ㅴ‶⁳ ⁻敲畴湲⠠湵ぴ⤸弨䱃偉㘱⡉ⱳ砰䘱䙆㸩ㄾ⤴※ൽഊ ⼠ℯ†湩⁴㘱楢⁴㸭椠瑮〠戴瑩਍†湩楬敮甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㐰⡉甠瑮㘱猠⤠笠爠瑥牵⁮用瑮㠰⠩䍟䥌ㅐ䤶猨〬へ䘷⥆㸾㈱㬩素਍਍†⼯‡椠瑮ㄠ戶瑩ⴠ‾湩⁴㔰楢൴ 椠汮湩⁥湵ぴ‸䥂䍔乏䕖呒㘱瑉は䤵 湵ㅴ‶⁳ ⁻敲畴湲⠠湵ぴ⤸弨䱃偉㘱⡉ⱳ砰㌰䙆㸩ㄾ⤱※ൽഊ ⼠ℯ†湩⁴㘱楢⁴㸭椠瑮〠戶瑩਍†湩楬敮甠瑮㠰䈠呉佃噎剅ㅔ䤶潴㘰⡉甠瑮㘱猠⤠笠爠瑥牵⁮用瑮㠰⠩䍟䥌ㅐ䤶猨〬へ䘱⥆㸾〱㬩素਍਍†⼯‡椠瑮ㄠ戶瑩ⴠ‾湩⁴㠰楢൴ 椠汮湩⁥湵ぴ‸䥂䍔乏䕖呒㘱瑉は䤸 湵ㅴ‶⁳ ⁻敲畴湲⠠湵ぴ⤸弨䱃偉㘱⡉ⱳ砰〰䙆㸩‾⤸※ൽഊ ⼠ℯ†湩⁴㘱楢⁴㸭椠瑮ㄠ戰瑩਍†湩楬敮甠瑮㘱䈠呉佃噎剅ㅔ䤶潴〱⡉甠瑮㘱猠⤠笠爠瑥牵⁮†††⠠䍟䥌ㅐ䤶猨〬へ㌰⥆㸾㘠㬩素਍਍਍†⼯‡映潬瑡㌠戲瑩ⴠ‾湩⁴㠰楢൴ 椠汮湩⁥湵ぴ‸䥂䍔乏䕖呒㈳瑆は䤸 汦慯㍴′⁳ഩ 笠਍††敲畴湲䈠呉佃噎剅ㅔ䤶潴㠰⡉䥂䍔乏䕖呒㈳瑆ㅯ䤶猨⤩※਍†ൽഊ ⼠ℯ†汦慯⁴㈳楢⁴㸭椠瑮ㄠ戶瑩਍†湩楬敮甠瑮㘱䈠呉佃噎剅㍔䘲潴㘱⡉映潬瑡㈳猠⤠਍†ൻ †椠⡦猠ㄾ〮⁦ ⁻敲畴湲〠䙸䙆㭆素਍††晩 㱳⸰昰⤠笠爠瑥牵⁮砰〰〰※ൽഊ †挠湯瑳椠瑮渠⁯‽湩⡴⩳㔶㌵⸵昰〫㔮⥦഻ †爠瑥牵⁮用瑮㘱温㭯਍†ൽഊ ⼠ℯ†湩⁴㠰楢⁴㸭映潬瑡㌠戲瑩਍†湩楬敮映潬瑡㈳䈠呉佃噎剅ご䤸潴㈳⡆甠瑮㠰猠⤠਍†ൻ †爠瑥牵⁮䥂䍔乏䕖呒㘱瑉㍯䘲䈨呉佃噎剅ご䤸潴㘱⡉⥳㬩ഠ 素਍਍਍†⼯‡椠瑮ㄠ戶瑩ⴠ‾汦慯⁴㈳楢൴ 椠汮湩⁥汦慯㍴′䥂䍔乏䕖呒㘱瑉㍯䘲 湵ㅴ‶⁳ഩ 笠਍††敲畴湲映潬瑡㈳猨  㔶㌵⸵昰഻ 素਍ൽഊ
+﻿namespace Maid
+{
+  //!  int 01bit -> int 08bit
+  inline unt08 BITCONVERT01Ito08I( unt08 s ){ return (~s)+1;}
+
+  //!  int 02bit -> int 08bit
+  inline unt08 BITCONVERT02Ito08I( unt08 s ){ return (s<<6)|(s<<4)|(s<<2)|s;}
+
+  //!  int 04bit -> int 08bit
+  inline unt08 BITCONVERT04Ito08I( unt08 s ){ return (s<<4)|s;	}
+
+  //!  int 05bit -> int 08bit
+  inline unt08 BITCONVERT05Ito08I( unt08 s ){ return (s<<3)|(s>>2); }
+
+  //!  int 06bit -> int 08bit
+  inline unt08 BITCONVERT06Ito08I( unt08 s ){ return (s<<2)|(s>>4); }
+
+
+
+  //!  int 01bit -> int 16bit
+  inline unt16 BITCONVERT01Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT01Ito08I(s)); }
+
+  //!  int 02bit -> int 16bit
+  inline unt16 BITCONVERT02Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT02Ito08I(s)); }
+
+  //!  int 04bit -> int 16bit
+  inline unt16 BITCONVERT04Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT04Ito08I(s)); }
+
+  //!  int 05bit -> int 16bit
+  inline unt16 BITCONVERT05Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT05Ito08I(s)); }
+
+  //!  int 06bit -> int 16bit
+  inline unt16 BITCONVERT06Ito16I( unt08 s ) { return BITCONVERT08Ito16I(BITCONVERT06Ito08I(s)); }
+
+  //!  int 08bit -> int 16bit
+  inline unt16 BITCONVERT08Ito16I( unt08 s ) { return (unt16(s)<<8)|(s); }
+
+  //!  int 10bit -> int 16bit
+  inline unt16 BITCONVERT10Ito16I( unt16 s ) { return (s<<6)|(s>>4); }
+
+
+  // 8bit飽和演算
+  inline unt08 _CLIP08I( unt08 s, unt08 a )
+  {
+    if( s+a>0xFF ) { return 0xFF; }
+    return s+a;
+  }
+
+
+  //!  int 08bit -> int 01bit
+	inline unt08 BITCONVERT08Ito01I( unt08 s ){ return _CLIP08I(s,0x3F)>>7; }
+
+  //!  int 08bit -> int 02bit
+	inline unt08 BITCONVERT08Ito02I( unt08 s ){ return _CLIP08I(s,0x1F)>>6; }
+
+  //!  int 08bit -> int 04bit
+	inline unt08 BITCONVERT08Ito04I( unt08 s ){ return _CLIP08I(s,0x07)>>4; }
+
+  //!  int 08bit -> int 05bit
+	inline unt08 BITCONVERT08Ito05I( unt08 s ){ return _CLIP08I(s,0x03)>>3; }
+
+  //!  int 08bit -> int 06bit
+	inline unt08 BITCONVERT08Ito06I( unt08 s ){ return _CLIP08I(s,0x01)>>2; }
+
+
+
+  // 16bit飽和演算
+  inline unt16 _CLIP16I( unt16 s, unt16 a )
+  {
+    if( s+a>0xFFFF ) { return 0xFFFF; }
+    return s+a;
+  }
+
+  //!  int 16bit -> int 01bit
+  inline unt08 BITCONVERT16Ito01I( unt16 s ) { return (unt08)(_CLIP16I(s,0x3FFF)>>15); }
+
+  //!  int 16bit -> int 02bit
+  inline unt08 BITCONVERT16Ito02I( unt16 s ) { return (unt08)(_CLIP16I(s,0x1FFF)>>14); }
+
+  //!  int 16bit -> int 04bit
+  inline unt08 BITCONVERT16Ito04I( unt16 s ) { return (unt08)(_CLIP16I(s,0x07FF)>>12); }
+
+  //!  int 16bit -> int 05bit
+  inline unt08 BITCONVERT16Ito05I( unt16 s ) { return (unt08)(_CLIP16I(s,0x03FF)>>11); }
+
+  //!  int 16bit -> int 06bit
+  inline unt08 BITCONVERT16Ito06I( unt16 s ) { return (unt08)(_CLIP16I(s,0x01FF)>>10); }
+
+  //!  int 16bit -> int 08bit
+  inline unt08 BITCONVERT16Ito08I( unt16 s ) { return (unt08)(_CLIP16I(s,0x00FF)>> 8); }
+
+  //!  int 16bit -> int 10bit
+  inline unt16 BITCONVERT16Ito10I( unt16 s ) { return        (_CLIP16I(s,0x003F)>> 6); }
+
+
+  //!  float 32bit -> int 08bit
+  inline unt08 BITCONVERT32Fto08I( float32 s )
+  {
+    return BITCONVERT16Ito08I(BITCONVERT32Fto16I(s)); 
+  }
+
+  //!  float 32bit -> int 16bit
+  inline unt16 BITCONVERT32Fto16I( float32 s )
+  {
+    if( s>1.0f ) { return 0xFFFF; }
+    if( s<0.0f ) { return 0x0000; }
+
+    const int no = int(s*65535.0f+0.5f);
+    return (unt16)no;
+  }
+
+  //!  int 08bit -> float 32bit
+  inline float32 BITCONVERT08Ito32F( unt08 s )
+  {
+    return BITCONVERT16Ito32F(BITCONVERT08Ito16I(s)); 
+  }
+
+
+  //!  int 16bit -> float 32bit
+  inline float32 BITCONVERT16Ito32F( unt16 s )
+  {
+    return float32(s) / 65535.0f;
+  }
+}
+

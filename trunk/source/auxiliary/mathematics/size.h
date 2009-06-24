@@ -1,1 +1,32 @@
-﻿椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳楳敺桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳楳敺桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥楳敺搲栮ഢ⌊湩汣摵≥楳敺搳栮ഢഊ渊浡獥慰散䴠楡൤笊਍†祴数敤⁦䥓䕚䐲呟䵅䱐呁㱅湩㹴†††䥓䕚䐲㭉਍†祴数敤⁦䥓䕚䐲呟䵅䱐呁㱅汦慯㹴††䥓䕚䐲㭆਍†祴数敤⁦䥓䕚䐲呟䵅䱐呁㱅潤扵敬‾†䥓䕚䐲㭄਍਍†祴数敤⁦䥓䕚䐳呟䵅䱐呁㱅湩㹴†††䥓䕚䐳㭉਍†祴数敤⁦䥓䕚䐳呟䵅䱐呁㱅汦慯㹴††䥓䕚䐳㭆਍†祴数敤⁦䥓䕚䐳呟䵅䱐呁㱅潤扵敬‾†䥓䕚䐳㭄਍਍††⼯鐉諤襲躉蹚൱ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†潢汯漠数慲潴㵲⠽挠湯瑳匠婉㉅彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳匠婉㉅彄䕔偍䅌䕔吼偙㹅…桲⁡ ⁻敲畴湲氠慨眮㴽桲⹡⁷☦氠慨栮㴽桲⹡㭨素਍†整灭慬整琼灹湥浡⁥奔䕐ാ 戠潯⁬灯牥瑡牯㴡 潣獮⁴䥓䕚䐲呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䥓䕚䐲呟䵅䱐呁㱅奔䕐☾爠慨⤠笠爠瑥牵⁮⠡桬㵡爽慨㬩素਍਍†整灭慬整琼灹湥浡⁥奔䕐ാ 戠潯⁬灯牥瑡牯㴽 潣獮⁴䥓䕚䐳呟䵅䱐呁㱅奔䕐☾氠慨‬潣獮⁴䥓䕚䐳呟䵅䱐呁㱅奔䕐☾爠慨⤠笠爠瑥牵⁮桬⹡㵷爽慨眮☠…桬⹡㵨爽慨栮※ൽ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†潢汯漠数慲潴ⅲ⠽挠湯瑳匠婉㍅彄䕔偍䅌䕔吼偙㹅…桬ⱡ挠湯瑳匠婉㍅彄䕔偍䅌䕔吼偙㹅…桲⁡ ⁻敲畴湲℠氨慨㴽桲⥡※ൽഊ紊਍਍਍攣摮晩਍
+﻿#ifndef maid2_auxiliary_mathematics_size_h
+#define maid2_auxiliary_mathematics_size_h
+
+#include"../../config/define.h"
+#include"size2d.h"
+#include"size3d.h"
+
+namespace Maid
+{
+  typedef SIZE2D_TEMPLATE<int>      SIZE2DI;
+  typedef SIZE2D_TEMPLATE<float>    SIZE2DF;
+  typedef SIZE2D_TEMPLATE<double>   SIZE2DD;
+
+  typedef SIZE3D_TEMPLATE<int>      SIZE3DI;
+  typedef SIZE3D_TEMPLATE<float>    SIZE3DF;
+  typedef SIZE3D_TEMPLATE<double>   SIZE3DD;
+
+    //	比較演算子
+  template<typename TYPE>
+  bool operator==( const SIZE2D_TEMPLATE<TYPE>& lha, const SIZE2D_TEMPLATE<TYPE>& rha ) { return lha.w==rha.w && lha.h==rha.h; }
+  template<typename TYPE>
+  bool operator!=( const SIZE2D_TEMPLATE<TYPE>& lha, const SIZE2D_TEMPLATE<TYPE>& rha ) { return !(lha==rha); }
+
+  template<typename TYPE>
+  bool operator==( const SIZE3D_TEMPLATE<TYPE>& lha, const SIZE3D_TEMPLATE<TYPE>& rha ) { return lha.w==rha.w && lha.h==rha.h; }
+  template<typename TYPE>
+  bool operator!=( const SIZE3D_TEMPLATE<TYPE>& lha, const SIZE3D_TEMPLATE<TYPE>& rha ) { return !(lha==rha); }
+
+}
+
+
+#endif

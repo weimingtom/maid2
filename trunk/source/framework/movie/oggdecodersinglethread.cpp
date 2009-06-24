@@ -1,1 +1,213 @@
-﻿⼯搣晥湩⁥佌䅃彌剐䙏䱉൅ഊ⌊湩汣摵≥杯摧捥摯牥楳杮敬桴敲摡栮ഢ⌊湩汣摵≥⸮愯硵汩慩祲搯扥杵眯牡楮杮栮ഢ⌊湩汣摵≥⸮愯硵汩慩祲搯扥杵瀯潲楦敬栮ഢ⌊湩汣摵≥⸮愯硵汩慩祲搯扥杵愯獳牥⹴≨਍਍慮敭灳捡⁥慍摩਍ൻഊ伊杧敄潣敤卲湩汧呥牨慥㩤伺杧敄潣敤卲湩汧呥牨慥⡤挠湯瑳䤠杏呧浩牥…楔敭⁲ഩ 㨠彭楔敭⡲楔敭⥲਍†洬呟瑯污楔敭〨ഩ Ⱐ彭慓灭敬潃湵⡴⤰਍ൻഊ紊਍਍杏䑧捥摯牥楓杮敬桔敲摡㨺佾杧敄潣敤卲湩汧呥牨慥⡤ഩ笊਍ൽഊ瘊楯⁤杏䑧捥摯牥楓杮敬桔敲摡㨺湉瑩慩楬敺 潣獮⁴楘桰㨺偓䝏升剔䅅♍瀠瑓敲浡‬潣獮⁴楘桰㨺偓䕄佃䕄♒瀠敄潣敤Ⱳ挠湯瑳堠灩㩨区卐䵁䱐䍅䍁䕈䡃䍅䕋♒瀠桃捥敫⁲ഩ笊਍†楆慮楬敺⤨഻ഊ 洠灟瑓敲浡†‽印牴慥㭭਍†彭䑰捥摯牥㴠瀠敄潣敤㭲਍†彭䍰敨正牥㴠瀠桃捥敫㭲਍ൽഊ瘊楯⁤杏䑧捥摯牥楓杮敬桔敲摡㨺楆慮楬敺⤨਍ൻ 洠灟瑓敲浡爮獥瑥⤨഻ 洠灟敄潣敤⹲敲敳⡴㬩਍†彭䍰敨正牥爮獥瑥⤨഻ 洠䍟捡敨䌮敬牡⤨഻ഊ 洠呟瑯污楔敭㴠〠഻ 洠卟浡汰䍥畯瑮㴠〠഻紊਍਍਍潶摩传杧敄潣敤卲湩汧呥牨慥㩤债条䥥⡮挠湯瑳堠灩㩨伺杧慐敧…慰敧⤠਍ൻ 洠灟瑓敲浡㸭慐敧湉 慰敧⤠഻紊਍਍਍潢汯传杧敄潣敤卲湩汧呥牨慥㩤䤺即牴慥䕭摮⤨挠湯瑳਍ൻ 爠瑥牵⁮彭印牴慥⵭䤾䕳摮⤨഻紊਍਍潢汯传杧敄潣敤卲湩汧呥牨慥㩤䤺偳捡敫䕴灭祴⤨挠湯瑳਍ൻ 爠瑥牵⁮彭印牴慥⵭䤾偳捡敫䕴灭祴⤨഻紊਍਍潢汯传杧敄潣敤卲湩汧呥牨慥㩤䤺䍳捡敨畆汬⤨挠湯瑳਍ൻ 爠瑥牵⁮彭䍰敨正牥㸭獉畆汬洨䍟捡敨㬩਍ൽഊഊഊഊ椊瑮传杧敄潣敤卲湩汧呥牨慥㩤债灯慃档⡥搠畯汢⁥湅呤浩ⱥ堠灩㩨区䵁䱐䱅卉♔传瑵⤠਍ൻ 䴠䥁彄剐䙏䱉⡅㬩਍†潣獮⁴湩⁴敲⁴‽彭慃档⹥潐⡰䔠摮楔敭‬畏⁴㬩਍਍†彭潔慴呬浩⁥†‽彭慃档⹥敇呴瑯污楔敭⤨഻ 洠卟浡汰䍥畯瑮㴠洠䍟捡敨䜮瑥楓敺⤨഻ഊ 爠瑥牵⁮敲㭴਍ൽഊഊ瘊楯⁤杏䑧捥摯牥楓杮敬桔敲摡㨺敓步 潤扵敬琠浩⁥ഩ笊਍†䅍䑉䅟卓剅⡔琠浩⁥‼ⰰ∠覕钐춂瞎얂ꮂ�릂•㰼琠浩⁥㬩਍਍†䅍䑉䅟卓剅⡔琠畲ⱥ∠ꊖ삎閑•㬩਍਍ൽഊ椊瑮†杏䑧捥摯牥楓杮敬桔敲摡㨺敇側捡敫䍴畯瑮⤨挠湯瑳਍ൻ 爠瑥牵⁮彭印牴慥⵭䜾瑥慐正瑥潃湵⡴㬩਍ൽഊഊ瘊楯⁤杏䑧捥摯牥楓杮敬桔敲摡㨺畐桳慂正 潣獮⁴楘桰㨺䅓偍䕌…慳灭敬⤠਍ൻ 洠䍟捡敨倮獵䉨捡⡫猠浡汰⁥㬩਍਍†潣獮⁴潤扵敬戠来湩㴠猠浡汰⹥敂楧呮浩㭥਍†潣獮⁴潤扵敬攠摮†㴠猠浡汰⹥湅呤浩㭥਍਍†彭潔慴呬浩⁥†㴫攠摮ⴠ戠来湩഻ 洠卟浡汰䍥畯瑮⬠‽㬱਍ൽഊഊ瘊楯⁤杏䑧捥摯牥楓杮敬桔敲摡㨺灕慤整⤨਍ൻ 椠⡦䤠䍳捡敨畆汬⤨⤠笠爠瑥牵⁮※ൽ 椠⡦洠灟瑓敲浡㸭獉湅⡤  ⁻敲畴湲㬠素਍†晩 彭印牴慥⵭䤾偳捡敫䕴灭祴⤨⤠笠爠瑥牵⁮※ൽഊ 堠灩㩨伺杧慐正瑥瀠捡敫㭴਍਍†潣獮⁴潢汯䤠即捵散獳㴠洠灟瑓敲浡㸭慐正瑥畏⡴慰正瑥㬩਍਍†晩 䤡即捵散獳⤠笠爠瑥牵⁮※ൽഊ 堠灩㩨区䉐䙕䕆⁒䉰晵敦㭲਍†潣獮⁴潤扵敬戠来湩㴠洠灟敄潣敤⵲䜾瑥楔敭⤨഻ 笠਍††彭䑰捥摯牥㸭敄潣敤 慰正瑥‬䉰晵敦⁲㬩਍†ൽ 挠湯瑳搠畯汢⁥湥⁤‽彭䑰捥摯牥㸭敇呴浩⡥㬩਍਍†晩 䉰晵敦⹲敧⡴℩丽䱕⁌ഩ 笠਍††楘桰㨺䅓偍䕌†慳灭敬഻ †猠浡汰⹥敂楧呮浩⁥‽敢楧㭮਍††慳灭敬䔮摮楔敭†㴠攠摮഻ †猠浡汰⹥䉰晵敦⁲†‽䉰晵敦㭲਍਍††畐桳慂正 慳灭敬⤠഻ 素਍਍†⼯†暃劃宁梃麎辍㰠谠趻軝趞₏첂傃宁境뺂욂䆁暃劃宁梃ꪂ碒쒂ꊂ놂욂즂좂첂얂਍†⼯†䮓隓즂랂솂캂랂਍†ൻ †挠湯瑳搠畯汢⁥敤⁣‽湥㭤਍††潣獮⁴潤扵敬渠睯㴠洠呟浩牥䜮瑥⤨഻ †挠湯瑳搠畯汢⁥慳㴠渠睯ⴠ搠捥഻ഊ †椠⡦〠ㄮ㰠猠⁡ഩ †笠਍†††潣獮⁴潤扵敬琠浩⁥‽瑳㩤洺湩猨ⱡ⸲⤰഻ ††洠灟敄潣敤⵲䈾来湩敓步潍敤 潮⁷‫楴敭⤠഻ †素਍†ൽ紊਍਍椣⁦ര瘊楯⁤杏䑧捥摯牥㨺湏瑓瑡卥敥⡫瘠汯瑡汩⁥桔敲摡潃瑮潲汬牥㨺剂䝉䑅呁♁猠慴整⤠਍ൻ ⼠ 阠闚蹗語苔苜菅腖荛艎芷෩ ⼠ 阠闚鉗鍮艟菉荗莃莓艶芷闩電艀鎪苯芵芢苌臅轁膇艘鏉苇軝苦苁臄艁芽苇鋨芅芢芽迧靉芹苆芢芤花苆苉芷෩ 挠湯瑳搠畯汢⁥慴杲瑥㴠洠卟敥呫浩㭥਍†彭䑰捥摯牥㸭敂楧卮敥䵫摯⡥琠牡敧⁴㬩਍†ൻ †吠牨慥䵤瑵硥潌正牥氠捯⡫彭慓灭敬畍整⥸഻ †洠䍟捡敨䌮敬牡⤨഻ 素਍਍਍†桷汩⡥琠畲⁥ഩ 笠਍††晩 瑳瑡⹥獉硅瑩⤠笠戠敲歡※ൽഊ †堠灩㩨伺杧慐正瑥瀠捡敫㭴਍਍††ൻ ††吠牨慥䵤瑵硥潌正牥氠捯⡫彭瑓敲浡畍整⥸഻ഊ ††挠湯瑳戠潯⁬獉畓捣獥⁳‽彭印牴慥⵭倾捡敫佴瑵瀨捡敫⥴഻ഊ ††椠⡦℠獉畓捣獥⁳ഩ ††笠਍††††晩 彭印牴慥⵭䤾䕳摮⤨⤠⁻彭瑓瑡⁥‽呓呁彅久佄卆剔䅅㭍戠敲歡※ൽ †††攠獬⁥⁻彭瑓瑡⁥‽呓呁彅䅐䕇䅗呉※桔敲摡潃瑮潲汬牥㨺汓敥⡰⤰※潣瑮湩敵※ൽ ††素਍†††慰正瑥䌮灯⡹洠偟捡敫呴灭‬慰正瑥⤠഻ †素਍††彭瑓瑡⁥‽呓呁彅䕄佃义㭇਍਍††楘桰㨺偓啂䙆剅瀠畂晦牥഻ †挠湯瑳搠畯汢⁥敢楧⁮‽彭䑰捥摯牥㸭敇呴浩⡥㬩਍਍††ൻ ††洠灟敄潣敤⵲䐾捥摯⡥瀠捡敫ⱴ瀠畂晦牥⤠഻ †素਍਍††⼯†媃抃枃䆃抃皃ꪂ䦏�얂춂侃広侃広਍††晩 洡灟敄潣敤⵲䤾即瑥灵数⡤  ⁻潣瑮湩敵※ൽഊ †挠湯瑳搠畯汢⁥湥⁤‽彭䑰捥摯牥㸭敇呴浩⡥㬩਍਍††晩 敢楧㱮琽牡敧⁴☦琠牡敧㱴湥⁤ഩ †笠਍†††晩 䉰晵敦⹲敧⡴℩丽䱕⁌ഩ ††笠਍††††楘桰㨺䅓偍䕌†慳灭敬഻ †††猠浡汰⹥敂楧呮浩⁥‽敢楧㭮਍††††慳灭敬䔮摮楔敭†㴠攠摮഻ †††猠浡汰⹥䉰晵敦⁲†‽䉰晵敦㭲਍਍††††畐桳慂正 慳灭敬⤠഻ ††素਍†††牢慥㭫਍††ൽ 素਍ൽഊഊ⌊湥楤൦紊
+﻿//#define LOCAL_PROFILE
+
+#include"oggdecodersinglethread.h"
+#include"../auxiliary/debug/warning.h"
+#include"../auxiliary/debug/profile.h"
+#include"../auxiliary/debug/assert.h"
+
+namespace Maid
+{
+
+OggDecoderSingleThread::OggDecoderSingleThread( const IOggTimer& Timer )
+  :m_Timer(Timer)
+  ,m_TotalTime(0)
+  ,m_SampleCount(0)
+{
+
+}
+
+OggDecoderSingleThread::~OggDecoderSingleThread()
+{
+}
+
+void OggDecoderSingleThread::Initialize( const Xiph::SPOGGSTREAM& pStream, const Xiph::SPDECODER& pDecoder, const Xiph::SPSAMPLECACHECHECKER& pChecker )
+{
+  Finalize();
+
+  m_pStream  = pStream;
+  m_pDecoder = pDecoder;
+  m_pChecker = pChecker;
+}
+
+void OggDecoderSingleThread::Finalize()
+{
+  m_pStream.reset();
+  m_pDecoder.reset();
+  m_pChecker.reset();
+  m_Cache.Clear();
+
+  m_TotalTime = 0;
+  m_SampleCount = 0;
+}
+
+
+void OggDecoderSingleThread::PageIn( const Xiph::OggPage& page )
+{
+  m_pStream->PageIn( page );
+}
+
+
+bool OggDecoderSingleThread::IsStreamEnd() const
+{
+  return m_pStream->IsEnd();
+}
+
+bool OggDecoderSingleThread::IsPacketEmpty() const
+{
+  return m_pStream->IsPacketEmpty();
+}
+
+bool OggDecoderSingleThread::IsCacheFull() const
+{
+  return m_pChecker->IsFull(m_Cache);
+}
+
+
+
+
+int OggDecoderSingleThread::PopCache( double EndTime, Xiph::SAMPLELIST& Out )
+{
+  MAID_PROFILE();
+  const int ret = m_Cache.Pop( EndTime, Out );
+
+  m_TotalTime   = m_Cache.GetTotalTime();
+  m_SampleCount = m_Cache.GetSize();
+
+  return ret;
+}
+
+
+void OggDecoderSingleThread::Seek( double time )
+{
+  MAID_ASSERT( time < 0, "負数は指定できません" << time );
+
+  MAID_ASSERT( true, "未実装" );
+
+}
+
+int  OggDecoderSingleThread::GetPacketCount() const
+{
+  return m_pStream->GetPacketCount();
+}
+
+
+void OggDecoderSingleThread::PushBack( const Xiph::SAMPLE& sample )
+{
+  m_Cache.PushBack( sample );
+
+  const double begin = sample.BeginTime;
+  const double end   = sample.EndTime;
+
+  m_TotalTime   += end - begin;
+  m_SampleCount += 1;
+}
+
+
+void OggDecoderSingleThread::Update()
+{
+  if( IsCacheFull() ) { return ; }
+  if( m_pStream->IsEnd() ) { return ; }
+  if( m_pStream->IsPacketEmpty() ) { return ; }
+
+  Xiph::OggPacket packet;
+
+  const bool IsSuccess = m_pStream->PacketOut(packet);
+
+  if( !IsSuccess ) { return ; }
+
+  Xiph::SPBUFFER pBuffer;
+  const double begin = m_pDecoder->GetTime();
+  {
+    m_pDecoder->Decode( packet, pBuffer );
+  }
+  const double end = m_pDecoder->GetTime();
+
+  if( pBuffer.get()!=NULL )
+  {
+    Xiph::SAMPLE  sample;
+    sample.BeginTime = begin;
+    sample.EndTime   = end;
+    sample.pBuffer   = pBuffer;
+
+    PushBack( sample );
+  }
+
+  //  デコード時刻 < 現在時刻 のケースだと、デコードが遅れていることになるので
+  //  適当にすっ飛ばす
+  {
+    const double dec = end;
+    const double now = m_Timer.Get();
+    const double sa = now - dec;
+
+    if( 0.1 < sa )
+    {
+      const double time = std::min(sa,2.0);
+      m_pDecoder->BeginSeekMode( now + time );
+    }
+  }
+}
+
+#if 0
+void OggDecoder::OnStateSeek( volatile ThreadController::BRIGEDATA& state )
+{
+  //  目標時間までシークする
+  //  目標地点にジャンプする方法が難しいので、順々に読み取って、たどり着いたら終了ということにする
+  const double target = m_SeekTime;
+  m_pDecoder->BeginSeekMode( target );
+  {
+    ThreadMutexLocker lock(m_SampleMutex);
+    m_Cache.Clear();
+  }
+
+
+  while( true )
+  {
+    if( state.IsExit ) { break; }
+
+    Xiph::OggPacket packet;
+
+    {
+      ThreadMutexLocker lock(m_StreamMutex);
+
+      const bool IsSuccess = m_pStream->PacketOut(packet);
+
+      if( !IsSuccess )
+      {
+        if( m_pStream->IsEnd() ){ m_State = STATE_ENDOFSTREAM; break; }
+        else { m_State = STATE_PAGEWAIT; ThreadController::Sleep(0); continue; }
+      }
+      packet.Copy( m_PacketTmp, packet );
+    }
+    m_State = STATE_DECOING;
+
+    Xiph::SPBUFFER pBuffer;
+    const double begin = m_pDecoder->GetTime();
+
+    {
+      m_pDecoder->Decode( packet, pBuffer );
+    }
+
+    //  セットアップが終わるまではグタグタやる
+    if( !m_pDecoder->IsSetupped() ) { continue; }
+
+    const double end = m_pDecoder->GetTime();
+
+    if( begin<=target && target<end )
+    {
+      if( pBuffer.get()!=NULL )
+      {
+        Xiph::SAMPLE  sample;
+        sample.BeginTime = begin;
+        sample.EndTime   = end;
+        sample.pBuffer   = pBuffer;
+
+        PushBack( sample );
+      }
+      break;
+    }
+  }
+}
+
+
+#endif
+}

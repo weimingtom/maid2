@@ -1,1 +1,47 @@
-﻿⨯ഡ †䀠楦敬਍††所楲晥选誔襷躉荚荥莓荶膌荛൧ ⼪਍਍਍਍椣湦敤⁦慭摩弲畡楸楬牡役慭桴浥瑡捩彳畦据楴湯桟਍搣晥湩⁥慭摩弲畡楸楬牡役慭桴浥瑡捩彳畦据楴湯桟਍਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢഊ⌊湩汣摵㱥浣瑡㹨਍椣据畬敤瘼捥潴㹲਍਍慮敭灳捡⁥慍摩਍⁻਍†⨯ഡ ††䀠汣獡⁳慍桴映湵瑣潩⹮൨ ††䀠牢敩⁦ꊂꊂ좂钐瞊覉媎玍ꒂ횊钐਍†⨠യഊ 琠浥汰瑡㱥祴数慮敭吠偙㹅਍†汣獡⁳慍桴਍†ൻ 瀠扵楬㩣਍††瑳瑡捩吠偙⁅楳⡮吠偙⁅慲⁤ ⁻敲畴湲猠摴㨺楳⡮慲⥤※ൽ †猠慴楴⁣奔䕐挠獯 奔䕐爠摡⤠笠爠瑥牵⁮瑳㩤挺獯爨摡㬩素਍††瑳瑡捩吠偙⁅慴⡮吠偙⁅慲⁤ ⁻敲畴湲猠摴㨺慴⡮慲⥤※ൽ †猠慴楴⁣奔䕐愠慴㉮ 奔䕐礠‬奔䕐砠⤠笠爠瑥牵⁮瑳㩤愺慴㉮礨砬㬩素਍††瑳瑡捩吠偙⁅煳瑲 奔䕐爠摡⤠笠爠瑥牵⁮瑳㩤猺牱⡴慲⥤※ൽ †猠慴楴⁣奔䕐氠杯〱 奔䕐瘠污⤠笠爠瑥牵⁮瑳㩤氺杯〱瘨污㬩素਍††瑳瑡捩吠偙⁅潰⡷吠偙⁅ⱸ吠偙⁅⁹ ⁻敲畴湲猠摴㨺潰⡷ⱸ⥹※ൽ †猠慴楴⁣奔䕐愠獢 奔䕐砠⤠笠爠瑥牵⁮瑳㩤愺獢砨㬩素਍਍††瑳瑡捩吠偙⁅形灳楬敮 奔䕐砠ⰱ吠偙⁅㉸‬奔䕐砠ⰳ吠偙⁅楴敭⤠਍††ൻ ††挠湯瑳吠偙⁅⁴㴠琠浩㭥਍†††潣獮⁴奔䕐椠⁴‽ⴱ楴敭഻ഊ ††爠瑥牵⁮椨⩴瑩砪⤱⬠⠠⨲⩴瑩砪⤲⬠⠠⩴⩴㍸㬩਍††ൽഊ 素഻紊਍਍攣摮晩
+﻿/*!
+    @file
+    @brief	数学演算テンプレート
+ */
+
+
+
+#ifndef maid2_auxiliary_mathematics_function_h
+#define maid2_auxiliary_mathematics_function_h
+
+#include"../../config/define.h"
+
+#include<cmath>
+#include<vector>
+
+namespace Maid
+{ 
+  /*!
+      @class Math function.h
+      @brief いろいろな数学演算を行う関数
+   */
+
+  template<typename TYPE>
+  class Math
+  {
+  public:
+    static TYPE sin( TYPE rad ) { return std::sin(rad); }
+    static TYPE cos( TYPE rad ) { return std::cos(rad); }
+    static TYPE tan( TYPE rad ) { return std::tan(rad); }
+    static TYPE atan2( TYPE y, TYPE x ) { return std::atan2(y,x); }
+    static TYPE sqrt( TYPE rad ) { return std::sqrt(rad); }
+    static TYPE log10( TYPE val ) { return std::log10(val); }
+    static TYPE pow( TYPE x, TYPE y ) { return std::pow(x,y); }
+    static TYPE abs( TYPE x ) { return std::abs(x); }
+
+    static TYPE b_spline( TYPE x1, TYPE x2, TYPE x3, TYPE time )
+    {
+      const TYPE t  = time;
+      const TYPE it = 1-time;
+
+      return (it*it*x1) + (2*t*it*x2) + (t*t*x3);
+    }
+
+  };
+}
+
+#endif
