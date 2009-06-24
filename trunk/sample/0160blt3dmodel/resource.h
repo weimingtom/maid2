@@ -1,9 +1,1 @@
-#ifndef IDC_STATIC
-#define IDC_STATIC (-1)
-#endif
-
-#define ID_DIALOG_HARDWARECONFIG                101
-#define ID_COMBO_GRAPHICS                       1003
-#define ID_COMBO_SOUND                          1005
-#define ID_COMBO_KEYBORD                        1009
-#define ID_COMBO_MOUSE                          1011
+﻿椣湦敤⁦䑉彃呓呁䍉਍搣晥湩⁥䑉彃呓呁䍉⠠ㄭഩ⌊湥楤൦ഊ⌊敤楦敮䤠彄䥄䱁䝏䡟剁坄剁䍅乏䥆⁇†††††††ㄠ㄰਍搣晥湩⁥䑉䍟䵏佂䝟䅒䡐䍉⁓†††††††††††〱㌰਍搣晥湩⁥䑉䍟䵏佂卟問䑎†††††††††††††〱㔰਍搣晥湩⁥䑉䍟䵏佂䭟奅佂䑒††††††††††††〱㤰਍搣晥湩⁥䑉䍟䵏佂䵟問䕓†††††††††††††〱ㄱ਍

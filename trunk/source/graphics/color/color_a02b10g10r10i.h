@@ -1,67 +1,1 @@
-#ifndef maid2_graphics_color_color_a02b10g10r10i_h
-#define maid2_graphics_color_color_a02b10g10r10i_h
-
-/*!
- 	  @file
- 	  @brief	�P�s�N�Z��������킷�N���X
-\n          A02B10G10R10 �t�H�[�}�b�g Ver.
- */
-#include"../../config/define.h"
-#include"../../config/typedef.h"
-
-#include"bitconvertfunction.h"
-
-namespace Maid
-{
-	/*!
-      @class	COLOR_A02R10G10B10I color_a02b10g10r10i.h
-	 */
-	class COLOR_A02B10G10R10I
-	{
-	public:
-		COLOR_A02B10G10R10I(){}	//!<	�R���X�g���N�^
-		COLOR_A02B10G10R10I( unt16 a, unt16 r, unt16 g, unt16 b ){ SetARGB( a, r, g, b ); }	//!<	�R���X�g���N�^
-		template <class COLOR>
-		COLOR_A02B10G10R10I( const COLOR& Col ){  SetARGB( Col.GetA(), Col.GetR(), Col.GetG(), Col.GetB() );  }	//!<	�R���X�g���N�^
-
-
-		unt16 GetA() const	{ return BITCONVERT02Ito16I((m_ARGB&0xC0000000)>>30);	}	//!<	�A���t�@�����̎擾
-		unt16 GetR() const	{ return BITCONVERT10Ito16I((m_ARGB&0x000003FF)>> 0);	}	//!<	�Ԑ����̎擾
-		unt16 GetG() const	{ return BITCONVERT10Ito16I((m_ARGB&0x000FFC00)>>10);	}	//!<	�ΐ����̎擾
-		unt16 GetB() const	{ return BITCONVERT10Ito16I((m_ARGB&0x3FF00000)>>20);	}	//!<	�����̎擾
-
-		operator unt32() const { return m_ARGB; }	//!<	�ꊇ�ϊ�
-
-		void SetA( unt16 a )	{ m_ARGB = (m_ARGB&~0xC0000000)|(BITCONVERT16Ito02I(a)<<30);	}	//!<	�A���t�@�����̐ݒ�
-		void SetR( unt16 r )	{ m_ARGB = (m_ARGB&~0x000003FF)|(BITCONVERT16Ito10I(r)<< 0);	}	//!<	�Ԑ����̐ݒ�
-		void SetG( unt16 g )	{ m_ARGB = (m_ARGB&~0x000FFC00)|(BITCONVERT16Ito10I(g)<<10);	}	//!<	�ΐ����̐ݒ�
-		void SetB( unt16 b )	{ m_ARGB = (m_ARGB&~0x3FF00000)|(BITCONVERT16Ito10I(b)<<20);	}	//!<	�����̐ݒ�
-
-		void SetARGB( unt16 a, unt16 r, unt16 g, unt16 b )	//!<	�������ɐݒ�
-		{
-			SetA( a );
-			SetR( r );
-			SetG( g );
-			SetB( b );
-		}
-
-		//!	�Ⴄ�s�N�Z���t�H�[�}�b�g�Ƃ̃R�s�[
-		template <class PIXEL>
-		COLOR_A02B10G10R10I& operator = (const PIXEL &src)
-		{
-			SetARGB(src.GetA(),src.GetR(),src.GetG(),src.GetB());
-			return *this;
-		}
-
-		//!	�����s�N�Z���t�H�[�}�b�g�Ƃ̃R�s�[
-		COLOR_A02B10G10R10I& operator = (const COLOR_A02B10G10R10I& src)
-		{
-			m_ARGB = src.m_ARGB;
-			return *this;
-		}
-	private:
-		unt32 m_ARGB;
-	};
-}
-
-#endif
+﻿椣湦敤⁦慭摩弲牧灡楨獣损汯牯损汯牯慟㈰ㅢ朰〱ㅲ椰桟਍搣晥湩⁥慭摩弲牧灡楨獣损汯牯损汯牯慟㈰ㅢ朰〱ㅲ椰桟਍਍⨯ഡ  䀠楦敬਍ठ†所楲晥舉荐荳荎荚芋苰芠苧苭获荎莉൘尊⁮††††䄠㈰ㅂ䜰〱ㅒ‰璃䢃宁綃抃枃嘠牥മ ⼪਍椣据畬敤⸢⼮⸮振湯楦⽧敤楦敮栮ഢ⌊湩汣摵≥⸮ⸯ⼮潣普杩琯灹摥晥栮ഢഊ⌊湩汣摵≥楢捴湯敶瑲畦据楴湯栮ഢഊ渊浡獥慰散䴠楡൤笊਍⼉K਍†††捀慬獳䌉䱏剏䅟㈰ㅒ䜰〱ㅂ䤰挠汯牯慟㈰ㅢ朰〱ㅲ椰栮਍ ⼪਍按慬獳䌠䱏剏䅟㈰ㅂ䜰〱ㅒ䤰਍笉਍瀉扵楬㩣਍उ佃佌归ぁ䈲〱ㅇ到〱⡉笩ॽ⼯㰡茉荒莓荘荧莉荎൞ऊ䌉䱏剏䅟㈰ㅂ䜰〱ㅒ䤰 湵ㅴ‶ⱡ甠瑮㘱爠‬湵ㅴ‶Ⱨ甠瑮㘱戠⤠⁻敓䅴䝒⡂愠‬Ⱳ朠‬⁢㬩素⼉ℯ़劃鎃境枃覃亃広਍उ整灭慬整㰠汣獡⁳佃佌㹒਍उ佃佌归ぁ䈲〱ㅇ到〱⡉挠湯瑳䌠䱏剏…潃⁬笩†敓䅴䝒⡂䌠汯䜮瑥⡁Ⱙ䌠汯䜮瑥⡒Ⱙ䌠汯䜮瑥⡇Ⱙ䌠汯䜮瑥⡂ 㬩†ॽ⼯㰡茉荒莓荘荧莉荎൞ഊഊऊ甉瑮㘱䜠瑥⡁ 潣獮ॴ⁻敲畴湲䈠呉佃噎剅ご䤲潴㘱⡉洨䅟䝒♂砰ぃ〰〰〰㸩㌾⤰ऻॽ⼯㰡茉荁莋荴遀閬芪軌鏦඾ऊ甉瑮㘱䜠瑥⡒ 潣獮ॴ⁻敲畴湲䈠呉佃噎剅ㅔ䤰潴㘱⡉洨䅟䝒♂砰〰〰㌰䙆㸩‾⤰ऻॽ⼯㰡选郔閬芪軌鏦඾ऊ甉瑮㘱䜠瑥⡇ 潣獮ॴ⁻敲畴湲䈠呉佃噎剅ㅔ䤰潴㘱⡉洨䅟䝒♂砰〰䘰䍆〰㸩ㄾ⤰ऻॽ⼯㰡霉郎閬芪軌鏦඾ऊ甉瑮㘱䜠瑥⡂ 潣獮ॴ⁻敲畴湲䈠呉佃噎剅ㅔ䤰潴㘱⡉洨䅟䝒♂砰䘳う〰〰㸩㈾⤰ऻॽ⼯㰡选郂閬芪軌鏦඾ഊऊ漉数慲潴⁲湵㍴⠲ 潣獮⁴⁻敲畴湲洠䅟䝒㭂素⼉ℯ़螊쾕랊਍਍उ潶摩匠瑥⡁甠瑮㘱愠⤠笉洠䅟䝒⁂‽洨䅟䝒♂ま䍸〰〰〰⤰⡼䥂䍔乏䕖呒㘱瑉は䤲愨㰩㌼⤰ऻॽ⼯㰡茉荁莋荴遀閬芪郌鋝෨ऊ瘉楯⁤敓剴 湵ㅴ‶⁲ऩ⁻彭剁䉇㴠⠠彭剁䉇縦砰〰〰㌰䙆簩䈨呉佃噎剅ㅔ䤶潴〱⡉⥲㰼〠㬩紉⼉ℯ़풐겐ꪕ첂�਍उ潶摩匠瑥⡇甠瑮㘱朠⤠笉洠䅟䝒⁂‽洨䅟䝒♂まへ〰䙆ぃ⤰⡼䥂䍔乏䕖呒㘱瑉ㅯ䤰木㰩ㄼ⤰ऻॽ⼯㰡霉郎閬芪郌鋝෨ऊ瘉楯⁤敓䉴 湵ㅴ‶⁢ऩ⁻彭剁䉇㴠⠠彭剁䉇縦砰䘳う〰〰簩䈨呉佃噎剅ㅔ䤶潴〱⡉⥢㰼〲㬩紉⼉ℯ़슐겐ꪕ첂�਍਍उ潶摩匠瑥剁䉇 湵ㅴ‶ⱡ甠瑮㘱爠‬湵ㅴ‶Ⱨ甠瑮㘱戠⤠⼉ℯ़ꊂ솂ꮂ즂�਍उൻऊउ敓䅴 ⁡㬩਍उ匉瑥⡒爠⤠഻ऊउ敓䝴 ⁧㬩਍उ匉瑥⡂戠⤠഻ऊ紉਍਍उ⼯डꒂ玃亃媃讃璃䢃宁綃抃枃욂첂劃玃宁਍उ整灭慬整㰠汣獡⁳䥐䕘㹌਍उ佃佌归ぁ䈲〱ㅇ到〱♉漠数慲潴⁲‽挨湯瑳倠塉䱅☠牳⥣਍उൻऊउ敓䅴䝒⡂牳⹣敇䅴⤨猬捲䜮瑥⡒Ⱙ牳⹣敇䝴⤨猬捲䜮瑥⡂⤩഻ऊउ敲畴湲⨠桴獩഻ऊ紉਍਍उ⼯ड꾓뚂玃亃媃讃璃䢃宁綃抃枃욂첂劃玃宁਍उ佃佌归ぁ䈲〱ㅇ到〱♉漠数慲潴⁲‽挨湯瑳䌠䱏剏䅟㈰ㅂ䜰〱ㅒ䤰…牳⥣਍उൻऊउ彭剁䉇㴠猠捲洮䅟䝒㭂਍उ爉瑥牵⁮琪楨㭳਍उൽऊ牰癩瑡㩥਍उ湵㍴′彭剁䉇഻ऊ㭽਍ൽഊ⌊湥楤൦
