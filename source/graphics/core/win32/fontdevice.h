@@ -20,7 +20,7 @@ namespace Maid { namespace Graphics {
     virtual SPFONT CreateFont( const String& name, const SIZE2DI& size );
     virtual String GetDefaultFontName()const;
     
-    virtual void Rasterize( const SPFONT& pFont, unt32 FontCode, SurfaceInstance& surf );
+    virtual void Rasterize( const SPFONT& pFont, unt32 FontCode, const COLOR_R32G32B32A32F& Color, SurfaceInstance& surf );
   };
 }}
 

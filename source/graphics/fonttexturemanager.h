@@ -47,7 +47,6 @@ namespace Maid
     void SetCacheSize( int Size );
     void Garbage();
 
-    void SetFilter( const FONTRASTERIZEFILTER& Filter );
   private:
 
     //!	検索に使うキャッシュキー
@@ -66,8 +65,6 @@ namespace Maid
     typedef CacheManager<CACHEKEY,FontTexture> CACHETABLE;
 
     CACHETABLE	m_CacheTable;
-
-    FONTRASTERIZEFILTER    m_Filter;
   };
 
 
