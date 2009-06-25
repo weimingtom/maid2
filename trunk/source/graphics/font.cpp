@@ -6,37 +6,42 @@
 
 namespace Maid
 {
-
 Font::FILTERMAP  Font::s_FilterMap;
-
 static const int s_SCALE = 4;
+
+Font::Font()
+  :m_FontSize(0,0)
+  ,m_IsAntiAlias(false)
+  ,m_Color(1,1,1,1)
+  ,m_Filter(FILTER_NONE)
+{
+
+}
 
 
 //! フォントを作成する
 /*!
     フォント名はデフォルトです。
+    色は白。
+    フィルタなしです。
     
     @param size         [i ]  フォントの大きさ
     @param IsAntiAlias  [i ]  アンチエイリアスをかけるか
  */
 void Font::Create( const SIZE2DI& size, bool IsAntiAlias )
 {
-  Create( size, IsAntiAlias, FILTER_NONE );
+  Create( size, IsAntiAlias, COLOR_R32G32B32A32F(1,1,1,1) );
 }
 
-//! フォントを作成する
-/*!
-    フォント名はデフォルトです。
-    
-    @param size         [i ]  フォントの大きさ
-    @param IsAntiAlias  [i ]  アンチエイリアスをかけるか
-    @param FilterNo     [i ]  おこなうフィルタ処理( SetFilter() で設定したやつ )
- */
-void Font::Create( const SIZE2DI& size, bool IsAntiAlias, unt FilterNo )
+void Font::Create( const SIZE2DI& size, bool IsAntiAlias, const COLOR_R32G32B32A32F& Color )
+{
+  Create( size, IsAntiAlias, Color, FILTER_NONE );
+}
+
+void Font::Create( const SIZE2DI& size, bool IsAntiAlias, const COLOR_R32G32B32A32F& Color, unt FilterNo )
 {
   const String name = GlobalPointer<GraphicsCore>::Get()->GetFontDevice()->GetDefaultFontName();
-
-  Create( name, size, IsAntiAlias, FilterNo );
+  Create( name, size, IsAntiAlias, Color, FilterNo );
 }
 
 
@@ -45,9 +50,10 @@ void Font::Create( const SIZE2DI& size, bool IsAntiAlias, unt FilterNo )
     @param Name         [i ]  作成するフォント名
     @param size         [i ]  フォントの大きさ
     @param IsAntiAlias  [i ]  アンチエイリアスをかけるか
-    @param FilterNo     [i ]  おこなうフィルタ処理( SetFilter() で設定したやつ )
+    @param Color        [i ]  ラスタライズしたときの色
+    @param Filter       [i ]  おこなうフィルタ処理
  */
-void Font::Create( const String& Name, const SIZE2DI& size, bool IsAntiAlias, unt FilterNo )
+void Font::Create( const String& Name, const SIZE2DI& size, bool IsAntiAlias, const COLOR_R32G32B32A32F& Color, unt FilterNo )
 {
   SIZE2DI createsize(size);
 
@@ -64,7 +70,8 @@ void Font::Create( const String& Name, const SIZE2DI& size, bool IsAntiAlias, un
   m_FontName = Name;
   m_FontSize = size;
   m_IsAntiAlias = IsAntiAlias;
-  m_FilterNo = FilterNo;
+  m_Color  = Color;
+  m_Filter = FilterNo;
 }
 
 //! フォントの破棄
@@ -100,14 +107,22 @@ bool Font::IsAntiAlias()const
   return m_IsAntiAlias;
 }
 
+//! テキスト色の取得
+/*!
+ */
+const COLOR_R32G32B32A32F& Font::GetColor() const
+{
+  return m_Color;
+}
 
-//! かけるフィルタ番号
+//! かけるフィルタの取得
 /*!
  */
 unt Font::GetFilterNo() const
 {
-  return m_FilterNo;
+  return m_Filter;
 }
+
 
 //! ラスタライズする
 /*!
@@ -118,21 +133,19 @@ void Font::Rasterize( unt32 code, SurfaceInstance& Dst )const
 {
   SPSURFACEINSTANCE pMem( new SurfaceInstance );
 
-  GlobalPointer<GraphicsCore>::Get()->GetFontDevice()->Rasterize( m_pFont, code, *pMem );
+  GlobalPointer<GraphicsCore>::Get()->GetFontDevice()->Rasterize( m_pFont, code, m_Color, *pMem );
 
-  if( m_FilterNo!=FILTER_NONE )
   {
-    FILTERMAP::const_iterator ite = s_FilterMap.find(m_FilterNo);
+    FILTERMAP::const_iterator ite = s_FilterMap.find(m_Filter);
     if( ite!=s_FilterMap.end() )
     {
-      const FONTRASTERIZEFILTER& Filter = ite->second;
+      const FONTRASTERIZEFILTERLIST& Filter = ite->second;
       for( size_t i=0; i<Filter.size(); ++i )
       {
         Filter[i]->Convert( pMem );
       }
     }
   }
-
 
   if( m_IsAntiAlias )
   {
@@ -145,18 +158,8 @@ void Font::Rasterize( unt32 code, SurfaceInstance& Dst )const
     Dst.Create( pMem->GetSize(), pMem->GetPixelFormat() );
     Transiter::Copy( *pMem, Dst );
   }
-
 }
 
-//! ラスタライズフィルタの設定
-/*!
-    @param No     [i ]  設定番号
-    @param Filter [i ]  フィルタ
- */
-void Font::SetFilter( unt No, const FONTRASTERIZEFILTER& Filter )
-{
-  s_FilterMap[No] = Filter;
-}
 
 //! 指定した文字列の矩形サイズを計算する
 /*!
@@ -199,5 +202,14 @@ SIZE2DI Font::CalcTextSize( const String& text ) const
   return SIZE2DI(w,h);
 }
 
+//! ラスタライズフィルタの設定
+/*!
+    @param No     [i ]  設定番号
+    @param Filter [i ]  フィルタ
+ */
+void Font::SetFilter( unt No, const FONTRASTERIZEFILTERLIST& Filter )
+{
+  s_FilterMap[No] = Filter;
+}
 
 }

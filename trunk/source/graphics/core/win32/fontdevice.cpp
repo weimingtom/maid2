@@ -93,7 +93,7 @@ String FontDevice::GetDefaultFontName()const
   return name;
 }
 
-void FontDevice::Rasterize( const SPFONT& pFont, unt32 FontCode, SurfaceInstance& Dst )
+void FontDevice::Rasterize( const SPFONT& pFont, unt32 FontCode, const COLOR_R32G32B32A32F& Color, SurfaceInstance& Dst )
 {
   //  HBITMAP にテキストを打って、それの色からフォントを作成する
 
@@ -171,7 +171,7 @@ void FontDevice::Rasterize( const SPFONT& pFont, unt32 FontCode, SurfaceInstance
     {
       const unt32 col = pLine[x];
 
-      if( col!=0 ) { Dst.SetPixel(POINT2DI(x,y),COLOR_R32G32B32A32F(1,1,1,1)); }
+      if( col!=0 ) { Dst.SetPixel(POINT2DI(x,y),Color); }
     }
   }
 

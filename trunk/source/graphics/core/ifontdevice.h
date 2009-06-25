@@ -83,14 +83,12 @@ namespace Maid { namespace Graphics {
 
     //! フォントをラスタライズする
     /*!	
-        ラスタライズしたピクセルは 1.0f になっているものとします
-        ラスタライズされていないピクセルは 0.0f になっているものとします
-
         @param  pFont     [i ]  フォント
         @param  FontCode  [i ]  ラスタライズする文字コード(FontCode)
+        @param  Color     [i ]  ラスタライズしたピクセルに設定される色。ほかは0.0f
         @param  surf      [ o]  ラスタライズ先。メモリは自動的に確保されます
     */    
-    virtual void Rasterize( const SPFONT& pFont, unt32 FontCode, SurfaceInstance& surf )=0;
+    virtual void Rasterize( const SPFONT& pFont, unt32 FontCode, const COLOR_R32G32B32A32F& Color, SurfaceInstance& surf )=0;
   };
 
   typedef	boost::shared_ptr<IFontDevice>	SPFONTDEVICE;

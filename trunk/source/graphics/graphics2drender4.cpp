@@ -8,16 +8,10 @@
 namespace Maid
 {
 
-//! テキスト描画
-/*!
-    @param	Base    [i ]	描画開始座標
-    @param	pFont   [i ]	描画に使うフォント
-    @param	Text    [i ]	描画する文字列
-    @param	Color   [i ]	描画する色
- */
-void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const String& Text, const COLOR_R32G32B32A32F& Color )
+
+void Graphics2DRender::BltText( const POINT2DI& Base, const Font& f, const String& Text )
 {
-  BltText( Base, pFont, Text, Color, ~0);
+  BltText( Base, f, Text, COLOR_R32G32B32A32F(1,1,1,1) );
 }
 
 
@@ -26,10 +20,25 @@ void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const S
     @param	Base    [i ]	描画開始座標
     @param	pFont   [i ]	描画に使うフォント
     @param	Text    [i ]	描画する文字列
-    @param	Color   [i ]	描画する色
+    @param	Color   [i ]	描画する色の強さ
+ */
+void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const String& Text, const COLOR_R32G32B32A32F& pow )
+{
+  BltText( Base, pFont, Text, pow, ~0);
+}
+
+
+
+
+//! テキスト描画
+/*!
+    @param	Base    [i ]	描画開始座標
+    @param	pFont   [i ]	描画に使うフォント
+    @param	Text    [i ]	描画する文字列
+    @param	Color   [i ]	描画する色強さ
     @param	Len     [i ]	描画する文字数（Text.length() より大きいと全部)
  */
-void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const String& Text, const COLOR_R32G32B32A32F& Color, size_t Len )
+void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const String& Text, const COLOR_R32G32B32A32F& pow, size_t Len )
 {
   POINT2DI pos = Base;
 
@@ -51,13 +60,13 @@ void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const S
     const FontTexture& tex = m_FontManager.GetTexture( pFont, ch );
 
 
-    { //  テクスチャは白なので、頂点色をかけると、その色になる
+    { //  指定した強さを掛けるシェーダを使う
       const RECT2DI  rc(POINT2DI(0,0),tex.GetRealSize());
       const POINT2DI center(0,0);
-      const COLOR_R32G32B32A32F col(Color.GetR(),
-                                    Color.GetG(),
-                                    Color.GetB(),
-                                    Color.GetA());
+      const COLOR_R32G32B32A32F col(pow.GetR(),
+                                    pow.GetG(),
+                                    pow.GetB(),
+                                    pow.GetA());
 
       MODELINFO m;
       CreateVirtualScreenModel( pos, rc.GetSize(), center, m );

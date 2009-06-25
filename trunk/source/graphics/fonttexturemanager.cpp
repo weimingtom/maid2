@@ -167,12 +167,6 @@ void FontTextureManager::Initialize()
 	m_CacheTable.SetGarbageState( CACHETABLE::GARBAGESTATE_MANUAL );
 }
 
-void FontTextureManager::SetFilter( const FONTRASTERIZEFILTER& Filter )
-{
-  m_Filter = Filter;
-	m_CacheTable.ClearAll();
-}
-
 void FontTextureManager::Finalize()
 {
 	m_CacheTable.ClearAll();
@@ -207,8 +201,30 @@ bool FontTextureManager::CACHEKEY::operator < ( const CACHEKEY& rhs ) const
 	if( font.GetSize().h < rhs.font.GetSize().h ) { return true; }
 	else if( font.GetSize().h > rhs.font.GetSize().h ) { return false; }
 
-	if( font.GetFilterNo() < rhs.font.GetFilterNo() ) { return true; }
-	else if( font.GetFilterNo() > rhs.font.GetFilterNo() ) { return false; }
+  {
+    const COLOR_R32G32B32A32F& t = font.GetColor();
+    const COLOR_R32G32B32A32F& r = rhs.font.GetColor();
+
+	  if( t.GetR() < r.GetR() ) { return true; }
+	  else if( t.GetR() > r.GetR() ) { return false; }
+
+	  if( t.GetG() < r.GetG() ) { return true; }
+	  else if( t.GetG() > r.GetG() ) { return false; }
+
+	  if( t.GetB() < r.GetB() ) { return true; }
+	  else if( t.GetB() > r.GetB() ) { return false; }
+
+	  if( t.GetA() < r.GetA() ) { return true; }
+	  else if( t.GetA() > r.GetA() ) { return false; }
+  }
+
+  {
+    const unt t = font.GetFilterNo();
+    const unt r = rhs.font.GetFilterNo();
+
+	  if( t < r ) { return true; }
+	  else if( t > r ) { return false; }
+  }
 
 	if( font.IsAntiAlias() != rhs.font.IsAntiAlias() ) { return true; }
 	return false;

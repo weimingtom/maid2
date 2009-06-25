@@ -93,8 +93,9 @@ namespace Maid
     void BltMixR ( const POINT2DI& Pos, const Texture2DBase& TexBegin, const RECT2DI& BeginRect, const POINT2DI& Center, float alpha, float Rotate, const VECTOR3DF& vec, const Texture2DBase& TexEnd, const RECT2DI& EndRect, float pow );
     void BltMixSR( const POINT2DI& Pos, const Texture2DBase& TexBegin, const RECT2DI& BeginRect, const POINT2DI& Center, float alpha, const SIZE2DF& Scale, float Rotate, const VECTOR3DF& vec, const Texture2DBase& TexEnd, const RECT2DI& EndRect, float pow );
 
-    void BltText( const POINT2DI& Base, const Font& f, const String& Text, const COLOR_R32G32B32A32F& Color, size_t Len );
-    void BltText( const POINT2DI& Base, const Font& f, const String& Text, const COLOR_R32G32B32A32F& Color );
+    void BltText( const POINT2DI& Base, const Font& f, const String& Text, const COLOR_R32G32B32A32F& pow, size_t Len );
+    void BltText( const POINT2DI& Base, const Font& f, const String& Text, const COLOR_R32G32B32A32F& pow );
+    void BltText( const POINT2DI& Base, const Font& f, const String& Text );
 
     bool IsInitializing() const;
 
