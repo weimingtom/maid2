@@ -60,7 +60,7 @@ namespace Maid
       //  拡張子を a01 a02 a03 という風につけていく
       const String ext = String::GetExtension(base);
 
-      return base.substr( 0,base.length()-ext.length() )+String::PrintFormat(".a%02d",no);
+      return base.substr( 0,base.length()-ext.length() )+String::PrintFormat("a%02d",no);
     }
 
   }
