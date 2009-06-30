@@ -314,6 +314,7 @@ unt PackFileCreater::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
 FILE* PackFileCreater::CreateArchiveFile( int count )
 {
   const String FileName = PACKFILE::MakeArchiveFileName(m_ArchiveName,count);
+  const std::string tmp = String::ConvertMAIDtoSJIS(FileName);
 
   FILE* hTargetFile = fopen( String::ConvertMAIDtoSJIS(FileName).c_str(), "wb" );
 
