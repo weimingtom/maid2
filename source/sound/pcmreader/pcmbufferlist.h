@@ -27,14 +27,23 @@ namespace Maid
 
     PCMFORMAT GetFormat() const;
 
-    void Create( const void* pData, size_t Size );
+    void Create( size_t time, const void* pData, size_t Size );
 
     void Clear();
 
   private:
     ThreadMutex m_Mutex;
 
-    typedef std::list<SPMEMORYBUFFER> BUFFERLIST;
+    struct BUFFERINFO
+    {
+      size_t         Time;    //  データ再生開始位置(負数で前回から連続してる)
+      SPMEMORYBUFFER pBuffer;
+
+      BUFFERINFO():Time(-1){}
+      BUFFERINFO( size_t t, const SPMEMORYBUFFER& p ):Time(t),pBuffer(p) {}
+    };
+
+    typedef std::list<BUFFERINFO> BUFFERLIST;
     BUFFERLIST m_BufferList;
 
     const PCMFORMAT m_Format;

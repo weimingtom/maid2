@@ -61,7 +61,7 @@ const MoviePlayer::FILEINFO& MoviePlayer::GetFileInfo() const
   return m_FileInfo;
 }
 
-void MoviePlayer::FlushImage( SPSAMPLEIMAGE& pOutput )
+void MoviePlayer::FlushImage( double& time, SPSAMPLEIMAGE& pOutput )
 {
   if( !IsInitialized() ) { return ; }
   if( m_TheoraSerial==DECODER_EMPTY ) { return ; }
@@ -82,9 +82,10 @@ void MoviePlayer::FlushImage( SPSAMPLEIMAGE& pOutput )
   if( SampleList.empty() ) { return ; }
 
   pOutput = boost::static_pointer_cast<SampleImage>(SampleList.back().pSample);
+  time = SampleList.back().BeginTime;
 }
 
-void MoviePlayer::FlushPCM( MemoryBuffer& Output )
+void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
 {
   if( !IsInitialized() ) { return ; }
   if( m_VorbisSerial==DECODER_EMPTY ) { return ; }
@@ -132,6 +133,7 @@ void MoviePlayer::FlushPCM( MemoryBuffer& Output )
       }
     }
   }
+  time = SampleList.back().BeginTime;
 
 
   //  デコードバッファの全長を求める

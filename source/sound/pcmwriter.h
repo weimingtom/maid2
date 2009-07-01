@@ -32,6 +32,7 @@ namespace Maid {
     float GetVolume() const;
 
     void Write( const void* pData, size_t Size );
+    void Write( double time, const void* pData, size_t Size );
 
     bool IsInitialized() const;
 

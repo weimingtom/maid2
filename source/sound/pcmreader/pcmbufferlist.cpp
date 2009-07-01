@@ -55,14 +55,15 @@ size_t  PCMBufferList::Read( void* pDst, size_t size )
   size_t read_length = size;
   unt08* pTarget = (unt08*)pDst;
 
-  std::list<SPMEMORYBUFFER>::iterator ite=m_BufferList.begin();
+  BUFFERLIST::iterator ite=m_BufferList.begin();
 
   while( true )
   {
     if( read_length==0 ) { break; }
     if( ite==m_BufferList.end() ) { break; }
 
-    const SPMEMORYBUFFER& pSrc = (*ite);
+    const BUFFERINFO& info = (*ite);
+    const SPMEMORYBUFFER& pSrc = info.pBuffer;
     const size_t lim = pSrc->GetSize() - m_BufferPosition;  //  このバッファでまだ読んでない量
 
     if( read_length < lim )
@@ -83,14 +84,16 @@ size_t  PCMBufferList::Read( void* pDst, size_t size )
       ite = m_BufferList.erase(ite);
     }
   }
-
+/*
   if( read_length != 0 )
   {
     //  足りない分は無音でも突っ込んでおく
     ZERO( pTarget, read_length );
   }
-
   m_Position += size;
+*/
+  m_Position += size-read_length;
+
   return size;
 }
 
@@ -113,7 +116,7 @@ size_t  PCMBufferList::GetLength()			const
   for( BUFFERLIST::const_iterator ite=m_BufferList.begin();
             ite!=m_BufferList.end(); ++ite )
   {
-    ret += (*ite)->GetSize();
+    ret += (*ite).pBuffer->GetSize();
   }
 
   ret -= m_BufferPosition;
@@ -126,14 +129,36 @@ PCMFORMAT PCMBufferList::GetFormat() const
   return m_Format;
 }
 
-void PCMBufferList::Create( const void* pData, size_t Size )
+void PCMBufferList::Create( size_t time, const void* pData, size_t Size )
 {
+  const size_t len = GetLength();  //  すでに存在しているデータの時間
+
+
   SPMEMORYBUFFER pBuf( new MemoryBuffer );
-  pBuf->Resize(Size);
-  ::memcpy( pBuf->GetPointer(0), pData, Size );
+
+  if( time==~0 || len==time )
+  {
+    pBuf->Resize(Size);
+    ::memcpy( pBuf->GetPointer(0), pData, Size );
+  }
+  else if( len<time )
+  {
+    const size_t sa = time - len;
+    pBuf->Resize(Size+sa);
+    ZERO( pBuf->GetPointer(0), sa );
+    ::memcpy( pBuf->GetPointer(sa), pData, Size );
+  }
+  else if(len>time )
+  {
+    const size_t sa = len - time;
+    pBuf->Resize(Size-sa);
+    ::memcpy( pBuf->GetPointer(0), ((unt08*)pData)+sa, Size-sa );
+  }
+
+
 
   ThreadMutexLocker lock(m_Mutex);
-  m_BufferList.push_back( pBuf );
+  m_BufferList.push_back( BUFFERINFO(time,pBuf) );
 }
 
 
