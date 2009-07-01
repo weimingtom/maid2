@@ -72,25 +72,27 @@ void DrawCommandExecuteD3D09::End()
 
 void DrawCommandExecuteD3D09::ClearDepthStencil( CLEARFLAG flag, float Depth, unt08 Stencil )
 {
-  DWORD f;
-
+  HRESULT ret = S_OK;
   switch( flag )
   {
-  case CLEARFLAG_DEPTH:         { f = D3DCLEAR_ZBUFFER; }break;
-  case CLEARFLAG_STENCIL:       { f = D3DCLEAR_STENCIL; }break;
-  case CLEARFLAG_DEPTHSTENCIL:  { f = D3DCLEAR_ZBUFFER|D3DCLEAR_STENCIL; }break;
+  case CLEARFLAG_DEPTH:
+    {
+      ret = GetDevice()->Clear( 0, NULL, D3DCLEAR_ZBUFFER, 0, Depth, 0 );
+    }break;
+  case CLEARFLAG_STENCIL:
+    {
+      ret = GetDevice()->Clear( 0, NULL, D3DCLEAR_STENCIL, 0, 0, Stencil );
+    }break;
+  case CLEARFLAG_DEPTHSTENCIL: 
+    {
+      ret = GetDevice()->Clear( 0, NULL, D3DCLEAR_ZBUFFER|D3DCLEAR_STENCIL, 0, Depth, Stencil );
+    }break;
   }
 
-  const HRESULT ret = GetDevice()->Clear( 0, NULL, flag, 0, Depth, Stencil );
   if( FAILED(ret) ) 
   {
-    const HRESULT ret = GetDevice()->Clear( 0, NULL, D3DCLEAR_ZBUFFER, 0, Depth, 0 );
-
-    if( FAILED(ret) ) 
-    {
-      MAID_WARNING(MAIDTEXT("IDirect3DDevice9::Clear()")); 
-      return; 
-    }
+    MAID_WARNING(MAIDTEXT("IDirect3DDevice9::Clear()")); 
+    return; 
   }
 }
 

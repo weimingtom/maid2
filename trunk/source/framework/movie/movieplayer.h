@@ -73,8 +73,8 @@ namespace Maid
 
 
     void Play();
-    void FlushImage( SPSAMPLEIMAGE& pOutput );
-    void FlushPCM( MemoryBuffer& Output );
+    void FlushImage( double& time, SPSAMPLEIMAGE& pOutput );
+    void FlushPCM( double& time, MemoryBuffer& Output );
 
     void Seek( double time );
 

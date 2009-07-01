@@ -114,11 +114,19 @@ float PCMWriter::GetVolume() const
 
 void PCMWriter::Write( const void* pData, size_t Size )
 {
+  Write( -1, pData, Size );
+}
+
+void PCMWriter::Write( double time, const void* pData, size_t Size )
+{
   if( !IsInitialized() ) { return ; }
   if( Size==0 ) { return ; }
 
-  m_pBuffer->Create( pData, Size );
+  const size_t t = time<0? ~0 : m_pBuffer->GetFormat().CalcLength(time);
+
+  m_pBuffer->Create( t, pData, Size );
 }
+
 
 bool PCMWriter::IsInitialized() const
 {

@@ -49,9 +49,11 @@ void GraphicsCommandControl::Initialize( const Graphics::SPDRAWCOMMAND& pCommand
  */
 void GraphicsCommandControl::Begin()
 {
+  if( m_BeginCount==0 )
+  {
+    m_pDrawCommand->Begin();
+  }
   ++m_BeginCount;
-  if( 1<m_BeginCount ) { return ; }
-  m_pDrawCommand->Begin();
 }
 
 //! 描画終了の合図
@@ -60,8 +62,10 @@ void GraphicsCommandControl::Begin()
 void GraphicsCommandControl::End()
 {
   --m_BeginCount;
-  if( 1<m_BeginCount ) { return ; }
-  m_pDrawCommand->End();
+  if( m_BeginCount==0 )
+  {
+    m_pDrawCommand->End();
+  }
 }
 
 //! 設定されている RenderTarget を塗りつぶす

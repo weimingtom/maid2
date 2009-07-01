@@ -544,6 +544,16 @@ void	DeviceD3D09::ScreenReset( const D3DPRESENT_PARAMETERS& NewParam )
     ID3D09Object::EscapeAll();
   }
 
+  //  ウィンドウ -> フルスクリーンのときは
+  //  ウィンドウの変更
+  if( !NowFull && NexFull )
+  {
+    m_Window.SetSize( SIZE2DI(NewParam.BackBufferWidth, NewParam.BackBufferHeight) );
+    m_WindowModeStyle = m_Window.GetStyle();
+    m_Window.SetStyle( WS_POPUP );
+    m_Window.SetPosition( m_DefaultDisplayRect.GetPoint() );
+    m_Window.SetZOrder( HWND_TOPMOST );
+  }
 
   D3DPRESENT_PARAMETERS p = NewParam; //  切り替え後に値が変わることもあるのでコピーしておく
   { //  これでやっと解像度変更
@@ -559,23 +569,14 @@ void	DeviceD3D09::ScreenReset( const D3DPRESENT_PARAMETERS& NewParam )
       m_pDevice->Reset( &p );
     }
   }
-  m_Window.SetClientSize( SIZE2DI(p.BackBufferWidth, p.BackBufferHeight) );
 
-  //  ウィンドウ -> フルスクリーンのときは
-  //  ウィンドウの変更
-  if( !NowFull && NexFull )
-  {
-    m_WindowModeStyle = m_Window.GetStyle();
-    m_Window.SetStyle( WS_POPUP );
-    m_Window.SetPosition( m_DefaultDisplayRect.GetPoint() );
-    m_Window.SetZOrder( HWND_TOPMOST );
-  }
   //  フルスクリーン -> ウィンドウのときは
   //  自分のスタイルの変更
-  else if( NowFull && !NexFull )
+  if( NowFull && !NexFull )
   {
     m_Window.SetZOrder( HWND_NOTOPMOST );
     m_Window.SetStyle( m_WindowModeStyle );
+    m_Window.SetClientSize( SIZE2DI(p.BackBufferWidth, p.BackBufferHeight) );
 
     const SIZE2DI window = m_Window.GetSize();
     const SIZE2DI screen = m_DefaultDisplayRect.GetSize();
@@ -583,6 +584,7 @@ void	DeviceD3D09::ScreenReset( const D3DPRESENT_PARAMETERS& NewParam )
     const int y = m_DefaultDisplayRect.y + (screen.h - window.h)/2;
     m_Window.SetPosition( POINT2DI(x,y) );
   }
+
 
   {
     //  で、戻ってきてもらうー
