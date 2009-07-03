@@ -10,7 +10,6 @@ namespace Maid {
       @class  SoundObjectPCMStream soundobjectpcmrealtime.h
       @brief  ストリーム書き込みで再生するクラス
   */
-
 SoundObjectPCMRealTime::SoundObjectPCMRealTime()
   :ISoundObject(TYPE_REALTIME)
 {
@@ -22,19 +21,19 @@ void SoundObjectPCMRealTime::Initialize(  const Sound::SPBUFFER& pBuffer, const 
   m_pBuffer = pBuffer;
   m_pDecoder= pDecoder;
  
-  m_TotalPlayPosition = 0;
-  m_PrevBufferPosition = 0;
-  m_WrittedBufferPosition = 0;
+  m_PlayPosition  = 0;
+  m_OldPosition   = 0;
+  m_WritePosition = 0;
   UpdateBuffer();
 }
 
 void SoundObjectPCMRealTime::Update()
 {
   const size_t bufferpos = m_pBuffer->GetPlayPosition();
-  const size_t delta_len = CalcLength( m_PrevBufferPosition, bufferpos );
+  const size_t delta_len = CalcLength( m_OldPosition, bufferpos );
 
-  m_TotalPlayPosition += delta_len;
-  m_PrevBufferPosition = bufferpos;
+  m_PlayPosition += delta_len;
+  m_OldPosition = bufferpos;
 
   UpdateBuffer(); 
 }
@@ -49,6 +48,7 @@ void SoundObjectPCMRealTime::Play()
 
 void SoundObjectPCMRealTime::Stop()
 {
+
   m_pBuffer->Stop();
 }
 
@@ -80,7 +80,7 @@ bool SoundObjectPCMRealTime::IsPlay()const
 
 double SoundObjectPCMRealTime::GetPosition() const
 {
-  const size_t pos = m_TotalPlayPosition + CalcLength( m_PrevBufferPosition, m_pBuffer->GetPlayPosition() );
+  const size_t pos = m_PlayPosition + CalcLength( m_OldPosition, m_pBuffer->GetPlayPosition() );
 
   return m_pBuffer->GetParam().Format.CalcTime(pos);
 }
@@ -101,46 +101,80 @@ double SoundObjectPCMRealTime::GetVolume() const
   return Math<double>::pow(10,db/20.0f);
 }
 
+
+
+
+
 void SoundObjectPCMRealTime::UpdateBuffer()
 {
-  const size_t decoderlen = m_pDecoder->GetLength();
+//  MAID_WARNING( "UpdateBuffer()--------------------------" );
+  const size_t UPDATESIZE = CalcUpdateScape();
 
-  if( decoderlen==0 ) { return ; }  //  データがないときはスルー
+  if( m_pDecoder->GetLength()==0 ) { return ; }  //  データがないときはスルー
 
-  const size_t writepos  = m_WrittedBufferPosition;
-  const size_t updatesize = CalcUpdateScape();
+//  MAID_WARNING( "UpdateBuffer() 1" );
+  if( m_WritePosition < m_PlayPosition )
+  {
+    //  書き込んだ位置より、すでに再生していたら、シークする
 
-  { //  バッファの更新は、ある程度まとめてやる
-    const size_t sa    = m_pDecoder->GetPosition() - m_TotalPlayPosition;
-    if( updatesize < sa ) { return ; }
+    //m_PlayPosition + UPDATESIZE から書き込みを開始する
+    const size_t pos = m_PlayPosition + std::max(m_PlayPosition-m_WritePosition, UPDATESIZE);
+
+
+    m_pDecoder->SetPosition( pos );
+    m_WritePosition = pos;
+//    MAID_WARNING( "UpdateBuffer() set write " << pos << " play " << m_PlayPosition << " len " << m_pDecoder->GetLength() );
   }
 
+//  MAID_WARNING( "UpdateBuffer() 2" );
+
+  {
+    //  書き込まれたデータが一定量たまっていたら何もしない
+    if( UPDATESIZE < m_WritePosition - m_PlayPosition ) { return ; }
+  }
 
   //  リングバッファにデータを流すのはしんどいので
   //  いったん作ってからやる
-  std::vector<unt08> tmp(updatesize);
+  std::vector<unt08> tmp(UPDATESIZE);
 
   {
-    const size_t len = m_pDecoder->Read( &(tmp[0]), updatesize );
-    if( len<updatesize )
-    {
-      //  足りてなかったら無音を流すようにする
-      //  更新場所を手前にするのもありかな？（追い抜かれたら大変だけど）
-      ZERO( &(tmp[len]), updatesize-len );
-    }
-  }
+    const size_t pos = m_pDecoder->GetPosition();
 
+
+
+    const size_t len = m_pDecoder->Read( &(tmp[0]), tmp.size() );
+    if( len==0 ) { return ; }
+    if( len<tmp.size() )
+    {
+      tmp.resize(len);
+    }
+
+    const size_t writepos = m_WritePosition % m_pBuffer->GetParam().Length;
+//    MAID_WARNING( "Read() pos " << pos << " + " << len << " target " << writepos );
+
+  }
+//  MAID_WARNING( "UpdateBuffer() 3" );
   //  そんでもってながしこむ～
   {
+    const size_t pos = m_WritePosition % m_pBuffer->GetParam().Length;
+
     Sound::IBuffer::LOCKDATA dat;
-    m_pBuffer->Lock( writepos, updatesize, dat );
+    m_pBuffer->Lock( pos, tmp.size(), dat );
     memcpy( dat.pData1, &(tmp[0]), dat.Data1Length );
     if( dat.pData2!=NULL ) { memcpy( dat.pData2, &(tmp[dat.Data1Length]), dat.Data2Length ); }
     m_pBuffer->Unlock( dat );
   }
 
-  m_WrittedBufferPosition += updatesize;
-  m_WrittedBufferPosition %= m_pBuffer->GetParam().Length;
+  const size_t len = m_pBuffer->GetParam().Length;
+  const size_t bufferwrite = m_WritePosition % m_pBuffer->GetParam().Length;
+  const size_t aa = m_pBuffer->GetPlayPosition();
+  const size_t write = m_pBuffer->GetWritePosition();
+//  MAID_WARNING( "UpdateBuffer() " << bufferwrite << " + " << tmp.size() << " pos " << aa << " erite " << write << " len " << len );
+
+
+  m_WritePosition += tmp.size();
+
+
 }
 
 size_t SoundObjectPCMRealTime::CalcLength( size_t prev, size_t now )const
@@ -148,7 +182,7 @@ size_t SoundObjectPCMRealTime::CalcLength( size_t prev, size_t now )const
   size_t ret;
   
   if( prev<=now ) { ret = now-prev; }
-  else { ret = m_pBuffer->GetParam().Length - prev; }
+  else { ret = m_pBuffer->GetParam().Length - prev + now; }
 
   return ret;
 }

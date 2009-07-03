@@ -46,60 +46,119 @@ void PCMBufferList::Clear()
 
 size_t  PCMBufferList::Read( void* pDst, size_t size )
 {
-//  MAID_WARNING("pcmread:" << size );
-
   ThreadMutexLocker lock(m_Mutex);
 
-//  MAID_WARNING( GetCurrentThreadId() << " PCMBufferList::Read():" << size );
-
-  size_t read_length = size;
+  size_t ReadSize = 0;
+  size_t NowPos  = GetPosition();
+  size_t BufferPos = m_BufferPosition;
   unt08* pTarget = (unt08*)pDst;
 
-  BUFFERLIST::iterator ite=m_BufferList.begin();
 
   while( true )
   {
-    if( read_length==0 ) { break; }
-    if( ite==m_BufferList.end() ) { break; }
+    //  データがない場合はその場で終了
+    if( ReadSize==size ) { break; }
+    if( m_BufferList.empty() ) { break; }
 
-    const BUFFERINFO& info = (*ite);
-    const SPMEMORYBUFFER& pSrc = info.pBuffer;
-    const size_t lim = pSrc->GetSize() - m_BufferPosition;  //  このバッファでまだ読んでない量
+    const BUFFERINFO& info = m_BufferList.front();
+    const size_t InfoTime = info.Time + BufferPos;
+    const size_t LimSize  = size - ReadSize;
 
-    if( read_length < lim )
+    if( NowPos < InfoTime )
     {
-      ::memcpy( pTarget, pSrc->GetPointer(m_BufferPosition), read_length );
-
-      m_BufferPosition += read_length;
-      read_length = 0;
-      break;
+      //  データが未来にしかないなら、無音をはさむ
+      const size_t muon = std::min(LimSize,InfoTime - NowPos);
+//  MAID_WARNING( "Read() 無音 " << muon );
+      ZERO( pTarget, muon );
+      pTarget += muon;
+      NowPos  += muon;
+      ReadSize+= muon;
+    }
+    else if( InfoTime < NowPos )
+    {
+      const size_t sa = NowPos - InfoTime;
+      const size_t MaxByte = info.pBuffer->GetSize()-BufferPos;
+//  MAID_WARNING( "Read() スキップ sa " << sa << " MaxByte " << MaxByte );
+      if( MaxByte <= sa )
+      {
+        m_BufferList.pop_front();
+        BufferPos = 0;
+      }else
+      {
+        BufferPos += sa;
+      }
     }
     else
     {
-      ::memcpy( pTarget, pSrc->GetPointer(m_BufferPosition), lim );
-      pTarget += lim;
-      read_length -= lim;
+      //  info.pBuffer[BufferPos] からコピー開始
+      const size_t MaxByte = info.pBuffer->GetSize()-BufferPos;
+      const size_t p = std::min( LimSize, MaxByte );
 
-      m_BufferPosition = 0;
-      ite = m_BufferList.erase(ite);
+//  MAID_WARNING( "Read() コピー " << p );
+      ::memcpy( pTarget, info.pBuffer->GetPointer(BufferPos), p );
+      pTarget += p;
+      NowPos  += p;
+      ReadSize+= p;
+      BufferPos += p;
+
+      if( BufferPos==info.pBuffer->GetSize() )
+      {
+        m_BufferList.pop_front();
+        BufferPos = 0;
+      }
     }
   }
-/*
-  if( read_length != 0 )
-  {
-    //  足りない分は無音でも突っ込んでおく
-    ZERO( pTarget, read_length );
-  }
-  m_Position += size;
-*/
-  m_Position += size-read_length;
 
-  return size;
+//  MAID_WARNING( "Read() end pos " << NowPos );
+
+  m_Position = NowPos;
+  m_BufferPosition = BufferPos;
+
+  return ReadSize;
 }
 
 void    PCMBufferList::SetPosition( size_t Offset )
 {
+  ThreadMutexLocker lock(m_Mutex);
+
+//  MAID_WARNING( "SetPosition() " << Offset << " now " << m_Position );
+
+  if( m_Position==Offset ) { return ; }
+
+  //  過去に進む場合は全消去
+  if( Offset < m_Position )
+  {
+    m_BufferList.clear();
+  }
+  else
+  {
+    //  新しい時間のデータがあるなら、そこまで削る
+    for( BUFFERLIST::iterator ite=m_BufferList.begin(); ite!=m_BufferList.end(); )
+    {
+      BUFFERINFO& info = *ite;
+      const size_t begin = info.Time;
+      const size_t end   = begin + info.pBuffer->GetSize();
+
+      if( begin<=Offset && Offset<end )
+      {
+        const size_t pos = Offset - begin;
+        void* pDst = info.pBuffer->GetPointer(0);
+        void* pSrc = info.pBuffer->GetPointer(pos);
+        const size_t size = info.pBuffer->GetSize() - pos;
+
+        ::memmove( pDst, pSrc, size );
+        info.Time = Offset;
+        info.pBuffer->Resize(size);
+        break;
+      }else
+      {
+        m_BufferList.pop_front();
+      }
+    }
+  }
+
   m_Position = Offset;
+  m_BufferPosition = 0;
 }
 
 size_t  PCMBufferList::GetPosition()		const
@@ -111,17 +170,11 @@ size_t  PCMBufferList::GetLength()			const
 {
   ThreadMutexLocker lock(const_cast<PCMBufferList*>(this)->m_Mutex);
 
-  size_t ret = m_Position;
+  if( m_BufferList.empty() ) { return m_Position; }
 
-  for( BUFFERLIST::const_iterator ite=m_BufferList.begin();
-            ite!=m_BufferList.end(); ++ite )
-  {
-    ret += (*ite).pBuffer->GetSize();
-  }
+  const BUFFERINFO& info = m_BufferList.back();
 
-  ret -= m_BufferPosition;
-
-  return ret;
+  return info.Time + info.pBuffer->GetSize();
 }
 
 PCMFORMAT PCMBufferList::GetFormat() const
@@ -131,33 +184,13 @@ PCMFORMAT PCMBufferList::GetFormat() const
 
 void PCMBufferList::Create( size_t time, const void* pData, size_t Size )
 {
-  const size_t len = GetLength();  //  すでに存在しているデータの時間
-
+  ThreadMutexLocker lock(m_Mutex);
 
   SPMEMORYBUFFER pBuf( new MemoryBuffer );
 
-  if( time==~0 || len==time )
-  {
-    pBuf->Resize(Size);
-    ::memcpy( pBuf->GetPointer(0), pData, Size );
-  }
-  else if( len<time )
-  {
-    const size_t sa = time - len;
-    pBuf->Resize(Size+sa);
-    ZERO( pBuf->GetPointer(0), sa );
-    ::memcpy( pBuf->GetPointer(sa), pData, Size );
-  }
-  else if(len>time )
-  {
-    const size_t sa = len - time;
-    pBuf->Resize(Size-sa);
-    ::memcpy( pBuf->GetPointer(0), ((unt08*)pData)+sa, Size-sa );
-  }
+  pBuf->Resize(Size);
+  ::memcpy( pBuf->GetPointer(0), pData, Size );
 
-
-
-  ThreadMutexLocker lock(m_Mutex);
   m_BufferList.push_back( BUFFERINFO(time,pBuf) );
 }
 

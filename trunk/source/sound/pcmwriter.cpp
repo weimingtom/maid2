@@ -8,7 +8,7 @@ namespace Maid {
 PCMWriter::PCMWriter()
   :m_IsPlay(false)
   ,m_Volume(1)
-  ,m_Position(0)
+  ,m_AddTime(0)
 {
 
 }
@@ -40,6 +40,7 @@ void PCMWriter::Initialize( const PCMFORMAT& fmt, float BufferSize )
 
   SetVolume( m_Volume );
 
+  m_AddTime = 0;
 }
 
 void PCMWriter::Finalize()
@@ -53,7 +54,6 @@ void PCMWriter::Finalize()
 
   m_IsPlay = false;
   m_Volume = 1;
-  m_Position = 0;
 }
 
 void PCMWriter::Play()
@@ -122,9 +122,18 @@ void PCMWriter::Write( double time, const void* pData, size_t Size )
   if( !IsInitialized() ) { return ; }
   if( Size==0 ) { return ; }
 
-  const size_t t = time<0? ~0 : m_pBuffer->GetFormat().CalcLength(time);
+  if( time<0 )
+  {
+    m_pBuffer->Create( m_AddTime, pData, Size );
+    m_AddTime += Size;
+  }else
+  {
+    const size_t t = m_pBuffer->GetFormat().CalcLength(time);
+    if( t < m_AddTime ) { return ; }  //  昔のデータを加えるのはまずい
 
-  m_pBuffer->Create( t, pData, Size );
+    m_pBuffer->Create( t, pData, Size );
+    m_AddTime = t;
+  }
 }
 
 
