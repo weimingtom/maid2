@@ -39,7 +39,6 @@ namespace Maid
       size_t         Time;    //  データ再生開始位置(負数で前回から連続してる)
       SPMEMORYBUFFER pBuffer;
 
-      BUFFERINFO():Time(-1){}
       BUFFERINFO( size_t t, const SPMEMORYBUFFER& p ):Time(t),pBuffer(p) {}
     };
 

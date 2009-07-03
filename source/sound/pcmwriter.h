@@ -43,7 +43,7 @@ namespace Maid {
 
     bool  m_IsPlay;
     float m_Volume;
-    float m_Position;
+    size_t m_AddTime; //  今までに加えた時間(バイト単位)
   };
 }
 

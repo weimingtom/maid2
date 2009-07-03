@@ -133,7 +133,7 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
       }
     }
   }
-  time = SampleList.back().BeginTime;
+  time = SampleList.front().BeginTime;
 
 
   //  デコードバッファの全長を求める
