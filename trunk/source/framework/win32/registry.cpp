@@ -19,8 +19,8 @@ namespace Maid
 /*!	
  */
 Registry::Registry()
+  :m_hKey(NULL)
 {
-  m_hKey = NULL;
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -41,7 +41,7 @@ Registry::~Registry()
 
   @exception Exception オープンに失敗した場合
  */
-void Registry::Open( HKEY hKey, const String& SubKey )
+FUNCTIONRESULT Registry::Open( HKEY hKey, const String& SubKey )
 {
   Close();
 
@@ -49,8 +49,10 @@ void Registry::Open( HKEY hKey, const String& SubKey )
 
   if( ::RegOpenKeyEx( hKey, unicode_sub.c_str(), 0, KEY_ALL_ACCESS, &m_hKey )!=ERROR_SUCCESS ) 
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegOpenKeyEx()"));
+    return FUNCTIONRESULT_ERROR;
   }
+
+  return FUNCTIONRESULT_OK;
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -62,7 +64,7 @@ void Registry::Open( HKEY hKey, const String& SubKey )
   @exception Exception  キーを作成して、オープンに失敗した場合
                         キーが存在していて、オープンに失敗した場合
  */
-void Registry::Create( HKEY hKey, const String& SubKey )
+FUNCTIONRESULT Registry::Create( HKEY hKey, const String& SubKey )
 {
   Close();
   const std::wstring unicode_sub = String::ConvertMAIDtoUNICODE(SubKey);
@@ -72,8 +74,9 @@ void Registry::Create( HKEY hKey, const String& SubKey )
   const LONG code = ::RegCreateKeyEx( hKey, unicode_sub.c_str(), 0, L"", REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &m_hKey, &ret );
   if( code!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegCreateKeyEx()"));
+    return FUNCTIONRESULT_ERROR;
   }
+  return FUNCTIONRESULT_OK;
 }
 
 
@@ -85,16 +88,18 @@ void Registry::Create( HKEY hKey, const String& SubKey )
 
     @exception Exception 関数の失敗時
  */
-void Registry::SetValue( const String& Name, unt32 Data )
+FUNCTIONRESULT Registry::SetValue( const String& Name, unt32 Data )
 {
   MAID_ASSERT( m_hKey==NULL, "キーを開いていません" );
-  if( m_hKey==NULL ) { return ; }
+  if( m_hKey==NULL ) { return FUNCTIONRESULT_OK; }
 
   const std::wstring unicode_name = String::ConvertMAIDtoUNICODE(Name);
-  if( ::RegSetValueEx( m_hKey, unicode_name.c_str(), 0, REG_DWORD, (BYTE*)&Data, sizeof(Data) )!=ERROR_SUCCESS ) 
+  const LONG code = ::RegSetValueEx( m_hKey, unicode_name.c_str(), 0, REG_DWORD, (BYTE*)&Data, sizeof(Data) );
+  if( code!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegSetValueEx()"));
+    return FUNCTIONRESULT_ERROR;
   }
+  return FUNCTIONRESULT_OK;
 }
 
 
@@ -106,17 +111,19 @@ void Registry::SetValue( const String& Name, unt32 Data )
 
     @exception exception 関数の失敗時
  */
-void Registry::SetValue( const String& Name, const String& Data )
+FUNCTIONRESULT Registry::SetValue( const String& Name, const String& Data )
 {
   MAID_ASSERT( m_hKey==NULL, "キーを開いていません" );
-  if( m_hKey==NULL ) { return ; }
+  if( m_hKey==NULL ) { return FUNCTIONRESULT_OK; }
 
   const std::wstring unicode_name = String::ConvertMAIDtoUNICODE(Name);
   const std::wstring unicode_data = String::ConvertMAIDtoUNICODE(Data);
-  if( ::RegSetValueEx( m_hKey, unicode_name.c_str(), 0, REG_SZ, (BYTE*)unicode_data.c_str(), (DWORD)unicode_data.length()+1 )!=ERROR_SUCCESS ) 
+  const LONG code = ::RegSetValueEx( m_hKey, unicode_name.c_str(), 0, REG_SZ, (BYTE*)unicode_data.c_str(), (DWORD)unicode_data.length()*sizeof(wchar_t) );
+  if( code!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegSetValueEx()"));
+    return FUNCTIONRESULT_ERROR;
   }
+  return FUNCTIONRESULT_OK;
 }
 
 
@@ -129,16 +136,18 @@ void Registry::SetValue( const String& Name, const String& Data )
 
     @exception CException 関数の失敗時
  */
-void Registry::SetValue( const String& Name, const void* pData, unt32 Length )
+FUNCTIONRESULT Registry::SetValue( const String& Name, const void* pData, unt32 Length )
 {
   MAID_ASSERT( m_hKey==NULL, "キーを開いていません" );
-  if( m_hKey==NULL ) { return ; }
+  if( m_hKey==NULL ) { return FUNCTIONRESULT_OK; }
 
   const std::wstring unicode_name = String::ConvertMAIDtoUNICODE(Name);
-  if( ::RegSetValueEx( m_hKey, unicode_name.c_str(), 0, REG_BINARY, (BYTE*)pData, Length+1 )!=ERROR_SUCCESS )
+  const LONG code = ::RegSetValueEx( m_hKey, unicode_name.c_str(), 0, REG_BINARY, (BYTE*)pData, Length+1 );
+  if( code!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegSetValueEx()"));
+    return FUNCTIONRESULT_ERROR;
   }
+  return FUNCTIONRESULT_OK;
 }
 
 
@@ -162,12 +171,12 @@ void Registry::GetValue( const String& Name, unt32& Data )
 
   if( ::RegQueryValueEx( m_hKey, unicode_name.c_str(), NULL, &dwKeyType, (BYTE*)&dwKeyData, &dwKeyBuffLen )!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegQueryValueEx()"));
+    return ;
   }
 
   if( dwKeyType!=REG_DWORD ) 
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("dwKeyType!=REG_DWORD"));
+    return ;
   }
   Data = dwKeyData;
 }
@@ -193,11 +202,11 @@ void Registry::GetValue( const String& Name, String& Data )
 
   if( ::RegQueryValueEx( m_hKey, unicode_name.c_str(), NULL, &dwKeyType, NULL, &dwKeyBuffLen )!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegQueryValueEx()"));
+    return ;
   }
   if( dwKeyType!=REG_SZ )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("dwKeyType!=REG_SZ"));
+    return ;
   }
 
   std::wstring s;
@@ -205,7 +214,7 @@ void Registry::GetValue( const String& Name, String& Data )
 
   if( ::RegQueryValueEx( m_hKey, unicode_name.c_str(), NULL, &dwKeyType, (BYTE*)s.data(), &dwKeyBuffLen )!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegQueryValueEx()"));
+    return ;
   }
 
   Data = String::ConvertUNICODEtoMAID(s);
@@ -233,18 +242,18 @@ void Registry::GetValue( const String& Name, boost::shared_array<unt08>& pData, 
 
   if( ::RegQueryValueEx( m_hKey, unicode_name.c_str(), NULL, &dwKeyType, NULL, &dwKeyBuffLen )!=ERROR_SUCCESS )
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegQueryValueEx()"));
+    return ;
   }
   if( dwKeyType!=REG_BINARY ) 
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("dwKeyType!=REG_BINARY"));
+    return ;
   }
 
   pData.reset( new unt08[dwKeyBuffLen] );
 
   if( ::RegQueryValueEx( m_hKey, unicode_name.c_str(), NULL, &dwKeyType, pData.get(), &dwKeyBuffLen )!=ERROR_SUCCESS ) 
   {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegQueryValueEx()"));
+    return ;
   }
   Length = dwKeyBuffLen;
 }
@@ -262,10 +271,7 @@ void Registry::DeleteValue( const String& ValueName )
   if( m_hKey==NULL ) { return ; }
 
   const std::wstring unicode_name = String::ConvertMAIDtoUNICODE(ValueName);
-  if( ::RegDeleteValue( m_hKey, unicode_name.c_str() )!=ERROR_SUCCESS ) 
-  {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegDeleteValue()"));
-  }
+  ::RegDeleteValue( m_hKey, unicode_name.c_str() );
 }
 
 
@@ -294,10 +300,7 @@ void Registry::Close()
 void Registry::DeleteKey( HKEY hKey, const String& SubKey )
 {
   const std::wstring unicode_key = String::ConvertMAIDtoUNICODE(SubKey);
-  if( ::RegDeleteKey( hKey, unicode_key.c_str() )!=ERROR_SUCCESS ) 
-  {
-    MAID_THROWEXCEPTION(MAIDTEXT("RegDeleteKey()"));
-  }
+  ::RegDeleteKey( hKey, unicode_key.c_str() );
 }
 
 

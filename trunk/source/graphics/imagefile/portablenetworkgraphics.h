@@ -16,8 +16,8 @@ namespace Maid
 	namespace PNG
 	{
     bool  Check( const std::vector<unt08>& FileImage );
-    FUCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst );
-    FUCTIONRESULT  Save( const String& FileName, const SurfaceInstance& src );
+    FUNCTIONRESULT  Load( const std::vector<unt08>& FileImage, SurfaceInstance& dst );
+    FUNCTIONRESULT  Save( const String& FileName, const SurfaceInstance& src );
 	};
 }
 

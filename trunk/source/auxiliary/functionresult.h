@@ -9,14 +9,14 @@
 
 namespace Maid
 {
-  enum FUCTIONRESULT
+  enum FUNCTIONRESULT
   {
-    FUCTIONRESULT_ERROR,    //  関数が失敗
-    FUCTIONRESULT_OK,       //  関数が正常に動いた
+    FUNCTIONRESULT_ERROR,    //  関数が失敗
+    FUNCTIONRESULT_OK,       //  関数が正常に動いた
   };
 
-  inline bool FUCTIONRESULT_FAILE( FUCTIONRESULT v ) { return v==FUCTIONRESULT_ERROR; }
-  inline bool FUCTIONRESULT_SUCESS( FUCTIONRESULT v ) { return !FUCTIONRESULT_FAILE(v); }
+  inline bool FUNCTIONRESULT_FAILE( FUNCTIONRESULT v ) { return v==FUNCTIONRESULT_ERROR; }
+  inline bool FUNCTIONRESULT_SUCESS( FUNCTIONRESULT v ) { return !FUNCTIONRESULT_FAILE(v); }
 
 }
 

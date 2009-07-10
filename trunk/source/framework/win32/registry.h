@@ -11,6 +11,7 @@
 #include"../../auxiliary/macro.h"
 #include"../../auxiliary/string.h"
 #include"../../auxiliary/exception.h"
+#include"../../auxiliary/functionresult.h"
 
 #include<boost/smart_ptr.hpp>
 
@@ -22,12 +23,13 @@ namespace Maid
     Registry();
     ~Registry();
 
-    void Open( HKEY hKey, const String& SubKey );
-    void Create( HKEY hKey, const String& SubKey );
+    FUNCTIONRESULT Open( HKEY hKey, const String& SubKey );
+    FUNCTIONRESULT Create( HKEY hKey, const String& SubKey );
+    void Close();
 
-    void SetValue( const String& Name, unt32 Data );
-    void SetValue( const String& Name, const String& Data );
-    void SetValue( const String& Name, const void* pData, unt32 Length );
+    FUNCTIONRESULT SetValue( const String& Name, unt32 Data );
+    FUNCTIONRESULT SetValue( const String& Name, const String& Data );
+    FUNCTIONRESULT SetValue( const String& Name, const void* pData, unt32 Length );
 
     void GetValue( const String& Name, unt32& Data );
     void GetValue( const String& Name, String& Data );
@@ -37,9 +39,8 @@ namespace Maid
 
     static void DeleteKey( HKEY hKey, const String& SubKey );
     static void DeleteValue( HKEY hKey, const String& SubKey, const String& ValueName );
-  private:
-    void  Close();
 
+  private:
     HKEY  m_hKey;
   };
 }

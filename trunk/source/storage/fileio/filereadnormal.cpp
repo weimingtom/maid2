@@ -155,7 +155,7 @@ void FileReadNormal::Seek( IFileRead::POSITION Pos, int Size)
  */
 void FileReadNormal::Close()
 {
-  if( IsOpen() ) { return ; }
+  if( !IsOpen() ) { return ; }
 
   if( m_Handle!=NULL )
   {

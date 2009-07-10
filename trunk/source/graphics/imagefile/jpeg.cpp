@@ -152,7 +152,7 @@ my_error_exit (j_common_ptr cinfo)
     @param	FileImage	[i ]  ファイル名
     @param	dst       [i ]  転送先
  */
-FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
+FUNCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
 {
 
 	my_error_mgr jerr;
@@ -204,17 +204,17 @@ FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surf
 	jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 
-  return FUCTIONRESULT_OK;
+  return FUNCTIONRESULT_OK;
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! 読み込んであるサーフェスをビットマップとして保存する
 /*!
  */
-FUCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
+FUNCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
 {
   MAID_ASSERT( true, "未実装" );
-  return FUCTIONRESULT_OK;
+  return FUNCTIONRESULT_OK;
 }
 
   }

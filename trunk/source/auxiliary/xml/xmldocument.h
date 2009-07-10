@@ -16,7 +16,7 @@ namespace Maid
 	class XMLDocument
 	{
 	public:
-    FUCTIONRESULT Parse( const std::string& TextImage );
+    FUNCTIONRESULT Parse( const std::string& TextImage );
 
 		XMLNode& GetRoot();
 		const XMLNode& GetRoot() const;

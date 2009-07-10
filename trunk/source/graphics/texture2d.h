@@ -57,8 +57,8 @@ namespace Maid
       void Execute( const IJobInput& Input, IJobOutput& Output );
 
     private:
-      FUCTIONRESULT LoadImage( const String& filename, std::vector<SurfaceInstance>& dst );
-      FUCTIONRESULT ConvertSubResource( const std::vector<SurfaceInstance>& src, std::vector<SurfaceInstance>& dst );
+      FUNCTIONRESULT LoadImage( const String& filename, std::vector<SurfaceInstance>& dst );
+      FUNCTIONRESULT ConvertSubResource( const std::vector<SurfaceInstance>& src, std::vector<SurfaceInstance>& dst );
       void GenerateSublevel( std::vector<SurfaceInstance>& target );
     };
   }
