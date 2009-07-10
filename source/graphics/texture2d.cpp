@@ -21,8 +21,8 @@ namespace Maid
       std::vector<SurfaceInstance> ImageSurface;
       {
         ImageSurface.reserve( 13 );  //  4096x4096 - 1x1 までの配列が 13 なのでそれぐらいあればいいでしょう
-        const FUCTIONRESULT ret = LoadImage( in.FileName, ImageSurface );
-        if( FUCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("失敗") << in.FileName ) return ; }
+        const FUNCTIONRESULT ret = LoadImage( in.FileName, ImageSurface );
+        if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("失敗") << in.FileName ) return ; }
 
         if( in.Core->IsTextureMipMap() && ImageSurface.size()==1 )
         {
@@ -115,20 +115,20 @@ namespace Maid
       out.ImageFormat = ImageSurface[0].GetPixelFormat();
     }
 
-    FUCTIONRESULT tex2dFunction::LoadImage( const String& filename, std::vector<SurfaceInstance>& dst )
+    FUNCTIONRESULT tex2dFunction::LoadImage( const String& filename, std::vector<SurfaceInstance>& dst )
     {
       FileReaderSync  hFile;
 
       {
         const bool ret = hFile.Open( filename );
-        if( ret ) { MAID_WARNING( MAIDTEXT("オープンに失敗") ); return FUCTIONRESULT_ERROR; }
+        if( ret ) { MAID_WARNING( MAIDTEXT("オープンに失敗") ); return FUNCTIONRESULT_ERROR; }
       }
 
       std::vector<unt08> image( hFile.GetSize() );
 
       {
         const size_t ret = hFile.Read( &(image[0]), image.size() );
-        if( ret!=image.size() ) { MAID_WARNING( MAIDTEXT("読み込みに失敗") ); return FUCTIONRESULT_ERROR; }
+        if( ret!=image.size() ) { MAID_WARNING( MAIDTEXT("読み込みに失敗") ); return FUNCTIONRESULT_ERROR; }
       }
 
       { //  ファイルフォーマットを調べて読み込み開始
@@ -136,29 +136,29 @@ namespace Maid
         if( Bitmap::Check( image ) ) 
         {
           dst.resize(1);
-          const FUCTIONRESULT ret = Bitmap::Load( image, dst[0] ); 
-          if( FUCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("bitmap失敗") ); return FUCTIONRESULT_ERROR; }
+          const FUNCTIONRESULT ret = Bitmap::Load( image, dst[0] ); 
+          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("bitmap失敗") ); return FUNCTIONRESULT_ERROR; }
         }
         else if( PNG::Check( image ) ) 
         {
           dst.resize(1);
-          const FUCTIONRESULT ret = PNG::Load( image, dst[0] ); 
-          if( FUCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("png失敗") ); return FUCTIONRESULT_ERROR; }
+          const FUNCTIONRESULT ret = PNG::Load( image, dst[0] ); 
+          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("png失敗") ); return FUNCTIONRESULT_ERROR; }
         }
         else if( Jpeg::Check( image ) ) 
         {
           dst.resize(1);
-          const FUCTIONRESULT ret = Jpeg::Load( image, dst[0] ); 
-          if( FUCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("jpeg失敗") ); return FUCTIONRESULT_ERROR; }
+          const FUNCTIONRESULT ret = Jpeg::Load( image, dst[0] ); 
+          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("jpeg失敗") ); return FUNCTIONRESULT_ERROR; }
         }
 
         #pragma  COMPILERMSG( "TODO:のこり psd,gif,tga...ぐらいか？" )
       }
 
-      return FUCTIONRESULT_OK;
+      return FUNCTIONRESULT_OK;
     }
 
-    FUCTIONRESULT tex2dFunction::ConvertSubResource( const std::vector<SurfaceInstance>& SrcImage, std::vector<SurfaceInstance>& DstImage  )
+    FUNCTIONRESULT tex2dFunction::ConvertSubResource( const std::vector<SurfaceInstance>& SrcImage, std::vector<SurfaceInstance>& DstImage  )
     {
       for( int i=0; i<(int)DstImage.size(); ++i )
       {
@@ -204,7 +204,7 @@ namespace Maid
           }
         }
       }
-      return FUCTIONRESULT_OK;
+      return FUNCTIONRESULT_OK;
     }
 
     void tex2dFunction::GenerateSublevel( std::vector<SurfaceInstance>& target )

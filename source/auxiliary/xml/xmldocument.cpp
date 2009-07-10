@@ -160,7 +160,7 @@ namespace Maid
 	 	@brief	XMLでごにょごにょするときにベースとなるクラス
 	 */
 
-FUCTIONRESULT XMLDocument::Parse( const std::string& TextImage )
+FUNCTIONRESULT XMLDocument::Parse( const std::string& TextImage )
 {
   //  本当はちゃんと変換しないとまずい。
   const String Text = String::ConvertSJIStoMAID(TextImage);
@@ -236,7 +236,7 @@ FUCTIONRESULT XMLDocument::Parse( const std::string& TextImage )
 	//	スタックが０でない＝＝閉じタグの個数が合ってない
   MAID_ASSERT( !NodeStack.empty(), MAIDTEXT("閉じタグの個数が合ってない") );
 
-  return FUCTIONRESULT_OK;
+  return FUNCTIONRESULT_OK;
 }
 
 XMLNode& XMLDocument::GetRoot()

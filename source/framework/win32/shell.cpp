@@ -95,10 +95,17 @@ String GetProgramFilesFolder( HWND hWnd )
 
     @return デスクトップ のパス名
  */
-String GetDeskTopFolder( HWND hWnd )
+String GetUserDeskTopFolder( HWND hWnd )
 {
   return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_DESKTOPDIRECTORY );
 }
+
+String GetCommonDeskTopFolder( HWND hWnd )
+{
+  return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_COMMON_DESKTOPDIRECTORY );
+}
+
+
 
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -109,10 +116,16 @@ String GetDeskTopFolder( HWND hWnd )
  
     @return Program Menu のパス名
  */
-String GetProgramMenuFolder( HWND hWnd )
+String GetUserProgramMenuFolder( HWND hWnd )
 {
 	return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_PROGRAMS );
 }
+
+String GetCommonProgramMenuFolder( HWND hWnd )
+{
+  return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_COMMON_PROGRAMS );
+}
+
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! AppData ディレクトリを探す
@@ -122,9 +135,14 @@ String GetProgramMenuFolder( HWND hWnd )
 
     @return Program Menu のパス名
  */
-String GetApplicationDataFolder( HWND hWnd )
+String GetUserApplicationDataFolder( HWND hWnd )
 {
 	return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_APPDATA );
+}
+
+String GetCommonApplicationDataFolder( HWND hWnd )
+{
+	return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_COMMON_APPDATA );
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -135,7 +153,7 @@ String GetApplicationDataFolder( HWND hWnd )
 
     @return Program Menu のパス名
  */
-String GetMyDocumentsFolder( HWND hWnd )
+String GetUserMyDocumentsFolder( HWND hWnd )
 {
 	return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_PERSONAL );
 }
@@ -199,7 +217,7 @@ void SetCurrentDirectory( const String& FilePath )
 
     @exception CException ショートカットの作成に失敗した場合
  */
-void CreateShortCut( const String& ShortCutPath, const String& TargetPath, const String& CommandLine )
+FUNCTIONRESULT CreateShortCut( const String& ShortCutPath, const String& TargetPath, const String& CommandLine )
 {
   const std::wstring unicode_shorcut = String::ConvertMAIDtoUNICODE(ShortCutPath);
   const std::wstring unicode_target  = String::ConvertMAIDtoUNICODE(TargetPath);
@@ -214,7 +232,7 @@ void CreateShortCut( const String& ShortCutPath, const String& TargetPath, const
   if( !CommandLine.empty() )
   {
     const HRESULT ret = pShellLink->SetArguments( unicode_command.c_str() ); 
-    if( FAILED(ret) ) { MAID_THROWEXCEPTION(MAIDTEXT("IShellLink->SetArguments()に失敗")); }
+    if( FAILED(ret) ) { return FUNCTIONRESULT_ERROR; }
   }
 
   {
@@ -228,8 +246,10 @@ void CreateShortCut( const String& ShortCutPath, const String& TargetPath, const
     pShellLink.QueryInterface(IID_IPersistFile, pPersistFile);
 
     const HRESULT ret = pPersistFile->Save(unicode_shorcut.c_str(),TRUE);
-    if( FAILED(ret) ) { MAID_THROWEXCEPTION(MAIDTEXT("IPersistFile->Save()に失敗")); }
+    if( FAILED(ret) ) { return FUNCTIONRESULT_ERROR; }
   }
+
+  return FUNCTIONRESULT_OK;
 }
 
 
@@ -290,15 +310,16 @@ unt	GetFileSize( const String& FilePath )
 
     @exception Exception コピーに失敗した場合
  */
-void CopyFile( const String& SrcPath, const String& DstPath )
+FUNCTIONRESULT CopyFile( const String& SrcPath, const String& DstPath )
 {
   const std::wstring src = String::ConvertMAIDtoUNICODE(SrcPath);
   const std::wstring dst = String::ConvertMAIDtoUNICODE(DstPath);
 
   if( ::CopyFile( src.c_str(), dst.c_str(), FALSE )==0 ) 
   {
-    MAID_THROWEXCEPTION(SrcPath + MAIDTEXT("->") + DstPath + MAIDTEXT("のコピーに失敗") ); 
+    return FUNCTIONRESULT_ERROR;
   }
+  return FUNCTIONRESULT_OK;
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -308,27 +329,29 @@ void CopyFile( const String& SrcPath, const String& DstPath )
 
     @exception Exception 削除に失敗した場合
  */
-void DeleteFile( const String& FileName )
+FUNCTIONRESULT DeleteFile( const String& FileName )
 {
   const std::wstring src = String::ConvertMAIDtoUNICODE(FileName);
 
-  if( ::PathFileExists(src.c_str())==0 ) { return ; }
+  if( ::PathFileExists(src.c_str())==0 ) { return FUNCTIONRESULT_OK; }
 
   if( ::DeleteFile(src.c_str())==0 ) 
   {
-    MAID_THROWEXCEPTION(FileName + MAIDTEXT("の削除に失敗") ); 
+    return FUNCTIONRESULT_ERROR;
   }
+  return FUNCTIONRESULT_OK;
 }
 
-void DeleteDirectory( const String& DirectoryName )
+FUNCTIONRESULT DeleteDirectory( const String& DirectoryName )
 {
   const std::wstring src = String::ConvertMAIDtoUNICODE(DirectoryName);
-  if( ::PathIsDirectory(src.c_str())==0 ) { return ; }
+  if( ::PathIsDirectory(src.c_str())==0 ) { return FUNCTIONRESULT_OK; }
 
   if( ::RemoveDirectory(src.c_str())==0 ) 
   {
-    MAID_THROWEXCEPTION(DirectoryName + MAIDTEXT("の削除に失敗") ); 
+    return FUNCTIONRESULT_ERROR;
   }
+  return FUNCTIONRESULT_OK;
 }
 
 
@@ -382,6 +405,13 @@ String GetLastErrorString()
   return str;
 }
 
+int MessageBox( HWND hWnd, const String& Text, const String& Caption, UINT Type )
+{
+  const std::wstring text_sjis = String::ConvertMAIDtoUNICODE(Text);
+  const std::wstring caption_sjis = String::ConvertMAIDtoUNICODE(Caption);
+
+  return ::MessageBox( hWnd, text_sjis.c_str(), caption_sjis.c_str(), Type );
+}
 
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -440,7 +470,11 @@ WINDOWSVERSION	GetWindowsVersion()
     }
     else if( ver.dwMajorVersion==6 )
     {
-      return WINDOWSVERSION_VISTA;
+      switch( ver.dwMinorVersion )
+      {
+      case 0: { return WINDOWSVERSION_VISTA; }break;
+      case 1: { return WINDOWSVERSION_7; }break;
+      }    
     }
     else if( ver.dwMajorVersion<5 )
     {
@@ -631,7 +665,7 @@ FINDOBJECTLIST PickupFile( const String& Path, const SPPICKUPFILEFILTER& pFilter
 
 
   hFind = ::FindFirstFile( unicode_path.c_str(), &Filedata );
-  if( hFind==INVALID_HANDLE_VALUE ) { MAID_THROWEXCEPTION(MAIDTEXT("初期化に失敗")); }
+  if( hFind==INVALID_HANDLE_VALUE ) { return FINDOBJECTLIST(); }
 
   if( pFilter->IsPassage( FindObject(Filedata) ) )
   {

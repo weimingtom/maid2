@@ -31,7 +31,7 @@ bool  Check( const std::vector<unt08>& FileImage )
     @param	FileImage	[i ]  ファイル名
     @param	dst       [i ]  転送先
  */
-FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
+FUNCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
 {
   MAID_ASSERT( !Check(FileImage), "ビットマップではありません" );
 
@@ -67,7 +67,7 @@ FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surf
 		default: 
       {
         MAID_WARNING( MAIDTEXT("識別できないピクセルフォーマットです ") << pBmpInfo->biBitCount );
-        return FUCTIONRESULT_ERROR;
+        return FUNCTIONRESULT_ERROR;
       }break;
 		}
 		
@@ -104,11 +104,11 @@ FUCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surf
 		}
 	}
 
-  return FUCTIONRESULT_OK;
+  return FUNCTIONRESULT_OK;
 }
 
 
-FUCTIONRESULT  CheckSave( const SurfaceInstance& src, std::vector<unt08>& FileImage )
+FUNCTIONRESULT  CheckSave( const SurfaceInstance& src, std::vector<unt08>& FileImage )
 {
 
   PIXELFORMAT fmt = PIXELFORMAT_NONE;
@@ -157,7 +157,7 @@ FUCTIONRESULT  CheckSave( const SurfaceInstance& src, std::vector<unt08>& FileIm
     フォーマットはビットマップの仕様を満たしていると仮定します
     満たしているかわからないなら CheckSave() を使ってください
  */
-FUCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
+FUNCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
 {
 	const SIZE2DI ImageSize = src.GetSize();
 	const PIXELFORMAT fmt = src.GetPixelFormat();
@@ -211,7 +211,7 @@ FUCTIONRESULT Save( const SurfaceInstance& src, std::vector<unt08>& FileImage )
     pCurrentPos += FilePitch;
 	}
 
-  return FUCTIONRESULT_OK;
+  return FUNCTIONRESULT_OK;
 }
 
   }

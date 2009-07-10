@@ -9,9 +9,10 @@
 #define maid2_framework_win32_shell_h
 
 #include"../../config/define.h"
-#include"../../config/Win32.h"
+#include"../../config/win32.h"
 #include"../../auxiliary/string.h"
 #include"../../auxiliary/exception.h"
+#include"../../auxiliary/functionresult.h"
 
 #include<vector>
 #include<list>
@@ -27,11 +28,17 @@ namespace Maid
     void InitCommonControls();
 
     String GetProgramFilesFolder( HWND hWnd );
-    String GetDeskTopFolder( HWND hWnd );
-    String GetProgramMenuFolder( HWND hWnd );
-    String GetApplicationDataFolder( HWND hWnd );
-    String GetMyDocumentsFolder( HWND hWnd );
     String GetWindowsFolder();
+
+    String GetUserDeskTopFolder( HWND hWnd );
+    String GetUserProgramMenuFolder( HWND hWnd );
+    String GetUserApplicationDataFolder( HWND hWnd );
+    String GetUserMyDocumentsFolder( HWND hWnd );
+
+    String GetCommonProgramMenuFolder( HWND hWnd );
+    String GetCommonDeskTopFolder( HWND hWnd );
+    String GetCommonApplicationDataFolder( HWND hWnd );
+
     String GetCurrentDirectory();
     String GetExeFileName();
     String GenerateUniqueName();
@@ -42,12 +49,13 @@ namespace Maid
 
     void SetCurrentDirectory( const String& FilePath );
 
-    void CreateShortCut( const String& ShortCutPath, const String& TargetPath, const String& CommandLine );
+    FUNCTIONRESULT CreateShortCut( const String& ShortCutPath, const String& TargetPath, const String& CommandLine );
+    FUNCTIONRESULT CopyFile( const String& SrcPath, const String& DstPath );
+    FUNCTIONRESULT DeleteFile( const String& FileName );
+    FUNCTIONRESULT DeleteDirectory( const String& DirectoryName );
 
-    void CopyFile( const String& SrcPath, const String& DstPath );
-    void DeleteFile( const String& FileName );
-    void DeleteDirectory( const String& DirectoryName );
     String WinAPI_SHGetSpecialFolderLocation( HWND hWnd, int nFolder );
+    int MessageBox( HWND hWnd, const String& Text, const String& Caption, UINT Type );
 
     String GetLastErrorString();
 
