@@ -105,11 +105,8 @@ FUNCTIONRESULT LoadInstallProgram( XMLReader& xml, INSTALLPROGRAM& pgr )
         return FUNCTIONRESULT_ERROR; 
       }
     }
-
     xml.NextNode();
   }
-
-  xml.DescendNode();
 
   return FUNCTIONRESULT_OK;
 }
@@ -221,14 +218,14 @@ Maid::FUNCTIONRESULT LoadRegistry( XMLReader& xml, INSTALLPROGRAM& pgr )
 
 
 
-FUNCTIONRESULT WriteInstallProgram( XMLWriter& xml, INSTALLPROGRAM& pgr )
+FUNCTIONRESULT WriteInstallProgram( XMLWriter& xml, const INSTALLPROGRAM& pgr )
 {
   xml.AddTag( s_XML_UNINSTALLERPATH, pgr.UninstallerPath );
   xml.AddTag( s_XML_UNINSTALLLOGFILENAME, pgr.UninstallLogFileName );
 
   if( pgr.IsMD5Check )
   {
-    xml.AddTag( s_XML_MD5CHECK, pgr.IsMD5Check );
+    xml.AddTag( s_XML_MD5CHECK, MAIDTEXT("yes") );
   }
 
   for( int i=0; i<(int)pgr.CopyFileList.size(); ++i )
@@ -276,7 +273,7 @@ FUNCTIONRESULT WriteInstallProgram( XMLWriter& xml, INSTALLPROGRAM& pgr )
     for( int j=0; j<(int)dat.ValueList.size(); ++j )
     {
       XMLWriterAutoDescend( xml, s_XML_REGISTRY_VALUE );
-      const INSTALLPROGRAM::REGISTRY::VALUE& val = dat.ValueList[i];
+      const INSTALLPROGRAM::REGISTRY::VALUE& val = dat.ValueList[j];
 
       xml.AddTag( s_XML_REGISTRY_VALUE_NAME, val.Name );
 

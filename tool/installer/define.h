@@ -3,7 +3,21 @@
 #define maid2_tool_installer_define_h
 
 
+/////////////////////	全体で使う文字列
 
+#define s_INSTALLSTATE_SUCCESS 0  //  インストールが成功した
+#define s_INSTALLSTATE_CANCEL 1  //  ユーザーの意思によるインストールのキャンセル
+#define s_INSTALLSTATE_ERROR 2  //  インストール中にエラーが起こった
+
+
+
+
+/////////////////////	インストールコンフィグで使う文字列
+
+#define s_INSTALLER_NAME          (MAIDTEXT("maidinstaller.exe"))
+#define s_INSTALLPROGRAM_FILENAME (MAIDTEXT("installprogram.xml"))
+
+#define s_INSTALLAPP_DIRECTORY (MAIDTEXT("[ProgramFiles]\\maid_install_app"))
 
 
 

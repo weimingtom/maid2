@@ -8,6 +8,7 @@
 #include<initguid.h>
 #include<dxdiag.h>
 #include<io.h>
+#include<shellapi.h>
 
 #include<direct.h>
 #include<stdio.h>
@@ -375,6 +376,58 @@ String GenerateUniqueName()
   return ret;
 }
 
+FUNCTIONRESULT ExecuteApplication( HWND hWnd, const String& Verb, const String& ExecuteFileName, const String& Param, const String& Directry, int ShowCom )
+{
+  const std::wstring uni_Verb = String::ConvertMAIDtoUNICODE(Verb);
+  const std::wstring uni_Execute = String::ConvertMAIDtoUNICODE(ExecuteFileName);
+  const std::wstring uni_Param = String::ConvertMAIDtoUNICODE(Param);
+  const std::wstring uni_Directry = String::ConvertMAIDtoUNICODE(Directry);
+
+  const int ret = (int)ShellExecute( hWnd,
+                                uni_Verb.c_str(),
+                                uni_Execute.c_str(),
+                                uni_Param.c_str(),
+                                uni_Directry.c_str(),
+                                ShowCom
+    );
+
+
+  if( ret<=32 )
+  {
+    return FUNCTIONRESULT_ERROR;
+  }
+  return FUNCTIONRESULT_OK;
+}
+
+FUNCTIONRESULT ExecuteApplicationWait( HWND hWnd, const String& Verb, const String& ExecuteFileName, const String& Param, const String& Directry, int ShowCom, DWORD& ReturnCode )
+{
+  const std::wstring uni_Verb = String::ConvertMAIDtoUNICODE(Verb);
+  const std::wstring uni_Execute = String::ConvertMAIDtoUNICODE(ExecuteFileName);
+  const std::wstring uni_Param = String::ConvertMAIDtoUNICODE(Param);
+  const std::wstring uni_Directry = String::ConvertMAIDtoUNICODE(Directry);
+
+  SHELLEXECUTEINFO info={0};
+  info.cbSize = sizeof(SHELLEXECUTEINFO);
+  info.hwnd = hWnd;
+  info.lpVerb = uni_Verb.c_str();
+  info.lpFile = uni_Execute.c_str();
+  info.lpParameters = uni_Param.c_str();
+  info.lpDirectory  = uni_Directry.c_str();
+  info.nShow = ShowCom;
+  info.fMask = SEE_MASK_NOCLOSEPROCESS;
+
+  if( !ShellExecuteEx(&info) || (int)info.hInstApp <= 32 ) { return FUNCTIONRESULT_ERROR; }
+
+	WaitForSingleObject( info.hProcess, INFINITE );
+
+  {
+    DWORD ret = 0;
+    const BOOL check = GetExitCodeProcess( info.hProcess, &ret );
+    if( check==FALSE ) { return FUNCTIONRESULT_ERROR; }
+    ReturnCode = ret;
+  }
+  return FUNCTIONRESULT_OK;
+}
 
 
 

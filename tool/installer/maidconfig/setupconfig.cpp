@@ -247,17 +247,22 @@ SetupConfig::EXECUTEINFO SetupConfig::GetExecuteInfo()const
 }
 
 
-INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& InstallFoler )
+INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& InstallFoler, bool IsMD5Check )
 {
 	AddConvertTable( s_TABLE_TARGETFOLDER,  InstallFoler );
 	AddConvertTable( s_TABLE_UNINSTALLER_COMMAND,  MAIDTEXT("\"") + InstallFoler + MAIDTEXT("\\") + s_UNINSTALLERINFONAME + MAIDTEXT("\"") );
 
   INSTALLPROGRAM ret = GetInstallType(no).Program;
 
-  {
-    ConvertTextThis(ret.UninstallerPath);
-    ConvertTextThis(ret.UninstallLogFileName);
+  const String UninstallerPath = s_INSTALLAPP_DIRECTORY + MAIDTEXT("\\") + s_UNINSTALLER_NAME;
+  const String UninstallLog    = MAIDTEXT("[TargetFolder]\\") + s_UNINSTALLERINFONAME;
 
+  ret.UninstallerPath = ConvertText(UninstallerPath);
+  ret.UninstallLogFileName = ConvertText(UninstallLog);
+  ret.IsMD5Check = IsMD5Check;
+
+
+  {
     for( int i=0; i<(int)ret.CopyFileList.size(); ++i )
     {
       INSTALLPROGRAM::COPYFILE& dat = ret.CopyFileList[i];
@@ -285,6 +290,33 @@ INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& In
         ConvertTextThis(v.Name);
         ConvertTextThis(v.Data);
       }
+    }
+
+    {
+      INSTALLPROGRAM::REGISTRY reg;
+
+      reg.Handle = MAIDTEXT("HKEY_LOCAL_MACHINE");
+      reg.SubKey = MAIDTEXT("SoftWare\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\") + GetGUID();
+      reg.IsKeyDelete = true;
+
+      {
+        INSTALLPROGRAM::REGISTRY::VALUE val;
+
+        val.Name = MAIDTEXT("DisplayName");
+        val.Data = GetUninstallTittle();
+        val.Type = INSTALLPROGRAM::REGISTRY::VALUE::TYPE_STRING;
+        reg.ValueList.push_back(val);
+      }
+      {
+        INSTALLPROGRAM::REGISTRY::VALUE val;
+
+        val.Name = MAIDTEXT("UninstallString");
+        val.Data = MAIDTEXT("\"") + ret.UninstallerPath + MAIDTEXT("\" \"") + ret.UninstallLogFileName + MAIDTEXT("\"");
+        val.Type = INSTALLPROGRAM::REGISTRY::VALUE::TYPE_STRING;
+        reg.ValueList.push_back(val);
+      }
+
+      ret.RegistryList.push_back(reg);
     }
   }
 
@@ -317,6 +349,8 @@ INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& In
       }
     }
   }
+
+
 
   return ret;
 }

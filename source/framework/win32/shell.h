@@ -54,6 +54,10 @@ namespace Maid
     FUNCTIONRESULT DeleteFile( const String& FileName );
     FUNCTIONRESULT DeleteDirectory( const String& DirectoryName );
 
+    FUNCTIONRESULT ExecuteApplication( HWND hWnd, const String& Verb, const String& ExecuteFileName, const String& Param, const String& Directry, int ShowCom );
+    FUNCTIONRESULT ExecuteApplicationWait( HWND hWnd, const String& Verb, const String& ExecuteFileName, const String& Param, const String& Directry, int ShowCom, DWORD& ReturnCode );
+
+
     String WinAPI_SHGetSpecialFolderLocation( HWND hWnd, int nFolder );
     int MessageBox( HWND hWnd, const String& Text, const String& Caption, UINT Type );
 
