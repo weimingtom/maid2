@@ -46,7 +46,7 @@ public:
 
 	EXECUTEINFO GetExecuteInfo()const;
 
-  INSTALLPROGRAM CreateInstallProgram( int no, const Maid::String& InstallFoler );
+  INSTALLPROGRAM CreateInstallProgram( int no, const Maid::String& InstallFoler, bool IsMD5Check );
 
 
 private:

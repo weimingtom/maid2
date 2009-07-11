@@ -2,6 +2,7 @@
 
 #include"resource.h"
 #include"../installprogram.h"
+#include"../define.h"
 #include"install.h"
 
 #include <shlobj.h>
@@ -68,7 +69,8 @@ protected:
 	virtual void OnLoop()
 	{
     const OSDevice& os = static_cast<OSDevice&>(GetOSDevice());
-		const String InstallProgramFileName = os.GetCmdLine(1);
+//		const String InstallProgramFileName = os.GetCmdLine(1);
+		const String InstallProgramFileName = MAIDTEXT("installprogram.xml");
 
 
     {
@@ -76,15 +78,15 @@ protected:
       if( ret==FUNCTIONRESULT_ERROR )
       {
 			  ::MessageBox( NULL, L"設定ファイルが読み込みません", L"起動エラー", MB_OK );
-			  OnExit(0);
+			  OnExit(s_INSTALLSTATE_ERROR);
         return;
       }
     }
 
-		::DialogBox( os.GetHINSTANCE(), MAKEINTRESOURCE(ID_DIALOG_INSTALLSTATE), NULL, InstallStateProc );
+		const DWORD ret = ::DialogBox( os.GetHINSTANCE(), MAKEINTRESOURCE(ID_DIALOG_INSTALLSTATE), NULL, InstallStateProc );
 
 
-	  OnExit(0);
+	  OnExit(ret);
 	}
 
   virtual void Finalize()
@@ -145,7 +147,7 @@ static BOOL CALLBACK InstallStateProc( HWND hWnd, UINT msg, WPARAM wParam, LPARA
 							::KillTimer( hWnd, TIMERID );
 
 							::MessageBox( hWnd, L"エラーが発生しました", L"エラー", MB_ICONSTOP|MB_OK );
-							::EndDialog( hWnd, 0 );
+							::EndDialog( hWnd, s_INSTALLSTATE_ERROR );
 						}break;
 
 					case Install::STATUS::THREADSTATUS_SUCCESS:
@@ -154,7 +156,7 @@ static BOOL CALLBACK InstallStateProc( HWND hWnd, UINT msg, WPARAM wParam, LPARA
 
 							::MessageBox( hWnd, L"インストールが終了しました", L"インストールの成功", MB_OK );
 
-							::EndDialog( hWnd, 0 );
+							::EndDialog( hWnd, s_INSTALLSTATE_SUCCESS );
 						}break;
 
 					case Install::STATUS::THREADSTATUS_CANCEL: 
@@ -162,7 +164,7 @@ static BOOL CALLBACK InstallStateProc( HWND hWnd, UINT msg, WPARAM wParam, LPARA
 							::KillTimer( hWnd, TIMERID );
 
 							::MessageBox( hWnd, L"キャンセルしました", L"キャンセル", MB_ICONINFORMATION|MB_OK );
-							::EndDialog( hWnd, 0 );
+							::EndDialog( hWnd, s_INSTALLSTATE_CANCEL );
 						}break;
 					}
 				}
@@ -204,7 +206,7 @@ static BOOL CALLBACK InstallStateProc( HWND hWnd, UINT msg, WPARAM wParam, LPARA
 			}catch(...)
 			{
 				::MessageBox( hWnd, L"インストールに失敗しました", NULL, MB_OK );
-				::EndDialog( hWnd, 0 );
+				::EndDialog( hWnd, s_INSTALLSTATE_ERROR );
 				return 0;
 			}
 

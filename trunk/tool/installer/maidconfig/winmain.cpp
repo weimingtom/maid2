@@ -1,8 +1,12 @@
 ﻿#include"../../../source/framework/application.h"
 #include"../../../source/framework/win32/shell.h"
+#include"../../../source/storage/fileio/fileoperation.h"
+#include"../../../source/storage/fileio/filewrite.h"
+#include"../../../source/storage/fileio/filereadnormal.h"
 
 #include"resource.h"
 #include"setupconfig.h"
+#include"../define.h"
 
 #include <shlobj.h>
 #include <shellapi.h>
@@ -22,7 +26,6 @@ static const DWORD HELP_CONTROLID[] =
 	EDIT_INSTALLDIR,
 	BUTTON_SELECTINSTALLDIR,
 	CHECK_MD5CHECK,
-	CHECK_CREATEDESKTOPSHOTCUT,
 };
 
 static const wchar_t* HELP_TEXT[] =
@@ -32,7 +35,6 @@ static const wchar_t* HELP_TEXT[] =
 	L"インストールするフォルダです\nフォルダが存在しない場合、自動的に作成されます",
 	L"インストールするフォルダを変更します",
 	L"インストール中にファイルが破損していないかチェックします",
-	L"スタートメニューの他にデスクトップにショートカットを作成します",
 };
 
 typedef std::map<HWND,const wchar_t*> HELPLIST;
@@ -61,7 +63,8 @@ protected:
 	virtual void OnLoop()
 	{
     const OSDevice& os = static_cast<OSDevice&>(GetOSDevice());
-		const String InstallConfigFileName = os.GetCmdLine(1);
+//		const String InstallConfigFileName = os.GetCmdLine(1);
+		const String InstallConfigFileName = MAIDTEXT("D:\\works\\maid2\\tool\\installer\\bin\\rom_image\\config.xml");
 
 
     {
@@ -74,10 +77,10 @@ protected:
       }
     }
 
-		::DialogBox( os.GetHINSTANCE(), MAKEINTRESOURCE(DIALOG_INSTALLCONFIG), NULL, InstallConfigDlgProc );
+		const DWORD ret = ::DialogBox( os.GetHINSTANCE(), MAKEINTRESOURCE(DIALOG_INSTALLCONFIG), NULL, InstallConfigDlgProc );
 
 
-	  OnExit(0);
+	  OnExit(ret);
 	}
 
   virtual void Finalize()
@@ -190,22 +193,72 @@ static BOOL CALLBACK InstallConfigDlgProc( HWND hWnd, UINT msg, WPARAM wParam, L
 						if( InstallFolder.empty() )
 						{
 							::MessageBox( hWnd, L"インストールするディレクトリ名が不明です", NULL, MB_OK );
-							return 0;
+							::EndDialog( hWnd, s_INSTALLSTATE_ERROR );
 						}
 					}
 
-					const int32 ComboNo = (int)(DWORD)SendMessage(GetDlgItem(hWnd, COMBBOX_INSTALLTYPE), CB_GETCURSEL, 0L, 0L);
+					const int ComboNo = (int)(DWORD)SendMessage(GetDlgItem(hWnd, COMBBOX_INSTALLTYPE), CB_GETCURSEL, 0L, 0L);
+          const bool IsMD5Check = ::IsDlgButtonChecked(hWnd,CHECK_MD5CHECK)==BST_CHECKED;
 
-/*
-					s_SetupConfig.SetInstallFolder(InstallFolder);
 
-					s_InstallData.pConfig = &s_SetupConfig;
-					s_InstallData.InstallTypeNo = ComboNo;
-					s_InstallData.IsMD5Check = ::IsDlgButtonChecked(hWnd,CHECK_MD5CHECK)==BST_CHECKED;
+          const INSTALLPROGRAM InstallProgram = s_SetupConfig.CreateInstallProgram(ComboNo,InstallFolder, IsMD5Check);
+          const String BaseFolder = Maid::Shell::GetCurrentDirectory() + MAIDTEXT("\\");
+          const String InstallerFilePath = BaseFolder+s_INSTALLER_NAME;
+          const String InstallProgramFilePath = BaseFolder+s_INSTALLPROGRAM_FILENAME;
 
-					::DialogBox( s_hInstance, MAKEINTRESOURCE(DIALOG_INSTALLSTATE), hWnd, InstallStateProc );
-*/
-					::EndDialog( hWnd, 0 );
+          {
+	          //	インストーラーのコピー
+	          HRSRC hResource = FindResource( NULL, MAKEINTRESOURCE(IDR_INSTALLER1), L"installer" );
+
+	          MAID_ASSERT( hResource==NULL, MAIDTEXT("install.exe が見つかりませんでした") );
+	          const DWORD ExeSize = SizeofResource( NULL,hResource);
+
+	          HGLOBAL hGlobal = LoadResource( NULL, hResource );
+	          void* pExeImage = LockResource( hGlobal );
+
+            {
+              FileWrite hFile;
+              hFile.Open( InstallerFilePath, FileWrite::OPENOPTION_NEW );
+              hFile.Write( pExeImage, ExeSize );
+            }
+
+	          FreeResource( hGlobal );
+          }
+
+          {
+            //  設定ファイルの作成
+            XMLWriter xml;
+            std::string text;
+
+            {
+              XMLWriterAutoDescend(xml,MAIDTEXT("data"));
+              WriteInstallProgram( xml, InstallProgram );
+            }
+            xml.Save( text );
+
+            {
+              FileWrite hFile;
+              hFile.Open( InstallProgramFilePath, FileWrite::OPENOPTION_NEW );
+              hFile.Write( text.c_str(), text.length() );
+            }
+          }
+
+          //  作るだけ作ったので実行
+          const String Verb = MAIDTEXT("open");
+          const String ExecuteFileName = InstallerFilePath;
+          const String Param = InstallProgramFilePath;
+          const String Directry = String::GetDirectory(InstallerFilePath);
+          const int ShowCom = SW_SHOWNORMAL;
+          DWORD ReturnCode = 0;
+
+          const FUNCTIONRESULT ret = Maid::Shell::ExecuteApplicationWait( hWnd, Verb, ExecuteFileName, Param, Directry, ShowCom, ReturnCode );
+
+          if( ret==FUNCTIONRESULT_ERROR )
+          {
+						::EndDialog( hWnd, s_INSTALLSTATE_ERROR );
+          }
+
+					::EndDialog( hWnd, ShowCom );
 
 				}break;
 			case BUTTON_SELECTINSTALLDIR:
@@ -228,7 +281,7 @@ static BOOL CALLBACK InstallConfigDlgProc( HWND hWnd, UINT msg, WPARAM wParam, L
 
 	case WM_CLOSE:
 		{
-			::EndDialog( hWnd, 0 );
+			::EndDialog( hWnd, s_INSTALLSTATE_CANCEL );
 		}
 		break;
 

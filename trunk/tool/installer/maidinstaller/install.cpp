@@ -207,6 +207,10 @@ Install::FUNCTIONRESULT Install::OnFileCopy( volatile Maid::ThreadController::BR
 
   {
 	  //	アンインストーラーのコピー
+    const String& path = m_InstallData.pProgram->UninstallerPath;
+
+    FileOperation::CreateDirectory( String::GetDirectory(path) );
+
 
 	  HRSRC hResource = FindResource( NULL, MAKEINTRESOURCE(ID_UNINSTALL1), L"uninstall" );
 
@@ -218,7 +222,7 @@ Install::FUNCTIONRESULT Install::OnFileCopy( volatile Maid::ThreadController::BR
 
     {
       FileWrite hFile;
-      hFile.Open( m_InstallData.pProgram->UninstallerPath, FileWrite::OPENOPTION_NEW );
+      hFile.Open( path, FileWrite::OPENOPTION_NEW );
       hFile.Write( pExeImage, ExeSize );
     }
 
@@ -391,11 +395,14 @@ Install::FUNCTIONRESULT Install::OnCreateUninstallInfo( volatile Maid::ThreadCon
   }
 
   {
-    const INSTALLPROGRAM& pgr = *(m_InstallData.pProgram);
     //  情報がそろったので、書き込み
+    const INSTALLPROGRAM& pgr = *(m_InstallData.pProgram);
+
     std::string text;
 
     xml.Save( text );
+
+    FileOperation::CreateDirectory( String::GetDirectory(pgr.UninstallLogFileName) );
 
     FileWrite hFile;
 

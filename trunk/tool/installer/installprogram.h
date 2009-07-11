@@ -77,7 +77,7 @@ struct INSTALLPROGRAM
 
 Maid::FUNCTIONRESULT LoadInstallProgram( const Maid::String& FileName, INSTALLPROGRAM& pgr );
 Maid::FUNCTIONRESULT LoadInstallProgram( Maid::XMLReader& xml, INSTALLPROGRAM& pgr );
-Maid::FUNCTIONRESULT WriteInstallProgram( Maid::XMLWriter& xml, INSTALLPROGRAM& pgr );
+Maid::FUNCTIONRESULT WriteInstallProgram( Maid::XMLWriter& xml, const INSTALLPROGRAM& pgr );
 
 
 #endif

@@ -33,26 +33,26 @@
 			<CopyFile>
 				<DiskNo>0</DiskNo>
 				<SourcePath>[SourceFolder]\game\installertester.exe</SourcePath>
-				<TargetPath>[TargetFolder]\installertester.exe</TargetPath>
+				<DestPath>[TargetFolder]\installertester.exe</TargetPath>
 				<MD5></MD5>
 			</CopyFile>
 			<CopyFile>
 				<DiskNo>0</DiskNo>
 				<SourcePath>[SourceFolder]\game\nc7802.ogg</SourcePath>
-				<TargetPath>[TargetFolder]\nc7802.ogg</TargetPath>
+				<DestPath>[TargetFolder]\nc7802.ogg</TargetPath>
 				<MD5>adf8bde8f3bc02699aadb55a6fe84a88</MD5>
 			</CopyFile>
 			<CopyFile>
 				<DiskNo>0</DiskNo>
 				<SourcePath>[SourceFolder]\game\waru.wav</SourcePath>
-				<TargetPath>[TargetFolder]\waru.wav</TargetPath>
+				<DestPath>[TargetFolder]\waru.wav</TargetPath>
 				<MD5>d10036acc2e319e675f8aa1ac38ab124</MD5>
 			</CopyFile>
 
 			
 			<Shortcut>
 				<TargetObject>[TargetFolder]\installertester.exe</TargetObject>
-				<CreatePath>[UserStartMenu]\maid\installertester\é¿çs.lnk</CreatePath>
+				<CreatePath>[UserProgramMenu]\maid\installertester\é¿çs.lnk</CreatePath>
 				<Parameters></Parameters>
 			</Shortcut>
 			<Shortcut>
@@ -86,7 +86,7 @@
 					<Target>[CommonAppData]\maid_installertester</Target>
 				</DeleteFolder>
 			</UninstallOption>
-		<Config>
+		</Config>
 		
 	</InstallType>
 	 
