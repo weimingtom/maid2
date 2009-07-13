@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="installertester"
-	ProjectGUID="{52578F86-45EB-4E3F-9ABC-9363C9C56C4A}"
-	RootNamespace="installertester"
+	Name="maidsetup"
+	ProjectGUID="{37F8D3EE-1F31-4B72-8C67-16A3B3D9DCC8}"
+	RootNamespace="maidsetup"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -60,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(ProjectDir)../bin/rom_image/game/$(ProjectName).exe"
+				OutputFile="$(ProjectDir)../bin/rom_image/$(ProjectName).exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -133,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(ProjectDir)../bin/rom_image/game/$(ProjectName).exe"
+				OutputFile="$(ProjectDir)../bin/rom_image/$(ProjectName).exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -168,7 +168,11 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\define.h"
+			RelativePath=".\resource.h"
+			>
+		</File>
+		<File
+			RelativePath=".\resource.rc"
 			>
 		</File>
 		<File

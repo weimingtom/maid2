@@ -24,12 +24,20 @@
 	 	<ExecutePath>[TargetFolder]\installertester.exe</ExecutePath>
 	</LastExecute>
 	
-	<!-- インストール方法 -->
+	<!-- インストール方法。 InstallTypeタグ１つにつき、１方法になってます -->
 	<InstallType>
+		<!-- インストールタイプのところに表示される文字 -->
 		<Name>フルインストール</Name>
+		<!-- ヘルプのところに表示される文字 -->
 		<Comment>コメントデス</Comment>
 		
+		<!-- インストール設定 -->
 		<Config>
+			<!-- コピーするファイルの設定。
+					CopyFileタグ単位で順番に実行される
+					DiskNo:SourcePath から DestPath にコピーされます。
+					MD5タグがない場合はＭＤ５チェックを行いません
+					 -->
 			<CopyFile>
 				<DiskNo>0</DiskNo>
 				<SourcePath>[SourceFolder]\game\installertester.exe</SourcePath>
@@ -49,7 +57,10 @@
 				<MD5>d10036acc2e319e675f8aa1ac38ab124</MD5>
 			</CopyFile>
 
-			
+			<!-- ショートカット設定
+				TargetObject　へのショートカットを CreatePath に作成します
+				別途コマンド引数がほしい場合は Parameters で定義すること
+			-->
 			<Shortcut>
 				<TargetObject>[TargetFolder]\installertester.exe</TargetObject>
 				<CreatePath>[UserProgramMenu]\maid\installertester\実行.lnk</CreatePath>
@@ -60,6 +71,12 @@
 				<CreatePath>[UserDeskTop]\installertesterの実行.lnk</CreatePath>
 				<Parameters></Parameters>
 			</Shortcut>
+			
+			
+			<!-- インストーラーは自動的に [Uninstaller] へアンインストーラーをコピーするので
+					プログラムメニューにショートカットを作成したい場合は、こうする
+			-->
+			
 			<Shortcut>
 				<TargetObject>[Uninstaller]</TargetObject>
 				<CreatePath>[UserProgramMenu]\maid\installertester\アンインストール.lnk</CreatePath>
@@ -67,6 +84,7 @@
 			</Shortcut>
 			
 
+			<!-- インストーラーに設定した項目は自動保存されないので、別途記載しておく-->
 			<Registry>
 				<Handle>HKEY_LOCAL_MACHINE</Handle>
 				<SubKey delete="yes">Software\maid\installertester</SubKey>
@@ -80,6 +98,7 @@
 				</Value>
 			</Registry>
 
+			<!-- アンインストール時に別途ファイル削除を行いたい場合はここに書く-->
 			<UninstallOption>
 				<DeleteFolder filedelete="yes">
 					<Text>セーブデータも削除しますか？</Text>
@@ -87,8 +106,5 @@
 				</DeleteFolder>
 			</UninstallOption>
 		</Config>
-		
 	</InstallType>
-	 
-	
 </Define>

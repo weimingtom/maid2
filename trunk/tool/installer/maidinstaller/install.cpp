@@ -439,7 +439,6 @@ unt32	Install::InstallThread( volatile ThreadController::BRIGEDATA& Brige )
 		//	・インストール設定の作成(00%-05%)
 		SetProgressText( MAIDTEXT("インストールするための情報を集めています") );
 		SetTotalProgress( (float)TOTALPROGRESS_SETUPBEGIN );
-
 		SetTotalProgress( PER(TOTALPROGRESS_SETUPEND) );
 	}
 

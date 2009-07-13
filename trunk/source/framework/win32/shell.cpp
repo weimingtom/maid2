@@ -154,9 +154,9 @@ String GetCommonApplicationDataFolder( HWND hWnd )
 
     @return Program Menu のパス名
  */
-String GetUserMyDocumentsFolder( HWND hWnd )
+String GetMyDocumentsFolder( HWND hWnd )
 {
-	return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_PERSONAL );
+	return WinAPI_SHGetSpecialFolderLocation( hWnd, CSIDL_MYDOCUMENTS );
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -615,7 +615,7 @@ String BrowseForFolder( HWND hWnd, const String& Title, const String& DefaultFol
   bi.ulFlags   = BIF_RETURNONLYFSDIRS;
 
   ITEMIDLIST  *lpidlist = ::SHBrowseForFolder(&bi);    // ダイアログ表示
-  if( lpidlist==NULL ) { 	return false;  }				//キャンセルを押したとき
+  if( lpidlist==NULL ) { 	return String();  }				//キャンセルを押したとき
 
   wchar_t    buf[MAX_PATH];
   ::SHGetPathFromIDList(lpidlist, buf);    // ITEMIDLIST から絶対パスを取得。

@@ -24,16 +24,19 @@ protected:
 
 	virtual void OnLoop()
 	{
-    const String DeskTop     = Shell::GetUserDeskTopFolder(NULL);
-    const String ProgramMenu = Shell::GetUserProgramMenuFolder(NULL);
-    const String AppData     = Shell::GetUserApplicationDataFolder(NULL);
-    const String MyDocuments = Shell::GetUserMyDocumentsFolder(NULL);
+    const String CommonDeskTop     = Shell::GetCommonDeskTopFolder(NULL);
+    const String CommonProgramMenu = Shell::GetCommonProgramMenuFolder(NULL);
+    const String CommonAppData     = Shell::GetCommonApplicationDataFolder(NULL);
+    const String UserDeskTop     = Shell::GetUserDeskTopFolder(NULL);
+    const String UserProgramMenu = Shell::GetUserProgramMenuFolder(NULL);
+    const String UserAppData     = Shell::GetUserApplicationDataFolder(NULL);
+    const String MyDocuments = Shell::GetMyDocumentsFolder(NULL);
     const String CurrentDir  = Shell::GetCurrentDirectory();
 
     const String msg_text = 
-      MAIDTEXT("DeskTop:\n　")     + DeskTop     + MAIDTEXT("\n")
-     +MAIDTEXT("ProgramMenu:\n　") + ProgramMenu + MAIDTEXT("\n")
-     +MAIDTEXT("AppData:\n　")     + AppData     + MAIDTEXT("\n")
+      MAIDTEXT("DeskTop:\n　")     + CommonDeskTop     + MAIDTEXT("\n　") + UserDeskTop     + MAIDTEXT("\n")
+     +MAIDTEXT("ProgramMenu:\n　") + CommonProgramMenu + MAIDTEXT("\n　") + UserProgramMenu + MAIDTEXT("\n")
+     +MAIDTEXT("AppData:\n　")     + CommonAppData     + MAIDTEXT("\n　") + UserAppData     + MAIDTEXT("\n")
      +MAIDTEXT("MyDocuments:\n　") + MyDocuments + MAIDTEXT("\n")
      +MAIDTEXT("CurrentDir:\n　")  + CurrentDir  + MAIDTEXT("\n")
      ;
@@ -43,7 +46,7 @@ protected:
     {
       FileWrite hFile;
 
-      const String dir = AppData + MAIDTEXT("\\maid_installertester");
+      const String dir = CommonAppData + MAIDTEXT("\\maid_installertester");
       const String name = dir + MAIDTEXT("\\savedata.dat");
 
       FileOperation::CreateDirectory(dir);
