@@ -1,4 +1,5 @@
 ﻿#include"../../../source/framework/application.h"
+#include"../../../source/framework/win32/shell.h"
 
 #include"resource.h"
 #include"../installprogram.h"
@@ -69,8 +70,7 @@ protected:
 	virtual void OnLoop()
 	{
     const OSDevice& os = static_cast<OSDevice&>(GetOSDevice());
-//		const String InstallProgramFileName = os.GetCmdLine(1);
-		const String InstallProgramFileName = MAIDTEXT("installprogram.xml");
+		const String InstallProgramFileName = os.GetCmdLine(1);
 
 
     {
@@ -84,7 +84,6 @@ protected:
     }
 
 		const DWORD ret = ::DialogBox( os.GetHINSTANCE(), MAKEINTRESOURCE(ID_DIALOG_INSTALLSTATE), NULL, InstallStateProc );
-
 
 	  OnExit(ret);
 	}

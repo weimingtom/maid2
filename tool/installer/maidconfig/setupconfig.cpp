@@ -78,7 +78,7 @@ FUNCTIONRESULT SetupConfig::Initialize( const String& FilePath )
 		AddConvertTable( s_TABLE_COMMONDESKTOP,     ComDesktop );
 		AddConvertTable( s_TABLE_COMMONAPPDATA,     ComAppData );
 
-		AddConvertTable( s_TABLE_UNINSTALLER,  Windows + MAIDTEXT("\\") + s_UNINSTALLER_NAME );
+		AddConvertTable( s_TABLE_UNINSTALLER,  ProgramFiles + MAIDTEXT("\\") + s_UNINSTALLER_NAME );
 
 		AddConvertTable( s_TABLE_SOURCEFOLDER,  Source);
 	}
@@ -254,13 +254,11 @@ INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& In
 
   INSTALLPROGRAM ret = GetInstallType(no).Program;
 
-  const String UninstallerPath = s_INSTALLAPP_DIRECTORY + MAIDTEXT("\\") + s_UNINSTALLER_NAME;
   const String UninstallLog    = MAIDTEXT("[TargetFolder]\\") + s_UNINSTALLERINFONAME;
 
-  ret.UninstallerPath = ConvertText(UninstallerPath);
+  ret.UninstallerPath = ConvertText(MAIDTEXT("[uninstaller]"));
   ret.UninstallLogFileName = ConvertText(UninstallLog);
   ret.IsMD5Check = IsMD5Check;
-
 
   {
     for( int i=0; i<(int)ret.CopyFileList.size(); ++i )
@@ -349,8 +347,6 @@ INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& In
       }
     }
   }
-
-
 
   return ret;
 }

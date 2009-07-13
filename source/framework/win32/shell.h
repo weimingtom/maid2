@@ -33,7 +33,7 @@ namespace Maid
     String GetUserDeskTopFolder( HWND hWnd );
     String GetUserProgramMenuFolder( HWND hWnd );
     String GetUserApplicationDataFolder( HWND hWnd );
-    String GetUserMyDocumentsFolder( HWND hWnd );
+    String GetMyDocumentsFolder( HWND hWnd );
 
     String GetCommonProgramMenuFolder( HWND hWnd );
     String GetCommonDeskTopFolder( HWND hWnd );

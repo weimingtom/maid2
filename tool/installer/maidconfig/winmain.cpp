@@ -63,23 +63,53 @@ protected:
 	virtual void OnLoop()
 	{
     const OSDevice& os = static_cast<OSDevice&>(GetOSDevice());
-//		const String InstallConfigFileName = os.GetCmdLine(1);
-		const String InstallConfigFileName = MAIDTEXT("D:\\works\\maid2\\tool\\installer\\bin\\rom_image\\config.xml");
+		const String InstallConfigFileName = os.GetCmdLine(1);
 
+    if( InstallConfigFileName.empty() )
+    {
+		  ::MessageBox( NULL, L"設定ファイルが指定されていません", L"起動エラー", MB_OK );
+		  OnExit(s_INSTALLSTATE_ERROR);
+      return;
+    }
 
     {
       const FUNCTIONRESULT ret = s_SetupConfig.Initialize( InstallConfigFileName );
       if( ret==FUNCTIONRESULT_ERROR )
       {
 			  ::MessageBox( NULL, L"設定ファイルが読み込みません", L"起動エラー", MB_OK );
-			  OnExit(0);
+			  OnExit(s_INSTALLSTATE_ERROR);
         return;
       }
     }
 
 		const DWORD ret = ::DialogBox( os.GetHINSTANCE(), MAKEINTRESOURCE(DIALOG_INSTALLCONFIG), NULL, InstallConfigDlgProc );
 
+    if( ret==s_INSTALLSTATE_SUCCESS )
+    {
+      //  最終起動があったら、それを呼ぶ
+      const SetupConfig::EXECUTEINFO info = s_SetupConfig.GetExecuteInfo();
 
+      if( !info.CheckComment.empty() )
+      {
+        const int ret = Maid::Shell::MessageBox( NULL, info.CheckComment, MAIDTEXT("確認"), MB_YESNO );
+        if( ret==IDYES )
+        {
+          const String verb = MAIDTEXT("open");
+          const String ExecuteFileName = info.ExecutePath;
+          const String Param = info.Parameters;
+          const String Directry = String::GetDirectory(ExecuteFileName);
+          const int ShowCom = SW_SHOWNORMAL;
+
+          const FUNCTIONRESULT ret = Maid::Shell::ExecuteApplication( NULL, verb, ExecuteFileName, Param, Directry, ShowCom );
+          if( ret==FUNCTIONRESULT_ERROR )
+          {
+            Maid::Shell::MessageBox( NULL, MAIDTEXT("アプリケーションの起動に失敗"), MAIDTEXT("確認"), MB_OK );
+	          OnExit(s_INSTALLSTATE_ERROR);
+			      return ;
+          }
+        }
+      }
+    }
 	  OnExit(ret);
 	}
 
@@ -246,19 +276,23 @@ static BOOL CALLBACK InstallConfigDlgProc( HWND hWnd, UINT msg, WPARAM wParam, L
           //  作るだけ作ったので実行
           const String Verb = MAIDTEXT("open");
           const String ExecuteFileName = InstallerFilePath;
-          const String Param = InstallProgramFilePath;
+          const String Param = MAIDTEXT("\"") + InstallProgramFilePath + MAIDTEXT("\"");
           const String Directry = String::GetDirectory(InstallerFilePath);
           const int ShowCom = SW_SHOWNORMAL;
           DWORD ReturnCode = 0;
 
           const FUNCTIONRESULT ret = Maid::Shell::ExecuteApplicationWait( hWnd, Verb, ExecuteFileName, Param, Directry, ShowCom, ReturnCode );
 
+          //  インストーラー、設定ファイルは消しておく
+          Maid::Shell::DeleteFileW(InstallerFilePath);
+          Maid::Shell::DeleteFileW(InstallProgramFilePath);
+
           if( ret==FUNCTIONRESULT_ERROR )
           {
 						::EndDialog( hWnd, s_INSTALLSTATE_ERROR );
           }
 
-					::EndDialog( hWnd, ShowCom );
+					::EndDialog( hWnd, ReturnCode );
 
 				}break;
 			case BUTTON_SELECTINSTALLDIR:

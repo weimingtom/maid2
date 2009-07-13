@@ -10,6 +10,9 @@
 #define s_INSTALLSTATE_ERROR 2  //  インストール中にエラーが起こった
 
 
+/////////////////////	セットアップで使う文字列
+#define s_CONFIG_NAME          (MAIDTEXT("maidconfig.exe"))
+
 
 
 /////////////////////	インストールコンフィグで使う文字列
