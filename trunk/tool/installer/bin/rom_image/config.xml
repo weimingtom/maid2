@@ -84,9 +84,10 @@
 			</Shortcut>
 			
 
-			<!-- インストーラーに設定した項目は自動保存されないので、別途記載しておく-->
+			<!-- インストーラーに設定した項目は自動保存されないので、レジストリに書いておくと便利かも-->
 			<Registry>
 				<Handle>HKEY_LOCAL_MACHINE</Handle>
+				<!-- サブキーも消す場合は delete属性をつけておく。値だけならいらない-->
 				<SubKey delete="yes">Software\maid\installertester</SubKey>
 				<Value>
 					<Name>InstallDirectory</Name>
