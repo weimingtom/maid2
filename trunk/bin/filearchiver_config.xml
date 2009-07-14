@@ -2,7 +2,7 @@
 <root>
   <ArchiveName>arc.dat</ArchiveName>
   <DivideSize>102400</DivideSize>
-  <RootDirectory>D:\works\maid2\bin</RootDirectory>
+  <RootDirectory></RootDirectory>
   
   <ArchiveFile>archive.*</ArchiveFile>
   
