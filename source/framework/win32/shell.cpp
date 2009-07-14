@@ -58,18 +58,18 @@ void InitCommonControls()
 String WinAPI_SHGetSpecialFolderLocation( HWND hWnd, int nFolder )
 {
 	TCHAR szPath[_MAX_PATH] = {0};
-    LPITEMIDLIST pidl;
+  LPITEMIDLIST pidl;
 
-    IMalloc *pMalloc;
-    SHGetMalloc( &pMalloc );
+  IMalloc *pMalloc;
+  SHGetMalloc( &pMalloc );
 
-    if( SUCCEEDED(::SHGetSpecialFolderLocation(hWnd,nFolder,&pidl)) )
-    { 
-        ::SHGetPathFromIDList(pidl,szPath);	 // パスに変換する
-        pMalloc->Free(pidl);				 // 取得したIDLを解放する (CoTaskMemFreeでも可)
-    }
+  if( SUCCEEDED(::SHGetSpecialFolderLocation(hWnd,nFolder,&pidl)) )
+  { 
+    ::SHGetPathFromIDList(pidl,szPath);	 // パスに変換する
+    pMalloc->Free(pidl);				 // 取得したIDLを解放する (CoTaskMemFreeでも可)
+  }
 
-    pMalloc->Release();
+  pMalloc->Release();
 
 	return String::ConvertUNICODEtoMAID(szPath);
 }
