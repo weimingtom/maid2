@@ -174,7 +174,21 @@ String GetWindowsFolder()
   Text.push_back('\0');
 
   return String::ConvertUNICODEtoMAID(&(Text[0]));
-  }
+}
+
+String GetTemporaryFolder()
+{
+  const UINT len =  ::GetTempPath( 0, NULL );
+
+  std::vector<wchar_t> Text( len );
+
+  ::GetTempPath( len, &(Text[0]) );
+  Text.pop_back();  //  <- このＡＰＩは文字列の最後に '/' がついてしまうので除去する
+  Text.push_back('\0');
+
+  return String::ConvertUNICODEtoMAID(&(Text[0]));
+}
+
 
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
