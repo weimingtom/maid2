@@ -12,6 +12,9 @@
 	<!-- アプリケーションの追加と削除に表示させるタイトル -->
 	<UninstallTittle>maid_installertester</UninstallTittle>
 	
+	<!-- アプリケーションの追加と削除の発行元に表示させる文字列 -->
+	<Publisher>PublisherString</Publisher>
+	
 	<!-- デフォルトで指定されているインストール先 -->	
 	<DefaultFolder>[ProgramFiles]\maid_installertester</DefaultFolder>
 	
@@ -80,7 +83,7 @@
 			<Shortcut>
 				<TargetObject>[Uninstaller]</TargetObject>
 				<CreatePath>[UserProgramMenu]\maid\installertester\アンインストール.lnk</CreatePath>
-				<Parameters>[Uninstallercommand]</Parameters>
+				<Parameters></Parameters>
 			</Shortcut>
 			
 
