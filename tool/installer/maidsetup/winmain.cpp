@@ -15,8 +15,8 @@ using namespace Maid;
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
 {
-  const String UserAppData     = Shell::GetUserApplicationDataFolder(NULL);
-  const String path = UserAppData + MAIDTEXT("\\maidsetup");
+  const String UserAppData     = Shell::GetTemporaryFolder();
+  const String path = UserAppData;
 
   const String MaidConfigExePath = path + MAIDTEXT("\\") + s_CONFIG_NAME;
   const String ConfigXMLDir = String::GetDirectory(Shell::GetExeFileName());
@@ -25,7 +25,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
   std::vector<String> CreateDirList;
 
   {
-	  //	アンインストーラーのコピー
+	  //	コンフィグexeのコピー
     FileOperation::CreateDirectory( path, CreateDirList );
 
 	  HRSRC hResource = FindResource( NULL, MAKEINTRESOURCE(IDR_config1), L"config" );
