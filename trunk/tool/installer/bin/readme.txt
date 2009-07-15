@@ -31,7 +31,7 @@
 
 ・簡単な挙動
 　maidsetup.exe(asInvoker)
-　　[UserAppData]\maidsetup ディレクトリを作成、そこにmaidconfig.exe を送り込む
+　　テンポラリにmaidconfig.exe を送り込む
 　　maidconfig.exe "config.xml" として起動
 
 　maidconfig.exe(asInvoker)
@@ -42,10 +42,12 @@
 
 　maidinstaller.exe(requireAdministrator)
 　　installprogram.xmlに指定されたとおりにコピー、レジストリの作成を行う
-　　最後に[ProgramFiles]\maid_install_app ディレクトリを作成して
-　　maiduninstaller.exe を作成する
+　　最後に[TargetFolder]\maiduninstaller.exe を作成する
 　　インストールログは [TargetFolder]\uninstall.xml に書き込まれます
 
-　maiduninstaller.exe(requireAdministrator)
-　　uninstall.xml　にしたがって削除する
+　maiduninstaller.exe(asInvoker)
+　　[TargetFolder]\maiduninstallertmp.exe を作成する
+　　maiduninstallertmp.exe "uninstall.xml" として起動
 
+　maiduninstallertmp.exe(requireAdministrator)
+　　uninstall.xml　にしたがって削除する
