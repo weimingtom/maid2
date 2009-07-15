@@ -50,6 +50,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "import_md5", "source\import
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maiduninstaller", "tool\installer\maiduninstaller\maiduninstaller.vcproj", "{E0103CE0-D3C5-4D31-99E6-2929A5FE3640}"
 	ProjectSection(ProjectDependencies) = postProject
+		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7} = {5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
@@ -80,6 +81,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maidsetup", "tool\installer
 		{1B5316A2-714A-4058-BF70-8BAC369AF879} = {1B5316A2-714A-4058-BF70-8BAC369AF879}
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 		{E0103CE0-D3C5-4D31-99E6-2929A5FE3640} = {E0103CE0-D3C5-4D31-99E6-2929A5FE3640}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maiduninstallertmp", "tool\installer\maiduninstallertmp\maiduninstallertmp.vcproj", "{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
 Global
@@ -150,6 +156,10 @@ Global
 		{37F8D3EE-1F31-4B72-8C67-16A3B3D9DCC8}.Debug|Win32.Build.0 = Debug|Win32
 		{37F8D3EE-1F31-4B72-8C67-16A3B3D9DCC8}.Release|Win32.ActiveCfg = Release|Win32
 		{37F8D3EE-1F31-4B72-8C67-16A3B3D9DCC8}.Release|Win32.Build.0 = Release|Win32
+		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}.Debug|Win32.Build.0 = Debug|Win32
+		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}.Release|Win32.ActiveCfg = Release|Win32
+		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
