@@ -62,6 +62,7 @@ private:
 	Maid::String	m_GUID;
 	Maid::String	m_UninstallTittle;
 	Maid::String	m_DefaultTarget;
+	Maid::String	m_Publisher;
 
 	std::vector<INSTALLTYPE>	m_InstallType;
 	EXECUTEINFO	m_ExecuteInfo;
