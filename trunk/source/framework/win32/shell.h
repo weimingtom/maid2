@@ -29,6 +29,7 @@ namespace Maid
 
     String GetProgramFilesFolder( HWND hWnd );
     String GetWindowsFolder();
+    String GetTemporaryFolder();
 
     String GetUserDeskTopFolder( HWND hWnd );
     String GetUserProgramMenuFolder( HWND hWnd );
