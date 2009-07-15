@@ -30,6 +30,7 @@ using namespace Maid;
 #define s_XML_MUTEXNAME (MAIDTEXT("mutexname"))
 #define s_XML_CAPTION   (MAIDTEXT("caption"))
 #define s_XML_GUID (MAIDTEXT("guid"))
+#define s_XML_PUBLISHER (MAIDTEXT("publisher"))
 #define s_XML_UNINSTALLTITTLE (MAIDTEXT("uninstalltittle"))
 #define s_XML_TARGETREGISTRY (MAIDTEXT("targetregistry"))
 #define s_XML_DEFAULTTARGET (MAIDTEXT("defaultfolder"))
@@ -77,8 +78,6 @@ FUNCTIONRESULT SetupConfig::Initialize( const String& FilePath )
 		AddConvertTable( s_TABLE_COMMONPROGRAMMENU, ComProgramMenu );
 		AddConvertTable( s_TABLE_COMMONDESKTOP,     ComDesktop );
 		AddConvertTable( s_TABLE_COMMONAPPDATA,     ComAppData );
-
-		AddConvertTable( s_TABLE_UNINSTALLER,  ProgramFiles + MAIDTEXT("\\") + s_UNINSTALLER_NAME );
 
 		AddConvertTable( s_TABLE_SOURCEFOLDER,  Source);
 	}
@@ -137,6 +136,10 @@ FUNCTIONRESULT SetupConfig::Initialize( const String& FilePath )
 		  else if( NodeName==s_XML_DEFAULTTARGET )
 		  {
 			  m_DefaultTarget = ConvertText(xml.GetString());
+		  }
+		  else if( NodeName==s_XML_PUBLISHER )
+		  {
+			  m_Publisher = ConvertText(xml.GetString());
 		  }
 		  else if( NodeName==s_XML_LASTEXECUTE )
 		  {
@@ -250,6 +253,7 @@ SetupConfig::EXECUTEINFO SetupConfig::GetExecuteInfo()const
 INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& InstallFoler, bool IsMD5Check )
 {
 	AddConvertTable( s_TABLE_TARGETFOLDER,  InstallFoler );
+	AddConvertTable( s_TABLE_UNINSTALLER,  InstallFoler + MAIDTEXT("\\") + s_UNINSTALLER_NAME );
 	AddConvertTable( s_TABLE_UNINSTALLER_COMMAND,  MAIDTEXT("\"") + InstallFoler + MAIDTEXT("\\") + s_UNINSTALLERINFONAME + MAIDTEXT("\"") );
 
   INSTALLPROGRAM ret = GetInstallType(no).Program;
@@ -310,6 +314,14 @@ INSTALLPROGRAM SetupConfig::CreateInstallProgram( int no, const Maid::String& In
 
         val.Name = MAIDTEXT("UninstallString");
         val.Data = MAIDTEXT("\"") + ret.UninstallerPath + MAIDTEXT("\" \"") + ret.UninstallLogFileName + MAIDTEXT("\"");
+        val.Type = INSTALLPROGRAM::REGISTRY::VALUE::TYPE_STRING;
+        reg.ValueList.push_back(val);
+      }
+      {
+        INSTALLPROGRAM::REGISTRY::VALUE val;
+
+        val.Name = MAIDTEXT("Publisher");
+        val.Data = m_Publisher;
         val.Type = INSTALLPROGRAM::REGISTRY::VALUE::TYPE_STRING;
         reg.ValueList.push_back(val);
       }
