@@ -341,6 +341,11 @@ Install::FUNCTIONRESULT Install::OnCreateUninstallInfo( volatile Maid::ThreadCon
         xml.AddTag(s_UNINSTALLER_DELETEFILE_TARGET, pgr.UninstallLogFileName );
 
       }
+      {
+        //  アンインストールexeも登録しておく
+        XMLWriterAutoDescend(xml, s_UNINSTALLER_DELETEFILE );
+        xml.AddTag(s_UNINSTALLER_DELETEFILE_TARGET, pgr.UninstallerPath );
+      }
     }
 
     {
