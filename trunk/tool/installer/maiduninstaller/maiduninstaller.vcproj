@@ -170,15 +170,11 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\define.h"
+			RelativePath=".\resource.h"
 			>
 		</File>
 		<File
-			RelativePath="..\uninstallprogram.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\uninstallprogram.h"
+			RelativePath=".\resource.rc"
 			>
 		</File>
 		<File
