@@ -65,6 +65,8 @@ namespace Maid
     void AddErrorText( const String& text );
     FILE* CreateArchiveFile( int count ); 
 
+    std::string CalcMD5( const std::vector<unt08>& src ) const;
+
   private:
     std::list<STATUS>  m_StatusList;
 

@@ -38,7 +38,10 @@ namespace Maid
 
       std::vector<unt64>  ArchiveSize;  //  分割されているファイルのそれぞれの大きさ
       typedef std::map<String,PACKFILE::FILEINFO> FILEINFOLIST;
-      FILEINFOLIST  Data;
+      FILEINFOLIST  FileInfo;
+
+      typedef std::map<String,PACKFILE::ALIASINFO> ALIASINFOLIST;
+      ALIASINFOLIST AliasInfo;
     };
 
     typedef std::list<ARCHIVEDATA> ARCHIVELIST;

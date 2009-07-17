@@ -69,8 +69,21 @@ namespace Maid
         const int strbyte = pinfo->StructSize - sizeof(PACKFILE::ELEMENTHEADER);
 
         const std::wstring str( (wchar_t*)(pSrc + sizeof(PACKFILE::ELEMENTHEADER)), strbyte/sizeof(wchar_t) );
+        const String FileName = String::ConvertUNICODEtoMAID(str);
 
-        arcdata.Data[String::ConvertUNICODEtoMAID(str)] = pinfo->FileInfo;
+        switch( pinfo->Type )
+        {
+        case PACKFILE::ELEMENTHEADER::TYPE_FILE:
+          {
+            arcdata.FileInfo[FileName] = pinfo->Info.File;
+          }break;
+
+        case PACKFILE::ELEMENTHEADER::TYPE_ALIAS:
+          {
+            arcdata.AliasInfo[FileName] = pinfo->Info.Alias;
+          }break;
+        }
+
 
 
         pSrc += pinfo->StructSize;
@@ -112,10 +125,17 @@ namespace Maid
   {
     for( ARCHIVELIST::const_reverse_iterator arc=ArchiveList.rbegin(); arc!=ArchiveList.rend(); ++arc )
     {
-      ARCHIVEDATA::FILEINFOLIST::const_iterator ite = arc->Data.find(FileName);
+      {
+        ARCHIVEDATA::FILEINFOLIST::const_iterator ite = arc->FileInfo.find(FileName);
+        if( ite!=arc->FileInfo.end() ) { return true; }
+      }
 
-      if( ite!=arc->Data.end() ) { return true; }
+      {
+        ARCHIVEDATA::ALIASINFOLIST::const_iterator ite = arc->AliasInfo.find(FileName);
+        if( ite!=arc->AliasInfo.end() ) { return true; }
+      }
     }
+
     return false;
   }
 
@@ -124,9 +144,21 @@ namespace Maid
   {
     for( ARCHIVELIST::const_reverse_iterator arc=ArchiveList.rbegin(); arc!=ArchiveList.rend(); ++arc )
     {
-      ARCHIVEDATA::FILEINFOLIST::const_iterator ite = arc->Data.find(FileName);
+      ARCHIVEDATA::FILEINFOLIST::const_iterator ite = arc->FileInfo.find(FileName);
 
-      if( ite==arc->Data.end() ) { continue; }
+      if( ite==arc->FileInfo.end() ) 
+      {
+        //  ファイルが見つからない==エイリアスかも
+        //  エイリアスならターゲット先のファイル名を使う
+
+        ARCHIVEDATA::ALIASINFOLIST::const_iterator tmp = arc->AliasInfo.find(FileName);
+
+        if( tmp==arc->AliasInfo.end() ) { continue; }
+
+        ite = arc->FileInfo.find(String::ConvertUNICODEtoMAID(tmp->second.Target));
+
+        if( ite==arc->FileInfo.end() )  { continue; }
+      }
 
       const PACKFILE::FILEINFO& info = ite->second;
 
