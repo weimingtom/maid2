@@ -5,6 +5,9 @@
 #include"../auxiliary/debug/warning.h"
 #include"../auxiliary/compress/compresszlib.h"
 #include"../auxiliary/memorybuffer.h"
+#include"../import/md5/md5.h"
+
+#include<map>
 
 
 namespace Maid
@@ -65,6 +68,29 @@ void PackFileCreater::AddErrorText( const String& text )
 
 
 
+std::string PackFileCreater::CalcMD5( const std::vector<unt08>& src ) const
+{
+  MD5LIB::MD5_CTX context;
+
+  MD5LIB::MD5Init( &context );
+  MD5LIB::MD5Update( &context, &(src[0]), src.size() );
+
+  unsigned char digest[16];
+
+  MD5LIB::MD5Final( digest, &context );
+
+  std::string ret;
+
+  for( unt32 i=0; i<NUMELEMENTS(digest); ++i )
+  {
+	  char buf[32];
+	  sprintf( buf, "%02x", digest[i] );
+
+	  ret += buf;
+  }
+
+  return ret;
+}
 
 unt PackFileCreater::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
 {
@@ -76,6 +102,9 @@ unt PackFileCreater::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
 
   unt64 ArchiveSize = 0;
   unt64 HeaderSize = 0;
+
+  std::map<std::string,std::wstring>  MD5Index; //  map[md5]==FileName となるインデックス
+
   {
     //  FileWrite を使う方法があるんだけど、アーカイブファイルが２Ｇ越えると動作しなそうなので
     //  地味に行う
@@ -98,39 +127,15 @@ unt PackFileCreater::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
       SrcFileImage.resize( hSrcFile.GetSize() );
       hSrcFile.Read( &(SrcFileImage[0]), hSrcFile.GetSize() );
 
-      DstFileImage.resize( hSrcFile.GetSize() );
+      const std::string MD5Value = CalcMD5(SrcFileImage);
 
-      PACKFILE::COMPRESSTYPE CompType = PACKFILE::COMPRESSTYPE_NONE;
+      std::map<std::string,std::wstring>::const_iterator ite = MD5Index.find(MD5Value);
+      if( ite!=MD5Index.end() )
+      { //  同じファイルがあったら、エイリアスの作成だけにしておく
+        const std::wstring aliasname  = String::ConvertMAIDtoUNICODE(srcinfo.SourceFile);
+        const std::wstring targetname = ite->second;
 
-      if( srcinfo.IsCompress )
-      {
-        CompressZLIB comp;
-        const size_t size = comp.Encode( &(SrcFileImage[0]), SrcFileImage.size(), &(DstFileImage[0]), DstFileImage.size() );
-
-        //  圧縮したのに膨らんでしまったら、キャンセル
-        if( SrcFileImage.size() <= size )
-        {
-          AddExecutingText( srcinfo.SourceFile + MAIDTEXT("は圧縮に失敗したので無圧縮で固めます") );
-          DstFileImage = SrcFileImage;
-          CompType = PACKFILE::COMPRESSTYPE_NONE;
-        }else
-        {
-          AddExecutingText( srcinfo.SourceFile + MAIDTEXT("は圧縮しました") );
-          DstFileImage.resize( size );
-          CompType = PACKFILE::COMPRESSTYPE_ZLIB;
-        }
-      }else
-      {
-          AddExecutingText( srcinfo.SourceFile + MAIDTEXT("は無圧縮で固めます") );
-        DstFileImage = SrcFileImage;
-        CompType = PACKFILE::COMPRESSTYPE_NONE;
-      }
-
-      //  ファイル情報を記録
-      {
-        std::wstring str = String::ConvertMAIDtoUNICODE(srcinfo.SourceFile);
-
-        const unt32 Elementsize = sizeof(PACKFILE::ELEMENTHEADER) + str.length()*sizeof(wchar_t);
+        const unt32 Elementsize = sizeof(PACKFILE::ELEMENTHEADER) + aliasname.length()*sizeof(wchar_t);
         const unt32 OldSize = ElementInfo.GetSize();
 
         ElementInfo.Resize( OldSize+Elementsize );
@@ -140,28 +145,86 @@ unt PackFileCreater::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
 
         ZERO( pInfo, Elementsize );
 
-        pInfo->FileInfo.CompressSize = DstFileImage.size();
-        pInfo->FileInfo.CompressType = CompType;
-        pInfo->FileInfo.Position = ArchiveSize;
-        pInfo->FileInfo.FileSize = SrcFileImage.size();
+        memcpy( pInfo->Info.Alias.Target, targetname.c_str(), targetname.length()*sizeof(wchar_t) );
 
+        pInfo->Type       = PACKFILE::ELEMENTHEADER::TYPE_ALIAS;
         pInfo->StructSize = Elementsize;
-        ::memcpy( pBegin + sizeof(PACKFILE::ELEMENTHEADER), str.c_str(), str.length()*sizeof(wchar_t) );
+        ::memcpy( pBegin + sizeof(PACKFILE::ELEMENTHEADER), aliasname.c_str(), aliasname.length()*sizeof(wchar_t) );
+
+        AddExecutingText( srcinfo.SourceFile + MAIDTEXT("はエイリアス化されました") );
+
+      }else
+      { //  ない場合は書き出す
+        DstFileImage.resize( hSrcFile.GetSize() );
+
+        PACKFILE::COMPRESSTYPE CompType = PACKFILE::COMPRESSTYPE_NONE;
+
+        if( srcinfo.IsCompress )
+        {
+          CompressZLIB comp;
+          const size_t size = comp.Encode( &(SrcFileImage[0]), SrcFileImage.size(), &(DstFileImage[0]), DstFileImage.size() );
+
+          //  圧縮したのに膨らんでしまったら、キャンセル
+          if( SrcFileImage.size() <= size )
+          {
+            AddExecutingText( srcinfo.SourceFile + MAIDTEXT("は圧縮に失敗したので無圧縮で固めます") );
+            DstFileImage = SrcFileImage;
+            CompType = PACKFILE::COMPRESSTYPE_NONE;
+          }else
+          {
+            AddExecutingText( srcinfo.SourceFile + MAIDTEXT("は圧縮しました") );
+            DstFileImage.resize( size );
+            CompType = PACKFILE::COMPRESSTYPE_ZLIB;
+          }
+        }else
+        {
+          AddExecutingText( srcinfo.SourceFile + MAIDTEXT("は無圧縮で固めます") );
+          DstFileImage = SrcFileImage;
+          CompType = PACKFILE::COMPRESSTYPE_NONE;
+        }
+
+        //  ファイル情報を記録
+        {
+          std::wstring str = String::ConvertMAIDtoUNICODE(srcinfo.SourceFile);
+
+          const unt32 Elementsize = sizeof(PACKFILE::ELEMENTHEADER) + str.length()*sizeof(wchar_t);
+          const unt32 OldSize = ElementInfo.GetSize();
+
+          ElementInfo.Resize( OldSize+Elementsize );
+
+          unt08* pBegin = (unt08*)ElementInfo.GetPointer(OldSize);
+          PACKFILE::ELEMENTHEADER* pInfo = (PACKFILE::ELEMENTHEADER*)pBegin;
+
+          ZERO( pInfo, Elementsize );
+
+          pInfo->Info.File.CompressSize = DstFileImage.size();
+          pInfo->Info.File.CompressType = CompType;
+          pInfo->Info.File.Position = ArchiveSize;
+          pInfo->Info.File.FileSize = SrcFileImage.size();
+
+          pInfo->Type       = PACKFILE::ELEMENTHEADER::TYPE_FILE;
+          pInfo->StructSize = Elementsize;
+          ::memcpy( pBegin + sizeof(PACKFILE::ELEMENTHEADER), str.c_str(), str.length()*sizeof(wchar_t) );
+
+          {
+            //  ＭＤ５テーブルにも記録
+            MD5Index[MD5Value] = str;
+          }
+        }
+
+        //  書きんで次へ
+        fwrite( &(DstFileImage[0]), DstFileImage.size(), 1, hDstFile );
+
+        //  4byte境界にそろえる
+        const int tmp = 4-(DstFileImage.size()&3);
+        const unt08 tmpdat[] = { 0x00,0x00,0x00,0x00 };
+        if( tmp!=0 )
+        {
+          fwrite( tmpdat, tmp, 1, hDstFile );
+        }
+
+        ArchiveSize += DstFileImage.size() + tmp;
       }
-
-      //  書きんで次へ
-      fwrite( &(DstFileImage[0]), DstFileImage.size(), 1, hDstFile );
-
-      //  4byte境界にそろえる
-      const int tmp = 4-(DstFileImage.size()&3);
-      const unt08 tmpdat[] = { 0x00,0x00,0x00,0x00 };
-      if( tmp!=0 )
-      {
-        fwrite( tmpdat, tmp, 1, hDstFile );
-      }
-
-
-      ArchiveSize += DstFileImage.size() + tmp;
     }
 
     fclose(hDstFile);
@@ -171,7 +234,7 @@ unt PackFileCreater::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
   {
     AddExecutingText( MAIDTEXT("ヘッダの作成中") );
     //  ヘッダの圧縮&ファイルに書き込む
-    const unt DivCount = (sizeof(PACKFILE::HEADER) + ElementInfo.GetSize() + ArchiveSize) / m_DivSize +1;
+    const unt DivCount = (sizeof(PACKFILE::HEADER) + (unt64)ElementInfo.GetSize() + ArchiveSize) / m_DivSize +1;
     const MemoryBuffer& SrcFileImage = ElementInfo;
     MemoryBuffer  DstFileImage; //  書き込むイメージ
 
@@ -219,7 +282,7 @@ unt PackFileCreater::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
       if( arcoff!=0 )
       {
         const unt08 tmpdat[] = { 0xDE,0xAD,0xBE,0xEF };
-        fwrite( tmpdat, arcoff, 1, hFile );
+        fwrite( tmpdat, (size_t)arcoff, 1, hFile );
       }
       fclose( hFile );
 

@@ -44,10 +44,28 @@ namespace Maid
 	    unt32 FileSize;     //!<	実際のファイルサイズ
     };
 
+    struct ALIASINFO
+    {
+      wchar_t Target[260];  //!<  リンク先
+    };
+
     struct ELEMENTHEADER
     {
 		  unt32     StructSize;		//!<	この構造体の大きさ（バイト単位）
-      FILEINFO  FileInfo;     //!<  ファイル情報
+
+      enum TYPE
+      {
+        TYPE_FILE,  //!< 普通のファイル
+        TYPE_ALIAS, //!< TYPE_FILE へのショートカット
+      };
+
+      TYPE  Type;
+
+      union
+      {
+        FILEINFO  File;
+        ALIASINFO Alias;
+      }Info;
     };
     
     //  ELEMENTHEADER の後に wchar_t が並んでいる。すべて小文字になっています
