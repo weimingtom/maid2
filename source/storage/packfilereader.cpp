@@ -10,6 +10,18 @@
 namespace Maid
 {
 
+  /*!
+      @class  PackFileReader packfilereader.h
+      @brief  maid専用アーカイブファイルにアクセスするクラス
+              読み込み専用です
+  */
+
+  //! アーカイブをマウントする
+  /*!
+      この関数以降、内部にアクセスできるようになります
+
+      @param  FileName  [i ]  マウントするファイル名
+   */
   void PackFileReader::Mount( const String& FileName )
   {
     ARCHIVEDATA arcdata;
@@ -83,9 +95,6 @@ namespace Maid
             arcdata.AliasInfo[FileName] = pinfo->Info.Alias;
           }break;
         }
-
-
-
         pSrc += pinfo->StructSize;
         ElementInfoSize -= pinfo->StructSize;
       }
@@ -109,6 +118,10 @@ namespace Maid
     ArchiveList.push_back(arcdata);
   }
 
+  //! マウントしてるアーカイブをはずす
+  /*!
+      @param  FileName  [i ]  はずすファイル名
+   */
   void PackFileReader::UnMount( const String& FileName )
   {
     for( ARCHIVELIST::iterator ite=ArchiveList.begin(); ite!=ArchiveList.end(); ++ite )
@@ -121,6 +134,13 @@ namespace Maid
     }
   }
 
+  //! アーカイブ内に指定したファイルが存在しているか？
+  /*!
+      @param  FileName  [i ]  調べるファイル名
+
+      @return 存在していたら true
+              なかったら false
+   */
   bool PackFileReader::IsExist( const String& FileName )const
   {
     for( ARCHIVELIST::const_reverse_iterator arc=ArchiveList.rbegin(); arc!=ArchiveList.rend(); ++arc )
@@ -139,7 +159,13 @@ namespace Maid
     return false;
   }
 
+  //! ファイルを探す
+  /*!
+      @param  FileName  [i ]  探すファイル名
 
+      @return 存在していたら 実態
+              なかったら ＮＵＬＬ
+   */
   SPFILEREAD PackFileReader::FindFile( const String& FileName )const
   {
     for( ARCHIVELIST::const_reverse_iterator arc=ArchiveList.rbegin(); arc!=ArchiveList.rend(); ++arc )

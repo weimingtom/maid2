@@ -13,6 +13,18 @@
 namespace Maid
 {
 
+  /*!
+      @class  PackFileCreater packfilecreater.h
+      @brief  maid専用アーカイブファイルを作成するクラス
+  */
+
+//! アーカイブ化を開始する
+/*!
+    @param  ArchiveName   [i ]  出力ファイル名
+    @param  DivSize       [i ]  分割する場合の１ファイルあたりの大きさ
+    @param  RootDirectory [i ]  含めるファイルのベースディレクトリ名。アーカイブに含まれるのはここから下の階層だけです。
+    @param  FileInfo      [i ]  アーカイブするファイル名のリスト
+*/
 void PackFileCreater::BeginArchive( const String& ArchiveName, unt64 DivSize, const String& RootDirectory, const std::vector<FILEINFO>& FileInfo )
 {
   m_ArchiveName = ArchiveName;
@@ -21,7 +33,6 @@ void PackFileCreater::BeginArchive( const String& ArchiveName, unt64 DivSize, co
 
   m_DivSize = DivSize;
 
-
   AddExecutingText( MAIDTEXT("処理の準備中") );
 
   m_Thread.SetFunc( MakeThreadObject(&PackFileCreater::ThreadFunction,this) );
@@ -29,6 +40,10 @@ void PackFileCreater::BeginArchive( const String& ArchiveName, unt64 DivSize, co
 
 }
 
+//! 行った処理のログを取得する
+/*!
+    @param  st  [ o]  アーカイブ化しているスレッドが行ったログ
+ */
 void PackFileCreater::PopStatus( std::list<STATUS>& st )
 {
   ThreadMutexLocker lock(m_StatusMutex);
@@ -36,11 +51,21 @@ void PackFileCreater::PopStatus( std::list<STATUS>& st )
   st.splice( st.end(), m_StatusList );
 }
 
+
+//! 実行中のアーカイブ処理を中断する
+/*!
+ */
 void   PackFileCreater::OnCancel()
 {
-
+  MAID_ASSERT( true, "未実装" );
 }
 
+
+
+//! 実行中ログの追加
+/*!
+    @param  text  [i ]  追加したいログ
+ */
 void PackFileCreater::AddExecutingText( const String& text )
 {
   ThreadMutexLocker lock(m_StatusMutex);
@@ -53,6 +78,11 @@ void PackFileCreater::AddExecutingText( const String& text )
   m_StatusList.push_back(st);
 }
 
+
+//! エラーログの追加
+/*!
+    @param  text  [i ]  追加したいログ
+ */
 void PackFileCreater::AddErrorText( const String& text )
 {
   ThreadMutexLocker lock(m_StatusMutex);
@@ -67,7 +97,12 @@ void PackFileCreater::AddErrorText( const String& text )
 
 
 
+//! 任意のバイナリのＭＤ５を計算する
+/*!
+    @param  src  [i ]  計算するバイナリ
 
+    @return 計算されたMD5の値
+ */
 std::string PackFileCreater::CalcMD5( const std::vector<unt08>& src ) const
 {
   MD5LIB::MD5_CTX context;
