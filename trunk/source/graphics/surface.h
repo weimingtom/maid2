@@ -48,6 +48,8 @@ namespace Maid
     COLOR_R32G32B32A32F GetPixel( const POINT2DI& pos )const;
     void SetPixel( const POINT2DI& pos, const COLOR_R32G32B32A32F& col );
 
+    unt08 GetIndex( const POINT2DI& pos )const;
+
   private:
 
 		void* _GetLinePTR( int y );

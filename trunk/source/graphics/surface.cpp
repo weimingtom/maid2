@@ -133,6 +133,25 @@ void* Surface::_GetColorPTR( int index )
   return p + (bpp*index/8);
 }
 
+//! 指定した座標のインデックスを取得する
+/*!
+    当然のことながら、インデックスのないフォーマットでは無効です
+
+    @param  pos [i ]  取得したい座標
+
+    @return インデックス番号
+ */
+unt08 Surface::GetIndex( const POINT2DI& pos )const
+{
+  const int bpp = GetCLUTBPP(GetPixelFormat());
+  MAID_ASSERT( bpp==0, "インデックスがありません" );
+  if( bpp==0 ) { return 0; }
+
+  const void* p = GetPixelPTR( pos );
+
+  return *(unt08*)p;
+}
+
 
 
 //! 指定した座標の色を取得する

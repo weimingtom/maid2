@@ -135,6 +135,30 @@ namespace Maid
   }
 
   /*!
+    @brief  現在の情報を維持したまま、アルファ付フォーマットを決定する
+   
+    @param  src	[i ]	求めるフォーマット
+   
+    @return	見つかったフォーマット
+   */
+  inline PIXELFORMAT ConvertAlphaFormat( PIXELFORMAT src )
+  {
+    switch( src )
+    {
+    case PIXELFORMAT_R05G06B05I:
+    case PIXELFORMAT_X01R05G05B05I:
+    case PIXELFORMAT_A01R05G05B05I:
+    case PIXELFORMAT_A01B05G05R05I: { return  PIXELFORMAT_A08R08G08B08I; }break;
+
+    case PIXELFORMAT_R08G08B08I:
+    case PIXELFORMAT_B08G08R08I:
+    case PIXELFORMAT_X08R08G08B08I: { return  PIXELFORMAT_A08R08G08B08I; }break;
+
+    }
+    return src;
+  }
+
+  /*!
     @brief	ピクセルフォーマットからCLUT１つあたりあたりに使用する
   \n        ビット数を求める
    
