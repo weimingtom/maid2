@@ -3,6 +3,7 @@
 #include"fileio/filewrite.h"
 #include"fileio/filereadnormal.h"
 #include"../auxiliary/debug/warning.h"
+#include"../auxiliary/debug/assert.h"
 #include"../auxiliary/compress/compresszlib.h"
 #include"../auxiliary/memorybuffer.h"
 #include"../import/md5/md5.h"

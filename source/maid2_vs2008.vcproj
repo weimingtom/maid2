@@ -1330,11 +1330,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\texture2d.cpp"
+				RelativePath=".\graphics\texture2d.h"
 				>
 			</File>
 			<File
-				RelativePath=".\graphics\texture2d.h"
+				RelativePath=".\graphics\texture2d1.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\texture2d2.cpp"
 				>
 			</File>
 			<File

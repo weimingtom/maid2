@@ -36,6 +36,9 @@ protected:
     m_Render.Initialize();
 
     m_Texture.LoadFile( MAIDTEXT("nc1673.bmp") );
+    //  ↑を↓のようにすると、アルファとカラーを合成できる
+//    m_Texture.LoadFile( MAIDTEXT("<COLOR:nc1673.bmp><ALPHA:nc1673_mask.bmp>") );
+
     m_Texture2.LoadFile( MAIDTEXT("nc1429.png") );
     m_Texture3.LoadFile( MAIDTEXT("nc10910.jpg") );
     m_Mask.LoadFile( MAIDTEXT("mask.png") );

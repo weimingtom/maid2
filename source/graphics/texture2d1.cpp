@@ -115,49 +115,6 @@ namespace Maid
       out.ImageFormat = ImageSurface[0].GetPixelFormat();
     }
 
-    FUNCTIONRESULT tex2dFunction::LoadImage( const String& filename, std::vector<SurfaceInstance>& dst )
-    {
-      FileReaderSync  hFile;
-
-      {
-        const bool ret = hFile.Open( filename );
-        if( ret ) { MAID_WARNING( MAIDTEXT("オープンに失敗") ); return FUNCTIONRESULT_ERROR; }
-      }
-
-      std::vector<unt08> image( hFile.GetSize() );
-
-      {
-        const size_t ret = hFile.Read( &(image[0]), image.size() );
-        if( ret!=image.size() ) { MAID_WARNING( MAIDTEXT("読み込みに失敗") ); return FUNCTIONRESULT_ERROR; }
-      }
-
-      { //  ファイルフォーマットを調べて読み込み開始
-
-        if( Bitmap::Check( image ) ) 
-        {
-          dst.resize(1);
-          const FUNCTIONRESULT ret = Bitmap::Load( image, dst[0] ); 
-          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("bitmap失敗") ); return FUNCTIONRESULT_ERROR; }
-        }
-        else if( PNG::Check( image ) ) 
-        {
-          dst.resize(1);
-          const FUNCTIONRESULT ret = PNG::Load( image, dst[0] ); 
-          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("png失敗") ); return FUNCTIONRESULT_ERROR; }
-        }
-        else if( Jpeg::Check( image ) ) 
-        {
-          dst.resize(1);
-          const FUNCTIONRESULT ret = Jpeg::Load( image, dst[0] ); 
-          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("jpeg失敗") ); return FUNCTIONRESULT_ERROR; }
-        }
-
-        #pragma  COMPILERMSG( "TODO:のこり psd,gif,tga...ぐらいか？" )
-      }
-
-      return FUNCTIONRESULT_OK;
-    }
-
     FUNCTIONRESULT tex2dFunction::ConvertSubResource( const std::vector<SurfaceInstance>& SrcImage, std::vector<SurfaceInstance>& DstImage  )
     {
       for( int i=0; i<(int)DstImage.size(); ++i )
