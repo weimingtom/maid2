@@ -133,23 +133,32 @@ void* Surface::_GetColorPTR( int index )
   return p + (bpp*index/8);
 }
 
-//! 指定した座標のインデックスを取得する
-/*!
-    当然のことながら、インデックスのないフォーマットでは無効です
 
-    @param  pos [i ]  取得したい座標
 
-    @return インデックス番号
- */
-unt08 Surface::GetIndex( const POINT2DI& pos )const
+COLOR_R32G32B32A32F Surface::GetIndex( int index )const
 {
-  const int bpp = GetCLUTBPP(GetPixelFormat());
-  MAID_ASSERT( bpp==0, "インデックスがありません" );
-  if( bpp==0 ) { return 0; }
+  const void* p = GetColorPTR( index );
+  const PIXELFORMAT fmt = GetPixelFormat();
 
-  const void* p = GetPixelPTR( pos );
+  switch( fmt )
+  {
+  case PIXELFORMAT_P08X08R08G08B08I: { return PIXELCONVERTtoF( *(COLOR_X08R08G08B08I*)p); }break;
+  case PIXELFORMAT_P08A08R08G08B08I: { return PIXELCONVERTtoF( *(COLOR_A08R08G08B08I*)p); }break;
+  }
 
-  return *(unt08*)p;
+  return COLOR_R32G32B32A32F(0,0,0,0);
+}
+
+void Surface::SetIndex( int index, const COLOR_R32G32B32A32F& col )
+{
+  void* p = GetColorPTR( index );
+  const PIXELFORMAT fmt = GetPixelFormat();
+
+  switch( fmt )
+  {
+  case PIXELFORMAT_P08X08R08G08B08I: { *(COLOR_X08R08G08B08I*)p = PIXELCONVERTtoI(col) ; }break;
+  case PIXELFORMAT_P08A08R08G08B08I: { *(COLOR_A08R08G08B08I*)p = PIXELCONVERTtoI(col) ; }break;
+  }
 }
 
 
@@ -171,6 +180,20 @@ COLOR_R32G32B32A32F Surface::GetPixel( const POINT2DI& pos ) const
 
   switch( fmt )
   {
+  case PIXELFORMAT_P08X08R08G08B08I:
+    {
+      const unt08 index = *(unt08*)p;
+      const void* col = GetColorPTR(index);
+
+      return PIXELCONVERTtoF( *(COLOR_X08R08G08B08I*)col);
+    }break;
+  case PIXELFORMAT_P08A08R08G08B08I:
+    {
+      const unt08 index = *(unt08*)p;
+      const void* col = GetColorPTR(index);
+      return PIXELCONVERTtoF( *(COLOR_A08R08G08B08I*)col);
+    }break;
+
   case PIXELFORMAT_R05G06B05I:    { return PIXELCONVERTtoF( *(COLOR_R05G06B05I*) p); }break;
   case PIXELFORMAT_X01R05G05B05I: { return PIXELCONVERTtoF( *(COLOR_X01R05G05B05I*) p); }break;
   case PIXELFORMAT_A01R05G05B05I: { return PIXELCONVERTtoF( *(COLOR_A01R05G05B05I*) p); }break;
@@ -208,6 +231,34 @@ void Surface::SetPixel( const POINT2DI& pos, const COLOR_R32G32B32A32F& col )
 
   switch( fmt )
   {
+  case PIXELFORMAT_P08X08R08G08B08I:
+  case PIXELFORMAT_P08A08R08G08B08I:
+    {
+      //  現在のCLUTの色とcolを比べて、一番近いところをindexとする
+      unt08 index = 0;
+      unt sa = ~0;
+
+      const COLOR_A08R08G08B08I i_col = PIXELCONVERTtoI(col);
+      for( int i=0; i<256; ++i )
+      {
+        const COLOR_A08R08G08B08I pal = *(COLOR_A08R08G08B08I*)GetColorPTR(i);
+        const unt tmp = abs(pal.GetA()-i_col.GetA())
+                      + abs(pal.GetR()-i_col.GetR())
+                      + abs(pal.GetG()-i_col.GetG())
+                      + abs(pal.GetB()-i_col.GetB())
+                      ;
+
+        if( tmp < sa )
+        {
+          index = (unt08)i;
+          sa = tmp;
+        }
+      }
+
+      *(unt08*)p = index ;
+
+    }break;
+
   case PIXELFORMAT_R05G06B05I:    { *(COLOR_R05G06B05I*)p = PIXELCONVERTtoI(col) ; }break;
   case PIXELFORMAT_X01R05G05B05I: { *(COLOR_X01R05G05B05I*)p = PIXELCONVERTtoI( col ); }break;
   case PIXELFORMAT_A01R05G05B05I: { *(COLOR_A01R05G05B05I*)p = PIXELCONVERTtoI( col ); }break;

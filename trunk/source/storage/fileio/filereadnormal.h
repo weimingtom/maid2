@@ -24,11 +24,9 @@ namespace Maid
     FileReadNormal( const String& FileName );
     virtual ~FileReadNormal();
 
-
     virtual OPENRESULT  Open();
     virtual void        Close();
     virtual bool        IsOpen() const;
-
 
     virtual size_t Read( void* pData, size_t Size );
     virtual size_t GetSize()    const;

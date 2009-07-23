@@ -168,7 +168,7 @@ namespace Maid
             {
               const POINT2DI p(x,y);
                     COLOR_R32G32B32A32F pixel = src_c.GetPixel(p);
-              const float alpha = BITCONVERT08Ito32F(src_a.GetIndex(p));
+              const float alpha = BITCONVERT08Ito32F(*(unt08*)src_a.GetPixelPTR(p));
               pixel.SetA( pixel.GetA()*alpha );
 
               d.SetPixel( p, pixel );
