@@ -88,6 +88,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maiduninstallertmp", "tool\
 		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "channelsplitter", "tool\channelsplitter\channelsplitter.vcproj", "{66364552-B39C-4AA6-A8CC-943848719753}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B80AC4DE-9464-4D83-8E4A-ADFDA820007F} = {B80AC4DE-9464-4D83-8E4A-ADFDA820007F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -160,6 +165,10 @@ Global
 		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}.Debug|Win32.Build.0 = Debug|Win32
 		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}.Release|Win32.ActiveCfg = Release|Win32
 		{5E0C82DA-A33B-4C32-B4E2-951ECC555EB7}.Release|Win32.Build.0 = Release|Win32
+		{66364552-B39C-4AA6-A8CC-943848719753}.Debug|Win32.ActiveCfg = Debug|Win32
+		{66364552-B39C-4AA6-A8CC-943848719753}.Debug|Win32.Build.0 = Debug|Win32
+		{66364552-B39C-4AA6-A8CC-943848719753}.Release|Win32.ActiveCfg = Release|Win32
+		{66364552-B39C-4AA6-A8CC-943848719753}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
