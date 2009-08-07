@@ -585,6 +585,11 @@ void	DeviceD3D09::ScreenReset( const D3DPRESENT_PARAMETERS& NewParam )
     m_Window.SetPosition( POINT2DI(x,y) );
   }
 
+  //  状態の変更がない場合はウィンドウサイズを変更する
+  if( NowFull==NexFull )
+  {
+    m_Window.SetClientSize( SIZE2DI(p.BackBufferWidth, p.BackBufferHeight) );
+  }
 
   {
     //  で、戻ってきてもらうー
