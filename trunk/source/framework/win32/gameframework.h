@@ -52,6 +52,7 @@ namespace Maid
 	private:
 		Window::CALLBACKCODE wmClose( WindowsMessage& msg );
 		Window::CALLBACKCODE wmActivate( WindowsMessage& msg );
+		Window::CALLBACKCODE wmActivateApp( WindowsMessage& msg );
 		Window::CALLBACKCODE wmNcLButtonDblClk( WindowsMessage& msg ); 
 		Window::CALLBACKCODE wmSysCommand( WindowsMessage& msg ); 
 		Window::CALLBACKCODE wmKeyDown( WindowsMessage& msg ); 

@@ -53,7 +53,8 @@ void GameFrameWork::LocalInitialize(const INITIALIZEPARAM& Conf)
 	{
 		Window& win = m_Window;
 
-		win.RegistCallBack( WM_ACTIVATE,        MakeCallBackObject( &GameFrameWork::wmActivate, this) );
+//		win.RegistCallBack( WM_ACTIVATE,        MakeCallBackObject( &GameFrameWork::wmActivate, this) );
+		win.RegistCallBack( WM_ACTIVATEAPP,        MakeCallBackObject( &GameFrameWork::wmActivateApp, this) );
 		win.RegistCallBack( WM_NCLBUTTONDBLCLK, MakeCallBackObject( &GameFrameWork::wmNcLButtonDblClk, this) );
 		win.RegistCallBack( WM_SYSCOMMAND,      MakeCallBackObject( &GameFrameWork::wmSysCommand, this) );
 		win.RegistCallBack( WM_KEYDOWN,         MakeCallBackObject( &GameFrameWork::wmKeyDown, this) );

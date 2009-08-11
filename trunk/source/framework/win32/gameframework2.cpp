@@ -66,6 +66,22 @@ Window::CALLBACKCODE GameFrameWork::wmActivate( WindowsMessage& msg )
 
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! WM_ACTIVE がきたときの処理
+/*!
+ *	\param	Param	[i ]	メッセージ内容
+ */
+Window::CALLBACKCODE GameFrameWork::wmActivateApp( WindowsMessage& msg )
+{
+	bool IsActive = msg.GetWPARAM()==TRUE;
+
+	OSMessage::Activate Mess;
+	Mess.IsActive = IsActive;
+
+	return ExecMessage(Mess);
+
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! WM_NCLBUTTONDBLCLKがきたときの処理
 /*!
  *	\param	Param	[i ]	メッセージ内容
