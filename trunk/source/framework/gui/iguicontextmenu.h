@@ -66,7 +66,6 @@ namespace Maid
       virtual void LocalUpdateDraw( const RenderTargetBase& Target, const IDepthStencil& Depth, const POINT2DI& pos ){}
       virtual SIZE2DI GetSize() const=0;
 
-
     private:
       void UpdateChildPosition();
 

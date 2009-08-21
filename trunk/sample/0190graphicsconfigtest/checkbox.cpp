@@ -35,7 +35,6 @@ void CheckBox::OnUpdateDraw( const  RenderTargetBase& Target, const IDepthStenci
   const bool in = IsMouseIn();
   const bool down = IsButtonDown();
 
-
   COLOR_R32G32B32A32F color(0,0,0,1);
 
   if( in )

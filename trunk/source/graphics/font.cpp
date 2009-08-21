@@ -175,23 +175,16 @@ SIZE2DI Font::CalcTextSize( const String& text ) const
   {
     const unt32 c = text[i];
 
-    if( !String::IsHankaku(c) )
+    if     ( c=='\r' ) { continue; }
+    else if( c=='\t' ) { continue; }
+    else if( c=='\n' ) 
     {
-      NowStrCount += 2;
-    }else
-    {
-      if     ( c=='\r' ) { continue; }
-      else if( c=='\t' ) { continue; }
-      else if( c=='\n' ) 
-      {
-        TextLineLength = std::max( TextLineLength, NowStrCount );
-	      CountCF++; 
-	      NowStrCount = 0;
-      }else
-      {
-	      NowStrCount += 1;
-      }
+      TextLineLength = std::max( TextLineLength, NowStrCount );
+      CountCF++; 
+      NowStrCount = 0;
     }
+    else if( String::IsHankaku(c) ) { NowStrCount += 1; }
+    else { NowStrCount += 2; }
   }
 
   TextLineLength = std::max( TextLineLength, NowStrCount );
