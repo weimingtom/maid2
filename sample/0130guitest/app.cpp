@@ -27,6 +27,8 @@ using namespace Maid;
     SAMPLEID_TEXTBOX,
 
     SAMPLEID_CONTEXTMENU,
+
+    SAMPLEID_COMBOBOX,
   };
 
 
@@ -171,13 +173,19 @@ void MyApp::Initialize()
     m_ContextSubMenu2[1].Insert( 201, m_ContextSubMenu3[1] );
     m_ContextSubMenu2[1].Insert( 202, m_ContextSubMenu3[2] );
 
-
     m_ContextMenu.Insert( 0, m_ContextSubMenu1[0] );
     m_ContextMenu.Insert( 1, m_ContextSubMenu1[1] );
     m_ContextMenu.Insert( 2, m_ContextSubMenu1[2] );
 
     //  割り込み用なので、設定はしない
     //  m_Manager.RegisterParts( SAMPLEID_CONTEXTMENU, m_ContextMenu );
+  }
+
+  {
+    m_ComboBox.Initialize( pRender );
+
+    m_ComboBox.SetPosition( POINT2DI(500,350) );
+    m_Manager.RegisterParts( SAMPLEID_COMBOBOX, m_ComboBox );
   }
 
 

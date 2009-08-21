@@ -901,6 +901,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\framework\gui\iguicombobox.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\framework\gui\iguicombobox.h"
+					>
+				</File>
+				<File
 					RelativePath=".\framework\gui\iguicontextmenu.cpp"
 					>
 				</File>

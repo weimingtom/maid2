@@ -15,6 +15,7 @@
 #include"windowsample.h"
 #include"textboxsample.h"
 #include"contextmenusample.h"
+#include"comboboxsample.h"
 
 
 class MyApp : public Maid::IGameThread
@@ -63,6 +64,10 @@ private:
   ContextMenuChildSample  m_ContextSubMenu2[3];
   ContextMenuChildSample  m_ContextSubMenu3[3];
   Maid::IGUIContextMenu   m_ContextMenu;
+
+
+  ComboBoxElementSample   m_ComboBoxElement[3];
+  ComboBoxSample          m_ComboBox;
 
   Maid::GUIManager      m_Manager;
 };

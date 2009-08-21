@@ -194,6 +194,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\comboboxsample.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\comboboxsample.h"
+			>
+		</File>
+		<File
 			RelativePath=".\contextmenusample.cpp"
 			>
 		</File>
