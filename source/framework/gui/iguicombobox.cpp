@@ -11,6 +11,8 @@ IGUIComboBox::IGUIComboBox()
   :m_State(STATE_NORMAL)
   ,m_SelectListMax(1)
   ,m_SelectID(0)
+  ,m_MouseInID(0)
+  ,m_SliderTop(0)
 {
 
 }
@@ -82,27 +84,74 @@ bool IGUIComboBox::LocalIsCollision( const POINT2DI& pos ) const
 {
   if( IsBoxCollision( pos ) ) { return true; }
 
+  if( GetState()==STATE_NORMAL ) { return false; }
+
   //  項目選択時は、スライダ、選択項目も調べる
-  if( GetState()==STATE_SELECTING )
+
   {
-    if( IsSliderCollision( pos ) ) { return true; }
-    if( IsSliderButtonCollision( pos ) ) { return true; }
+    const POINT2DI SliderPos(pos.x,pos.y-GetBoxHeight() );
 
-    for( ELEMENTLIST::const_iterator ite=m_ElementList.begin(); ite!=m_ElementList.end(); ++ite )
-    {
-      const IElement* p = ite->second;
-
-      if( p->IsCollision(pos) ) { return true; }
-    }
+    if( IsSliderButtonCollision( SliderPos ) ) { return true; }
+    if( IsSliderCollision( SliderPos ) ) { return true; }
   }
 
+  POINT2DI ElementPos(pos.x,pos.y-GetBoxHeight() );
+  ELEMENTLIST::const_iterator ite = GetSliderTopIte();
+
+  int height = 0;
+  for( int i=0; i<m_SelectListMax; ++i )
+  {
+    if( ite==m_ElementList.end() ) { break; }
+
+    const IElement* p = ite->second;
+
+    if( p->IsCollision( ElementPos ) ) { return true; }
+
+    ElementPos.y -= p->GetBoxSize().h;
+    ++ite;
+  }
+
+
   return false;
+}
+
+int  IGUIComboBox::CalcSliderHeight() const
+{
+  ELEMENTLIST::const_iterator ite = GetSliderTopIte();
+
+  int height = 0;
+  for( int i=0; i<m_SelectListMax; ++i )
+  {
+    if( ite==m_ElementList.end() ) { break; }
+
+    const IElement* p = ite->second;
+
+    height += p->GetBoxSize().h;
+    ++ite;
+  }
+
+  return height;
+}
+
+IGUIComboBox::ELEMENTLIST::const_iterator IGUIComboBox::GetSliderTopIte() const
+{
+  //  現在のスライダボタンの位置にある、elementを取得
+  ELEMENTLIST::const_iterator ite = m_ElementList.begin();
+
+  for( int i=0; i<m_SliderTop; ++i )
+  {
+    ++ite;
+  }
+
+  return ite;
 }
 
 
 void IGUIComboBox::DrawElement( const RenderTargetBase& Target, const IDepthStencil& Depth, const POINT2DI& pos )
 {
+  const STATE state = GetState();
   POINT2DI DrawPos = pos;
+  POINT2DI SliderPos(0,0);
 
   //  選択項目の表示
   //  一番上は現在選択されているもの
@@ -110,38 +159,47 @@ void IGUIComboBox::DrawElement( const RenderTargetBase& Target, const IDepthSten
   //  ただし２行目以降は状態で表示非表示が変わる
 
   {
-    const IElement& ele = GetSelectElement();
+    IElement& ele = GetSelectElement();
     ele.DrawNormal( Target, Depth, DrawPos );
 
     DrawPos.y += ele.GetBoxSize().h;
+    SliderPos.y = DrawPos.y;
   }
 
   if( state==STATE_NORMAL ) { return ; }
 
+  int SliderHeight = 0;
   {
     for( ELEMENTLIST::iterator ite=m_ElementList.begin(); ite!=m_ElementList.end(); ++ite )
     {
       const int id = ite->first;
       IElement* pEle = ite->second;
+      const SIZE2DI size = pEle->GetBoxSize();
 
- //     if( id==GetSelectID() ) { pEle->DrawNormal( Target, Depth, DrawPos ); }
- //     else { }
+      if( id==m_MouseInID ) { pEle->DrawMouseIn( Target, Depth, DrawPos ); }
+      else                  { pEle->DrawNormal( Target, Depth, DrawPos );  }
 
-      DrawPos.y += pEle->GetBoxSize().h;
+      DrawPos.y += size.h;
+
+      SliderPos.x = std::max( SliderPos.x, size.w );
     }
-
   }
 
-
   //  スライダの表示
-
-
-/*
-    void SetSelectID( int id );
-    int GetSelectID() const;
-*/
+  DrawSlider( Target, Depth, SliderPos );
 }
 
+
+int IGUIComboBox::CalcSliderButtonOffset() const
+{
+  const int slidermax = m_ElementList.size()-m_SelectListMax;
+  const int slidernow = m_SliderTop;
+
+  const int height = CalcSliderHeight();
+
+  const int ret = height * slidernow / slidermax;
+  return ret;
+}
 
 
 
@@ -176,7 +234,24 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
           else
           {
             //  elementを押したか？
+            //STATE_SELECTINGDOWN
+/*
+  POINT2DI ElementPos(pos.x,pos.y-GetBoxHeight() );
+  ELEMENTLIST::const_iterator ite = GetSliderTopIte();
 
+  int height = 0;
+  for( int i=0; i<m_SelectListMax; ++i )
+  {
+    if( ite==m_ElementList.end() ) { break; }
+
+    const IElement* p = ite->second;
+
+    if( p->IsCollision( ElementPos ) { return true; }
+
+    ElementPos.y -= p->GetBoxSize().h;
+    ++ite;
+  }
+*/
           }
 
         }break;
@@ -211,6 +286,7 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
           {
             //  element にカーソルを合わせる
 
+            //m_MouseInID
           }
 
         }break;
