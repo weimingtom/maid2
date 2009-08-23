@@ -41,7 +41,8 @@ namespace Maid
     enum STATE
     {
       STATE_NORMAL,            //  普通の状態
-      STATE_SELECTING,         //  リストを表示して選択中
+      STATE_SELECTING,         //  選択リストを表示中
+      STATE_SELECTINGDOWN,     //  選択リストを表示して、マウス押してる
       STATE_SLIDERBUTTONDOWN,  //  スライダー押してる
     };
 
@@ -60,26 +61,35 @@ namespace Maid
     virtual bool IsBoxCollision( const POINT2DI& pos ) const=0;
     virtual bool IsSliderCollision( const POINT2DI& pos ) const=0;
     virtual bool IsSliderButtonCollision( const POINT2DI& pos ) const=0;
+    virtual int GetBoxHeight() const=0;
 
+    virtual void DrawSlider( const RenderTargetBase& Target, const IDepthStencil& Depth, const POINT2DI& pos ){}
 
     void DrawElement( const RenderTargetBase& Target, const IDepthStencil& Depth, const POINT2DI& pos );
 
+    int CalcSliderButtonOffset() const;
+
   private:
+    typedef std::map<int,IElement*> ELEMENTLIST;
     void ChangeState( STATE s );
+    int  CalcSliderHeight() const;
 
     IElement& GetSelectElement();
+
+    ELEMENTLIST::const_iterator GetSliderTopIte()const;
 
   private:
     STATE m_State;
 
-    typedef std::map<int,IElement*> ELEMENTLIST;
     ELEMENTLIST m_ElementList;
 
-    int m_SelectListMax;
+    int m_SelectListMax;  //  選択項目を何個表示するか？
+    int m_SliderTop;  //  スライダの値(最上位に表示しているelementが何個目のやつか？)
 
-    int m_SelectID;
+    int m_SelectID;   //  現在選択されているＩＤ
+    int m_MouseInID;  //  項目選択時にマウスが乗っかっているelementのＩＤ
 
-    IElement  m_Tmp;
+    IElement  m_Tmp;  //  各種取得関数でエラった時に返すテンポラリ要素
   };
 }
 
