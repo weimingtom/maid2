@@ -66,7 +66,7 @@ private:
   Maid::IGUIContextMenu   m_ContextMenu;
 
 
-  ComboBoxElementSample   m_ComboBoxElement[3];
+  ComboBoxElementSample   m_ComboBoxElement[9];
   ComboBoxSample          m_ComboBox;
 
   Maid::GUIManager      m_Manager;

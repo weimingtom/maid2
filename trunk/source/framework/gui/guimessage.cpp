@@ -58,6 +58,14 @@ namespace Maid
         ret = MAIDTEXT("KEYBORDUP") + String::PrintFormat(" id:%0d",p.Key ); 
       }break;
 
+    case IGUIParam::MESSAGE_COMBOBOX_CHANGEELEMENT:
+      {
+        const GUIMESSAGE_COMBOBOX_CHANGEELEMENT& p = static_cast<const GUIMESSAGE_COMBOBOX_CHANGEELEMENT&>(param);
+
+        ret = MAIDTEXT("COMBOBOX_CHANGEELEMENT") + String::PrintFormat(" id:%0d", p.SelectID ); 
+
+      }break;
+
     default:
       {
         char buf[256];

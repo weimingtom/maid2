@@ -13,6 +13,9 @@ IGUIComboBox::IGUIComboBox()
   ,m_SelectID(0)
   ,m_MouseInID(0)
   ,m_SliderTop(0)
+  ,m_SelectBoxOffset(0,0)
+  ,m_SliderBarLength(1)
+  ,m_SliderButtonLength(0)
 {
 
 }
@@ -74,9 +77,59 @@ int IGUIComboBox::GetSelectID() const
   return m_SelectID;
 }
 
+void IGUIComboBox::SetSelectListMax( int count )
+{
+  m_SelectListMax = count;
+}
+
 IGUIComboBox::IElement& IGUIComboBox::GetSelectElement()
 {
+  for( ELEMENTLIST::iterator ite=m_ElementList.begin(); ite!=m_ElementList.end(); ++ite )
+  {
+    if( m_SelectID==ite->first ) { return *(ite->second); }
+  }
+
   return m_Tmp;
+}
+
+void IGUIComboBox::SetSelectBoxOffset( const VECTOR2DI& offset )
+{
+  m_SelectBoxOffset = offset;
+}
+
+const VECTOR2DI& IGUIComboBox::GetSelectBoxOffset() const
+{
+  return m_SelectBoxOffset;
+}
+
+void IGUIComboBox::SetSliderOffset( const VECTOR2DI& offset )
+{
+  m_SliderOffset = offset;
+}
+
+const VECTOR2DI& IGUIComboBox::GetSliderOffset() const
+{
+  return m_SliderOffset;
+}
+
+void IGUIComboBox::SetSliderBarLength( int len )
+{
+  m_SliderBarLength = len;
+}
+
+int IGUIComboBox::GetSliderBarLength() const
+{
+  return m_SliderBarLength;
+}
+
+void IGUIComboBox::SetSliderButtonLength( int len )
+{
+  m_SliderButtonLength = len;
+}
+
+int IGUIComboBox::GetSliderButtonLength() const
+{
+  return m_SliderButtonLength;
 }
 
 
@@ -89,13 +142,13 @@ bool IGUIComboBox::LocalIsCollision( const POINT2DI& pos ) const
   //  項目選択時は、スライダ、選択項目も調べる
 
   {
-    const POINT2DI SliderPos(pos.x,pos.y-GetBoxHeight() );
+    const POINT2DI SliderPos = pos - GetSliderOffset();
 
     if( IsSliderButtonCollision( SliderPos ) ) { return true; }
     if( IsSliderCollision( SliderPos ) ) { return true; }
   }
 
-  POINT2DI ElementPos(pos.x,pos.y-GetBoxHeight() );
+  POINT2DI ElementPos = pos - GetSelectBoxOffset();
   ELEMENTLIST::const_iterator ite = GetSliderTopIte();
 
   int height = 0;
@@ -114,7 +167,7 @@ bool IGUIComboBox::LocalIsCollision( const POINT2DI& pos ) const
 
   return false;
 }
-
+/*
 int  IGUIComboBox::CalcSliderHeight() const
 {
   ELEMENTLIST::const_iterator ite = GetSliderTopIte();
@@ -132,6 +185,7 @@ int  IGUIComboBox::CalcSliderHeight() const
 
   return height;
 }
+*/
 
 IGUIComboBox::ELEMENTLIST::const_iterator IGUIComboBox::GetSliderTopIte() const
 {
@@ -150,8 +204,6 @@ IGUIComboBox::ELEMENTLIST::const_iterator IGUIComboBox::GetSliderTopIte() const
 void IGUIComboBox::DrawElement( const RenderTargetBase& Target, const IDepthStencil& Depth, const POINT2DI& pos )
 {
   const STATE state = GetState();
-  POINT2DI DrawPos = pos;
-  POINT2DI SliderPos(0,0);
 
   //  選択項目の表示
   //  一番上は現在選択されているもの
@@ -160,18 +212,20 @@ void IGUIComboBox::DrawElement( const RenderTargetBase& Target, const IDepthSten
 
   {
     IElement& ele = GetSelectElement();
-    ele.DrawNormal( Target, Depth, DrawPos );
-
-    DrawPos.y += ele.GetBoxSize().h;
-    SliderPos.y = DrawPos.y;
+    ele.DrawSelect( Target, Depth, pos );
   }
 
   if( state==STATE_NORMAL ) { return ; }
 
-  int SliderHeight = 0;
   {
-    for( ELEMENTLIST::iterator ite=m_ElementList.begin(); ite!=m_ElementList.end(); ++ite )
+    POINT2DI DrawPos = pos + GetSelectBoxOffset();
+
+    ELEMENTLIST::const_iterator ite = GetSliderTopIte();
+
+    for( int i=0; i<m_SelectListMax; ++i )
     {
+      if( ite==m_ElementList.end() ) { break; }
+
       const int id = ite->first;
       IElement* pEle = ite->second;
       const SIZE2DI size = pEle->GetBoxSize();
@@ -181,24 +235,39 @@ void IGUIComboBox::DrawElement( const RenderTargetBase& Target, const IDepthSten
 
       DrawPos.y += size.h;
 
-      SliderPos.x = std::max( SliderPos.x, size.w );
+      ++ite;
     }
   }
 
   //  スライダの表示
+  POINT2DI SliderPos = pos + GetSliderOffset();
   DrawSlider( Target, Depth, SliderPos );
 }
 
 
 int IGUIComboBox::CalcSliderButtonOffset() const
 {
+  if( (int)m_ElementList.size() <= m_SelectListMax ) { return 0; }
+
   const int slidermax = m_ElementList.size()-m_SelectListMax;
   const int slidernow = m_SliderTop;
 
-  const int height = CalcSliderHeight();
+  const int height = GetSliderBarLength() - GetSliderButtonLength();
 
   const int ret = height * slidernow / slidermax;
   return ret;
+}
+
+int IGUIComboBox::CalcSliderValue( int PosY ) const
+{
+  const int len = GetSliderBarLength()-GetSliderButtonLength();
+  const int value = m_ElementList.size()-m_SelectListMax;
+
+  const int no = PosY  * value / len;
+
+  if( no<0 ) { return 0; }
+
+  return std::min(no,value);
 }
 
 
@@ -224,34 +293,20 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
 
       case STATE_SELECTING:
         {
-          if( IsSliderCollision(pos) )
-          {
-          }
-          else if( IsSliderButtonCollision(pos) )
+          const POINT2DI SliderPos = pos - GetSliderOffset();
+
+          if( IsSliderButtonCollision(SliderPos) )
           {
             ChangeState(STATE_SLIDERBUTTONDOWN);
           }
+          else if( IsSliderCollision(SliderPos) )
+          {
+            m_SliderTop = CalcSliderValue( SliderPos.y );
+          }
           else
           {
-            //  elementを押したか？
-            //STATE_SELECTINGDOWN
-/*
-  POINT2DI ElementPos(pos.x,pos.y-GetBoxHeight() );
-  ELEMENTLIST::const_iterator ite = GetSliderTopIte();
-
-  int height = 0;
-  for( int i=0; i<m_SelectListMax; ++i )
-  {
-    if( ite==m_ElementList.end() ) { break; }
-
-    const IElement* p = ite->second;
-
-    if( p->IsCollision( ElementPos ) { return true; }
-
-    ElementPos.y -= p->GetBoxSize().h;
-    ++ite;
-  }
-*/
+            //  押してマウス選択を決定する前に
+            //  MESSAGE_MOUSEMOVE 側で決定できるのでここは無視する
           }
 
         }break;
@@ -276,25 +331,43 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
 
       case STATE_SELECTING:
         {
-          if( IsSliderCollision(pos) )
+          const POINT2DI SliderPos = pos - GetSliderOffset();
+
+          if( IsSliderCollision(SliderPos) )
           {
           }
-          else if( IsSliderButtonCollision(pos) )
+          else if( IsSliderButtonCollision(SliderPos) )
           {
           }
           else
           {
-            //  element にカーソルを合わせる
+            POINT2DI ElementPos = pos - GetSelectBoxOffset();
+            ELEMENTLIST::const_iterator ite = GetSliderTopIte();
 
-            //m_MouseInID
+            for( int i=0; i<m_SelectListMax; ++i )
+            {
+              if( ite==m_ElementList.end() ) { break; }
+
+              const IElement* p = ite->second;
+
+              if( p->IsCollision( ElementPos ) )
+              {
+                m_MouseInID = ite->first;
+                break; 
+              }
+
+              ElementPos.y -= p->GetBoxSize().h;
+              ++ite;
+            }
           }
 
         }break;
 
       case STATE_SLIDERBUTTONDOWN:
         {
-          //  ページを送る
+          const POINT2DI SliderPos = pos - GetSliderOffset();
 
+          m_SliderTop = CalcSliderValue( SliderPos.y );
         }break;
       }
     }break;
@@ -313,13 +386,47 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
 
       case STATE_SELECTING:
         {
+          //  elementの中であがったらそれを選択
+          //  そうでなかったら状態を維持
+            POINT2DI ElementPos = pos - GetSelectBoxOffset();
+            ELEMENTLIST::const_iterator ite = GetSliderTopIte();
+
+            for( int i=0; i<m_SelectListMax; ++i )
+            {
+              if( ite==m_ElementList.end() ) { break; }
+
+              const IElement* p = ite->second;
+
+              if( p->IsCollision( ElementPos ) )
+              {
+                m_SelectID = ite->first;
+                ChangeState(STATE_NORMAL);
+
+                GUIMESSAGE_COMBOBOX_CHANGEELEMENT mess;
+                mess.SelectID = m_SelectID;
+
+                PostMessage( mess );
+                break; 
+              }
+
+              ElementPos.y -= p->GetBoxSize().h;
+              ++ite;
+            }
  
         }break;
 
       case STATE_SLIDERBUTTONDOWN:
         {
-
+          ChangeState(STATE_SELECTING);
         }break;
+      }
+    }break;
+
+  case IGUIParam::MESSAGE_SETKEYBORDFOCUS:
+    {
+      if( GetState()!=STATE_NORMAL )
+      {
+        ChangeState(STATE_NORMAL);
       }
     }break;
   }

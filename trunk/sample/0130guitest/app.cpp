@@ -184,7 +184,15 @@ void MyApp::Initialize()
   {
     m_ComboBox.Initialize( pRender );
 
+    for( int i=0; i<NUMELEMENTS(m_ComboBoxElement); ++i )
+    {
+      m_ComboBoxElement[i].Initialize( pRender, String::PrintFormat("項目%02d",i) );
+      m_ComboBox.Insert( i, m_ComboBoxElement[i] );
+
+    }
+
     m_ComboBox.SetPosition( POINT2DI(500,350) );
+    m_ComboBox.SetSelectListMax( 3 );
     m_Manager.RegisterParts( SAMPLEID_COMBOBOX, m_ComboBox );
   }
 

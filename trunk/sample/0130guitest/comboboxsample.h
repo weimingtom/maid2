@@ -44,6 +44,7 @@ public:
 protected:
   virtual void OnUpdateFrame();
   virtual void OnUpdateDraw( const Maid::RenderTargetBase& Target, const Maid::IDepthStencil& Depth, const Maid::POINT2DI& pos );
+  virtual void DrawSlider( const Maid::RenderTargetBase& Target, const Maid::IDepthStencil& Depth, const Maid::POINT2DI& pos );
 
   virtual bool IsBoxCollision( const Maid::POINT2DI& pos ) const;
   virtual bool IsSliderCollision( const Maid::POINT2DI& pos ) const;
