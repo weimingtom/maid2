@@ -46,6 +46,8 @@ namespace Maid
       MESSAGE_TEXTBOX_UPDATESTATE,  //  入力中のテキストが変更された
 
       MESSAGE_CONTEXTMENU_CLICK,  //  コンテキストメニューが選択された
+
+      MESSAGE_COMBOBOX_CHANGEELEMENT,  //  コンボボックスで要素が変更された
     };
 
     IGUIParam( MESSAGE m ):Message(m){}
@@ -246,6 +248,17 @@ namespace Maid
 
     int     SelectID; //  選択されたID IGUIContextMenu::Insert or IGUIContextMenu::IElement::Insert の引数
   };
+
+  class GUIMESSAGE_COMBOBOX_CHANGEELEMENT : public IGUIParam
+  {
+  public:
+    GUIMESSAGE_COMBOBOX_CHANGEELEMENT():IGUIParam(MESSAGE_COMBOBOX_CHANGEELEMENT){}
+    IGUIParam* Clone() const { return new GUIMESSAGE_COMBOBOX_CHANGEELEMENT(*this); }
+
+    int     SelectID; //  選択されたID IGUIConboBox::Insert の引数
+  };
+
+
 }
 
 #endif
