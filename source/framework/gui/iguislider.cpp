@@ -8,8 +8,8 @@ namespace Maid
  	  @brief	スライダ。ボタンをつまんで左右に動かせるアレね
  */ 
 IGUISlider::IGUISlider()
-  :m_ValueMin(0)
-  ,m_ValueMax(1)
+  :m_ValueBegin(0)
+  ,m_ValueEnd(1)
   ,m_Value(0)
   ,m_Rotat(0)
   ,m_IsButtonDown(false)
@@ -20,42 +20,56 @@ IGUISlider::IGUISlider()
 }
 
 
-//! 範囲の最小値を設定する
+//! 範囲の初期値を設定する
 /*!
-    @param  min [i ]  最小値
+    @param  min [i ]  初期値
  */ 
-void	IGUISlider::SetValueMin( int min )
+void	IGUISlider::SetValueBegin( int val )
 {
-  m_ValueMin = min;
-  if( m_Value < m_ValueMin ) { SetValue(m_ValueMin); }
+  m_ValueBegin = val;
+
+  if( IsBeginEnd() )
+  {
+    if( m_Value < m_ValueBegin ) { SetValue(m_ValueBegin); }
+  }else
+  {
+    if( m_ValueBegin < m_Value ) { SetValue(m_ValueBegin); }
+  }
 }
 
-//! 範囲の最大値を設定する
+//! 範囲の終了値を設定する
 /*!
-    @param  max [i ]  最大値
+    @param  max [i ]  終了値
  */ 
-void	IGUISlider::SetValueMax( int max )
+void	IGUISlider::SetValueEnd( int val )
 {
-  m_ValueMax = max;
-  if( m_ValueMax < m_Value ) { SetValue(m_ValueMax); }
+  m_ValueEnd = val;
+
+  if( IsBeginEnd() )
+  {
+    if( m_ValueEnd < m_Value ) { SetValue(m_ValueEnd); }
+  }else
+  {
+    if( m_Value < m_ValueEnd ) { SetValue(m_ValueEnd); }
+  }
 }
 
 //! 設定されている最小値を取得する
 /*!
     @return  最小値
  */ 
-int IGUISlider::GetValueMin() const
+int IGUISlider::GetValueEnd() const
 {
-  return m_ValueMin;
+  return m_ValueEnd;
 }
 
 //! 設定されている最大値を取得する
 /*!
     @return  最大値
  */ 
-int IGUISlider::GetValueMax() const
+int IGUISlider::GetValueBegin() const
 {
-  return m_ValueMax;
+  return m_ValueBegin;
 }
 
 //! 新しい値を設定する
@@ -66,9 +80,12 @@ void	IGUISlider::SetValue( int Value )
 {
   if( m_Value==Value ) { return ; } //  無駄な発行はしない
 
+/*
   GUIMESSAGE_SLIDER_CHANGEVALUE mess;
   mess.Value = Value;
   SendMessage( mess );
+*/
+  m_Value = Value;
 }
 
 //! 現在の値を取得する
@@ -150,6 +167,18 @@ bool IGUISlider::IsButtonDown() const
   return m_IsButtonDown;
 }
 
+
+//! 線分の方向が＋かマイナスか？
+/*!
+    @return ＋なら true
+  \n        ーなら false
+ */ 
+bool  IGUISlider::IsBeginEnd() const
+{
+  return m_ValueBegin < m_ValueEnd;
+}
+
+
 bool IGUISlider::LocalIsCollision( const POINT2DI& pos ) const
 {
   if( IsBarCollision( pos ) ) { return true; }
@@ -167,10 +196,23 @@ VECTOR2DI IGUISlider::CalcButtonOffset() const
 {
   const int range = GetBarLength() - GetButtonLength();
 
-  const int p = m_Value-m_ValueMin;
-  const int vec = m_ValueMax-m_ValueMin;
-  const int scale = range;
+  if( IsBeginEnd() )
+  {
+    const int p = m_Value-m_ValueBegin;
+    const int vec = m_ValueEnd-m_ValueBegin;
+    const int scale = range;
 
+    const int pos = (p * scale / vec) + GetButtonLength()/2;
+
+    const float x = float(pos) * Math<float>::cos(m_Rotat);
+    const float y = float(pos) * Math<float>::sin(m_Rotat);
+
+    return VECTOR2DI(int(x),int(y));
+  }
+
+  const int p = m_ValueBegin - m_Value;
+  const int vec = m_ValueBegin-m_ValueEnd;
+  const int scale = range;
 
   const int pos = (p * scale / vec) + GetButtonLength()/2;
 
@@ -200,20 +242,43 @@ int IGUISlider::CalcValue( const POINT2DI& pos ) const
   }
   
   int NewValue;
+
   {
     const int range = GetBarLength() - GetButtonLength();
     const int p   = line_pos - GetButtonLength()/2;
     const int vec = range;
-    const int scale   = m_ValueMax-m_ValueMin;
 
-    NewValue = p * scale / vec + m_ValueMin;
+    if( IsBeginEnd() )
+    {
+      const int scale   = m_ValueEnd-m_ValueBegin;
+      NewValue = p * scale / vec + m_ValueBegin;
+    }else
+    {
+      const int scale   = m_ValueBegin-m_ValueEnd;
+      NewValue = m_ValueBegin - (p * scale / vec);
+
+    }
+
   }
 
   {
     //  クリップする
-    if( NewValue < m_ValueMin ) { NewValue = m_ValueMin; }
-    if( m_ValueMax < NewValue ) { NewValue = m_ValueMax; }
+
+    if( IsBeginEnd() )
+    {
+      if( NewValue   < m_ValueBegin ) { NewValue = m_ValueBegin; }
+      if( m_ValueEnd < NewValue     ) { NewValue = m_ValueEnd;   }
+    }else
+    {
+      if( m_ValueBegin < NewValue ) { NewValue = m_ValueBegin; }
+      if( NewValue < m_ValueEnd   ) { NewValue = m_ValueEnd;   }
+    }
+/*
+    if( NewValue   < m_ValueBegin ) { NewValue = m_ValueBegin; }
+    if( m_ValueEnd < NewValue     ) { NewValue = m_ValueEnd;   }
+*/
   }
+
 
   return NewValue;
 }
@@ -285,7 +350,8 @@ IGUISlider::MESSAGERETURN IGUISlider::MessageExecuting( SPGUIPARAM& pParam )
       //  変化ないなら破棄だよね。
       if( m_Value==m.Value ) { return MESSAGERETURN_NONE; }
 
-      m_Value = m.Value;
+      SetValue( m.Value );
+    //  m_Value = m.Value;
     }break;
 
   case IGUIParam::MESSAGE_SETKEYBORDFOCUS:

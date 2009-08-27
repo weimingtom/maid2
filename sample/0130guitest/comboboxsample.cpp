@@ -126,6 +126,11 @@ bool ComboBoxSample::IsBoxCollision( const POINT2DI& pos ) const
   return Collision<int>::IsPointToRect( pos, BOXRECT );
 }
 
+bool ComboBoxSample::IsSelectBoxCollision( const Maid::POINT2DI& pos ) const
+{
+  return false;
+}
+
 bool ComboBoxSample::IsSliderCollision( const POINT2DI& pos ) const
 {
   const RECT2DI rc(POINT2DI(0,0), SLIDERBARSIZE );

@@ -5,6 +5,7 @@
 #include"../auxiliary/debug/warning.h"
 
 #include"../auxiliary/string.h"
+#include"transiter.h"
 
 
 namespace Maid
@@ -31,6 +32,9 @@ void FontTexture::Load( const Surface& surf )
   const SIZE2DI ImgSize = surf.GetSize();
   const SIZE2DI TexSize = pCore->CalcTextureSize( ImgSize );
 
+
+  
+
   {
     tex.Size = TexSize;
     tex.MipLevels = 1;
@@ -39,9 +43,18 @@ void FontTexture::Load( const Surface& surf )
     tex.Usage  = Graphics::RESOURCEUSAGE_DEFAULT;
     tex.BindFlags = Graphics::RESOURCEBINDFLAG_MATERIAL;
 
+    SurfaceInstance tmp;
+    {
+      tmp.Create( tex.Size, tex.Format );
+      const RECT2DI src_rc( POINT2DI(0,0), ImgSize );
+      const RECT2DI dst_rc( POINT2DI(0,0), ImgSize );
+      Transiter::Copy(surf, src_rc, tmp, dst_rc);
+
+    }
+
     Graphics::SUBRESOURCE Data;
-    Data.pData = const_cast<Surface&>(surf).GetPlanePTR();
-    Data.Pitch = const_cast<Surface&>(surf).GetPitch();
+    Data.pData = const_cast<SurfaceInstance&>(tmp).GetPlanePTR();
+    Data.Pitch = const_cast<SurfaceInstance&>(tmp).GetPitch();
     pTexture = pCore->GetDevice()->CreateTexture2D( tex, &Data );
   }
 

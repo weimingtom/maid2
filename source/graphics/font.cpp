@@ -18,6 +18,14 @@ Font::Font()
 
 }
 
+//! フォントが使える状態にあるか？
+/*!
+    @return 使えるなら true, 使えないなら false
+ */
+bool  Font::IsCreated() const
+{
+  return m_pFont.get()!=NULL;
+}
 
 //! フォントを作成する
 /*!

@@ -16,6 +16,7 @@ IGUIComboBox::IGUIComboBox()
   ,m_SelectBoxOffset(0,0)
   ,m_SliderBarLength(1)
   ,m_SliderButtonLength(0)
+  ,m_IsSliderButtonIn(false)
 {
 
 }
@@ -132,6 +133,12 @@ int IGUIComboBox::GetSliderButtonLength() const
   return m_SliderButtonLength;
 }
 
+bool IGUIComboBox::IsSliderButtonIn() const
+{
+  return m_IsSliderButtonIn;
+}
+
+
 
 bool IGUIComboBox::LocalIsCollision( const POINT2DI& pos ) const
 {
@@ -151,6 +158,8 @@ bool IGUIComboBox::LocalIsCollision( const POINT2DI& pos ) const
   POINT2DI ElementPos = pos - GetSelectBoxOffset();
   ELEMENTLIST::const_iterator ite = GetSliderTopIte();
 
+  if( IsSelectBoxCollision( ElementPos ) ) { return true; }
+
   int height = 0;
   for( int i=0; i<m_SelectListMax; ++i )
   {
@@ -164,28 +173,17 @@ bool IGUIComboBox::LocalIsCollision( const POINT2DI& pos ) const
     ++ite;
   }
 
-
   return false;
 }
-/*
-int  IGUIComboBox::CalcSliderHeight() const
+
+
+void IGUIComboBox::OnUpdateFrame()
 {
-  ELEMENTLIST::const_iterator ite = GetSliderTopIte();
-
-  int height = 0;
-  for( int i=0; i<m_SelectListMax; ++i )
+  for( ELEMENTLIST::iterator ite=m_ElementList.begin(); ite!=m_ElementList.end(); ++ite )
   {
-    if( ite==m_ElementList.end() ) { break; }
-
-    const IElement* p = ite->second;
-
-    height += p->GetBoxSize().h;
-    ++ite;
+    ite->second->UpdateFrame();
   }
-
-  return height;
 }
-*/
 
 IGUIComboBox::ELEMENTLIST::const_iterator IGUIComboBox::GetSliderTopIte() const
 {
@@ -323,6 +321,7 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
       const GUIMESSAGE_MOUSEMOVE& p = static_cast<const GUIMESSAGE_MOUSEMOVE&>(*pParam);
       const POINT2DI pos  = CalcLocalPosition(p.Position);
 
+      m_IsSliderButtonIn = false;
       switch( GetState() )
       {
       case STATE_NORMAL:
@@ -333,10 +332,11 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
         {
           const POINT2DI SliderPos = pos - GetSliderOffset();
 
-          if( IsSliderCollision(SliderPos) )
+          if( IsSliderButtonCollision(SliderPos) )
           {
+            m_IsSliderButtonIn = true;
           }
-          else if( IsSliderButtonCollision(SliderPos) )
+          else if( IsSliderCollision(SliderPos) )
           {
           }
           else
@@ -365,6 +365,7 @@ IGUIComboBox::MESSAGERETURN IGUIComboBox::MessageExecuting( SPGUIPARAM& pParam )
 
       case STATE_SLIDERBUTTONDOWN:
         {
+          m_IsSliderButtonIn = true;
           const POINT2DI SliderPos = pos - GetSliderOffset();
 
           m_SliderTop = CalcSliderValue( SliderPos.y );
