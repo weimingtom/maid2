@@ -14,12 +14,12 @@ namespace Maid
   public:
     IGUISlider();
 
-    void	SetValueMin( int min );
-    void	SetValueMax( int max );
+    void	SetValueBegin( int val );
+    void	SetValueEnd( int val );
 		void	SetValue( int Value );
 
-    int GetValueMin() const;
-    int GetValueMax() const;
+    int GetValueBegin() const;
+    int GetValueEnd() const;
 		int	GetValue() const;
 
     void SetRotate( float rad );
@@ -48,9 +48,11 @@ namespace Maid
 
 
   private:
+    bool  IsBeginEnd() const;
 
-    int m_ValueMin;
-    int m_ValueMax;
+  private:
+    int m_ValueBegin;
+    int m_ValueEnd;
     int m_Value;
     float m_Rotat;
 

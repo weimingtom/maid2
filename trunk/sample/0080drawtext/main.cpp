@@ -173,7 +173,6 @@ protected:
 
     m_Command.Begin();
     {
-
       char buf[256];
       sprintf( buf, "frame:%04d,draw:%04d", m_FrameCount, m_DrawCount );
 

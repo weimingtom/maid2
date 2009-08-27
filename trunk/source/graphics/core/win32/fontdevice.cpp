@@ -21,6 +21,9 @@ static int CALLBACK EnumFontFamExProc(
   //  縦書きはスルー
   if( lpelfe->lfFaceName[0]=='@' ) { return TRUE; }
 
+  //  固定ピッチのみ
+	if( IsFlag(lpntme->tmPitchAndFamily,TMPF_FIXED_PITCH) ) { return TRUE; } 
+
   IFontDevice::FONTINFO info;
   info.Name = String::ConvertUNICODEtoMAID(lpelfe->lfFaceName);
 
@@ -38,10 +41,17 @@ void FontDevice::GetFontList( std::vector<FONTINFO>& List )
 {
   MAID_ASSERT( !List.empty(), "empty()ではありません" );
 
+  //  http://msdn.microsoft.com/ja-jp/library/cc428521.aspx
   LOGFONT logfont;
-  logfont.lfCharSet = DEFAULT_CHARSET;
+	ZERO( &logfont, sizeof(logfont) );
+//  logfont.lfCharSet = DEFAULT_CHARSET;
+  logfont.lfCharSet = SHIFTJIS_CHARSET;
+  logfont.lfFaceName[0] = '\0';
 
-  EnumFontFamiliesEx( NULL, &logfont, EnumFontFamExProc, (LPARAM)&List, 0 );
+  HDC hDC = ::GetDC( NULL );
+
+  EnumFontFamiliesEx( hDC, &logfont, EnumFontFamExProc, (LPARAM)&List, 0 );
+	::ReleaseDC( NULL, hDC );
 }
 
 

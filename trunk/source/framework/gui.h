@@ -12,6 +12,7 @@
 #include"gui/iguitextbox.h"
 #include"gui/iguiwindow.h"
 #include"gui/iguicontextmenu.h"
+#include"gui/iguicombobox.h"
 
 #include"gui/guimanager.h"
 

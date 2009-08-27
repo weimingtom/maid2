@@ -43,6 +43,7 @@ namespace Maid
       FILTER_NONE=~0,
     };
     Font();
+    bool  IsCreated() const;
     void Create( const SIZE2DI& size, bool IsAntiAlias );
     void Create( const SIZE2DI& size, bool IsAntiAlias, const COLOR_R32G32B32A32F& Color );
     void Create( const SIZE2DI& size, bool IsAntiAlias, const COLOR_R32G32B32A32F& Color, unt FilterNo );

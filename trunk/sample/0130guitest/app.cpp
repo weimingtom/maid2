@@ -99,8 +99,10 @@ void MyApp::Initialize()
   {
     m_Slider.Initialize( pRender );
     m_Slider.SetPosition( POINT2DI(200,380) );
-    m_Slider.SetValueMin(-100);
-    m_Slider.SetValueMax(100);
+//    m_Slider.SetValueBegin(-100);
+//    m_Slider.SetValueEnd(100);
+    m_Slider.SetValueBegin(10);
+    m_Slider.SetValueEnd(-10);
     m_Slider.SetBarLength(200);
 
     m_Manager.RegisterParts( SAMPLEID_SLIDER, m_Slider );
@@ -110,8 +112,8 @@ void MyApp::Initialize()
   {
     m_Slider20.Initialize( pRender );
     m_Slider20.SetPosition( POINT2DI(200,430) );
-    m_Slider20.SetValueMin(-50);
-    m_Slider20.SetValueMax(50);
+    m_Slider20.SetValueBegin(-50);
+    m_Slider20.SetValueEnd(50);
     m_Slider20.SetRotate( DEGtoRAD(20.0f) );  //  ２０度傾く
     m_Slider20.SetBarLength(200);
 
@@ -120,8 +122,8 @@ void MyApp::Initialize()
   {
     m_Slider20b.Initialize( pRender );
     m_Slider20b.SetPosition( POINT2DI(200,530) );
-    m_Slider20b.SetValueMin(-50);
-    m_Slider20b.SetValueMax(50);
+    m_Slider20b.SetValueBegin(-50);
+    m_Slider20b.SetValueEnd(50);
     m_Slider20b.SetBarLength(200);
     m_Slider20b.SetButtonLength(20);
 

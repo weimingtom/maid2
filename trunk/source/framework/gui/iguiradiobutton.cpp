@@ -19,8 +19,16 @@ IGUIRadioButton::IGUIRadioButton()
  */
 void IGUIRadioButton::SetCheck()
 {
-  GUIMESSAGE_RADIOBUTTON_SETCHECK m;
-  SendMessage( m );
+  if( m_pGroup!=NULL )
+  {
+    if( m_pGroup->m_pSelectted!=NULL )
+    {
+      m_pGroup->m_pSelectted->m_IsCheck = false;
+    }
+    m_pGroup->m_pSelectted = this;
+  }
+
+  m_IsCheck = true;
 }
 
 //! 現在チェックされているか調べる
@@ -79,13 +87,7 @@ IGUIRadioButton::MESSAGERETURN IGUIRadioButton::MessageExecuting( SPGUIPARAM& Pa
       //  すでにチェックされていたら届けない
       if( m_IsCheck ) { return IGUIRadioButton::MESSAGERETURN_NONE; }
 
-      if( m_pGroup->m_pSelectted!=NULL )
-      {
-        m_pGroup->m_pSelectted->m_IsCheck = false;
-      }
-      m_pGroup->m_pSelectted = this;
-
-      m_IsCheck = true;
+      SetCheck();
       OnCheck();
     }break;
   }

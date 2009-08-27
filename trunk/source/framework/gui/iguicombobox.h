@@ -67,8 +67,10 @@ namespace Maid
   protected:
     virtual MESSAGERETURN MessageExecuting( SPGUIPARAM& pParam );
     virtual bool LocalIsCollision( const POINT2DI& pos ) const;
+    virtual void OnUpdateFrame();
 
     virtual bool IsBoxCollision( const POINT2DI& pos ) const=0;
+    virtual bool IsSelectBoxCollision( const POINT2DI& pos ) const=0;
     virtual bool IsSliderCollision( const POINT2DI& pos ) const=0;
     virtual bool IsSliderButtonCollision( const POINT2DI& pos ) const=0;
 
@@ -77,7 +79,8 @@ namespace Maid
     void DrawElement( const RenderTargetBase& Target, const IDepthStencil& Depth, const POINT2DI& pos );
 
     int CalcSliderButtonOffset() const;
-//    int CalcSliderHeight() const;
+
+    bool IsSliderButtonIn() const;
 
   private:
     typedef std::map<int,IElement*> ELEMENTLIST;
@@ -107,6 +110,8 @@ namespace Maid
 
     int m_SliderBarLength;
     int m_SliderButtonLength;
+
+    bool  m_IsSliderButtonIn;
   };
 }
 
