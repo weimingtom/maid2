@@ -1,4 +1,5 @@
 ﻿#include"iguitextbox.h"
+#include"../../input/keybord.h"
 
 namespace Maid
 {
@@ -113,6 +114,27 @@ IGUITextBox::MESSAGERETURN IGUITextBox::MessageExecuting( SPGUIPARAM& pParam )
 {
   switch( pParam->Message )
   {
+  case IGUIParam::MESSAGE_KEYBORDDOWN:
+    {
+      const GUIMESSAGE_KEYBORDDOWN& m = static_cast<const GUIMESSAGE_KEYBORDDOWN&>(*pParam);
+
+      switch( m.Key )
+      {
+      case Keybord::BUTTON_LEFT:
+        {
+          --m_CursorPos;
+          if( m_CursorPos<0 ) { m_CursorPos=0; }
+        }break;
+
+      case Keybord::BUTTON_RIGHT:
+        {
+          ++m_CursorPos;
+          if( m_InputText.length()<=m_CursorPos ) { m_CursorPos=m_InputText.length(); }
+        }break;
+      }
+
+    }break;
+
   case IGUIParam::MESSAGE_TEXTBOX_UPDATESTATE:
     {     
       const GUIMESSAGE_TEXTBOX_UPDATESTATE& m = static_cast<const GUIMESSAGE_TEXTBOX_UPDATESTATE&>(*pParam);

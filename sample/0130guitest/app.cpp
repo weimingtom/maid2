@@ -200,6 +200,7 @@ void MyApp::Initialize()
 
 
   m_hFont.Create( SIZE2DI(8,16), true );
+
 }
 
 void MyApp::UpdateFrame()

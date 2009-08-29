@@ -15,6 +15,7 @@ IGUIParts::IGUIParts()
   ,m_IsEnable(true)
   ,m_IsVisible(true)
   ,m_IsMouseIn(false)
+  ,m_IsKeybordFocus(false)
   ,m_Position(0,0)
   ,m_pPostTarget(NULL)
   ,m_ZOrder(ZORDER_FRONT)
@@ -140,6 +141,12 @@ bool IGUIParts::IsVisible() const
 {
   return m_IsVisible;
 }
+
+bool IGUIParts::IsKeybordFocus() const
+{
+  return m_IsKeybordFocus;
+}
+
 
 //! パーツＩＤの取得
 /*!
@@ -602,6 +609,13 @@ IGUIParts::MESSAGERETURN IGUIParts::MessageExecuting( SPGUIPARAM& Param )
       const POINT2DI pos = CalcLocalPosition(p.Position);
       OnMouseMove( pos );
     }break;
+
+  case IGUIParam::MESSAGE_SETKEYBORDFOCUS:
+    {
+      const GUIMESSAGE_SETKEYBORDFOCUS& p = static_cast<const GUIMESSAGE_SETKEYBORDFOCUS&>(*Param);
+      m_IsKeybordFocus = p.IsFocus;
+      OnKeybordFocus( p.IsFocus );
+    }break;
   }
 
   return MESSAGERETURN_SENDPARENT;
@@ -686,6 +700,13 @@ void IGUIParts::OnMouseIn( const POINT2DI& pos ){}
     @param  pos [i ]  通った場所（自分中心座標）
  */
 void IGUIParts::OnMouseOut( const POINT2DI& pos ){}
+
+
+//! キーボードフォーカスを得たとき、出たときに呼ばれる
+/*!
+    @param  in [i ]  得たときはtrue 出たときは false
+ */
+void IGUIParts::OnKeybordFocus( bool in ){}
 
 }
 

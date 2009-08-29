@@ -37,7 +37,6 @@ namespace Maid
   protected:
     virtual SPSCENE CreateFirstScene()=0; 
     virtual SPSCENE CreateNextScene( const SPSCENEOUTPUT& pOut )=0;
-    virtual SPSCENE CreateInterruptScene( const SPSCENEINTERRUPTINPUT& pIn ){return SPSCENE(); }
 
     virtual void BeginFade(){}
     virtual bool IsFadeEnd(){return true;}

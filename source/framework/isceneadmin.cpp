@@ -30,6 +30,9 @@ bool ISceneAdmin::IsInitializing() const
 
 void ISceneAdmin::PushScene( const SPSCENE& pScene )
 {
+  BeginFade();
+
+  m_State = STATE_CHANGING;
   m_SceneStack.push_front( pScene );
 }
 
@@ -127,35 +130,23 @@ void ISceneAdmin::SceneUpdateFrame()
 
     { //  終了させて、次のシーンを作る
       SPSCENEOUTPUT pOut;
-      GetCurrentScene()->Finalize( pOut );
-      m_SceneStack.pop_front();
+      pCurrent->Finalize( pOut );
 
       //  シーンがない == メインしーんの移動
       //  シーンがまだある == 割り込みシーンだった
-      if( m_SceneStack.empty() )
+      if( m_SceneStack.size()==1 )
       {
-        m_SceneStack.push_back( CreateNextScene(pOut) );
+        m_SceneStack.front() = CreateNextScene(pOut);
       }else
       {
-        pCurrent->EndInterrupt(pOut);
+        m_SceneStack.pop_front();
       }
     }
 
     //  切り替えシーンの開始
     m_State = STATE_CHANGING;
   }
-  else if( pCurrent->IsInterruptScene() )
-  {
-    BeginFade();
-
-    //  割り込み命令が出ていたら、そいつを作る
-    SPSCENEINTERRUPTINPUT pIn;
-    pCurrent->BeginInterrupt(pIn);
-    m_SceneStack.push_front( CreateInterruptScene(pIn) );
-
-    m_State = STATE_CHANGING;
-
-  }else
+  else
   {
     pCurrent->UpdateFrame();
   }

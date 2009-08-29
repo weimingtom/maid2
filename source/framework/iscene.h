@@ -31,14 +31,6 @@ namespace Maid
   typedef	boost::shared_ptr<ISceneOutput>  SPSCENEOUTPUT;
 
 
-  class ISceneInterruptInput
-  {
-  public:
-    virtual ~ISceneInterruptInput(){}
-  };
-
-  typedef	boost::shared_ptr<ISceneInterruptInput>  SPSCENEINTERRUPTINPUT;
-
   class IScene
   {
   public:
@@ -76,25 +68,6 @@ namespace Maid
         @param  depth   [i ]  描画先（すでに書き込まれていることがあるので、Clear()するときは慎重に）
      */
     virtual void UpdateDraw( const RenderTargetBase& target, const IDepthStencil& depth  )=0;
-
-
-    //! 割り込みシーンを発生させて欲しいか？
-    /*!
-     */
-    virtual bool IsInterruptScene() const { return false; }
-
-    //! 違うシーンの割り込みが始まったときに呼ばれる
-    /*!
-        @param	pOutput	[i ]	シーンの中断情報が入っている
-     */
-    virtual void BeginInterrupt( SPSCENEINTERRUPTINPUT& pInput ){}
-
-    //! 違うシーンの割り込みが終わったときに呼ばれる
-    /*!
-        @param	pOutput	[i ]	割り込みシーンの終了情報が入っている
-     */
-    virtual void EndInterrupt( const SPSCENEOUTPUT& pOutput ){}
-
 
 
     //! 継承したクラスでシーン終了の信号を出す

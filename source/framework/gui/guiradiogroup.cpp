@@ -25,6 +25,12 @@ IGUIRadioButton* GUIRadioGroup::GetCheckButton()
   return m_pSelectted;
 }
 
+const IGUIRadioButton* GUIRadioGroup::GetCheckButton()const
+{
+  //  GetがあってSetがないのは IGUIRadioButton 内で強引に書き換えているから
+
+  return m_pSelectted;
+}
 
 
 }
