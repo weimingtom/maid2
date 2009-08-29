@@ -71,6 +71,7 @@ namespace Maid
     void ChangeChildZOrder( IGUIParts::ID id, ZORDER type );
 
     bool IsMouseIn() const;
+    bool IsKeybordFocus() const;
 
     void SetMessageQue( GUIMessageQue* pQue );
   protected:
@@ -99,6 +100,7 @@ namespace Maid
     virtual void OnMouseMove( const POINT2DI& pos );
     virtual void OnMouseIn( const POINT2DI& pos );
     virtual void OnMouseOut( const POINT2DI& pos );
+    virtual void OnKeybordFocus( bool in );
 
     const IGUIParts* GetParent() const { return m_pParent; }
 
@@ -118,6 +120,7 @@ namespace Maid
     bool        m_IsVisible;
     POINT2DI    m_Position;
     bool        m_IsMouseIn;
+    bool        m_IsKeybordFocus;
     GUIMessageQue*  m_pPostTarget;
 
     CHILDLIST m_ChildList;  //  m_ChildList.begin()...最前面 .end() 最背面

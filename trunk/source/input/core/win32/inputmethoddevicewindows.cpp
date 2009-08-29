@@ -239,12 +239,13 @@ String InputMethodDeviceWindows::GetCompString() const
 
   if( lByte==0 ) { return String(); }
 
-  std::wstring	Buff;
-  Buff.resize(lByte);
+  std::vector<unt08> Buff(lByte); 
 
   ::ImmGetCompositionString( hImc.Get(), GCS_COMPSTR, &Buff[0], lByte);
+  Buff.push_back('\0');
+  Buff.push_back('\0');
 
-  return String::ConvertUNICODEtoMAID(Buff);
+  return String::ConvertUNICODEtoMAID((wchar_t*)&Buff[0]);
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/

@@ -1,6 +1,7 @@
 ﻿#include"font.h"
 
 #include"transiter.h"
+#include"../auxiliary/debug/warning.h"
 
 #pragma COMPILERMSG("TODO:任意段階のアンチエイリアスがかけれるようにする")	
 

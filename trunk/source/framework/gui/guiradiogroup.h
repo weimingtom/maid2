@@ -16,6 +16,7 @@ namespace Maid
     GUIRadioGroup();
 
     IGUIRadioButton* GetCheckButton();
+    const IGUIRadioButton* GetCheckButton() const;
 
   private:
     IGUIRadioButton* m_pSelectted; //  選択されているボタン
