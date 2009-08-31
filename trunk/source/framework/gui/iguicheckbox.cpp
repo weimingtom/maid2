@@ -1,4 +1,5 @@
 ﻿#include"iguicheckbox.h"
+#include"../../input/keybord.h"
 
 namespace Maid
 {
@@ -73,6 +74,20 @@ IGUICheckBox::MESSAGERETURN IGUICheckBox::MessageExecuting( SPGUIPARAM& Param )
       m_IsCheck = m.NewState;
       OnStateChange(m.NewState);
     }break;
+/*
+  case IGUIParam::MESSAGE_KEYBORDDOWN:
+    { //  継承もとの IGUIButton が処理してくれてるので不要
+      const GUIMESSAGE_KEYBORDDOWN& m = static_cast<const GUIMESSAGE_KEYBORDDOWN&>(*Param);
+
+      if( m.Key==Keybord::BUTTON_ENTER )
+      {
+        GUIMESSAGE_CHECKBOX_SETCHECK mess;
+        mess.NewState = !m_IsCheck;
+        PostMessage( mess );
+      }
+
+    }break;
+*/
   }
 
   return IGUIButton::MessageExecuting( Param );

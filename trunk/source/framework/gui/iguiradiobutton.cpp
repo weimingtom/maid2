@@ -9,7 +9,9 @@ namespace Maid
   \n        チェックボタンとの違いはチェックした後（外部から）チェックをはずすことができません
  */ 
 IGUIRadioButton::IGUIRadioButton()
-:m_IsCheck(false),m_pGroup(NULL)
+  :m_IsCheck(false)
+  ,m_IsCheckedMessage(false)
+  ,m_pGroup(NULL)
 {
 
 }
@@ -56,6 +58,15 @@ void IGUIRadioButton::SetGroup( GUIRadioGroup& Group )
   }
 }
 
+//!  すでにチェックされている状態にもかかわらず、再度チェックされたときにメッセージを送るか？
+/*!
+    @param  on [i ] 送るなら true
+ */
+void IGUIRadioButton::SetCheckedMessage( bool on )
+{
+  m_IsCheckedMessage = on;
+}
+
 //! チェックされた時に呼ばれる
 /*!
  */
@@ -85,11 +96,25 @@ IGUIRadioButton::MESSAGERETURN IGUIRadioButton::MessageExecuting( SPGUIPARAM& Pa
       const GUIMESSAGE_RADIOBUTTON_SETCHECK& m = static_cast<const GUIMESSAGE_RADIOBUTTON_SETCHECK&>(*Param);
 
       //  すでにチェックされていたら届けない
-      if( m_IsCheck ) { return IGUIRadioButton::MESSAGERETURN_NONE; }
+      if( !m_IsCheckedMessage && m_IsCheck ) { return IGUIRadioButton::MESSAGERETURN_NONE; }
 
       SetCheck();
       OnCheck();
     }break;
+/*
+  case IGUIParam::MESSAGE_KEYBORDDOWN:
+    { //  継承もとの IGUIButton が処理してくれてるので不要
+      const GUIMESSAGE_KEYBORDDOWN& m = static_cast<const GUIMESSAGE_KEYBORDDOWN&>(*Param);
+
+      if( m.Key==Keybord::BUTTON_ENTER )
+      {
+        GUIMESSAGE_CHECKBOX_SETCHECK mess;
+        mess.NewState = !m_IsCheck;
+        PostMessage( mess );
+      }
+
+    }break;
+*/
   }
 
   return IGUIButton::MessageExecuting( Param );
