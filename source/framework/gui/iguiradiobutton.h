@@ -18,12 +18,15 @@ namespace Maid
 
     void SetGroup( GUIRadioGroup& Group );
 
+    void SetCheckedMessage( bool on );
+
   protected:
     virtual MESSAGERETURN MessageExecuting( SPGUIPARAM& pParam );
     virtual void OnCheck();
 
   private:
     bool  m_IsCheck;
+    bool  m_IsCheckedMessage; //  すでにチェックされている状態にもかかわらず、再度チェックされたときにメッセージを送るか？
     GUIRadioGroup* m_pGroup;
   };
 }

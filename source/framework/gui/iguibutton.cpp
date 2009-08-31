@@ -1,5 +1,6 @@
 ﻿#include"iguibutton.h"
 
+#include"../../input/keybord.h"
 
 
 namespace Maid
@@ -61,12 +62,24 @@ IGUIButton::MESSAGERETURN IGUIButton::MessageExecuting( SPGUIPARAM& Param )
           OnMouseClick( CalcLocalPosition(m.Position) );
 
           GUIMESSAGE_BUTTON_CLICK mess;
-          mess.Position = m.Position;
-          mess.Button   = m.Button;
 
           PostMessage( mess );
         }
       }
+    }break;
+
+  case IGUIParam::MESSAGE_KEYBORDDOWN:
+    {
+      const GUIMESSAGE_KEYBORDDOWN& m = static_cast<const GUIMESSAGE_KEYBORDDOWN&>(*Param);
+
+      if( m.Key==Keybord::BUTTON_ENTER )
+      {
+        m_IsButtonDown = false;
+        GUIMESSAGE_BUTTON_CLICK mess;
+
+        PostMessage( mess );
+      }
+
     }break;
   }
 

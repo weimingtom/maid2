@@ -192,8 +192,6 @@ namespace Maid
   {
   public:
     GUIMESSAGE_BUTTON_CLICK():IGUIParam(MESSAGE_BUTTON_CLICK){}
-    POINT2DI Position;
-    BUTTONTYPE Button;
     IGUIParam* Clone() const { return new GUIMESSAGE_BUTTON_CLICK(*this); }
   };
 

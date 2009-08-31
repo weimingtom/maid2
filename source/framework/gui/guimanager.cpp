@@ -297,9 +297,9 @@ void GUIManager::UpdateMouseMessage( const Mouse& mouse, GUIMessageQue& Que )
 
     if( mouse.IsInL() ){ MakeMessageMOUSEDOWN( pCapture, pos, IGUIParam::BUTTON_LEFT,  Que ); }
     if( mouse.IsOutL()){ MakeMessageMOUSEUP  ( pCapture, pos, IGUIParam::BUTTON_LEFT,  Que ); }
-    if( mouse.IsInR() ){ MakeMessageMOUSEDOWN( pCapture, pos, IGUIParam::BUTTON_RIGHT, Que ); }
-    if( mouse.IsOutR()){ MakeMessageMOUSEUP  ( pCapture, pos, IGUIParam::BUTTON_RIGHT, Que ); }
-
+//    右ボタンは使わない雰囲気あるのでコメントアウト
+//    if( mouse.IsInR() ){ MakeMessageMOUSEDOWN( pCapture, pos, IGUIParam::BUTTON_RIGHT, Que ); }
+//    if( mouse.IsOutR()){ MakeMessageMOUSEUP  ( pCapture, pos, IGUIParam::BUTTON_RIGHT, Que ); }
   }else
   {
     if( pPrev!=pNext )
@@ -327,77 +327,10 @@ void GUIManager::UpdateMouseMessage( const Mouse& mouse, GUIMessageQue& Que )
 
     if( mouse.IsInL()  ){ MakeMessageMOUSEDOWN( pNext, pos, IGUIParam::BUTTON_LEFT,  Que ); }
     if( mouse.IsOutL() ){ MakeMessageMOUSEUP  ( pNext, pos, IGUIParam::BUTTON_LEFT,  Que ); }
-    if( mouse.IsInR()  ){ MakeMessageMOUSEDOWN( pNext, pos, IGUIParam::BUTTON_RIGHT, Que ); }
-    if( mouse.IsOutR() ){ MakeMessageMOUSEUP  ( pNext, pos, IGUIParam::BUTTON_RIGHT, Que ); }
+//    右ボタンは使わない雰囲気あるのでコメントアウト
+//    if( mouse.IsInR()  ){ MakeMessageMOUSEDOWN( pNext, pos, IGUIParam::BUTTON_RIGHT, Que ); }
+//    if( mouse.IsOutR() ){ MakeMessageMOUSEUP  ( pNext, pos, IGUIParam::BUTTON_RIGHT, Que ); }
   }
-
-
-/*
-  if( pPrev!=pNext )
-  {
-    //  現在と今のパーツが違っていたら、パーツのインアウトメッセージ
-    if( IsCapturing ) 
-    {
-      {
-        //  キャプチャと前回のが違う == キャプチャから出た
-        if( pCapture==pPrev )
-        { 
-          GUIMESSAGE_MOUSEOUT out;
-          out.Position = pos;
-          Que.PostMessage( pCapture, out ); 
-        }
-      }
-      {
-        if( pCapture==pNext )
-        {
-          //  今回がキャプチャ == キャプチャに入る
-          GUIMESSAGE_MOUSEIN in;
-          in.Position = pos;
-          Que.PostMessage( pCapture, in ); 
-        }
-      }
-    }else
-    {
-      GUIMESSAGE_MOUSEOUT out;
-      out.Position = pos;
-      Que.PostMessage( pPrev, out ); 
-
-      GUIMESSAGE_MOUSEIN in;
-      in.Position = pos;
-      Que.PostMessage( pNext, in ); 
-    }
-    m_pMousePrevParts = pNext;
-  }
-
-
-  if( mouse.GetDeltaX()!=0 || mouse.GetDeltaY()!=0 )
-  {
-    //  マウスが動いたら動いたらメッセージ
-    GUIMESSAGE_MOUSEMOVE m;
-    m.Position = pos;
-
-    if( IsCapturing ) { Que.PostMessage( pCapture, m );  }
-    else              { Que.PostMessage( pNext, m );     }
-  }
-
-
-  if( mouse.IsInL() )
-  {
-    MakeMessageMOUSEDOWN( pNext, pos, IGUIParam::BUTTON_LEFT, Que );
-  }
-  if( mouse.IsOutL() )
-  {
-    MakeMessageMOUSEUP( pNext, pos, IGUIParam::BUTTON_LEFT, Que );
-  }
-  if( mouse.IsInR() )
-  {
-    MakeMessageMOUSEDOWN( pNext, pos, IGUIParam::BUTTON_RIGHT, Que );
-  }
-  if( mouse.IsOutR() )
-  {
-    MakeMessageMOUSEUP( pNext, pos, IGUIParam::BUTTON_RIGHT, Que );
-  }
-*/
 
 }
 
