@@ -84,6 +84,16 @@ bool IGUITextBox::IsIMOpen() const
   return m_IsIMOpen; 
 }
 
+//! 入力カーソルの位置が更新されたときに呼ばれる
+/*!
+    @param pos [i ] 新しいカーソル位置（バイト単位)
+ */ 
+void IGUITextBox::OnUpdateCursorPosition( int pos )
+{
+
+}
+
+
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! 設定されている文字の長さにクリッピングする。
@@ -117,6 +127,7 @@ IGUITextBox::MESSAGERETURN IGUITextBox::MessageExecuting( SPGUIPARAM& pParam )
   case IGUIParam::MESSAGE_KEYBORDDOWN:
     {
       const GUIMESSAGE_KEYBORDDOWN& m = static_cast<const GUIMESSAGE_KEYBORDDOWN&>(*pParam);
+      const int oldpos = m_CursorPos;
 
       switch( m.Key )
       {
@@ -129,15 +140,17 @@ IGUITextBox::MESSAGERETURN IGUITextBox::MessageExecuting( SPGUIPARAM& pParam )
       case Keybord::BUTTON_RIGHT:
         {
           ++m_CursorPos;
-          if( m_InputText.length()<=m_CursorPos ) { m_CursorPos=m_InputText.length(); }
+          if( (int)m_InputText.length()<=m_CursorPos ) { m_CursorPos=m_InputText.length(); }
         }break;
       }
+      if( oldpos!=m_CursorPos ) { OnUpdateCursorPosition( m_CursorPos ); }
 
     }break;
 
   case IGUIParam::MESSAGE_TEXTBOX_UPDATESTATE:
     {     
       const GUIMESSAGE_TEXTBOX_UPDATESTATE& m = static_cast<const GUIMESSAGE_TEXTBOX_UPDATESTATE&>(*pParam);
+      const int oldpos = m_CursorPos;
 
       {
         if( m.CharaCode.length()==1 )
@@ -177,6 +190,8 @@ IGUITextBox::MESSAGERETURN IGUITextBox::MessageExecuting( SPGUIPARAM& pParam )
       }
 
       ClipText();
+      if( oldpos!=m_CursorPos ) { OnUpdateCursorPosition( m_CursorPos ); }
+
     }break;
   }
 

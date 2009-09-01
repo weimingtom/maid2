@@ -25,6 +25,7 @@ namespace Maid
 
   protected:
     virtual MESSAGERETURN MessageExecuting( SPGUIPARAM& pParam );
+    virtual void OnUpdateCursorPosition( int pos );
   private:
     void	ClipText();
 
