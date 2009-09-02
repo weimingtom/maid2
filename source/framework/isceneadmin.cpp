@@ -28,6 +28,10 @@ bool ISceneAdmin::IsInitializing() const
   return GetCurrentScene()->IsInitializing();
 }
 
+//! シーンを一段積む
+/*!
+    @param  pScene  [i ]  このシーンが実行されます
+*/
 void ISceneAdmin::PushScene( const SPSCENE& pScene )
 {
   BeginFade();
@@ -36,7 +40,9 @@ void ISceneAdmin::PushScene( const SPSCENE& pScene )
   m_State = STATE_CHANGING;
 }
 
-
+//! シーンを一段捨てる
+/*!
+*/
 void ISceneAdmin::PopScene()
 {
   BeginFade();
@@ -45,6 +51,10 @@ void ISceneAdmin::PopScene()
   m_State = STATE_CHANGING;
 }
 
+//! シーンをきりかえる
+/*!
+    @param  pScene  [i ]  新しく実行されるシーン
+*/
 void ISceneAdmin::SetScene( const SPSCENE& pScene )
 {
   BeginFade();
@@ -52,6 +62,19 @@ void ISceneAdmin::SetScene( const SPSCENE& pScene )
   m_SceneStack.front() = pScene;
   m_State = STATE_CHANGING;
 }
+
+
+//! すべてのシーンを捨てて、新しく実行しなおす
+/*!
+    @param  pScene  [i ]  新しく実行されるシーン
+*/
+void ISceneAdmin::ResetScene( const SPSCENE& pScene )
+{
+  m_SceneStack.clear();
+  m_SceneStack.push_front( pScene );
+  m_State = STATE_UPDATEFRAME;
+}
+
 
 
 SPSCENE& ISceneAdmin::GetCurrentScene()
