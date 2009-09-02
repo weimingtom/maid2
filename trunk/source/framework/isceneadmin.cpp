@@ -16,7 +16,7 @@ void ISceneAdmin::Initialize()
 {
   m_State = STATE_UPDATEFRAME;
 
-  m_SceneStack.push_back( CreateFirstScene() );
+  CreateFirstScene();
 }
 
 
@@ -32,9 +32,27 @@ void ISceneAdmin::PushScene( const SPSCENE& pScene )
 {
   BeginFade();
 
-  m_State = STATE_CHANGING;
   m_SceneStack.push_front( pScene );
+  m_State = STATE_CHANGING;
 }
+
+
+void ISceneAdmin::PopScene()
+{
+  BeginFade();
+
+  m_SceneStack.pop_front();
+  m_State = STATE_CHANGING;
+}
+
+void ISceneAdmin::SetScene( const SPSCENE& pScene )
+{
+  BeginFade();
+
+  m_SceneStack.front() = pScene;
+  m_State = STATE_CHANGING;
+}
+
 
 SPSCENE& ISceneAdmin::GetCurrentScene()
 {
@@ -87,7 +105,6 @@ void ISceneAdmin::UpdateFrame()
       SceneUpdateFrame();
     }break;
   }
-
 }
 
 //! フレーム毎の描画
@@ -126,25 +143,7 @@ void ISceneAdmin::SceneUpdateFrame()
   {
     //  シーンが終了していたら
     //  切り替え開始
-    BeginFade();
-
-    { //  終了させて、次のシーンを作る
-      SPSCENEOUTPUT pOut;
-      pCurrent->Finalize( pOut );
-
-      //  シーンがない == メインしーんの移動
-      //  シーンがまだある == 割り込みシーンだった
-      if( m_SceneStack.size()==1 )
-      {
-        m_SceneStack.front() = CreateNextScene(pOut);
-      }else
-      {
-        m_SceneStack.pop_front();
-      }
-    }
-
-    //  切り替えシーンの開始
-    m_State = STATE_CHANGING;
+    NextScene();
   }
   else
   {
