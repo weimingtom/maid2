@@ -35,8 +35,8 @@ namespace Maid
     int  GetSceneStackCount()const;
 
   protected:
-    virtual SPSCENE CreateFirstScene()=0; 
-    virtual SPSCENE CreateNextScene( const SPSCENEOUTPUT& pOut )=0;
+    virtual void CreateFirstScene()=0; 
+    virtual void NextScene()=0;
 
     virtual void BeginFade(){}
     virtual bool IsFadeEnd(){return true;}
@@ -48,11 +48,14 @@ namespace Maid
 
     const SCENESTACK& GetSceneStack();
     const SPSCENE& GetCurrentScene()const;
+    SPSCENE& GetCurrentScene();
+
+    void PopScene();
+    void SetScene( const SPSCENE& pScene );
 
   private:
     void SceneUpdateFrame();
     void SceneUpdateDraw( const RenderTargetBase& target, const IDepthStencil& depth );
-    SPSCENE& GetCurrentScene();
 
 
   private:
