@@ -34,6 +34,8 @@ namespace Maid
     void ExitCurrentScene();
     int  GetSceneStackCount()const;
 
+    void ResetScene( const SPSCENE& pScene );
+
   protected:
     virtual void CreateFirstScene()=0; 
     virtual void NextScene()=0;
