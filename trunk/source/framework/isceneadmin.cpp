@@ -179,7 +179,6 @@ void ISceneAdmin::SceneUpdateDraw( const RenderTargetBase& target, const IDepthS
   for( SCENESTACK::const_reverse_iterator ite=m_SceneStack.rbegin(); ite!=m_SceneStack.rend(); ++ite )
   {
     const SPSCENE& pScene = *ite;
-    if( pScene->IsInitializing() ) { continue; }
     pScene->UpdateDraw( target, depth );
   }
 }

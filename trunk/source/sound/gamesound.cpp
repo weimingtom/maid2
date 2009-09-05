@@ -1,5 +1,6 @@
 ﻿#include"gamesound.h"
 
+#include"../auxiliary/debug/warning.h"
 
 namespace Maid { 
 
@@ -278,7 +279,7 @@ void GameSound::UpdateFrame()
 
 void GameSound::OnGlobalVolumeChange()
 {
-  SetVolume( m_Volume, 100 );
+  SetVolume( m_Volume, 0.1 );
 }
 
 double GameSound::GetScaleVolume()const

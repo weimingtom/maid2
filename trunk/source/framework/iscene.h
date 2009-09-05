@@ -50,7 +50,6 @@ namespace Maid
      */
     virtual bool IsInitializing() const=0;
 
-
 		//! このシーンを片付ける
 		/*!
         @param	pOutput	[i ]	終了パラメータ
