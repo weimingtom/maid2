@@ -42,7 +42,7 @@ protected:
     m_SoundManager.Initialize();
 
     m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("tm2_bird001.wav") );
-    m_Sound2.Load( GameSound::TYPE_SE,  MAIDTEXT("nc7802.ogg") );
+    m_Sound2.Load( GameSound::TYPE_BGM,  MAIDTEXT("nc7802.ogg") );
   }
 
   void UpdateFrame()
@@ -82,6 +82,15 @@ protected:
     if( k.IsIn('K') )
     {
       m_SoundManager.SetVolume( GameSoundManager::TYPE_BGM, 1.0f );
+    }
+
+    if( k.IsIn('O') )
+    {
+      m_SoundManager.SetMuteState( GameSoundManager::TYPE_GLOBAL, true );
+    }
+    if( k.IsIn('P') )
+    {
+      m_SoundManager.SetMuteState( GameSoundManager::TYPE_GLOBAL, false );
     }
   }
 

@@ -85,7 +85,7 @@ void GameSoundManager::UpdateVolume()
  */
 double GameSoundManager::CalcScale( TYPE type )const
 {
-  if( GetMuteState(type) ) { return 0.0f; }
+  if( GetMuteState(type) || GetMuteState(TYPE_GLOBAL) ) { return 0.0f; }
   if( type==TYPE_GLOBAL ) { return m_Data[TYPE_GLOBAL].Volume; }
 
   const double global = m_Data[TYPE_GLOBAL].Volume;
