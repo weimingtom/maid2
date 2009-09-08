@@ -166,6 +166,149 @@ void GraphicsCommandControl::UpdateTexture( Texture2DDynamic& dst, const SPSAMPL
   com.ResourceUnmap( tex.Get(), sub );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct SURFACEINFO
+{
+  SIZE2DI SrcSize;
+  int     SrcPitch;
+  PIXELFORMAT SrcFormat;
+  const void* pSrc;
+
+  SIZE2DI DstSize;
+  int     DstPitch;
+  PIXELFORMAT DstFormat;
+  void*   pDst;
+};
+
+
+template<class SRCPIXEL, class DSTPIXEL>
+void RGBtoRGB( const SURFACEINFO& info, const SRCPIXEL& SrcPixel, const DSTPIXEL& DstPixel )
+{
+  const int SrcPixelSize = GetPixelBPP(info.SrcFormat) / 8;
+  const int DstPixelSize = GetPixelBPP(info.DstFormat) / 8;
+
+  const int width  = std::min( info.SrcSize.w, info.DstSize.w );
+  const int height = std::min( info.SrcSize.h, info.DstSize.h );
+
+  for( int y=0; y<height; ++y )
+  {
+    const unt08* pSrc = ((unt08*)info.pSrc) + info.SrcPitch*y;
+    const unt08* pDst = ((unt08*)info.pDst) + info.DstPitch*y;
+    for( int x=0; x<width; ++x )
+    {
+      const SRCPIXEL& src = *(SRCPIXEL*)pSrc;
+            DSTPIXEL& dst = *(DSTPIXEL*)pDst;
+
+      dst.SetA( src.GetA() );
+      dst.SetR( src.GetR() );
+      dst.SetG( src.GetG() );
+      dst.SetB( src.GetB() );
+
+      pSrc += SrcPixelSize;
+      pDst += DstPixelSize;
+    }
+  }
+}
+
+
+
+void GraphicsCommandControl::UpdateTexture( Texture2DDynamic& dst, const SurfaceInstance& Src )
+{
+  ITexture2D& tex = dst;
+
+  const int sub = 0;
+  Graphics::MAPPEDRESOURCE map;
+
+  Graphics::IDrawCommand& com = *m_pDrawCommand;
+
+  com.ResourceMap( tex.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map );
+
+  SURFACEINFO info;
+
+  info.SrcSize = Src.GetSize();
+  info.SrcPitch= Src.GetPitch();
+  info.SrcFormat=Src.GetPixelFormat();
+  info.pSrc     = Src.GetPlanePTR();
+
+  info.DstSize = dst.GetRealSize();
+  info.DstPitch= map.Pitch;
+  info.DstFormat=dst.GetRealFormat();
+  info.pDst     =map.pData;
+
+
+  int kk=0;
+#define PIXELCOPY( dstpixel ) \
+switch( info.SrcFormat )  \
+{                         \
+case PIXELFORMAT_R08G08B08I:    { RGBtoRGB(info, COLOR_R08G08B08I(), dstpixel() ); }break;  \
+case PIXELFORMAT_B08G08R08I:    { RGBtoRGB(info, COLOR_B08G08R08I(), dstpixel() ); }break;  \
+case PIXELFORMAT_A08R08G08B08I: { RGBtoRGB(info, COLOR_A08R08G08B08I(), dstpixel() ); }break;  \
+case PIXELFORMAT_A08B08G08R08I: { RGBtoRGB(info, COLOR_A08B08G08R08I(), dstpixel() ); }break;  \
+case PIXELFORMAT_X08R08G08B08I: { RGBtoRGB(info, COLOR_X08R08G08B08I(), dstpixel() ); }break;  \
+case PIXELFORMAT_A02R10G10B10I: { RGBtoRGB(info, COLOR_A02R10G10B10I(), dstpixel() ); }break;  \
+case PIXELFORMAT_A02B10G10R10I: { RGBtoRGB(info, COLOR_A02B10G10R10I(), dstpixel() ); }break;  \
+case PIXELFORMAT_R05G06B05I:    { RGBtoRGB(info, COLOR_R05G06B05I(),    dstpixel() ); }break;  \
+case PIXELFORMAT_X01R05G05B05I: { RGBtoRGB(info, COLOR_X01R05G05B05I(), dstpixel() ); }break;  \
+case PIXELFORMAT_A01R05G05B05I: { RGBtoRGB(info, COLOR_A01R05G05B05I(), dstpixel() ); }break;  \
+case PIXELFORMAT_A01B05G05R05I: { RGBtoRGB(info, COLOR_A01B05G05R05I(), dstpixel() ); }break;  \
+case PIXELFORMAT_A04R04G04B04I: { RGBtoRGB(info, COLOR_A04R04G04B04I(), dstpixel() ); }break;  \
+}  \
+
+
+  switch( info.DstFormat )
+  {
+  case PIXELFORMAT_R08G08B08I:    { PIXELCOPY( COLOR_R08G08B08I ); }break;
+  case PIXELFORMAT_B08G08R08I:    { PIXELCOPY( COLOR_B08G08R08I ); }break;
+  case PIXELFORMAT_A08R08G08B08I: { PIXELCOPY( COLOR_A08R08G08B08I ); }break;
+  case PIXELFORMAT_A08B08G08R08I: { PIXELCOPY( COLOR_A08B08G08R08I ); }break;
+  case PIXELFORMAT_X08R08G08B08I: { PIXELCOPY( COLOR_X08R08G08B08I ); }break;
+  case PIXELFORMAT_A02R10G10B10I: { PIXELCOPY( COLOR_A02R10G10B10I ); }break;
+  case PIXELFORMAT_A02B10G10R10I: { PIXELCOPY( COLOR_A02B10G10R10I ); }break;
+  case PIXELFORMAT_R05G06B05I:    { PIXELCOPY( COLOR_R05G06B05I    ); }break;
+  case PIXELFORMAT_X01R05G05B05I: { PIXELCOPY( COLOR_X01R05G05B05I ); }break;
+  case PIXELFORMAT_A01R05G05B05I: { PIXELCOPY( COLOR_A01R05G05B05I ); }break;
+  case PIXELFORMAT_A01B05G05R05I: { PIXELCOPY( COLOR_A01B05G05R05I ); }break;
+  case PIXELFORMAT_A04R04G04B04I: { PIXELCOPY( COLOR_A04R04G04B04I ); }break;
+
+  default:
+    {
+      MAID_ASSERT( true, "対応してません" );
+    }break;
+  }
+
+#undef PIXELCOPY
+
+  com.ResourceUnmap( tex.Get(), sub );
+}
+
+
 void GraphicsCommandControl::CopyRenderTarget( SurfaceInstance& dst, const RenderTargetBase& SrcRT )
 {
   GraphicsCore* pCore = GlobalPointer<GraphicsCore>::Get();

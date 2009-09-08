@@ -20,6 +20,7 @@ namespace Maid
   {
   public:
     void Create( const SIZE2DI& Size, PIXELFORMAT fmt );
+    void Delete();
 
   private:
 

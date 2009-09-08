@@ -121,6 +121,7 @@ namespace Maid
 
 
     void UpdateTexture( Texture2DDynamic& dst, const SPSAMPLEIMAGE& pSrc );
+    void UpdateTexture( Texture2DDynamic& dst, const SurfaceInstance& Src );
     void CopyRenderTarget( SurfaceInstance& dst, const RenderTargetBase& src );
 
 

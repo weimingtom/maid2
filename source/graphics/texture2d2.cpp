@@ -7,129 +7,95 @@
 
 #include"surface.h"
 #include"transiter.h"
+#include"texture2dlocal.h"
 
 
 namespace Maid
 {
-  void ReadName( const String& Tag, String& Element, String& Value )
-  {
-    MAID_ASSERT( Tag[0]!='<', "解析するファイル名が不正です" );
-
-    int pos = 1;
-
-    while( true )
-    {
-      const unt32 c = Tag[pos];
-
-      ++pos;
-      if( c==':' )
-      {
-        break;
-      }
-
-      Element += c;
-    }
-
-    while( true )
-    {
-      const unt32 c = Tag[pos];
-
-      ++pos;
-      if( c=='>' )
-      {
-        break;
-      }
-
-      Value += c;
-    }
-
-    Element = String::ToLower(Element);
-  }
-
-
-  FUNCTIONRESULT LoadImageFile( const String& filename, std::vector<SurfaceInstance>& dst )
-  {
-    FileReaderSync  hFile;
-
-    {
-      const bool ret = hFile.Open( filename );
-      if( ret ) { MAID_WARNING( MAIDTEXT("オープンに失敗") ); return FUNCTIONRESULT_ERROR; }
-    }
-
-    std::vector<unt08> image( hFile.GetSize() );
-
-    {
-      const size_t ret = hFile.Read( &(image[0]), image.size() );
-      if( ret!=image.size() ) { MAID_WARNING( MAIDTEXT("読み込みに失敗") ); return FUNCTIONRESULT_ERROR; }
-    }
-
-    { //  ファイルフォーマットを調べて読み込み開始
-
-      if( Bitmap::Check( image ) ) 
-      {
-        dst.resize(1);
-        const FUNCTIONRESULT ret = Bitmap::Load( image, dst[0] ); 
-        if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("bitmap失敗") ); return FUNCTIONRESULT_ERROR; }
-      }
-      else if( PNG::Check( image ) ) 
-      {
-        dst.resize(1);
-        const FUNCTIONRESULT ret = PNG::Load( image, dst[0] ); 
-        if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("png失敗") ); return FUNCTIONRESULT_ERROR; }
-      }
-      else if( Jpeg::Check( image ) ) 
-      {
-        dst.resize(1);
-        const FUNCTIONRESULT ret = Jpeg::Load( image, dst[0] ); 
-        if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("jpeg失敗") ); return FUNCTIONRESULT_ERROR; }
-      }
-
-      #pragma  COMPILERMSG( "TODO:のこり psd,gif,tga...ぐらいか？" )
-    }
-
-    return FUNCTIONRESULT_OK;
-  }
-
-
-
   namespace KEEPOUT
   {
+    void tex2dFunction::ReadName( const String& Tag, String& Element, String& Value )
+    {
+      MAID_ASSERT( Tag[0]!='<', "解析するファイル名が不正です" );
 
-#define ELEMENT_COLOR MAIDTEXT("color")
-#define ELEMENT_ALPHA MAIDTEXT("alpha")
+      int pos = 1;
 
-    FUNCTIONRESULT tex2dFunction::LoadImage( const String& filename, std::vector<SurfaceInstance>& dst )
+      while( true )
+      {
+        const unt32 c = Tag[pos];
+
+        ++pos;
+        if( c==':' ){ break; }
+
+        Element += c;
+      }
+
+      while( true )
+      {
+        const unt32 c = Tag[pos];
+
+        ++pos;
+        if( c=='>' ) { break; }
+
+        Value += c;
+      }
+
+      Element = String::ToLower(Element);
+    }
+
+
+    FUNCTIONRESULT tex2dFunction::LoadImageFile( const String& filename, std::vector<SurfaceInstance>& dst )
+    {
+      FileReaderSync  hFile;
+
+      {
+        const bool ret = hFile.Open( filename );
+        if( ret ) { MAID_WARNING( MAIDTEXT("オープンに失敗") ); return FUNCTIONRESULT_ERROR; }
+      }
+
+      std::vector<unt08> image( hFile.GetSize() );
+
+      {
+        const size_t ret = hFile.Read( &(image[0]), image.size() );
+        if( ret!=image.size() ) { MAID_WARNING( MAIDTEXT("読み込みに失敗") ); return FUNCTIONRESULT_ERROR; }
+      }
+
+      { //  ファイルフォーマットを調べて読み込み開始
+
+        if( Bitmap::Check( image ) ) 
+        {
+          dst.resize(1);
+          const FUNCTIONRESULT ret = Bitmap::Load( image, dst[0] ); 
+          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("bitmap失敗") ); return FUNCTIONRESULT_ERROR; }
+        }
+        else if( PNG::Check( image ) ) 
+        {
+          dst.resize(1);
+          const FUNCTIONRESULT ret = PNG::Load( image, dst[0] ); 
+          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("png失敗") ); return FUNCTIONRESULT_ERROR; }
+        }
+        else if( Jpeg::Check( image ) ) 
+        {
+          dst.resize(1);
+          const FUNCTIONRESULT ret = Jpeg::Load( image, dst[0] ); 
+          if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("jpeg失敗") ); return FUNCTIONRESULT_ERROR; }
+        }
+
+        #pragma  COMPILERMSG( "TODO:のこり psd,gif,tga...ぐらいか？" )
+      }
+
+      return FUNCTIONRESULT_OK;
+    }
+
+
+
+
+
+
+    FUNCTIONRESULT tex2dFunction::LoadImage( const CONVERTSETTING& Element, std::vector<SurfaceInstance>& dst )
     {
       //  まずはファイル名を分解するところから
       //  一文字目が< で始まってるなら、合成ファイルと判断する
-
-      std::map<String,String> Element;
-
-      if( filename[0]!='<' ) { Element[ELEMENT_COLOR] = filename; } 
-      else
-      {
-        unt32 begin = 0;
-        unt32 len = 0;
-        while( true )
-        {
-          if( filename.length() <= begin+len ) { break; }
-
-          const unt32 c = filename[begin+len];
-          ++len;
-          if( c=='>' )
-          {
-            String tag = filename.substr(begin,len);
-            String ele;
-            String value;
-
-            ReadName( tag, ele, value );
-            Element[ele] = value;
-
-            begin += len;
-            len = 0;
-          }
-        }
-      }
 
       const std::map<String,String>::const_iterator IteColor = Element.find(ELEMENT_COLOR);
       const std::map<String,String>::const_iterator IteAlpha = Element.find(ELEMENT_ALPHA);

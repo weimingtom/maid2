@@ -3,6 +3,7 @@
 
 
 #include"storagemessagebase.h"
+#include"../auxiliary/memorybuffer.h"
 
 
 
@@ -25,6 +26,14 @@ namespace Maid
 
       void*   pDst;
       size_t  Size;
+    };
+
+    struct FileROpenRead : public Base
+    {
+      FileROpenRead() : Base(FILE_R_OPENREAD){}
+
+      String  FileName; //!<  作成するファイル名
+      MemoryBuffer* pBuffer;
     };
 
     struct FileRSeek : public Base

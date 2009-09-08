@@ -62,4 +62,11 @@ void Texture2DDynamic::Create( const SIZE2DI& Size, PIXELFORMAT fmt )
 
 }
 
+
+void Texture2DDynamic::Delete()
+{
+  Texture2DBase::Clear();
+
+}
+
 }
