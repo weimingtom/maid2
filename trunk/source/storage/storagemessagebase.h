@@ -53,6 +53,8 @@ namespace Maid
         FILE_R_SEEK,    //!<  ファイルポジションの移動
         FILE_R_CLOSE,   //!<  ファイルを閉じる
 
+        FILE_R_OPENREAD,//!<  ファイルのオープン&全読み込み
+
         FILE_MOUNT,     //!<  アーカイブを乗っける
         FILE_UNMOUNT,   //!<  アーカイブをはずす
       };

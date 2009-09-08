@@ -152,7 +152,6 @@ void Storage::ExecuteMessage( const SPSTORAGEMESSAGE& pMess )
       pReader->m_Size     = pRead->GetSize();
 
       pReader->pReader = pRead;
-
     }break;
 
   case Base::FILE_R_READ: 
@@ -190,6 +189,24 @@ void Storage::ExecuteMessage( const SPSTORAGEMESSAGE& pMess )
       pReader->m_Position = 0;
       pReader->m_Size     = 0;
     }break;
+
+
+  case Base::FILE_R_OPENREAD:
+    {
+      StorageObjectFileReader* pReader = static_cast<StorageObjectFileReader*>(pMess->pObject.get());
+      FileROpenRead* pArg = static_cast<FileROpenRead*>(pMess.get());
+
+      SPFILEREAD pFile = OpenFileRead( pArg->FileName );
+
+      if( pFile.get()!=NULL )
+      {
+        const size_t size = pFile->GetSize();
+
+        pArg->pBuffer->Resize( size );
+        pFile->Read( pArg->pBuffer->GetPointer(0), size );
+      }
+    }break;
+
 
   case Base::FILE_MOUNT:
     {

@@ -526,6 +526,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\storage\filereaderall.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\storage\filereaderall.h"
+				>
+			</File>
+			<File
 				RelativePath=".\storage\filereadersync.cpp"
 				>
 			</File>
@@ -1363,6 +1371,10 @@
 			</File>
 			<File
 				RelativePath=".\graphics\texture2ddynamic.h"
+				>
+			</File>
+			<File
+				RelativePath=".\graphics\texture2dlocal.h"
 				>
 			</File>
 			<File

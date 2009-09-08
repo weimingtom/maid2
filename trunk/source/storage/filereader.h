@@ -16,7 +16,8 @@
 
 namespace Maid
 {
-  class FileReader : public GlobalPointer<Storage>
+  class FileReader
+    : public GlobalPointer<Storage>
   {
   public:
     FileReader();

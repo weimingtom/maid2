@@ -99,13 +99,36 @@
     return BITCONVERT16Ito08I(BITCONVERT32Fto16I(s)); 
   }
 
+  //	あるとベンリなマクロ
+  union INTORFLOAT
+  {
+	  INTORFLOAT( float32 _f ) : f(_f){}
+	  INTORFLOAT( int32 _n ) : n(_n){}
+	  int32 n;
+	  float32 f;
+  };
+
+  static const INTORFLOAT bias(((23+127)<<23) +(1<<22) );
+
+  //	float32 -> int32 のキャスト
+  static inline int32 FLOAT32toINT32( float32 f )
+  {
+	  INTORFLOAT a(f);
+
+	  a.f += bias.f;
+	  a.n -= bias.n;
+
+	  return a.n;
+  }
+
   //!  float 32bit -> int 16bit
   inline unt16 BITCONVERT32Fto16I( float32 s )
   {
     if( s>1.0f ) { return 0xFFFF; }
     if( s<0.0f ) { return 0x0000; }
 
-    const int no = int(s*65535.0f+0.5f);
+//    const int no = int(s*65535.0f+0.5f);
+    const int no = FLOAT32toINT32(s*65535.0f);
     return (unt16)no;
   }
 

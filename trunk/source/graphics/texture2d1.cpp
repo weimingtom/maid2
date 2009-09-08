@@ -8,6 +8,7 @@
 #include"surface.h"
 #include"transiter.h"
 
+#include"texture2dlocal.h"
 
 namespace Maid
 {
@@ -18,17 +19,20 @@ namespace Maid
       const tex2dInput&  in  = static_cast<const tex2dInput&>(Input);
       tex2dOutput& out = static_cast<tex2dOutput&>(Output);
 
+      CONVERTSETTING  setting;
+
+      ReadConvertSetting( in.FileName, setting );
+
       std::vector<SurfaceInstance> ImageSurface;
       {
         ImageSurface.reserve( 13 );  //  4096x4096 - 1x1 までの配列が 13 なのでそれぐらいあればいいでしょう
-        const FUNCTIONRESULT ret = LoadImage( in.FileName, ImageSurface );
+        const FUNCTIONRESULT ret = LoadImage( setting, ImageSurface );
         if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("失敗") << in.FileName ) return ; }
 
         if( in.Core->IsTextureMipMap() && ImageSurface.size()==1 )
         {
           GenerateSublevel( ImageSurface );
         }
-
       }
       //  これで ImageSurface に読み込んだデータが入った。
       //  次に各種設定から作成するテクスチャフォーマットを求める
@@ -58,8 +62,6 @@ namespace Maid
           NowSize.w /= 2; if( NowSize.w<1 ) { NowSize.w = 1; }
           NowSize.h /= 2; if( NowSize.h<1 ) { NowSize.h = 1; }
         }
-
-
         ConvertSubResource( ImageSurface, SubResourceSurface  );
       }
 
@@ -125,7 +127,6 @@ namespace Maid
         const SIZE2DI SrcSize = src.GetSize();
         const SIZE2DI DstSize = dst.GetSize();
 
-
         if( SrcSize.w <= DstSize.w && SrcSize.h <= DstSize.h )
         { //  画像より作成するサイズの方が大きいなら普通に転送
           const RECT2DI src_rc( POINT2DI(0,0), SrcSize );
@@ -146,11 +147,11 @@ namespace Maid
           //  塗りつぶしてない部分を隅っこの色で塗る
           for( int y=0; y<DstSize.h; ++y )
           {
+            const COLOR_R32G32B32A32F src_color = dst.GetPixel( POINT2DI(SrcSize.w-1,y) );
             for( int x=SrcSize.w; x<DstSize.w; ++x ) 
             {
-              const POINT2DI s(SrcSize.w-1,y);
               const POINT2DI d(x,y);
-              dst.SetPixel( d, dst.GetPixel(s) );
+              dst.SetPixel( d, src_color );
             }
           }
           for( int y=SrcSize.h; y<DstSize.h; ++y )
@@ -237,6 +238,38 @@ namespace Maid
           }
         }
       }
+    }
+
+    void tex2dFunction::ReadConvertSetting( const String& filename, CONVERTSETTING& out )
+    {
+      CONVERTSETTING& Element = out;
+
+      if( filename[0]!='<' ) { Element[ELEMENT_COLOR] = filename; } 
+      else
+      {
+        unt32 begin = 0;
+        unt32 len = 0;
+        while( true )
+        {
+          if( filename.length() <= begin+len ) { break; }
+
+          const unt32 c = filename[begin+len];
+          ++len;
+          if( c=='>' )
+          {
+            String tag = filename.substr(begin,len);
+            String ele;
+            String value;
+
+            ReadName( tag, ele, value );
+            Element[ele] = value;
+
+            begin += len;
+            len = 0;
+          }
+        }
+      }
+
     }
   }
 

@@ -1,9 +1,26 @@
 ﻿#include"jpeg.h"
 
-extern "C" {
-#define XMD_H
-#include"../../import/ijg/jpeglib.h"
-}
+
+#ifdef USE_INTELIPP
+  extern "C" {
+  #define XMD_H
+  #include"../../import/ijg_ipp/jpeglib.h"
+  }
+#pragma comment(lib,"ippcorel.lib")
+#pragma comment(lib,"ippiemerged.lib")
+#pragma comment(lib,"ippimerged.lib")
+#pragma comment(lib,"ippjemerged.lib")
+#pragma comment(lib,"ippjmerged.lib")
+#pragma comment(lib,"ippsemerged.lib")
+#pragma comment(lib,"ippsmerged.lib")
+
+#else
+  extern "C" {
+  #define XMD_H
+  #include"../../import/ijg/jpeglib.h"
+  }
+#endif
+
 
 #include"../../auxiliary/debug/warning.h"
 
@@ -147,14 +164,18 @@ my_error_exit (j_common_ptr cinfo)
 
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-//! ビットマップを変換する
+//! jpegを変換する
 /*!
     @param	FileImage	[i ]  ファイル名
     @param	dst       [i ]  転送先
  */
 FUNCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& surface )
 {
+  return Load( &(FileImage[0]), FileImage.size(), surface );
+}
 
+FUNCTIONRESULT  Load( const void* pFileImage, size_t FileImageSize, SurfaceInstance& surface )
+{
 	my_error_mgr jerr;
 	jpeg_decompress_struct cinfo;
 
@@ -163,7 +184,7 @@ FUNCTIONRESULT   Load( const std::vector<unt08>& FileImage, SurfaceInstance& sur
 
 	jpeg_create_decompress(&cinfo);
 
-	jpeg_memory_src(&cinfo, &(FileImage[0]), (int)FileImage.size() );
+	jpeg_memory_src(&cinfo, pFileImage, FileImageSize );
 
 	jpeg_read_header(&cinfo, TRUE);
 	jpeg_start_decompress(&cinfo);
