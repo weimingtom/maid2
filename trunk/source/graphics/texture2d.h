@@ -76,18 +76,25 @@ namespace Maid
     ,private GlobalPointer<GraphicsCore>
   {
   public:
+    void LoadCommand( const String& Command );
     void LoadFile( const String& FileName );
+    void LoadFile( const String& FileName, int MipmapLevel );
     bool IsLoading()const;
     void Delete();
 
     const SIZE2DI& GetImageSize()const;
 
     bool IsEmpty() const;
-    String GetFileName() const;
+    String GetLoadText() const;
+
+  private:
+    void SendCommand( const String& Command );
 
   private:
     typedef JobCacheTemplate<KEEPOUT::tex2dInput,KEEPOUT::tex2dFunction, KEEPOUT::tex2dOutput> CACHE;
     CACHE m_Cache;
+
+    String  m_LoadText;
   };
 
 

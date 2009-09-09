@@ -53,7 +53,21 @@ namespace Maid
       std::vector<SurfaceInstance> SubResourceSurface;
 
       {
-        const int level = in.Core->IsTextureMipMap()? in.Core->CalcMipLevels( TextureSize ) : 1;
+
+        int level = in.Core->CalcMipLevels( TextureSize );
+        {
+          if( !in.Core->IsTextureMipMap() ) { level = 1; }
+          else
+          {
+            CONVERTSETTING::const_iterator ite = setting.find(ELEMENT_MIPMAPLEVEL);
+            if( ite!=setting.end() )
+            {
+              const int val = String::AtoI( ite->second );
+              if( 0!=val ) { level = val; }
+            }
+          }
+        }
+        
         SubResourceSurface.resize( level );  
         SIZE2DI NowSize = TextureSize;
         for( int i=0; i<level; ++i )
@@ -240,37 +254,6 @@ namespace Maid
       }
     }
 
-    void tex2dFunction::ReadConvertSetting( const String& filename, CONVERTSETTING& out )
-    {
-      CONVERTSETTING& Element = out;
-
-      if( filename[0]!='<' ) { Element[ELEMENT_COLOR] = filename; } 
-      else
-      {
-        unt32 begin = 0;
-        unt32 len = 0;
-        while( true )
-        {
-          if( filename.length() <= begin+len ) { break; }
-
-          const unt32 c = filename[begin+len];
-          ++len;
-          if( c=='>' )
-          {
-            String tag = filename.substr(begin,len);
-            String ele;
-            String value;
-
-            ReadName( tag, ele, value );
-            Element[ele] = value;
-
-            begin += len;
-            len = 0;
-          }
-        }
-      }
-
-    }
   }
 
 
@@ -279,14 +262,43 @@ ThreadMutex  Texture2D::CACHE::s_Mutex;
 
 void Texture2D::LoadFile( const String& FileName )
 {
-  Texture2DBase::Clear();
-  if( FileName.empty() ) { return ; }
-  m_Cache.Start( KEEPOUT::tex2dInput(FileName, GlobalPointer<GraphicsCore>::Get() ) );
+  LoadFile( FileName, 0 );
 }
+
+void Texture2D::LoadFile( const String& FileName, int MipmapLevel )
+{
+  String com;
+
+  if( FileName[0]=='<' )
+  {
+    com = FileName
+    + MAIDTEXT("<") + ELEMENT_MIPMAPLEVEL + MAIDTEXT(":") + String::PrintFormat("%0d",MipmapLevel) + MAIDTEXT(">")
+    ;
+  }else
+  {
+    com =
+      MAIDTEXT("<") + ELEMENT_COLOR + MAIDTEXT(":") + FileName + MAIDTEXT(">")
+    + MAIDTEXT("<") + ELEMENT_MIPMAPLEVEL + MAIDTEXT(":") + String::PrintFormat("%0d",MipmapLevel) + MAIDTEXT(">")
+    ;
+  }
+
+  SendCommand( com );
+  m_LoadText = FileName;
+}
+
+void Texture2D::LoadCommand( const String& Command )
+{
+  SendCommand( Command );
+  m_LoadText = Command;
+}
+
+
+
 
 void Texture2D::Delete()
 {
   m_Cache.Reset();
+  m_LoadText = String();
 }
 
 
@@ -316,13 +328,19 @@ bool Texture2D::IsEmpty() const
   return m_Cache.IsEmpty();
 }
 
-String Texture2D::GetFileName() const
+String Texture2D::GetLoadText() const
 {
   if( IsEmpty() ) { return String(); }
 
-  const KEEPOUT::tex2dInput& in = m_Cache.GetInput();
+  return m_LoadText;
+}
 
-  return in.FileName;
+
+void Texture2D::SendCommand( const String& Command )
+{
+  Texture2DBase::Clear();
+  if( Command.empty() ) { return ; }
+  m_Cache.Start( KEEPOUT::tex2dInput(Command, GlobalPointer<GraphicsCore>::Get() ) );
 }
 
 

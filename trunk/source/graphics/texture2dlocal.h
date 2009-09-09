@@ -11,6 +11,7 @@
 
 #define ELEMENT_COLOR MAIDTEXT("color")
 #define ELEMENT_ALPHA MAIDTEXT("alpha")
+#define ELEMENT_MIPMAPLEVEL MAIDTEXT("mipmaplevel")
 
 
 

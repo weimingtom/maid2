@@ -14,6 +14,38 @@ namespace Maid
 {
   namespace KEEPOUT
   {
+
+    void tex2dFunction::ReadConvertSetting( const String& filename, CONVERTSETTING& out )
+    {
+      CONVERTSETTING& Element = out;
+
+      if( filename[0]!='<' ) { Element[ELEMENT_COLOR] = filename; } 
+      else
+      {
+        unt32 begin = 0;
+        unt32 len = 0;
+        while( true )
+        {
+          if( filename.length() <= begin+len ) { break; }
+
+          const unt32 c = filename[begin+len];
+          ++len;
+          if( c=='>' )
+          {
+            String tag = filename.substr(begin,len);
+            String ele;
+            String value;
+
+            ReadName( tag, ele, value );
+            Element[ele] = value;
+
+            begin += len;
+            len = 0;
+          }
+        }
+      }
+    }
+
     void tex2dFunction::ReadName( const String& Tag, String& Element, String& Value )
     {
       MAID_ASSERT( Tag[0]!='<', "解析するファイル名が不正です" );
