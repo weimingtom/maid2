@@ -63,10 +63,11 @@ namespace Maid
 
       FUNCTIONRESULT LoadImage( const CONVERTSETTING& Element, std::vector<SurfaceInstance>& dst );
       FUNCTIONRESULT ConvertSubResource( const std::vector<SurfaceInstance>& src, std::vector<SurfaceInstance>& dst );
-      void GenerateSublevel( std::vector<SurfaceInstance>& target );
+      void GenerateSublevel( std::vector<SurfaceInstance>& target, int level );
 
       void ReadName( const String& Tag, String& Element, String& Value );
       FUNCTIONRESULT LoadImageFile( const String& filename, std::vector<SurfaceInstance>& dst );
+      int CalcMipLevels( const GraphicsCore& core, const CONVERTSETTING& setting, const SIZE2DI& size ) const;
     };
   }
 

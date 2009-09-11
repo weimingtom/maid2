@@ -29,14 +29,17 @@ namespace Maid
         const FUNCTIONRESULT ret = LoadImage( setting, ImageSurface );
         if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("失敗") << in.FileName ) return ; }
 
-        if( in.Core->IsTextureMipMap() && ImageSurface.size()==1 )
+        const int miplevel = CalcMipLevels( *(in.Core), setting, ImageSurface[0].GetSize() );
+
+        if( in.Core->IsTextureMipMap() && ImageSurface.size()!=miplevel )
         {
-          GenerateSublevel( ImageSurface );
+          GenerateSublevel( ImageSurface, miplevel );
         }
       }
-      //  これで ImageSurface に読み込んだデータが入った。
-      //  次に各種設定から作成するテクスチャフォーマットを求める
 
+
+      //  これで最終的に作りたい画像データが ImageSurface に読み込んだデータが入った。
+      //  次に各種設定から作成するテクスチャフォーマットを求める
       const PIXELFORMAT DstFormat = in.Core->FindFormatTexture2D( ImageSurface[0].GetPixelFormat(), false );
       if( DstFormat==PIXELFORMAT_NONE )
       {
@@ -53,21 +56,8 @@ namespace Maid
       std::vector<SurfaceInstance> SubResourceSurface;
 
       {
-
-        int level = in.Core->CalcMipLevels( TextureSize );
-        {
-          if( !in.Core->IsTextureMipMap() ) { level = 1; }
-          else
-          {
-            CONVERTSETTING::const_iterator ite = setting.find(ELEMENT_MIPMAPLEVEL);
-            if( ite!=setting.end() )
-            {
-              const int val = String::AtoI( ite->second );
-              if( 0!=val ) { level = val; }
-            }
-          }
-        }
-        
+        const int level = CalcMipLevels( *(in.Core), setting, TextureSize );
+       
         SubResourceSurface.resize( level );  
         SIZE2DI NowSize = TextureSize;
         for( int i=0; i<level; ++i )
@@ -131,6 +121,26 @@ namespace Maid
       out.ImageFormat = ImageSurface[0].GetPixelFormat();
     }
 
+    int tex2dFunction::CalcMipLevels( const GraphicsCore& core, const CONVERTSETTING& setting, const SIZE2DI& size ) const
+    {
+      int level = core.CalcMipLevels( size );
+      {
+        if( !core.IsTextureMipMap() ) { level = 1; }
+        else
+        {
+          CONVERTSETTING::const_iterator ite = setting.find(ELEMENT_MIPMAPLEVEL);
+          if( ite!=setting.end() )
+          {
+            const int val = String::AtoI( ite->second );
+            if( 0!=val ) { level = std::min(level,val); }
+          }
+        }
+      }
+
+      return level;
+    }
+
+
     FUNCTIONRESULT tex2dFunction::ConvertSubResource( const std::vector<SurfaceInstance>& SrcImage, std::vector<SurfaceInstance>& DstImage  )
     {
       for( int i=0; i<(int)DstImage.size(); ++i )
@@ -179,7 +189,7 @@ namespace Maid
       return FUNCTIONRESULT_OK;
     }
 
-    void tex2dFunction::GenerateSublevel( std::vector<SurfaceInstance>& target )
+    void tex2dFunction::GenerateSublevel( std::vector<SurfaceInstance>& target, int level )
     {
       MAID_ASSERT( target[0].IsEmpty(), "最初のレベルは作ってください" );
 
@@ -195,6 +205,8 @@ namespace Maid
           ++sublevel;
         }
       }
+
+      sublevel = std::min(sublevel,level);
 
       target.resize( sublevel + 1 );
 
