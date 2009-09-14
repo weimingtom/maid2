@@ -187,6 +187,17 @@ void MoviePlayer::Play()
   m_Timer.Start();
 }
 
+void MoviePlayer::Stop()
+{
+  m_Timer.Stop();
+}
+
+void MoviePlayer::Resume()
+{
+  m_Timer.Resume();
+}
+
+
 
 void MoviePlayer::Seek( double time )
 {

@@ -24,6 +24,7 @@ namespace Maid {
     void Finalize();
 
     void Play();
+    void Pause();
     void Stop();
 
     bool IsPlay() const;

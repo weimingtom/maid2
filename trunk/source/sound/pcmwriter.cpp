@@ -66,6 +66,18 @@ void PCMWriter::Play()
   m_IsPlay = true;
 }
 
+void PCMWriter::Pause()
+{
+  if( !IsInitialized() ) { return ; }
+  if( !IsPlay() ) { return ; }
+
+  {
+    boost::shared_ptr<SoundMessage::Stop> pMess( new SoundMessage::Stop );
+    GlobalPointer<SoundCore>::Get()->PostMessage(m_pInfo, pMess );
+  }
+  m_IsPlay = false;
+}
+
 void PCMWriter::Stop()
 {
   if( !IsInitialized() ) { return ; }

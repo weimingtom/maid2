@@ -73,6 +73,9 @@ namespace Maid
 
 
     void Play();
+    void Stop();
+    void Resume();
+
     void FlushImage( double& time, SPSAMPLEIMAGE& pOutput );
     void FlushPCM( double& time, MemoryBuffer& Output );
 
