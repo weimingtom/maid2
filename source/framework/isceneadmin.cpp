@@ -36,9 +36,15 @@ void ISceneAdmin::PushScene( const SPSCENE& pScene )
 {
   BeginFade();
 
+  if( !m_SceneStack.empty() )
+  {
+    GetCurrentScene()->OnInterruptSceneBegin();
+  }
+
   m_SceneStack.push_front( pScene );
   m_State = STATE_CHANGING;
 }
+
 
 //! シーンを一段捨てる
 /*!
@@ -49,6 +55,10 @@ void ISceneAdmin::PopScene()
 
   m_SceneStack.pop_front();
   m_State = STATE_CHANGING;
+  if( !m_SceneStack.empty() )
+  {
+    GetCurrentScene()->OnInterruptSceneEnd();
+  }
 }
 
 //! シーンをきりかえる

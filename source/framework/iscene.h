@@ -68,6 +68,16 @@ namespace Maid
      */
     virtual void UpdateDraw( const RenderTargetBase& target, const IDepthStencil& depth  )=0;
 
+    //! このシーンの上にシーンが割り込んできたときに呼ばれる
+    /*!
+     */
+	  virtual void	OnInterruptSceneBegin(){}
+
+
+    //! 割り込んできたシーンが終了したときに呼ばれる
+    /*!
+     */
+	  virtual void	OnInterruptSceneEnd(){}
 
     //! 継承したクラスでシーン終了の信号を出す
     /*!
