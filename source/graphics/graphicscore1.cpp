@@ -90,6 +90,8 @@ void GraphicsCore::Initialize( const Graphics::SPDEVICE& pDevice, const Graphics
   m_TextureQuality = 0;
   m_pFontDevice = pFont;
   UpdateMember();
+
+  m_VirtualScreenSize = SIZE2DI(0,0);
 }
 
 
@@ -174,6 +176,27 @@ void GraphicsCore::SetSwapChainFormat( const SWAPCHAINFORMAT& mode )
   UpdateMember();
 }
 
+//! 仮想スクリーンモードを開始する
+/*!
+    RenderTarget等はここで設定した値を元に大きさが変わります
+
+    @param  size  [i ]  仮想サイズ
+ */
+void GraphicsCore::BeginVirtualScreenMode( const SIZE2DI& size )
+{
+  m_VirtualScreenSize = size;
+}
+
+//! 仮想スクリーンモードを終了する
+/*!
+ */
+void GraphicsCore::EndVirtualScreenMode()
+{
+  m_VirtualScreenSize = SIZE2DI(0,0);
+}
+
+
+
 //! スクリーンモードの変更をする
 /*!
     @param  IsFullScreen  [i ]  true でフルスクリーン
@@ -184,6 +207,17 @@ void GraphicsCore::SetFullScreenState( bool IsFullScreen )
   m_pDevice->SetFullScreenState( IsFullScreen );
   UpdateMember();
   SetAspectLock( m_IsAspectLock );
+}
+
+
+const SIZE2DI& GraphicsCore::GetVirtualScreenSize() const
+{
+  if( m_VirtualScreenSize.w==0 && m_VirtualScreenSize.h==0 )
+  {
+    return m_SwapChainFormat.Size;
+  }
+
+  return m_VirtualScreenSize;
 }
 
 

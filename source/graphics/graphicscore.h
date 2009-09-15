@@ -52,13 +52,15 @@ namespace Maid {
       bool    IsWaitVSync;  //!< VSync同期するか？
     };
 
-    const SWAPCHAINFORMAT& GetSwapChainFormat() const;
-    bool IsFullScreen() const;
 
     void SetSwapChainFormat( const SWAPCHAINFORMAT& mode );
-
+    void BeginVirtualScreenMode( const SIZE2DI& size );
+    void EndVirtualScreenMode();
     void SetFullScreenState( bool IsFullScreen );
 
+    const SWAPCHAINFORMAT& GetSwapChainFormat() const;
+    const SIZE2DI& GetVirtualScreenSize() const;
+    bool IsFullScreen() const;
 
     PIXELFORMAT FindFormatTexture2D( PIXELFORMAT fmt, bool IsRenderTarget )const;
     PIXELFORMAT FindFormatRenderTarget( PIXELFORMAT fmt )const;
@@ -103,6 +105,7 @@ namespace Maid {
 
     String  m_FullScreenDisplayName;  //  フルスクリーン化されているディスプレイ名
 
+    SIZE2DI m_VirtualScreenSize;
     RenderTargetScreen  m_Screen;
     DepthStencil  m_DepthStencil;
     int           m_TextureQuality;
