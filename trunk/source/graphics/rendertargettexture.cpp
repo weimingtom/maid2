@@ -30,17 +30,14 @@ void RenderTargetTexture::Create( const SIZE2DI& size, PIXELFORMAT format )
     return ; 
   }
 
+  const SIZE2DI ScreenSize = pCore->GetSwapChainFormat().Size;
+  const SIZE2DI VirtualScreenSize = pCore->GetVirtualScreenSize();
+
+//  const SIZE2DI tex = CalcTextureSize(CalcSize);
+
   const SIZE2DI VirtualSize = size;
-  SIZE2DI RealSize;
-  SIZE2DI TextureSize;
-
-  pCore->CalcTextureSize( VirtualSize, RealSize, TextureSize );
-
-  if( VirtualSize.w <= RealSize.w && VirtualSize.h <= RealSize.h )
-  {
-    RealSize = VirtualSize;
-  }
-
+  const SIZE2DI RealSize    = SIZE2DI( size.w * ScreenSize.w / VirtualScreenSize.w, size.h * ScreenSize.h / VirtualScreenSize.h );
+  const SIZE2DI TextureSize = pCore->CalcTextureSize(RealSize);
 
   Graphics::SPTEXTURE2D pTexture;
 
