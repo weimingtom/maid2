@@ -15,65 +15,6 @@ namespace Maid
   namespace KEEPOUT
   {
 
-    void tex2dFunction::ReadConvertSetting( const String& filename, CONVERTSETTING& out )
-    {
-      CONVERTSETTING& Element = out;
-
-      if( filename[0]!='<' ) { Element[ELEMENT_COLOR] = filename; } 
-      else
-      {
-        unt32 begin = 0;
-        unt32 len = 0;
-        while( true )
-        {
-          if( filename.length() <= begin+len ) { break; }
-
-          const unt32 c = filename[begin+len];
-          ++len;
-          if( c=='>' )
-          {
-            String tag = filename.substr(begin,len);
-            String ele;
-            String value;
-
-            ReadName( tag, ele, value );
-            Element[ele] = value;
-
-            begin += len;
-            len = 0;
-          }
-        }
-      }
-    }
-
-    void tex2dFunction::ReadName( const String& Tag, String& Element, String& Value )
-    {
-      MAID_ASSERT( Tag[0]!='<', "解析するファイル名が不正です" );
-
-      int pos = 1;
-
-      while( true )
-      {
-        const unt32 c = Tag[pos];
-
-        ++pos;
-        if( c==':' ){ break; }
-
-        Element += c;
-      }
-
-      while( true )
-      {
-        const unt32 c = Tag[pos];
-
-        ++pos;
-        if( c=='>' ) { break; }
-
-        Value += c;
-      }
-
-      Element = String::ToLower(Element);
-    }
 
 
     FUNCTIONRESULT tex2dFunction::LoadImageFile( const String& filename, std::vector<SurfaceInstance>& dst )
@@ -124,7 +65,7 @@ namespace Maid
 
 
 
-    FUNCTIONRESULT tex2dFunction::LoadImage( const CONVERTSETTING& Element, std::vector<SurfaceInstance>& dst )
+    FUNCTIONRESULT tex2dFunction::LoadImage( const tex2dInput::CREATECONFIG& Element, std::vector<SurfaceInstance>& dst )
     {
       //  まずはファイル名を分解するところから
       //  一文字目が< で始まってるなら、合成ファイルと判断する
