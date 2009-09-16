@@ -87,7 +87,7 @@
   inline unt08 BITCONVERT16Ito06I( unt16 s ) { return (unt08)(_CLIP16I(s,0x01FF)>>10); }
 
   //!  int 16bit -> int 08bit
-  inline unt08 BITCONVERT16Ito08I( unt16 s ) { return (unt08)(_CLIP16I(s,0x00FF)>> 8); }
+  inline unt08 BITCONVERT16Ito08I( unt16 s ) { return (unt08)(_CLIP16I(s,0x007F)>> 8); }
 
   //!  int 16bit -> int 10bit
   inline unt16 BITCONVERT16Ito10I( unt16 s ) { return        (_CLIP16I(s,0x003F)>> 6); }

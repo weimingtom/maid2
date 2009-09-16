@@ -177,9 +177,12 @@ void IGameFrameWork::Finalize()
 
 IGameFrameWork::OSMESSAGESTATE IGameFrameWork::OnOSMessage( const OSMessage::Base& Message )
 {
-  const IGameThread::OSMESSAGESTATE ret = m_pGame->OnOSMessage( Message );
+  if( m_pGame.get()!=NULL )
+  {
+    const IGameThread::OSMESSAGESTATE ret = m_pGame->OnOSMessage( Message );
 
-  if( ret==IGameThread::OSMESSAGESTATE_RETURN ) { return OSMESSAGESTATE_RETURN; }
+    if( ret==IGameThread::OSMESSAGESTATE_RETURN ) { return OSMESSAGESTATE_RETURN; }
+  }
 
   return OSMESSAGESTATE_DEFAULT;
 }
