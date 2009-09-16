@@ -19,22 +19,25 @@ namespace Maid
 {
   namespace KEEPOUT
   {
-    class tex2dInput : public IJobInput
+    class tex2dInput
+      : public IJobInput
     {
     public:
+      typedef std::map<String,String> CREATECONFIG;
       tex2dInput(){}
-      tex2dInput( const String& name, GraphicsCore* c )
-        :FileName(name), Core(c){}
-      String FileName;
+      tex2dInput( const CREATECONFIG& conf, GraphicsCore* c )
+        :Config(conf), Core(c){}
+      CREATECONFIG Config;
       GraphicsCore* Core;
     };
 
     inline bool operator < ( const tex2dInput& lha, const tex2dInput& rha ) 
     {
-      return lha.FileName < rha.FileName; 
+      return lha.Config < rha.Config; 
     }
 
-    class tex2dOutput : public IJobOutput
+    class tex2dOutput
+      : public IJobOutput
     {
     public:
       tex2dOutput()
@@ -57,17 +60,16 @@ namespace Maid
       void Execute( const IJobInput& Input, IJobOutput& Output );
 
     private:
-      typedef std::map<String,String> CONVERTSETTING;
 
-      void ReadConvertSetting( const String& filename, CONVERTSETTING& out );
-
-      FUNCTIONRESULT LoadImage( const CONVERTSETTING& Element, std::vector<SurfaceInstance>& dst );
+      FUNCTIONRESULT LoadImage( const tex2dInput::CREATECONFIG& Element, std::vector<SurfaceInstance>& dst );
       FUNCTIONRESULT ConvertSubResource( const std::vector<SurfaceInstance>& src, std::vector<SurfaceInstance>& dst );
       void GenerateSublevel( std::vector<SurfaceInstance>& target, int level );
 
       void ReadName( const String& Tag, String& Element, String& Value );
       FUNCTIONRESULT LoadImageFile( const String& filename, std::vector<SurfaceInstance>& dst );
-      int CalcMipLevels( const GraphicsCore& core, const CONVERTSETTING& setting, const SIZE2DI& size ) const;
+      int CalcMipLevels( const GraphicsCore& core, const tex2dInput::CREATECONFIG& setting, const SIZE2DI& size ) const;
+
+      String DebugString( const tex2dInput::CREATECONFIG& Element )const;
     };
   }
 
@@ -89,7 +91,9 @@ namespace Maid
     String GetLoadText() const;
 
   private:
-    void SendCommand( const String& Command );
+    void SendCommand( const KEEPOUT::tex2dInput::CREATECONFIG& Command );
+    void ReadConvertSetting( const String& Command, KEEPOUT::tex2dInput::CREATECONFIG& out );
+    void ReadName( const String& Tag, String& Element, String& Value );
 
   private:
     typedef JobCacheTemplate<KEEPOUT::tex2dInput,KEEPOUT::tex2dFunction, KEEPOUT::tex2dOutput> CACHE;

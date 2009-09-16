@@ -19,15 +19,13 @@ namespace Maid
       const tex2dInput&  in  = static_cast<const tex2dInput&>(Input);
       tex2dOutput& out = static_cast<tex2dOutput&>(Output);
 
-      CONVERTSETTING  setting;
-
-      ReadConvertSetting( in.FileName, setting );
+      const tex2dInput::CREATECONFIG&  setting = in.Config;
 
       std::vector<SurfaceInstance> ImageSurface;
       {
         ImageSurface.reserve( 13 );  //  4096x4096 - 1x1 までの配列が 13 なのでそれぐらいあればいいでしょう
         const FUNCTIONRESULT ret = LoadImage( setting, ImageSurface );
-        if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("失敗") << in.FileName ) return ; }
+        if( FUNCTIONRESULT_FAILE(ret) ) { MAID_WARNING( MAIDTEXT("失敗") << DebugString(setting) ) return ; }
 
         const int miplevel = CalcMipLevels( *(in.Core), setting, ImageSurface[0].GetSize() );
 
@@ -98,7 +96,7 @@ namespace Maid
 
         pTexture = in.Core->GetDevice()->CreateTexture2D( param, &(sub[0]) );
         if( pTexture.get()==NULL ) {
-          MAID_WARNING( MAIDTEXT("テクスチャの作成に失敗 ") << in.FileName );
+          MAID_WARNING( MAIDTEXT("テクスチャの作成に失敗 ") << DebugString(setting) );
           return ; 
         }
       }
@@ -108,7 +106,7 @@ namespace Maid
         pMaterial = in.Core->GetDevice()->CreateMaterial( pTexture, NULL );
         if( pMaterial.get()==NULL )
         {
-          MAID_WARNING( MAIDTEXT("テクスチャの作成に失敗 ") << in.FileName );
+          MAID_WARNING( MAIDTEXT("テクスチャの作成に失敗 ") << DebugString(setting) );
           return ; 
         }
       }
@@ -121,14 +119,14 @@ namespace Maid
       out.ImageFormat = ImageSurface[0].GetPixelFormat();
     }
 
-    int tex2dFunction::CalcMipLevels( const GraphicsCore& core, const CONVERTSETTING& setting, const SIZE2DI& size ) const
+    int tex2dFunction::CalcMipLevels( const GraphicsCore& core, const tex2dInput::CREATECONFIG& setting, const SIZE2DI& size ) const
     {
       int level = core.CalcMipLevels( size );
       {
         if( !core.IsTextureMipMap() ) { level = 1; }
         else
         {
-          CONVERTSETTING::const_iterator ite = setting.find(ELEMENT_MIPMAPLEVEL);
+          tex2dInput::CREATECONFIG::const_iterator ite = setting.find(ELEMENT_MIPMAPLEVEL);
           if( ite!=setting.end() )
           {
             const int val = String::AtoI( ite->second );
@@ -136,7 +134,6 @@ namespace Maid
           }
         }
       }
-
       return level;
     }
 
@@ -266,6 +263,17 @@ namespace Maid
       }
     }
 
+    String tex2dFunction::DebugString( const tex2dInput::CREATECONFIG& Element )const
+    {
+      String ret;
+
+      for( tex2dInput::CREATECONFIG::const_iterator ite=Element.begin();
+            ite!=Element.end(); ++ite )
+      {
+        ret += MAIDTEXT("<") + ite->first + MAIDTEXT(":") + ite->second + MAIDTEXT(">");
+      }
+      return ret;
+    }
   }
 
 
@@ -279,19 +287,17 @@ void Texture2D::LoadFile( const String& FileName )
 
 void Texture2D::LoadFile( const String& FileName, int MipmapLevel )
 {
-  String com;
+  KEEPOUT::tex2dInput::CREATECONFIG com;
 
   if( FileName[0]=='<' )
   {
-    com = FileName
-    + MAIDTEXT("<") + ELEMENT_MIPMAPLEVEL + MAIDTEXT(":") + String::PrintFormat("%0d",MipmapLevel) + MAIDTEXT(">")
-    ;
+    ReadConvertSetting( FileName, com );
+
+    com[ELEMENT_MIPMAPLEVEL] = String::PrintFormat("%0d",MipmapLevel);
   }else
   {
-    com =
-      MAIDTEXT("<") + ELEMENT_COLOR + MAIDTEXT(":") + FileName + MAIDTEXT(">")
-    + MAIDTEXT("<") + ELEMENT_MIPMAPLEVEL + MAIDTEXT(":") + String::PrintFormat("%0d",MipmapLevel) + MAIDTEXT(">")
-    ;
+    com[ELEMENT_COLOR]       = FileName;
+    com[ELEMENT_MIPMAPLEVEL] = String::PrintFormat("%0d",MipmapLevel);
   }
 
   SendCommand( com );
@@ -300,7 +306,9 @@ void Texture2D::LoadFile( const String& FileName, int MipmapLevel )
 
 void Texture2D::LoadCommand( const String& Command )
 {
-  SendCommand( Command );
+  KEEPOUT::tex2dInput::CREATECONFIG com;
+  ReadConvertSetting( Command, com );
+  SendCommand( com );
   m_LoadText = Command;
 }
 
@@ -348,12 +356,74 @@ String Texture2D::GetLoadText() const
 }
 
 
-void Texture2D::SendCommand( const String& Command )
+void Texture2D::SendCommand( const KEEPOUT::tex2dInput::CREATECONFIG& Command )
 {
   Texture2DBase::Clear();
   if( Command.empty() ) { return ; }
   m_Cache.Start( KEEPOUT::tex2dInput(Command, GlobalPointer<GraphicsCore>::Get() ) );
 }
 
+
+
+void Texture2D::ReadConvertSetting( const String& Command, KEEPOUT::tex2dInput::CREATECONFIG& out )
+{
+  KEEPOUT::tex2dInput::CREATECONFIG& Element = out;
+
+  if( Command[0]!='<' ) { Element[ELEMENT_COLOR] = Command; } 
+  else
+  {
+    unt32 begin = 0;
+    unt32 len = 0;
+    while( true )
+    {
+      if( Command.length() <= begin+len ) { break; }
+
+      const unt32 c = Command[begin+len];
+      ++len;
+      if( c=='>' )
+      {
+        String tag = Command.substr(begin,len);
+        String ele;
+        String value;
+
+        ReadName( tag, ele, value );
+        Element[ele] = value;
+
+        begin += len;
+        len = 0;
+      }
+    }
+  }
+}
+
+
+void Texture2D::ReadName( const String& Tag, String& Element, String& Value )
+{
+  MAID_ASSERT( Tag[0]!='<', "解析するファイル名が不正です" );
+
+  int pos = 1;
+
+  while( true )
+  {
+    const unt32 c = Tag[pos];
+
+    ++pos;
+    if( c==':' ){ break; }
+
+    Element += c;
+  }
+
+  while( true )
+  {
+    const unt32 c = Tag[pos];
+
+    ++pos;
+    if( c=='>' ) { break; }
+
+    Value += c;
+  }
+
+  Element = String::ToLower(Element);
+}
 
 }
