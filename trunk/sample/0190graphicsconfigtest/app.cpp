@@ -79,8 +79,8 @@ void MyApp::Initialize()
   {
     m_TextureQuality.Initialize( pRender, MAIDTEXT("quality:"), SIZE2DI(160,10), SIZE2DI(10,18) );
     m_TextureQuality.SetPosition( POINT2DI(15,90) );
-    m_TextureQuality.SetValueMin(0);
-    m_TextureQuality.SetValueMax(15);
+    m_TextureQuality.SetValueBegin(0);
+    m_TextureQuality.SetValueEnd(15);
     m_TextureQuality.SetBarLength(160);
 
     m_Window.AddChildParts( ID_TEXTUREQUALITY, m_TextureQuality );

@@ -16,9 +16,8 @@ class SceneAdmin
 public:
 
 protected:
-  virtual Maid::SPSCENE CreateFirstScene(); 
-  virtual Maid::SPSCENE CreateNextScene( const Maid::SPSCENEOUTPUT& pOut );
-  virtual Maid::SPSCENE CreateInterruptScene( const Maid::SPSCENEINTERRUPTINPUT& pIn );
+  virtual void CreateFirstScene(); 
+  virtual void NextScene();
 
   virtual void BeginFade();
   virtual bool IsFadeEnd();

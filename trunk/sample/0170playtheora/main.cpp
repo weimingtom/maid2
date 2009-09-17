@@ -222,7 +222,8 @@ private:
     if( !m_Info.IsImage ) { return ; }
 
     SPSAMPLEIMAGE pImage;
-    m_Player.FlushImage( pImage );
+    double time;
+    m_Player.FlushImage( time, pImage );
 
     if( pImage.get()==NULL ) { return ; }
 
@@ -234,7 +235,8 @@ private:
     if( !m_Info.IsPCM ) { return ; }
 
     MemoryBuffer buf;
-    m_Player.FlushPCM( buf );
+    double time;
+    m_Player.FlushPCM( time, buf );
 
     m_Sound.Write( buf.GetPointer(0), buf.GetSize() );
   }
