@@ -6,17 +6,17 @@
 using namespace Maid;
 
 
-SPSCENE SceneAdmin::CreateFirstScene()
+void SceneAdmin::CreateFirstScene()
 {
   SPSCENEINPUT pInput;
   SPSCENE pScene( new SceneText );
 
   pScene->Initialize( pInput );
 
-  return pScene;
+  ISceneAdmin::PushScene( pScene );
 }
 
-SPSCENE SceneAdmin::CreateNextScene( const Maid::SPSCENEOUTPUT& pOut )
+void SceneAdmin::NextScene()
 {
   //  こんなとこにstatic あるけど、本当は App にゲームルーチンなクラスを持たせて
   //  そいつが行うべき
@@ -35,15 +35,7 @@ SPSCENE SceneAdmin::CreateNextScene( const Maid::SPSCENEOUTPUT& pOut )
   }
 
   pScene->Initialize( pInput );
-
-  return pScene;
-}
-
-
-SPSCENE SceneAdmin::CreateInterruptScene( const Maid::SPSCENEINTERRUPTINPUT& pOut )
-{
-
-  return SPSCENE();
+  ISceneAdmin::SetScene( pScene );
 }
 
 
