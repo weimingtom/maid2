@@ -61,10 +61,10 @@ namespace Maid
 
   public:
 
-		//! 処理の開始
-		/*!
-		 	  @param  input [i ]  実行パラメーター
-		 */
+    //! 処理の開始
+    /*!
+        @param  input [i ]  実行パラメーター
+     */
     void Start( const INPUT& input )
     {
       Reset();
@@ -100,10 +100,10 @@ namespace Maid
       StateCheck();
     }
 
-		//! 処理の開放
-		/*!
+    //! 処理の開放
+    /*!
         実行中の処理もすてちゃうので注意
-		 */
+     */
     void Reset()
     {
       if( IsEmpty() ) { return ; }
@@ -124,11 +124,11 @@ namespace Maid
     }
 
 
-		//! 処理が実行中か調べる
-		/*!
-		 	  @return 実行中なら true
+    //! 処理が実行中か調べる
+    /*!
+        @return 実行中なら true
     \n          それ以外はfalse
-		 */
+     */
     bool IsExecuting() const
     {
       if( m_State==STATE_EMPTY ) { return false; }  //  読み込みしてないならfalseでしょう
@@ -136,19 +136,19 @@ namespace Maid
       return m_State!=STATE_WORKING;
     }
 
-		//! 初期状態か？
-		/*!
-		 	  @return なにもしてないなら true
+    //! 初期状態か？
+    /*!
+        @return なにもしてないなら true
     \n          それ以外はfalse
-		 */
+     */
     bool IsEmpty() const { return m_State==STATE_EMPTY; }
 
-		//! 実行結果を共有しているオブジェクトが１つしかないか？
-		/*!
-		 	  @return ひとつなら true
+    //! 実行結果を共有しているオブジェクトが１つしかないか？
+    /*!
+        @return ひとつなら true
     \n          複数あるならfalse
     \n          ０ならfalse
-		 */
+     */
     bool IsUnique() const
     {
       if( IsEmpty() ) { false; }
@@ -164,20 +164,20 @@ namespace Maid
       return ret;
     }
 
-		//! 入力パラメーターの取得
-		/*!
-		 	  @return 入力パラメーター
-		 */
+    //! 入力パラメーターの取得
+    /*!
+        @return 入力パラメーター
+     */
     const INPUT& GetInput() const
     {
       MAID_ASSERT( IsEmpty(), "まだ設定されてません" );
       return static_cast<const INPUT&>(*m_pInput.get()); 
     }
 
-		//! 実行結果の取得
-		/*!
-		 	  @return 実行結果
-		 */
+    //! 実行結果の取得
+    /*!
+        @return 実行結果
+     */
     const OUTPUT& GetOutput() const
     {
       const_cast<JobCacheTemplate<INPUT,FUNC,OUTPUT>*>(this)->StateCheck();
@@ -192,9 +192,9 @@ namespace Maid
 
   private:
 
-		//! 状態の更新
-		/*!
-		 */
+    //! 状態の更新
+    /*!
+     */
     void StateCheck()
     {
       if( m_State!=STATE_LOADING ) { return; }
@@ -218,9 +218,9 @@ namespace Maid
 
     enum STATE
     {
-      STATE_EMPTY,    //	まだ何もしてない
-      STATE_LOADING,	//	読み込み中
-      STATE_WORKING,	//	稼動中
+      STATE_EMPTY,    //  まだ何もしてない
+      STATE_LOADING,  //  読み込み中
+      STATE_WORKING,  //  稼動中
     };
 
     boost::shared_ptr<INPUT> m_pInput;
