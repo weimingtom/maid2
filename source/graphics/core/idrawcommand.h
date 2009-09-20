@@ -181,6 +181,14 @@ namespace Maid { namespace Graphics {
         @param	pSrc [i ]  転送元
      */
     virtual void CopyResource( const SPRESOURCE& pDst, const SPRESOURCE& pSrc ) = 0;
+
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    //! ミップマップの作成
+    /*!
+        @param	pMaterial [i ]  作成したいマテリアル
+     */
+    virtual void GenerateMips( const SPMATERIAL& pMaterial )=0;
+
   };
 
 

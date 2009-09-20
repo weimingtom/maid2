@@ -14,8 +14,6 @@
 
 #include<string>
 
-std::string DebugStringDXGI( DXGI_FORMAT eFormat );
-std::string DebugStringDXGI( const DXGI_SWAP_CHAIN_DESC& desc );
 std::string DebugStringD3D10( BOOL b );
 std::string DebugStringD3D10( D3D10_BLEND type );
 std::string DebugStringD3D10( D3D10_BLEND_OP type );

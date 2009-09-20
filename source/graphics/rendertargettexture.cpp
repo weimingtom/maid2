@@ -95,18 +95,6 @@ void RenderTargetTexture::Create( const SIZE2DI& size, PIXELFORMAT format )
 }
 
 
-void RenderTargetTexture::GenerateMips()
-{
-  MAID_ASSERT( !Texture2DBase::IsSetupped(), "まだ作成されていません" );
-  if( !Texture2DBase::IsSetupped() ) { return ; }
-
-  GraphicsCore* pCore = GlobalPointer<GraphicsCore>::Get();
-
-
-  pCore->GetDevice()->GenerateMips( IMaterial::Get() );
-
-}
-
 
 }
 

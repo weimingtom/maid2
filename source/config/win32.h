@@ -3,7 +3,7 @@
 
 #include"define.h"
 
-//  とりあえずターゲットは windows2000 以降にする
+//  とりあえずターゲットは windowsXP(SP無) 以降にする
 //  詳しくは↓を参照
 //  http://msdn.microsoft.com/en-us/library/aa383745(VS.85).aspx
 

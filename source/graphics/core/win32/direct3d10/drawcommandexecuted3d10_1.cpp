@@ -18,7 +18,6 @@ namespace Maid { namespace Graphics {
 
 DrawCommandExecuteD3D10::DrawCommandExecuteD3D10( const DeviceD3D10_0& Device  )
   :m_Device(Device)
-  ,m_BeginCount(0)
 {
   m_NowRenderTarget[0] = Device.GetCurrentRenderTarget();
 }
@@ -33,20 +32,10 @@ const SPD3D10DEVICE& DrawCommandExecuteD3D10::GetDevice()
 
 void DrawCommandExecuteD3D10::Begin()
 {
-  ++m_BeginCount;
-  if( 1<m_BeginCount ) { return ; }
-  //  ないの？？
-//  const HRESULT ret = GetDevice()->BeginScene();
-//  if( FAILED(ret) ) { MAID_WARNING(MAIDTEXT("IDirect3DDevice9::BeginScene()")); return; }
 }
 
 void DrawCommandExecuteD3D10::End()
 {
-  --m_BeginCount;
-  if( 1<m_BeginCount ) { return ; }
-  //  ないの？？
-//  const HRESULT ret = GetDevice()->EndScene();
-//  if( FAILED(ret) ) { MAID_WARNING(MAIDTEXT("IDirect3DDevice9::EndScene()")); return; }
 }
 
 void DrawCommandExecuteD3D10::ClearDepthStencil( CLEARFLAG flag, float Depth, unt08 Stencil )

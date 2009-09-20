@@ -1588,6 +1588,22 @@
 					Name="win32"
 					>
 					<File
+						RelativePath=".\graphics\core\win32\debug.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\maid_graphics_core_win32_debug.obj"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\graphics\core\win32\debug.h"
+						>
+					</File>
+					<File
 						RelativePath=".\graphics\core\win32\defaultshader.h"
 						>
 					</File>
@@ -1880,6 +1896,122 @@
 						</File>
 						<File
 							RelativePath=".\graphics\core\win32\direct3d10\vertexshaderd3d10.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="direct3d11"
+						>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\blendstated3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\bufferd3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\common.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\debug.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\maid_graphics_core_win32_direct3d11_debug.obj"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\debug.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\depthstencild3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\depthstencilstated3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\deviced3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\deviced3d11_1.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\deviced3d11_2.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\deviced3d11_3.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\deviced3d11_4.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\deviced3d11warp.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\deviced3d11warp.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\drawcommandexecuted3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\drawcommandexecuted3d11_1.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\drawcommandexecuted3d11_2.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\drawcommandexecuted3d11_3.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\inputlayoutd3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\materiald3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\pixelshaderd3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\rasterizerstated3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\rendertargetd3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\samplerstated3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\texture2dd3d11.h"
+							>
+						</File>
+						<File
+							RelativePath=".\graphics\core\win32\direct3d11\vertexshaderd3d11.h"
 							>
 						</File>
 					</Filter>

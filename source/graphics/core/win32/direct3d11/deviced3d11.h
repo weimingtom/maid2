@@ -1,10 +1,10 @@
 ﻿/*!	
 	@file
-	@brief	レンダリングドライバ Direct3D10 Ver.
+	@brief	レンダリングドライバ Direct3D11 Ver.
 */
 
-#ifndef maid2_graphics_core_win32_direct3d10_deviced3d10_0_h
-#define maid2_graphics_core_win32_direct3d10_deviced3d10_0_h
+#ifndef maid2_graphics_core_win32_direct3d11_deviced3d11_h
+#define maid2_graphics_core_win32_direct3d11_deviced3d11_h
 
 #include"../../../../config/define.h"
 #include"../../../../config/typedef.h"
@@ -20,11 +20,11 @@
 
 namespace Maid { namespace Graphics {
 
-	class DeviceD3D10_0 
+	class DeviceD3D11 
     : public IDevice
 	{
 	public:
-    DeviceD3D10_0( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& Windw );
+    DeviceD3D11( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& Windw );
 
     void Initialize();
     void Finalize();
@@ -66,11 +66,11 @@ namespace Maid { namespace Graphics {
 
     virtual bool CompileShaderLanguage( const String& Source, CODETYPE type, std::vector<unt08>& Binary, String& ErrorMessage );
 
-    const SPD3D10DEVICE& GetDevice() const { return m_pDevice; }
+    const SPD3D11DEVICE& GetDevice() const { return m_pDevice; }
     const SPDXGIFACTORY& GetFactory() const { return m_pFactory; }
 
 	protected:
-    virtual SPD3D10DEVICE CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter );
+    virtual SPD3D11DEVICE CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter );
 
   private:
     void CreateDefaultVertexShader( int no, std::vector<unt08>& Binary );
@@ -84,15 +84,15 @@ namespace Maid { namespace Graphics {
     const SPDXGIADAPTER m_pAdapter;
     Window&	      m_Window;
 
-    DllWrapper    m_D3DX10_LastDLL;
+    DllWrapper    m_D3DX11_LastDLL;
 		typedef HRESULT (WINAPI *SHADERCOMPILE)(LPCSTR, SIZE_T, LPCSTR, 
       CONST D3D10_SHADER_MACRO*, LPD3D10INCLUDE, LPCSTR, LPCSTR, UINT, UINT, 
-      ID3DX10ThreadPump*, ID3D10Blob**, ID3D10Blob**, HRESULT* );
+      ID3DX11ThreadPump*, ID3D10Blob**, ID3D10Blob**, HRESULT* );
     SHADERCOMPILE m_ShaderCompilerDefault;
     SHADERCOMPILE m_ShaderCompilerLast;
 
     SIZE2DI         m_DisplayAspect;
-		SPD3D10DEVICE   m_pDevice;		            //!<	レンダリングデバイス
+		SPD3D11DEVICE   m_pDevice;		            //!<	レンダリングデバイス
     SPDXGISWAPCHAIN m_pSwapChain;
 
     SPDRAWCOMMANDEXECUTE m_pDrawCommandExecute;

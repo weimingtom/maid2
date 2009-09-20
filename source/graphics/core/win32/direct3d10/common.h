@@ -293,21 +293,6 @@ namespace Maid { namespace Graphics {
     return ret;
   }
 
-  inline DXGI_FORMAT INPUT_ELEMENTTYPEtoDXGI_FORMAT( INPUT_ELEMENT::TYPE t )
-  {
-    DXGI_FORMAT ret;
-
-    switch( t )
-    {
-    case INPUT_ELEMENT::TYPE_FLOAT1: { ret = DXGI_FORMAT_R32_FLOAT; }break;
-    case INPUT_ELEMENT::TYPE_FLOAT2: { ret = DXGI_FORMAT_R32G32_FLOAT; }break;
-    case INPUT_ELEMENT::TYPE_FLOAT3: { ret = DXGI_FORMAT_R32G32B32_FLOAT; }break;
-    case INPUT_ELEMENT::TYPE_FLOAT4: { ret = DXGI_FORMAT_R32G32B32A32_FLOAT; }break;
-    case INPUT_ELEMENT::TYPE_COLOR:  { ret = DXGI_FORMAT_R8G8B8A8_UNORM; }break;
-    }
-    return ret;
-  }
-
 
 
   inline BOOL booltoD3D10BOOL( bool b )

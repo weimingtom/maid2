@@ -7,6 +7,8 @@
 #include"direct3d10/deviced3d10_0warp.h"
 #include"direct3d10/deviced3d10_1.h"
 #include"direct3d10/deviced3d10_1warp.h"
+#include"direct3d11/deviced3d11.h"
+#include"direct3d11/deviced3d11warp.h"
 
 #include"fontdevice.h"
 
@@ -17,6 +19,7 @@ namespace Maid { namespace Graphics {
 //  たとえば Dx9   で adapter:1 なら  090001
 //  たとえば Dx10  で adapter:5 なら  100005
 //  たとえば Dx10.1で adapter:5 なら  101005
+//  たとえば Dx11  で adapter:2 なら  110002
 
 //  それぞれのデバイスで adapter:0はデフォルトデバイスとする
 inline int MakeID( int dx, int sub, int no )
@@ -52,7 +55,7 @@ void DeviceList::Initialize()
   InitializeD3D09();
   InitializeDXGI();
   InitializeD3D10();
-//  InitializeD3D11();
+  InitializeD3D11();
 }
 
 
@@ -123,6 +126,24 @@ SPDEVICE DeviceList::Create( int DeviceID )
       }
     }break;
 
+  case 11:
+    {
+      if( id==0 )
+      {
+        pDevice.reset( new DeviceD3D11WARP( m_D3D11DLL, m_pDXGIFactory, m_Window ) );
+      }else
+      {
+        SPDXGIADAPTER pAdapter;
+        {
+          IDXGIAdapter* p = NULL;
+          const HRESULT ret = m_pDXGIFactory->EnumAdapters(id-1, &p);
+          if( ret==DXGI_ERROR_NOT_FOUND) { break; }
+          pAdapter.reset(p);
+        }
+
+        pDevice.reset( new DeviceD3D11( m_D3D11DLL, m_pDXGIFactory, pAdapter, m_Window ) );
+      }
+    }break;
   default:{ MAID_ASSERT( true, "デバイスが選択されていません " << DeviceID ); }break;
   }
 
@@ -316,11 +337,66 @@ void DeviceList::FindAdapterD3D10( std::vector<INFO>& info )
       }
     }
   }
-
-
-
-
 }
+
+
+
+
+
+
+void DeviceList::InitializeD3D11()
+{
+  {
+    DllWrapper::LOADRETURN ret;
+
+    ret = m_D3D10_WARPDLL.Load( MAIDTEXT("D3D11.dll") );
+
+    if( ret==DllWrapper::LOADRETURN_ERROR ) { ret = m_D3D10_WARPDLL.Load( MAIDTEXT("D3D11_beta.dll") ); }
+
+    if( ret == DllWrapper::LOADRETURN_SUCCESS )
+    {
+      m_IsD3D11 = true;
+    }
+  }
+}
+
+void DeviceList::FindAdapterD3D11( std::vector<INFO>& info )
+{
+  if( !m_IsDXGI ) { return ; }
+
+  if( m_IsD3D11 )
+  {
+    { //  d3d11 はWARPが標準でついてる
+      const String text = MAIDTEXT("Direct3D11:Windows Advanced Rasterization Platform");
+      info.push_back( INFO(MakeID(11,0),text ) );
+    }
+
+    for( int no=1; ; ++no )
+    {
+      SPDXGIADAPTER pAdapter;
+      {
+        IDXGIAdapter* p = NULL;
+        const HRESULT ret = m_pDXGIFactory->EnumAdapters(no, &p);
+        if( ret==DXGI_ERROR_NOT_FOUND) { break; }
+        pAdapter.reset(p);
+      }
+
+      DXGI_ADAPTER_DESC desc;
+      {
+        const HRESULT ret = pAdapter->GetDesc( &desc );
+        if( FAILED(ret) ) { continue; }
+      }
+
+      const HRESULT ret = pAdapter->CheckInterfaceSupport(__uuidof(ID3D11Device), NULL);
+      if( ret==S_OK )
+      {
+        const String text = MAIDTEXT("Direct3D11:") + String::ConvertUNICODEtoMAID(desc.Description);
+        info.push_back( INFO(MakeID(11,no),text ) );
+      }
+    }
+  }
+}
+
 
 
 }}

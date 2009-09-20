@@ -56,6 +56,7 @@ namespace Maid { namespace Graphics {
     virtual void Draw( size_t UseVertexCount, size_t StartVertex );
     virtual void DrawIndexed( size_t UseIndexCount, size_t StartIndex, size_t OffsetVertex );
     virtual void CopyResource( const SPRESOURCE& pDst, const SPRESOURCE& pSrc );
+    virtual void GenerateMips( const SPMATERIAL& pMaterial );
 
   private:
     int CalcPrimitiveCount( int VertexCount );
