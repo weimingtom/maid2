@@ -41,6 +41,7 @@ namespace Maid { namespace Graphics {
 
     void FindAdapterD3D09( std::vector<INFO>& info );
     void FindAdapterD3D10( std::vector<INFO>& info );
+    void FindAdapterD3D11( std::vector<INFO>& info );
 
   private:
     Window&  m_Window;
@@ -63,6 +64,8 @@ namespace Maid { namespace Graphics {
     DllWrapper     m_D3D10DLL;
     DllWrapper     m_D3D10_1DLL;
     DllWrapper     m_D3D10_WARPDLL;
+
+    DllWrapper     m_D3D11DLL;
   };
 }}
 

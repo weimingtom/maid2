@@ -1,15 +1,14 @@
-﻿#include"deviced3d10_0.h"
+﻿#include"deviced3d11.h"
 
-#include"texture2dd3d10.h"
-#include"rendertargetd3d10.h"
-#include"depthstencild3d10.h"
-#include"drawcommandexecuted3d10.h"
-
+#include"texture2dd3d11.h"
+#include"rendertargetd3d11.h"
+#include"depthstencild3d11.h"
+#include"drawcommandexecuted3d11.h"
 
 
 namespace Maid { namespace Graphics {
 
-DeviceD3D10_0::DeviceD3D10_0( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& win )
+DeviceD3D11::DeviceD3D11( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& win )
   :m_DLL(dll)
   ,m_pFactory(pFactory)
   ,m_pAdapter(pAdapter)
@@ -20,56 +19,66 @@ DeviceD3D10_0::DeviceD3D10_0( const DllWrapper& dll, const SPDXGIFACTORY& pFacto
 
 }
 
-SPD3D10DEVICE DeviceD3D10_0::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter )
+SPD3D11DEVICE DeviceD3D11::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter )
 {
-  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D10_DRIVER_TYPE,HMODULE,UINT,UINT,ID3D10Device**);
-	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D10CreateDevice"));
+  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D_DRIVER_TYPE,HMODULE,UINT,CONST D3D_FEATURE_LEVEL*, UINT,UINT,ID3D11Device**, D3D_FEATURE_LEVEL* pLevel, ID3D11DeviceContext* pContext );
+	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D11CreateDevice"));
 
-  if( createdevice==NULL ) { MAID_WARNING("load失敗"); return SPD3D10DEVICE(); }
+  if( createdevice==NULL ) { MAID_WARNING("load失敗"); return SPD3D11DEVICE(); }
 
-  ID3D10Device* pDev = NULL;
+  ID3D11Device* pDev = NULL;
+
+  const D3D_FEATURE_LEVEL FeatureEnum[] = 
+  {
+      D3D_FEATURE_LEVEL_11_0,
+      D3D_FEATURE_LEVEL_10_1,
+      D3D_FEATURE_LEVEL_10_0,
+      D3D_FEATURE_LEVEL_9_3,
+      D3D_FEATURE_LEVEL_9_2,
+      D3D_FEATURE_LEVEL_9_1,
+  };
+
+  D3D_FEATURE_LEVEL ret_level;
 
   const HRESULT ret = createdevice(
     pAdapter.get(),
-    D3D10_DRIVER_TYPE_HARDWARE,
+    D3D_DRIVER_TYPE_HARDWARE,
     NULL,
     0,
-    D3D10_SDK_VERSION,
-    &pDev
+    FeatureEnum,
+    NUMELEMENTS(FeatureEnum),
+    D3D11_SDK_VERSION,
+    &pDev,
+    &ret_level,
+    NULL
     );
 
-  if( FAILED(ret) ) { MAID_WARNING("D3D10CreateDevice()"); return SPD3D10DEVICE(); }
+  if( FAILED(ret) ) { MAID_WARNING("D3D11CreateDevice()"); return SPD3D11DEVICE(); }
 
-  return SPD3D10DEVICE(pDev);
+  return SPD3D11DEVICE(pDev);
 }
 
 
-void DeviceD3D10_0::Initialize()
+void DeviceD3D11::Initialize()
 {
   {
     const char* filename[] =
     {
-      "d3dx10_40.dll",
-      "d3dx10_39.dll",
-      "d3dx10_38.dll",
-      "d3dx10_37.dll",
-      "d3dx10_36.dll",
-      "d3dx10_35.dll",
-      "d3dx10_34.dll",
-      "d3dx10_33.dll",
+      "d3dx11_42.dll",
+      "d3dx11_40.dll",
     };
 
     for( int i=0; i<NUMELEMENTS(filename); ++i )
     {
-      if( m_D3DX10_LastDLL.Load( String::ConvertSJIStoMAID(filename[i]) ) == DllWrapper::LOADRETURN_ERROR ) { continue; }
+      if( m_D3DX11_LastDLL.Load( String::ConvertSJIStoMAID(filename[i]) ) == DllWrapper::LOADRETURN_ERROR ) { continue; }
 
-      m_ShaderCompilerDefault = (SHADERCOMPILE)m_D3DX10_LastDLL.GetProcAddress( MAIDTEXT("D3DX10CompileFromMemory") );
+      m_ShaderCompilerDefault = (SHADERCOMPILE)m_D3DX11_LastDLL.GetProcAddress( MAIDTEXT("D3DX11CompileFromMemory") );
       break;
     }
 
     if( m_ShaderCompilerDefault==NULL )
     {
-      MAID_WARNING( "d3dx10_XX.dllがありません" );
+      MAID_WARNING( "d3dx11_XX.dllがありません" );
     }
 
     m_ShaderCompilerLast = m_ShaderCompilerDefault;
@@ -108,28 +117,37 @@ void DeviceD3D10_0::Initialize()
     m_pSwapChain.reset(p);
   }
 
+
+
+  m_SyncInterval = 1;
+
+  UpdateDisplayAspect();
+
   {
-    //  D3D10はビューポートの設定を自動的にやってくれない
-    D3D10_VIEWPORT vp;
+    SPD3D11DEVICECONTEXT pContext;
+    {
+      ID3D11DeviceContext* p;
+      m_pDevice->GetImmediateContext( &p );
+      pContext.reset(p);
+    }
+
+    //  D3D11はビューポートの設定を自動的にやってくれない
+    D3D11_VIEWPORT vp;
     vp.TopLeftX = 0;
     vp.TopLeftY = 0;
     vp.Width    = m_Window.GetClientSize().w;
     vp.Height   = m_Window.GetClientSize().h;
     vp.MinDepth = 0;
     vp.MaxDepth = 1;
-    m_pDevice->RSSetViewports( 1, &vp );
+    pContext->RSSetViewports( 1, &vp );
+
+    m_pDrawCommandExecute.reset(new DrawCommandExecuteD3D11(pContext,GetCurrentRenderTarget()));
   }
-
-
-  m_SyncInterval = 1;
-
-  UpdateDisplayAspect();
-  m_pDrawCommandExecute.reset(new DrawCommandExecuteD3D10(*this));
 }
 
 
 
-void DeviceD3D10_0::Finalize()
+void DeviceD3D11::Finalize()
 {
   if( IsFullScreen() ) { m_pSwapChain->SetFullscreenState( FALSE, NULL ); }
   m_pSwapChain.reset();
@@ -139,7 +157,7 @@ void DeviceD3D10_0::Finalize()
 
 
 
-void DeviceD3D10_0::UpdateDisplayAspect()
+void DeviceD3D11::UpdateDisplayAspect()
 {
   SPDXGIOUTPUT  pOutput;
   {
@@ -166,7 +184,7 @@ void DeviceD3D10_0::UpdateDisplayAspect()
 
 
 
-void DeviceD3D10_0::SetFullScreenState( bool IsFull )
+void DeviceD3D11::SetFullScreenState( bool IsFull )
 {
   const bool NowFull = IsFullScreen();
 
@@ -185,13 +203,13 @@ void DeviceD3D10_0::SetFullScreenState( bool IsFull )
   }
 }
 
-float DeviceD3D10_0::GetTexelMapValue() const
+float DeviceD3D11::GetTexelMapValue() const
 {
   return 0.0f;
 }
 
 
-void DeviceD3D10_0::SerchSwapChainSurfaceFormat( std::vector<PIXELFORMAT>& mode )  const
+void DeviceD3D11::SerchSwapChainSurfaceFormat( std::vector<PIXELFORMAT>& mode )  const
 {
   static const DXGI_FORMAT TestFMT[] =
   {
@@ -210,8 +228,8 @@ void DeviceD3D10_0::SerchSwapChainSurfaceFormat( std::vector<PIXELFORMAT>& mode 
     const HRESULT ret = m_pDevice->CheckFormatSupport( fmt, &flag );
     if( FAILED(ret) ) { continue; }
 
-    const bool IsTextre2D = IsFlag( flag, D3D10_FORMAT_SUPPORT_TEXTURE2D );
-    const bool IsRenderTarget = IsFlag( flag, D3D10_FORMAT_SUPPORT_RENDER_TARGET );
+    const bool IsTextre2D = IsFlag( flag, D3D11_FORMAT_SUPPORT_TEXTURE2D );
+    const bool IsRenderTarget = IsFlag( flag, D3D11_FORMAT_SUPPORT_RENDER_TARGET );
 
     if( IsTextre2D && IsRenderTarget )
     {
@@ -220,7 +238,7 @@ void DeviceD3D10_0::SerchSwapChainSurfaceFormat( std::vector<PIXELFORMAT>& mode 
   }
 }
 
-void DeviceD3D10_0::SetSwapChainFormat( const SWAPCHAINFORMAT& mode )
+void DeviceD3D11::SetSwapChainFormat( const SWAPCHAINFORMAT& mode )
 {
   DXGI_SWAP_CHAIN_DESC desc;
   const bool NowFull = IsFullScreen();
@@ -262,7 +280,7 @@ void DeviceD3D10_0::SetSwapChainFormat( const SWAPCHAINFORMAT& mode )
 }
 
 
-SWAPCHAINFORMAT DeviceD3D10_0::GetSwapChainFormat() const
+SWAPCHAINFORMAT DeviceD3D11::GetSwapChainFormat() const
 {
   SWAPCHAINFORMAT ret;
 
@@ -288,13 +306,13 @@ SWAPCHAINFORMAT DeviceD3D10_0::GetSwapChainFormat() const
   return ret;
 }
 
-SIZE2DI DeviceD3D10_0::GetDisplayAspect() const
+SIZE2DI DeviceD3D11::GetDisplayAspect() const
 {
   return m_DisplayAspect;
 }
 
 
-void DeviceD3D10_0::SerchEnableFormat( ENABLEFORMAT& caps ) const
+void DeviceD3D11::SerchEnableFormat( ENABLEFORMAT& caps ) const
 {
   MAID_ASSERT( !caps.Texture.empty(), "引数はemptyにしてください" );
   MAID_ASSERT( !caps.DepthStencil.empty(), "引数はemptyにしてください" );
@@ -334,29 +352,29 @@ void DeviceD3D10_0::SerchEnableFormat( ENABLEFORMAT& caps ) const
   }
 }
 
-void DeviceD3D10_0::Present()
+void DeviceD3D11::Present()
 {
   const HRESULT ret = m_pSwapChain->Present( m_SyncInterval, 0 );
   if( FAILED(ret) ) { MAID_WARNING(MAIDTEXT("IDXGISwapChain::Present()")); }
 }
 
-SPDRAWCOMMANDEXECUTE DeviceD3D10_0::GetDrawCommandExecute()const
+SPDRAWCOMMANDEXECUTE DeviceD3D11::GetDrawCommandExecute()const
 {
   return m_pDrawCommandExecute;
 }
 
-SPDRAWCOMMANDCAPTURE DeviceD3D10_0::CreateDrawCommandCapture()
+SPDRAWCOMMANDCAPTURE DeviceD3D11::CreateDrawCommandCapture()
 {
   return SPDRAWCOMMANDCAPTURE();
 }
 
-SPRENDERTARGET DeviceD3D10_0::GetCurrentRenderTarget()const
+SPRENDERTARGET DeviceD3D11::GetCurrentRenderTarget()const
 {
-  SPD3D10TEXTURE2D pTextureD3D;
+  SPD3D11TEXTURE2D pTextureD3D;
 
   {
-    ID3D10Texture2D* p = NULL;
-    const HRESULT ret = m_pSwapChain->GetBuffer( 0, __uuidof(ID3D10Texture2D), (void**)&p );
+    ID3D11Texture2D* p = NULL;
+    const HRESULT ret = m_pSwapChain->GetBuffer( 0, __uuidof(ID3D11Texture2D), (void**)&p );
     if( FAILED(ret) ) { MAID_WARNING(MAIDTEXT("IDXGISwapChain::GetBuffer()")); return SPRENDERTARGET(); }
     pTextureD3D.reset(p);
   }
@@ -376,20 +394,20 @@ SPRENDERTARGET DeviceD3D10_0::GetCurrentRenderTarget()const
     texparam.MipLevels = 1;
   }
 
-  SPTEXTURE2D pTexture( new Texture2DD3D10(texparam,pTextureD3D) );
+  SPTEXTURE2D pTexture( new Texture2DD3D11(texparam,pTextureD3D) );
 
   CREATERENDERTARGETPARAM rt_param;
   rt_param.Format = texparam.Format;
   rt_param.Dimension =  CREATERENDERTARGETPARAM::DIMENSION_TEXTURE2D;
 
-//  return const_cast<DeviceD3D10_0*>(this)->CreateRenderTarget( pTexture, rt_param );
-  return const_cast<DeviceD3D10_0*>(this)->CreateRenderTarget( pTexture, NULL );
+//  return const_cast<DeviceD3D11_0*>(this)->CreateRenderTarget( pTexture, rt_param );
+  return const_cast<DeviceD3D11*>(this)->CreateRenderTarget( pTexture, NULL );
 }
 
 
 
 
-bool DeviceD3D10_0::IsFullScreen() const
+bool DeviceD3D11::IsFullScreen() const
 {
   DXGI_SWAP_CHAIN_DESC desc;
   const HRESULT ret = m_pSwapChain->GetDesc( &desc );

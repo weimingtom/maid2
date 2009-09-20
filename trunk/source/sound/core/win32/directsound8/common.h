@@ -5,6 +5,8 @@
 #include"../../../../config/win32.h"
 #include"../../../../framework/win32/com_ptr.h"
 
+#define DIRECTSOUND_VERSION 0x0800
+
 #include<mmreg.h>
 #include<dsound.h>
 

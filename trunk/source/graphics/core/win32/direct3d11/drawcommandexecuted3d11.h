@@ -1,5 +1,5 @@
-﻿#ifndef maid2_graphics_core_win32_direct3d10_drawcommandexecuted3d10_h
-#define maid2_graphics_core_win32_direct3d10_drawcommandexecuted3d10_h
+﻿#ifndef maid2_graphics_core_win32_direct3d11_drawcommandexecuted3d11_h
+#define maid2_graphics_core_win32_direct3d11_drawcommandexecuted3d11_h
 
 #include"../../../../config/define.h"
 
@@ -10,16 +10,15 @@
 namespace Maid { namespace Graphics {
 
   /*!	
-      @class	DrawCommandExecuteD3D10 drawcommandplayerd3d10.h
+      @class	DrawCommandExecuteD3D11 drawcommandplayerd3d11.h
       @brief	描画コンテキスト 即時実行タイプ
   */
 
-  class DeviceD3D10_0;
-  class DrawCommandExecuteD3D10
+  class DrawCommandExecuteD3D11
     : public IDrawCommandExecute
   {
   public:
-    DrawCommandExecuteD3D10( const DeviceD3D10_0& Device );
+    DrawCommandExecuteD3D11( const SPD3D11DEVICECONTEXT& pDevice, const SPRENDERTARGET& pDefaultRT );
 
     virtual void Begin();
     virtual void End();
@@ -58,15 +57,14 @@ namespace Maid { namespace Graphics {
     virtual void DrawIndexed( size_t UseIndexCount, size_t StartIndex, size_t OffsetVertex );
 
     virtual void CopyResource( const SPRESOURCE& pDst, const SPRESOURCE& pSrc );
+
     virtual void GenerateMips( const SPMATERIAL& pMaterial );
 
   private:
-    const SPD3D10DEVICE& GetDevice();
-
-    ID3D10Resource* GetResource( const SPRESOURCE& pDst );
+    ID3D11Resource* GetResource( const SPRESOURCE& pDst );
 
   private:
-    const DeviceD3D10_0& m_Device;
+    SPD3D11DEVICECONTEXT m_pDevice;
     SPRENDERTARGET      m_NowRenderTarget[8]; //  現在のターゲット
     SPDEPTHSTENCIL      m_NowDepthStencil[8];
   };

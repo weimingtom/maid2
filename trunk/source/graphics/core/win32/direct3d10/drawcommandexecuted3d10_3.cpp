@@ -61,5 +61,12 @@ void DrawCommandExecuteD3D10::CopyResource( const SPRESOURCE& pDstResource, cons
 }
 
 
+void DrawCommandExecuteD3D10::GenerateMips( const SPMATERIAL& pMaterial )
+{
+  ID3D10ShaderResourceView* pView = static_cast<MaterialD3D10*>(pMaterial.get())->pView.get();
+
+  GetDevice()->GenerateMips( pView );
+}
+
 }}
 

@@ -50,7 +50,6 @@ namespace Maid { namespace Graphics {
     virtual SPRENDERTARGET CreateRenderTarget( const SPRESOURCE& resource, const CREATERENDERTARGETPARAM* param );
     virtual SPDEPTHSTENCIL CreateDepthStencil( const SPRESOURCE& resource, const CREATEDEPTHSTENCILPARAM* param );
     virtual SPMATERIAL     CreateMaterial( const SPRESOURCE& resource, const CREATEMATERIALPARAM* param );
-    virtual void GenerateMips( const SPMATERIAL& pMaterial ){}
 
     virtual SPVERTEXSHADER CreateVertexShader( const void* pData, size_t Length );
     virtual SPPIXELSHADER CreatePixelShader( const void* pData, size_t Length );

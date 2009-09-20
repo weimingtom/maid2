@@ -239,12 +239,6 @@ SPMATERIAL DeviceD3D10_0::CreateMaterial( const SPRESOURCE& resource, const CREA
   return SPMATERIAL( new MaterialD3D10(resource, result, pView ) );
 }
 
-void DeviceD3D10_0::GenerateMips( const SPMATERIAL& pMaterial )
-{
-  ID3D10ShaderResourceView* pView = static_cast<MaterialD3D10*>(pMaterial.get())->pView.get();
-
-  m_pDevice->GenerateMips( pView );
-}
 
 
 

@@ -66,6 +66,11 @@ void DrawCommandExecuteD3D09::CopyResource( const SPRESOURCE& pDst, const SPRESO
 	if( FAILED(ret) ) { MAID_THROWEXCEPTION(MAIDTEXT("IDirect3DDevice9::GetRenderTargetData()")); }
 }
 
+void DrawCommandExecuteD3D09::GenerateMips( const SPMATERIAL& pMaterial )
+{
+
+    MAID_ASSERT( true, "未実装" );
+}
 
 }}
 

@@ -7,6 +7,10 @@
 #define maid2_graphics_core_win32_dxgitypedef_h
 
 #include"../../../config/define.h"
+#include"../../../framework/win32/com_ptr.h"
+#include"../../pixelformat.h"
+#include"../createparam.h"
+#include"../iinputlayout.h"
 #include<dxgi.h>
 
 namespace Maid { namespace Graphics {
@@ -135,6 +139,22 @@ namespace Maid { namespace Graphics {
     case SWAPCHAINFORMAT::SCALING_UNSPECIFIED:{ ret = DXGI_MODE_SCALING_UNSPECIFIED;	}break;
     case SWAPCHAINFORMAT::SCALING_CENTERED:	  { ret = DXGI_MODE_SCALING_CENTERED;	    }break;
     case SWAPCHAINFORMAT::SCALING_STRETCHED:	{ ret = DXGI_MODE_SCALING_STRETCHED;	  }break;
+    }
+    return ret;
+  }
+
+
+  inline DXGI_FORMAT INPUT_ELEMENTTYPEtoDXGI_FORMAT( INPUT_ELEMENT::TYPE t )
+  {
+    DXGI_FORMAT ret;
+
+    switch( t )
+    {
+    case INPUT_ELEMENT::TYPE_FLOAT1: { ret = DXGI_FORMAT_R32_FLOAT; }break;
+    case INPUT_ELEMENT::TYPE_FLOAT2: { ret = DXGI_FORMAT_R32G32_FLOAT; }break;
+    case INPUT_ELEMENT::TYPE_FLOAT3: { ret = DXGI_FORMAT_R32G32B32_FLOAT; }break;
+    case INPUT_ELEMENT::TYPE_FLOAT4: { ret = DXGI_FORMAT_R32G32B32A32_FLOAT; }break;
+    case INPUT_ELEMENT::TYPE_COLOR:  { ret = DXGI_FORMAT_R8G8B8A8_UNORM; }break;
     }
     return ret;
   }
