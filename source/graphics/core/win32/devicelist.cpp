@@ -57,7 +57,7 @@ void DeviceList::Initialize()
   InitializeDXGI();
   InitializeD3D10();
   #pragma COMPILERMSG("TODO:うまく動かないので当面消す。")	
-  InitializeD3D11();
+//  InitializeD3D11();
 }
 
 
@@ -66,7 +66,7 @@ void DeviceList::GetList( std::vector<INFO>& ret )
   FindAdapterD3D09( ret );
   FindAdapterD3D10( ret );
   #pragma COMPILERMSG("TODO:うまく動かないので当面消す。")	
-  FindAdapterD3D11( ret );
+//  FindAdapterD3D11( ret );
 }
 
 SPDEVICE DeviceList::Create( int DeviceID )
