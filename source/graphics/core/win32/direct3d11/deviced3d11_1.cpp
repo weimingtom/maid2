@@ -65,6 +65,7 @@ void DeviceD3D11::Initialize()
     const char* filename[] =
     {
       "d3dx11_42.dll",
+      "d3dx11_41.dll",
       "d3dx11_40.dll",
     };
 
