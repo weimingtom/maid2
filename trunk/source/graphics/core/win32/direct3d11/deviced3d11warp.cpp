@@ -9,7 +9,7 @@ DeviceD3D11WARP::DeviceD3D11WARP( const DllWrapper& dll, const SPDXGIFACTORY& pF
 
 }
 
-SPD3D11DEVICE DeviceD3D11WARP::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter )
+SPD3D11DEVICE DeviceD3D11WARP::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdap )
 {
   typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D_DRIVER_TYPE,HMODULE,UINT,CONST D3D_FEATURE_LEVEL*, UINT,UINT,ID3D11Device**, D3D_FEATURE_LEVEL* pLevel, ID3D11DeviceContext* pContext );
 	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D11CreateDevice"));
@@ -17,7 +17,16 @@ SPD3D11DEVICE DeviceD3D11WARP::CreateDevice( const DllWrapper& dll, const SPDXGI
   if( createdevice==NULL ) { MAID_WARNING("load失敗"); return SPD3D11DEVICE(); }
 
   ID3D11Device* pDev = NULL;
+/*
+  SPDXGIADAPTER1 pAdapter;
 
+  {
+    IDXGIAdapter1* p = NULL;
+    const HRESULT ret = static_cast<IDXGIFactory1*>(GetFactory().get())->EnumAdapters1(0, &p);
+    if( ret==DXGI_ERROR_NOT_FOUND) { return SPD3D11DEVICE(); }
+    pAdapter.reset(p);
+  }
+*/
   const D3D_FEATURE_LEVEL FeatureEnum[] = 
   {
       D3D_FEATURE_LEVEL_11_0,

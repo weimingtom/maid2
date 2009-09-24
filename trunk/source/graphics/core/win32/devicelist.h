@@ -48,6 +48,7 @@ namespace Maid { namespace Graphics {
 
     bool m_IsD3D09;
     bool m_IsDXGI;
+    bool m_IsDXGI1_1;
     bool m_IsD3D10;
     bool m_IsD3D10_1;
     bool m_IsD3D10_WARP;

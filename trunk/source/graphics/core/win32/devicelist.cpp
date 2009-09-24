@@ -42,6 +42,7 @@ DeviceList::DeviceList( Window& window )
   :m_Window(window)
   ,m_IsD3D09(false)
   ,m_IsDXGI(false)
+  ,m_IsDXGI1_1(false)
   ,m_IsD3D10(false)
   ,m_IsD3D10_1(false)
   ,m_IsD3D10_WARP(false)
@@ -55,6 +56,7 @@ void DeviceList::Initialize()
   InitializeD3D09();
   InitializeDXGI();
   InitializeD3D10();
+  #pragma COMPILERMSG("TODO:うまく動かないので当面消す。")	
   InitializeD3D11();
 }
 
@@ -63,6 +65,8 @@ void DeviceList::GetList( std::vector<INFO>& ret )
 {
   FindAdapterD3D09( ret );
   FindAdapterD3D10( ret );
+  #pragma COMPILERMSG("TODO:うまく動かないので当面消す。")	
+  FindAdapterD3D11( ret );
 }
 
 SPDEVICE DeviceList::Create( int DeviceID )
@@ -213,21 +217,41 @@ void DeviceList::FindAdapterD3D09( std::vector<INFO>& info )
 void DeviceList::InitializeDXGI()
 {
   const String dllname = MAIDTEXT("dxgi.dll");
+//  const String dllname = MAIDTEXT("dxgi_beta.dll");
 
   if( m_DXGIDLL.Load( dllname ) == DllWrapper::LOADRETURN_ERROR ) { return ; }
 
+  //  D3D10 を初期化するには CreateDXGIFactory( __uuidof(IDXGIFactory), XX ) 
+  //  D3D11,D3D10 を初期化するには CreateDXGIFactory1( __uuidof(IDXGIFactory1), XX ) 
+
+
+  IDXGIFactory * pFactory = NULL;
   {
 		typedef HRESULT (WINAPI *FUNCTIONPTR)(REFIID, void **);
-		FUNCTIONPTR create = (FUNCTIONPTR)m_DXGIDLL.GetProcAddress(MAIDTEXT("CreateDXGIFactory"));
 
-    IDXGIFactory * pFactory = NULL;
-    const HRESULT ret = create(__uuidof(IDXGIFactory), (void**)(&pFactory) );
+    //  DXGI1.1 を調べてから 見つからなかったらDXGI1.0にする
 
-    if( FAILED(ret) ) { MAID_WARNING( MAIDTEXT("CreateDXGIFactory の失敗") ); return ; }
+		FUNCTIONPTR create = (FUNCTIONPTR)m_DXGIDLL.GetProcAddress(MAIDTEXT("CreateDXGIFactory1"));
 
-    m_pDXGIFactory.reset(pFactory);
+    if( create!=NULL )
+    {
+      IDXGIFactory1 * p = NULL;
+      const HRESULT ret = create(__uuidof(IDXGIFactory1), (void**)(&p) );
+      if( FAILED(ret) ) { MAID_WARNING( MAIDTEXT("CreateDXGIFactory の失敗") ); return ; }
+      pFactory = p;
+      m_IsDXGI1_1 = true;
+    }else
+    {
+		  FUNCTIONPTR create = (FUNCTIONPTR)m_DXGIDLL.GetProcAddress(MAIDTEXT("CreateDXGIFactory"));
+
+      const HRESULT ret = create(__uuidof(IDXGIFactory), (void**)(&pFactory) );
+
+      if( FAILED(ret) ) { MAID_WARNING( MAIDTEXT("CreateDXGIFactory の失敗") ); return ; }
+      m_IsDXGI1_1 = false;
+    }
   }
 
+  m_pDXGIFactory.reset(pFactory);
   m_IsDXGI = true;
 }
 
@@ -349,9 +373,9 @@ void DeviceList::InitializeD3D11()
   {
     DllWrapper::LOADRETURN ret;
 
-    ret = m_D3D10_WARPDLL.Load( MAIDTEXT("D3D11.dll") );
+    ret = m_D3D11DLL.Load( MAIDTEXT("D3D11.dll") );
 
-    if( ret==DllWrapper::LOADRETURN_ERROR ) { ret = m_D3D10_WARPDLL.Load( MAIDTEXT("D3D11_beta.dll") ); }
+    if( ret==DllWrapper::LOADRETURN_ERROR ) { ret = m_D3D11DLL.Load( MAIDTEXT("D3D11_beta.dll") ); }
 
     if( ret == DllWrapper::LOADRETURN_SUCCESS )
     {
@@ -363,6 +387,7 @@ void DeviceList::InitializeD3D11()
 void DeviceList::FindAdapterD3D11( std::vector<INFO>& info )
 {
   if( !m_IsDXGI ) { return ; }
+  if( !m_IsDXGI1_1 ) { return ; }
 
   if( m_IsD3D11 )
   {
@@ -371,12 +396,12 @@ void DeviceList::FindAdapterD3D11( std::vector<INFO>& info )
       info.push_back( INFO(MakeID(11,0),text ) );
     }
 
-    for( int no=1; ; ++no )
+    for( int no=0; ; ++no )
     {
-      SPDXGIADAPTER pAdapter;
+      SPDXGIADAPTER1 pAdapter;
       {
-        IDXGIAdapter* p = NULL;
-        const HRESULT ret = m_pDXGIFactory->EnumAdapters(no, &p);
+        IDXGIAdapter1* p = NULL;
+        const HRESULT ret = static_cast<IDXGIFactory1*>(m_pDXGIFactory.get())->EnumAdapters1(no, &p);
         if( ret==DXGI_ERROR_NOT_FOUND) { break; }
         pAdapter.reset(p);
       }
@@ -391,7 +416,7 @@ void DeviceList::FindAdapterD3D11( std::vector<INFO>& info )
       if( ret==S_OK )
       {
         const String text = MAIDTEXT("Direct3D11:") + String::ConvertUNICODEtoMAID(desc.Description);
-        info.push_back( INFO(MakeID(11,no),text ) );
+        info.push_back( INFO(MakeID(11,no+1),text ) );
       }
     }
   }

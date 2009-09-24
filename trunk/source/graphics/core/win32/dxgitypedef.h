@@ -16,7 +16,9 @@
 namespace Maid { namespace Graphics {
 
   typedef com_ptr<IDXGIFactory>   SPDXGIFACTORY;
+  typedef com_ptr<IDXGIFactory1>   SPDXGIFACTORY1;
   typedef com_ptr<IDXGIAdapter>   SPDXGIADAPTER;
+  typedef com_ptr<IDXGIAdapter1>  SPDXGIADAPTER1;
   typedef com_ptr<IDXGISwapChain> SPDXGISWAPCHAIN;
   typedef com_ptr<IDXGIOutput>    SPDXGIOUTPUT;
   typedef com_ptr<IDXGISurface>   SPDXGISURFACE;
