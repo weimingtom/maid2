@@ -77,9 +77,13 @@ protected:
     }
     if( k.IsIn('J') )
     {
-      m_SoundManager.SetVolume( GameSoundManager::TYPE_BGM, 0.0f );
+      m_Sound2.FadeOut( 2.0 );
     }
     if( k.IsIn('K') )
+    {
+      m_SoundManager.SetVolume( GameSoundManager::TYPE_BGM, 0.0f );
+    }
+    if( k.IsIn('L') )
     {
       m_SoundManager.SetVolume( GameSoundManager::TYPE_BGM, 1.0f );
     }
