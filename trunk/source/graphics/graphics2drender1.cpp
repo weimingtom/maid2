@@ -420,4 +420,10 @@ void Graphics2DRender::SetCommonVertex( void* pVertex, int size, int Stride )
   Command.SetVertex( 0, vertex.Get(), 0, Stride );
 }
 
+
+void Graphics2DRender::AddGaizi( unt32 no, const Texture2D& tex )
+{
+	m_GaiziMap[no] = tex;
+}
+
 }
