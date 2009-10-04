@@ -16,6 +16,7 @@
 #include"graphicscore.h"
 #include"vertex.h"
 #include"texture2dbase.h"
+#include"texture2d.h"
 #include"vertexshader.h"
 #include"pixelshader.h"
 #include"inputlayout.h"
@@ -96,6 +97,7 @@ namespace Maid
     void BltText( const POINT2DI& Base, const Font& f, const String& Text, const COLOR_R32G32B32A32F& pow, size_t Len );
     void BltText( const POINT2DI& Base, const Font& f, const String& Text, const COLOR_R32G32B32A32F& pow );
     void BltText( const POINT2DI& Base, const Font& f, const String& Text );
+		void AddGaizi( unt32 no, const Texture2D& tex );
 
     bool IsInitializing() const;
 
@@ -120,6 +122,7 @@ namespace Maid
 
 
 	  void SetupState();
+    const Texture2DBase&	GetFont( const Font& pFont, unt32 Code );
 
   protected:
     bool IsMemberLoading() const;
@@ -137,6 +140,9 @@ namespace Maid
     BLENDSTATE		m_BltState;
     TEXTUREFILTER	m_Filter;
     SIZE2DI   m_VirtualScreenSize; //  仮想スクリーンサイズ
+
+		typedef std::map<unt32,Texture2D> GAIZIMAP;
+		GAIZIMAP			m_GaiziMap;
 
   protected:
 

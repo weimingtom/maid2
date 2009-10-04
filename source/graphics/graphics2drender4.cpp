@@ -57,7 +57,8 @@ void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const S
     else if( ch=='\t' ) { }  //  タブは除外(座標を増やすだけなので、そうしてもいいかも)
     else if( ch=='\r' ) { }
 
-    const FontTexture& tex = m_FontManager.GetTexture( pFont, ch );
+//    const FontTexture& tex = m_FontManager.GetTexture( pFont, ch );
+    const Texture2DBase& tex = GetFont( pFont, ch );
 
 
     { //  指定した強さを掛けるシェーダを使う
@@ -76,6 +77,16 @@ void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const S
     if( String::IsHankaku(ch) ) { pos.x += pFont.GetSize().w; }
     else { pos.x += pFont.GetSize().w*2; }
   }
+
+}
+
+const Texture2DBase&	Graphics2DRender::GetFont( const Font& pFont, unt32 Code )
+{
+	GAIZIMAP::iterator ite = m_GaiziMap.find(Code);
+
+	if( ite!=m_GaiziMap.end() ) { return ite->second; }
+
+	return m_FontManager.GetTexture( pFont, Code );
 
 }
 
