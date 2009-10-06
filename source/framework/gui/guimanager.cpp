@@ -167,6 +167,12 @@ void GUIManager::DeleteParts( IGUIParts::ID id )
 void GUIManager::DeletePartsAll()
 {
   m_Root.DelChildAll();
+
+  m_pMousePrevParts = NULL;
+  m_pInterruptParts = NULL;
+  m_pMousePrevParts = &m_Root;
+  m_pKeybordFocus = &m_Root;
+
 }
 
 void GUIManager::SetFocus( IGUIParts::ID id )
