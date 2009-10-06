@@ -196,6 +196,11 @@ void ISceneAdmin::SceneUpdateDraw( const RenderTargetBase& target, const IDepthS
 
 void ISceneAdmin::Finalize()
 {
+  for( SCENESTACK::iterator ite=m_SceneStack.begin(); ite!=m_SceneStack.end(); ++ite )
+  {
+    const SPSCENE& pScene = *ite;
+    pScene->Finalize( SPSCENEOUTPUT() );
+  }
   m_State = STATE_UPDATEFRAME;
   m_SceneStack.clear();
 }
