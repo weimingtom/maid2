@@ -41,28 +41,9 @@ protected:
 
     m_SoundManager.Initialize();
 
-    m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("tm2_bird001.wav") );
-//    m_Sound2.Load( GameSound::TYPE_BGM,  MAIDTEXT("nc7802.ogg") );
-/*
-  struct JUMPPOINT
-  {
-	  double	Boot;
-	  double	Jump;
-
-    JUMPPOINT():Boot(-1),Jump(-1){}
-  };
-	typedef	std::vector<JUMPPOINT>			SOUNDJUMPPOINTLIST;
-*/
-      SOUNDJUMPPOINTLIST list;
-      JUMPPOINT pos;
-      pos.Boot = 27.02;
-//      pos.Jump = 17.182;
-      pos.Jump = 0;
-      list.push_back( pos );
-
-
-
-    m_Sound2.Load( GameSound::TYPE_BGM,  MAIDTEXT("bgm04.wav"), list );
+//    m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("tm2_bird001.wav") );
+    m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("se0102402.wav") );
+    m_Sound2.Load( GameSound::TYPE_BGM,  MAIDTEXT("nc7802.ogg") );
   }
 
   void UpdateFrame()
