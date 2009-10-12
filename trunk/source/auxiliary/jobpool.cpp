@@ -147,7 +147,7 @@ unt JobPool::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
     {
       //  仕事が無かった場合はスリープ時間を長くしていく
       sleeptime *= 2;
-      if( sleeptime>100 ) { sleeptime = 100; }
+      if( sleeptime>10 ) { sleeptime = 10; }
 
       ThreadController::Sleep( sleeptime );
     }
