@@ -41,8 +41,7 @@ protected:
 
     m_SoundManager.Initialize();
 
-//    m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("tm2_bird001.wav") );
-    m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("se0102402.wav") );
+    m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("tm2_bird001.wav") );
     m_Sound2.Load( GameSound::TYPE_BGM,  MAIDTEXT("nc7802.ogg") );
   }
 

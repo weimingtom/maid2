@@ -27,7 +27,8 @@ using namespace Maid;
 void WriteXML( XMLWriter& write )
 {
   write.AscendNode(MAIDTEXT("top"));
-    write.AddTag( MAIDTEXT("child1"), MAIDTEXT("value") );
+//    write.AddTag( MAIDTEXT("child1"), MAIDTEXT("value") );
+    write.AddTag( MAIDTEXT("child1"), MAIDTEXT("va<u>") );
 
     write.AscendNode(MAIDTEXT("tag"));
       write.AddTag( MAIDTEXT("child3"), 100 );

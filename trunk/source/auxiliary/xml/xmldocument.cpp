@@ -6,6 +6,34 @@
 
 namespace Maid
 {
+  String DecodeSpecialCharacter( const String& src )
+  {
+    String ret;
+
+    for( int i=0; i<(int)src.length(); ++i )
+    {
+      if( src[i]=='&' )
+      {
+        String tmp;
+        while( true )
+        {
+          tmp += src[i];
+          if( src[i]==';' ) { break; }
+          ++i;
+        }
+             if( tmp==MAIDTEXT("&amp;")  ) { ret += MAIDTEXT("&");  }
+        else if( tmp==MAIDTEXT("&lt;")   ) { ret += MAIDTEXT("<");  }
+        else if( tmp==MAIDTEXT("&gt;")   ) { ret += MAIDTEXT(">");  }
+        else if( tmp==MAIDTEXT("&quot;") ) { ret += MAIDTEXT("\""); }
+        else if( tmp==MAIDTEXT("&apos;") ) { ret += MAIDTEXT("\'"); }
+      }else
+      {
+        ret += src[i];
+      }
+    }
+
+    return ret;
+  }
 
 	String ReadToken( const String& Text, int& pos )
 	{
@@ -155,6 +183,7 @@ namespace Maid
 	}
 
 
+
 	/*!
 	 	@class	XMLDocument XMLDocument.h
 	 	@brief	XMLでごにょごにょするときにベースとなるクラス
@@ -228,7 +257,7 @@ FUNCTIONRESULT XMLDocument::Parse( const std::string& TextImage )
 		}else
 		{
 			SPXMLNODE pNode( new XMLNode );
-			pNode->SetText( token );
+			pNode->SetText( DecodeSpecialCharacter(token) );
 			NodeStack.top()->AddChildNode( pNode );
 		}
 	}
@@ -288,7 +317,7 @@ SPXMLNODE XMLDocument::ReadChildNode( const String& token )
 
 	for( int i=0; i<(int)att.size(); ++i )
 	{
-		pNode->SetAttribute( att[i].Name, att[i].Value );
+		pNode->SetAttribute( att[i].Name, DecodeSpecialCharacter(att[i].Value) );
 	}
 
 	return pNode;
