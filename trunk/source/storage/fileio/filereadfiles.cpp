@@ -21,6 +21,7 @@ FileReadFiles::FileReadFiles( const std::vector<ELEMENT>& dat )
   : m_Data(dat)
   , m_Handle(NULL)
   , m_Position(0)
+  , m_OpenIndex(OPENINDEX_NONE)
 {
 
 }
@@ -31,6 +32,7 @@ FileReadFiles::FileReadFiles( const std::vector<ELEMENT>& dat )
  */
 FileReadFiles::~FileReadFiles()
 {
+  Close();
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -44,12 +46,17 @@ FileReadFiles::OPENRESULT FileReadFiles::Open()
 
   const ELEMENT& element = m_Data[0];
 
-  return FileOpen(element);
+  const OPENRESULT ret = FileOpen(element);
+  if( ret!=OPENRESULT_OK ) { return ret; }
+
+  m_OpenIndex = 0;
+
+  return OPENRESULT_OK;
 }
 
 FileReadFiles::OPENRESULT FileReadFiles::FileOpen( const ELEMENT& element )
 {
-  std::string str = String::ConvertMAIDtoSJIS(element.FileName);
+  const std::string str = String::ConvertMAIDtoSJIS(element.FileName);
 
   m_Handle = ::fopen( str.c_str(), "rb" );
 
@@ -75,7 +82,7 @@ FileReadFiles::OPENRESULT FileReadFiles::FileOpen( const ELEMENT& element )
  */
 bool  FileReadFiles::IsOpen() const
 {
-  return m_Handle!=NULL;
+  return m_OpenIndex!=OPENINDEX_NONE;
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -86,6 +93,11 @@ bool  FileReadFiles::IsOpen() const
 size_t FileReadFiles::Read( void* pData, size_t Size )
 {
   MAID_ASSERT( !IsOpen(), "ファイルが開かれていません" );
+
+  {
+    //  末端まで読み込んでいたら　０ 
+    if( (int)m_Data.size() <= m_OpenIndex ) { return 0; }
+  }
 
   const size_t MAXSIZE = GetSize() - GetPosition();
 
@@ -242,7 +254,7 @@ void FileReadFiles::Close()
   }
 
   m_Position = 0;
-  m_OpenIndex= 0;
+  m_OpenIndex= OPENINDEX_NONE;
 }
 
 

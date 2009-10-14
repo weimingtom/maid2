@@ -57,6 +57,7 @@ void IGameThread::OnExitGame()
 
 GraphicsCore& IGameThread::GetGraphicsCore() { return GetFrameWork()->GetGraphicsCore(); }
 SoundCore&    IGameThread::GetSoundCore()    { return GetFrameWork()->GetSoundCore();    }
+Storage&      IGameThread::GetStorage()    { return GetFrameWork()->GetStorage();    }
 Mouse&        IGameThread::GetMouse()        { return GetFrameWork()->GetMouse();        }
 Keybord&      IGameThread::GetKeybord()      { return GetFrameWork()->GetKeybord();      }
 TextInput&    IGameThread::GetTextInput()    { return GetFrameWork()->GetTextInput();    }
@@ -64,6 +65,7 @@ JobPool&      IGameThread::GetJobPool()      { return GetFrameWork()->GetJobPool
 
 const GraphicsCore& IGameThread::GetGraphicsCore() const { return GetFrameWork()->GetGraphicsCore(); }
 const SoundCore&    IGameThread::GetSoundCore()    const { return GetFrameWork()->GetSoundCore();    }
+const Storage&      IGameThread::GetStorage()      const { return GetFrameWork()->GetStorage();    }
 const Mouse&        IGameThread::GetMouse()        const { return GetFrameWork()->GetMouse();        }
 const Keybord&      IGameThread::GetKeybord()      const { return GetFrameWork()->GetKeybord();      }
 const TextInput&    IGameThread::GetTextInput()    const { return GetFrameWork()->GetTextInput();    }

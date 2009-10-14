@@ -53,6 +53,11 @@ void Storage::Finalize()
   m_AccessThread.Close();
 }
 
+PackFileReader& Storage::GetPackFileReader()
+{
+  return m_PackFileReader;
+}
+
 
 //! 書き込みオブジェクトを発行する
 /*!

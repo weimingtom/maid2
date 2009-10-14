@@ -42,7 +42,10 @@ void SoundObjectPCMStream::Update()
       m_NowPlayPosition -= decoderlen;
     }else
     {
-      if( m_pBuffer->IsPlay() ) { m_pBuffer->Stop(); }
+      if( m_pBuffer->IsPlay() ) 
+      {
+        m_pBuffer->Stop(); 
+      }
     }
   }
   else
@@ -51,6 +54,7 @@ void SoundObjectPCMStream::Update()
     const size_t space = CalcUpdateScape();
     if( sa < space )
     {
+      if( decoderlen <= decoderpos ) { return; }
       UpdateBuffer(); 
     }
   }
@@ -78,7 +82,7 @@ void SoundObjectPCMStream::SetPosition( double time )
   const size_t writeok = m_pBuffer->GetWritePosition();
 
   m_pDecoder->SetPosition( pos );
-  m_WrittedBufferPosition = m_pBuffer->GetWritePosition();
+  m_WrittedBufferPosition = writeok;
   UpdateBuffer(); 
   m_pBuffer->SetPosition( writeok );
   m_PrevBufferPosition = writeok;
@@ -107,9 +111,15 @@ bool SoundObjectPCMStream::IsPlay()const
 
 double SoundObjectPCMStream::GetPosition() const
 {
+/*  //  末端にいる場合、カーソルは最初にあるようにしたほうがいいかな？
   const size_t pos = m_NowPlayPosition + CalcLength( m_PrevBufferPosition, m_pBuffer->GetPlayPosition() );
 
   if( m_pDecoder->GetLength() <= m_NowPlayPosition ) { return 0; }
+*/
+  const size_t pos = std::min(
+                      m_NowPlayPosition + CalcLength( m_PrevBufferPosition, m_pBuffer->GetPlayPosition()),
+                      m_pDecoder->GetLength()
+                      );
 
   return m_pBuffer->GetParam().Format.CalcTime(pos);
 }
@@ -146,8 +156,13 @@ void SoundObjectPCMStream::UpdateBuffer()
   //  いったん作ってからやる
   std::vector<unt08> tmp(DecodeLen);
 
+  const size_t debug_pos = m_pDecoder->GetPosition();
+  size_t debug_len = 0;
+
   {
     const size_t len = m_pDecoder->Read( &(tmp[0]), DecodeLen );
+    debug_len = len;
+
     if( len<DecodeLen )
     { //  デコードが末端までいったら
       //  ループ再生か否かで、バッファの接続を決める
@@ -168,6 +183,7 @@ void SoundObjectPCMStream::UpdateBuffer()
     Sound::IBuffer::LOCKDATA dat;
     m_pBuffer->Lock( writepos, DecodeLen, dat );
     memcpy( dat.pData1, &(tmp[0]), dat.Data1Length );
+
     if( dat.pData2!=NULL ) { memcpy( dat.pData2, &(tmp[dat.Data1Length]), dat.Data2Length ); }
     m_pBuffer->Unlock( dat );
   }
@@ -181,7 +197,7 @@ size_t SoundObjectPCMStream::CalcLength( size_t prev, size_t now )const
   size_t ret;
   
   if( prev<=now ) { ret = now-prev; }
-  else { ret = m_pBuffer->GetParam().Length - prev; }
+  else { ret = m_pBuffer->GetParam().Length - (prev-now); }
 
   return ret;
 }

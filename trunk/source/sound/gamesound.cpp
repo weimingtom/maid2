@@ -190,6 +190,11 @@ void GameSound::SetVolume( double volume, double time )
 
   m_RealVolume.Set( m_RealVolume, v, frame );
   m_Volume = volume;
+
+  if( frame==0 )
+  { //  変更時間０ならすぐに変更しておく
+    m_Sound.SetVolume( v );
+  }
 }
 
 
