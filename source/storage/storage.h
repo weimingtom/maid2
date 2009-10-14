@@ -37,6 +37,8 @@ namespace Maid
 
     bool IsFileExist( const String& FileName )const;
 
+    PackFileReader& GetPackFileReader();
+
   private:
     void ExecuteMessage( const SPSTORAGEMESSAGE& pMess );
 

@@ -41,6 +41,7 @@ namespace Maid
 
     GraphicsCore& GetGraphicsCore();
     SoundCore& GetSoundCore();
+    Storage& GetStorage();
     Mouse& GetMouse();
     Keybord& GetKeybord();
     TextInput& GetTextInput();
@@ -49,6 +50,7 @@ namespace Maid
 
     const GraphicsCore& GetGraphicsCore()const ;
     const SoundCore& GetSoundCore()const ;
+    const Storage& GetStorage()const ;
     const Mouse& GetMouse()const ;
     const Keybord& GetKeybord()const ;
     const TextInput& GetTextInput()const ;

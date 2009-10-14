@@ -55,6 +55,10 @@ namespace Maid
     size_t  m_Position; //  ファイルを連結したときの合計位置
     size_t  m_ReadSize; //  m_Handle 内で読み取れる残りのバイト数
 
+    enum
+    {
+      OPENINDEX_NONE = ~0,  //  ファイルを開いていない
+    };
     int m_OpenIndex;  //  現在何個目のファイルを開いているか？
   };
 

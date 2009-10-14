@@ -24,6 +24,7 @@
 #include"../input/keybord.h"
 #include"../input/textinput.h"
 #include"../auxiliary/jobpool.h"
+#include"../storage/storage.h"
 
 
 #include<boost/smart_ptr.hpp>
@@ -44,12 +45,14 @@ namespace Maid
 
     GraphicsCore& GetGraphicsCore();
     SoundCore& GetSoundCore();
+    Storage& GetStorage();
     Mouse& GetMouse();
     Keybord& GetKeybord();
     TextInput& GetTextInput();
     JobPool& GetJobPool();
     const GraphicsCore& GetGraphicsCore()const ;
     const SoundCore& GetSoundCore()const ;
+    const Storage& GetStorage()const ;
     const Mouse& GetMouse()const ;
     const Keybord& GetKeybord()const ;
     const TextInput& GetTextInput()const ;

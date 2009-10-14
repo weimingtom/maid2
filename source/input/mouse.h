@@ -27,6 +27,7 @@ namespace Maid
     void Finalize();
 
     void Update();
+		void Flash();
 
     int	GetX() const;
     int	GetY() const;

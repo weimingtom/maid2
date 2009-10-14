@@ -119,6 +119,7 @@ void IGameFrameWork::Initialize()
 
 GraphicsCore& IGameFrameWork::GetGraphicsCore() { return m_Graphics; }
 SoundCore& IGameFrameWork::GetSoundCore() { return m_Sound; }
+Storage& IGameFrameWork::GetStorage() { return m_Storage; }
 Mouse& IGameFrameWork::GetMouse() { return m_Mouse; }
 Keybord& IGameFrameWork::GetKeybord() { return m_Keybord; }
 TextInput& IGameFrameWork::GetTextInput() { return m_TextInput; }
@@ -126,6 +127,7 @@ FPSTimer& IGameFrameWork::GetTimer() { return m_Timer; }
 JobPool& IGameFrameWork::GetJobPool() { return m_JobPool; }
 const GraphicsCore& IGameFrameWork::GetGraphicsCore() const { return m_Graphics; }
 const SoundCore& IGameFrameWork::GetSoundCore() const { return m_Sound; }
+const Storage& IGameFrameWork::GetStorage() const { return m_Storage; }
 const Mouse& IGameFrameWork::GetMouse() const { return m_Mouse; }
 const Keybord& IGameFrameWork::GetKeybord() const { return m_Keybord; }
 const TextInput& IGameFrameWork::GetTextInput() const { return m_TextInput; }

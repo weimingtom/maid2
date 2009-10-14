@@ -64,7 +64,8 @@ void GameFrameWork::LocalInitialize(const INITIALIZEPARAM& Conf)
 
     const DWORD style = WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_DLGFRAME | WS_CAPTION;
 //    const DWORD style = WS_OVERLAPPEDWINDOW;
-    win.Create( Conf.WindowCaption, POINT2DI(0,0), SIZE2DI(0,0), style );
+//    win.Create( Conf.WindowCaption, POINT2DI(0,0), SIZE2DI(0,0), style );
+    win.Create( Conf.WindowCaption, POINT2DI(CW_USEDEFAULT,CW_USEDEFAULT), SIZE2DI(0,0), style );
     win.SetClientSize( Conf.WindowSize );
 
 		{
