@@ -3,6 +3,7 @@
 #include"../../source/storage/packfilecreater.h"
 #include"../../source/auxiliary/debug/warning.h"
 #include"../../source/graphics/imagefile.h"
+#include"../../source/graphics/transiter.h"
 
 #include"../../source/storage/fileio/filereadnormal.h"
 #include"../../source/storage/fileio/filewrite.h"
@@ -74,18 +75,40 @@ int main( int argc, char *argv[] )
       AlphaSurface.SetIndex( i, col );
     }
 
-    for( int y=0; y<size.h; ++y )
-    {
-      for( int x=0; x<size.w; ++x )
+//*
+    { //  てっきり float -> int 変換が遅いのかと思ったけど、そうではないっぽい
+      //  png の読み込みが遅い？
+      Transiter::Copy( SourceSurface, ColorSurface );
+      for( int y=0; y<size.h; ++y )
       {
-        const POINT2DI pos(x,y);
-        const COLOR_R32G32B32A32F col = SourceSurface.GetPixel(pos);
-        const COLOR_R32G32B32A32F alpha(col.GetA(),col.GetA(),col.GetA(),col.GetA());
-
-        ColorSurface.SetPixel( pos, col );
-        AlphaSurface.SetPixel( pos, alpha );
+        const int src_bpp = GetPixelBPP(SourceSurface.GetPixelFormat())/8;
+        const unt08* s = (unt08*)SourceSurface.GetLinePTR(y)+3;
+        unt08* d = (unt08*)AlphaSurface.GetLinePTR(y);
+        for( int x=0; x<size.w; ++x )
+        {
+          *d = *s;
+          s += src_bpp;
+          d += 1;
+        }
       }
     }
+//*/
+/*
+    {
+      for( int y=0; y<size.h; ++y )
+      {
+        for( int x=0; x<size.w; ++x )
+        {
+          const POINT2DI pos(x,y);
+          const COLOR_R32G32B32A32F col = SourceSurface.GetPixel(pos);
+          const COLOR_R32G32B32A32F alpha(col.GetA(),col.GetA(),col.GetA(),col.GetA());
+
+          ColorSurface.SetPixel( pos, col );
+          AlphaSurface.SetPixel( pos, alpha );
+        }
+      }
+    }
+*/
   }
 
   const String base = SourceFileName.substr(0,SourceFileName.length()-(String::GetExtension(SourceFileName).length()+1));
