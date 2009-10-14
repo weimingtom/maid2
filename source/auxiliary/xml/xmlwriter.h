@@ -42,6 +42,8 @@ namespace Maid
 		void SetValue( const SPXMLNODE& pNode );
 		void ConvertSaveText( const XMLNode& Node, String& text );
 
+    String EncodeSpecialCharacter( const String& src )const;
+
 	private:
 		SPXMLNODE		m_pCurrentNode;
 

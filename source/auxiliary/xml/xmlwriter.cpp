@@ -238,7 +238,7 @@ namespace Maid
 		case XMLNode::TYPE_TEXT:
 			{
 				const String name = Node.GetText().GetStr();
-				text += name;
+				text += EncodeSpecialCharacter(name);
 			}break;
 
 		case XMLNode::TYPE_ELEMENT:
@@ -246,7 +246,6 @@ namespace Maid
 				const String ElementName = Node.GetElementName();
 				
 				{
-
 					text += MAIDTEXT("<") + ElementName;
 					XMLNode::ATTRIBUTELIST List = Node.GetAttributeTable();
 
@@ -256,7 +255,7 @@ namespace Maid
 						const String name = ite->first;
 						const String vale = ite->second.GetStr();
 
-						text += MAIDTEXT(" ")+ name + MAIDTEXT("=\"") + vale + MAIDTEXT("\"");
+						text += MAIDTEXT(" ")+ EncodeSpecialCharacter(name) + MAIDTEXT("=\"") + EncodeSpecialCharacter(vale) + MAIDTEXT("\"");
 					}
 					text += MAIDTEXT(">");
 				}
@@ -273,8 +272,27 @@ namespace Maid
 
 		case XMLNode::TYPE_COMMENT:{ }break;
 		}
-
 	}
+
+  String XMLWriter::EncodeSpecialCharacter( const String& src )const
+  {
+    String ret;
+    for( int i=0; i<(int)src.length(); ++i )
+    {
+      switch( src[i] )
+      {
+      case '&': { ret += MAIDTEXT("&amp;"); }break;
+      case '<': { ret += MAIDTEXT("&lt;"); }break;
+      case '>': { ret += MAIDTEXT("&gt;"); }break;
+      case '\"':{ ret += MAIDTEXT("&quot;"); }break;
+      case '\'':{ ret += MAIDTEXT("&apos;"); }break;
+      default:  { ret += src[i]; }break;
+      }
+    }
+    return ret;
+  }
+
+
 
 }
 
