@@ -101,18 +101,7 @@ namespace Maid
 
           d.Create( size, fmt );
 
-          for( int y=0; y<size.h; ++y )
-          {
-            for( int x=0; x<size.w; ++x )
-            {
-              const POINT2DI p(x,y);
-                    COLOR_R32G32B32A32F pixel = src_c.GetPixel(p);
-              const float alpha = BITCONVERT08Ito32F(*(unt08*)src_a.GetPixelPTR(p));
-              pixel.SetA( pixel.GetA()*alpha );
-
-              d.SetPixel( p, pixel );
-            }
-          }
+          Transiter::CopyAndSetAlpha( src_c, src_a, d );
         }
       }
       else if( IteColor!=Element.end() )

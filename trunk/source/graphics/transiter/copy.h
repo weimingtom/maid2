@@ -13,6 +13,8 @@ namespace Maid
   {
     void Copy( const Surface& Src, Surface& Dst );
     void Copy( const Surface& Src, const RECT2DI& SrcRect, Surface& Dst, const RECT2DI& DstRect );
+    void CopyAndSetAlpha( const Surface& Src, const Surface& Alpha, Surface& Dst );
+    void CopyAndSetAlpha( const Surface& Src, const Surface& Alpha, const RECT2DI& SrcRect, Surface& Dst, const RECT2DI& DstRect );
   }
 }
 
