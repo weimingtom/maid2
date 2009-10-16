@@ -114,11 +114,13 @@ Window::CALLBACKCODE	GameFrameWork::wmSysCommand( WindowsMessage& msg )
 
 	case SC_MINIMIZE:	//	最小化ボタンを押したとき
 		{
+    	ExecMessage(Base(Base::PUSHMINIMIZEBUTTON));
 		}
 		break;
 
 	case SC_RESTORE:
 		{
+    	ExecMessage(Base(Base::PUSHRESTOREBUTTON));
 		}
 		break;
 	}

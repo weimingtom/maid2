@@ -17,6 +17,8 @@ namespace Maid
         NONE,               //!<	何もしない
         PUSHCLOSEBUTTON,    //!<	クローズボタンが押された
         PUSHMAXIMIZEBUTTON,	//!<	最大化ボタンが押された
+        PUSHMINIMIZEBUTTON,	//!<	最小化ボタンが押された
+        PUSHRESTOREBUTTON,	//!<	元のサイズに戻すボタンが押された
         REDRAW,             //!<	再描画の必要がある
         CHANGESCREENMODE,	  //!<	スクリーンモードを切り替えてほしい
 
