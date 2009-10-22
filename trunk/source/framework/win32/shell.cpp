@@ -398,10 +398,10 @@ FUNCTIONRESULT ExecuteApplication( HWND hWnd, const String& Verb, const String& 
   const std::wstring uni_Directry = String::ConvertMAIDtoUNICODE(Directry);
 
   const int ret = (int)ShellExecute( hWnd,
-                                uni_Verb.c_str(),
-                                uni_Execute.c_str(),
-                                uni_Param.c_str(),
-                                uni_Directry.c_str(),
+                                uni_Verb.empty()?     NULL : uni_Verb.c_str(),
+                                uni_Execute.empty()?  NULL : uni_Execute.c_str(),
+                                uni_Param.empty()?    NULL : uni_Param.c_str(),
+                                uni_Directry.empty()? NULL : uni_Directry.c_str(),
                                 ShowCom
     );
 
