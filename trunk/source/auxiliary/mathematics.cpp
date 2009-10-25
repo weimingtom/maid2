@@ -32,7 +32,12 @@ namespace Maid
       break;
     }
 
-    if( s_hModule==NULL ) { MAID_WARNING("d3dx.dllの読み込みに失敗"); return ; }
+    if( s_hModule==NULL )
+    {
+      ::MessageBox( NULL, L"D3DX9.dllが見つかりませんでした。\nDirectXランタイムをインストールしてください。", L"エラー", MB_OK );
+      MAID_WARNING("d3dx.dllの読み込みに失敗");
+      return ; 
+    }
 
     d3dxmatrix::Initialize( s_hModule );
     d3dxquaternion::Initialize( s_hModule );

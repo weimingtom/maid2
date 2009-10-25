@@ -55,7 +55,9 @@ namespace Maid
 
 
 		HWND    GetHWND()const;
+		POINT2DI GetPosition()const;
 		SIZE2DI GetSize()const;
+		POINT2DI GetClientPosition()const;
 		SIZE2DI GetClientSize()const;
 		DWORD   GetStyle()const;
 

@@ -69,6 +69,7 @@ void DeviceD3D10_0::Initialize()
 
     if( m_ShaderCompilerDefault==NULL )
     {
+      ::MessageBox( NULL, L"D3DX10.dllが見つかりませんでした。\nDirectXランタイムをインストールしてください。", L"エラー", MB_OK );
       MAID_WARNING( "d3dx10_XX.dllがありません" );
     }
 

@@ -61,6 +61,7 @@ void GameFrameWork::LocalInitialize(const INITIALIZEPARAM& Conf)
 		win.RegistCallBack( WM_SYSKEYDOWN,      MakeCallBackObject( &GameFrameWork::wmSysKeyDown, this) );
 		win.RegistCallBack( WM_PAINT,           MakeCallBackObject( &GameFrameWork::wmPaint, this) );
 		win.RegistCallBack( WM_CLOSE,           MakeCallBackObject( &GameFrameWork::wmClose, this) );
+		win.RegistCallBack( WM_DISPLAYCHANGE,   MakeCallBackObject( &GameFrameWork::wmDisplayChange, this) );
 
     const DWORD style = WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_DLGFRAME | WS_CAPTION;
 //    const DWORD style = WS_OVERLAPPEDWINDOW;
