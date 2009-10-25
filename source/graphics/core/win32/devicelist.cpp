@@ -278,7 +278,7 @@ void DeviceList::InitializeD3D10()
 
     ret = m_D3D10_WARPDLL.Load( MAIDTEXT("D3D10WARP.dll") );
 
-    if( ret==DllWrapper::LOADRETURN_ERROR ) { ret = m_D3D10_WARPDLL.Load( MAIDTEXT("D3D10WARP_beta.dll") ); }
+//    if( ret==DllWrapper::LOADRETURN_ERROR ) { ret = m_D3D10_WARPDLL.Load( MAIDTEXT("D3D10WARP_beta.dll") ); }
 
     if( ret == DllWrapper::LOADRETURN_SUCCESS )
     {

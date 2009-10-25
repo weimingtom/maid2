@@ -86,7 +86,7 @@ void RenderTargetScreen::SetAspectSize( const SIZE2DI& size )
       NewSize.h = h;
     }else
     {
-      const float scale = ScreenW*AspectH / AspectW*ScreenH;
+      const float scale = ScreenW*AspectH / (AspectW*ScreenH);
       const int w = int(Screen.w*scale + 0.5f);
 
       NewSize.w = w;

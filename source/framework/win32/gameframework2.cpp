@@ -190,5 +190,17 @@ NOBLT:
 	return Window::CALLBACKCODE_DEFAULT;
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! WM_DISPLAYCHANGE がきたときの処理
+/*!
+ *	\param	Param	[i ]	メッセージ内容
+ */
+Window::CALLBACKCODE	GameFrameWork::wmDisplayChange( WindowsMessage& msg )
+{
+  const int w = msg.GetLPARAM(WindowsMessage::PARAM_LO);
+  const int h = msg.GetLPARAM(WindowsMessage::PARAM_HI);
+
+	return Window::CALLBACKCODE_DEFAULT;
+}
 
 }

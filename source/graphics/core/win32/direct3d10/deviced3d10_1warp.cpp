@@ -21,6 +21,7 @@ SPD3D10DEVICE DeviceD3D10_1WARP::CreateDevice( const DllWrapper& dll, const SPDX
   const HRESULT ret = createdevice( 
       NULL, 
       D3D10_DRIVER_TYPE_SOFTWARE, 
+//      D3D10_DRIVER_TYPE_WARP, 
       m_WARPDLL.GetModule(), 
       0, 
       D3D10_FEATURE_LEVEL_10_1, 

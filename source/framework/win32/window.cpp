@@ -43,6 +43,15 @@ HWND Window::GetHWND()const
 	return m_hWnd;
 }
 
+POINT2DI Window::GetPosition()const
+{
+  MAID_ASSERT( !IsCreated(), "まだ作成されていません" );
+
+  RECT rc;
+  GetWindowRect( m_hWnd, &rc );
+	return POINT2DI(rc.left, rc.top );
+}
+
 SIZE2DI Window::GetSize()const
 {
   MAID_ASSERT( !IsCreated(), "まだ作成されていません" );
@@ -50,6 +59,15 @@ SIZE2DI Window::GetSize()const
   RECT rc;
   GetWindowRect( m_hWnd, &rc );
 	return SIZE2DI(rc.right-rc.left, rc.bottom-rc.top );
+}
+
+POINT2DI Window::GetClientPosition()const
+{
+  MAID_ASSERT( !IsCreated(), "まだ作成されていません" );
+
+  RECT rc;
+  GetClientRect( m_hWnd, &rc );
+	return POINT2DI(rc.left, rc.top );
 }
 
 SIZE2DI Window::GetClientSize()const
@@ -189,7 +207,7 @@ void Window::SetZOrder( HWND order )
 	::SetWindowPos( m_hWnd, order,
 			-1, -1,
 			-1, -1,
-			SWP_NOMOVE|SWP_NOSIZE|SWP_FRAMECHANGED );
+			SWP_NOMOVE|SWP_NOSIZE );
 }
 
 

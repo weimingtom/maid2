@@ -69,6 +69,7 @@ void DeviceD3D09::Initialize()
 
     if( m_ShaderCompilerDefault==NULL )
     {
+      ::MessageBox( NULL, L"D3DX9.dllが見つかりませんでした。\nDirectXランタイムをインストールしてください。", L"エラー", MB_OK );
       MAID_WARNING( "d3dx9_XX.dllがありません" );
     }
 
@@ -544,16 +545,6 @@ void	DeviceD3D09::ScreenReset( const D3DPRESENT_PARAMETERS& NewParam )
     ID3D09Object::EscapeAll();
   }
 
-  //  ウィンドウ -> フルスクリーンのときは
-  //  ウィンドウの変更
-  if( !NowFull && NexFull )
-  {
-    m_Window.SetSize( SIZE2DI(NewParam.BackBufferWidth, NewParam.BackBufferHeight) );
-    m_WindowModeStyle = m_Window.GetStyle();
-    m_Window.SetStyle( WS_POPUP );
-    m_Window.SetPosition( m_DefaultDisplayRect.GetPoint() );
-    m_Window.SetZOrder( HWND_TOPMOST );
-  }
 
   D3DPRESENT_PARAMETERS p = NewParam; //  切り替え後に値が変わることもあるのでコピーしておく
   { //  これでやっと解像度変更
@@ -567,13 +558,35 @@ void	DeviceD3D09::ScreenReset( const D3DPRESENT_PARAMETERS& NewParam )
       MAID_WARNING("IDirect3DDevice9::Reset() " << ret << " " << DebugStringD3D09(p));
       p = old;
       m_pDevice->Reset( &p );
+      ID3D09Object::RestoreAll( *this );
+      return ;
     }
   }
-
-  //  フルスクリーン -> ウィンドウのときは
-  //  自分のスタイルの変更
-  if( NowFull && !NexFull )
+  if( !NowFull && NexFull )
   {
+    //  ウィンドウ -> フルスクリーンのときは
+    //  ウィンドウの変更
+
+/*
+    m_Window.SetSize( SIZE2DI(NewParam.BackBufferWidth, NewParam.BackBufferHeight) );
+    m_WindowModeStyle = m_Window.GetStyle();
+    m_Window.SetStyle( WS_POPUP|WS_EX_TOPMOST );
+    m_Window.SetPosition( m_DefaultDisplayRect.GetPoint() );
+    m_Window.SetZOrder( HWND_TOPMOST );
+*/
+    //  ↑と同じことをやってるはずなんだけど、こうしないと動かない。はて？
+    const POINT2DI pos = m_DefaultDisplayRect.GetPoint();
+    m_WindowModeStyle = m_Window.GetStyle();
+		::SetWindowLong( m_Window.GetHWND(), GWL_STYLE, WS_POPUP|WS_EX_TOPMOST );
+		::SetWindowPos( m_Window.GetHWND(), HWND_TOPMOST,
+				pos.x, pos.y,
+				NewParam.BackBufferWidth, NewParam.BackBufferHeight,
+				SWP_DRAWFRAME|SWP_SHOWWINDOW );
+  }
+  else if( NowFull && !NexFull )
+  {
+    //  フルスクリーン -> ウィンドウのときは
+    //  自分のスタイルの変更
     m_Window.SetZOrder( HWND_NOTOPMOST );
     m_Window.SetStyle( m_WindowModeStyle );
     m_Window.SetClientSize( SIZE2DI(p.BackBufferWidth, p.BackBufferHeight) );
@@ -584,10 +597,9 @@ void	DeviceD3D09::ScreenReset( const D3DPRESENT_PARAMETERS& NewParam )
     const int y = m_DefaultDisplayRect.y + (screen.h - window.h)/2;
     m_Window.SetPosition( POINT2DI(x,y) );
   }
-
-  //  状態の変更がない場合はウィンドウサイズを変更する
-  if( NowFull==NexFull )
+  else if( NowFull==NexFull )
   {
+    //  状態の変更がない場合はウィンドウサイズを変更する
     m_Window.SetClientSize( SIZE2DI(p.BackBufferWidth, p.BackBufferHeight) );
   }
 
