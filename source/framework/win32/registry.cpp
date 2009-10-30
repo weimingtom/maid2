@@ -210,7 +210,7 @@ void Registry::GetValue( const String& Name, String& Data )
   }
 
   std::wstring s;
-  s.resize(dwKeyBuffLen-1);
+  s.resize(dwKeyBuffLen/sizeof(wchar_t) -1);
 
   if( ::RegQueryValueEx( m_hKey, unicode_name.c_str(), NULL, &dwKeyType, (BYTE*)s.data(), &dwKeyBuffLen )!=ERROR_SUCCESS )
   {
