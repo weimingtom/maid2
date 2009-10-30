@@ -7,20 +7,16 @@
 
 namespace Maid { namespace Graphics {
 
-DeviceD3D10_1::DeviceD3D10_1( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& Windw )
-  :DeviceD3D10_0( dll, pFactory, pAdapter, Windw )
+DeviceD3D10_1::DeviceD3D10_1( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, Window& Windw )
+  :DeviceD3D10_0( dll, pAdapter, Windw )
 {
 
 }
 
-SPD3D10DEVICE DeviceD3D10_1::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter )
+FUNCTIONRESULT DeviceD3D10_1::CreateDeviceAndSwapChain( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, DXGI_SWAP_CHAIN_DESC& desc, SPD3D10DEVICE& pDevice, SPDXGISWAPCHAIN& pSwapChain )
 {
-  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D10_DRIVER_TYPE,HMODULE,UINT,D3D10_FEATURE_LEVEL1,UINT,ID3D10Device1**);
-	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D10CreateDevice1"));
-
-  if( createdevice==NULL ) { MAID_WARNING("load失敗"); return SPD3D10DEVICE(); }
-
-  ID3D10Device1* pDev = NULL;
+  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D10_DRIVER_TYPE,HMODULE,UINT,D3D10_FEATURE_LEVEL1,UINT,DXGI_SWAP_CHAIN_DESC*,IDXGISwapChain**,ID3D10Device1**);
+	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D10CreateDeviceAndSwapChain1"));
 
   static const D3D10_FEATURE_LEVEL1 levelAttempts[] = 
   { 
@@ -31,6 +27,9 @@ SPD3D10DEVICE DeviceD3D10_1::CreateDevice( const DllWrapper& dll, const SPDXGIAD
 //      D3D10_FEATURE_LEVEL_9_1, 
   };
 
+  IDXGISwapChain* p=NULL;
+  ID3D10Device1* pDev = NULL;
+
   for ( int i=0; i<NUMELEMENTS(levelAttempts); ++i ) 
   { 
     const HRESULT ret = createdevice( 
@@ -40,19 +39,20 @@ SPD3D10DEVICE DeviceD3D10_1::CreateDevice( const DllWrapper& dll, const SPDXGIAD
         0, 
         levelAttempts[i], 
         D3D10_1_SDK_VERSION, 
+        &desc,
+        &p,
         &pDev 
         );
 
     if( SUCCEEDED(ret) ) { break; }
   }
 
-  if( pDev==NULL ) 
-  {
-    MAID_WARNING("D3D10CreateDevice1()");
-    return SPD3D10DEVICE(); 
-  }
+  if( pDev==NULL || p==NULL ) { MAID_WARNING("D3D10CreateDeviceAndSwapChain1()"); return FUNCTIONRESULT_ERROR; }
 
-  return SPD3D10DEVICE(pDev);
+  pDevice.reset(pDev);
+  pSwapChain.reset(p);
+
+  return FUNCTIONRESULT_OK;
 }
 
 SPMATERIAL     DeviceD3D10_1::CreateMaterial( const SPRESOURCE& resource, const CREATEMATERIALPARAM* param )

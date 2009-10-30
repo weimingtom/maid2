@@ -3,58 +3,53 @@
 
 namespace Maid { namespace Graphics {
 
-DeviceD3D11WARP::DeviceD3D11WARP( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, Window& Windw )
-  :DeviceD3D11( dll, pFactory, SPDXGIADAPTER(), Windw )
+DeviceD3D11WARP::DeviceD3D11WARP( const DllWrapper& dll, Window& Windw )
+  :DeviceD3D11( dll, SPDXGIADAPTER(), Windw )
 {
 
 }
 
-SPD3D11DEVICE DeviceD3D11WARP::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdap )
+
+FUNCTIONRESULT DeviceD3D11WARP::CreateDeviceAndSwapChain( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, DXGI_SWAP_CHAIN_DESC& desc, SPD3D11DEVICE& pDevice, SPDXGISWAPCHAIN& pSwapChain )
 {
-  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D_DRIVER_TYPE,HMODULE,UINT,CONST D3D_FEATURE_LEVEL*, UINT,UINT,ID3D11Device**, D3D_FEATURE_LEVEL* pLevel, ID3D11DeviceContext* pContext );
-	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D11CreateDevice"));
+  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D_DRIVER_TYPE,HMODULE,UINT,const D3D_FEATURE_LEVEL*,UINT,UINT, const DXGI_SWAP_CHAIN_DESC*,IDXGISwapChain**,ID3D11Device**, D3D_FEATURE_LEVEL*, ID3D11DeviceContext** );
+	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D11CreateDeviceAndSwapChain"));
 
-  if( createdevice==NULL ) { MAID_WARNING("load失敗"); return SPD3D11DEVICE(); }
-
-  ID3D11Device* pDev = NULL;
-/*
-  SPDXGIADAPTER1 pAdapter;
-
-  {
-    IDXGIAdapter1* p = NULL;
-    const HRESULT ret = static_cast<IDXGIFactory1*>(GetFactory().get())->EnumAdapters1(0, &p);
-    if( ret==DXGI_ERROR_NOT_FOUND) { return SPD3D11DEVICE(); }
-    pAdapter.reset(p);
-  }
-*/
   const D3D_FEATURE_LEVEL FeatureEnum[] = 
   {
       D3D_FEATURE_LEVEL_11_0,
       D3D_FEATURE_LEVEL_10_1,
       D3D_FEATURE_LEVEL_10_0,
-      D3D_FEATURE_LEVEL_9_3,
-      D3D_FEATURE_LEVEL_9_2,
-      D3D_FEATURE_LEVEL_9_1,
+//      D3D_FEATURE_LEVEL_9_3,
+//      D3D_FEATURE_LEVEL_9_2,
+//      D3D_FEATURE_LEVEL_9_1,
   };
 
-  D3D_FEATURE_LEVEL ret_level;
+  IDXGISwapChain* p=NULL;
+  ID3D11Device* pDev = NULL;
 
-  const HRESULT ret = createdevice(
-    NULL,
-    D3D_DRIVER_TYPE_WARP,
-    NULL,
-    0,
-    FeatureEnum,
-    NUMELEMENTS(FeatureEnum),
-    D3D11_SDK_VERSION,
-    &pDev,
-    &ret_level,
-    NULL
-    );
+  const HRESULT ret = createdevice( 
+      NULL, 
+      D3D_DRIVER_TYPE_WARP, 
+      NULL, 
+      0, 
+      FeatureEnum,
+      NUMELEMENTS(FeatureEnum),
+      D3D11_SDK_VERSION, 
+      &desc,
+      &p,
+      &pDev,
+      NULL,
+      NULL
+      );
 
-  if( FAILED(ret) ) { MAID_WARNING("D3D11CreateDevice()"); return SPD3D11DEVICE(); }
 
-  return SPD3D11DEVICE(pDev);
+  if( FAILED(ret) ) { MAID_WARNING("D3D11CreateDeviceAndSwapChain()"); return FUNCTIONRESULT_ERROR; }
+
+  pDevice.reset(pDev);
+  pSwapChain.reset(p);
+
+  return FUNCTIONRESULT_OK;
 }
 
 

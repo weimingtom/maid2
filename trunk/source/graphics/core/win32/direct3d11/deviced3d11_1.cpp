@@ -8,9 +8,8 @@
 
 namespace Maid { namespace Graphics {
 
-DeviceD3D11::DeviceD3D11( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& win )
+DeviceD3D11::DeviceD3D11( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, Window& win )
   :m_DLL(dll)
-  ,m_pFactory(pFactory)
   ,m_pAdapter(pAdapter)
   ,m_Window(win)
   ,m_ShaderCompilerLast(NULL)
@@ -19,45 +18,47 @@ DeviceD3D11::DeviceD3D11( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, 
 
 }
 
-SPD3D11DEVICE DeviceD3D11::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter )
+FUNCTIONRESULT DeviceD3D11::CreateDeviceAndSwapChain( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, DXGI_SWAP_CHAIN_DESC& desc, SPD3D11DEVICE& pDevice, SPDXGISWAPCHAIN& pSwapChain )
 {
-  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D_DRIVER_TYPE,HMODULE,UINT,CONST D3D_FEATURE_LEVEL*, UINT,UINT,ID3D11Device**, D3D_FEATURE_LEVEL* pLevel, ID3D11DeviceContext* pContext );
-	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D11CreateDevice"));
-
-  if( createdevice==NULL ) { MAID_WARNING("load失敗"); return SPD3D11DEVICE(); }
-
-  ID3D11Device* pDev = NULL;
+  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D_DRIVER_TYPE,HMODULE,UINT,const D3D_FEATURE_LEVEL*,UINT,UINT, const DXGI_SWAP_CHAIN_DESC*,IDXGISwapChain**,ID3D11Device**, D3D_FEATURE_LEVEL*, ID3D11DeviceContext** );
+	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D11CreateDeviceAndSwapChain"));
 
   const D3D_FEATURE_LEVEL FeatureEnum[] = 
   {
       D3D_FEATURE_LEVEL_11_0,
       D3D_FEATURE_LEVEL_10_1,
       D3D_FEATURE_LEVEL_10_0,
-      D3D_FEATURE_LEVEL_9_3,
-      D3D_FEATURE_LEVEL_9_2,
-      D3D_FEATURE_LEVEL_9_1,
+//      D3D_FEATURE_LEVEL_9_3,
+//      D3D_FEATURE_LEVEL_9_2,
+//      D3D_FEATURE_LEVEL_9_1,
   };
 
-  D3D_FEATURE_LEVEL ret_level;
+  IDXGISwapChain* p=NULL;
+  ID3D11Device* pDev = NULL;
 
-  const HRESULT ret = createdevice(
-    pAdapter.get(),
-    D3D_DRIVER_TYPE_HARDWARE,
-    NULL,
-    0,
-    FeatureEnum,
-    NUMELEMENTS(FeatureEnum),
-    D3D11_SDK_VERSION,
-    &pDev,
-    &ret_level,
-    NULL
-    );
+  const HRESULT ret = createdevice( 
+      pAdapter.get(), 
+      D3D_DRIVER_TYPE_HARDWARE, 
+      NULL, 
+      0, 
+      FeatureEnum,
+      NUMELEMENTS(FeatureEnum),
+      D3D11_SDK_VERSION, 
+      &desc,
+      &p,
+      &pDev,
+      NULL,
+      NULL
+      );
 
-  if( FAILED(ret) ) { MAID_WARNING("D3D11CreateDevice()"); return SPD3D11DEVICE(); }
 
-  return SPD3D11DEVICE(pDev);
+  if( FAILED(ret) ) { MAID_WARNING("D3D11CreateDeviceAndSwapChain()"); return FUNCTIONRESULT_ERROR; }
+
+  pDevice.reset(pDev);
+  pSwapChain.reset(p);
+
+  return FUNCTIONRESULT_OK;
 }
-
 
 void DeviceD3D11::Initialize()
 {
@@ -85,11 +86,8 @@ void DeviceD3D11::Initialize()
     m_ShaderCompilerLast = m_ShaderCompilerDefault;
   }
 
-
-
-  m_pDevice = CreateDevice( m_DLL, m_pAdapter );
-
   {
+
     DXGI_SWAP_CHAIN_DESC desc;
 
     ZERO( &desc, sizeof(desc) );
@@ -112,13 +110,16 @@ void DeviceD3D11::Initialize()
     desc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
     desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-    IDXGISwapChain* p=NULL;
-    const HRESULT ret = m_pFactory->CreateSwapChain( m_pDevice.get(), &desc, &p  );
-    if( FAILED(ret) ) { MAID_WARNING("IDXGIFactory::CreateSwapChain " << ret ); }
-    m_pSwapChain.reset(p);
+    const FUNCTIONRESULT ret = CreateDeviceAndSwapChain( m_DLL, m_pAdapter, desc, m_pDevice, m_pSwapChain );
+
+    if( FUNCTIONRESULT_FAILE(ret) ) { return ; }
+
+    {
+      IDXGIFactory* p = NULL;
+      m_pSwapChain->GetParent(__uuidof(IDXGIFactory), (void**)&p );
+      m_pFactory.reset(p);
+    }
   }
-
-
 
   m_SyncInterval = 1;
 

@@ -22,12 +22,12 @@ namespace Maid { namespace Graphics {
     : public DeviceD3D10_0
 	{
 	public:
-    DeviceD3D10_1( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& Windw );
+    DeviceD3D10_1( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, Window& Windw );
     virtual SPMATERIAL     CreateMaterial( const SPRESOURCE& resource, const CREATEMATERIALPARAM* param );
     virtual SPBLENDSTATE   CreateBlendState( const BLENDSTATEPARAM& Option );
 
   protected:
-    virtual SPD3D10DEVICE CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter );
+    virtual FUNCTIONRESULT CreateDeviceAndSwapChain( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, DXGI_SWAP_CHAIN_DESC& desc, SPD3D10DEVICE& pDevice, SPDXGISWAPCHAIN& pSwapChain );
 	};
 
 }}
