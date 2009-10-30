@@ -24,12 +24,12 @@ DrawCommandExecuteD3D11::DrawCommandExecuteD3D11( const SPD3D11DEVICECONTEXT& pD
 
 void DrawCommandExecuteD3D11::Begin()
 {
-  m_pDevice->Begin(NULL);
+//  m_pDevice->Begin(NULL);
 }
 
 void DrawCommandExecuteD3D11::End()
 {
-  m_pDevice->End(NULL);
+//  m_pDevice->End(NULL);
 }
 
 void DrawCommandExecuteD3D11::ClearDepthStencil( CLEARFLAG flag, float Depth, unt08 Stencil )

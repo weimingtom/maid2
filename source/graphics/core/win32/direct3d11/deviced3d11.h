@@ -16,6 +16,7 @@
 #include"../../../../framework/win32/window.h"
 #include"../../../../framework/win32/dllwrapper.h"
 #include"../../../../auxiliary/thread/win32/threadmutex.h"
+#include"../../../../auxiliary/functionresult.h"
 #include"common.h"
 
 namespace Maid { namespace Graphics {
@@ -24,7 +25,7 @@ namespace Maid { namespace Graphics {
     : public IDevice
 	{
 	public:
-    DeviceD3D11( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& Windw );
+    DeviceD3D11( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, Window& Windw );
 
     void Initialize();
     void Finalize();
@@ -70,7 +71,7 @@ namespace Maid { namespace Graphics {
     const SPDXGIFACTORY& GetFactory() const { return m_pFactory; }
 
 	protected:
-    virtual SPD3D11DEVICE CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter );
+    virtual FUNCTIONRESULT CreateDeviceAndSwapChain( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, DXGI_SWAP_CHAIN_DESC& desc, SPD3D11DEVICE& pDevice, SPDXGISWAPCHAIN& pSwapChain );
 
   private:
     void CreateDefaultVertexShader( int no, std::vector<unt08>& Binary );
@@ -80,8 +81,8 @@ namespace Maid { namespace Graphics {
 
 	private:
     const DllWrapper&   m_DLL;
-    const SPDXGIFACTORY m_pFactory;
     const SPDXGIADAPTER m_pAdapter;
+    SPDXGIFACTORY m_pFactory;
     Window&	      m_Window;
 
     DllWrapper    m_D3DX11_LastDLL;

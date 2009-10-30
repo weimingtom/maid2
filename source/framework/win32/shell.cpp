@@ -808,15 +808,15 @@ std::wstring GetDxDiagSystemInfo( const com_ptr<IDxDiagContainer>& pDxDiagRoot )
 
   std::wstring	str;
 
-  str += L"PhysicalMemory " + GetValue( pContainer, L"ullPhysicalMemory" ) + L"\r\n";
-  str += L"UsedPageFile   " + GetValue( pContainer, L"ullUsedPageFile" ) + L"\r\n";
-  str += L"AvailPageFile  " + GetValue( pContainer, L"ullAvailPageFile" ) + L"\r\n";
+  str += L"PhysicalMemory " + GetValue( pContainer, L"ullPhysicalMemory" ) + L"\n";
+  str += L"UsedPageFile   " + GetValue( pContainer, L"ullUsedPageFile" ) + L"\n";
+  str += L"AvailPageFile  " + GetValue( pContainer, L"ullAvailPageFile" ) + L"\n";
 
-  str += L"ProcessorEnglish          " + GetValue( pContainer, L"szProcessorEnglish" ) + L"\r\n";
-  str += L"SystemManufacturerEnglish " + GetValue( pContainer, L"szSystemManufacturerEnglish" ) + L"\r\n";
-  str += L"SystemModelEnglish        " + GetValue( pContainer, L"szSystemModelEnglish" ) + L"\r\n";
-  str += L"BIOSEnglish               " + GetValue( pContainer, L"szBIOSEnglish" ) + L"\r\n";
-  str += L"PhysicalMemoryEnglish     " + GetValue( pContainer, L"szPhysicalMemoryEnglish" ) + L"\r\n";
+  str += L"ProcessorEnglish          " + GetValue( pContainer, L"szProcessorEnglish" ) + L"\n";
+  str += L"SystemManufacturerEnglish " + GetValue( pContainer, L"szSystemManufacturerEnglish" ) + L"\n";
+  str += L"SystemModelEnglish        " + GetValue( pContainer, L"szSystemModelEnglish" ) + L"\n";
+  str += L"BIOSEnglish               " + GetValue( pContainer, L"szBIOSEnglish" ) + L"\n";
+  str += L"PhysicalMemoryEnglish     " + GetValue( pContainer, L"szPhysicalMemoryEnglish" ) + L"\n";
 
   return str;
 }
@@ -855,14 +855,14 @@ std::wstring GetDxDiagDisplayDevices( const com_ptr<IDxDiagContainer>&	pDxDiagRo
       pChild.reset( p );
     }
 
-    str += L"   device    \r\n";
-    str += L"Description            " + GetValue( pChild, L"szDescription" ) + L"\r\n";
-    str += L"Manufacturer           " + GetValue( pChild, L"szManufacturer" ) + L"\r\n";
-    str += L"ChipType               " + GetValue( pChild, L"szChipType" ) + L"\r\n";
+    str += L"   device    \n";
+    str += L"Description            " + GetValue( pChild, L"szDescription" ) + L"\n";
+    str += L"Manufacturer           " + GetValue( pChild, L"szManufacturer" ) + L"\n";
+    str += L"ChipType               " + GetValue( pChild, L"szChipType" ) + L"\n";
 
-    str += L"DisplayMemoryLocalized " + GetValue( pChild, L"szDisplayMemoryLocalized" ) + L"\r\n";
-    str += L"DisplayMemoryEnglish   " + GetValue( pChild, L"szDisplayMemoryEnglish" ) + L"\r\n";
-    str += L"DriverVersion          " + GetValue( pChild, L"szDriverVersion" ) + L"\r\n";
+    str += L"DisplayMemoryLocalized " + GetValue( pChild, L"szDisplayMemoryLocalized" ) + L"\n";
+    str += L"DisplayMemoryEnglish   " + GetValue( pChild, L"szDisplayMemoryEnglish" ) + L"\n";
+    str += L"DriverVersion          " + GetValue( pChild, L"szDriverVersion" ) + L"\n";
   }
 
   return str;
@@ -902,7 +902,7 @@ String DeviceCapsStringOut()
         if( !str.empty() )	//	OS名の取得
         {
           strData += str;
-          strData += MAIDTEXT("\r\n");
+          strData += MAIDTEXT("\n");
         }
       }
 
@@ -912,7 +912,7 @@ String DeviceCapsStringOut()
         if( !str.empty() )	//	OS名の取得
         {
           strData += str;
-          strData += MAIDTEXT("\r\n");
+          strData += MAIDTEXT("\n");
         }
       }
 
@@ -933,7 +933,7 @@ String DeviceCapsStringOut()
         {
           strData += MAIDTEXT("DirectX Ver ");
           strData += str;
-          strData += MAIDTEXT("\r\n");
+          strData += MAIDTEXT("\n");
         }
       }
 
@@ -1006,7 +1006,6 @@ String DeviceCapsStringOut()
           strData += GetDxDiagDisplayDevices( pDxDiagRoot );
         }
       }
-
       std::vector<char> ret;
       {
         const int len = ::WideCharToMultiByte(CP_THREAD_ACP,0,strData.c_str(),-1,NULL,0,NULL,NULL);
@@ -1017,7 +1016,6 @@ String DeviceCapsStringOut()
           ret.push_back( '\0' );
         }
       }
-
       ReturnText += String::ConvertSJIStoMAID( &ret[0] );
     }
   }catch(...)	{}

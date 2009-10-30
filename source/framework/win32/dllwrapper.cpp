@@ -108,4 +108,9 @@ HMODULE DllWrapper::GetModule() const
   return m_hDll;
 }
 
+bool DllWrapper::Loaded() const
+{
+  return m_hDll!=NULL;
+}
+
 }

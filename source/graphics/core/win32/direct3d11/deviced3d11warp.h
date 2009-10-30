@@ -22,10 +22,10 @@ namespace Maid { namespace Graphics {
     : public DeviceD3D11
 	{
 	public:
-    DeviceD3D11WARP( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, Window& Windw );
+    DeviceD3D11WARP( const DllWrapper& dll, Window& Windw );
 
   protected:
-    virtual SPD3D11DEVICE CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter );
+    virtual FUNCTIONRESULT CreateDeviceAndSwapChain( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, DXGI_SWAP_CHAIN_DESC& desc, SPD3D11DEVICE& pDevice, SPDXGISWAPCHAIN& pSwapChain );
 
 	};
 

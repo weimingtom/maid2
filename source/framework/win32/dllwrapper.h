@@ -34,6 +34,8 @@ namespace Maid
 
     HMODULE GetModule() const;
 
+    bool Loaded() const;
+
   private:
     String	m_DllName;    //!<	読み込んだＤＬＬの名前
     HMODULE m_hDll;       //!<	読みこんだＤＬＬのハンドル

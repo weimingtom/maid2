@@ -46,14 +46,6 @@ namespace Maid { namespace Graphics {
   private:
     Window&  m_Window;
 
-    bool m_IsD3D09;
-    bool m_IsDXGI;
-    bool m_IsDXGI1_1;
-    bool m_IsD3D10;
-    bool m_IsD3D10_1;
-    bool m_IsD3D10_WARP;
-    bool m_IsD3D11;
-
   private:
     DllWrapper   m_D3D9DLL;
     SPD3D09      m_pDirect3D09;
@@ -61,6 +53,7 @@ namespace Maid { namespace Graphics {
 
     DllWrapper     m_DXGIDLL;
     SPDXGIFACTORY  m_pDXGIFactory;
+    SPDXGIFACTORY1 m_pDXGIFactory1;
 
     DllWrapper     m_D3D10DLL;
     DllWrapper     m_D3D10_1DLL;

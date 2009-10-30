@@ -9,9 +9,8 @@
 
 namespace Maid { namespace Graphics {
 
-DeviceD3D10_0::DeviceD3D10_0( const DllWrapper& dll, const SPDXGIFACTORY& pFactory, const SPDXGIADAPTER& pAdapter, Window& win )
+DeviceD3D10_0::DeviceD3D10_0( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, Window& win )
   :m_DLL(dll)
-  ,m_pFactory(pFactory)
   ,m_pAdapter(pAdapter)
   ,m_Window(win)
   ,m_ShaderCompilerLast(NULL)
@@ -20,13 +19,12 @@ DeviceD3D10_0::DeviceD3D10_0( const DllWrapper& dll, const SPDXGIFACTORY& pFacto
 
 }
 
-SPD3D10DEVICE DeviceD3D10_0::CreateDevice( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter )
+FUNCTIONRESULT DeviceD3D10_0::CreateDeviceAndSwapChain( const DllWrapper& dll, const SPDXGIADAPTER& pAdapter, DXGI_SWAP_CHAIN_DESC& desc, SPD3D10DEVICE& pDevice, SPDXGISWAPCHAIN& pSwapChain )
 {
-  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D10_DRIVER_TYPE,HMODULE,UINT,UINT,ID3D10Device**);
-	FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D10CreateDevice"));
+  typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D10_DRIVER_TYPE,HMODULE,UINT,UINT,DXGI_SWAP_CHAIN_DESC*,IDXGISwapChain**,ID3D10Device**);
+  FUNCTIONPTR createdevice = (FUNCTIONPTR)dll.GetProcAddress(MAIDTEXT("D3D10CreateDeviceAndSwapChain"));
 
-  if( createdevice==NULL ) { MAID_WARNING("load失敗"); return SPD3D10DEVICE(); }
-
+  IDXGISwapChain* p=NULL;
   ID3D10Device* pDev = NULL;
 
   const HRESULT ret = createdevice(
@@ -35,12 +33,17 @@ SPD3D10DEVICE DeviceD3D10_0::CreateDevice( const DllWrapper& dll, const SPDXGIAD
     NULL,
     0,
     D3D10_SDK_VERSION,
+    &desc,
+    &p,
     &pDev
     );
 
-  if( FAILED(ret) ) { MAID_WARNING("D3D10CreateDevice()"); return SPD3D10DEVICE(); }
+  if( FAILED(ret) ) { MAID_WARNING("D3D10CreateDeviceAndSwapChain()"); return FUNCTIONRESULT_ERROR; }
 
-  return SPD3D10DEVICE(pDev);
+  pDevice.reset(pDev);
+  pSwapChain.reset(p);
+
+  return FUNCTIONRESULT_OK;
 }
 
 
@@ -76,11 +79,8 @@ void DeviceD3D10_0::Initialize()
     m_ShaderCompilerLast = m_ShaderCompilerDefault;
   }
 
-
-
-  m_pDevice = CreateDevice( m_DLL, m_pAdapter );
-
   {
+
     DXGI_SWAP_CHAIN_DESC desc;
 
     ZERO( &desc, sizeof(desc) );
@@ -103,10 +103,15 @@ void DeviceD3D10_0::Initialize()
     desc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
     desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-    IDXGISwapChain* p=NULL;
-    const HRESULT ret = m_pFactory->CreateSwapChain( m_pDevice.get(), &desc, &p  );
-    if( FAILED(ret) ) { MAID_WARNING("IDXGIFactory::CreateSwapChain " << ret ); }
-    m_pSwapChain.reset(p);
+    const FUNCTIONRESULT ret = CreateDeviceAndSwapChain( m_DLL, m_pAdapter, desc, m_pDevice, m_pSwapChain );
+
+    if( FUNCTIONRESULT_FAILE(ret) ) { return ; }
+
+    {
+      IDXGIFactory* p = NULL;
+      m_pSwapChain->GetParent(__uuidof(IDXGIFactory), (void**)&p );
+      m_pFactory.reset(p);
+    }
   }
 
   {
