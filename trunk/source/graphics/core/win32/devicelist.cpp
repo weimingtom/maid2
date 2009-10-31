@@ -126,12 +126,17 @@ SPDEVICE DeviceList::Create( int DeviceID )
       if( id==0 )
       {
         pDevice.reset( new DeviceD3D11WARP( m_D3D11DLL, m_Window ) );
-      }else
+      }
+      else if( id==1 )
+      {
+        pDevice.reset( new DeviceD3D11( m_D3D11DLL, SPDXGIADAPTER(), m_Window ) );
+      }
+      else
       {
         SPDXGIADAPTER pAdapter;
         {
           IDXGIAdapter* p = NULL;
-          const HRESULT ret = m_pDXGIFactory1->EnumAdapters(id-1, &p);
+          const HRESULT ret = m_pDXGIFactory1->EnumAdapters(id-2, &p);
           if( ret==DXGI_ERROR_NOT_FOUND) { break; }
           pAdapter.reset(p);
         }
@@ -178,8 +183,8 @@ void DeviceList::FindAdapterD3D09( std::vector<INFO>& info )
   //  奇数は SoftwareVertexProcessing
 
   //  最初はデフォルト D3DADAPTER_DEFAULT
-  info.push_back( INFO(MakeID(9,0),MAIDTEXT("Direct3D9 :Default(SoftwareVertexProcessing)")) );
-  info.push_back( INFO(MakeID(9,1),MAIDTEXT("Direct3D9 :Default(MixedVertexProcessing)"))    );
+  info.push_back( INFO(MakeID(9,0),MAIDTEXT("Direct3D9 :default(SoftwareVertexProcessing)")) );
+  info.push_back( INFO(MakeID(9,1),MAIDTEXT("Direct3D9 :default(MixedVertexProcessing)"))    );
 
 
   const SPD3D09& pD3D = m_pDirect3D09;
@@ -350,9 +355,44 @@ void DeviceList::FindAdapterD3D11( std::vector<INFO>& info )
       info.push_back( INFO(MakeID(11,0),text ) );
     }
 
+    {
+      //  後述してある理由により見つからないので、実際に作成して試す
+      typedef HRESULT (WINAPI *FUNCTIONPTR)(IDXGIAdapter*,D3D_DRIVER_TYPE,HMODULE,UINT,const D3D_FEATURE_LEVEL*,UINT,UINT, ID3D11Device**, D3D_FEATURE_LEVEL*, ID3D11DeviceContext** );
+	    FUNCTIONPTR createdevice = (FUNCTIONPTR)m_D3D11DLL.GetProcAddress(MAIDTEXT("D3D11CreateDevice"));
+
+      const D3D_FEATURE_LEVEL FeatureEnum[] = 
+      {
+          D3D_FEATURE_LEVEL_11_0,
+          D3D_FEATURE_LEVEL_10_1,
+          D3D_FEATURE_LEVEL_10_0,
+      };
+
+      ID3D11Device* pDev = NULL;
+
+      const HRESULT ret = createdevice( 
+          NULL, 
+          D3D_DRIVER_TYPE_HARDWARE, 
+          NULL, 
+          0, 
+          FeatureEnum,
+          NUMELEMENTS(FeatureEnum),
+          D3D11_SDK_VERSION, 
+          &pDev,
+          NULL,
+          NULL
+          );
+
+      if( SUCCEEDED(ret) )
+      {
+        const String text = MAIDTEXT("Direct3D11:") + MAIDTEXT("default");
+        info.push_back( INFO(MakeID(11,1),text ) );
+        pDev->Release();
+      }
+    }
+
     for( int no=0; ; ++no )
     {
-
+      //  CheckInterfaceSupport() を使ったD3D11アダプタ検索はできない？
       SPDXGIADAPTER pAdapter;
       {
         IDXGIAdapter* p = NULL;
@@ -371,7 +411,7 @@ void DeviceList::FindAdapterD3D11( std::vector<INFO>& info )
       if( ret==S_OK )
       {
         const String text = MAIDTEXT("Direct3D11:") + String::ConvertUNICODEtoMAID(desc.Description);
-        info.push_back( INFO(MakeID(11,no+1),text ) );
+        info.push_back( INFO(MakeID(11,no+2),text ) );
       }
     }
   }
