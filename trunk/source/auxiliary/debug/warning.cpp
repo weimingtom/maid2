@@ -36,14 +36,23 @@ Warning::FUNCTION Warning::s_Function[5];
       }
     }
 
+    std::string line;
+    {
+      char buf[256];
+      sprintf( buf, "%d", m_Line );
+      line = buf;
+    }
+
+    const std::string output = text + " " + line + "行目 " + m_FileName + "\n";
+
     if( !(level<NUMELEMENTS(s_Function)) || !(s_Function[level]) )
     {
  		  FILE* hFile = ::fopen( "warning.txt", "a" );
-		  ::fprintf( hFile, "%s %d行目 %s\n",text.c_str(), m_Line, m_FileName.c_str() );
+		  ::fprintf( hFile, "%s", output.c_str() );
 		  ::fclose( hFile );
     }else
     {
-      s_Function[level]( text );
+      s_Function[level]( output );
     }
   }
 
