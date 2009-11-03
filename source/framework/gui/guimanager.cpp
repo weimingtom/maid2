@@ -266,6 +266,7 @@ IGUIParts* GUIManager::FindChildParts( IGUIParts::ID id, IGUIParts& parts )
 void GUIManager::UpdateMouseMessage( const Mouse& mouse, GUIMessageQue& Que )
 {
   const POINT2DI pos  = POINT2DI( mouse.GetX(), mouse.GetY() );
+  const bool IsMove = mouse.GetDeltaX()!=0 || mouse.GetDeltaY()!=0;
 
   IGUIParts* pCapture = m_pMouseCapturingParts;
   IGUIParts* pNext    = FindParts( pos );
@@ -276,25 +277,26 @@ void GUIManager::UpdateMouseMessage( const Mouse& mouse, GUIMessageQue& Que )
   //  マウスキャプチャ中の場合は現在フォーカスがあたっているところだけメッセージのやり取りを行う
   if( IsCapturing )
   {
-    if( pPrev!=pNext )
+    if( IsMove )
     {
-      if( pPrev==m_pMouseCapturingParts )
+      if( pPrev!=pNext )
       {
-        GUIMESSAGE_MOUSEOUT out;
-        out.Position = pos;
-        Que.PostMessage( pCapture, out ); 
+        if( pPrev==m_pMouseCapturingParts )
+        {
+          GUIMESSAGE_MOUSEOUT out;
+          out.Position = pos;
+          Que.PostMessage( pCapture, out ); 
+        }
+        else if( pNext==m_pMouseCapturingParts )
+        {
+          GUIMESSAGE_MOUSEIN in;
+          in.Position = pos;
+          Que.PostMessage( pCapture, in ); 
+        }
+        m_pMousePrevParts = pNext;
       }
-      else if( pNext==m_pMouseCapturingParts )
-      {
-        GUIMESSAGE_MOUSEIN in;
-        in.Position = pos;
-        Que.PostMessage( pCapture, in ); 
-      }
-      m_pMousePrevParts = pNext;
-    }
 
-    if( mouse.GetDeltaX()!=0 || mouse.GetDeltaY()!=0 )
-    {
+
       //  マウスが動いたら動いたらメッセージ
       GUIMESSAGE_MOUSEMOVE m;
       m.Position = pos;
@@ -308,22 +310,22 @@ void GUIManager::UpdateMouseMessage( const Mouse& mouse, GUIMessageQue& Que )
 //    if( mouse.IsOutR()){ MakeMessageMOUSEUP  ( pCapture, pos, IGUIParam::BUTTON_RIGHT, Que ); }
   }else
   {
-    if( pPrev!=pNext )
+    if( IsMove )
     {
-      //  現在と今のパーツが違っていたら、パーツのインアウトメッセージ
-      GUIMESSAGE_MOUSEOUT out;
-      out.Position = pos;
-      Que.PostMessage( pPrev, out ); 
+      if( pPrev!=pNext )
+      {
+        //  現在と今のパーツが違っていたら、パーツのインアウトメッセージ
+        GUIMESSAGE_MOUSEOUT out;
+        out.Position = pos;
+        Que.PostMessage( pPrev, out ); 
 
-      GUIMESSAGE_MOUSEIN in;
-      in.Position = pos;
-      Que.PostMessage( pNext, in ); 
+        GUIMESSAGE_MOUSEIN in;
+        in.Position = pos;
+        Que.PostMessage( pNext, in ); 
 
-      m_pMousePrevParts = pNext;
-    }
+        m_pMousePrevParts = pNext;
+      }
 
-    if( mouse.GetDeltaX()!=0 || mouse.GetDeltaY()!=0 )
-    {
       //  マウスが動いたら動いたらメッセージ
       GUIMESSAGE_MOUSEMOVE m;
       m.Position = pos;
