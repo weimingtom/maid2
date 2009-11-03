@@ -140,6 +140,9 @@ namespace Maid
 
     FUNCTIONRESULT tex2dFunction::ConvertSubResource( const std::vector<SurfaceInstance>& SrcImage, std::vector<SurfaceInstance>& DstImage  )
     {
+      //  転送先が１枚しかない場合はミップマップがなということなので、無駄な領域の塗りつぶしをしない
+      bool mipfill = DstImage.size()>1;
+
       for( int i=0; i<(int)DstImage.size(); ++i )
       {
         const Surface& src = i<(int)SrcImage.size()? SrcImage[i] : SrcImage.back();
@@ -164,6 +167,7 @@ namespace Maid
           Transiter::Average( src, src_rc, dst, dst_rc );
         }
 
+        if( mipfill )
         {
           //  塗りつぶしてない部分を隅っこの色で塗る
           for( int y=0; y<DstSize.h; ++y )
