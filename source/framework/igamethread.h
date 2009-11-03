@@ -119,6 +119,7 @@ namespace Maid
 
     IGameFrameWork* GetFrameWork();
     const IGameFrameWork* GetFrameWork()const;
+    void UpdateScreenState();
   private:
     void UpdateMouseMapping();
 

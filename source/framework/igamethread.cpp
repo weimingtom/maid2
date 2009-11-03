@@ -105,6 +105,13 @@ void IGameThread::SetAspectLock( bool lock )
   UpdateMouseMapping();
 }
 
+void IGameThread::UpdateScreenState()
+{
+  GraphicsCore& gra = GetGraphicsCore();
+  gra.SetAspectLock( gra.IsAspectLock() );
+  UpdateMouseMapping();
+}
+
 
 void IGameThread::UpdateMouseMapping()
 {
