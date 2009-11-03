@@ -72,7 +72,7 @@ void Mouse::Flash()
  */
 void Mouse::Update()
 {
-	std::vector<bool> KeyList(m_ButtonList.size());
+	std::vector<bool> KeyList(m_ButtonList.size(),false);
 	m_PrevList = m_PosList;
 	m_pDevice->GetState( m_PosList, KeyList );
 
@@ -99,7 +99,7 @@ void Mouse::Update()
 
 	for( unt i=0; i<KeyList.size(); ++i )
 	{
-		const bool IsDown  = KeyList[i];
+		const bool IsDown  = KeyList[i] && IsClipIn();
 		BUTTONSTATE& state = m_ButtonList[i];
 
 		if( IsDown )
