@@ -129,6 +129,21 @@ namespace Maid
     FINDOBJECTLIST PickupFile( const String& Path );
     FINDOBJECTLIST PickupFile( const String& Path, const SPPICKUPFILEFILTER& pFilter );
 
+
+    bool Isx64Architecture();
+    bool IsWow64(HANDLE processHandle);
+
+    enum PROCESSINFO
+    {
+        PROCESSINFO_UNKNOWN = 0,
+        PROCESSINFO_32BIT = 1,        //  32bitOSで走る32bitアプリ
+        PROCESSINFO_32BIT_ON_WO64 = 2,//  64bitOSで走る32bitアプリ
+        PROCESSINFO_64BIT = 3,        //  64bitOSで走る64bitアプリ
+    };
+
+    PROCESSINFO GetProcessInfo();
+
+
   }
 }
 

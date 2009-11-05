@@ -940,6 +940,17 @@ String DeviceCapsStringOut()
       ReturnText += strData;
     }
     {
+      //  プロセス状態
+      const PROCESSINFO info = GetProcessInfo();
+      switch( info )
+      {
+      case PROCESSINFO_32BIT: { ReturnText += MAIDTEXT("32bitOS/32bitProcess"); }break;
+      case PROCESSINFO_32BIT_ON_WO64: { ReturnText += MAIDTEXT("64bitOS/32bitProcess"); }break;
+      case PROCESSINFO_64BIT: { ReturnText += MAIDTEXT("64bitOS/64bitProcess"); }break;
+      }
+      ReturnText += MAIDTEXT("\r\n");
+    }
+    {
       std::wstring		strData;
       //	dxdiag から拾える情報を拾う
       //	
@@ -1026,7 +1037,80 @@ String DeviceCapsStringOut()
 }
 
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! ＯＳが64bitか？
+/*!
+    @return	true:Wow64です
+            false:Wow64でない
+ */
+bool Isx64Architecture()
+{
+  typedef void (WINAPI *LPFN_GETNATIVESYSTEMINFO) (LPSYSTEM_INFO);
+  LPFN_GETNATIVESYSTEMINFO fnGetNativeSystemInfo;
+  SYSTEM_INFO info;
 
+  fnGetNativeSystemInfo = (LPFN_GETNATIVESYSTEMINFO) GetProcAddress(
+      GetModuleHandle(L"kernel32"), "GetNativeSystemInfo");
+
+  if (fnGetNativeSystemInfo != NULL) {
+    fnGetNativeSystemInfo(&info);
+    if (info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64) {
+      return true;
+    } else if (info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_IA64) {
+      return true;
+    } else if (info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_INTEL) {
+      return false;
+    }
+  }
+  return false;
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 指定したプロセスがWow64で走っているか
+/*!
+    @return	true:Wow64です
+            false:Wow64でない
+ */
+bool IsWow64(HANDLE processHandle)
+{
+  typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
+  LPFN_ISWOW64PROCESS fnIsWow64Process;
+
+  fnIsWow64Process = (LPFN_ISWOW64PROCESS) GetProcAddress(
+      GetModuleHandle(L"kernel32"), "IsWow64Process");
+
+  if (fnIsWow64Process != NULL) {
+    BOOL bIsWow64 = FALSE;
+    if (!fnIsWow64Process(processHandle, &bIsWow64)) {
+      return false;
+    }
+    if( bIsWow64==TRUE ) { return true; }
+  }
+  return false;
+}
+
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! このプロセスが走っている状態を調べる
+/*!
+    @return	状態
+ */
+PROCESSINFO GetProcessInfo()
+{
+  //  細かいことは↓見て頂戴
+  //  http://blogs.wankuma.com/jitta/archive/2007/12/26/114718.aspx
+
+  if( Isx64Architecture() )
+  {
+    if( IsWow64(GetCurrentProcess()) ) { return PROCESSINFO_32BIT_ON_WO64; }
+    else { return PROCESSINFO_64BIT; }
+  }else
+  {
+    return PROCESSINFO_32BIT;
+  }
+
+  return PROCESSINFO_UNKNOWN;
+}
 
 	}
 }
