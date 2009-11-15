@@ -108,6 +108,7 @@
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;OC_X86_ASM"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
