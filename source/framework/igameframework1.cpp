@@ -72,7 +72,7 @@ void IGameFrameWork::Initialize()
   {
     //  各種デバイスの初期化
     {
-      Graphics::SPDEVICE pGraphics = GraphicsDeviceList.Create(Config.Graphics.DeviceID );
+      Graphics::SPDEVICE pGraphics = GraphicsDeviceList.Create(Config.Graphics.DeviceID);
       Graphics::SPFONTDEVICE pFont = GraphicsDeviceList.CreateFontDevice();
       m_Graphics.Initialize( pGraphics, pFont );
     }
@@ -96,15 +96,22 @@ void IGameFrameWork::Initialize()
         InputDeviceList.CreateInputMethodDevice() 
         );
 
-      {
-        const SIZE2DI& size = Config.Graphics.ScreenSize;
-        const RECT2DI rc( POINT2DI(0,0), size );
-        m_Mouse.SetClipRange( rc );
-        m_Mouse.SetMapping( rc );
-      }
     }
     m_Timer.Initialize();
+  }
 
+  { //  初期化したデバイスをユーザー設定どおりに入れていく
+    {
+      GraphicsCore::SWAPCHAINFORMAT fmt = m_Graphics.GetSwapChainFormat();
+      fmt.Size = Config.Graphics.ScreenSize;
+      m_Graphics.SetSwapChainFormat( fmt );
+    }
+    {
+      const SIZE2DI& size = Config.Graphics.ScreenSize;
+      const RECT2DI rc( POINT2DI(0,0), size );
+      m_Mouse.SetClipRange( rc );
+      m_Mouse.SetMapping( rc );
+    }
   }
 
   {
