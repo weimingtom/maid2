@@ -29,7 +29,7 @@ unt IStreamDecoderMultiThread::ThreadFunction( volatile ThreadController::BRIGED
       )
     {
       //  連続して寝るにつれて、時間が長くなる
-      const unt count = std::min((unt)10,m_SleepCounter/10);
+      const unt count = std::min((unt)5,m_SleepCounter/10);
       ThreadController::Sleep(count);
       ++m_SleepCounter;
       continue;
@@ -55,7 +55,6 @@ unt IStreamDecoderMultiThread::ThreadFunction( volatile ThreadController::BRIGED
 
       m_TotalTime   += sample.EndTime - sample.BeginTime;
       m_SampleCount += 1;
-//      MAID_WARNING( "serial:" << this << " endtime:" << sample.BeginTime );
     }
 
     if( !m_IsSeeking )

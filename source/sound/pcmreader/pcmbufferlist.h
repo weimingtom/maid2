@@ -6,48 +6,57 @@
 #include"../../auxiliary/thread.h"
 #include"ipcmreader.h"
 
-#include<vector>
-#include<list>
+#include<set>
 
 namespace Maid
 {
+  /*!
+      @class  PCMBufferList pcmbufferlist.h
+      @brief  ばらばらになってるPCMを連続したものとして扱うクラス
+  */
   class PCMBufferList
     : public IPCMReader
   {
   public:
     PCMBufferList( const PCMFORMAT& fmt );
 
-    INITIALIZERESULT Initialize();
-    void Finalize();
+    virtual INITIALIZERESULT Initialize();
+    virtual void Finalize();
 
-    size_t  Read( void* pDst, size_t size );
-    void    SetPosition( size_t Offset );
-    size_t  GetPosition()		const;
-    size_t  GetLength()			const;
+    virtual size_t  Read( void* pDst, size_t size );
+    virtual void    SetPosition( size_t Offset );
+    virtual size_t  GetPosition()		const;
+    virtual size_t  GetLength()			const;
 
-    PCMFORMAT GetFormat() const;
+    virtual PCMFORMAT GetFormat() const;
 
     void Create( size_t time, const void* pData, size_t Size );
-
-    void Clear();
+    void ClearData( size_t time );
 
   private:
     ThreadMutex m_Mutex;
 
     struct BUFFERINFO
     {
-      size_t         Time;    //  データ再生開始位置(負数で前回から連続してる)
-      SPMEMORYBUFFER pBuffer;
-
-      BUFFERINFO( size_t t, const SPMEMORYBUFFER& p ):Time(t),pBuffer(p) {}
+      size_t       Time;
+      MemoryBuffer Buffer;
     };
 
-    typedef std::list<BUFFERINFO> BUFFERLIST;
+    typedef boost::shared_ptr<BUFFERINFO> SPBUFFERINFO;
+    struct SPBUFFERINFO_less
+    {
+      bool operator()(const SPBUFFERINFO& lhs, const SPBUFFERINFO& rhs ) const
+      {
+        return lhs->Time < rhs->Time;
+      }
+    };
+
+
+    typedef std::set<SPBUFFERINFO,SPBUFFERINFO_less> BUFFERLIST;
     BUFFERLIST m_BufferList;
 
     const PCMFORMAT m_Format;
     size_t  m_Position;
-    size_t  m_BufferPosition;
   };
 
   typedef	boost::shared_ptr<PCMBufferList>	SPPCMBUFFERLIST;

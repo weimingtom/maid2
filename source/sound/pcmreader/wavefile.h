@@ -15,15 +15,15 @@ namespace Maid
     WaveFile( const void* pSrc, size_t size );
     ~WaveFile();
 
-    INITIALIZERESULT Initialize();
-    void Finalize();
+    virtual INITIALIZERESULT Initialize();
+    virtual void Finalize();
 
-    size_t  Read( void* pDst, size_t size );
-    void    SetPosition( size_t Offset );
-    size_t  GetPosition()		const;
-    size_t  GetLength()			const;
+    virtual size_t  Read( void* pDst, size_t size );
+    virtual void    SetPosition( size_t Offset );
+    virtual size_t  GetPosition()		const;
+    virtual size_t  GetLength()			const;
 
-    PCMFORMAT GetFormat() const;
+    virtual PCMFORMAT GetFormat() const;
 
     static bool Check( const void* pSrc, size_t size );
 

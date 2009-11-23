@@ -65,9 +65,6 @@ void SoundObjectPCMStream::Play()
   if( m_pDecoder->GetLength() <= m_NowPlayPosition ) { return; }
   UpdateBuffer();
   m_pBuffer->Play(true);
-
-//  MAID_WARNING( GetCurrentThreadId() << " SoundObjectPCMStream::Play:" << m_NowPlayPosition);
-
 }
 
 void SoundObjectPCMStream::Stop()
@@ -156,12 +153,8 @@ void SoundObjectPCMStream::UpdateBuffer()
   //  いったん作ってからやる
   std::vector<unt08> tmp(DecodeLen);
 
-  const size_t debug_pos = m_pDecoder->GetPosition();
-  size_t debug_len = 0;
-
   {
     const size_t len = m_pDecoder->Read( &(tmp[0]), DecodeLen );
-    debug_len = len;
 
     if( len<DecodeLen )
     { //  デコードが末端までいったら

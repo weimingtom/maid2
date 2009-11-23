@@ -49,12 +49,6 @@ void BufferDirectSound8::Play( bool IsLoop )
 
 void BufferDirectSound8::SetPosition( size_t pos )
 {
-  if( pos!=0 )
-  {
-
-    int kk=0;
-  }
-
   const HRESULT ret = m_pBuffer->SetCurrentPosition( pos );
   if( FAILED(ret) ) { MAID_WARNING( "IDirectSoundBuffer::SetCurrentPosition()" ); }
 }

@@ -252,7 +252,11 @@ void MoviePlayer::PlayDecode( volatile ThreadController::BRIGEDATA& brige )
       const bool IsEnd = decoder.IsStreamEnd();
 
 //      if( NoPacket ) { PageSeek(brige, ite->first); }
-      if( PacketCount < 3 ) { PageSeek(brige, ite->first); }
+      if( PacketCount < 10 )
+      {
+        #pragma  COMPILERMSG( "溜まってるデコード前のパケットが合計何秒あるかで判定したほうがいい" )
+        PageSeek(brige, ite->first);
+      }
       if( IsCache || IsEnd ){}
       else{ IsCacheFull = false; }
     }
