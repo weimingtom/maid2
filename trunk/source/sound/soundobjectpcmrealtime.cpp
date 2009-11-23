@@ -3,6 +3,7 @@
 #include"../auxiliary/debug/warning.h"
 #include"../auxiliary/mathematics.h"
 
+#include<mmsystem.h>
 
 namespace Maid {
 
@@ -35,8 +36,10 @@ void SoundObjectPCMRealTime::Update()
   m_PlayPosition += delta_len;
   m_OldPosition = bufferpos;
 
-  UpdateBuffer(); 
+  UpdateBuffer();
+  m_pDecoder->ClearData(m_PlayPosition);
 }
+
 
 void SoundObjectPCMRealTime::Play()
 {
@@ -48,14 +51,12 @@ void SoundObjectPCMRealTime::Play()
 
 void SoundObjectPCMRealTime::Stop()
 {
-
   m_pBuffer->Stop();
 }
 
 void SoundObjectPCMRealTime::SetPosition( double time )
 {
   //  常に進んでるのでスルー
-
 }
 
 void SoundObjectPCMRealTime::SetVolume( double volume )
@@ -107,53 +108,36 @@ double SoundObjectPCMRealTime::GetVolume() const
 
 void SoundObjectPCMRealTime::UpdateBuffer()
 {
-//  MAID_WARNING( "UpdateBuffer()--------------------------" );
   const size_t UPDATESIZE = CalcUpdateScape();
 
   if( m_pDecoder->GetLength()==0 ) { return ; }  //  データがないときはスルー
 
-//  MAID_WARNING( "UpdateBuffer() 1" );
   if( m_WritePosition < m_PlayPosition )
   {
     //  書き込んだ位置より、すでに再生していたら、シークする
-
     //m_PlayPosition + UPDATESIZE から書き込みを開始する
     const size_t pos = m_PlayPosition + std::max(m_PlayPosition-m_WritePosition, UPDATESIZE);
 
-
     m_pDecoder->SetPosition( pos );
     m_WritePosition = pos;
-//    MAID_WARNING( "UpdateBuffer() set write " << pos << " play " << m_PlayPosition << " len " << m_pDecoder->GetLength() );
   }
 
-//  MAID_WARNING( "UpdateBuffer() 2" );
 
   {
     //  書き込まれたデータが一定量たまっていたら何もしない
-    if( UPDATESIZE < m_WritePosition - m_PlayPosition ) { return ; }
+    if( UPDATESIZE < (m_WritePosition - m_PlayPosition) ) { return ; }
   }
 
   //  リングバッファにデータを流すのはしんどいので
   //  いったん作ってからやる
-  std::vector<unt08> tmp(UPDATESIZE);
+  std::vector<unt08> tmp(UPDATESIZE,0);
 
   {
-    const size_t pos = m_pDecoder->GetPosition();
-
-
-
     const size_t len = m_pDecoder->Read( &(tmp[0]), tmp.size() );
     if( len==0 ) { return ; }
-    if( len<tmp.size() )
-    {
-      tmp.resize(len);
-    }
-
-    const size_t writepos = m_WritePosition % m_pBuffer->GetParam().Length;
-//    MAID_WARNING( "Read() pos " << pos << " + " << len << " target " << writepos );
-
+    if( len<tmp.size() ) { tmp.resize(len); }
   }
-//  MAID_WARNING( "UpdateBuffer() 3" );
+
   //  そんでもってながしこむ～
   {
     const size_t pos = m_WritePosition % m_pBuffer->GetParam().Length;
@@ -165,16 +149,7 @@ void SoundObjectPCMRealTime::UpdateBuffer()
     m_pBuffer->Unlock( dat );
   }
 
-  const size_t len = m_pBuffer->GetParam().Length;
-  const size_t bufferwrite = m_WritePosition % m_pBuffer->GetParam().Length;
-  const size_t aa = m_pBuffer->GetPlayPosition();
-  const size_t write = m_pBuffer->GetWritePosition();
-//  MAID_WARNING( "UpdateBuffer() " << bufferwrite << " + " << tmp.size() << " pos " << aa << " erite " << write << " len " << len );
-
-
   m_WritePosition += tmp.size();
-
-
 }
 
 size_t SoundObjectPCMRealTime::CalcLength( size_t prev, size_t now )const
@@ -190,7 +165,6 @@ size_t SoundObjectPCMRealTime::CalcLength( size_t prev, size_t now )const
 size_t SoundObjectPCMRealTime::CalcUpdateScape()const
 {
   //  更新間隔を求める
-
   MAID_ASSERT( m_pBuffer.get()==NULL, "初期化されていません" );
   return m_pBuffer->GetParam().Length / 4;
 }

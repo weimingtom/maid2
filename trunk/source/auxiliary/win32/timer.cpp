@@ -1,6 +1,6 @@
 ﻿/*!
 	@file
-	@brief	タイマクラス timeGetTime() Ver.
+	@brief	タイマクラス 
 */
 
 #include"timer.h"
@@ -14,7 +14,7 @@
 namespace Maid
 {
 
-int Timer::s_RefarenceCount;
+int Timer::s_RefarenceCount=0;
 
 Timer::Timer()
 {
@@ -53,7 +53,21 @@ Timer::~Timer()
  */
 unt Timer::Get() const
 {
-	return ::timeGetTime();
+  LARGE_INTEGER freq;
+  {
+    if( QueryPerformanceFrequency(&freq)==0 )
+    {
+      return ::timeGetTime();
+    }
+  }
+
+  LARGE_INTEGER now;
+  if( QueryPerformanceCounter(&now)==0 )
+  {
+    return ::timeGetTime();
+  }
+
+  return (unt)(now.QuadPart*1000 / freq.QuadPart);
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/

@@ -118,8 +118,8 @@ unt SoundCore::ThreadFunction(volatile ThreadController::BRIGEDATA& brige)
 
       oldtime = newtime;
       //  あまりにも処理が早い場合は少しお休み
-//      if( sa<10 ) { ThreadController::Sleep( 10-sa ); }
-      if( sa<10 ) { ThreadController::Sleep( 1 ); }
+      if( sa<20 ) { ThreadController::Sleep( 20-sa ); }
+//      if( sa<10 ) { ThreadController::Sleep( 1 ); }
     }
 
   }

@@ -1,5 +1,6 @@
 ﻿#include"pcmwriter.h"
 #include"soundmessage1.h"
+#include"../auxiliary/debug/warning.h"
 
 
 namespace Maid {
@@ -83,8 +84,6 @@ void PCMWriter::Stop()
   if( !IsInitialized() ) { return ; }
   if( !IsPlay() ) { return ; }
 
-  m_pBuffer->Clear();
-
   {
     boost::shared_ptr<SoundMessage::Stop> pMess( new SoundMessage::Stop );
     GlobalPointer<SoundCore>::Get()->PostMessage(m_pInfo, pMess );
@@ -141,10 +140,10 @@ void PCMWriter::Write( double time, const void* pData, size_t Size )
   }else
   {
     const size_t t = m_pBuffer->GetFormat().CalcLength(time);
-    if( t < m_AddTime ) { return ; }  //  昔のデータを加えるのはまずい
+    if( t+Size < m_AddTime ) { return ; }  //  昔のデータを加えるのはまずい
 
     m_pBuffer->Create( t, pData, Size );
-    m_AddTime = t;
+    m_AddTime = t + Size;
   }
 }
 
