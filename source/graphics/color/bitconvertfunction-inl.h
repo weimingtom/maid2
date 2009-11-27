@@ -67,8 +67,13 @@
   // 16bit飽和演算
   inline unt16 _CLIP16I( unt16 s, unt16 a )
   {
+/*
     if( s+a>0xFFFF ) { return 0xFFFF; }
     return s+a;
+*/
+    const unt32 n = s+a;
+    const unt32 mask = (int32((n & 0xFFFF0000) + 0x7FFFFFFF) >> 31);
+    return unt16( (n|mask) & 0xFFFF);
   }
 
   //!  int 16bit -> int 01bit
