@@ -151,7 +151,7 @@ namespace Maid
      */
     bool IsUnique() const
     {
-      if( IsEmpty() ) { false; }
+      if( IsEmpty() ) { return false; }
 
       bool ret = false;
       {
