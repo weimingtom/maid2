@@ -41,13 +41,19 @@ protected:
 
     m_SoundManager.Initialize();
 
+//    m_Tmp1 = m_Sound1;
+
     m_Sound1.Load( GameSound::TYPE_SE,  MAIDTEXT("tm2_bird001.wav") );
-    m_Sound2.Load( GameSound::TYPE_BGM,  MAIDTEXT("nc7802.ogg") );
+    m_Tmp2 = m_Sound1;
+ //   m_Sound2.Load( GameSound::TYPE_BGM,  MAIDTEXT("nc7802.ogg") );
   }
 
   void UpdateFrame()
   {
     if( m_Render.IsInitializing() ) { return ; }
+    if( m_Sound1.IsLoading() ) { return ; }
+    if( m_Tmp2.IsLoading() ) { return ; }
+  //  if( m_Sound2.IsLoading() ) { return ; }
 
     const Mouse& m = GetMouse();
     const Keybord& k = GetKeybord();
@@ -65,6 +71,10 @@ protected:
     if( k.IsIn('C') )
     {
       m_SoundManager.SetVolume( GameSoundManager::TYPE_SE, 1.0f );
+    }
+    if( k.IsIn('D') )
+    {
+      m_Tmp2.Play();
     }
 
     if( k.IsIn('H') )
@@ -146,6 +156,8 @@ private:
   GameSoundManager   m_SoundManager;
   GameSound          m_Sound1;
   GameSound          m_Sound2;
+  GameSound          m_Tmp1;
+  GameSound          m_Tmp2;
 };
 
 

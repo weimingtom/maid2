@@ -77,7 +77,7 @@ namespace Maid {
       }break;
     }
    
-    out.pInfo    = in.pCore->CreateObjectInfo();
+//    out.pInfo    = in.pCore->CreateObjectInfo();
     out.pMessage = pMessage;
   }
 
@@ -120,6 +120,9 @@ namespace Maid {
 SoundFile::CACHE::INFOMAP  SoundFile::CACHE::s_InfoMap;
 ThreadMutex  SoundFile::CACHE::s_Mutex;
 
+#pragma COMPILERMSG("現在の実装だと再生バッファ（ファイルイメージではない）の共有ができていません")	
+#pragma COMPILERMSG("これはSoundCore側で対応させる必要がある")	
+
 
 SoundFile::SoundFile()
   :m_IsPlay(false)
@@ -129,6 +132,22 @@ SoundFile::SoundFile()
 {
 
 }
+
+SoundFile::SoundFile( const SoundFile& obj )
+  :m_IsPlay(false)
+  ,m_IsLoopPlay(false)
+  ,m_Volume(1)
+  ,m_Position(0)
+{
+  if( !obj.m_Cache.IsEmpty() )
+  {
+    Destroy();
+    m_Cache.Start( obj.m_Cache.GetInput() );
+
+    LoadCheck();
+  }
+}
+
 
 SoundFile::~SoundFile()
 {
@@ -223,6 +242,7 @@ bool SoundFile::IsEmpty() const
 }
 
 
+
 void SoundFile::LoadCheck()
 {
   if( IsEmpty() ) { return ; }
@@ -231,24 +251,31 @@ void SoundFile::LoadCheck()
   //  処理が終わるまでは忙しい
   if( m_Cache.IsExecuting() ) { return ; }
 
-  const KEEPOUT::SoundFileOutput& out = m_Cache.GetOutput();
+  {
+    //  メッセージの使いまわしは厳禁なので、コピーして使う
+    //  そもそも SoundCore側でやる処理なので、ここに書いてあるのはおかしい
+    const KEEPOUT::SoundFileOutput& out = m_Cache.GetOutput();
 
-  if( m_Cache.IsUnique() )
-  { //  最初の一個目はそのまま
     SoundCore* pCore = GlobalPointer<SoundCore>::Get();
-    m_pInfo = out.pInfo;
-
-    pCore->PostMessage(m_pInfo, out.pMessage );
-
-  }else
-  { //  ２個目以降はコピーする
-    SoundCore* pCore = GlobalPointer<SoundCore>::Get();
-
     m_pInfo = pCore->CreateObjectInfo();
 
-    boost::shared_ptr<SoundMessage::CreateClone> pMess( new SoundMessage::CreateClone );
-    pMess->pSrc = out.pInfo;
-    pCore->PostMessage(m_pInfo, pMess );
+    SPSOUNDMESSAGE pMessage;
+    switch( out.pMessage->Message )
+    {
+    case SoundMessage::Base::CREATE_PCMSTATIC:
+      {
+        const SoundMessage::CreatePCMStatic& m = static_cast<const SoundMessage::CreatePCMStatic&>(*(out.pMessage));
+        pMessage.reset( new SoundMessage::CreatePCMStatic(m) );
+      }break;
+
+    case SoundMessage::Base::CREATE_PCMSTREAM:
+      {
+        const SoundMessage::CreatePCMStream& m = static_cast<const SoundMessage::CreatePCMStream&>(*(out.pMessage));
+        pMessage.reset( new SoundMessage::CreatePCMStream(m) );
+      }break;
+    }
+
+    pCore->PostMessage(m_pInfo, pMessage );
   }
 
   //  最初は０秒、ボリューム１倍にしておく
@@ -380,6 +407,20 @@ String SoundFile::GetFileName() const
   const KEEPOUT::SoundFileInput& in = m_Cache.GetInput();
 
   return in.FileName;
+}
+
+
+SoundFile& SoundFile::operator=(const SoundFile &obj)
+{
+  if( !obj.m_Cache.IsEmpty() )
+  {
+    Destroy();
+    m_Cache.Start( obj.m_Cache.GetInput() );
+
+    LoadCheck();
+  }
+
+  return *this;
 }
 
 }

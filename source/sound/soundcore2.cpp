@@ -154,7 +154,6 @@ void SoundCore::ExecuteMessage( const SoundMessage::Base& Mess )
       boost::shared_ptr<SoundObjectPCMStatic> pObj( new SoundObjectPCMStatic );
       pObj->Initialize( pBuffer, m.pData );
       RegisterObject( m.pInfo, pObj );
-    
     }break;
 
   case SoundMessage::Base::CREATE_PCMSTREAM:
@@ -180,7 +179,6 @@ void SoundCore::ExecuteMessage( const SoundMessage::Base& Mess )
       boost::shared_ptr<SoundObjectPCMRealTime> pObj( new SoundObjectPCMRealTime );
       pObj->Initialize( pBuffer, m.pData );
       RegisterObject( m.pInfo, pObj );
-
     }break;
 
 
@@ -218,7 +216,6 @@ void SoundCore::ExecuteMessage( const SoundMessage::Base& Mess )
             }
 
             pDec->Initialize();
-
             pCustom->Initialize( pDec, p->GetCustomPCMReader()->GetJumpList() );
           }
 

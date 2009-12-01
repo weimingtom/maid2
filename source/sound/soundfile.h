@@ -68,6 +68,7 @@ namespace Maid {
 	{
 	public:
 		SoundFile();
+		SoundFile( const SoundFile& obj );
 		virtual ~SoundFile();
 
     void LoadFile( const String& filename );
@@ -92,7 +93,7 @@ namespace Maid {
     bool IsEmpty() const;
 
     String GetFileName() const;
-
+    SoundFile& operator=(const SoundFile &obj);
   private:
     void LoadCheck();
 
