@@ -37,7 +37,7 @@ namespace Maid
 
     void  Inc();
     void  Dec();
-    void  ResetStep() { Reset(0); }
+    void  ResetStep() { ResetStep(0); }
     void  ResetStep( int NewStep ) { m_NowStep = std::min(m_Step,NewStep); }
 
     TYPE  Get()	  const;
