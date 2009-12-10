@@ -126,6 +126,7 @@ IGUITextBox::MESSAGERETURN IGUITextBox::MessageExecuting( SPGUIPARAM& pParam )
   {
   case IGUIParam::MESSAGE_KEYBORDDOWN:
     {
+      if( !IsEnable() ) { break; }
       const GUIMESSAGE_KEYBORDDOWN& m = static_cast<const GUIMESSAGE_KEYBORDDOWN&>(*pParam);
       const int oldpos = m_CursorPos;
 
