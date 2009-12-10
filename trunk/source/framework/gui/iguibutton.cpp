@@ -70,6 +70,7 @@ IGUIButton::MESSAGERETURN IGUIButton::MessageExecuting( SPGUIPARAM& Param )
 
   case IGUIParam::MESSAGE_KEYBORDDOWN:
     {
+      if( !IsEnable() ) { break; }
       const GUIMESSAGE_KEYBORDDOWN& m = static_cast<const GUIMESSAGE_KEYBORDDOWN&>(*Param);
 
       if( m.Key==Keybord::BUTTON_ENTER )
