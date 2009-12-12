@@ -1,7 +1,7 @@
 ﻿#include"jpeg.h"
 
 
-#ifdef USE_INTELIPP
+#ifndef USE_INTELIPP
   extern "C" {
   #define XMD_H
   #include"../../import/ijg_ipp/jpeglib.h"

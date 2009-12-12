@@ -59,6 +59,7 @@ namespace Maid
 		Window::CALLBACKCODE wmSysKeyDown( WindowsMessage& msg ); 
 		Window::CALLBACKCODE wmPaint( WindowsMessage& msg ); 
 		Window::CALLBACKCODE wmDisplayChange( WindowsMessage& msg ); 
+		Window::CALLBACKCODE wmImeSetContext( WindowsMessage& msg ); 
 
     Window::CALLBACKCODE ExecMessage( const OSMessage::Base& mess );
 

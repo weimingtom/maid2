@@ -62,6 +62,7 @@ void GameFrameWork::LocalInitialize(const INITIALIZEPARAM& Conf)
 		win.RegistCallBack( WM_PAINT,           MakeCallBackObject( &GameFrameWork::wmPaint, this) );
 		win.RegistCallBack( WM_CLOSE,           MakeCallBackObject( &GameFrameWork::wmClose, this) );
 		win.RegistCallBack( WM_DISPLAYCHANGE,   MakeCallBackObject( &GameFrameWork::wmDisplayChange, this) );
+		win.RegistCallBack( WM_IME_SETCONTEXT,  MakeCallBackObject( &GameFrameWork::wmImeSetContext, this) );
 
     const DWORD style = WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_DLGFRAME | WS_CAPTION;
 //    const DWORD style = WS_OVERLAPPEDWINDOW;
@@ -77,6 +78,7 @@ void GameFrameWork::LocalInitialize(const INITIALIZEPARAM& Conf)
 			}
 		}
 
+    MAID_WARNING( "Show" );
 		win.Show();
 
 		::SetForegroundWindow( win.GetHWND() );

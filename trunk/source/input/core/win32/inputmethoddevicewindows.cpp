@@ -158,26 +158,6 @@ int InputMethodDeviceWindows::GetCursorPos() const
   DWORD count = ::ImmGetCompositionString(hImc.Get(),GCS_CURSORPOS,NULL,0);
 
   return count;
-/*
-  // ↑の戻り値はバイト数で戻ってくるので
-  // 文字数に変換する
-
-  const String str = GetCompString();
-  if( str.empty() ) { return 0; }
-
-  int index = 0;
-
-  while( true )
-  {
-    if( count==0 ) { break; }
-
-    if( str[index]<=0xFF )	{ count -= 1; }
-    else					{ count -= 2; }
-
-    ++index;
-  }
-  return index;
-*/
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
@@ -280,44 +260,32 @@ InputMethodDeviceWindows::RETURNCODE InputMethodDeviceWindows::OnMessage( Window
 {
 	switch( Param.GetMSG() )
 	{
+/*
+  //  このメッセージは このクラスをAddProc()する前に飛んでくるので
+  //  ここで捕まえることができない。
+  //  GameFrameWork::LocalInitialize で設定してしまう
 	case WM_IME_SETCONTEXT:
 		{
 			Param.SetLPARAM( Param.GetLPARAM()&~ISC_SHOWUIALL );
 		}break;
-
-	case WM_IME_COMPOSITION:
-		{
-      if( Param.GetLPARAM()&GCS_RESULTSTR )
-			{
-        return RETURNCODE_DEFAULT;
-/*
-				IMCHandle hImc(m_Window);
-				const LONG lByte = ::ImmGetCompositionString(hImc.Get(),GCS_RESULTSTR,NULL,0);
-				if( lByte==0 ) { break; }
-
-				std::wstring	str;
-				str.resize(lByte);
-
-				::ImmGetCompositionString( hImc.Get(), GCS_RESULTSTR, &str[0], lByte);
-
-        m_EnterString += String::ConvertUNICODEtoMAID(str);
 */
-			}
-			return RETURNCODE_RETURN;
-		}
-		break;
+  case WM_IME_COMPOSITION:{	/*つかわないかな*/}	break;
 
 	case WM_IME_STARTCOMPOSITION: { return RETURNCODE_RETURN;}break;
-	case WM_IME_ENDCOMPOSITION:   { return RETURNCODE_RETURN;}break;
+//	case WM_IME_ENDCOMPOSITION:   { return RETURNCODE_RETURN;}break;
 
 	case WM_IME_NOTIFY:
 		{
 			switch(Param.GetWPARAM())
 			{
 			case IMN_OPENSTATUSWINDOW:
-			case IMN_CLOSESTATUSWINDOW:
 				{
 					return RETURNCODE_RETURN;
+				}break;
+
+			case IMN_CLOSESTATUSWINDOW:
+				{
+					
 				}break;
 
 			case IMN_OPENCANDIDATE:

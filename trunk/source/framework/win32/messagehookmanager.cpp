@@ -1,5 +1,6 @@
 ﻿#include"messagehookmanager.h"
 #include"../../auxiliary/debug/assert.h"
+#include"../../auxiliary/debug/warning.h"
 
 
 namespace Maid
