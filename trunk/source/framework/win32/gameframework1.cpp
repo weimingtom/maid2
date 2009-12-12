@@ -78,7 +78,6 @@ void GameFrameWork::LocalInitialize(const INITIALIZEPARAM& Conf)
 			}
 		}
 
-    MAID_WARNING( "Show" );
 		win.Show();
 
 		::SetForegroundWindow( win.GetHWND() );
