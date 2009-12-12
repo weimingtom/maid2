@@ -203,4 +203,14 @@ Window::CALLBACKCODE	GameFrameWork::wmDisplayChange( WindowsMessage& msg )
 	return Window::CALLBACKCODE_DEFAULT;
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! WM_IME_SETCONTEXT がきたときの処理
+/*!
+ *	\param	Param	[i ]	メッセージ内容
+ */
+Window::CALLBACKCODE	GameFrameWork::wmImeSetContext( WindowsMessage& msg )
+{
+	msg.SetLPARAM( msg.GetLPARAM()&~ISC_SHOWUIALL );
+	return Window::CALLBACKCODE_DEFAULT;
+}
 }

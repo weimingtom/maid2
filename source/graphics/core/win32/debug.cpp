@@ -14,6 +14,8 @@ static std::string _sprintf( const char* format, ...)
 }
 
 
+
+
 std::string DebugStringDXGI( DXGI_FORMAT fmt )
 {
   std::string ret;
@@ -153,3 +155,4 @@ std::string DebugStringDXGI( const DXGI_SWAP_CHAIN_DESC& desc )
 
   return std::string();
 }
+
