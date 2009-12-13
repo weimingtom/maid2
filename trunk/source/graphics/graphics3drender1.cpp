@@ -23,92 +23,18 @@ Graphics3DRender::~Graphics3DRender()
 }
 
 
-//  MQO に座標だけが入っているシェーダ
-static const char* pCode0100 = 
-"\n cbuffer cbPerObject"
-"\n {"
-"\n   matrix mWVP	  : packoffset( c0 );"
-"\n   float4 Color	: packoffset( c4 );"
-"\n };"
-"\n"
-"\n struct VS_INPUT"
-"\n {"
-"\n   float4 Position    : POSITION;"    //頂点座標
-"\n };"
-"\n"
-"\n struct VS_OUTPUT"
-"\n {"
-"\n   float4 Position    : SV_Position; "   //頂点座標
-"\n   float4 Diffuse     : COLOR0;  "    //デフューズ色
-"\n };"
-"\n"
-"\n VS_OUTPUT main(VS_INPUT Input)"
-"\n {"
-"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n   Out.Position = mul( Input.Position, mWVP );"
-"\n   Out.Diffuse = Color;"
-"\n"
-"\n   return Out;"
-"\n }"
-;
-
-//  MQO に座標と色が入っている場合のシェーダ
-static const char* pCode0200 = 
-"\n cbuffer cbPerObject"
-"\n {"
-"\n   matrix mWVP	: packoffset( c0 );"
-"\n };"
-"\n"
-"\n struct VS_INPUT"
-"\n {"
-"\n   float4 Position    : POSITION;"    //頂点座標
-"\n   float4 Diffuse     : COLOR0; "     //デフューズ色
-"\n };"
-"\n"
-"\n struct VS_OUTPUT"
-"\n {"
-"\n   float4 Position    : SV_Position; "   //頂点座標
-"\n   float4 Diffuse     : COLOR0;  "    //デフューズ色
-"\n };"
-"\n"
-"\n VS_OUTPUT main(VS_INPUT Input)"
-"\n {"
-"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n   Out.Position = mul( Input.Position, mWVP );"
-"\n   Out.Diffuse = Input.Diffuse;"
-"\n"
-"\n   return Out;"
-"\n }"
-;
-
-
 
 
 void Graphics3DRender::Initialize()
 {
   m_State = STATE_LOADING;
 
+  MQOShaderCreate();
+
 
   {
-    m_MQOVertexShader.Create( MAIDTEXT(pCode0100) );
-  }
-
-  {
-    Graphics::INPUT_ELEMENT element[] =
-    {
-      {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-      {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-    };
-
-    m_MQOLayout.Create( element, NUMELEMENTS(element), MAIDTEXT(pCode0100) );
-  }
-
-  {
-    m_MQOPixelShader.Create( MAIDTEXT("0200") );
-  }
-
-  {
-    m_ShaderConstant.Create( sizeof(CONSTANT0100) );
+    //  256 byteもあれば十分でしょう
+    m_ShaderConstant.Create( 4*64 );
   }
 
   {
@@ -171,9 +97,6 @@ void Graphics3DRender::Initialize()
     m_SamplerPoint.Create( state );
   }
 
-  {
-    m_ShaderConstant.Create( sizeof(CONSTANTSPRITE) );
-  }
   {
     //  1頂点あたり128バイトも使わないでしょう
     m_SpriteVertex.Create( 128*4 );
@@ -304,9 +227,7 @@ bool Graphics3DRender::IsInitializing() const
 
 bool Graphics3DRender::IsMemberLoading() const
 {
-  return  m_MQOLayout.IsCompiling()
-    ||    m_MQOVertexShader.IsCompiling()
-    ||    m_MQOPixelShader.IsCompiling()
+  return  MQOShaderIsLoading()
 
     ||    m_SpriteFillLayout.IsCompiling()
     ||    m_SpriteFillVertexShader.IsCompiling()

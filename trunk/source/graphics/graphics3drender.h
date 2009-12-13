@@ -105,6 +105,13 @@ namespace Maid
 
 	  void SetupSpriteState();
 
+    void MQOShaderCreate();
+    bool MQOShaderIsLoading()const;
+    void MQOShaderSetup( const MATRIX4DF& wvp, const MQOMATERIAL& mat );
+
+
+
+
   protected:
     enum STATE
     {
