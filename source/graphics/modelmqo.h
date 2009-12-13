@@ -34,7 +34,6 @@ namespace Maid
   	float Emissive;
     float Power;
     Texture2D Texture;
-    Texture2D Alpha;
     Texture2D Bump;
   };
 
@@ -47,7 +46,6 @@ namespace Maid
     float RotatePitch;  //  X軸回転
     float RotateBank;   //  Z軸回転
     VECTOR3DF Trans;
-    COLOR_R32G32B32A32F BaseColor; //  頂点カラーがないときのカラー
 
     Vertex Point;
     Vertex Normal;

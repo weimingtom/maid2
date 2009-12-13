@@ -100,18 +100,26 @@ namespace Maid
 
       
       //  ファイル名がフルパスで入ってしまっているので、mqoと同じディレクトリにあることを保障してもらう
-      dst.Texture.LoadFile( String::GetFileName(src.Texture) );
-      dst.Alpha.LoadFile( String::GetFileName(src.Alpha) );
-      dst.Bump.LoadFile( String::GetFileName(src.Bump) );
-
-      while( true )
-      { //  読み込みが終わるまで待機
-    #pragma COMPILERMSG("TODO:この後にやっている法線の計算も結構重いはずなので、最後にチェックするほうがパフォーマンス出るかもしれない")	
-        if(  !dst.Texture.IsLoading()
-          && !dst.Alpha.IsLoading()
-          && !dst.Bump.IsLoading()  ) { break; }
-        ThreadController::Sleep(1);
+      if( !src.Texture.empty() )
+      {
+        dst.Texture.LoadFile( String::GetFileName(src.Texture) );
+        while( true )
+        {
+          if(  !dst.Texture.IsLoading() ) { break; }
+          ThreadController::Sleep(1);
+        }
       }
+
+      if( !src.Bump.empty() )
+      {
+        dst.Bump.LoadFile( String::GetFileName(src.Bump) );
+        while( true )
+        {
+          if(  !dst.Bump.IsLoading() ) { break; }
+          ThreadController::Sleep(1);
+        } 
+      }
+      #pragma COMPILERMSG("TODO:この後にやっている法線の計算も結構重いはずなので、最後にチェックするほうがパフォーマンス出るかもしれない")	
     }
 
     void MQOFunction::CreateObject( const Metasequoia::DATA::OBJECT& src, MQOOBJECT& dst )
@@ -204,7 +212,6 @@ namespace Maid
       dst.RotatePitch = src.RotatePitch;
       dst.RotateBank = src.RotateBank;
       dst.Trans = src.Trans;
-      dst.BaseColor = src.Color;
     }
 
     void MQOFunction::CreateNormal( const Metasequoia::DATA::OBJECT& src, std::vector<VECTOR3DF>& normal )
