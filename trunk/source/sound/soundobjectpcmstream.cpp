@@ -22,6 +22,7 @@ void SoundObjectPCMStream::Initialize( const Sound::SPBUFFER& pBuffer, const SPC
   m_NowPlayPosition = 0;
   m_PrevBufferPosition = 0;
   m_WrittedBufferPosition = 0;
+  m_DecodedSize = 0;
 
   UpdateBuffer();
 }
@@ -49,13 +50,19 @@ void SoundObjectPCMStream::Update()
     }
   }
   else
-  { //  そうでないならバッファの更新なんだけど、ある程度まとめてやる
-    const size_t sa    = decoderpos - m_NowPlayPosition;
-    const size_t space = CalcUpdateScape();
-    if( sa < space )
+  { //  そうでないならバッファの更新
+    if( m_NowPlayPosition <= decoderpos )
     {
-      if( decoderlen <= decoderpos ) { return; }
-      UpdateBuffer(); 
+      //なんだけど、ある程度まとめてやる
+      const size_t sa    = m_DecodedSize - m_NowPlayPosition;
+      const size_t space = CalcUpdateScape();
+      if( sa < space )
+      {
+        UpdateBuffer(); 
+      }
+    }else
+    {
+      //  デコードした位置より先を再生していたらもう知らない
     }
   }
 }
@@ -79,6 +86,7 @@ void SoundObjectPCMStream::SetPosition( double time )
   const size_t writeok = m_pBuffer->GetWritePosition();
 
   m_pDecoder->SetPosition( pos );
+  m_DecodedSize = pos;
   m_WrittedBufferPosition = writeok;
   UpdateBuffer(); 
   m_pBuffer->SetPosition( writeok );
@@ -181,6 +189,7 @@ void SoundObjectPCMStream::UpdateBuffer()
     m_pBuffer->Unlock( dat );
   }
 
+  m_DecodedSize += DecodeLen;
   m_WrittedBufferPosition += DecodeLen;
   m_WrittedBufferPosition %= m_pBuffer->GetParam().Length;
 }

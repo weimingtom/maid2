@@ -45,6 +45,7 @@ namespace Maid {
     size_t  m_NowPlayPosition;    //  再生位置
     size_t  m_PrevBufferPosition; //  前回の Update() 時にあった 再生位置
     size_t  m_WrittedBufferPosition;
+    size_t  m_DecodedSize;  //  今現在デコードしてある長さ m_pDecoder->GetLength() を超えることができる
   };
 }
 
