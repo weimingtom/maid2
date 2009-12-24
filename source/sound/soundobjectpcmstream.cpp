@@ -41,6 +41,7 @@ void SoundObjectPCMStream::Update()
     if( m_IsLoopPlay )
     {
       m_NowPlayPosition -= decoderlen;
+      m_DecodedSize     -= decoderlen;
     }else
     {
       if( m_pBuffer->IsPlay() ) 
