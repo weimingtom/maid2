@@ -51,7 +51,7 @@ void DeviceD3D11::CreateDefaultPixelShader( int no, std::vector<unt08>& Binary )
     std::string text = (char*)pErrorMsgs->GetBufferPointer();
 
     pErrorMsgs->Release();
-    MAID_ASSERT( true, "エラーが起こるのはおかしい" << text << str );
+    MAID_ASSERT( true, "PixelShaderのコンパイルに失敗" << text << str );
     return ;
   }
   const int len = pShader->GetBufferSize();

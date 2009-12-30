@@ -65,6 +65,8 @@ namespace Maid
       OSMESSAGESTATE_DEFAULT,  //!<	デフォルトの動作を呼び出す
     };
 
+    void SetDrawSkipState( bool on );
+
   protected:
     bool BootCheck();
 		void Initialize();
@@ -88,6 +90,7 @@ namespace Maid
 
     OSMESSAGESTATE OnOSMessage( const OSMessage::Base& Message );
 
+
 	private:
     IGameThread::DEFAULTCONFIG m_DefaultConfig;
 
@@ -100,6 +103,7 @@ namespace Maid
     TextInput     m_TextInput;
 
     FPSTimer      m_Timer;
+    bool          m_DrawSkipping; //  自動描画処理をするかどうか？ true:とめる false:実行する
 
 		SPGAMETHREAD	m_pGame;
   };

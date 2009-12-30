@@ -41,30 +41,12 @@ void DeviceD3D11::CreateDefaultVertexShader( int no, std::vector<unt08>& Binary 
 
   if( FAILED(ret) ) 
   {
-    std::string str = (char*)pErrorMsgs->GetBufferPointer();
+    std::string text = (char*)pErrorMsgs->GetBufferPointer();
 
     pErrorMsgs->Release();
-    MAID_ASSERT( true, "エラーが起こるのはおかしい " << str );
+    MAID_ASSERT( true, "VertexShaderのコンパイルに失敗" << text << str );
     return ;
   }
-/*
-  {
-    ID3D11Blob* pDst=NULL;
-
-    D3DXDisassembleShader(
-      pShader->GetBufferPointer(),
-      pShader->GetBufferSize(),
-      FALSE,
-      NULL,
-      &pDst );
-
-    std::string text = (char*)pDst->GetBufferPointer();
-    pDst->Release();
-
-    MAID_WARNING( text );
-
-  }
-*/
 
   const int len = pShader->GetBufferSize();
 
