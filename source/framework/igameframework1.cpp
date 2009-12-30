@@ -5,6 +5,7 @@ namespace Maid
 
 IGameFrameWork::IGameFrameWork( const SPGAMETHREAD& pGame )
   :m_pGame(pGame)
+  ,m_DrawSkipping(false)
 {
 
 }
@@ -161,8 +162,11 @@ void IGameFrameWork::OnLoop()
 
   if( !m_Timer.IsTimerOver() )
   { //  予定時間を過ぎていなかったら描画する
-    m_pGame->UpdateDraw();
-    m_Graphics.Present();
+    if( !m_DrawSkipping )
+    {
+      m_pGame->UpdateDraw();
+      m_Graphics.Present();
+    }
   }
 
   m_Timer.Sleep();
@@ -195,6 +199,12 @@ IGameFrameWork::OSMESSAGESTATE IGameFrameWork::OnOSMessage( const OSMessage::Bas
 
   return OSMESSAGESTATE_DEFAULT;
 }
+
+void IGameFrameWork::SetDrawSkipState( bool on )
+{
+  m_DrawSkipping = on;  
+}
+
 
 }
 

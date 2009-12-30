@@ -156,16 +156,22 @@ void Font::Rasterize( unt32 code, SurfaceInstance& Dst )const
     }
   }
 
+  SIZE2DI dst_size = m_FontSize;
+  if( !String::IsHankaku(code) ) { dst_size.w = m_FontSize.w*2; }
+
   if( m_IsAntiAlias )
   {
-    const SIZE2DI size(pMem->GetSize().w/s_SCALE,pMem->GetSize().h/s_SCALE);
+    SIZE2DI mem_size = pMem->GetSize();
+    const bool mini = dst_size.w < mem_size.w && dst_size.h < mem_size.h;
 
-    Dst.Create( size, pMem->GetPixelFormat() );
-    Transiter::Average( *pMem, Dst );
+    Dst.Create( dst_size, pMem->GetPixelFormat() );
+
+    if( mini ) { Transiter::Average( *pMem, Dst ); }
+    else { Transiter::Bilinear( *pMem, Dst ); }
   }else
   {
-    Dst.Create( pMem->GetSize(), pMem->GetPixelFormat() );
-    Transiter::Copy( *pMem, Dst );
+    Dst.Create( dst_size, pMem->GetPixelFormat() );
+    Transiter::Bilinear( *pMem, Dst );
   }
 }
 

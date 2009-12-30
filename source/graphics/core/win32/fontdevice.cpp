@@ -22,7 +22,7 @@ static int CALLBACK EnumFontFamExProc(
   if( lpelfe->lfFaceName[0]=='@' ) { return TRUE; }
 
   //  固定ピッチのみ
-	if( IsFlag(lpntme->tmPitchAndFamily,TMPF_FIXED_PITCH) ) { return TRUE; } 
+//	if( IsFlag(lpntme->tmPitchAndFamily,TMPF_FIXED_PITCH) ) { return TRUE; } 
 
   IFontDevice::FONTINFO info;
   info.Name = String::ConvertUNICODEtoMAID(lpelfe->lfFaceName);
@@ -106,6 +106,100 @@ String FontDevice::GetDefaultFontName()const
 void FontDevice::Rasterize( const SPFONT& pFont, unt32 FontCode, const COLOR_R32G32B32A32F& Color, SurfaceInstance& Dst )
 {
   //  HBITMAP にテキストを打って、それの色からフォントを作成する
+  // GetGlyphOutline を使う方法でもいいかもしれないけど
+  // たまに矩形より大きいデータがかえってくることあるんだよね・・・
+
+  const HDC hDC = ::CreateCompatibleDC(NULL);
+  if( hDC==NULL ) { MAID_WARNING( MAIDTEXT("hDC==NULL") ); return ; }
+
+  const HFONT   hFont = static_cast<FontWindows*>(pFont.get())->GetHFONT();
+  const HFONT   hOldFont   = (HFONT)::SelectObject( hDC, hFont );
+
+  SIZE2DI FontSize = pFont->GetSize();
+
+  {
+    const unt32 uni_code = String::ConvertCharaMAIDtoUNICODE( FontCode );
+
+    ABC abc;
+    int point;
+    if( GetCharABCWidths( hDC, uni_code, uni_code, &abc )!=FALSE )
+    {
+      FontSize.w = abc.abcA + abc.abcB + abc.abcC;
+    }
+    else if( GetCharWidth32( hDC, uni_code, uni_code, &point )!=FALSE )
+    {
+      FontSize.w = point;
+    }
+  }
+
+  HBITMAP hBitmap = NULL;
+  void*   pPlane  = NULL;
+  const int bpp = 32;
+  const int pitch = (FontSize.w*bpp/8+3)&~3;
+  const int dib_w = pitch / (bpp/8);
+
+  {
+	  BITMAPINFOHEADER dib;
+
+	  ZERO( &dib, sizeof(dib) );
+	  dib.biSize = sizeof(dib);
+	  dib.biWidth = dib_w;
+	  dib.biHeight = -(int)FontSize.h;
+	  dib.biPlanes = 1;
+	  dib.biBitCount = bpp;
+
+	  hBitmap = CreateDIBSection( hDC, (BITMAPINFO *)&dib, DIB_RGB_COLORS, (void **)&pPlane, NULL, 0 );
+	  if( hBitmap==NULL ) { MAID_WARNING( MAIDTEXT("DIB確保に失敗") );  return ; }
+
+    //  とりあえず真っ黒にしておく
+    unt08* p = (unt08*)pPlane;
+    for( int i=0; i<FontSize.h; ++i ) 
+    {
+      ::memset( p, 0, pitch );
+      p += pitch;
+    }
+  }
+
+  {
+	  const HBITMAP hOldBitmap = (HBITMAP)::SelectObject( hDC, hBitmap );
+	  //	↓の設定をすることで、ドットの打たれたピクセルが 0x00000001 になる
+	  ::SetTextColor( hDC, 0x00010000 );
+	  ::SetBkColor  ( hDC, RGB(0,0,0) );
+	  ::SetBkMode   ( hDC, OPAQUE);
+
+	  {
+      String tmp;
+      tmp += FontCode;
+		  const std::wstring str = String::ConvertMAIDtoUNICODE( tmp );
+		  ::TextOut( hDC, 0, 0, str.c_str(), (int)str.length() );
+	  }
+	  ::SelectObject( hDC, hOldBitmap );
+  }
+
+  //  0x00000001 になっているピクセルが打たれたピクセルなので
+  //  それを見つけたら 白くする
+  Dst.Create( FontSize, PIXELFORMAT_A08R08G08B08I );
+  Transiter::Fill( COLOR_R32G32B32A32F(1,1,1,0), Dst );
+
+  for( int y=0; y<FontSize.h; ++y )
+  {
+    const unt32* pLine = (unt32*)(((unt08*)pPlane) + pitch*y);
+
+    for( int x=0; x<FontSize.w; ++x )
+    {
+      const unt32 col = pLine[x];
+
+      if( col!=0 ) { Dst.SetPixel(POINT2DI(x,y),Color); }
+    }
+  }
+
+  ::DeleteObject( hBitmap );
+  ::SelectObject( hDC, hOldFont );
+  ::DeleteDC( hDC );
+
+
+/*
+  //  HBITMAP にテキストを打って、それの色からフォントを作成する
 
   // GetGlyphOutline を使う方法でもいいかもしれないけど
   // たまに矩形より大きいデータがかえってくることあるんだよね・・・
@@ -160,6 +254,17 @@ void FontDevice::Rasterize( const SPFONT& pFont, unt32 FontCode, const COLOR_R32
       String tmp;
       tmp += FontCode;
 		  const std::wstring str = String::ConvertMAIDtoUNICODE( tmp );
+	    const unt32 uni_code = String::ConvertCharaMAIDtoUNICODE( FontCode );
+
+      ABC abc;
+      int point;
+      if( GetCharABCWidths( hDC, uni_code, uni_code, &abc )==FALSE )
+      {
+        if( GetCharWidth32( hDC, uni_code, uni_code, &point )==FALSE )
+        {
+        }
+      }
+
 
 		  ::TextOut( hDC, 0, 0, str.c_str(), (int)str.length() );
 	  }
@@ -186,6 +291,7 @@ void FontDevice::Rasterize( const SPFONT& pFont, unt32 FontCode, const COLOR_R32
   }
 
   ::DeleteObject( hBitmap );
+*/
 }
 
 
