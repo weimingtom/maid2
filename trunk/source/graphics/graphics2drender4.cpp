@@ -54,10 +54,9 @@ void Graphics2DRender::BltText( const POINT2DI& Base, const Font& pFont, const S
       pos.y += pFont.GetSize().h;
       continue;
     }
-    else if( ch=='\t' ) { }  //  タブは除外(座標を増やすだけなので、そうしてもいいかも)
-    else if( ch=='\r' ) { }
+    else if( ch=='\t' ) { continue; }  //  タブは除外(座標を増やすだけなので、そうしてもいいかも)
+    else if( ch=='\r' ) { continue; }
 
-//    const FontTexture& tex = m_FontManager.GetTexture( pFont, ch );
     const Texture2DBase& tex = GetFont( pFont, ch );
 
 
