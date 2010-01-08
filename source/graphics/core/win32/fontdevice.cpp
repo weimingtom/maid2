@@ -149,7 +149,7 @@ void FontDevice::Rasterize( const SPFONT& pFont, unt32 FontCode, const COLOR_R32
 	  dib.biBitCount = bpp;
 
 	  hBitmap = CreateDIBSection( hDC, (BITMAPINFO *)&dib, DIB_RGB_COLORS, (void **)&pPlane, NULL, 0 );
-	  if( hBitmap==NULL ) { MAID_WARNING( MAIDTEXT("DIB確保に失敗") );  return ; }
+    if( hBitmap==NULL ) { MAID_WARNING( MAIDTEXT("DIB確保に失敗") << " Code:" << FontCode << " w:" << FontSize.w << " h:" << FontSize.h );  return ; }
 
     //  とりあえず真っ黒にしておく
     unt08* p = (unt08*)pPlane;
