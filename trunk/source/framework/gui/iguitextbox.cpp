@@ -1,5 +1,6 @@
 ﻿#include"iguitextbox.h"
 #include"../../input/keybord.h"
+#include"../../auxiliary/debug/warning.h"
 
 namespace Maid
 {
@@ -124,6 +125,11 @@ IGUITextBox::MESSAGERETURN IGUITextBox::MessageExecuting( SPGUIPARAM& pParam )
 {
   switch( pParam->Message )
   {
+  case IGUIParam::MESSAGE_SETKEYBORDFOCUS:
+    {
+      m_CursorPos = std::min(m_CursorPos,(int)m_InputText.length());
+    }break;
+
   case IGUIParam::MESSAGE_KEYBORDDOWN:
     {
       if( !IsEnable() ) { break; }
@@ -143,6 +149,14 @@ IGUITextBox::MESSAGERETURN IGUITextBox::MessageExecuting( SPGUIPARAM& pParam )
           ++m_CursorPos;
           if( (int)m_InputText.length()<=m_CursorPos ) { m_CursorPos=m_InputText.length(); }
         }break;
+      case Keybord::BUTTON_DELETE:
+        {
+          if( m_CursorPos<(int)m_InputText.length() )
+          {
+		        m_InputText.erase( m_CursorPos, 1 );
+          }
+        }break;
+
       }
       if( oldpos!=m_CursorPos ) { OnUpdateCursorPosition( m_CursorPos ); }
 
