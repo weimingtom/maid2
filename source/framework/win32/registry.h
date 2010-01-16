@@ -24,6 +24,7 @@ namespace Maid
     ~Registry();
 
     FUNCTIONRESULT Open( HKEY hKey, const String& SubKey );
+    FUNCTIONRESULT OpenRead( HKEY hKey, const String& SubKey );
     FUNCTIONRESULT Create( HKEY hKey, const String& SubKey );
     void Close();
 
