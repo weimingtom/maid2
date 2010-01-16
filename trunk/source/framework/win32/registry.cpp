@@ -47,13 +47,39 @@ FUNCTIONRESULT Registry::Open( HKEY hKey, const String& SubKey )
 
   const std::wstring unicode_sub = String::ConvertMAIDtoUNICODE(SubKey);
 
-  if( ::RegOpenKeyEx( hKey, unicode_sub.c_str(), 0, KEY_ALL_ACCESS, &m_hKey )!=ERROR_SUCCESS ) 
+  const LONG ret = ::RegOpenKeyEx( hKey, unicode_sub.c_str(), 0, KEY_ALL_ACCESS, &m_hKey );
+
+  if( ret!=ERROR_SUCCESS ) 
   {
     return FUNCTIONRESULT_ERROR;
   }
 
   return FUNCTIONRESULT_OK;
 }
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 読み込み専用で開く
+/*!	
+  @param  hKey    [i ]  大元のキー
+  @param  SubKey  [i ]  サブキーの名前
+
+  @exception Exception オープンに失敗した場合
+ */
+FUNCTIONRESULT Registry::OpenRead( HKEY hKey, const String& SubKey )
+{
+  Close();
+
+  const std::wstring unicode_sub = String::ConvertMAIDtoUNICODE(SubKey);
+  const LONG ret = ::RegOpenKeyEx( hKey, unicode_sub.c_str(), 0, KEY_READ, &m_hKey );
+
+  if( ret!=ERROR_SUCCESS ) 
+  {
+    return FUNCTIONRESULT_ERROR;
+  }
+
+  return FUNCTIONRESULT_OK;
+}
+
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! レジストリキーを作成、開く

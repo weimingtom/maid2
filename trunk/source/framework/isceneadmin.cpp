@@ -80,6 +80,12 @@ void ISceneAdmin::SetScene( const SPSCENE& pScene )
 */
 void ISceneAdmin::ResetScene( const SPSCENE& pScene )
 {
+  for( SCENESTACK::iterator ite=m_SceneStack.begin(); ite!=m_SceneStack.end(); ++ite )
+  {
+    const SPSCENE& pScene = *ite;
+    pScene->Finalize( SPSCENEOUTPUT() );
+  }
+
   m_SceneStack.clear();
   m_SceneStack.push_front( pScene );
   m_State = STATE_UPDATEFRAME;
