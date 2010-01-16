@@ -15,6 +15,8 @@ using namespace Maid;
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
 {
+  String::Initialize();
+
   const String UserAppData     = Shell::GetTemporaryFolder();
   const String path = UserAppData;
 

@@ -83,6 +83,7 @@ protected:
       }
     }
 
+
 		const DWORD ret = ::DialogBox( os.GetHINSTANCE(), MAKEINTRESOURCE(ID_DIALOG_INSTALLSTATE), NULL, InstallStateProc );
 
 	  OnExit(ret);

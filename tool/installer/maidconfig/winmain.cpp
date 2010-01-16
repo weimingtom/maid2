@@ -64,7 +64,6 @@ protected:
 	{
     const OSDevice& os = static_cast<OSDevice&>(GetOSDevice());
 		const String InstallConfigFileName = os.GetCmdLine(1);
-
     if( InstallConfigFileName.empty() )
     {
 		  ::MessageBox( NULL, L"設定ファイルが指定されていません", L"起動エラー", MB_OK );
