@@ -63,7 +63,12 @@ void SoundObjectPCMStream::Update()
       }
     }else
     {
-      //  デコードした位置より先を再生していたらもう知らない
+      //  デコードした位置より先を再生していたら、その時点から再開
+      const bool play = m_pBuffer->IsPlay();
+      const size_t pos = m_NowPlayPosition;
+      if( play ) { m_pBuffer->Stop(); }
+      SetPositionByte( pos );
+      if( play ) { m_pBuffer->Play(true); }
     }
   }
 }
@@ -82,8 +87,12 @@ void SoundObjectPCMStream::Stop()
 
 void SoundObjectPCMStream::SetPosition( double time )
 {
-  const Sound::CREATEBUFFERPARAM& param = m_pBuffer->GetParam();
-  const size_t pos = param.Format.CalcLength(time);
+  const size_t pos = m_pBuffer->GetParam().Format.CalcLength(time);
+  SetPositionByte( pos );
+}
+
+void SoundObjectPCMStream::SetPositionByte( size_t pos )
+{
   const size_t writeok = m_pBuffer->GetWritePosition();
 
   m_pDecoder->SetPosition( pos );
@@ -93,7 +102,9 @@ void SoundObjectPCMStream::SetPosition( double time )
   m_pBuffer->SetPosition( writeok );
   m_PrevBufferPosition = writeok;
   m_NowPlayPosition = pos;
+
 }
+
 
 void SoundObjectPCMStream::SetVolume( double volume )
 {
