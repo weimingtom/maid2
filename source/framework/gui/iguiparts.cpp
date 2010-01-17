@@ -573,6 +573,14 @@ IGUIParts::MESSAGERETURN IGUIParts::MessageExecuting( SPGUIPARAM& Param )
         (*ite)->SetEnable( p.IsEnable );
       }
 
+      //  非機能化のときに、マウスが入っていたら、出て行く
+      if( !p.IsEnable && IsMouseIn() )
+      {
+        GUIMESSAGE_MOUSEOUT out;
+        out.Position = POINT2DI(0,0);
+        PostMessage( out ); 
+      }
+
     }break;
 
   case IGUIParam::MESSAGE_VISIBLE:
