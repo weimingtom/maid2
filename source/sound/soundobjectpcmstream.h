@@ -35,6 +35,8 @@ namespace Maid {
     void UpdateBuffer();
     size_t CalcLength( size_t prev, size_t now )const;
     size_t CalcUpdateScape()const;
+    void SetPositionByte( size_t pos );
+
 
   private:
     Sound::SPBUFFER     m_pBuffer;
