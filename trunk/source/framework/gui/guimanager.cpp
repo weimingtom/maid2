@@ -359,6 +359,8 @@ void GUIManager::MakeMessageSETKEYBORDFOCUS( IGUIParts* pParts, GUIMessageQue& Q
     m.IsFocus = false;
     Que.PostMessage( m_pKeybordFocus, m );
   }
+
+  if( pParts!=NULL )
   {
     GUIMESSAGE_SETKEYBORDFOCUS m;
     m.IsFocus = true;
@@ -436,7 +438,6 @@ void GUIManager::UpdateTextMessage( const TextInput& text, GUIMessageQue& Que )
 
 void GUIManager::ReciveMessage( IGUIParts::ID src, const IGUIParam& Param )
 {
-  //
   if( m_pInterruptParts!=NULL )
   {
     if( src==m_pInterruptParts->GetID() && Param.Message==IGUIParam::MESSAGE_SETKEYBORDFOCUS )
@@ -452,7 +453,6 @@ void GUIManager::ReciveMessage( IGUIParts::ID src, const IGUIParam& Param )
   }
 
   m_ReceiveFunction( src, Param );
-
 }
 
 
