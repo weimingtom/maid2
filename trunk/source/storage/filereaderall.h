@@ -24,7 +24,7 @@ namespace Maid
     FileReaderAll();
     virtual ~FileReaderAll();
 
-    void Open( const String& filename );
+    void Open( const String& filename ); 
     void Close();
     bool    IsEmpty() const;
     bool    IsExecuting() const;
@@ -33,10 +33,12 @@ namespace Maid
     bool Sync();
 
     const MemoryBuffer& GetBuffer() const;
+    const String& GetFileName() const;
 
   private:
-    MemoryBuffer    m_Buffer;
+    SPMEMORYBUFFER  m_pBuffer;
     SPSTORAGEOBJECT m_pObject;
+    String          m_FileName;
   };
 }
 
