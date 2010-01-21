@@ -208,6 +208,12 @@ void GameSound::FadeOut( double time )
   m_IsFadeOuting = true;
 }
 
+void GameSound::SetPosition( double time )
+{
+  m_Sound.SetPosition( time );
+}
+
+
 //! 再生中か？
 /*!
     @return 再生中なら true

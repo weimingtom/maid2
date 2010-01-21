@@ -46,6 +46,7 @@ namespace Maid {
 
     void SetVolume( double volume, double time );
     void FadeOut( double time );
+    void SetPosition( double time );
 
     bool IsPlay() const;
 
