@@ -9,6 +9,9 @@ namespace Maid
 {
   using namespace StorageMessage;
 
+  //  このクラスはインスタンスがスレッドをまたぐと動作が不正になるので注意
+  //  m_pBuffer の共有が正常に動かないため
+  //  operator ==() 内でファイルを開き直せば問題なくなるかな？
 
   FileReaderAll::FileReaderAll()
   {
@@ -25,20 +28,27 @@ namespace Maid
     Close();
 
     Storage* pStorage = GlobalPointer<Storage>::Get();
-    m_pObject = pStorage->CreateFileReader();
+    SPSTORAGEOBJECT pObj = pStorage->CreateFileReader();
+    SPMEMORYBUFFER  pBuff( new MemoryBuffer );
 
     boost::shared_ptr<FileROpenRead> pMess( new FileROpenRead );
     pMess->FileName = filename;
-    pMess->pBuffer  = &m_Buffer;
-    pMess->pObject = m_pObject;
+    pMess->pBuffer  = pBuff;
+    pMess->pObject  = pObj;
     pStorage->SendMessage( pMess );
+
+    m_pBuffer  = pBuff;
+    m_pObject  = pObj;
+    m_FileName = filename;
   }
 
   void FileReaderAll::Close()
   {
-    //  一括読み込みが目的なので、Open() でファイルハンドルはクローズされます
+    //  一括読み込みが目的なので、Open() でファイルハンドルは自動的にクローズされます
     if( m_pObject.get()==NULL ) { return ; }
     m_pObject.reset();
+    m_pBuffer.reset();
+    m_FileName.clear();
   }
 
   bool    FileReaderAll::IsEmpty() const
@@ -70,7 +80,12 @@ namespace Maid
 
   const MemoryBuffer& FileReaderAll::GetBuffer() const
   {
-    return m_Buffer;
+    return *m_pBuffer;
+  }
+
+  const String& FileReaderAll::GetFileName() const
+  {
+    return m_FileName;
   }
 
   bool FileReaderAll::Sync()

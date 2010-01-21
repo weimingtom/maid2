@@ -33,7 +33,7 @@ namespace Maid
       FileROpenRead() : Base(FILE_R_OPENREAD){}
 
       String  FileName; //!<  作成するファイル名
-      MemoryBuffer* pBuffer;
+      SPMEMORYBUFFER pBuffer;
     };
 
     struct FileRSeek : public Base
