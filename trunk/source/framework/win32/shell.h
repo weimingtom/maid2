@@ -94,6 +94,7 @@ namespace Maid
 
     String BrowseForFolder( HWND hWnd, const String& Title, const String& DefaultFolder );
 
+		String ShowOpenDialog( HWND hWnd, const String& Title, const String& DefExt, const wchar_t* Filter, const String& DefaultFolder, const String& DefaultName );
 
 
     class FindObject

@@ -9,6 +9,7 @@
 #include<dxdiag.h>
 #include<io.h>
 #include<shellapi.h>
+#include<commdlg.h>
 
 #include<direct.h>
 #include<stdio.h>
@@ -648,6 +649,52 @@ String BrowseForFolder( HWND hWnd, const String& Title, const String& DefaultFol
 
 
 
+String ShowOpenDialog( HWND hWnd, const String& Title, const String& DefExt, const wchar_t* Filter, const String& DefaultFolder, const String& DefaultName )
+{
+	const std::wstring uni_tittle = String::ConvertMAIDtoUNICODE(Title);
+	const std::wstring uni_ext    = String::ConvertMAIDtoUNICODE(DefExt);
+	const std::wstring uni_name   = String::ConvertMAIDtoUNICODE(DefaultName);
+	const std::wstring uni_deffol   = String::ConvertMAIDtoUNICODE(DefaultFolder);
+
+  wchar_t FullPath[MAX_PATH] = {0};
+  wchar_t FileTitle[MAX_PATH] = {0};
+
+	::lstrcpy( FileTitle, uni_name.c_str() );
+
+  OPENFILENAME	ofn;
+	ZeroMemory( &ofn, sizeof(ofn) );
+	ofn.lStructSize = sizeof(ofn);	
+	ofn.nMaxFile		 = MAX_PATH;
+	ofn.nMaxFileTitle  = MAX_PATH;
+	ofn.hwndOwner			= hWnd;
+	ofn.lpstrFilter		= Filter;
+	ofn.nFilterIndex	= 1;				// フィルターの初期位置
+	ofn.lpstrFile			= FullPath;		// ファイル名用文字列バッファ
+	ofn.lpstrFileTitle= FileTitle;		// ファイルのタイトル用文字列バッファ
+	ofn.lpstrDefExt		= uni_ext.c_str();
+	ofn.lpstrInitialDir	= uni_deffol.c_str();
+	ofn.Flags				  = OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
+	ofn.lpstrTitle		= uni_tittle.c_str(); // タイトル
+
+  BOOL ret = 0;
+	{
+		const String dir = GetCurrentDirectory();
+		ret = ::GetOpenFileName( &ofn );
+		SetCurrentDirectory(dir);
+	}
+
+	if( ret==0 )
+	{
+		const DWORD d = ::CommDlgExtendedError();
+
+		//	GetSaveFileName() はエラーだけど、 CommDlgExtendedError() はエラーでない
+		//	== キャンセルが押された
+		if( d==0 ) { return String(); }
+	}
+	
+  return String::ConvertUNICODEtoMAID(FullPath);
+
+}
 
 
 
