@@ -14,7 +14,7 @@ namespace Maid {
   std::set<GameSound*> GameSound::s_ObjectList;
 
 GameSound::GameSound()
-  :m_LoopCount(0)
+  :m_PlayCount(0)
   ,m_IsPlaying(false)
   ,m_IsFadeOuting(false)
   ,m_PrevPosition(0)
@@ -27,7 +27,7 @@ GameSound::GameSound()
 
 GameSound::GameSound( const GameSound& rhs )
   :m_Sound(rhs.m_Sound)
-  ,m_LoopCount(rhs.m_LoopCount)
+  ,m_PlayCount(rhs.m_PlayCount)
   ,m_IsPlaying(rhs.m_IsPlaying)
   ,m_RealVolume(rhs.m_RealVolume)
   ,m_IsFadeOuting(rhs.m_IsFadeOuting)
@@ -77,7 +77,7 @@ void GameSound::Load( TYPE type, const String& filename, const SOUNDJUMPPOINTLIS
 void GameSound::Destroy()
 {
   m_IsPlaying = false;
-  m_LoopCount = 0;
+  m_PlayCount = 0;
   m_IsFadeOuting = false;
   m_Sound.Destroy();
   m_PrevPosition = 0;
@@ -94,6 +94,8 @@ bool GameSound::IsLoading()const
   return m_Sound.IsLoading();
 }
 
+
+
 //! 先頭から１回だけ鳴らす
 /*!
  */
@@ -109,7 +111,8 @@ void GameSound::Play()
  */
 void GameSound::Play( int count )
 {
-  Play( count, 0 );
+  SetPlayCount( count );
+  _Play();
 }
 
 //! 任意の位置から複数回鳴らす
@@ -121,24 +124,9 @@ void GameSound::Play( int count )
  */
 void GameSound::Play(  int count, double pos  )
 {
-  MAID_ASSERT( count==0, "0は指定できません" );
-
-  if( count==1 )
-  {
-    m_Sound.SetLoopState(false);
-  }else
-  {
-    m_Sound.SetLoopState(true);
-  }
-
-  SetVolume(m_Volume,0);
-  m_PrevPosition = pos;
-  m_Sound.SetPosition(pos);
-  m_Sound.Play();
-
-  if( count==LOOPPLAY ) { m_LoopCount = LOOPPLAY; }
-  else { m_LoopCount = count-1; }
-  m_IsPlaying = true;
+  SetPlayCount( count );
+  SetPosition(pos);
+  _Play();
 }
 
 //! 再生をとめる
@@ -147,6 +135,7 @@ void GameSound::Play(  int count, double pos  )
 void GameSound::Stop()
 {
   m_IsPlaying = false;
+  m_PlayCount = 0;
   m_Sound.Stop();
 }
 
@@ -242,6 +231,48 @@ double GameSound::GetVolume() const
   return m_Volume;
 }
 
+//! 再生回数の設定
+/*!
+    @param 再生する回数, LOOPPLAY でずっとループ再生
+ */
+void GameSound::SetPlayCount( int count )
+{
+  MAID_ASSERT( count<LOOPPLAY, "負数は LOOPPLAY 以外指定できません" );
+  m_PlayCount = count;
+
+}
+
+//! 残っている再生回数の取得
+/*!
+    @return 再生回数。 現在最後の音がなってるときは０になります。
+ */
+int  GameSound::GetPlayCount() const
+{
+  return m_PlayCount;
+}
+
+void GameSound::_Play()
+{
+  if( m_PlayCount==0 ) { return ; }
+  if( m_PlayCount==LOOPPLAY || 1<m_PlayCount )
+  {
+    m_Sound.SetLoopState(true);
+  }else
+  {
+    m_Sound.SetLoopState(false);
+  }
+
+  SetVolume(m_Volume,0);
+  m_PrevPosition = GetPosition();
+
+  if( m_PlayCount!=LOOPPLAY )
+  {
+    m_PlayCount -= 1;
+  }
+  m_IsPlaying = true;
+  m_Sound.Play();
+}
+
 
 //! フレーム毎の更新
 /*!
@@ -272,7 +303,7 @@ void GameSound::UpdateFrame()
     }
   }
 
-  if( m_LoopCount!=LOOPPLAY && m_LoopCount!=0 )
+  if( m_PlayCount!=LOOPPLAY && m_PlayCount!=0 )
   {
     //  ループ回数をチェックする
     const double pos = m_Sound.GetPosition();
@@ -280,8 +311,9 @@ void GameSound::UpdateFrame()
     if( pos < m_PrevPosition )
     { //  前回の位置より今回の位置が手前にある＝＝ループした。
 
-      --m_LoopCount;
-      if( m_LoopCount==0 ) { m_Sound.SetLoopState(false); }
+      --m_PlayCount;
+      if( m_PlayCount==0 ) { m_Sound.SetLoopState(false); }
+      else { m_Sound.SetLoopState(true); }
     }
 
     m_PrevPosition = pos;

@@ -56,7 +56,11 @@ namespace Maid {
     bool IsEmpty() const;
     String GetFileName() const;
 
+    void SetPlayCount( int count );
+    int  GetPlayCount() const;
+
   private:
+    void _Play();
     void UpdateFrame();
     void OnGlobalVolumeChange();
     double GetScaleVolume()const;
@@ -65,7 +69,7 @@ namespace Maid {
   private:
     SoundFile m_Sound;
 
-    int m_LoopCount;  //  残り再生回数
+    int m_PlayCount;  //  残り再生回数
 
     bool  m_IsPlaying;
     LinearCounter<double>  m_RealVolume;
