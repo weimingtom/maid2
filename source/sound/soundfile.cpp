@@ -63,13 +63,13 @@ namespace Maid {
         const double time = pReader->GetFormat().CalcTime(len);
 
         //  10秒未満ならstatic
-        if( time < 10.0 ) {  pMessage = CreateStatic( pFileImage, pReader ); }
+        if( time < 10.0 ) {  pMessage = CreateStatic( pFileImage, pReader, in.FileName ); }
         else { pMessage = CreateStream( pFileImage, pReader, jump ); }
 
       }break;
     case SoundFileInput::LOADTYPE_STATIC:
       {
-         pMessage = CreateStatic( pFileImage, pReader );
+         pMessage = CreateStatic( pFileImage, pReader, in.FileName );
       }break;
     case SoundFileInput::LOADTYPE_STREAM:
       {
@@ -77,12 +77,11 @@ namespace Maid {
       }break;
     }
    
-//    out.pInfo    = in.pCore->CreateObjectInfo();
     out.pMessage = pMessage;
   }
 
 
-  SPSOUNDMESSAGE SoundFileFunction::CreateStatic( const SPMEMORYBUFFER& pFileImage, const SPPCMREADER& pDecorder )
+  SPSOUNDMESSAGE SoundFileFunction::CreateStatic( const SPMEMORYBUFFER& pFileImage, const SPPCMREADER& pDecorder, const String& id )
   {
     SPMEMORYBUFFER  pPCMData( new MemoryBuffer );
 
@@ -91,6 +90,7 @@ namespace Maid {
 
     boost::shared_ptr<SoundMessage::CreatePCMStatic> pMessage( new SoundMessage::CreatePCMStatic );
     pMessage->pData    = pPCMData;
+    pMessage->ShreadID = id;
 
     Sound::CREATEBUFFERPARAM& param = pMessage->Param;
 
@@ -119,9 +119,6 @@ namespace Maid {
 
 SoundFile::CACHE::INFOMAP  SoundFile::CACHE::s_InfoMap;
 ThreadMutex  SoundFile::CACHE::s_Mutex;
-
-#pragma COMPILERMSG("現在の実装だと再生バッファ（ファイルイメージではない）の共有ができていません")	
-#pragma COMPILERMSG("これはSoundCore側で対応させる必要がある")	
 
 
 SoundFile::SoundFile()
@@ -163,6 +160,11 @@ SoundFile::~SoundFile()
  */
 void SoundFile::LoadFile( const String& filename )
 {
+  //  バッファを共有する条件が同じファイル名のときなんだけど
+  //  大文字小文字を区別すべきか？
+  //  aa/../bb.wav とかも区別すべきか？
+  //  現状は並びが違う＝＝共有しないになってます
+
   Destroy();
   m_Cache.Start( KEEPOUT::SoundFileInput(filename, GlobalPointer<SoundCore>::Get(), KEEPOUT::SoundFileInput::LOADTYPE_AUTO, SOUNDJUMPPOINTLIST() ) );
 

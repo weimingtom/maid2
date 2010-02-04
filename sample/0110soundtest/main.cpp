@@ -37,8 +37,10 @@ protected:
 
     m_FontS.Create( SIZE2DI(16,32), true );
 
-    m_SoundSE.LoadFile( MAIDTEXT("tm2_bird001.wav") );
-    m_SoundBGM.LoadFile( MAIDTEXT("waru.wav") );
+    const String SEFILENAME = MAIDTEXT("tm2_bird001.wav");
+    m_SoundSE.LoadFile( SEFILENAME );
+    m_SoundBGM.LoadFile( MAIDTEXT("nc7802.ogg") );
+    m_SoundSE2.LoadFile( SEFILENAME );
   }
 
   void UpdateFrame()
@@ -46,6 +48,7 @@ protected:
     if( m_Render.IsInitializing() ) { return ; }
     if( m_SoundSE.IsLoading() ) { return ; }
     if( m_SoundBGM.IsLoading() ) { return ; }
+    if( m_SoundSE2.IsLoading() ) { return ; }
 
     const Mouse& m = GetMouse();
     const Keybord& k = GetKeybord();
@@ -106,9 +109,17 @@ protected:
         std::string str(buf);
 
         if( m_SoundSE.IsPlay() ) { str += "再生中"; }
-        else                      { str += "停止中"; }
+        else                     { str += "停止中"; }
 
         m_Render.BltText( POINT2DI(0,  100), m_FontS, String::ConvertSJIStoMAID(str), COLOR_R32G32B32A32F(1,1,1,1) );
+      }
+
+      {
+        String str = MAIDTEXT("A:play B:stop C:goto 10miute\n"
+                              "H:play I:stop J:goto 3miute"
+          );
+
+        m_Render.BltText( POINT2DI(0,  200), m_FontS, str, COLOR_R32G32B32A32F(1,1,1,1) );
       }
     }
     m_Command.End();
@@ -127,6 +138,7 @@ private:
   Font            m_FontS;
   SoundFile       m_SoundBGM;
   SoundFile       m_SoundSE;
+  SoundFile       m_SoundSE2;
 };
 
 

@@ -9,20 +9,10 @@ namespace Maid {
       @brief  固定バッファを使って再生するクラス
   */
 
-void SoundObjectPCMStatic::Initialize( const Sound::SPBUFFER& pBuffer, const SPMEMORYBUFFER& pData )
+void SoundObjectPCMStatic::Initialize( const Sound::SPBUFFER& pBuffer )
 {
-  {
-    Sound::IBuffer::LOCKDATA dat;
-    pBuffer->Lock( 0, pData->GetSize(), dat );
-
-    memcpy( dat.pData1, pData->GetPointer(0), dat.Data1Length );
-
-    pBuffer->Unlock( dat );
-  }
-
   m_pBuffer = pBuffer;
   m_IsLoop = false;
-  m_pData  = pData;
 }
 
 
