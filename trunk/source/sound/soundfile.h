@@ -58,7 +58,7 @@ namespace Maid {
       void Execute( const IJobInput& Input, IJobOutput& Output );
 
     private:
-      SPSOUNDMESSAGE CreateStatic( const SPMEMORYBUFFER& pFileImage, const SPPCMREADER& pDecorder );
+      SPSOUNDMESSAGE CreateStatic( const SPMEMORYBUFFER& pFileImage, const SPPCMREADER& pDecorder, const String& id );
       SPSOUNDMESSAGE CreateStream( const SPMEMORYBUFFER& pFileImage, const SPPCMREADER& pDecorder, const CustomPCMReader::JUMPPOINTLIST& jump );
     };
   }

@@ -16,11 +16,12 @@ namespace Maid {
     @param  pInfo [i ] 登録先
     @param  pObj  [i ] 登録するもの
  */
-void SoundCore::RegisterObject( const SPSOUNDOBJECTINFO& pInfo, const SPSOUNDOBJECT& pObj )
+void SoundCore::RegisterObject( const SPSOUNDOBJECTINFO& pInfo, const SPSOUNDOBJECT& pObj, const String& ShreadID )
 {
   DATA dat;
   dat.pInfo   = pInfo;
   dat.pObject = pObj;
+  dat.ShreadID = ShreadID;
   m_ObjectList[pInfo->GetID()] = dat;
 }
 
@@ -48,6 +49,26 @@ SPSOUNDOBJECT SoundCore::GetObject( const SPSOUNDOBJECTINFO& pInfo )
 
   return ite->second.pObject;
 }
+
+//! 共有できそうなサウンドオブジェクトの取得
+/*!
+    @param  ShreadID [i ] 探すＩＤ
+    @return あったらそれ。存在してなかったら空
+ */
+Sound::SPBUFFER SoundCore::GetSharedBuffer( const String& ShreadID )
+{
+  for( OBJECTLIST::const_iterator ite=m_ObjectList.begin(); ite!=m_ObjectList.end(); ++ite )
+  {
+    const DATA& dat = ite->second;
+    if( dat.ShreadID==ShreadID ) 
+    {
+      const SoundObjectPCMStatic* p = static_cast<const SoundObjectPCMStatic*>(dat.pObject.get());
+      return p->GetBuffer();
+    }
+  }
+  return Sound::SPBUFFER();
+}
+
 
 
 //! サウンドを監視しているスレッド
@@ -147,13 +168,29 @@ void SoundCore::ExecuteMessage( const SoundMessage::Base& Mess )
     {
       const SoundMessage::CreatePCMStatic& m = static_cast<const SoundMessage::CreatePCMStatic&>(Mess);
 
-      Sound::SPBUFFER pBuffer = pDevice->CreateBuffer( m.Param );
+      Sound::SPBUFFER pSharedBuffer = GetSharedBuffer( m.ShreadID );
+      Sound::SPBUFFER pNewBuffer;
 
-      if( pBuffer.get()==NULL ) { break; }
+      if( pSharedBuffer.get()==NULL )
+      {
+        pNewBuffer = pDevice->CreateBuffer( m.Param );
+
+        {
+          Sound::IBuffer::LOCKDATA dat;
+          pNewBuffer->Lock( 0, m.pData->GetSize(), dat );
+
+          memcpy( dat.pData1, m.pData->GetPointer(0), dat.Data1Length );
+
+          pNewBuffer->Unlock( dat );
+        }
+      }else
+      {
+        pNewBuffer = pDevice->DuplicateBuffer( pSharedBuffer );
+      }
 
       boost::shared_ptr<SoundObjectPCMStatic> pObj( new SoundObjectPCMStatic );
-      pObj->Initialize( pBuffer, m.pData );
-      RegisterObject( m.pInfo, pObj );
+      pObj->Initialize( pNewBuffer );
+      RegisterObject( m.pInfo, pObj, m.ShreadID );
     }break;
 
   case SoundMessage::Base::CREATE_PCMSTREAM:
@@ -165,7 +202,7 @@ void SoundCore::ExecuteMessage( const SoundMessage::Base& Mess )
 
       boost::shared_ptr<SoundObjectPCMStream> pObj( new SoundObjectPCMStream );
       pObj->Initialize( pBuffer, m.pDecoder, m.pData );
-      RegisterObject( m.pInfo, pObj );
+      RegisterObject( m.pInfo, pObj, MAIDTEXT("") );
 
     }break;
 
@@ -178,52 +215,7 @@ void SoundCore::ExecuteMessage( const SoundMessage::Base& Mess )
 
       boost::shared_ptr<SoundObjectPCMRealTime> pObj( new SoundObjectPCMRealTime );
       pObj->Initialize( pBuffer, m.pData );
-      RegisterObject( m.pInfo, pObj );
-    }break;
-
-
-  case SoundMessage::Base::CREATE_CLONE:
-    {
-      const SoundMessage::CreateClone& m = static_cast<const SoundMessage::CreateClone&>(Mess);
-
-      SPSOUNDOBJECT pObj = GetObject( m.pSrc );
-
-      switch( pObj->GetType() )
-      {
-      case ISoundObject::TYPE_STATIC:
-        {
-          SoundObjectPCMStatic* p = static_cast<SoundObjectPCMStatic*>(pObj.get());
-
-          Sound::SPBUFFER pBuffer = pDevice->DuplicateBuffer( p->GetBuffer() );
-
-          boost::shared_ptr<SoundObjectPCMStatic> pNewObj( new SoundObjectPCMStatic );
-          pNewObj->Initialize( pBuffer, p->GetData() );
-          RegisterObject( m.pInfo, pNewObj );
-        }break;
-
-      case ISoundObject::TYPE_STREAM:
-        {
-          SoundObjectPCMStream* p = static_cast<SoundObjectPCMStream*>(pObj.get());
-
-          Sound::SPBUFFER pBuffer = pDevice->DuplicateBuffer( p->GetBuffer() );
-          SPCUSTOMPCMREADER pCustom( new CustomPCMReader );
-          {
-            SPPCMREADER pDec = CreatePCMReader( p->GetData()->GetPointer(0), p->GetData()->GetSize() );
-            if( pDec.get()==NULL )
-            {
-              MAID_WARNING( "デコーダの複製に失敗" );
-              break;
-            }
-
-            pDec->Initialize();
-            pCustom->Initialize( pDec, p->GetCustomPCMReader()->GetJumpList() );
-          }
-
-          boost::shared_ptr<SoundObjectPCMStream> pNewObj( new SoundObjectPCMStream );
-          pNewObj->Initialize( pBuffer, pCustom, p->GetData() );
-          RegisterObject( m.pInfo, pNewObj );
-        }break;
-      }
+      RegisterObject( m.pInfo, pObj, MAIDTEXT("") );
     }break;
 
   case SoundMessage::Base::DELETEOBJECT:

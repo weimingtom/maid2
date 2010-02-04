@@ -19,6 +19,7 @@ namespace Maid
 		public:
 			CreatePCMStatic() : Base(CREATE_PCMSTATIC){}
 
+      String  ShreadID; //  共有バッファにするときのＩＤ　empty() で共有しない
       Sound::CREATEBUFFERPARAM Param;
 			SPMEMORYBUFFER	pData;	//	PCMデータ
 		};
@@ -43,13 +44,6 @@ namespace Maid
 			SPPCMBUFFERLIST	pData;	//	PCMデータ
 		};
 
-		class CreateClone : public Base
-		{
-		public:
-			CreateClone() : Base(CREATE_CLONE){}
-
-      SPSOUNDOBJECTINFO pSrc;
-		};
 
     class DeleteObject : public Base
 		{

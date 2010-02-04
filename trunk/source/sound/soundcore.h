@@ -57,14 +57,16 @@ namespace Maid {
 
   private:  //  スレッド間をまたがないメンバ
 
-    void RegisterObject( const SPSOUNDOBJECTINFO& pInfo, const SPSOUNDOBJECT& pObj );
+    void RegisterObject( const SPSOUNDOBJECTINFO& pInfo, const SPSOUNDOBJECT& pObj, const String& ShreadID );
     void DeleteObject( const SPSOUNDOBJECTINFO& pInfo );
     SPSOUNDOBJECT GetObject( const SPSOUNDOBJECTINFO& pInfo );
+    Sound::SPBUFFER GetSharedBuffer( const String& ShreadID );
 
     struct DATA
     {
       SPSOUNDOBJECTINFO pInfo;
       SPSOUNDOBJECT     pObject;
+      String            ShreadID;
     };
 
     typedef std::map<unt,DATA> OBJECTLIST;

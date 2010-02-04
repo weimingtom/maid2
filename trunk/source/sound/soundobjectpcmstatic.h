@@ -13,7 +13,7 @@ namespace Maid {
   public:
     SoundObjectPCMStatic():ISoundObject(TYPE_STATIC){}
 
-		void Initialize( const Sound::SPBUFFER& pBuffer, const SPMEMORYBUFFER& pData );
+		void Initialize( const Sound::SPBUFFER& pBuffer );
 
     void Update();
     void Play();
@@ -26,12 +26,10 @@ namespace Maid {
     double GetVolume() const;
 
     const Sound::SPBUFFER& GetBuffer() const { return m_pBuffer; }
-    const SPMEMORYBUFFER& GetData() const { return m_pData; }
 
   private:
     Sound::SPBUFFER  m_pBuffer;
     bool m_IsLoop;
-    SPMEMORYBUFFER  m_pData;  //  生データ
   };
 
 

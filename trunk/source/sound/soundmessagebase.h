@@ -56,7 +56,6 @@ namespace Maid
 				CREATE_PCMSTATIC, //!<	オンメモリサウンドとして生成
 				CREATE_PCMSTREAM, //!<	ストリームサウンドとして生成
 				CREATE_PCMREALTIME, //!<	生放送ストリームとして生成
-				CREATE_CLONE,     //!<	クローンを作成
 
 				DELETEOBJECT,     //!<	破棄
 
