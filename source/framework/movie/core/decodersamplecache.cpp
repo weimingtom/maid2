@@ -1,22 +1,22 @@
-﻿#include"streamsamplecache.h"
+﻿#include"decodersamplecache.h"
 #include"../../auxiliary/debug/assert.h"
 #include"../../auxiliary/debug/warning.h"
 
 
-namespace Maid {
+namespace Maid { namespace Movie { 
 
-StreamSampleCache::StreamSampleCache()
+DecoderSampleCache::DecoderSampleCache()
 {
 
 }
 
-StreamSampleCache::~StreamSampleCache()
+DecoderSampleCache::~DecoderSampleCache()
 {
   Clear();
 }
 
 
-void StreamSampleCache::PushBack( const STREAMSAMPLE& sample )
+void DecoderSampleCache::PushBack( const DECODERSAMPLE& sample )
 {
   MAID_ASSERT( sample.pSample.get()==NULL, "データがありません" );
 
@@ -24,12 +24,12 @@ void StreamSampleCache::PushBack( const STREAMSAMPLE& sample )
 }
 
 
-void StreamSampleCache::Clear()
+void DecoderSampleCache::Clear()
 {
   m_List.clear();
 }
 
-double StreamSampleCache::GetBeginTime() const
+double DecoderSampleCache::GetBeginTime() const
 {
   if( GetSize()==0 ) { return -1; }
 
@@ -37,12 +37,12 @@ double StreamSampleCache::GetBeginTime() const
 }
 
 
-double StreamSampleCache::GetTotalTime() const
+double DecoderSampleCache::GetTotalTime() const
 {
   if( GetSize()==0 ) { return 0; }
 
   double total = 0;
-  for( STREAMSAMPLELIST::const_iterator ite=m_List.begin(); ite!=m_List.end(); ++ite )
+  for( DECODERSAMPLELIST::const_iterator ite=m_List.begin(); ite!=m_List.end(); ++ite )
   {
     const double begin = ite->BeginTime;
     const double end = ite->EndTime;
@@ -53,18 +53,18 @@ double StreamSampleCache::GetTotalTime() const
   return total;
 }
 
-size_t StreamSampleCache::GetSize() const
+size_t DecoderSampleCache::GetSize() const
 {
   return m_List.size();
 }
 
 
 //  指定した時間までのデータを全部取得する
-int StreamSampleCache::Pop( double TargetTime, STREAMSAMPLELIST& Out )
+int DecoderSampleCache::Pop( double TargetTime, DECODERSAMPLELIST& Out )
 {
   if( GetSize()==0 ) { return 0; }
 
-  STREAMSAMPLELIST::iterator ite  = m_List.begin();
+  DECODERSAMPLELIST::iterator ite  = m_List.begin();
   while( true )
   {
     if( ite==m_List.end() ) { break; }
@@ -82,4 +82,4 @@ int StreamSampleCache::Pop( double TargetTime, STREAMSAMPLELIST& Out )
 }
 
 
-}
+}}

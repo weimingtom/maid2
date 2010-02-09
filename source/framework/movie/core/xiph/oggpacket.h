@@ -1,19 +1,20 @@
-﻿#ifndef maid2_framework_xiph_oggpacket_h
-#define maid2_framework_xiph_oggpacket_h
+﻿#ifndef maid2_framework_movie_core_xiph_oggpacket_h
+#define maid2_framework_movie_core_xiph_oggpacket_h
 
 
-#include"../../../config/define.h"
+#include"../../../../config/define.h"
 
 #include<ogg/ogg.h>
 #include<vector>
 #include<string>
 
-namespace Maid { namespace Xiph {
+namespace Maid { namespace Movie { namespace Xiph {
 
   class OggPacket
   {
   public:
     OggPacket();
+    OggPacket( const ogg_packet& src );
     const ogg_packet& Get() const;
 
     ogg_int64_t  GetGranulePosition() const;
@@ -22,9 +23,7 @@ namespace Maid { namespace Xiph {
 
     std::string GetDebugString() const;
 
-    void Set( const ogg_packet& src );
-
-  private:
+  protected:
     ogg_packet  m_Packet;
   };
 
@@ -36,11 +35,11 @@ namespace Maid { namespace Xiph {
     void Copy( const OggPacket& SrcPacket );
 
   private:
-    std::vector<unsigned char> m_Packet;
+    std::vector<unsigned char> m_Data;
   };
 
 
-}}
+}}}
 
 
 #endif

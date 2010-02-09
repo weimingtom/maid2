@@ -19,16 +19,13 @@
 
 */
 
-namespace Maid { namespace Xiph {
+namespace Maid { namespace Movie { namespace Xiph {
 
 
 CodecTheora::CodecTheora()
-:m_MaxPostProcessLevel(-1)
-,m_CurrentPostProcessLevel(-1)
-,m_State(STATE_EMPTY)
-,m_DecodeStartTime(-1)
-,m_FrameCount(0)
-,m_IsSkipMode(false)
+  :m_State(STATE_EMPTY)
+  ,m_FrameCount(0)
+  ,m_IsSkipMode(false)
 {
   ZERO( &m_TheoraInfo, sizeof(m_TheoraInfo) );
   ZERO( &m_TheoraComment, sizeof(m_TheoraComment) );
@@ -68,11 +65,118 @@ const theora_info& CodecTheora::GetInfo() const
   return m_TheoraInfo;
 }
 
-bool CodecTheora::IsSetupped() const
+
+void CodecTheora::Init( const OggPacket& NewPacket )
 {
-  return m_State==STATE_DECODING;
+  MAID_ASSERT( m_State!=STATE_INITIALIZING, "初期化中のみ受け付けます" );
+
+  const ogg_int64_t no = NewPacket.GetPacketNo();
+  ogg_packet& packet = (ogg_packet&)NewPacket.Get();
+
+  const int ret = theora_decode_header(&m_TheoraInfo,&m_TheoraComment,&packet);
+  if( ret<0 )  { MAID_WARNING( "theora_decode_header" ); return; }
+
+  //  ヘッダパケットを全部処理したら初期化しておく
+  if( no==2 )
+  {
+    theora_decode_init(&m_TheoraState,&m_TheoraInfo);
+
+    m_State = STATE_DECODING;
+    m_FrameCount = 0;
+  }
 }
 
+void CodecTheora::Dec( const OggPacket& NewPacket, SPSAMPLE& pOut )
+{
+  MAID_ASSERT( m_State!=STATE_DECODING, "デコード中のみ受け付けます" );
+
+  ogg_packet& packet = (ogg_packet&)NewPacket.Get();
+
+  MAID_ASSERT( theora_packet_isheader(&packet)==1, "ヘッダーがきました" );
+
+  m_FrameCount = CalcPacketFrame(NewPacket);
+
+  if( m_IsSkipMode )
+  {
+    //  スキップモードだった場合、次のキーフレームまではデコードをしない。
+    if( theora_packet_iskeyframe(&packet)!=1 ) { return ; }
+
+    m_IsSkipMode = false; //  終了！
+  }
+
+
+  const int ret = theora_decode_packetin(&m_TheoraState,&packet);
+  if( ret!=0 ) { MAID_WARNING( "theora_decode_packetin" ); return; }
+
+  {
+    yuv_buffer src;
+
+    const int ret = theora_decode_YUVout(&m_TheoraState, &src);
+    if( ret<0 ) { MAID_WARNING( "theora_decode_YUVout" ); return ; }
+
+    SPSAMPLEFRAME pBuffer( new SampleFrame );
+
+    {
+      SampleFrame& buf = *pBuffer;
+      buf.SizeY  = SIZE2DI( src.y_width, src.y_height );
+      buf.PitchY = src.y_stride;
+      buf.BitsY.resize( src.y_stride * src.y_height );
+      ::memcpy( &(buf.BitsY[0]), src.y, buf.BitsY.size() );
+
+      buf.SizeUV  = SIZE2DI( src.uv_width, src.uv_height );
+      buf.PitchUV = src.uv_stride;
+      buf.BitsU.resize( src.uv_stride * src.uv_height );
+      ::memcpy( &(buf.BitsU[0]), src.u, buf.BitsU.size() );
+      buf.BitsV.resize( src.uv_stride * src.uv_height );
+      ::memcpy( &(buf.BitsV[0]), src.v, buf.BitsV.size() );
+    }
+
+    pOut = pBuffer;
+  }
+}
+
+void CodecTheora::Decode( const OggPacket& NewPacket, SPSAMPLE& pOut )
+{
+  switch( m_State )
+  {
+  case STATE_EMPTY: { }break;
+  case STATE_INITIALIZING: { Init(NewPacket); }break;
+  case STATE_DECODING: { Dec(NewPacket,pOut); }break;
+  }
+}
+
+
+void CodecTheora::Skip( const OggPacket& NewPacket )
+{
+  switch( m_State )
+  {
+  case STATE_EMPTY: { }break;
+  case STATE_INITIALIZING: { Init(NewPacket); }break;
+  case STATE_DECODING:
+    {
+      //  スキップするにしても、時間の設定はやっておく
+      //  フレーム計算はパケット番号からやってるので、つかわないと思うけどｗ
+      ogg_int64_t pos = NewPacket.GetGranulePosition();
+      if( pos >= 0 )
+      {
+        theora_control(&m_TheoraState, TH_DECCTL_SET_GRANPOS, &pos, sizeof(pos));
+      }
+
+      m_FrameCount = CalcPacketFrame(NewPacket);
+      m_IsSkipMode = true;  //  スキップモードになった。
+    }break;
+  }
+}
+
+
+bool CodecTheora::IsFirstPacket( const OggPacket& FirstPacket )
+{
+  ogg_packet& packet = (ogg_packet&)FirstPacket.Get();
+
+  return theora_packet_isheader(&packet)==1;
+}
+
+#if 0
 
 void CodecTheora::Setup( const OggPacket& NewPacket )
 {
@@ -172,7 +276,7 @@ void CodecTheora::Skip( const OggPacket& NewPacket )
   m_FrameCount = CalcPacketFrame(NewPacket);
   m_IsSkipMode = true;  //  スキップモードになった。
 }
-
+#endif
 
 double CodecTheora::GetTime()
 {
@@ -180,13 +284,14 @@ double CodecTheora::GetTime()
 
   const double fps   = GetFPS();
   const double frame = double(m_FrameCount);
-
-//  const double time = theora_granule_time( &m_TheoraState, m_TheoraState.granulepos );
-
   return frame * fps;
+
+/*
+  const double time = theora_granule_time( &m_TheoraState, m_TheoraState.granulepos );
+
+  return time;
+*/
 }
-
-
 
 double CodecTheora::CalcPacketLength( const OggPacket& NewPacket )const
 {
@@ -199,7 +304,6 @@ int CodecTheora::CalcPacketFrame( const OggPacket& NewPacket )const
   return NewPacket.GetPacketNo() - 3; // 0,1,2 はヘッダ
 }
 
-
 double CodecTheora::GetFPS() const
 {
   const double fps = double(m_TheoraInfo.fps_numerator) / double(m_TheoraInfo.fps_denominator);
@@ -207,7 +311,7 @@ double CodecTheora::GetFPS() const
   return 1.0 / fps;
 }
 
-
+#if 0
 void CodecTheora::SetPPLevel( int level )
 {
   if( m_MaxPostProcessLevel < level )
@@ -226,7 +330,7 @@ void CodecTheora::SetPPLevel( int level )
   m_CurrentPostProcessLevel = level;
 }
 
-
+#endif
 
 std::string CodecTheora::GetDebugString( const OggPacket& NewPacket )const
 {
@@ -258,4 +362,4 @@ std::string CodecTheora::GetDebugString( const OggPacket& NewPacket )const
   return ret;
 }
 
-}}
+}}}

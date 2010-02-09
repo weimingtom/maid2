@@ -1,13 +1,19 @@
 ﻿#include"oggpacket.h"
-#include"../../auxiliary/macro.h"
+#include"../../../../auxiliary/macro.h"
 
 
-namespace Maid { namespace Xiph {
+namespace Maid { namespace Movie { namespace Xiph {
 
   OggPacket::OggPacket()
   {
-    ZERO( &m_Packet, sizeof(m_Packet) );
+    ZERO(&m_Packet,sizeof(m_Packet));
   }
+
+  OggPacket::OggPacket( const ogg_packet& src )
+  {
+    m_Packet = src;
+  }
+
 
   const ogg_packet& OggPacket::Get() const
   {
@@ -27,11 +33,6 @@ namespace Maid { namespace Xiph {
   long  OggPacket::GetSize() const
   {
     return m_Packet.bytes;
-  }
-
-  void OggPacket::Set( const ogg_packet& src )
-  {
-    m_Packet = src;
   }
 
   std::string OggPacket::GetDebugString() const
@@ -69,20 +70,16 @@ namespace Maid { namespace Xiph {
   {
     const ogg_packet& src = SrcPacket.Get();
 
-    m_Packet.resize( src.bytes );
-    ::memcpy( &(m_Packet[0]), src.packet, src.bytes );
+    m_Data = std::vector<unsigned char>( src.packet, src.packet+src.bytes );
 
-    ogg_packet dst;
-    dst.packet = &(m_Packet[0]);
+    ogg_packet& dst = m_Packet;
+    dst.packet = &(m_Data[0]);
     dst.bytes = src.bytes;
     dst.b_o_s = src.b_o_s;
     dst.e_o_s = src.e_o_s;
     dst.granulepos = src.granulepos;
     dst.packetno = src.packetno;
-
-
-    Set( dst );
   }
 
 
-}}
+}}}

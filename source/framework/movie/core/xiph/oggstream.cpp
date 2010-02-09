@@ -1,8 +1,8 @@
 ﻿#include"oggstream.h"
-#include"../../auxiliary/macro.h"
-#include"../../auxiliary/debug/warning.h"
+#include"../../../../auxiliary/macro.h"
+#include"../../../../auxiliary/debug/warning.h"
 
-namespace Maid { namespace Xiph {
+namespace Maid { namespace Movie { namespace Xiph {
 
 OggStream::OggStream()
   :m_PacketCount(0)
@@ -32,7 +32,7 @@ void OggStream::Finalize()
 
 void OggStream::PageIn( const OggPage& Page )
 {
-  ogg_page* p = (ogg_page*)&Page.m_Page;
+  ogg_page* p = (ogg_page*)&Page.Get();
 
   const int ret = ogg_stream_pagein( &m_Stream, p );
   if( ret<0 ) { MAID_WARNING( "ogg_stream_pagein" ); return ; }
@@ -49,27 +49,11 @@ bool OggStream::PacketOut( OggPacket& out )
   if( IsSuccess ) 
   {
     --m_PacketCount; 
-    out.Set( p );
-  }
-
-
-  return IsSuccess;
-}
-
-bool OggStream::PacketPeek( OggPacket& out )
-{
-  ogg_packet p;
-  const int ret = ogg_stream_packetout(&m_Stream, &p );
-  const bool IsSuccess = ret>0;
-
-  if( IsSuccess ) 
-  {
-    out.Set( p );
+    out = OggPacket(p);
   }
 
   return IsSuccess;
 }
-
 
 
 int OggStream::GetSerialNo() const
@@ -90,10 +74,10 @@ int  OggStream::GetPacketCount() const
 bool OggStream::IsEnd() const
 {
   ogg_stream_state& os = const_cast<ogg_stream_state&>(m_Stream);
-  const int ret = ogg_stream_eos( &os );
+  const bool ret= ogg_stream_eos( &os )==1 && GetPacketCount()==0;
 
-  return ret==1 && GetPacketCount()==0;
 
+  return ret;
 }
 
 std::string OggStream::GetDebugString() const
@@ -110,4 +94,4 @@ std::string OggStream::GetDebugString() const
 }
 
 
-}}
+}}}
