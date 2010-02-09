@@ -1,8 +1,8 @@
-﻿#ifndef maid2_framework_xiph_oggstream_h
-#define maid2_framework_xiph_oggstream_h
+﻿#ifndef maid2_framework_movie_core_xiph_oggstream_h
+#define maid2_framework_movie_core_xiph_oggstream_h
 
 
-#include"../../../config/define.h"
+#include"../../../../config/define.h"
 #include"../../../auxiliary/string.h"
 
 #include<ogg/ogg.h>
@@ -12,7 +12,7 @@
 #include"oggpacket.h"
 
 
-namespace Maid { namespace Xiph {
+namespace Maid { namespace Movie { namespace Xiph {
 
   class OggStream
   {
@@ -26,7 +26,6 @@ namespace Maid { namespace Xiph {
     void PageIn( const OggPage& Page );
 
     bool PacketOut( OggPacket& out );
-    bool PacketPeek( OggPacket& out );
 
     int GetSerialNo() const;
 
@@ -44,6 +43,6 @@ namespace Maid { namespace Xiph {
 
   typedef boost::shared_ptr<OggStream> SPOGGSTREAM;
 
-}}
+}}}
 
 #endif

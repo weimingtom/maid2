@@ -27,7 +27,7 @@ namespace Maid
   {
     if( m_StartTime==TIMESTOP ) { return ; }
     const double now = Get();
-    m_StartTime = TIMESTOP;// マルチスレッド環境でも、先にとめることで安全になる
+    m_StartTime = TIMESTOP;
     m_Offset = now; //  再開用にとっておく
   }
 

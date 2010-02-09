@@ -4,10 +4,8 @@
 
 #include"../../auxiliary/mathematics.h"
 #include"../../auxiliary/debug/warning.h"
-
 #include"../../auxiliary/debug/profile.h"
-
-#include"movieplayerlocal.h"
+#include"../../auxiliary/debug/assert.h"
 
 
 namespace Maid {
@@ -18,93 +16,63 @@ namespace Maid {
 
 
 MoviePlayer::MoviePlayer()
-:m_State(STATE_EMPTY)
-,m_TheoraSerial(DECODER_EMPTY)
-,m_VorbisSerial(DECODER_EMPTY)
-,m_SeekPosition(-1.0)
+  :m_State(STATE_EMPTY)
+  ,m_SeekTarget(0.0)
 {
 
 }
 
 void MoviePlayer::Initialize( const String& FileName )
 {
-  m_State = STATE_INITIALIZING;
 
   m_FileName = FileName;
 
-
-  m_Thread.SetFunc( MakeThreadObject(&MoviePlayer::ThreadFunction,this) );
-  m_Thread.Execute();
-  m_Thread.SetProcesserMask( 1 );
+  SetPosition(0.0);
 }
 
-bool MoviePlayer::IsInitialized() const
+bool MoviePlayer::IsStandby() const
 {
   if( m_State==STATE_WORKING ) { return true; }
-  if( m_State==STATE_SEEKING ) { return true; }
-
   return false;
 }
 
-bool MoviePlayer::IsSeeking() const
-{
-  const bool ret = m_State==STATE_SEEKING || 0.0 <= m_SeekPosition;
-
-  return ret ;
-}
-
-
-
 const MoviePlayer::FILEINFO& MoviePlayer::GetFileInfo() const
 {
-  MAID_ASSERT( !IsInitialized(), "まだ初期化されていません" );
+  MAID_ASSERT( !IsStandby(), "まだ準備ができていません" );
   return m_FileInfo;
 }
 
-void MoviePlayer::FlushImage( double& time, SPSAMPLEIMAGE& pOutput )
+void MoviePlayer::FlushImage( double& time, Movie::SPSAMPLEFRAME& pOutput )
 {
-  if( !IsInitialized() ) { return ; }
-  if( m_TheoraSerial==DECODER_EMPTY ) { return ; }
+  if( m_State!=STATE_WORKING ) { return ; }
 
   const double TargetTime = m_Timer.Get();
 
-  MAID_PROFILE();
+  Movie::DECODERSAMPLELIST sample;
+  m_pManager->FlushSample( DECODERID_FRAME1, TargetTime, sample );
 
-  STREAMSAMPLELIST SampleList;
+  if( sample.empty() ) { return ; }
 
-  int size = 0;
-  {
-    IStreamDecoderMultiThread& dat = *(m_BindData[m_TheoraSerial]);
-
-    size = dat.PopCache( TargetTime, SampleList );
-  }
-
-  if( SampleList.empty() ) { return ; }
-
-  pOutput = boost::static_pointer_cast<SampleImage>(SampleList.back().pSample);
-  time = SampleList.back().BeginTime;
+  pOutput = boost::static_pointer_cast<Movie::SampleFrame>(sample.back().pSample);
+  time = sample.back().BeginTime;
 }
 
 void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
 {
-  if( !IsInitialized() ) { return ; }
-  if( m_VorbisSerial==DECODER_EMPTY ) { return ; }
+  if( m_State!=STATE_WORKING ) { return ; }
 
   const double TargetTime = m_Timer.Get();
 
-  MAID_PROFILE();
-
-  STREAMSAMPLELIST SampleList;
+  Movie::DECODERSAMPLELIST SampleList;
 
   //  指定した時間の１秒先まであれば十分かな
   {
-    IStreamDecoderMultiThread& dat = *(m_BindData[m_VorbisSerial]);
-    dat.PopCache( TargetTime+SAOUNDTIME/2, SampleList );
+    m_pManager->FlushSample( DECODERID_PCM1, TargetTime+0.5, SampleList );
   }
 
   //  汲み取ったデータに過去のものがあったら切り取るようにする
   {
-    for( STREAMSAMPLELIST::const_iterator ite=SampleList.begin(); ite!=SampleList.end(); )
+    for( Movie::DECODERSAMPLELIST::const_iterator ite=SampleList.begin(); ite!=SampleList.end(); )
     {
       const double end = ite->EndTime;
       if( end < TargetTime )  { ite = SampleList.erase(ite); }
@@ -113,10 +81,10 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
 
     if( SampleList.empty() ) { return ; }
 
-    const STREAMSAMPLE& sample = SampleList.front();
+    const Movie::DECODERSAMPLE& sample = SampleList.front();
     if( sample.BeginTime < TargetTime )
     {
-      SamplePCM& buffer = static_cast<SamplePCM&>(*(sample.pSample));
+      Movie::SamplePCM& buffer = static_cast<Movie::SamplePCM&>(*(sample.pSample));
       const int channels = buffer.Data.size();
       const double sa = TargetTime - sample.BeginTime;
       const double sps = (double)GetFileInfo().Pcm.Format.SamplesPerSecond;
@@ -125,7 +93,7 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
 
       for( int i=0; i<channels; ++i )
       {
-        SamplePCM::BUFFER& buf = buffer.Data[i];
+        Movie::SamplePCM::BUFFER& buf = buffer.Data[i];
         const size_t copycount = buf.size()-gomi;
 
         if( copycount!=0 ) { memmove( &buf[0], &buf[gomi], copycount*sizeof(float) ); }
@@ -139,9 +107,9 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
   //  デコードバッファの全長を求める
   {
     size_t len = 0;
-    for( STREAMSAMPLELIST::const_iterator ite=SampleList.begin(); ite!=SampleList.end(); ++ite )
+    for( Movie::DECODERSAMPLELIST::const_iterator ite=SampleList.begin(); ite!=SampleList.end(); ++ite )
     {
-      const SamplePCM& buffer = static_cast<SamplePCM&>(*(ite->pSample));
+      const Movie::SamplePCM& buffer = static_cast<Movie::SamplePCM&>(*(ite->pSample));
       if( buffer.Data.empty() ) { continue; }
       const int channels = buffer.Data.size();
 
@@ -158,9 +126,9 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
     //  それじゃ順番に流していこうか！
     int16* dst = (int16*)Output.GetPointer(0);
 
-    for( STREAMSAMPLELIST::const_iterator ite=SampleList.begin(); ite!=SampleList.end(); ++ite )
+    for( Movie::DECODERSAMPLELIST::const_iterator ite=SampleList.begin(); ite!=SampleList.end(); ++ite )
     {
-      const SamplePCM& buffer = static_cast<SamplePCM&>(*(ite->pSample));
+      const Movie::SamplePCM& buffer = static_cast<Movie::SamplePCM&>(*(ite->pSample));
       if( buffer.Data.empty() ) { continue; }
       const size_t count = buffer.Data[0].size();
       const size_t channels = buffer.Data.size();
@@ -182,48 +150,44 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
   }
 }
 
+
 void MoviePlayer::Play()
 {
+  MAID_ASSERT( !IsStandby(), "まだ準備ができていません" );
   m_Timer.Start();
 }
 
 void MoviePlayer::Stop()
 {
+  MAID_ASSERT( !IsStandby(), "まだ準備ができていません" );
   m_Timer.Stop();
 }
 
-void MoviePlayer::Resume()
+
+void MoviePlayer::SetPosition( double time )
 {
-  m_Timer.Resume();
-}
+  m_Thread.Close();
 
-
-
-void MoviePlayer::Seek( double time )
-{
-  MAID_ASSERT( m_State==STATE_EMPTY, "初期化してください" );
-  MAID_ASSERT( m_State==STATE_INITIALIZING, "初期化中です" );
-  MAID_ASSERT( m_State==STATE_FINALIZING, "後始末してます" );
-  MAID_ASSERT( m_State==STATE_SEEKING, "シーク中はダメです" );
-
-  m_SeekPosition = time;
-  //  ここで設定したシーク状態は
-  //  バッファが溜まるまで維持されます
-}
-
-bool MoviePlayer::IsCacheFull() const
-{
-  return IsCacheFull(m_TheoraSerial) && IsCacheFull(m_VorbisSerial);
-}
-
-bool MoviePlayer::IsEnd() const
-{
-  return IsEnd(m_TheoraSerial) && IsEnd(m_VorbisSerial);
+  m_State = STATE_SEEKING;
+  m_SeekTarget = time;
+  m_Thread.SetFunc( MakeThreadObject(&MoviePlayer::ThreadFunction,this) );
+  m_Thread.Execute();
 }
 
 double MoviePlayer::GetPosition() const
 {
-  return m_Timer.Get();
+  if( m_State==STATE_WORKING ) { return m_Timer.Get(); }
+  return 0.0;
+}
+
+bool MoviePlayer::IsCacheFull() const
+{
+  return m_pManager->IsSampleFull();
+}
+
+bool MoviePlayer::IsEnd() const
+{
+  return m_State==STATE_END;
 }
 
 

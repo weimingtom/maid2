@@ -1,19 +1,16 @@
-﻿#ifndef maid2_framework_xiph_codectheora_h
-#define maid2_framework_xiph_codectheora_h
+﻿#ifndef maid2_framework_movie_core_xiph_codectheora_h
+#define maid2_framework_movie_core_xiph_codectheora_h
 
 
 #include"../../../config/define.h"
 #include"../../../auxiliary/macro.h"
-#include"../../../auxiliary/thread.h"
 
 #include"icodec.h"
 
 #include <theora/theora.h>
 
 
-namespace Maid { namespace Xiph {
-
-
+namespace Maid { namespace Movie { namespace Xiph {
 
   class CodecTheora
     : public ICodec
@@ -21,12 +18,10 @@ namespace Maid { namespace Xiph {
   public:
     CodecTheora();
     ~CodecTheora();
+
     virtual void Initialize();
     virtual void Finalize();
 
-    virtual bool IsSetupped() const;
-
-    virtual void Setup( const OggPacket& NewPacket );
     virtual void Decode( const OggPacket& NewPacket, SPSAMPLE& pOut );
     virtual void Skip( const OggPacket& NewPacket );
 
@@ -37,19 +32,20 @@ namespace Maid { namespace Xiph {
     virtual std::string GetDebugString( const OggPacket& NewPacket )const;
 
     const theora_info& GetInfo() const;
-    int CalcPacketFrame( const OggPacket& NewPacket )const;
+
+    static bool IsFirstPacket( const OggPacket& FirstPacket );
 
   private:
-    double GetFPS() const;
-    void SetPPLevel( int level );
+    void Init( const OggPacket& NewPacket );
+    void Dec( const OggPacket& NewPacket, SPSAMPLE& pOut );
+
+    double  GetFPS() const;
+    int     CalcPacketFrame( const OggPacket& NewPacket )const;
 
   private:
     theora_info      m_TheoraInfo;
     theora_comment   m_TheoraComment;
     theora_state     m_TheoraState;
-
-    int m_MaxPostProcessLevel;
-    int m_CurrentPostProcessLevel;
 
     enum STATE
     {
@@ -60,12 +56,13 @@ namespace Maid { namespace Xiph {
 
     STATE m_State;
 
-    double  m_DecodeStartTime;  //  デコードを開始する時間
     int     m_FrameCount;
-
     bool    m_IsSkipMode; //  スキップモードになった。
+
   };
 
-}}
+  typedef boost::shared_ptr<CodecTheora> SPCODECTHEORA;
+
+}}}
 
 #endif

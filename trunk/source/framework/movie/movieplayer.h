@@ -1,22 +1,19 @@
-﻿#ifndef maid2_framework_movieplayer_h
-#define maid2_framework_movieplayer_h
+﻿#ifndef maid2_framework_movie_movieplayer_h
+#define maid2_framework_movie_movieplayer_h
 
-#include"../config/define.h"
+#include"../../config/define.h"
+#include"../../auxiliary/mathematics.h"
 
-#include"../auxiliary/thread.h"
-#include"../auxiliary/string.h"
-#include"../auxiliary/memorybuffer.h"
-#include"../auxiliary/timer.h"
-#include"../sound/common.h"
+#include"../../auxiliary/thread.h"
+#include"../../auxiliary/string.h"
+#include"../../auxiliary/memorybuffer.h"
+#include"../../sound/common.h"
 
-#include"xiph/oggcontainer.h"
-#include"streamdecodermultithread.h"
 #include"mediatimer.h"
+#include"core/isample.h"
+#include"core/istoragereader.h"
+#include"core/idecodermanager.h"
 
-
-#include<map>
-#include<list>
-#include<boost/smart_ptr.hpp>
 
 namespace Maid
 {
@@ -27,12 +24,11 @@ namespace Maid
 
     void Initialize( const String& FileName );
 
-    bool IsInitialized() const;
-    bool IsSeeking() const;
+    bool IsStandby() const;
 
     struct FILEINFO
     {
-      struct IMAGE
+      struct FRAME
       {
         SIZE2DI EncodedSize;    //  データとして入っている大きさ
         SIZE2DI DisplaySize;    //  表示しなくてはいけない大きさ
@@ -52,7 +48,7 @@ namespace Maid
         PIXELFORMAT PixelFormat;
       };
       bool IsImage; //  画像があるか？
-      IMAGE  Image;
+      FRAME  Image;
 
       struct PCM
       {
@@ -74,70 +70,42 @@ namespace Maid
 
     void Play();
     void Stop();
-    void Resume();
 
-    void FlushImage( double& time, SPSAMPLEIMAGE& pOutput );
+    void FlushImage( double& time, Movie::SPSAMPLEFRAME& pOutput );
     void FlushPCM( double& time, MemoryBuffer& Output );
-
-    void Seek( double time );
 
     bool IsCacheFull() const;
     bool IsEnd() const;
 
     double GetPosition() const;
+    void SetPosition( double time );
 
   private:
-
-    bool IsSetSeek()const;
-
-  private:
-    Xiph::OggContainer m_Buffer;
-
-
-    typedef std::map<int,SPSTREAMDECODERMULTITHREAD> BINDDATA;
-    BINDDATA m_BindData;  //  こいつにアクセスするとき同期を取ってないんだけど
-                          //  STATE_INITIALIZING 以降は変更を加えることがないのでいらないです。
-
-    enum
-    {
-      DECODER_EMPTY = -1,
-    };
-
-
-    int m_TheoraSerial;
-    int m_VorbisSerial;
-
-
-    enum STATE
-    {
-      STATE_EMPTY,
-      STATE_INITIALIZING,
-      STATE_SEEKING,
-      STATE_WORKING,
-      STATE_FINALIZING,
-    };
-
-    STATE m_State;
-
-    double m_SeekPosition;  //  シーク命令が出たときに設定される値（単位は秒）シークしないなら負数
-
     String    m_FileName;
     FILEINFO  m_FileInfo;
 
     MediaTimer  m_Timer;
 
+    enum STATE
+    {
+      STATE_EMPTY,        //  インスタンスが生成されただけ
+      STATE_SEEKING,    //  シーク中
+      STATE_WORKING,    //  稼動中
+      STATE_END,        //  再生終了
+    };
+
+    STATE m_State;
+    double m_SeekTarget;  //  シーク目標
+
+    Movie::SPSTORAGEREADER  m_pStorage;
+    Movie::SPDECODERMANAGER m_pManager;
+
   private:
-    void PageSeek( volatile ThreadController::BRIGEDATA& brige, int Serial );
-    void Sleep( volatile ThreadController::BRIGEDATA& brige );
-    bool IsCacheFull( int DecoderSerial )const;
-    bool IsSeeking( int DecoderSerial )const;
-    bool IsEnd( int DecoderSerial )const;
+    void Seek();
+    void Work();
 
   private:
     unt ThreadFunction( volatile ThreadController::BRIGEDATA& state );
-    void InitializeStream( const String& FileName );
-    void FinalizeStream();
-    void PlayDecode( volatile ThreadController::BRIGEDATA& state );
     ThreadController  m_Thread;
   };
 }

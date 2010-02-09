@@ -2,10 +2,14 @@
 #include"../../auxiliary/debug/assert.h"
 #include"../../auxiliary/debug/warning.h"
 
-namespace Maid { namespace Xiph {
+namespace Maid { namespace Movie { namespace Xiph {
 
+bool CodecVorbis::IsFirstPacket( const OggPacket& FirstPacket )
+{
+  ogg_packet& packet = (ogg_packet&)FirstPacket.Get();
 
-
+  return vorbis_synthesis_idheader(&packet)==1;
+}
 
 
 CodecVorbis::CodecVorbis()
@@ -44,12 +48,6 @@ void CodecVorbis::Finalize()
   m_State = STATE_EMPTY;
 }
 
-bool CodecVorbis::IsSetupped() const
-{
-  return m_State==STATE_DECODING;
-}
-
-
 const vorbis_info& CodecVorbis::GetInfo() const
 {
   MAID_ASSERT( m_State==STATE_EMPTY, "まだ初期化されていません" );
@@ -80,7 +78,23 @@ double CodecVorbis::CalcPacketLength( const OggPacket& NewPacket )const
 }
 
 
+void CodecVorbis::Decode( const OggPacket& NewPacket, SPSAMPLE& pOut )
+{
+  switch( m_State )
+  {
+  case STATE_EMPTY: { }break;
+  case STATE_INITIALIZING: { Init(NewPacket); }break;
+  case STATE_DECODING: { Dec(NewPacket,pOut); }break;
+  }
+}
 
+
+void CodecVorbis::Skip( const OggPacket& NewPacket )
+{
+  SPSAMPLE tmp;
+  Decode( NewPacket, tmp );
+}
+/*
 void CodecVorbis::Setup( const OggPacket& NewPacket )
 {
   const ogg_int64_t no = NewPacket.GetPacketNo();
@@ -136,29 +150,22 @@ void CodecVorbis::Decode( const OggPacket& NewPacket, SPSAMPLE& pOut )
   vorbis_synthesis_read(&m_VorbisState,length);
 
   pOut = pBuffer;
-
-//  MAID_WARNING( "decode:" << GetTime() );
-
 }
 
 void CodecVorbis::Skip( const OggPacket& NewPacket )
 {
   ogg_packet& packet = (ogg_packet&)NewPacket.Get();
-//  const int ret = vorbis_synthesis_trackonly(&m_VorbisBlock,&packet);
 
   {
     SPSAMPLE sample;
     Decode( NewPacket, sample );
   }
-//  MAID_WARNING( "skip:" << GetTime() );
 }
-
-
+*/
 
 double CodecVorbis::GetTime()
 {
   if( m_State!=STATE_DECODING ) { return 0; }
-
   if( m_VorbisState.granulepos < 0 ) { return 0; }
 
   const double ret = vorbis_granule_time(&m_VorbisState, m_VorbisState.granulepos );
@@ -199,4 +206,65 @@ std::string CodecVorbis::GetDebugString( const OggPacket& NewPacket )const
   return ret;
 }
 
-}}
+
+
+void CodecVorbis::Init( const OggPacket& NewPacket )
+{
+  const ogg_int64_t no = NewPacket.GetPacketNo();
+  ogg_packet& packet = (ogg_packet&)NewPacket.Get();
+
+  const int ret = vorbis_synthesis_headerin(&m_VorbisInfo,&m_VorbisComment,&packet);
+  if( ret<0 )  { MAID_WARNING( "vorbis_synthesis_headerin" ); return; }
+
+  //  ヘッダパケットを全部処理したら初期化しておく
+  if( no==2 )
+  {
+    vorbis_synthesis_init(&m_VorbisState,&m_VorbisInfo);
+    vorbis_block_init(&m_VorbisState,&m_VorbisBlock);
+
+    m_State = STATE_DECODING;
+  }
+
+}
+
+void CodecVorbis::Dec( const OggPacket& NewPacket, SPSAMPLE& pOut )
+{
+  ogg_packet& packet = (ogg_packet&)NewPacket.Get();
+
+  {
+    const int ret = vorbis_synthesis(&m_VorbisBlock,&packet);
+    if( ret!=0 ) { return ; }
+  }
+
+  {
+    const int ret = vorbis_synthesis_blockin(&m_VorbisState,&m_VorbisBlock);
+  }
+
+  float **pcm;
+  const int length = vorbis_synthesis_pcmout(&m_VorbisState,&pcm);
+
+  if( length <= 0 ) { return ; }
+
+  SPSAMPLEPCM pBuffer( new SamplePCM );
+
+  const int channels = m_VorbisInfo.channels;
+  const size_t channellen = sizeof(float32) * length;
+
+  pBuffer->Data.resize( channels );
+
+  for( int i=0; i<channels; ++i )
+  {
+    SamplePCM::BUFFER& buf = pBuffer->Data[i];
+
+    buf.resize(length);
+
+    ::memcpy( &(buf[0]), pcm[i], channellen );
+  }
+
+  vorbis_synthesis_read(&m_VorbisState,length);
+
+  pOut = pBuffer;
+}
+
+
+}}}

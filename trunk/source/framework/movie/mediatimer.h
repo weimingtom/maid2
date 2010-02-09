@@ -1,5 +1,5 @@
-﻿#ifndef maid2_framework_mediatimer_h
-#define maid2_framework_mediatimer_h
+﻿#ifndef maid2_framework_movie_mediatimer_h
+#define maid2_framework_movie_mediatimer_h
 
 #include"../../config/define.h"
 #include"../../auxiliary/timer.h"
