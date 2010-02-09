@@ -970,10 +970,6 @@
 				Name="movie"
 				>
 				<File
-					RelativePath=".\framework\movie\isample.h"
-					>
-				</File>
-				<File
 					RelativePath=".\framework\movie\mediatimer.cpp"
 					>
 				</File>
@@ -997,93 +993,125 @@
 					RelativePath=".\framework\movie\movieplayerlocal.h"
 					>
 				</File>
-				<File
-					RelativePath=".\framework\movie\streamdecoder.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\movie\streamdecoder.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\movie\streamdecodermultithread.h"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\movie\streamdecodermultithread1.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\movie\streamdecodermultithread2.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\movie\streamsamplecache.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\framework\movie\streamsamplecache.h"
-					>
-				</File>
 				<Filter
-					Name="xiph"
+					Name="core"
 					>
 					<File
-						RelativePath=".\framework\movie\xiph\codecnull.h"
+						RelativePath=".\framework\movie\core\decodersamplecache.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\codectheora.cpp"
+						RelativePath=".\framework\movie\core\decodersamplecache.h"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\codectheora.h"
+						RelativePath=".\framework\movie\core\idecoder.h"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\codecvorbis.cpp"
+						RelativePath=".\framework\movie\core\idecodermanager.h"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\codecvorbis.h"
+						RelativePath=".\framework\movie\core\isample.h"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\icodec.h"
+						RelativePath=".\framework\movie\core\istoragereader.h"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\oggcontainer.cpp"
+						RelativePath=".\framework\movie\core\istoragesample.h"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\oggcontainer.h"
+						RelativePath=".\framework\movie\core\storagereadermultithread.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\framework\movie\xiph\oggpacket.cpp"
+						RelativePath=".\framework\movie\core\storagereadermultithread.h"
 						>
 					</File>
-					<File
-						RelativePath=".\framework\movie\xiph\oggpacket.h"
+					<Filter
+						Name="xiph"
 						>
-					</File>
-					<File
-						RelativePath=".\framework\movie\xiph\oggpage.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\framework\movie\xiph\oggpage.h"
-						>
-					</File>
-					<File
-						RelativePath=".\framework\movie\xiph\oggstream.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\framework\movie\xiph\oggstream.h"
-						>
-					</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\codectheora.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\codectheora.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\codecvorbis.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\codecvorbis.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\icodec.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecoder.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecoder.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecodermanager.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecodermanager.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecodermultithread.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecodermultithread1.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggfile.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggfile.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggpacket.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggpacket.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggpage.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggpage.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggstream.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggstream.h"
+							>
+						</File>
+					</Filter>
 				</Filter>
 			</Filter>
 		</Filter>

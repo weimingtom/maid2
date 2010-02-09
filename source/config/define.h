@@ -15,7 +15,7 @@
 #define USE_DIRECT3DX9	//!<	d3dx9 の各種演算 を使用する
 
 
-#define USE_INTELIPP		//!<	Intel Integrated Performance Primitives  を使用する
+//#define USE_INTELIPP		//!<	Intel Integrated Performance Primitives  を使用する
 
 
 

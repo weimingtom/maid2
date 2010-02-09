@@ -33,8 +33,6 @@ void RenderTargetTexture::Create( const SIZE2DI& size, PIXELFORMAT format )
   const SIZE2DI ScreenSize = pCore->GetSwapChainFormat().Size;
   const SIZE2DI VirtualScreenSize = pCore->GetVirtualScreenSize();
 
-//  const SIZE2DI tex = CalcTextureSize(CalcSize);
-
   const SIZE2DI VirtualSize = size;
   const SIZE2DI RealSize    = SIZE2DI( size.w * ScreenSize.w / VirtualScreenSize.w, size.h * ScreenSize.h / VirtualScreenSize.h );
   const SIZE2DI TextureSize = pCore->CalcTextureSize(RealSize);
@@ -66,7 +64,6 @@ void RenderTargetTexture::Create( const SIZE2DI& size, PIXELFORMAT format )
     param.Format = DstFormat;
     param.Dimension =  Graphics::CREATEMATERIALPARAM::DIMENSION_TEXTURE2D;
 
-//    pMaterial = pCore->GetDevice()->CreateMaterial( pTexture, param );
     pMaterial = pCore->GetDevice()->CreateMaterial( pTexture, NULL );
     if( pMaterial.get()==NULL )
     {
@@ -81,7 +78,6 @@ void RenderTargetTexture::Create( const SIZE2DI& size, PIXELFORMAT format )
     param.Format = DstFormat;
     param.Dimension =  Graphics::CREATERENDERTARGETPARAM::DIMENSION_TEXTURE2D;
 
-//    pTarget = pCore->GetDevice()->CreateRenderTarget( pTexture, param );
     pTarget = pCore->GetDevice()->CreateRenderTarget( pTexture, NULL );
     if( pTarget.get()==NULL )
     {
@@ -94,6 +90,11 @@ void RenderTargetTexture::Create( const SIZE2DI& size, PIXELFORMAT format )
   RenderTargetBase::Setup( pTarget, VirtualSize, RealSize, DRAWAREA_LEFTTOP );
 }
 
+bool RenderTargetTexture::Empty() const
+{
+  return ITexture2D::Get().get()==NULL;
+
+}
 
 
 }

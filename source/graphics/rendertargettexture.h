@@ -25,6 +25,7 @@ namespace Maid
   public:
     void Create( const SIZE2DI& size, PIXELFORMAT format );
     void Destroy();
+    bool Empty() const;
   };
 	
 }
