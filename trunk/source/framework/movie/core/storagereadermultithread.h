@@ -23,6 +23,7 @@ namespace Maid { namespace Movie {
 
     virtual void Read( SPSTORAGESAMPLE& pSample );
     virtual bool IsEnd() const;
+    virtual bool IsCacheEmpty() const;
 
   private:
     SPSTORAGEREADER m_pReader;

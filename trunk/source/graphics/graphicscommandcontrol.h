@@ -9,7 +9,7 @@
 
 #include"../config/define.h"
 #include"../auxiliary/globalpointer.h"
-#include"../framework/movie/isample.h"
+#include"../framework/movie/core/isample.h"
 
 #include"graphicscore.h"
 #include"texture2ddynamic.h"
@@ -119,8 +119,7 @@ namespace Maid
     void Draw( size_t UseVertexCount, size_t StartVertex );
     void DrawIndexed( size_t UseIndexCount, size_t StartIndex, size_t OffsetVertex );
 
-
-    void UpdateTexture( Texture2DDynamic& dst, const SPSAMPLEIMAGE& pSrc );
+    void UpdateTexture( Texture2DDynamic& dst, const Movie::SPSAMPLEFRAME& pSrc );
     void UpdateTexture( Texture2DDynamic& dst, const SurfaceInstance& Src );
     void CopyRenderTarget( SurfaceInstance& dst, const RenderTargetBase& src );
 

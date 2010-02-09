@@ -130,9 +130,7 @@ void YUVtoRGB( const YUVtoRGBINFO& info )
 }
 
 
-
-
-void GraphicsCommandControl::UpdateTexture( Texture2DDynamic& dst, const SPSAMPLEIMAGE& pSrc )
+void GraphicsCommandControl::UpdateTexture( Texture2DDynamic& dst, const Movie::SPSAMPLEFRAME& pSrc )
 {
   MAID_ASSERT( pSrc.get()==NULL, "バッファがありません" );
   if( pSrc.get()==NULL ) { return ; }
@@ -165,7 +163,6 @@ void GraphicsCommandControl::UpdateTexture( Texture2DDynamic& dst, const SPSAMPL
   }
   com.ResourceUnmap( tex.Get(), sub );
 }
-
 
 
 

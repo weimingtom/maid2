@@ -10,6 +10,7 @@
 
 #include"core/xiph/oggdecodermanager.h"
 #include"core/xiph/oggfile.h"
+#include"core/storagereadermultithread.h"
 
 namespace Maid {
 
@@ -51,7 +52,8 @@ void MoviePlayer::Seek()
 {
   //  名前はシークですが、初期化コードもある。
 
-  m_pStorage.reset( new Movie::Xiph::OggFile(m_FileName) );
+  Movie::SPSTORAGEREADER pSingle( new Movie::Xiph::OggFile(m_FileName) );
+  m_pStorage.reset( new Movie::StorageReaderMultiThread(pSingle) );
   m_pManager.reset( new Movie::Xiph::OggDecoderManager() );
 
   m_pStorage->Initialize();

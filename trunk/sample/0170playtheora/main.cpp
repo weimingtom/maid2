@@ -55,7 +55,7 @@ protected:
     {
     case STATE_INITIALIZING:
       {
-        if( m_Player.IsInitialized() )
+        if( m_Player.IsStandby() )
         {
           m_Info = m_Player.GetFileInfo();
 
@@ -70,25 +70,15 @@ protected:
             m_Sound.SetVolume(1.0f);
           }
 
-          m_State = STATE_WAIT;
+          m_State = STATE_PLAING;
 
           //  画像のエンコードは重いので、描画の時に行う
           //  サウンドは毎回やる
           UpdateTexture();
           UpdateSound();
-        }
-
-      }break;
-
-    case STATE_WAIT:
-      {
-        if( m_Player.IsCacheFull() )
-        {
-          TimerReset();
           m_Frame = 0;
           m_Player.Play();
           m_Sound.Play();
-          m_State = STATE_PLAING;
         }
 
       }break;
@@ -110,9 +100,9 @@ protected:
           //  スペースを押したら20秒にシーク
           m_Sound.Stop();
           const int frame = 1200;
-          m_Player.Seek( 20.0 );
+ //         m_Player.Seek( 20.0 );
           m_Frame = frame;
-          m_State = STATE_SEEKING;
+          m_State = STATE_INITIALIZING;
         }else
         {
 
@@ -122,23 +112,6 @@ protected:
           {
             UpdateSound();
           }
-        }
-      }break;
-
-    case STATE_SEEKING:
-      {
-        if( m_Player.IsSeeking() )
-        {
-          //  シーク中は何もしない。
-        }else
-        {
-          //  画像のデコードは重いので、描画の時に行う
-          //  サウンドは毎回やる
-          UpdateTexture();
-          UpdateSound();
-
-          m_Sound.Play();
-          m_State = STATE_PLAING;
         }
       }break;
 
@@ -168,13 +141,6 @@ protected:
 
       }break;
 
-    case STATE_WAIT:
-      {
-        String text = String::PrintFormat( "バッファリング中" );
-        m_Render.BltText( POINT2DI(0,300), m_Font, text, COLOR_R32G32B32A32F(0,1,0,1) );
-
-      }break;
-
     case STATE_PLAING:
       {
         const RECT2DI rc( POINT2DI(0,0), m_Texture.GetSize() );
@@ -182,17 +148,6 @@ protected:
         m_Render.Blt( POINT2DI(400,300), m_Texture, rc, off, 1 );
 
         String text = String::PrintFormat( "%f", m_Player.GetPosition() );
-        m_Render.BltText( POINT2DI(0,300), m_Font, text, COLOR_R32G32B32A32F(0,1,0,1) );
-      }break;
-
-
-    case STATE_SEEKING:
-      {
-        const RECT2DI rc( POINT2DI(0,0), m_Texture.GetSize() );
-        const POINT2DI off(rc.w/2,rc.h/2 );
-        m_Render.Blt( POINT2DI(400,300), m_Texture, rc, off, 1 );
-
-        String text = String::PrintFormat( "シーク中" );
         m_Render.BltText( POINT2DI(0,300), m_Font, text, COLOR_R32G32B32A32F(0,1,0,1) );
       }break;
 
@@ -221,7 +176,7 @@ private:
   {
     if( !m_Info.IsImage ) { return ; }
 
-    SPSAMPLEIMAGE pImage;
+    Movie::SPSAMPLEFRAME pImage;
     double time;
     m_Player.FlushImage( time, pImage );
 
@@ -251,9 +206,7 @@ private:
   enum STATE
   {
     STATE_INITIALIZING, //  初期化中
-    STATE_WAIT,         //  最初の待機中
     STATE_PLAING,       //  再生中
-    STATE_SEEKING,      //  シーク中
     STATE_END,         //  再生終了
   };
 
