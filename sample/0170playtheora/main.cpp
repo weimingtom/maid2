@@ -39,8 +39,8 @@ protected:
   {
     m_Command.Initialize();
     m_Render.Initialize();
-//    m_Player.Initialize( MAIDTEXT("nc4259.ogv") );
-    m_Player.Initialize( MAIDTEXT("op_800x600v10.ogv") );
+    m_Player.Initialize( MAIDTEXT("nc4259.ogv") );
+//    m_Player.Initialize( MAIDTEXT("op_800x600v10.ogv") );
 
     m_Font.Create( SIZE2DI(16,32), true );
     m_Frame = 0;
@@ -179,6 +179,7 @@ private:
 
     if( pImage.get()==NULL ) { return ; }
 
+//    MAID_WARNING( "time:" << time <<" frame:" << m_Frame );
     m_Command.UpdateTexture( m_Texture, pImage );
   }
 
