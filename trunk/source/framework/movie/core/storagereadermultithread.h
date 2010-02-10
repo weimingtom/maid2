@@ -27,11 +27,16 @@ namespace Maid { namespace Movie {
     virtual bool IsCacheFull() const;
 
   private:
+    void UpdateStatus();
+
+  private:
     SPSTORAGEREADER m_pReader;
 
     std::list<SPSTORAGESAMPLE>  m_Cache;
     ThreadMutex m_CacheMutex;
 
+    bool  m_IsCacheEmpty;
+    bool  m_IsCacheFull;
     const size_t  m_CACHECOUNT;
   private:
     unt ThreadFunction( volatile ThreadController::BRIGEDATA& state );

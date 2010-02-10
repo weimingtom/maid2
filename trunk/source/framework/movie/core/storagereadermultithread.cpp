@@ -7,6 +7,8 @@ namespace Maid { namespace Movie {
 StorageReaderMultiThread::StorageReaderMultiThread( const SPSTORAGEREADER& pReader, size_t count )
   :m_pReader(pReader)
   ,m_CACHECOUNT(count)
+  ,m_IsCacheEmpty(true)
+  ,m_IsCacheFull(false)
 {
 
 }
@@ -31,24 +33,32 @@ void StorageReaderMultiThread::Read( SPSTORAGESAMPLE& pSample )
   {
     if( IsEnd() ) { return; }
     if( !IsCacheEmpty() ) { break; }
-  //  ThreadController::Sleep(1);
   }
 
   {
     ThreadMutexLocker lock(m_CacheMutex);
     pSample = m_Cache.front();
     m_Cache.pop_front();
+    UpdateStatus();
   }
 }
 
+void StorageReaderMultiThread::UpdateStatus()
+{
+  ThreadMutexLocker lock(m_CacheMutex);
+  m_IsCacheEmpty = m_Cache.empty();
+  m_IsCacheFull  = m_CACHECOUNT<=m_Cache.size();
+}
+
+
 bool StorageReaderMultiThread::IsCacheEmpty() const
 {
-  return m_Cache.empty();
+  return m_IsCacheEmpty;
 }
 
 bool StorageReaderMultiThread::IsCacheFull() const
 {
-  return m_CACHECOUNT<=m_Cache.size();
+  return m_IsCacheFull;
 }
 
 
@@ -68,15 +78,19 @@ unt StorageReaderMultiThread::ThreadFunction( volatile ThreadController::BRIGEDA
 
     if( IsCacheFull() ) { ThreadController::Sleep(1); continue; }
 
+    std::list<SPSTORAGESAMPLE>  dat;
+    const int loop = std::max(1,(int)m_CACHECOUNT/3);
+    for( int i=0; i<loop; ++i )
     {
+      if( m_pReader->IsEnd() ) { break; }
       SPSTORAGESAMPLE p;
       m_pReader->Read( p );
-
-      if( p.get()!=NULL )
-      {
-        ThreadMutexLocker lock(m_CacheMutex);
-        m_Cache.push_back(p);
-      }
+      if( p.get()!=NULL ) { dat.push_back(p); }
+    }
+    {
+      ThreadMutexLocker lock(m_CacheMutex);
+      m_Cache.splice( m_Cache.end(), dat );
+      UpdateStatus();
     }
   }
 
