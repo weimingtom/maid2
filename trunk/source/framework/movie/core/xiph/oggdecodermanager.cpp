@@ -63,13 +63,23 @@
 namespace Maid { namespace Movie { namespace Xiph {
 
 
+OggDecoderManager::OggDecoderManager()
+  :m_State(STATE_INITIALIZING)
+{
 
+}
 
 FUNCTIONRESULT OggDecoderManager::Initialize()
 {
 
   return FUNCTIONRESULT_OK;
 }
+
+bool OggDecoderManager::Setuped()const
+{
+  return m_State==STATE_WORKING;
+}
+
 
 
 void OggDecoderManager::GetFormat( const String& id, SPSAMPLEFORMAT& pOut )const
@@ -84,17 +94,26 @@ void OggDecoderManager::AddSource( const SPSTORAGESAMPLE& buffer )
 {
   const OggPage& page = *boost::shared_static_cast<OggPage>(buffer);
 
-  if( page.IsBeginOfStream() )
+  switch( m_State )
   {
-    AddDecoder( page );
-  }else
-  {
-    const int Serial = page.GetSerialNo();
-    DECODERLIST::iterator ite = m_DecoderList.find(Serial);
+  case STATE_INITIALIZING:
+    {
+      //  bos は連続していて、bosでないページが出てきたら、組み合わせが完了する
+      if( page.IsBeginOfStream() ) { AddDecoder( page ); break; }
+      m_State = STATE_WORKING;
 
-    if( ite==m_DecoderList.end() ) { return ; }
-    ite->second.pDecoder->AddSource( buffer );
+    }//break; //  だからスルー
+
+  case STATE_WORKING:
+    {
+      const int Serial = page.GetSerialNo();
+      DECODERLIST::iterator ite = m_DecoderList.find(Serial);
+
+      if( ite==m_DecoderList.end() ) { return ; }
+      ite->second.pDecoder->AddSource( buffer );
+    }break;
   }
+
 }
 
 void OggDecoderManager::FlushSample( const String& id, double time, DECODERSAMPLELIST& pOut )
@@ -185,7 +204,7 @@ void OggDecoderManager::AddDecoder( const OggPage& page )
       pTheora->Decode( packet, SPSAMPLE() );
 
       const theora_info& th = pTheora->GetInfo();
-      SPCACHECHECKER pChecker( new CacheCheckerTheora(5,5) );
+      SPCACHECHECKER pChecker( new CacheCheckerTheora(5,10) );
       SPSAMPLEFORMATFRAME pInfo( new SampleFormatFrame );
 
       {
@@ -219,7 +238,7 @@ void OggDecoderManager::AddDecoder( const OggPage& page )
 
       const PCMFORMAT& fmt = pVorbis->GetFormat();
 
-      SPCACHECHECKER pChecker( new CacheCheckerVorbis(10,1) );
+      SPCACHECHECKER pChecker( new CacheCheckerVorbis(5,2) );
       SPSAMPLEFORMATPCM pInfo( new SampleFormatPCM );
       pInfo->Format = fmt;
 

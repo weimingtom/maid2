@@ -25,6 +25,8 @@ namespace Maid { namespace Movie { namespace Xiph {
 
     virtual void Read( SPSTORAGESAMPLE& pSample );
     virtual bool IsEnd() const;
+    virtual bool IsCacheEmpty() const;
+    virtual bool IsCacheFull() const;
 
   private:
     String          m_FileName;

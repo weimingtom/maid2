@@ -16,7 +16,7 @@ namespace Maid { namespace Movie {
     : public IStorageReader
   {
   public:
-    StorageReaderMultiThread( const SPSTORAGEREADER& pReader );
+    StorageReaderMultiThread( const SPSTORAGEREADER& pReader, size_t count );
 
     virtual void Initialize();
     virtual void Finalize();
@@ -24,6 +24,7 @@ namespace Maid { namespace Movie {
     virtual void Read( SPSTORAGESAMPLE& pSample );
     virtual bool IsEnd() const;
     virtual bool IsCacheEmpty() const;
+    virtual bool IsCacheFull() const;
 
   private:
     SPSTORAGEREADER m_pReader;
@@ -31,6 +32,7 @@ namespace Maid { namespace Movie {
     std::list<SPSTORAGESAMPLE>  m_Cache;
     ThreadMutex m_CacheMutex;
 
+    const size_t  m_CACHECOUNT;
   private:
     unt ThreadFunction( volatile ThreadController::BRIGEDATA& state );
     ThreadController  m_Thread;

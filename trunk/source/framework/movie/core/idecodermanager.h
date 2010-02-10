@@ -26,12 +26,14 @@ namespace Maid { namespace Movie {
   public:
     virtual ~IDecoderManager(){}
 
-    //! デコードするための準備
-    /*!
-        @return FUNCTIONRESULT_OK     デコード準備できました
-                FUNCTIONRESULT_ERROR  デコードできません
-    */
     virtual FUNCTIONRESULT Initialize()=0;
+
+    //! デコードするための準備が整ったか？
+    /*!
+        @return true  準備ＯＫ
+                false まだまだ AddSource() が欲しい
+    */
+    virtual bool Setuped()const=0;
 
     //! デコードするためのデータを送る
     /*!

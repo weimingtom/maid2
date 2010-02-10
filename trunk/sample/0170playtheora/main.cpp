@@ -39,7 +39,8 @@ protected:
   {
     m_Command.Initialize();
     m_Render.Initialize();
-    m_Player.Initialize( MAIDTEXT("nc4259.ogv") );
+//    m_Player.Initialize( MAIDTEXT("nc4259.ogv") );
+    m_Player.Initialize( MAIDTEXT("op_800x600v10.ogv") );
 
     m_Font.Create( SIZE2DI(16,32), true );
     m_Frame = 0;
@@ -77,10 +78,9 @@ protected:
           UpdateTexture();
           UpdateSound();
           m_Frame = 0;
-          m_Player.Play();
           m_Sound.Play();
+          m_Player.Play();
         }
-
       }break;
 
     case STATE_PLAING:
@@ -100,18 +100,15 @@ protected:
           //  スペースを押したら20秒にシーク
           m_Sound.Stop();
           const int frame = 1200;
- //         m_Player.Seek( 20.0 );
+          m_Player.Stop();
+          m_Player.SetPosition( 20.0 );
           m_Frame = frame;
           m_State = STATE_INITIALIZING;
         }else
         {
 
           UpdateTexture();
-          //  サウンドは0.1秒に１回の更新で十分だと思う
-          if( m_Frame %10 == 0 )
-          {
-            UpdateSound();
-          }
+          UpdateSound();
         }
       }break;
 

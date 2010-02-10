@@ -21,7 +21,10 @@ namespace Maid { namespace Movie { namespace Xiph {
     : public IDecoderManager
   {
   public:
+    OggDecoderManager();
+
     virtual FUNCTIONRESULT Initialize();
+    virtual bool Setuped()const;
     virtual void AddSource( const SPSTORAGESAMPLE& buffer );
     virtual void GetFormat( const String& id, SPSAMPLEFORMAT& pOut )const;
     virtual void FlushSample( const String& id, double time, DECODERSAMPLELIST& pOut );
@@ -35,6 +38,13 @@ namespace Maid { namespace Movie { namespace Xiph {
   private:
     void AddDecoder( const OggPage& page );
 
+    enum STATE
+    {
+      STATE_INITIALIZING, //  初期化中
+      STATE_WORKING,      //  稼働中
+    };
+
+    STATE m_State;
 
   private:
 
