@@ -89,20 +89,21 @@ namespace Maid
     enum STATE
     {
       STATE_EMPTY,        //  インスタンスが生成されただけ
-      STATE_SEEKING,    //  シーク中
-      STATE_WORKING,    //  稼動中
-      STATE_END,        //  再生終了
+      STATE_INITIALIZING, //  初期化中
+      STATE_SEEKING,      //  シーク中
+      STATE_WORKING,      //  稼動中
+      STATE_END,          //  再生終了
     };
 
     STATE m_State;
-    double m_SeekTarget;  //  シーク目標
 
     Movie::SPSTORAGEREADER  m_pStorage;
     Movie::SPDECODERMANAGER m_pManager;
 
   private:
-    void Seek();
-    void Work();
+    void Init(volatile ThreadController::BRIGEDATA& state);
+    void Seek(volatile ThreadController::BRIGEDATA& state);
+    void Work(volatile ThreadController::BRIGEDATA& state);
 
   private:
     unt ThreadFunction( volatile ThreadController::BRIGEDATA& state );

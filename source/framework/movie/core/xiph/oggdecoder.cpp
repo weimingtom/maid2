@@ -87,11 +87,13 @@ void OggDecoder::UpdateTime( DECODERSAMPLE& out )
   const double OldTime   = m_pCodec->GetTime();
   const double SampleLen = m_pCodec->CalcPacketLength(packet);
 
+
   if( IsSkipMode() )
   {
-    if( m_SkipTargetTime < OldTime )
+    if( OldTime < m_SkipTargetTime )
     {
       m_pCodec->Skip( packet );
+      return ;
     }else
     {
       m_SkipTargetTime = -1;

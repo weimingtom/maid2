@@ -100,6 +100,10 @@ namespace Maid { namespace Movie { namespace Xiph {
     ThreadMutex m_DecodeMutex; //  m_Decoder の更新用
     ThreadMutex m_CacheMutex; //  m_Decoder の更新用
 
+    bool  m_IsSourceFull;
+    bool  m_IsSampleFull;
+    bool  m_IsDecodeEnd;
+
   private:
     unt ThreadFunction( volatile ThreadController::BRIGEDATA& state );
     ThreadController  m_Thread;

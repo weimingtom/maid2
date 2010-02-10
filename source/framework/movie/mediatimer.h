@@ -22,9 +22,7 @@ namespace Maid
     MediaTimer();
 
     void Start();
-    void Start( double time );
     void Stop();
-    void Resume();
     void SetOffset( double time );
 
     virtual double Get() const;

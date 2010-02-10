@@ -62,7 +62,7 @@ size_t DecoderSampleCache::GetSize() const
 //  指定した時間までのデータを全部取得する
 int DecoderSampleCache::Pop( double TargetTime, DECODERSAMPLELIST& Out )
 {
-  if( GetSize()==0 ) { return 0; }
+  if( m_List.empty() ) { return 0; }
 
   DECODERSAMPLELIST::iterator ite  = m_List.begin();
   while( true )

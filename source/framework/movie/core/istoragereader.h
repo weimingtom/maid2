@@ -26,6 +26,8 @@ namespace Maid { namespace Movie {
 
     virtual void Read( SPSTORAGESAMPLE& pSample )=0;
     virtual bool IsEnd() const =0;
+    virtual bool IsCacheEmpty() const=0;
+    virtual bool IsCacheFull() const=0;
   };
 
   typedef boost::shared_ptr<IStorageReader> SPSTORAGEREADER;

@@ -14,12 +14,6 @@ namespace Maid
 
   void MediaTimer::Start()
   {
-    Start(0);
-  }
-
-  void MediaTimer::Start( double time )
-  {
-    m_Offset = time;
     m_StartTime = m_Timer.Get();
   }
 
@@ -29,11 +23,6 @@ namespace Maid
     const double now = Get();
     m_StartTime = TIMESTOP;
     m_Offset = now; //  再開用にとっておく
-  }
-
-  void MediaTimer::Resume()
-  {
-    Start(m_Offset);
   }
 
   double MediaTimer::Get() const

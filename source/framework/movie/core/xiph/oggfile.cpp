@@ -89,6 +89,17 @@ bool OggFile::IsEnd() const
   return m_IsEnd;
 }
 
+bool OggFile::IsCacheEmpty() const
+{
+  if( IsEnd() ) { return true; }
+  return false;
+}
+
+bool OggFile::IsCacheFull() const
+{
+  if( IsEnd() ) { return false; }
+  return true;
+}
 
 
 }}}

@@ -17,17 +17,14 @@ namespace Maid {
 
 MoviePlayer::MoviePlayer()
   :m_State(STATE_EMPTY)
-  ,m_SeekTarget(0.0)
 {
 
 }
 
 void MoviePlayer::Initialize( const String& FileName )
 {
-
   m_FileName = FileName;
-
-  SetPosition(0.0);
+  SetPosition(0);
 }
 
 bool MoviePlayer::IsStandby() const
@@ -67,7 +64,7 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
 
   //  指定した時間の１秒先まであれば十分かな
   {
-    m_pManager->FlushSample( DECODERID_PCM1, TargetTime+0.5, SampleList );
+    m_pManager->FlushSample( DECODERID_PCM1, TargetTime+1.0, SampleList );
   }
 
   //  汲み取ったデータに過去のものがあったら切り取るようにする
@@ -167,9 +164,10 @@ void MoviePlayer::Stop()
 void MoviePlayer::SetPosition( double time )
 {
   m_Thread.Close();
+  m_Timer.Stop();
 
-  m_State = STATE_SEEKING;
-  m_SeekTarget = time;
+  m_State = STATE_INITIALIZING;
+  m_Timer.SetOffset( time );
   m_Thread.SetFunc( MakeThreadObject(&MoviePlayer::ThreadFunction,this) );
   m_Thread.Execute();
 }

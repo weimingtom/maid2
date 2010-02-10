@@ -26,20 +26,10 @@ unt MoviePlayer::ThreadFunction( volatile ThreadController::BRIGEDATA& brige )
     if( brige.IsExit ) { break; }
     switch( m_State )
     {
-    case STATE_SEEKING:
-      {
-        Seek();
-      }break;
-
-    case STATE_WORKING: 
-      {
-        Work();
-      }break;
-
-    case STATE_END:
-      {
-        ::Sleep(5);
-      }break;
+    case STATE_INITIALIZING: { Init(brige); }break;
+    case STATE_SEEKING: { Seek(brige); }break;
+    case STATE_WORKING: { Work(brige); }break;
+    case STATE_END:     { ThreadController::Sleep(5); }break;
     }
   }
 
@@ -48,46 +38,32 @@ unt MoviePlayer::ThreadFunction( volatile ThreadController::BRIGEDATA& brige )
   return 0;
 }
 
-void MoviePlayer::Seek()
+void MoviePlayer::Init(volatile ThreadController::BRIGEDATA& state)
 {
-  //  名前はシークですが、初期化コードもある。
-
-  Movie::SPSTORAGEREADER pSingle( new Movie::Xiph::OggFile(m_FileName) );
-  m_pStorage.reset( new Movie::StorageReaderMultiThread(pSingle) );
-  m_pManager.reset( new Movie::Xiph::OggDecoderManager() );
+  {
+    Movie::SPSTORAGEREADER pSingle( new Movie::Xiph::OggFile(m_FileName) );
+    m_pStorage.reset( new Movie::StorageReaderMultiThread(pSingle, 20) );
+    m_pManager.reset( new Movie::Xiph::OggDecoderManager() );
+  }
 
   m_pStorage->Initialize();
   m_pManager->Initialize();
-  m_pManager->BeginSkipMode( m_SeekTarget );
-
-  //  数パケットにわたって初期化データが入っていることがあって
-  //  初期化が終わるまではキャッシュがたまらないので、同じwhile()でも微妙に処理が変わってしまう
 
   while( true )
   {
+    if( state.IsExit ) { break; }
+
+    ThreadController::Sleep(1);
     if( m_pStorage->IsEnd() ) { break; }
-    if( m_pManager->IsSourceFull() ) { break; }
+    if( m_pManager->Setuped() ) { break; }
     Movie::SPSTORAGESAMPLE pSample;
     m_pStorage->Read( pSample );
-    if( pSample.get()==NULL ) { break; }
+    if( pSample.get()==NULL ) { continue; }
     m_pManager->AddSource( pSample );
   }
 
-  while( true )
-  {
-    if( m_pStorage->IsEnd() ) { break; }
-    if( m_pManager->IsSampleFull() ) { break; }
-    if( m_pManager->IsSourceFull() ) { ::Sleep(1); continue; }
-
-    Movie::SPSTORAGESAMPLE pSample;
-    m_pStorage->Read( pSample );
-    if( pSample.get()==NULL ) { break; }
-    m_pManager->AddSource( pSample );
-  }
 
   {
-    //  サンプルがいっぱいになってる==フォーマットがわかってるはずなので、それを取得する
-
     {
       Movie::SPSAMPLEFORMAT pFormat;
       m_pManager->GetFormat( DECODERID_FRAME1, pFormat );
@@ -121,36 +97,92 @@ void MoviePlayer::Seek()
       }
     }
   }
-
-  m_SeekTarget = -1.0;
-  m_State = STATE_WORKING;
+  //  初期化が終了したらシークへ
+  m_State = STATE_SEEKING;
 }
 
-void MoviePlayer::Work()
+
+void MoviePlayer::Seek(volatile ThreadController::BRIGEDATA& state)
 {
+  //  名前はシークですが、バッファリングも行う
+  const double time = m_Timer.Get();
+  if( 0<time )
+  {
+    m_pManager->BeginSkipMode( time );
+  }
+
+  //  サンプルが埋まるまで入れ続ける
   while( true )
   {
+    if( state.IsExit ) { break; }
     if( m_pStorage->IsEnd() ) { break; }
-    if( m_pManager->IsSourceFull() ) { ::Sleep(1); break; }
     if( m_pManager->IsSampleFull() ) { break; }
-
     Movie::SPSTORAGESAMPLE pSample;
     m_pStorage->Read( pSample );
-    if( pSample.get()==NULL ) { break; }
+    if( pSample.get()==NULL ) { ThreadController::Sleep(1); continue; }
     m_pManager->AddSource( pSample );
   }
 
-  if( 0.0<=m_SeekTarget )
+  //  デコード前が埋まるまで入れ続ける
+  while( true )
   {
-    //  シーク命令が来ていたら、再生成してやり過ごす
-    m_State = STATE_SEEKING;
-  }else
+    if( state.IsExit ) { break; }
+    if( m_pStorage->IsEnd() ) { break; }
+    if( m_pManager->IsSourceFull() ) { break; }
+    Movie::SPSTORAGESAMPLE pSample;
+    m_pStorage->Read( pSample );
+    if( pSample.get()==NULL ) { ThreadController::Sleep(1); continue; }
+    m_pManager->AddSource( pSample );
+  }
+
+  //  ストレージが埋まるまで待つ
+  while( true )
+  {
+    if( state.IsExit ) { break; }
+    if( m_pStorage->IsEnd() ) { break; }
+    if( m_pStorage->IsCacheFull() ) { break; }
+    ThreadController::Sleep(1);
+  }
+
+  m_State = STATE_WORKING;
+}
+
+void MoviePlayer::Work(volatile ThreadController::BRIGEDATA& state)
+{
+  //  再生が遅れていたら、スキップ
+  {
+    const double now = m_Timer.Get();
+    const double dec = m_pManager->GetTime();
+    if( dec < now )
+    {
+      m_pManager->BeginSkipMode( now );
+    }
+  }
+
+  while( true )
+  {
+    if( state.IsExit ) { break; }
+
+    if( m_pStorage->IsEnd() ) { break; }
+
+    if( m_pManager->IsSourceFull() )
+    {
+      ThreadController::Sleep(1);
+    }else
+    {
+      Movie::SPSTORAGESAMPLE pSample;
+      m_pStorage->Read( pSample );
+      if( pSample.get()!=NULL ) { m_pManager->AddSource( pSample ); }
+    }
+
+    if( m_pManager->IsSampleFull() ) { ThreadController::Sleep(1); break; }
+  }
+
   {
     if( m_pManager->IsDecodeEnd() )
     {
       m_State = STATE_END;
     }
-    ::Sleep(1);
   }
 }
 

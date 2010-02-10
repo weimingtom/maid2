@@ -175,12 +175,13 @@ protected:
     {
       char buf[256];
       sprintf( buf, "frame:%04d,draw:%04d", m_FrameCount, m_DrawCount );
-
+/*
       m_Render.BltText( POINT2DI(0,  0), m_FontS, String::ConvertSJIStoMAID(buf), COLOR_R32G32B32A32F(1,1,1,1) );
       m_Render.BltText( POINT2DI(0,100), m_FontS, MAIDTEXT("テキスト表示"), COLOR_R32G32B32A32F(1,1,1,1) );
       m_Render.BltText( POINT2DI(0,200), m_FontM2, MAIDTEXT("色かえもＯＫ"), COLOR_R32G32B32A32F(1,1,1,1) );
       m_Render.BltText( POINT2DI(0,300), m_FontM2, MAIDTEXT("半透明もできる"), COLOR_R32G32B32A32F(1,1,1,0.5f) );
-      m_Render.BltText( POINT2DI(0,400), m_FontL, MAIDTEXT("改行も\nサポート"), COLOR_R32G32B32A32F(1,1,1,1) );
+*/
+      m_Render.BltText( POINT2DI(0,400), m_FontL, MAIDTEXT("改行も\r\nサポート"), COLOR_R32G32B32A32F(1,1,1,1) );
     }
     m_Command.End();
     ++m_DrawCount;
