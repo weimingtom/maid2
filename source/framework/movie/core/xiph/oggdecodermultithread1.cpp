@@ -8,12 +8,13 @@
 namespace Maid { namespace Movie { namespace Xiph {
 
 
-OggDecoderMultiThread::OggDecoderMultiThread( const SPOGGSTREAM& pStream, const SPCODEC& pCodec, const SPCACHECHECKER& pCheck )
+OggDecoderMultiThread::OggDecoderMultiThread( const SPOGGSTREAM& pStream, const SPCODEC& pCodec, const SPCACHECHECKER& pCheck, unt32 Mask )
   :m_Decoder(pStream,pCodec)
   ,m_pChecker(pCheck)
   ,m_IsSourceFull(false)
   ,m_IsSampleFull(false)
   ,m_IsDecodeEnd(false)
+  ,m_ThreadMask(Mask)
 {
 
 }
@@ -24,6 +25,8 @@ void OggDecoderMultiThread::Initialize()
 
   m_Thread.SetFunc( MakeThreadObject(&OggDecoderMultiThread::ThreadFunction,this) );
   m_Thread.Execute();
+
+  if( m_ThreadMask!=0 ) { m_Thread.SetProcesserMask(m_ThreadMask); }
 }
 
 
@@ -97,18 +100,26 @@ unt OggDecoderMultiThread::ThreadFunction( volatile ThreadController::BRIGEDATA&
     if( IsDecodeEnd() ) { break; }
     if( IsSampleFull() ) { ThreadController::Sleep(1); continue; }
 
-    DECODERSAMPLE sample;
+    std::list<DECODERSAMPLE>  sample_list;
+
     {
       ThreadMutexLocker lock(m_DecodeMutex);
-      m_Decoder.UpdateTime(sample);
+      for( int i=0; i<1; ++i )
+      {
+        DECODERSAMPLE sample;
+        m_Decoder.UpdateTime(sample);
+        if( sample.pSample.get()!=NULL ) { sample_list.push_back(sample); }
+      }
       m_IsDecodeEnd = m_Decoder.IsDecodeEnd();
       m_IsSourceFull = m_pChecker->IsSourceFull(m_Decoder);
     }
 
-    if( sample.pSample.get()!=NULL )
     {
       ThreadMutexLocker lock(m_CacheMutex);
-      m_Cache.PushBack( sample );
+      for( std::list<DECODERSAMPLE>::iterator ite=sample_list.begin(); ite!=sample_list.end(); ++ite )
+      {
+        m_Cache.PushBack( *ite );
+      }
       m_IsSampleFull = m_pChecker->IsSampleFull(m_Cache);
     }
   }

@@ -1,4 +1,5 @@
 ﻿#include"storagereadermultithread.h"
+#include"../../../auxiliary/debug/warning.h"
 
 
 

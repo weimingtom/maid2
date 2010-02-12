@@ -1,22 +1,20 @@
 ﻿#include"../../source/config/define.h"
-#include"../../source/framework/movie/xiph/oggcontainer.h"
-#include"../../source/framework/movie/xiph/oggpacket.h"
-#include"../../source/framework/movie/xiph/oggpage.h"
-#include"../../source/framework/movie/xiph/oggstream.h"
-#include"../../source/framework/movie/xiph/codectheora.h"
-#include"../../source/framework/movie/xiph/codecvorbis.h"
+#include"../../source/framework/movie/core/xiph/oggfile.h"
+#include"../../source/framework/movie/core/xiph/oggpacket.h"
+#include"../../source/framework/movie/core/xiph/oggpage.h"
+#include"../../source/framework/movie/core/xiph/oggstream.h"
+#include"../../source/framework/movie/core/xiph/codectheora.h"
+#include"../../source/framework/movie/core/xiph/codecvorbis.h"
 #include"../../source/storage/storage.h"
 #include"../../source/auxiliary/timer.h"
 
 #include<stdio.h>
-#include<ogg/ogg.h>
-#include<theora/theora.h>
 #include<windows.h>
-#include<vorbis/codec.h>
 #include<map>
 #include<boost/smart_ptr.hpp>
 
 using namespace Maid;
+using namespace Movie;
 using namespace Xiph;
 
 struct BENCHINFO
@@ -28,7 +26,7 @@ struct BENCHINFO
 
 void main( int argc, char *argv[] )
 {
-  if( argc<2 ) { printf("ファイル名を指定してください\n" ); return ; }
+//  if( argc<2 ) { printf("ファイル名を指定してください\n" ); return ; }
 
   Timer CurrentTimer;
 
@@ -40,7 +38,7 @@ void main( int argc, char *argv[] )
   strage.Initialize();
 
 
-  OggContainer  container;
+  OggFile  container( String::ConvertSJIStoMAID(argv[1]) );
   boost::shared_ptr<OggStream>  th_stream;
   boost::shared_ptr<ICodec>   th_decoder;
 
@@ -50,7 +48,7 @@ void main( int argc, char *argv[] )
 
   std::multimap<double,BENCHINFO> BenchResult;
 
-  container.Initialize( String::ConvertSJIStoMAID(argv[1]) );
+  container.Initialize();
 
   bool IsTheora = false;
 
@@ -59,7 +57,10 @@ void main( int argc, char *argv[] )
   {
     if( container.IsEnd() ) { break; }
 
-    const OggPage& page = container.GetCurrentPage();
+    SPSTORAGESAMPLE pPageSample;
+    container.Read( pPageSample );
+
+    const OggPage& page = *static_cast<OggPage*>(pPageSample.get());
 
     if( !page.IsBeginOfStream() ) { break; }
 
@@ -71,12 +72,11 @@ void main( int argc, char *argv[] )
     pStream->PageIn( page );
     pStream->PacketOut( packet );
 
-    ogg_packet& p = const_cast<ogg_packet&>(packet.Get());
-    if( theora_packet_isheader(&p)==1 ) 
+    if( CodecTheora::IsFirstPacket(packet) ) 
     {
       boost::shared_ptr<CodecTheora> pDecoder( new CodecTheora );
       pDecoder->Initialize();
-      pDecoder->Setup(packet);
+      pDecoder->Decode(packet,SPSAMPLE());
 
       const theora_info& info = pDecoder->GetInfo();
       const char* FORMAT[] =
@@ -98,11 +98,11 @@ void main( int argc, char *argv[] )
       th_decoder = pDecoder;
       th_stream = pStream;
     }
-    else if( vorbis_synthesis_idheader(&p)==1 )
+    else if( CodecVorbis::IsFirstPacket(packet) )
     {
       boost::shared_ptr<CodecVorbis> pDecoder( new CodecVorbis );
       pDecoder->Initialize();
-      pDecoder->Setup(packet);
+      pDecoder->Decode(packet,SPSAMPLE());
 
       const vorbis_info& vi = pDecoder->GetInfo();
 
@@ -113,8 +113,6 @@ void main( int argc, char *argv[] )
       vb_decoder = pDecoder;
       vb_stream = pStream;
     }
-
-    container.NextPage();
   }
 
   unt totalcount = 0;
@@ -123,7 +121,11 @@ void main( int argc, char *argv[] )
   {
     if( container.IsEnd() ) { break; }
 
-    const OggPage& page = container.GetCurrentPage();
+    SPSTORAGESAMPLE pPageSample;
+    container.Read( pPageSample );
+    if( pPageSample.get()==NULL ) { break; }
+
+    const OggPage& page = *static_cast<OggPage*>(pPageSample.get());
 
     OggStream* pStream = NULL;
     ICodec* pDecoder = NULL;
@@ -166,8 +168,7 @@ void main( int argc, char *argv[] )
         const double BeginTime = pDecoder->GetTime();
 
         const unt BeginClock = CurrentTimer.Get();
-        if( pDecoder->IsSetupped() ) { pDecoder->Decode( packet, SPSAMPLE() ); }
-        else { pDecoder->Setup( packet ); }
+        pDecoder->Decode( packet, SPSAMPLE() );
         const unt EndClock   = CurrentTimer.Get();
         const double EndTime = pDecoder->GetTime();
 
@@ -189,11 +190,6 @@ void main( int argc, char *argv[] )
         }
         totalcount = 0;
       }
-    }
-    {
-      const unt t = CurrentTimer.Get();
-      container.NextPage();
-      totalcount += CurrentTimer.Get() - t;
     }
   }
 

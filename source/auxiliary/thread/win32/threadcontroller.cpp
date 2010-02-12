@@ -225,7 +225,8 @@ void ThreadController::Impl::SetPriority( ThreadController::PRIORITY priority )
 
 void ThreadController::Impl::SetProcesserMask( unt32 mask )
 {
-  ::SetThreadAffinityMask( (HANDLE)m_hThread, mask );
+  const DWORD ret = ::SetThreadAffinityMask( (HANDLE)m_hThread, mask );
+  if( ret==0 ) { MAID_WARNING( "SetThreadAffinityMask:" << m_hThread << " mask:" << mask ); }
 }
 
 
