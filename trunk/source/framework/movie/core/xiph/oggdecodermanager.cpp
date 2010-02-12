@@ -181,6 +181,11 @@ bool OggDecoderManager::IsDecodeEnd() const
   return true;
 }
 
+enum THREADMASK
+{
+  THREADMASK_THEORA = 1<<0,
+  THREADMASK_VORBIS = 1<<1,
+};
 
 void OggDecoderManager::AddDecoder( const OggPage& page )
 {
@@ -227,7 +232,7 @@ void OggDecoderManager::AddDecoder( const OggPage& page )
       }
 
       DecID = DECODERID_FRAME1;
-      pDecoder = SPDECODER( new OggDecoderMultiThread(pStream, pTheora, pChecker) );
+      pDecoder = SPDECODER( new OggDecoderMultiThread(pStream, pTheora, pChecker,THREADMASK_THEORA) );
       pFormat  = pInfo;
     }
     else if( CodecVorbis::IsFirstPacket(packet) )
@@ -243,7 +248,7 @@ void OggDecoderManager::AddDecoder( const OggPage& page )
       pInfo->Format = fmt;
 
       DecID = DECODERID_PCM1;
-      pDecoder = SPDECODER( new OggDecoderMultiThread(pStream, pVorbis, pChecker) );
+      pDecoder = SPDECODER( new OggDecoderMultiThread(pStream, pVorbis, pChecker,THREADMASK_VORBIS) );
       pFormat  = pInfo;
     }
   }

@@ -76,7 +76,7 @@ namespace Maid { namespace Movie { namespace Xiph {
     : public IDecoder
   {
   public:
-    OggDecoderMultiThread( const SPOGGSTREAM& pStream, const SPCODEC& pCodec, const SPCACHECHECKER& pCheck );
+    OggDecoderMultiThread( const SPOGGSTREAM& pStream, const SPCODEC& pCodec, const SPCACHECHECKER& pCheck, unt32 Mask );
 
     virtual void Initialize();
     virtual void Finalize();
@@ -103,6 +103,8 @@ namespace Maid { namespace Movie { namespace Xiph {
     bool  m_IsSourceFull;
     bool  m_IsSampleFull;
     bool  m_IsDecodeEnd;
+
+    const unt32 m_ThreadMask; //  処理スレッドを固定するかのマスク(0で固定しない)
 
   private:
     unt ThreadFunction( volatile ThreadController::BRIGEDATA& state );

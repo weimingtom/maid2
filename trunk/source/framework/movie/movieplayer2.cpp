@@ -42,7 +42,7 @@ void MoviePlayer::Init(volatile ThreadController::BRIGEDATA& state)
 {
   {
     Movie::SPSTORAGEREADER pSingle( new Movie::Xiph::OggFile(m_FileName) );
-    m_pStorage.reset( new Movie::StorageReaderMultiThread(pSingle, 20) );
+    m_pStorage.reset( new Movie::StorageReaderMultiThread(pSingle, 50) );
     m_pManager.reset( new Movie::Xiph::OggDecoderManager() );
   }
 

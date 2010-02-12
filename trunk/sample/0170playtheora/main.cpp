@@ -14,6 +14,7 @@
 
 #include"../../source/auxiliary/debug/trace.h"
 #include"../../source/auxiliary/debug/profile.h"
+#include"../../source/auxiliary/debug/warning.h"
 
 #include"startupdialog.h"
 
@@ -39,8 +40,9 @@ protected:
   {
     m_Command.Initialize();
     m_Render.Initialize();
-    m_Player.Initialize( MAIDTEXT("nc4259.ogv") );
+//    m_Player.Initialize( MAIDTEXT("nc4259.ogv") );
 //    m_Player.Initialize( MAIDTEXT("op_800x600v10.ogv") );
+    m_Player.Initialize( MAIDTEXT("op_800x600v09.ogv") );
 
     m_Font.Create( SIZE2DI(16,32), true );
     m_Frame = 0;
@@ -77,9 +79,10 @@ protected:
           //  サウンドは毎回やる
           UpdateTexture();
           UpdateSound();
+          TimerReset();
           m_Frame = 0;
-          m_Sound.Play();
           m_Player.Play();
+          m_Sound.Play();
         }
       }break;
 
@@ -106,7 +109,6 @@ protected:
           m_State = STATE_INITIALIZING;
         }else
         {
-
           UpdateTexture();
           UpdateSound();
         }
@@ -180,7 +182,11 @@ private:
     if( pImage.get()==NULL ) { return ; }
 
 //    MAID_WARNING( "time:" << time <<" frame:" << m_Frame );
+//    const DWORD s = ::GetTickCount();
     m_Command.UpdateTexture( m_Texture, pImage );
+//    const DWORD d = ::GetTickCount();
+//    const unt time_ = d-s;
+//    MAID_WARNING( "log:" << time_ );
   }
 
   void UpdateSound()

@@ -15,7 +15,6 @@ OggFile::OggFile( const String& filename )
   ,m_IsEnd(true)
 {
   ZERO( &m_State, sizeof(m_State) );
-
 }
 
 void OggFile::Initialize()
