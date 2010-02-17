@@ -59,6 +59,7 @@ bool StorageReaderMultiThread::IsCacheEmpty() const
 
 bool StorageReaderMultiThread::IsCacheFull() const
 {
+  if( m_pReader->IsEnd() && !m_IsCacheEmpty ) { return true; }
   return m_IsCacheFull;
 }
 
