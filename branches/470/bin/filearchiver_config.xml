@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<root>
+  <ArchiveName>arc.dat</ArchiveName>
+  <DivideSize>102400</DivideSize>
+  <RootDirectory></RootDirectory>
+  
+  <ArchiveFile>archive.*</ArchiveFile>
+  
+  <NoArchiveFile>.*\.svn</NoArchiveFile>
+  
+  <NoComplessFile>.*\.txt</NoComplessFile>
+  <NoComplessFile>.*\.cpp</NoComplessFile>
+</root>
+

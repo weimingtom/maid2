@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<Define>
+	<!-- ２重起動を防ぐミューテックス名 -->
+	<MutexName>http://code.google.com/p/maid2/</MutexName>
+	
+	<!-- ウィンドウのタイトルバーに表示されるテキスト -->
+	<Caption>Setup</Caption>
+	
+	<!-- インストールするアプリケーションのＧＵＩＤ Microsoft Visual Studio\Common\Tools\GUIDGEN.EXE で作成できます-->
+	<GUID>{8FFAE08B-704D-4ee3-A88B-213D003A0D83}</GUID>
+	
+	<!-- アプリケーションの追加と削除に表示させるタイトル -->
+	<UninstallTittle>maid_installertester</UninstallTittle>
+	
+	<!-- アプリケーションの追加と削除の発行元に表示させる文字列 -->
+	<Publisher>PublisherString</Publisher>
+	
+	<!-- デフォルトで指定されているインストール先 -->	
+	<DefaultFolder>[ProgramFiles]\maid_installertester</DefaultFolder>
+	
+
+	<!-- インストールの終了後に起動する実行ファイル名　起動の必要がない場合はこのタグを消しておくこと -->	 
+	<LastExecute>
+		<!-- 起動前に確認表示するテキスト -->
+	 	<CheckComment>起動しますか？</CheckComment>
+	 	<!-- 起動する実行ファイル( ShellExecute() で呼ばれます) -->
+	 	<ExecutePath>[TargetFolder]\installertester.exe</ExecutePath>
+	</LastExecute>
+	
+	<!-- インストール方法。 InstallTypeタグ１つにつき、１方法になってます -->
+	<InstallType>
+		<!-- インストールタイプのところに表示される文字 -->
+		<Name>フルインストール</Name>
+		<!-- ヘルプのところに表示される文字 -->
+		<Comment>コメントデス</Comment>
+		
+		<!-- インストール設定 -->
+		<Config>
+			<!-- コピーするファイルの設定。
+					CopyFileタグ単位で順番に実行される
+					DiskNo:SourcePath から DestPath にコピーされます。
+					MD5タグがない場合はＭＤ５チェックを行いません
+					 -->
+			<CopyFile>
+				<DiskNo>0</DiskNo>
+				<SourcePath>[SourceFolder]\game\installertester.exe</SourcePath>
+				<DestPath>[TargetFolder]\installertester.exe</TargetPath>
+				<MD5></MD5>
+			</CopyFile>
+			<CopyFile>
+				<DiskNo>0</DiskNo>
+				<SourcePath>[SourceFolder]\game\nc7802.ogg</SourcePath>
+				<DestPath>[TargetFolder]\nc7802.ogg</TargetPath>
+				<MD5>adf8bde8f3bc02699aadb55a6fe84a88</MD5>
+			</CopyFile>
+			<CopyFile>
+				<DiskNo>0</DiskNo>
+				<SourcePath>[SourceFolder]\game\waru.wav</SourcePath>
+				<DestPath>[TargetFolder]\waru.wav</TargetPath>
+				<MD5>d10036acc2e319e675f8aa1ac38ab124</MD5>
+			</CopyFile>
+
+			<!-- ショートカット設定
+				TargetObject　へのショートカットを CreatePath に作成します
+				別途コマンド引数がほしい場合は Parameters で定義すること
+			-->
+			<Shortcut>
+				<TargetObject>[TargetFolder]\installertester.exe</TargetObject>
+				<CreatePath>[UserProgramMenu]\maid\installertester\実行.lnk</CreatePath>
+				<Parameters></Parameters>
+			</Shortcut>
+			<Shortcut>
+				<TargetObject>[TargetFolder]\installertester.exe</TargetObject>
+				<CreatePath>[UserDeskTop]\installertesterの実行.lnk</CreatePath>
+				<Parameters></Parameters>
+			</Shortcut>
+			
+			
+			<!-- インストーラーは自動的に [Uninstaller] へアンインストーラーをコピーするので
+					プログラムメニューにショートカットを作成したい場合は、こうする
+			-->
+			
+			<Shortcut>
+				<TargetObject>[Uninstaller]</TargetObject>
+				<CreatePath>[UserProgramMenu]\maid\installertester\アンインストール.lnk</CreatePath>
+				<Parameters></Parameters>
+			</Shortcut>
+			
+
+			<!-- インストーラーに設定した項目は自動保存されないので、レジストリに書いておくと便利かも-->
+			<Registry>
+				<Handle>HKEY_LOCAL_MACHINE</Handle>
+				<!-- サブキーも消す場合は delete属性をつけておく。値だけならいらない-->
+				<SubKey delete="yes">Software\maid\installertester</SubKey>
+				<Value>
+					<Name>InstallDirectory</Name>
+					<Data type="String">[TargetFolder]</Data>
+				</Value>
+				<Value>
+					<Name>InstallType</Name>
+					<Data type="DWORD">フルインストール</Data>
+				</Value>
+			</Registry>
+
+			<!-- アンインストール時に別途ファイル削除を行いたい場合はここに書く-->
+			<UninstallOption>
+				<DeleteFolder filedelete="yes">
+					<Text>セーブデータも削除しますか？</Text>
+					<Target>[CommonAppData]\maid_installertester</Target>
+				</DeleteFolder>
+			</UninstallOption>
+		</Config>
+	</InstallType>
+</Define>
