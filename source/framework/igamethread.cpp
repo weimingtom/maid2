@@ -6,6 +6,7 @@
 namespace Maid
 {
 
+
 using namespace OSMessage;
 
 IGameThread::IGameThread()
