@@ -105,6 +105,9 @@ namespace Maid
     void Seek(volatile ThreadController::BRIGEDATA& state);
     void Work(volatile ThreadController::BRIGEDATA& state);
 
+    void Update();
+    ThreadMutex m_ManagerMutex;
+
   private:
     unt ThreadFunction( volatile ThreadController::BRIGEDATA& state );
     ThreadController  m_Thread;
