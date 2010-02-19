@@ -67,7 +67,7 @@ protected:
 
           if( m_Info.IsPCM )
           {
-            m_Sound.Initialize( m_Info.Pcm.Format, 1.0f );
+            m_Sound.Initialize( m_Info.Pcm.Format, 3.0f );
             m_Sound.SetVolume(1.0f);
           }
 
@@ -110,6 +110,7 @@ protected:
           UpdateTexture();
           UpdateSound();
         }
+
       }break;
 
     case STATE_END:
@@ -195,7 +196,12 @@ private:
     double time;
     m_Player.FlushPCM( time, buf );
 
-    m_Sound.Write( buf.GetPointer(0), buf.GetSize() );
+    if( buf.GetSize()!=0 )
+    {
+//      m_Sound.Write( buf.GetPointer(0), buf.GetSize() );
+      m_Sound.Write( time, buf.GetPointer(0), buf.GetSize() );
+    }
+
   }
 
 private:

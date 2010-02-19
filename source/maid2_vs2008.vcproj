@@ -1052,6 +1052,10 @@
 							>
 						</File>
 						<File
+							RelativePath=".\framework\movie\core\xiph\icachechecker.h"
+							>
+						</File>
+						<File
 							RelativePath=".\framework\movie\core\xiph\icodec.h"
 							>
 						</File>
@@ -1069,6 +1073,14 @@
 						</File>
 						<File
 							RelativePath=".\framework\movie\core\xiph\oggdecodermanager.h"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecodermanagersingle.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\framework\movie\core\xiph\oggdecodermanagersingle.h"
 							>
 						</File>
 						<File

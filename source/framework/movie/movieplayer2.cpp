@@ -8,7 +8,7 @@
 #include"../../auxiliary/debug/profile.h"
 #include"../../auxiliary/debug/assert.h"
 
-#include"core/xiph/oggdecodermanager.h"
+#include"core/xiph/oggdecodermanagersingle.h"
 #include"core/xiph/oggfile.h"
 #include"core/storagereadermultithread.h"
 
@@ -43,7 +43,7 @@ void MoviePlayer::Init(volatile ThreadController::BRIGEDATA& state)
   {
     Movie::SPSTORAGEREADER pSingle( new Movie::Xiph::OggFile(m_FileName) );
     m_pStorage.reset( new Movie::StorageReaderMultiThread(pSingle, 50) );
-    m_pManager.reset( new Movie::Xiph::OggDecoderManager() );
+    m_pManager.reset( new Movie::Xiph::OggDecoderManagerSingle() );
   }
 
   m_pStorage->Initialize();
@@ -117,10 +117,8 @@ void MoviePlayer::Seek(volatile ThreadController::BRIGEDATA& state)
     if( state.IsExit ) { break; }
     if( m_pStorage->IsEnd() ) { break; }
     if( m_pManager->IsSampleFull() ) { break; }
-    Movie::SPSTORAGESAMPLE pSample;
-    m_pStorage->Read( pSample );
-    if( pSample.get()==NULL ) { ThreadController::Sleep(1); continue; }
-    m_pManager->AddSource( pSample );
+
+    Update();
   }
 
   //  デコード前が埋まるまで入れ続ける
@@ -129,10 +127,7 @@ void MoviePlayer::Seek(volatile ThreadController::BRIGEDATA& state)
     if( state.IsExit ) { break; }
     if( m_pStorage->IsEnd() ) { break; }
     if( m_pManager->IsSourceFull() ) { break; }
-    Movie::SPSTORAGESAMPLE pSample;
-    m_pStorage->Read( pSample );
-    if( pSample.get()==NULL ) { ThreadController::Sleep(1); continue; }
-    m_pManager->AddSource( pSample );
+    Update();
   }
 
   //  ストレージが埋まるまで待つ
@@ -149,41 +144,69 @@ void MoviePlayer::Seek(volatile ThreadController::BRIGEDATA& state)
 
 void MoviePlayer::Work(volatile ThreadController::BRIGEDATA& state)
 {
-  //  再生が遅れていたら、スキップ
-  {
-    const double now = m_Timer.Get();
-    const double dec = m_pManager->GetTime();
-    if( dec < now )
-    {
-      m_pManager->BeginSkipMode( now );
-    }
-  }
-
   while( true )
   {
     if( state.IsExit ) { break; }
+    {
+      //  再生が遅れていたら、スキップ
+      const double now = m_Timer.Get();
+      const double dec = m_pManager->GetTime();
+      if( dec < now )
+      {
+        m_pManager->BeginSkipMode( now );
+      }
+    }
 
-    if( m_pStorage->IsEnd() ) { break; }
+    if( m_pStorage->IsEnd() )
+    {
+      if( m_pManager->IsDecodeEnd() ) { break; }
+      ThreadController::Sleep(1);
+    }
+    Update();
+  }
 
-    if( m_pManager->IsSourceFull() )
+  m_State = STATE_END;
+}
+
+
+void MoviePlayer::Update()
+{
+  const bool IsSourceFull = m_pManager->IsSourceFull();  //  サンプルがいっぱい?
+  const bool IsSampleFull = m_pManager->IsSampleFull();   //  キャッシュが全部いっぱい?
+    ThreadController::Sleep(0);
+
+  if( IsSourceFull && IsSampleFull )
+  {
+    //  待ち
+    ThreadController::Sleep(1);
+  }else
+  {
+    if( IsSourceFull ) 
     {
       ThreadController::Sleep(1);
     }else
     {
+      /*サンプル追加*/ 
       Movie::SPSTORAGESAMPLE pSample;
       m_pStorage->Read( pSample );
-      if( pSample.get()!=NULL ) { m_pManager->AddSource( pSample ); }
+      if( pSample.get()!=NULL )
+      {
+        m_pManager->AddSource( pSample );
+      }
     }
 
-    if( m_pManager->IsSampleFull() ) { ThreadController::Sleep(1); break; }
-  }
-
-  {
-    if( m_pManager->IsDecodeEnd() )
+    if( IsSampleFull )
     {
-      m_State = STATE_END;
+      ThreadController::Sleep(1);
+    }else
+    {
+      /*デコード*/ 
+      Movie::Xiph::OggDecoderManagerSingle& manage = static_cast<Movie::Xiph::OggDecoderManagerSingle&>(*m_pManager);
+      manage.Update();
     }
   }
 }
+
+
 
 }

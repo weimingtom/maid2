@@ -46,7 +46,10 @@ void MoviePlayer::FlushImage( double& time, Movie::SPSAMPLEFRAME& pOutput )
   const double TargetTime = m_Timer.Get();
 
   Movie::DECODERSAMPLELIST sample;
-  m_pManager->FlushSample( DECODERID_FRAME1, TargetTime, sample );
+  {
+//    ThreadMutexLocker lock(m_ManagerMutex);
+    m_pManager->FlushSample( DECODERID_FRAME1, TargetTime, sample );
+  }
 
   if( sample.empty() ) { return ; }
 
@@ -64,6 +67,7 @@ void MoviePlayer::FlushPCM( double& time, MemoryBuffer& Output )
 
   //  指定した時間の１秒先まであれば十分かな
   {
+//      ThreadMutexLocker lock(m_ManagerMutex);
     m_pManager->FlushSample( DECODERID_PCM1, TargetTime+1.0, SampleList );
   }
 

@@ -11,6 +11,7 @@
 
 namespace Maid { namespace Movie { namespace Xiph {
 
+
   class OggDecoder
     : public IDecoder
   {
@@ -47,6 +48,8 @@ namespace Maid { namespace Movie { namespace Xiph {
   };
 
   typedef boost::shared_ptr<OggDecoder> SPOGGDECODER;
+
+
 
 
 }}}
