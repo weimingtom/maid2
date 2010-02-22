@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\import\libtheora\include"
+				AdditionalIncludeDirectories=".\import\libtheora\include;.\import\libogg\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;OC_X86_ASM"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
