@@ -42,6 +42,8 @@ private:
     STATE_CREATEENTRYPOINT,  //  エントリポイント作成中
     STATE_GAMEPLAY,     //  ゲームプレイ中
     STATE_EXIT,         //  終了待機
+    STATE_STORAGELOAD,  //  ストレージロード
+    STATE_STORAGESAVE,  //  ストレージセーブ
     STATE_ERROR,        //  エラーが起こったので、ずっと待機
   };
 
@@ -68,6 +70,8 @@ private:
   Maid::LinearCounter<float>  m_FadeAlpha;
   Maid::RenderTargetTexture   m_ScreenShot;
 
+  boost::shared_ptr<Maid::XMLFileReader> m_pStorageFile;
+  boost::shared_ptr<Maid::FileWriter> m_pStorageSave;
 };
 
 

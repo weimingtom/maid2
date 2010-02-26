@@ -77,6 +77,9 @@ function ExitGameLoop()
 
 function Run( routine )
 {
+  storage <- Storage()
+  storage.Load( "storage.xml" )
+
   admin <- SceneAdmin();// この変数はC++側からもアクセスしてるので名前を変えないこと
   input <- KeyInput();
 
@@ -91,8 +94,10 @@ function Run( routine )
   }
 
   admin.Finalize();
+  storage.Save()
   delete input
   delete admin
+  delete storage
 
   collectgarbage();
 }

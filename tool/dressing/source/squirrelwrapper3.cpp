@@ -1,6 +1,6 @@
 ﻿#include"stdafx.h"
 #include"squirrelwrapper.h"
-#include"../../../source/storage/fileio/filereadnormal.h"
+#include"squirrelwrapperlocal.h"
 
 #include <stdarg.h>
 
@@ -113,6 +113,184 @@ FUNCTIONRESULT SquirrelWrapper::WakeupInputState( const Maid::Keybord& key, cons
 
   return Wakeup( ret );
 }
+
+FUNCTIONRESULT SquirrelWrapper::WakeupStorageLoad( XMLReader& reader, RETURNCODE& ret )
+{
+/*
+  <a>100</a>
+  <b>text</b>
+  <c>
+    <d>5000</d>
+  </c>
+
+  なデータがあった場合
+
+  .a = 100
+  .b = "text"
+  .c.d = 5000
+
+  なデータ構造を作成する
+
+*/
+
+
+  HSQUIRRELVM v = m_SquirrelVM;
+  sq_newtable(v);
+
+  if( !reader.IsEmpty() )
+  {
+    reader.AscendNode();
+    MakeStorageTable( v, reader );
+  }
+
+  return Wakeup( ret );
+}
+
+FUNCTIONRESULT  SquirrelWrapper::MakeStorageTag( HSQUIRRELVM v, Maid::XMLReader& reader )
+{
+  const String type = reader.GetAttribute( STORAGEKEYTYPE ).GetStr();
+
+  if( type==STORAGEKEY_TABLE )
+  {
+    const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
+    sq_pushstring(v, key.c_str(), -1);
+    sq_newtable(v);
+    reader.AscendNode();
+    MakeStorageTable( v, reader );
+    reader.DescendNode();
+    sq_createslot(v, -3);
+
+  }else if( type==STORAGEKEY_ARRAY )
+  {
+    const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
+    sq_pushstring(v, key.c_str(), -1);
+    sq_newarray(v,0);
+    reader.AscendNode();
+    MakeStorageArray( v, reader );
+    reader.DescendNode();
+    sq_createslot(v, -3);
+  }
+
+  return FUNCTIONRESULT_OK;
+}
+
+FUNCTIONRESULT  SquirrelWrapper::MakeStorageArray( HSQUIRRELVM v, Maid::XMLReader& reader )
+{
+  while( true )
+  {
+    if( reader.IsEndNode() ) { break; }
+
+    switch( reader.GetNodeType() )
+    {
+    case XMLReader::NODETYPE_EMPTY: {}break;
+    case XMLReader::NODETYPE_ELEMENT:
+      {
+        const String type = reader.GetAttribute( STORAGEKEYTYPE ).GetStr();
+        const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
+
+        if( type==STORAGEKEY_STRING )
+        {
+          const std::wstring val = String::ConvertMAIDtoUNICODE(reader.GetString());
+          sq_pushstring(v, val.c_str(), -1);
+          sq_arrayappend(v, -2); 
+        }
+        else if( type==STORAGEKEY_BOOL )
+        {
+          SQBool b = SQFalse;
+          if( reader.GetString()==MAIDTEXT("true") ) { b = SQTrue; }
+          sq_pushbool(v, b);
+          sq_arrayappend(v, -2); 
+        }
+        else if( type==STORAGEKEY_FLOAT )
+        {
+          const float val = reader.GetFloat();
+          sq_pushfloat(v, val);
+          sq_arrayappend(v, -2); 
+        }
+        else if( type==STORAGEKEY_INTEGER )
+        {
+          const int val = reader.GetInteger();
+          sq_pushinteger(v, val);
+          sq_arrayappend(v, -2); 
+        }
+        else if( type==STORAGEKEY_NULL )
+        {
+          sq_pushnull(v);
+          sq_arrayappend(v, -2); 
+        }
+      }break;
+
+    case XMLReader::NODETYPE_TAG: 
+      {
+        MakeStorageTag( v, reader );
+      }break;
+    }
+    reader.NextNode();
+  }
+
+
+  return FUNCTIONRESULT_OK;
+}
+
+FUNCTIONRESULT  SquirrelWrapper::MakeStorageTable( HSQUIRRELVM v, Maid::XMLReader& reader )
+{
+  while( true )
+  {
+    if( reader.IsEndNode() ) { break; }
+
+    switch( reader.GetNodeType() )
+    {
+    case XMLReader::NODETYPE_EMPTY: {}break;
+    case XMLReader::NODETYPE_ELEMENT:
+      {
+        const String type = reader.GetAttribute( STORAGEKEYTYPE ).GetStr();
+        const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
+
+        sq_pushstring(v, key.c_str(), -1);
+        if( type==STORAGEKEY_STRING )
+        {
+          const std::wstring val = String::ConvertMAIDtoUNICODE(reader.GetString());
+          sq_pushstring(v, val.c_str(), -1);
+          sq_createslot(v, -3); 
+        }
+        else if( type==STORAGEKEY_BOOL )
+        {
+          SQBool b = SQFalse;
+          if( reader.GetString()==MAIDTEXT("true") ) { b = SQTrue; }
+          sq_pushbool(v, b);
+          sq_createslot(v, -3); 
+        }
+        else if( type==STORAGEKEY_FLOAT )
+        {
+          const float val = reader.GetFloat();
+          sq_pushfloat(v, val);
+          sq_createslot(v, -3); 
+        }
+        else if( type==STORAGEKEY_INTEGER )
+        {
+          const int val = reader.GetInteger();
+          sq_pushinteger(v, val);
+          sq_createslot(v, -3); 
+        }
+      }break;
+
+    case XMLReader::NODETYPE_TAG: 
+      {
+        MakeStorageTag( v, reader );
+      }break;
+    }
+    reader.NextNode();
+  }
+
+  return FUNCTIONRESULT_OK;
+}
+
+
+FUNCTIONRESULT SquirrelWrapper::WakeupStorageSave( RETURNCODE& ret )
+{
+  return Wakeup( ret );
+}
+
 
 
 FUNCTIONRESULT SquirrelWrapper::Wakeup( RETURNCODE& ret )

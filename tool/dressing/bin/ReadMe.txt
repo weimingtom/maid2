@@ -2,6 +2,7 @@
   ゲーム向けスクリプトエンジンです。
   言語にsquirrelを採用しています。
 
+  http://docs.google.com/present/view?id=ddmq9dg5_249ghv85cfm
 
 ・dressingを起動すると自動的に boot/entrypoint.nut を実行しようとします
 ・boot/entrypoint.nut がない場合はファイル選択ダイアログが出ます

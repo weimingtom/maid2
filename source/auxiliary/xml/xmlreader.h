@@ -21,6 +21,7 @@ namespace Maid
     void Reset( const XMLDocument& doc );
     void Reset();
 
+    bool IsEmpty() const;
 		void NextNode();
 		bool IsEndNode();
 		void AscendNode();

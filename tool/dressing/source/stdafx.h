@@ -10,8 +10,11 @@
 #include"../../../source/auxiliary/string.h"
 #include"../../../source/auxiliary/functionresult.h"
 #include"../../../source/auxiliary/rand.h"
+#include"../../../source/auxiliary/xml/xmlwriter.h"
 
 #include"../../../source/storage/filereaderall.h"
+#include"../../../source/storage/xmlfile.h"
+#include"../../../source/storage/filewriter.h"
 
 #include"../../../source/graphics/graphicscommandcontrol.h"
 #include"../../../source/graphics/graphics2drender.h"

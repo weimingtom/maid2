@@ -200,6 +200,8 @@ FUNCTIONRESULT SquirrelWrapper::UpdateReturnCode( RETURNCODE& ret )
       else if( str==MAIDTEXT("nextframe") ) { ret.Code = RETURNCODE::NEXTFRAME; }
       else if( str==MAIDTEXT("inputstate")) { ret.Code = RETURNCODE::INPUTSTATE; }
       else if( str==MAIDTEXT("scenefade")) { ret.Code = RETURNCODE::SCENEFADE; }
+      else if( str==MAIDTEXT("storageload")) { ret.Code = RETURNCODE::STORAGELOAD; }
+      else if( str==MAIDTEXT("storagesave")) { ret.Code = RETURNCODE::STORAGESAVE; }
       else { MAID_ASSERT( true, "予想外の値" ); }
       sq_pop( v, 2 );
 
