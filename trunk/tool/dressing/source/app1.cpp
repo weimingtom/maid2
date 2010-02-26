@@ -75,6 +75,7 @@ void MyApp::Initialize()
   m_CompileList.push_back( MAIDTEXT("core/scene.nut") );
   m_CompileList.push_back( MAIDTEXT("core/gameroutine.nut") );
   m_CompileList.push_back( MAIDTEXT("core/function.nut") );
+  m_CompileList.push_back( MAIDTEXT("core/storage.nut") );
 
   m_FadeAlpha.Set(0,0,0);
   SetState(STATE_INITIALIZING);
@@ -193,6 +194,24 @@ void MyApp::UpdateFrame()
       Wakeup();
     }break;
 
+  case STATE_STORAGELOAD:
+    {
+      if( m_pStorageFile->IsLoading() ) { break; }
+
+      SetState( STATE_GAMEPLAY );
+      m_Squirrel.WakeupStorageLoad( m_pStorageFile->GetReader(), m_SuspendState );
+      Wakeup();
+    }break;
+
+  case STATE_STORAGESAVE:
+    {
+      if( m_pStorageSave->IsExecuting() ) { break; }
+      m_pStorageSave.reset();
+      SetState( STATE_GAMEPLAY );
+      m_Squirrel.WakeupStorageSave( m_SuspendState );
+      Wakeup();
+    }break;
+
   case STATE_EXIT:
     {
     }break;
@@ -236,6 +255,14 @@ void MyApp::UpdateDraw()
     {
       GameDraw();
     }break;
+  case STATE_STORAGELOAD:
+    {
+      GameDraw();
+    }break;
+  case STATE_STORAGESAVE:
+    {
+      GameDraw();
+    }break;
 
   case STATE_EXIT:
     {
@@ -256,7 +283,6 @@ void MyApp::UpdateDraw()
     m_2DRender.Blt( POINT2DI(0,0), m_ScreenShot, rect, POINT2DI(0,0), alpha );
   }
 
-
   m_Command.End();
 }
 
@@ -268,7 +294,8 @@ void MyApp::Finalize()
 
     while( GetState()!=STATE_EXIT )
     {
-      Wakeup();
+      //Wakeup();
+      UpdateFrame();
     }
   }
 
@@ -305,6 +332,34 @@ void MyApp::Wakeup()
         const Mouse& mou = GetMouse();
 
         m_Squirrel.WakeupInputState( key, mou, ret );
+      }break;
+
+    case SquirrelWrapper::RETURNCODE::STORAGELOAD:
+      {
+        m_pStorageFile.reset( new XMLFileReader() );
+        if( GetStorage().IsFileExist(ret.Param[0]) )
+        {
+          SetState( STATE_STORAGELOAD );
+          m_pStorageFile->Load( ret.Param[0] );
+          return ;
+        }else
+        {
+          m_Squirrel.WakeupStorageLoad( m_pStorageFile->GetReader(), ret );
+        }
+      }break;
+    case SquirrelWrapper::RETURNCODE::STORAGESAVE:
+      {
+        XMLWriter xml;
+        m_Squirrel.GetStorageData( xml );
+        std::string data;
+        xml.Save( data );
+
+        m_pStorageSave.reset( new FileWriter );
+        m_pStorageSave->Create( m_SuspendState.Param[0] );
+        m_pStorageSave->Write( data.c_str(), data.length() );
+
+        SetState( STATE_STORAGESAVE );
+          return ;
       }break;
     }
   }

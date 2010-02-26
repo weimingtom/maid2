@@ -18,6 +18,11 @@ XMLReader::XMLReader()
 
 }
 
+bool XMLReader::IsEmpty() const
+{
+  return m_pDocment==NULL;
+}
+
 
 void XMLReader::Reset( const XMLDocument& doc )
 {

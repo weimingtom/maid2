@@ -286,6 +286,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\squirrelwrapperlocal.h"
+			>
+		</File>
+		<File
 			RelativePath=".\startupdialog.cpp"
 			>
 		</File>
