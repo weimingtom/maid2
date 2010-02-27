@@ -5,6 +5,7 @@ import( "block.nut" );
 import( "score.nut" );
 import( "gameover.nut" );
 import( "redygo.nut" );
+import( "hiscore.nut" );
 
 class SceneStage extends IScene
 {
@@ -15,6 +16,7 @@ class SceneStage extends IScene
   _HelpText = null  //  キーヘルプ
 
   _Score = null //  スコア表示
+  _HiScore = null //  ハイスコア表示
 
   static STATE_LEDY = 0  //  ゲーム開始前
   static STATE_GAME = 1  //  ゲームプレイ中
@@ -72,10 +74,26 @@ class SceneStage extends IScene
       _RedyGo = RedyGo()
       GetDrawObjectManager().InsertDrawObject( _RedyGo );
     }
+    {
+      local s = 0
+      if( g_Storage.Root.rawin("HiScore") ) { s = g_Storage.Root.HiScore }
+      _HiScore = HiScore(s)
+      GetDrawObjectManager().InsertDrawObject( _HiScore );
+    }
   }
 
   function Finalize()
   {
+    {
+      local s = _Score.GetScore()
+      if( g_Storage.Root.rawin("HiScore") )
+      {
+        s = max( g_Storage.Root.HiScore, s )
+      }
+      g_Storage.Root.HiScore <- s
+    }
+    
+  
     IScene.Finalize();
   }
 

@@ -1,5 +1,14 @@
+function max( a, b )
+{
+  if( a<b ) { return b }
+  return a
+}
 
-
+function min( a, b )
+{
+  if( a<b ) { return a }
+  return b
+}
 
 function GetDirectryName( path )
 {
@@ -77,8 +86,8 @@ function ExitGameLoop()
 
 function Run( routine )
 {
-  storage <- Storage()
-  storage.Load( "storage.xml" )
+  g_Storage <- Storage()
+  g_Storage.Load( "storage.xml" )
 
   admin <- SceneAdmin();// この変数はC++側からもアクセスしてるので名前を変えないこと
   input <- KeyInput();
@@ -94,10 +103,10 @@ function Run( routine )
   }
 
   admin.Finalize();
-  storage.Save()
+  g_Storage.Save()
   delete input
   delete admin
-  delete storage
+  delete g_Storage
 
   collectgarbage();
 }
