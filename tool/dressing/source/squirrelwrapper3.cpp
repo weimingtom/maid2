@@ -149,10 +149,11 @@ FUNCTIONRESULT SquirrelWrapper::WakeupStorageLoad( XMLReader& reader, RETURNCODE
 FUNCTIONRESULT  SquirrelWrapper::MakeStorageTag( HSQUIRRELVM v, Maid::XMLReader& reader )
 {
   const String type = reader.GetAttribute( STORAGEKEYTYPE ).GetStr();
+  const String name = reader.GetAttribute( STORAGEKEYNAME ).GetStr();
+  const std::wstring key = String::ConvertMAIDtoUNICODE(name);
 
   if( type==STORAGEKEY_TABLE )
   {
-    const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
     sq_pushstring(v, key.c_str(), -1);
     sq_newtable(v);
     reader.AscendNode();
@@ -162,7 +163,6 @@ FUNCTIONRESULT  SquirrelWrapper::MakeStorageTag( HSQUIRRELVM v, Maid::XMLReader&
 
   }else if( type==STORAGEKEY_ARRAY )
   {
-    const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
     sq_pushstring(v, key.c_str(), -1);
     sq_newarray(v,0);
     reader.AscendNode();
@@ -186,7 +186,8 @@ FUNCTIONRESULT  SquirrelWrapper::MakeStorageArray( HSQUIRRELVM v, Maid::XMLReade
     case XMLReader::NODETYPE_ELEMENT:
       {
         const String type = reader.GetAttribute( STORAGEKEYTYPE ).GetStr();
-        const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
+        const String name = reader.GetAttribute( STORAGEKEYNAME ).GetStr();
+        const std::wstring key = String::ConvertMAIDtoUNICODE(name);
 
         if( type==STORAGEKEY_STRING )
         {
@@ -197,7 +198,7 @@ FUNCTIONRESULT  SquirrelWrapper::MakeStorageArray( HSQUIRRELVM v, Maid::XMLReade
         else if( type==STORAGEKEY_BOOL )
         {
           SQBool b = SQFalse;
-          if( reader.GetString()==MAIDTEXT("true") ) { b = SQTrue; }
+          if( reader.GetString()==STORAGEVALUE_TRUE ) { b = SQTrue; }
           sq_pushbool(v, b);
           sq_arrayappend(v, -2); 
         }
@@ -228,7 +229,6 @@ FUNCTIONRESULT  SquirrelWrapper::MakeStorageArray( HSQUIRRELVM v, Maid::XMLReade
     reader.NextNode();
   }
 
-
   return FUNCTIONRESULT_OK;
 }
 
@@ -243,8 +243,9 @@ FUNCTIONRESULT  SquirrelWrapper::MakeStorageTable( HSQUIRRELVM v, Maid::XMLReade
     case XMLReader::NODETYPE_EMPTY: {}break;
     case XMLReader::NODETYPE_ELEMENT:
       {
+        const String name = reader.GetAttribute( STORAGEKEYNAME ).GetStr();
         const String type = reader.GetAttribute( STORAGEKEYTYPE ).GetStr();
-        const std::wstring key = String::ConvertMAIDtoUNICODE(reader.GetNodeName());
+        const std::wstring key = String::ConvertMAIDtoUNICODE(name);
 
         sq_pushstring(v, key.c_str(), -1);
         if( type==STORAGEKEY_STRING )
@@ -256,7 +257,7 @@ FUNCTIONRESULT  SquirrelWrapper::MakeStorageTable( HSQUIRRELVM v, Maid::XMLReade
         else if( type==STORAGEKEY_BOOL )
         {
           SQBool b = SQFalse;
-          if( reader.GetString()==MAIDTEXT("true") ) { b = SQTrue; }
+          if( reader.GetString()==STORAGEVALUE_TRUE ) { b = SQTrue; }
           sq_pushbool(v, b);
           sq_createslot(v, -3); 
         }

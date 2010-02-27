@@ -108,7 +108,7 @@ FUNCTIONRESULT SquirrelWrapper::GetStorageData( XMLWriter& xml )
   HSQUIRRELVM v = m_SquirrelVM;
 
   sq_pushroottable(v);
-  sq_pushstring( v, L"storage", -1 );
+  sq_pushstring( v, L"g_Storage", -1 );
   SQRESULT ret_storage = sq_get(v, -2);
   if( SQ_FAILED(ret_storage) ) { sq_pop( v, 1 ); return FUNCTIONRESULT_ERROR; }
   sq_pushstring( v, L"Root", -1 );
@@ -181,7 +181,7 @@ FUNCTIONRESULT  SquirrelWrapper::ReadStorageArray( HSQUIRRELVM v, Maid::XMLWrite
     case OT_NULL:
       {
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_NULL );
-        xml.AddTag( ARRAYKEY, STORAGEVALUE_NULL  );
+        xml.AddTag( ARRAYKEY, STORAGEVALUE_EMPTY  );
       }break;
 
     case OT_ARRAY:
@@ -225,6 +225,7 @@ FUNCTIONRESULT  SquirrelWrapper::ReadStorageTable( HSQUIRRELVM v, Maid::XMLWrite
       KeyName = String::ConvertUNICODEtoMAID(n);
     }
 
+    xml.AddAttribute( STORAGEKEYNAME, KeyName );
     switch( valuetype )
     {
     case OT_INTEGER:
@@ -233,7 +234,7 @@ FUNCTIONRESULT  SquirrelWrapper::ReadStorageTable( HSQUIRRELVM v, Maid::XMLWrite
         sq_getinteger( v, -1, &i );
 
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_INTEGER );
-        xml.AddTag( KeyName, (int)i );
+        xml.AddTag( STORAGETAG, (int)i );
       }break;
     case OT_FLOAT:
       {
@@ -241,7 +242,7 @@ FUNCTIONRESULT  SquirrelWrapper::ReadStorageTable( HSQUIRRELVM v, Maid::XMLWrite
         sq_getfloat( v, -1, &f );
 
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_FLOAT );
-        xml.AddTag( KeyName, (float)f );
+        xml.AddTag( STORAGETAG, (float)f );
       }break;
 
     case OT_STRING:
@@ -250,7 +251,7 @@ FUNCTIONRESULT  SquirrelWrapper::ReadStorageTable( HSQUIRRELVM v, Maid::XMLWrite
         sq_getstring( v, -1, &str );
 
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_STRING );
-        xml.AddTag( KeyName, String::ConvertUNICODEtoMAID(str) );
+        xml.AddTag( STORAGETAG, String::ConvertUNICODEtoMAID(str) );
       }break;
 
     case OT_BOOL:
@@ -260,20 +261,20 @@ FUNCTIONRESULT  SquirrelWrapper::ReadStorageTable( HSQUIRRELVM v, Maid::XMLWrite
 
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_BOOL );
 
-        if( b ) { xml.AddTag( KeyName, STORAGEVALUE_TRUE  ); }
-        else    { xml.AddTag( KeyName, STORAGEVALUE_FALSE ); }
+        if( b ) { xml.AddTag( STORAGETAG, STORAGEVALUE_TRUE  ); }
+        else    { xml.AddTag( STORAGETAG, STORAGEVALUE_FALSE ); }
       }break;
 
     case OT_NULL:
       {
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_NULL );
-        xml.AddTag( KeyName, STORAGEVALUE_NULL  );
+        xml.AddTag( STORAGETAG, STORAGEVALUE_EMPTY  );
       }break;
 
     case OT_ARRAY:
       {
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_ARRAY );
-        xml.AscendNode( KeyName );
+        xml.AscendNode( STORAGETAG );
         ReadStorageArray(v, xml );
         xml.DescendNode();
       }break;
@@ -281,7 +282,7 @@ FUNCTIONRESULT  SquirrelWrapper::ReadStorageTable( HSQUIRRELVM v, Maid::XMLWrite
     case OT_TABLE:
       {
         xml.AddAttribute( STORAGEKEYTYPE, STORAGEKEY_TABLE );
-        xml.AscendNode( KeyName );
+        xml.AscendNode( STORAGETAG );
         ReadStorageTable(v, xml );
         xml.DescendNode();
       }break;

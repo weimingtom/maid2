@@ -71,7 +71,7 @@ void MyApp::BeginSceneFade()
 
   Command.SetRenderTarget( m_ScreenShot, dp );
   Command.ClearRenderTarget();
-  Command.ClearDepthStencil();
+  Command.ClearDepth();
   Command.Begin();
 
   GameDraw();
