@@ -1295,6 +1295,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\graphics\light.h"
+				>
+			</File>
+			<File
 				RelativePath=".\graphics\modelmqo.cpp"
 				>
 			</File>
