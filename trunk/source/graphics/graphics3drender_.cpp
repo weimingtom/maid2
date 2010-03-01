@@ -7,184 +7,6 @@ namespace Maid
 {
 
 
-
-
-
-
-
-
-
-void Graphics3DRender::Fill()
-{
-  if( m_TestInputLayout.IsCompiling() ) { return ; }
-
-  CUSTOMVERTEX_COLOR v[] =
-  {
-    CUSTOMVERTEX_COLOR( POINT3DF(0,0,0), COLOR_R32G32B32A32F(1,0,0,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(0,1,0), COLOR_R32G32B32A32F(0,1,0,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(1,1,0), COLOR_R32G32B32A32F(0,0,1,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(1,0,0), COLOR_R32G32B32A32F(1,0,1,1) ),
-  };
-
-  m_TestVertex.Create( v, sizeof(v) );
-
-  const unt16 i[] = { 0, 1, 2, 1,2,3 };
-  m_TestIndex.Create( i, sizeof(i) );
-
-
-  const MATRIX4DF trance = MATRIX4DF().SetTranslate(0,0,0) * m_ViewMatrix * m_ProjectionMatrix;
-
-  const IVertex& vertex = m_TestVertex;
-  const IIndex& index = m_TestIndex;
-  const IInputLayout&  layout = m_TestInputLayout;
-  const IVertexShader& vs = m_MQOVertexShader;
-  const IPixelShader&  ps = m_MQOPixelShader;
-
-  Graphics::IDrawCommand& Command = GetCommand();
-
-  {
-    const IConstant& con = m_ShaderConstant;
-
-    const int sub = 0;
-    Graphics::MAPPEDRESOURCE map;
-    Command.ResourceMap( con.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map );
-    memcpy( map.pData, &(trance.GetTranspose()), sizeof(trance) );
-    Command.ResourceUnmap( con.Get(), sub );
-    Command.VSSetConstant( 0, con.Get() );
-  }
-
-  Command.SetPrimitiveTopology( Graphics::IDrawCommand::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
-  Command.SetVertex( 0, vertex.Get(), 0, v[0].GetStructSize() );
-  Command.SetInputLayout( layout.Get() );
-
-  Command.VSSetShader( vs.Get() );
-  Command.PSSetShader( ps.Get() );
-
-//  const IIndex& index = m_TestIndex;
-
-  Command.SetIndex( index.Get(), 0 );
-  Command.DrawIndexed( 3*2, 0, 0 );
-
-//  pCommand->Draw( 3, 0 );
-
-}
-
-
-void Graphics3DRender::_Fill()
-{
-  CUSTOMVERTEX_COLOR v[] =
-  {
-    CUSTOMVERTEX_COLOR( POINT3DF(0,0,0), COLOR_R32G32B32A32F(1,0,0,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(0,100,0), COLOR_R32G32B32A32F(0,1,0,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(200,100,0), COLOR_R32G32B32A32F(0,0,1,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(100,0,0), COLOR_R32G32B32A32F(1,0,1,1) ),
-  };
-
-  m_TestVertex.Create( v, sizeof(v) );
-
-
-  const MATRIX4DF trance = MATRIX4DF().SetTranslate(0,0,0) * m_ViewMatrix * m_ProjectionMatrix;
-
-  const IVertex& vertex = m_TestVertex;
-  const IInputLayout&  layout = m_SpriteFillLayout;
-  const IVertexShader& vs = m_SpriteFillVertexShader;
-  const IPixelShader&  ps = m_SpriteFillPixelShader;
-
-  Graphics::IDrawCommand& Command = GetCommand();
-
-  {
-    const IConstant& con = m_ShaderConstant;
-
-    const int sub = 0;
-    Graphics::MAPPEDRESOURCE map;
-    Command.ResourceMap( con.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map );
-    memcpy( map.pData, &(trance.GetTranspose()), sizeof(trance) );
-    Command.ResourceUnmap( con.Get(), sub );
-    Command.VSSetConstant( 0, con.Get() );
-  }
-
-  Command.SetPrimitiveTopology( Graphics::IDrawCommand::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
-  Command.SetVertex( 0, vertex.Get(), 0, v[0].GetStructSize() );
-  Command.SetInputLayout( layout.Get() );
-
-  Command.VSSetShader( vs.Get() );
-  Command.PSSetShader( ps.Get() );
-
-  {
-    IBlendState& state = m_SpriteBlendState[0];
-    Command.SetBlendState( state.Get() );
-  }
-  {
-    IDepthStencilState& state = m_DepthOff;
-    Command.SetDepthStencilState( state.Get() );
-  }
-  {
-    IRasterizerState& raster = m_Rasterizer;
-    Command.SetRasterizerState( raster.Get() );
-  }
-
-  Command.Draw( 3, 0 );
-
-/*
-  CUSTOMVERTEX_COLOR v[] =
-  {
-    CUSTOMVERTEX_COLOR( POINT3DF(0,0,0), COLOR_R32G32B32A32F(1,0,0,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(0,100,0), COLOR_R32G32B32A32F(0,1,0,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(200,100,0), COLOR_R32G32B32A32F(0,0,1,1) ),
-    CUSTOMVERTEX_COLOR( POINT3DF(100,0,0), COLOR_R32G32B32A32F(1,0,1,1) ),
-  };
-
-  m_TestVertex.Create( v, sizeof(v) );
-
-
-  const MATRIX4DF trance = MATRIX4DF().SetTranslate(0,0,0) * m_ViewMatrix * m_ProjectionMatrix;
-
-  const IVertex& vertex = m_TestVertex;
-  const IInputLayout&  layout = m_SpriteFillLayout;
-  const IVertexShader& vs = m_SpriteFillVertexShader;
-  const IPixelShader&  ps = m_SpriteFillPixelShader;
-
-  const Graphics::SPDRAWCOMMAND& pCommand = m_pDrawCommand;
-
-  {
-    const IConstant& con = m_ShaderConstant;
-
-    const int sub = 0;
-    Graphics::MAPPEDRESOURCE map;
-    pCommand->ResourceMap( con.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map );
-    memcpy( map.pData, &(trance.GetTranspose()), sizeof(trance) );
-    pCommand->ResourceUnmap( con.Get(), sub );
-    pCommand->VSSetConstant( 0, con.Get() );
-  }
-
-  pCommand->SetPrimitiveTopology( Graphics::IDrawCommand::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
-  pCommand->SetVertex( 0, vertex.Get(), 0, v[0].GetStructSize() );
-  pCommand->SetInputLayout( layout.Get() );
-
-  pCommand->VSSetShader( vs.Get() );
-  pCommand->PSSetShader( ps.Get() );
-
-  {
-    IBlendState& state = m_SpriteBlendState[0];
-    pCommand->SetBlendState( state.Get() );
-  }
-  {
-    IDepthStencilState& state = m_DepthOff;
-    pCommand->SetDepthStencilState( state.Get() );
-  }
-  {
-    IRasterizerState& raster = m_Rasterizer;
-    pCommand->SetRasterizerState( raster.Get() );
-  }
-
-  pCommand->Draw( 3, 0 );
-*/
-}
-
-
 //  MQO に座標と色が入っている場合のシェーダ
 static const char* VSCODE0100 = 
 "\n cbuffer cbPerObject"
@@ -239,7 +61,8 @@ void Graphics3DRender::MQOShaderCreate()
   //  まあめんどくさいので　平行光源１個でいいかな
 
   {
-    m_MQOVertexShader.Create( MAIDTEXT(VSCODE0100) );
+    m_MQOVertexShader.resize(1);
+    m_MQOVertexShader[0].Create( MAIDTEXT(VSCODE0100) );
   }
 
   {
@@ -260,8 +83,12 @@ void Graphics3DRender::MQOShaderCreate()
 
 bool Graphics3DRender::MQOShaderIsLoading() const
 {
+  for( int i=0; i<(int)m_MQOVertexShader.size(); ++i )
+  {
+    if( m_MQOVertexShader[i].IsCompiling() ) { return true; }
+  }
+
   return  m_MQOLayout.IsCompiling()
-    ||    m_MQOVertexShader.IsCompiling()
     ||    m_MQOPixelShader.IsCompiling()
     ;
 }
@@ -281,8 +108,8 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& wvp, const MQOMATERIAL& 
       else                    { MaterialType = 2; }
     }
   }
+  int LightingType = 0;
   {
-    int LightingType = 0;
   }
 
 
@@ -301,7 +128,7 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& wvp, const MQOMATERIAL& 
   }
 
   const IInputLayout&  layout = m_MQOLayout;
-  const IVertexShader& vs = m_MQOVertexShader;
+  const IVertexShader& vs = m_MQOVertexShader[MaterialType+LightingType];
   const IPixelShader&  ps = m_MQOPixelShader;
 
   Command.SetInputLayout( layout.Get() );
@@ -310,11 +137,16 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& wvp, const MQOMATERIAL& 
 
 }
 
-
-
 void Graphics3DRender::Blt( const POINT3DF& Pos, const ModelMQO& model )
 {
-  const MATRIX4DF wvp = MATRIX4DF().SetTranslate(Pos.x,Pos.y,Pos.z) * m_ViewMatrix * m_ProjectionMatrix;
+  const MATRIX4DF wvp = MATRIX4DF().SetTranslate(Pos.x,Pos.y,Pos.z);
+  Blt( wvp, model );
+}
+
+
+void Graphics3DRender::Blt( const MATRIX4DF& mat, const ModelMQO& model )
+{
+  const MATRIX4DF wvp = mat * m_ViewMatrix * m_ProjectionMatrix;
   Graphics::IDrawCommand& Command = GetCommand();
 
   //  このステートは固定
@@ -336,8 +168,6 @@ void Graphics3DRender::Blt( const POINT3DF& Pos, const ModelMQO& model )
     Command.SetVertex( 1, color.Get(), 0, sizeof(COLOR_R32G32B32A32F) );
     Command.SetVertex( 2, normal.Get(), 0, sizeof(VECTOR3DF) );
     Command.SetVertex( 3, uv.Get(), 0, sizeof(POINT2DF) );
-
-
 
     for( int j=0; j<(int)Obj.Primitive.size(); ++j )
     {

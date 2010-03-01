@@ -13,6 +13,7 @@ Graphics3DRender::Graphics3DRender( GraphicsCommandControl& com )
   ,m_SpriteFilter(TEXTUREFILTER_LINEAR)
   ,m_IsDepthWrite(true)
   ,m_CommandCtl(com)
+  ,m_Ambient(1,1,1,1)
 {
 
 }
@@ -179,6 +180,24 @@ void Graphics3DRender::Initialize()
     }
   }
 
+}
+
+//! アンビエントライトの設定
+/*!
+    @param	amb     [i ]	設定する色
+ */
+void Graphics3DRender::SetAmbient( const COLOR_R32G32B32A32F& amb )
+{
+  m_Ambient = amb;
+}
+
+//! 指定したテクスチャを描画する
+/*!
+    @param	light     [i ]	描画開始座標
+ */
+void Graphics3DRender::SetLight( const std::vector<LIGHT>& light )
+{
+  m_Light = light;
 }
 
 

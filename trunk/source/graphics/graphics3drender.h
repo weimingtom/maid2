@@ -27,6 +27,7 @@
 #include"shaderconstant.h"
 
 #include"graphicscommandcontrol.h"
+#include"light.h"
 
 namespace Maid
 {
@@ -44,11 +45,12 @@ namespace Maid
 
     void SetDepthWrite( bool IsOn );
 
-    void Fill ();
-    void _Fill ();
-
-    void Blt  ( const POINT3DF& Pos, const ModelMQO& model );
+    void Blt( const POINT3DF& Pos, const ModelMQO& model );
+    void Blt( const MATRIX4DF& mat, const ModelMQO& model );
  
+    void SetAmbient( const COLOR_R32G32B32A32F& amb );
+    void SetLight( const std::vector<LIGHT>& light );
+
     MATRIX4DF	GetCameraMatrix() const;
 
 
@@ -135,7 +137,7 @@ namespace Maid
 
 
     InputLayout  m_MQOLayout;
-    VertexShader m_MQOVertexShader;
+    std::vector<VertexShader> m_MQOVertexShader;
     PixelShader  m_MQOPixelShader;
 
     Vertex          m_SpriteVertex;  //  スプライトで使うバッファ
@@ -187,6 +189,9 @@ namespace Maid
 
 		MATRIX4DF	m_ViewMatrix;
 		MATRIX4DF	m_ProjectionMatrix;
+
+    std::vector<LIGHT>  m_Light;
+    COLOR_R32G32B32A32F m_Ambient;
   };	
 	
 }
