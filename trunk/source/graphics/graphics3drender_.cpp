@@ -102,13 +102,28 @@ static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
 "\n  VS_OUTPUT Out = (VS_OUTPUT)0;"
 "\n  Out.Position = mul( Input.Position, s_mWVP );"
 "\n"
-"\n  float3 l = -s_LightDir;"
-"\n  float3 n = normalize(mul( Input.Normal, (float3x3)s_World ));"
+"\n  float3 l = -s_LightDir.xyz;"
+"\n  float3 n = normalize(mul( Input.Normal.xyz, (float3x3)s_World ));"
+"\n  float3 ret = max(0.0,dot(n,l));"
 "\n"
-"\n  Out.Diffuse = Input.Diffuse * s_Color * dot(n,l);"
+"\n  Out.Diffuse = Input.Diffuse * s_Color;"
+"\n  Out.Diffuse.rgb *= ret;"
 "\n"
 "\n  return Out;"
 "\n}"
+/*
+"\n  VS_OUTPUT Out = (VS_OUTPUT)0;"
+"\n  Out.Position = mul( Input.Position, s_mWVP );"
+"\n"
+"\n  float3 l = -s_LightDir;"
+"\n  float3 n = normalize(mul( Input.Normal, (float3x3)s_World ));"
+"\n  float3 ret = max(0.0,dot(n,l));"
+"\n"
+"\n  Out.Diffuse = Input.Diffuse * s_Color * ret;"
+"\n"
+"\n  return Out;"
+"\n}"
+*/
 ;
 
 static const char* PSCODE0100 = 
@@ -255,7 +270,7 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
 
         CONSTANT_COLOR_DIRECTIONALLIGHT& dst = *((CONSTANT_COLOR_DIRECTIONALLIGHT*)map.pData);
         dst.s_mWVP  = wvp.GetTranspose();
-        dst.s_World  = world;
+        dst.s_World  = world.GetTranspose();
         dst.s_MaterialColor = mat.Color;
         dst.s_Light = v;
         dst.s_LightColor = light.Diffuse;
