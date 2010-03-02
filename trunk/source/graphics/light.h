@@ -23,7 +23,6 @@ namespace Maid
       POINT,
     };
 
-
     //  共通設定
     TYPE Type;
     COLOR_R32G32B32A32F Diffuse;
