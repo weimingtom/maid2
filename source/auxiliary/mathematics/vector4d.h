@@ -139,7 +139,7 @@ namespace Maid
 
     const VECTOR4D_TEMPLATE<FLOAT>& VECTOR4D_TEMPLATE<FLOAT>::Normalize()
     {
-      D3DXVec4Normalize( (D3DXVECTOR4*)this, (D3DXVECTOR4*)this );
+      d3dxvector4d::Normalize( (D3DXVECTOR4*)this, (D3DXVECTOR4*)this );
       return *this;
     }
   }

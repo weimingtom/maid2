@@ -109,7 +109,7 @@ namespace Maid
 
     void MQOShaderCreate();
     bool MQOShaderIsLoading()const;
-    void MQOShaderSetup( const MATRIX4DF& wvp, const MQOMATERIAL& mat );
+    void MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat );
 
 
 
@@ -135,10 +135,12 @@ namespace Maid
     InputLayout  m_TestInputLayout;
     Index  m_TestIndex;
 
+    std::map<int,InputLayout>   m_MQOLayout;
+    std::map<int,VertexShader>  m_MQOVertexShader;
+    std::map<int,PixelShader>   m_MQOPixelShader;
+    BlendState      m_MQOBlendState;
+    RasterizerState m_MQORasterizer;
 
-    InputLayout  m_MQOLayout;
-    std::vector<VertexShader> m_MQOVertexShader;
-    PixelShader  m_MQOPixelShader;
 
     Vertex          m_SpriteVertex;  //  スプライトで使うバッファ
     ShaderConstant  m_SpriteConstant;
