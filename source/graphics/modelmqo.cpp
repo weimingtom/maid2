@@ -145,6 +145,8 @@ namespace Maid
           VertexPoint[i].z = -(VertexPoint[i].z);
         }
       }
+      //  法線を作るときも座標系の変換を反映させないといけないけど
+      //  設計としては元データから作るべきなので、内部で再度行っています
       CreateNormal( src, VertexNormal );
 
       //	インデックスのコピー
@@ -224,11 +226,14 @@ namespace Maid
         const unt32 index0 = face.PointIndex[0];
         const unt32 index1 = face.PointIndex[1];
         const unt32 index2 = face.PointIndex[2];
-        const POINT3DF& p0 = src.Point[index0];
-        const POINT3DF& p1 = src.Point[index1];
-        const POINT3DF& p2 = src.Point[index2];
+        POINT3DF p0 = src.Point[index0];
+        POINT3DF p1 = src.Point[index1];
+        POINT3DF p2 = src.Point[index2];
 
-        VECTOR3DF vec( VectorCross( VECTOR3DF(p0,p2), VECTOR3DF(p0,p1) ) );
+        //  座標系を取り替える作業
+        p0.z = -p0.z; p1.z = -p1.z; p2.z = -p2.z;
+
+        VECTOR3DF vec( VectorCross( VECTOR3DF(p0,p1), VECTOR3DF(p0,p2) ) );
         vec.Normalize();
         normal[index0] += vec; SherdCount[index0] += 1;
         normal[index1] += vec; SherdCount[index1] += 1;
@@ -240,6 +245,8 @@ namespace Maid
         normal[i].x /= total;
         normal[i].y /= total;
         normal[i].z /= total;
+
+        normal[i].Normalize();
       }
     }
 

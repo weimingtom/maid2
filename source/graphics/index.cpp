@@ -41,6 +41,7 @@ void Index::Create( const void* pData, size_t Size )
   param.CPUAccessFlags = 0;
   param.MiscFlags = 0;
 
+
   Graphics::SPBUFFER obj = pDevice->CreateBuffer( param, &Data );
 
   IIndex::Set( obj );

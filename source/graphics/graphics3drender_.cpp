@@ -37,8 +37,8 @@ static const char* VSCODE_COLOR_LIGHT0 =
 "\n }"
 ;
 
+
 //  MQO に座標と色があって、平行光源のみ
-/*
 static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
 "\n cbuffer cbPerObject"
 "\n {"
@@ -73,58 +73,9 @@ static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
 "\n   return Out;"
 "\n }"
 ;
-*/
 
-static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
-"\ncbuffer cbPerObject"
-"\n{"
-"\n  matrix s_mWVP  : packoffset( c0 );"
-"\n  matrix s_World  : packoffset( c4 );"
-"\n  float4 s_Color : packoffset( c7 );"
-"\n  float4 s_LightDir : packoffset( c8 );"
-"\n  float4 s_LightColor : packoffset( c9 );"
-"\n};"
-"\n"
-"\nstruct VS_INPUT"
-"\n{"
-"\n  float4 Position    : POSITION; "   //頂点座標
-"\n  float4 Diffuse     : COLOR0;"      //デフューズ色
-"\n  float4 Normal      : NORMAL;"      //法線
-"\n};"
-"\n"
-"\nstruct VS_OUTPUT"
-"\n{"
-"\n  float4 Position    : SV_Position;"  //頂点座標
-"\n  float4 Diffuse     : COLOR0;"     //デフューズ色
-"\n};"
-"\nVS_OUTPUT main(VS_INPUT Input)"
-"\n{"
-"\n  VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n  Out.Position = mul( Input.Position, s_mWVP );"
-"\n"
-"\n  float3 l = -s_LightDir.xyz;"
-"\n  float3 n = normalize(mul( Input.Normal.xyz, (float3x3)s_World ));"
-"\n  float3 ret = max(0.0,dot(n,l));"
-"\n"
-"\n  Out.Diffuse = Input.Diffuse * s_Color;"
-"\n  Out.Diffuse.rgb *= ret;"
-"\n"
-"\n  return Out;"
-"\n}"
-/*
-"\n  VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n  Out.Position = mul( Input.Position, s_mWVP );"
-"\n"
-"\n  float3 l = -s_LightDir;"
-"\n  float3 n = normalize(mul( Input.Normal, (float3x3)s_World ));"
-"\n  float3 ret = max(0.0,dot(n,l));"
-"\n"
-"\n  Out.Diffuse = Input.Diffuse * s_Color * ret;"
-"\n"
-"\n  return Out;"
-"\n}"
-*/
-;
+
+
 
 static const char* PSCODE0100 = 
 "\n struct PS_INPUT"
@@ -183,7 +134,7 @@ void Graphics3DRender::MQOShaderCreate()
     Graphics::RASTERIZERSTATEPARAM param;
 
     param.Fill = Graphics::RASTERIZERSTATEPARAM::FILL_SOLID;
-    param.Culling = Graphics::RASTERIZERSTATEPARAM::CULLING_LEFT;
+    param.Culling = Graphics::RASTERIZERSTATEPARAM::CULLING_BACK;
     param.MultiSample = false;
 
     m_MQORasterizer.Create( param );
@@ -258,19 +209,15 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
         const LIGHT& light = m_Light[0];
         MAID_ASSERT( light.Type!=LIGHT::DIRECTIONAL, "平行光源のみサポート" );
 
-        MATRIX4DF m = world.GetInverse();
-
-        VECTOR4DF v = 
-          VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
-//          * world;
-//          * m
+        //  ライトをまわしてシェーダ演算量を減らす
+        const VECTOR4DF v = 
+          (VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
+          * world.GetInverse()).Normalize()
           ;
 
-        v.Normalize();
 
         CONSTANT_COLOR_DIRECTIONALLIGHT& dst = *((CONSTANT_COLOR_DIRECTIONALLIGHT*)map.pData);
         dst.s_mWVP  = wvp.GetTranspose();
-        dst.s_World  = world.GetTranspose();
         dst.s_MaterialColor = mat.Color;
         dst.s_Light = v;
         dst.s_LightColor = light.Diffuse;
@@ -313,7 +260,8 @@ void Graphics3DRender::Blt( const MATRIX4DF& world, const ModelMQO& model )
     }
 
     {
-      IDepthStencilState& state = m_DepthOn;
+      IDepthStencilState& state = m_DepthOff;
+//      IDepthStencilState& state = m_DepthOn;
       Command.SetDepthStencilState( state.Get() );
     }
 

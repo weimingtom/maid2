@@ -42,7 +42,7 @@ void Graphics3DRender::Initialize()
     Graphics::RASTERIZERSTATEPARAM param;
 
     param.Fill = Graphics::RASTERIZERSTATEPARAM::FILL_SOLID;
-    param.Culling = Graphics::RASTERIZERSTATEPARAM::CULLING_LEFT;
+    param.Culling = Graphics::RASTERIZERSTATEPARAM::CULLING_BACK;
     param.MultiSample = false;
 
     m_Rasterizer.Create( param );
