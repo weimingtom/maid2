@@ -496,8 +496,8 @@ SPRASTERIZERSTATE DeviceD3D09::CreateRasterizerState( const RASTERIZERSTATEPARAM
     switch( Option.Culling )
     {
     case RASTERIZERSTATEPARAM::CULLING_NONE:  { s.Value = D3DCULL_NONE; }break;
-    case RASTERIZERSTATEPARAM::CULLING_LEFT:  { s.Value = D3DCULL_CCW; }break;
-    case RASTERIZERSTATEPARAM::CULLING_RIGHT: { s.Value = D3DCULL_CW ; }break;
+    case RASTERIZERSTATEPARAM::CULLING_BACK:  { s.Value = D3DCULL_CCW; }break;
+    case RASTERIZERSTATEPARAM::CULLING_FRONT: { s.Value = D3DCULL_CW ; }break;
     }
 
     v.push_back( s );

@@ -72,7 +72,11 @@ SPTEXTURE2D DeviceD3D10_0::CreateTexture2D( const CREATERETEXTURE2DPARAM& param,
     dec.CPUAccessFlags = param.CPUAccessFlags;
     dec.MiscFlags      = param.MiscFlags;
   }
-
+/*
+//DXGI_FORMAT_D32_FLOAT_S8X24_UINT
+//DXGI_FORMAT_D24_UNORM_S8_UINT
+//DXGI_FORMAT_D32_FLOAT
+*/
 
   std::vector<D3D10_SUBRESOURCE_DATA> dat;
   D3D10_SUBRESOURCE_DATA* ptr_dat = NULL;
@@ -304,19 +308,6 @@ SPSAMPLERSTATE DeviceD3D10_0::CreateSamplerState( const SAMPLERSTATEPARAM& Optio
 SPRASTERIZERSTATE DeviceD3D10_0::CreateRasterizerState( const RASTERIZERSTATEPARAM& Option )
 {
   D3D10_RASTERIZER_DESC desc = {};
-
-/*
-    desc.FillMode = D3D10_FILL_SOLID;
-    desc.CullMode = D3D10_CULL_NONE;
-    desc.FrontCounterClockwise = TRUE;
-    desc.DepthBias = 0;
-    desc.DepthBiasClamp = 0;
-    desc.SlopeScaledDepthBias = 0;
-    desc.ScissorEnable = FALSE;
-//    desc.MultisampleEnable = TRUE;
-    desc.MultisampleEnable = FALSE;
-    desc.AntialiasedLineEnable = FALSE;
-*/
 
   desc.FillMode = FILLtoD3D10_FILL_MODE(Option.Fill );
   desc.CullMode = CULLINGtoD3D10_CULL_MODE(Option.Culling );

@@ -51,8 +51,9 @@ namespace Maid { namespace Graphics {
     case PIXELFORMAT_DXT4:				{ return DXGI_FORMAT_BC4_UNORM;		}break;
     case PIXELFORMAT_DXT5:				{ return DXGI_FORMAT_BC5_UNORM;		}break;
 
-    case PIXELFORMAT_D16I:     { return DXGI_FORMAT_D16_UNORM;	  }break;
+    case PIXELFORMAT_D16I:     { return DXGI_FORMAT_D32_FLOAT;	  }break;
     case PIXELFORMAT_D24IS8:   { return DXGI_FORMAT_D24_UNORM_S8_UINT;  }break;
+//    case PIXELFORMAT_D24IS8:   { return DXGI_FORMAT_D32_FLOAT_S8X24_UINT;  }break;
     }
 
     MAID_ASSERT( true, "識別できないPIXELFORMATです " << eFormat );

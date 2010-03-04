@@ -39,6 +39,7 @@ protected:
     m_Command.Initialize();
     m_Render.Initialize( );
     m_2DRender.Initialize( );
+//    m_Model.Load( MAIDTEXT("box.mqo") );
     m_Model.Load( MAIDTEXT("boxsphere.mqo") );
 
     const SIZE2DF Screen = GetDefaultConfig().Graphics.ScreenSize;
@@ -51,7 +52,7 @@ protected:
     m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
     m_LightRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
 
-    m_ModelRotate.ResetStep(5);
+//    m_ModelRotate.ResetStep(5);
     m_Font.Create( SIZE2DI(8,16), true );
   }
 
@@ -112,7 +113,12 @@ protected:
 
       m_Render.Blt( rot*pos, m_Model );
     }
-//    m_Render.Fill();
+    {
+      const MATRIX4DF pos = MATRIX4DF().SetTranslate(80,0,0);
+      const MATRIX4DF rot = MATRIX4DF().SetRotationY(0);
+
+      m_Render.Blt( rot*pos, m_Model );
+    }
 
     {
       const float o = RADtoDEG(m_ModelRotate);

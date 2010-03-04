@@ -246,8 +246,8 @@ namespace Maid { namespace Graphics {
     switch( Type )
     {
     case RASTERIZERSTATEPARAM::CULLING_NONE:  { ret = D3D10_CULL_NONE; }break;
-    case RASTERIZERSTATEPARAM::CULLING_LEFT:  { ret = D3D10_CULL_FRONT;}break;
-    case RASTERIZERSTATEPARAM::CULLING_RIGHT: { ret = D3D10_CULL_BACK; }break;
+    case RASTERIZERSTATEPARAM::CULLING_BACK:  { ret = D3D10_CULL_BACK;}break;
+    case RASTERIZERSTATEPARAM::CULLING_FRONT: { ret = D3D10_CULL_FRONT; }break;
     }
 
     return ret;

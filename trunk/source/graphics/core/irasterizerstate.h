@@ -25,8 +25,8 @@ namespace Maid { namespace Graphics {
     enum CULLING
     {
       CULLING_NONE=0,
-      CULLING_LEFT,	//!<	反時計回りにカリング
-      CULLING_RIGHT	//!<	時計回りにカリング
+      CULLING_BACK,	//!<	裏面をカリング
+      CULLING_FRONT	//!<	表面をカリング
     };
 
     FILL    Fill;
@@ -35,7 +35,7 @@ namespace Maid { namespace Graphics {
 
     RASTERIZERSTATEPARAM()
       :Fill(FILL_SOLID)
-      ,Culling(CULLING_LEFT)
+      ,Culling(CULLING_BACK)
       ,MultiSample(false)
     {
     }
