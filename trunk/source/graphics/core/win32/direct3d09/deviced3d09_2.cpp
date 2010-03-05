@@ -523,6 +523,19 @@ SPDEPTHSTENCILSTATE DeviceD3D09::CreateDepthStencilState( const DEPTHSTENCILSTAT
   }
   {
     RENDERSTATE s;
+    s.Type = D3DRS_ZWRITEENABLE;
+    s.Value= booltoBOOL( Option.DepthTest );
+    v.push_back( s );
+  }
+  {
+    RENDERSTATE s;
+    s.Type = D3DRS_ZFUNC;
+    s.Value= CMPTYPEtoD3DCMPFUNC( Option.DepthFunc );
+    v.push_back( s );
+  }
+
+  {
+    RENDERSTATE s;
     s.Type = D3DRS_STENCILENABLE;
     s.Value= booltoBOOL( Option.StencilTest );
     v.push_back( s );

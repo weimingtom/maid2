@@ -260,8 +260,8 @@ void Graphics3DRender::Blt( const MATRIX4DF& world, const ModelMQO& model )
     }
 
     {
-      IDepthStencilState& state = m_DepthOff;
-//      IDepthStencilState& state = m_DepthOn;
+//      IDepthStencilState& state = m_DepthOff;
+      IDepthStencilState& state = m_DepthOn;
       Command.SetDepthStencilState( state.Get() );
     }
 
