@@ -44,7 +44,7 @@ protected:
 
     const SIZE2DF Screen = GetDefaultConfig().Graphics.ScreenSize;
 
-    m_Camera.SetPerspective( DEGtoRAD(60.0f), Screen.w/Screen.h, 0.1f, 1000.0f );
+    m_Camera.SetPerspective( DEGtoRAD(60.0f), Screen.w/Screen.h, 400.0f, 1000.0f );
     m_Camera.SetPosition( POINT3DF(0,200,-600) );
     m_Camera.SetTarget( POINT3DF(0,0,0) );
     m_Camera.SetUpVector( VECTOR3DF(0,1,0) );

@@ -33,6 +33,7 @@ namespace Maid { namespace Graphics {
 
     CREATEDEPTHSTENCILPARAM()
     {
+      ReadOnlyUsage = FLAG_READ_ONLY_DEPTH | FLAG_READ_ONLY_STENCIL;
       ZERO( Param, sizeof(Param) );
     }
   };

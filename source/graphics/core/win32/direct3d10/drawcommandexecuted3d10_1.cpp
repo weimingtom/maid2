@@ -54,7 +54,7 @@ void DrawCommandExecuteD3D10::ClearDepthStencil( CLEARFLAG flag, float Depth, un
     DepthStencilD3D10* pDepth = static_cast<DepthStencilD3D10*>(m_NowDepthStencil[i].get());
     if( pDepth==NULL ) { continue; }
 
-    GetDevice()->ClearDepthStencilView( pDepth->pView.get(), flag, Depth, Stencil );
+    GetDevice()->ClearDepthStencilView( pDepth->pView.get(), f, Depth, Stencil );
   }
 
 }

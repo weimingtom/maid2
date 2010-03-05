@@ -72,11 +72,7 @@ SPTEXTURE2D DeviceD3D10_0::CreateTexture2D( const CREATERETEXTURE2DPARAM& param,
     dec.CPUAccessFlags = param.CPUAccessFlags;
     dec.MiscFlags      = param.MiscFlags;
   }
-/*
-//DXGI_FORMAT_D32_FLOAT_S8X24_UINT
-//DXGI_FORMAT_D24_UNORM_S8_UINT
-//DXGI_FORMAT_D32_FLOAT
-*/
+
 
   std::vector<D3D10_SUBRESOURCE_DATA> dat;
   D3D10_SUBRESOURCE_DATA* ptr_dat = NULL;
@@ -331,12 +327,6 @@ SPDEPTHSTENCILSTATE DeviceD3D10_0::CreateDepthStencilState( const DEPTHSTENCILST
 
 	ZeroMemory( &desc, sizeof( desc ) );
 
-/*
-	desc.DepthEnable = TRUE;
-	desc.DepthFunc = D3D10_COMPARISON_LESS_EQUAL;
-	desc.DepthWriteMask = D3D10_DEPTH_WRITE_MASK_ALL;
-*/
-
   desc.DepthEnable = booltoD3D10BOOL( Option.DepthTest );
   desc.DepthWriteMask = D3D10_DEPTH_WRITE_MASK_ALL;
   desc.DepthFunc = CMPTYPEtoD3D10_COMPARISON_FUNC(Option.DepthFunc);
@@ -372,11 +362,6 @@ SPBLENDSTATE DeviceD3D10_0::CreateBlendState( const BLENDSTATEPARAM& Option )
 {
   D3D10_BLEND_DESC desc = {};
   ZeroMemory( &desc, sizeof( desc ) );
-
-/*
-    desc.BlendEnable[0] = FALSE;
-    desc.RenderTargetWriteMask[0] = D3D10_COLOR_WRITE_ENABLE_ALL;
-*/
 
   desc.AlphaToCoverageEnable = booltoD3D10BOOL(Option.AlphaToCoverageEnable);
 
