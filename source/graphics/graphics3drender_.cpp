@@ -38,38 +38,129 @@ static const char* VSCODE_COLOR_LIGHT0 =
 ;
 
 
+
 //  MQO に座標と色があって、平行光源のみ
 static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
 "\n cbuffer cbPerObject"
 "\n {"
 "\n   matrix s_mWVP  : packoffset( c0 );"
-"\n   float4 s_MaterialColor : packoffset( c4 );"
-"\n   float4 s_LightDir : packoffset( c5 );"
+"\n   float4 s_MaterialColor : packoffset( c4 );" // 素材そのものの色
+"\n   float4 s_MaterialLight : packoffset( c5 );" // 素材の光源反射率
+"\n   float4 s_MaterialEmissive : packoffset( c6 );" // 素材の自己発光量
+"\n   float4 s_LightDir     : packoffset( c7 );"  // 平行光源の向き
+"\n   float4 s_LightColor   : packoffset( c8 );"  // 平行光源の色
+"\n   float4 s_Ambient      : packoffset( c9 );"  // ワールド全体の明るさ
 "\n };"
-"\n"
+"\n "
 "\n struct VS_INPUT"
 "\n {"
-"\n   float4 Position    : POSITION;"    //頂点座標
-"\n   float4 Diffuse     : COLOR0; "     //デフューズ色
-"\n   float4 Normal      : NORMAL;"      //法線
+"\n   float4 Position    : POSITION;"   //頂点座標
+"\n   float4 Diffuse     : COLOR0;"     //頂点色影響度
+"\n   float4 Normal      : NORMAL;"     //法線
 "\n };"
-"\n"
+"\n "
 "\n struct VS_OUTPUT"
 "\n {"
 "\n   float4 Position    : SV_Position;"  //頂点座標
 "\n   float4 Diffuse     : COLOR0;"     //デフューズ色
 "\n };"
-"\n"
+"\n "
 "\n VS_OUTPUT main(VS_INPUT Input)"
 "\n {"
 "\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n"
-"\n   float3 l = -s_LightDir;"
-"\n   float3 n = Input.Normal;"
-"\n"
+"\n "
+"\n   float  lightpow = dot(Input.Normal,-s_LightDir);"
+"\n   float4 lightcol = s_LightColor * lightpow;"
+"\n "
+"\n  float4 matcolor = max(0.0,  s_MaterialColor * s_MaterialLight * lightcol );"
+"\n  float4 emi = s_MaterialColor * s_MaterialEmissive;"
+"\n  float4 worldcolor = emi + matcolor + s_Ambient;"
+"\n "
 "\n   Out.Position = mul( Input.Position, s_mWVP );"
-"\n   Out.Diffuse = Input.Diffuse * s_MaterialColor * dot(n,l);"
+"\n   Out.Diffuse = Input.Diffuse * worldcolor;"
+"\n "
+"\n   return Out;"
+"\n }"
+;
+
+
+//  MQO に座標と色とuvがあって、ライトがない
+static const char* VSCODE_TEXTURE_LIGHT0 = 
+"\n cbuffer cbPerObject"
+"\n {"
+"\n   matrix s_mWVP  : packoffset( c0 );"
+"\n   float2 s_TextureScale : packoffset( c4 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
+"\n };"
+"\n "
+"\n struct VS_INPUT"
+"\n {"
+"\n   float4 Position    : POSITION; "   //頂点座標
+"\n   float4 Diffuse     : COLOR0; "     //デフューズ色
+"\n   float2 TexCoords   : TEXCOORD0; "  //テクスチャUV
+"\n };"
 "\n" 
+"\n struct VS_OUTPUT"
+"\n {"
+"\n   float4 Position    : SV_Position; "//頂点座標
+"\n   float4 Diffuse     : COLOR0; "     //デフューズ色
+"\n   float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"\n };"
+"\n "
+"\n VS_OUTPUT main(VS_INPUT Input)"
+"\n {"
+"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
+"\n   Out.Position = mul( Input.Position, s_mWVP );"
+"\n   Out.Diffuse  = Input.Diffuse;"
+"\n   Out.TexCoords = Input.TexCoords * s_TextureScale;"
+"\n "
+"\n   return Out;"
+"\n }"
+;
+
+
+
+//  MQO に座標と色とuvがあって、平行光源がある
+static const char* VSCODE_TEXTURE_DIRECTIONALLIGHT = 
+"\n cbuffer cbPerObject"
+"\n {"
+"\n   matrix s_mWVP  : packoffset( c0 );"
+"\n   float4 s_MaterialLight : packoffset( c4 );" // 素材の光反射率
+"\n   float4 s_MaterialEmissive : packoffset( c5 );" // 素材の光反射率
+"\n   float4 s_LightDir     : packoffset( c6 );"  // 平行光源の向き
+"\n   float4 s_LightColor   : packoffset( c7 );"  // 平行光源の色
+"\n   float4 s_Ambient      : packoffset( c8 );"  // ワールド全体の明るさ
+"\n   float2 s_TextureScale : packoffset( c9 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
+"\n };"
+"\n "
+"\n struct VS_INPUT"
+"\n {"
+"\n   float4 Position    : POSITION;"   //頂点座標
+"\n   float4 Diffuse     : COLOR0;"     //頂点色影響度
+"\n   float4 Normal      : NORMAL;"     //法線
+"\n   float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"\n };"
+"\n "
+"\n struct VS_OUTPUT"
+"\n {"
+"\n   float4 Position    : SV_Position;"  //頂点座標
+"\n   float4 Diffuse     : COLOR0;"     //デフューズ色
+"\n   float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"\n };"
+"\n "
+"\n VS_OUTPUT main(VS_INPUT Input)"
+"\n {"
+"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
+"\n "
+"\n   float  lightpow = dot(Input.Normal,-s_LightDir);"
+"\n   float4 lightcol = s_LightColor * lightpow;"
+"\n "
+"\n   float4 matcolor = max(0.0, s_MaterialLight * lightcol );"
+"\n   float4 worldcolor = s_MaterialEmissive + matcolor + s_Ambient;"
+"\n "
+"\n   Out.Position = mul( Input.Position, s_mWVP );"
+"\n   Out.Diffuse = Input.Diffuse * worldcolor;"
+"\n   Out.TexCoords = Input.TexCoords * s_TextureScale;"
+"\n "
 "\n   return Out;"
 "\n }"
 ;
@@ -77,7 +168,10 @@ static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
 
 
 
-static const char* PSCODE0100 = 
+
+
+//  カラーを送るだけ
+static const char* PSCODE_COLOR = 
 "\n struct PS_INPUT"
 "\n {"
 "\n     float4 Position : SV_Position;"
@@ -87,6 +181,30 @@ static const char* PSCODE0100 =
 "\n float4 main( PS_INPUT input) : SV_Target"
 "\n {"
 "\n     return input.Color;"
+"\n }"
+;
+
+
+
+//  テクスチャとカラーを合成
+static const char* PSCODE_TEXTURECOLOR = 
+"\n Texture2D<float4> texture_slot0;"
+"\n sampler sampler_slot0 = sampler_state"
+"\n {"
+"\n     Texture   = <texture_slot0>;"
+"\n };"
+"\n "
+"\n struct PS_INPUT"
+"\n {"
+"\n     float4 Position : SV_Position;"
+"\n     float4 Color : COLOR0;"
+"\n     float2 TexUV : TEXCOORD0;"
+"\n };"
+"\n "
+"\n float4 main( PS_INPUT input) : SV_Target"
+"\n {"
+"\n     return texture_slot0.Sample(sampler_slot0,input.TexUV) * input.Color;"
+//"\n     return texture_slot0.Sample(sampler_slot0,input.TexUV);"
 "\n }"
 ;
 
@@ -104,30 +222,66 @@ void Graphics3DRender::MQOShaderCreate()
   //  A*10+B でidを割り振る
 
   {
-    const int id = 0*10+0;
-    m_MQOVertexShader[id].Create( MAIDTEXT(VSCODE_COLOR_LIGHT0) );
-    Graphics::INPUT_ELEMENT element[] =
     {
-      {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-      {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-    };
-    m_MQOLayout[id].Create( element, NUMELEMENTS(element), MAIDTEXT(VSCODE_COLOR_LIGHT0) );
+      const int id = 0*10+0;
+      m_MQOVertexShader[id].Create( MAIDTEXT(VSCODE_COLOR_LIGHT0) );
+      Graphics::INPUT_ELEMENT element[] =
+      {
+        {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+      };
+      m_MQOLayout[id].Create( element, NUMELEMENTS(element), MAIDTEXT(VSCODE_COLOR_LIGHT0) );
 
-    m_MQOPixelShader[id].Create( MAIDTEXT(PSCODE0100) );
+      m_MQOPixelShader[id].Create( MAIDTEXT(PSCODE_COLOR) );
+    }
+    {
+      const int id = 0*10+1;
+
+      m_MQOVertexShader[id].Create( MAIDTEXT(VSCODE_COLOR_DIRECTIONALLIGHT) );
+      Graphics::INPUT_ELEMENT element[] =
+      {
+        {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+      };
+
+      m_MQOLayout[id].Create( element, NUMELEMENTS(element), MAIDTEXT(VSCODE_COLOR_DIRECTIONALLIGHT) );
+      m_MQOPixelShader[id].Create( MAIDTEXT(PSCODE_COLOR) );
+    }
   }
   {
-    const int id = 0*10+1;
-
-    m_MQOVertexShader[id].Create( MAIDTEXT(VSCODE_COLOR_DIRECTIONALLIGHT) );
-    Graphics::INPUT_ELEMENT element[] =
     {
-      {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-      {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-      {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-    };
+      const int id = 1*10+0;
+      const String vs_code = MAIDTEXT(VSCODE_TEXTURE_LIGHT0);
+      const String ps_code = MAIDTEXT(PSCODE_TEXTURECOLOR);
+      m_MQOVertexShader[id].Create( vs_code );
+      Graphics::INPUT_ELEMENT element[] =
+      {
+        {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"TEXCOORD", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT2, 3, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+      };
+      m_MQOLayout[id].Create( element, NUMELEMENTS(element), vs_code );
 
-    m_MQOLayout[id].Create( element, NUMELEMENTS(element), MAIDTEXT(VSCODE_COLOR_DIRECTIONALLIGHT) );
-    m_MQOPixelShader[id].Create( MAIDTEXT(PSCODE0100) );
+      m_MQOPixelShader[id].Create( ps_code );
+    }
+    {
+      const int id = 1*10+1;
+      const String vs_code = MAIDTEXT(VSCODE_TEXTURE_DIRECTIONALLIGHT);
+      const String ps_code = MAIDTEXT(PSCODE_TEXTURECOLOR);
+      m_MQOVertexShader[id].Create( vs_code );
+      Graphics::INPUT_ELEMENT element[] =
+      {
+        {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"TEXCOORD", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT2, 3, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+      };
+      m_MQOLayout[id].Create( element, NUMELEMENTS(element), vs_code );
+
+      m_MQOPixelShader[id].Create( ps_code );
+    }
   }
 
   {
@@ -185,7 +339,6 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
     if( m_Light.empty() ) { LightingType = 0; }
     else                  { LightingType = 1; }
   }
-
   Graphics::IDrawCommand& Command = GetCommand();
   const int ShaderID = MaterialType*10 + LightingType;
 
@@ -215,13 +368,62 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
           * world.GetInverse()).Normalize()
           ;
 
-
         CONSTANT_COLOR_DIRECTIONALLIGHT& dst = *((CONSTANT_COLOR_DIRECTIONALLIGHT*)map.pData);
         dst.s_mWVP  = wvp.GetTranspose();
         dst.s_MaterialColor = mat.Color;
-        dst.s_Light = v;
+        dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
+        dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
+        dst.s_LightDir = v;
         dst.s_LightColor = light.Diffuse;
+        dst.s_Ambient = COLOR_R32G32B32A32F(0,0,0,1);
+      }break;
 
+    case 10:
+      {
+        CONSTANT_TEXTURE_COLOR_LIGHT0& dst = *((CONSTANT_TEXTURE_COLOR_LIGHT0*)map.pData);
+        dst.s_mWVP  = wvp.GetTranspose();
+        dst.s_TextureScale = SIZE2DF(1.0f,1.0f);
+
+        if( mat.Texture.IsSetupped() )
+        {
+          const SIZE2DF real = mat.Texture.GetRealSize();
+          const SIZE2DF tex  = mat.Texture.GetTextureSize();
+          dst.s_TextureScale = SIZE2DF(real.w/tex.w,real.h/tex.h);
+
+          const IMaterial&  m = mat.Texture;
+          Command.PSSetMaterial(0, m.Get() );
+        }
+      }break;
+
+    case 11:
+      {
+        const LIGHT& light = m_Light[0];
+        MAID_ASSERT( light.Type!=LIGHT::DIRECTIONAL, "平行光源のみサポート" );
+
+        //  ライトをまわしてシェーダ演算量を減らす
+        const VECTOR4DF v = 
+          (VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
+          * world.GetInverse()).Normalize()
+          ;
+
+        CONSTANT_TEXTURE_DIRECTIONALLIGHT& dst = *((CONSTANT_TEXTURE_DIRECTIONALLIGHT*)map.pData);
+        dst.s_mWVP  = wvp.GetTranspose();
+        dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
+        dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
+        dst.s_LightDir = v;
+        dst.s_LightColor = light.Diffuse;
+        dst.s_Ambient = COLOR_R32G32B32A32F(0,0,0,1);
+        dst.s_TextureScale = SIZE2DF(1.0f,1.0f);
+
+        if( mat.Texture.IsSetupped() )
+        {
+          const SIZE2DF real = mat.Texture.GetRealSize();
+          const SIZE2DF tex  = mat.Texture.GetTextureSize();
+          dst.s_TextureScale = SIZE2DF(real.w/tex.w,real.h/tex.h);
+
+          const IMaterial&  m = mat.Texture;
+          Command.PSSetMaterial(0, m.Get() );
+        }
       }break;
     }
     Command.ResourceUnmap( con.Get(), sub );

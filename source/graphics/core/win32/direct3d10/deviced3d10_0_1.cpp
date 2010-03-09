@@ -52,6 +52,8 @@ void DeviceD3D10_0::Initialize()
   {
     const char* filename[] =
     {
+      "d3dx10_41.dll",
+      "d3dx10_42.dll",
       "d3dx10_40.dll",
       "d3dx10_39.dll",
       "d3dx10_38.dll",

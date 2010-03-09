@@ -19,13 +19,15 @@ namespace Maid
         const ShaderInput&  in  = static_cast<const ShaderInput&>(Input);
         ShaderOutput& out = static_cast<ShaderOutput&>(Output);
 
-        std::vector<unt08> Binary;
         String ErrorMSG;
 
         const bool IsSuccess = in.pCompiler->CompileShaderLanguage(in.ShaderLanguage,in.Type, out.ByteCode,ErrorMSG);
 
         //  失敗したらエラー出す
-        if( !IsSuccess ) { MAID_WARNING( MAIDTEXT("シェーダーのコンパイルに失敗\n") << ErrorMSG ); }
+        if( !IsSuccess )
+        {
+          MAID_WARNING( MAIDTEXT("シェーダーのコンパイルに失敗\n") << ErrorMSG << in.ShaderLanguage );
+        }
     }
   }
 

@@ -90,6 +90,8 @@ namespace Maid
     bool IsEmpty() const;
     String GetLoadText() const;
 
+    bool IsSetupped() const;
+
   private:
     void SendCommand( const KEEPOUT::tex2dInput::CREATECONFIG& Command );
     void ReadConvertSetting( const String& Command, KEEPOUT::tex2dInput::CREATECONFIG& out );

@@ -492,11 +492,6 @@ bool DeviceD3D10_0::CompileShaderLanguage( const String& Source, CODETYPE type, 
       NULL
       );
 
-    if( FAILED(ret) )
-    {
-      std::string str = (char*)pErrorMsgs->GetBufferPointer();
-      pErrorMsgs->Release();
-    }
     if( SUCCEEDED(ret) ) { break; }
   }
 
@@ -504,7 +499,6 @@ bool DeviceD3D10_0::CompileShaderLanguage( const String& Source, CODETYPE type, 
   {
     std::string str = (char*)pErrorMsgs->GetBufferPointer();
     ErrorMessage    = String::ConvertSJIStoMAID(str);
-    pErrorMsgs->Release();
     goto MAID_ERROR;  
   }
 
