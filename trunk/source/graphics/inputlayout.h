@@ -37,34 +37,7 @@ namespace Maid
 
     inline bool operator < ( const ilInput& lhs, const ilInput& rhs ) 
     {
-	    if( lhs.Element.size() < rhs.Element.size() ) { return true; }
-	    else if( lhs.Element.size() > rhs.Element.size() ) { return false; }
-
-      for( int i=0; i<(int)lhs.Element.size(); ++i )
-      {
-        const Graphics::INPUT_ELEMENT& a = lhs.Element[i];
-        const Graphics::INPUT_ELEMENT& b = rhs.Element[i];
-
-	      if( a.SemanticName < b.SemanticName ) { return true;  }
-	      else if( a.SemanticName > b.SemanticName ) { return false; }
-
-	      if( a.SemanticIndex < b.SemanticIndex ) { return true;  }
-	      else if( a.SemanticIndex > b.SemanticIndex ) { return false; }
-
-	      if( a.Type < b.Type ) { return true;  }
-	      else if( a.Type > b.Type ) { return false; }
-
-	      if( a.SlotNo < b.SlotNo ) { return true;  }
-	      else if( a.SlotNo > b.SlotNo ) { return false; }
-
-	      if( a.Offset < b.Offset ) { return true;  }
-	      else if( a.Offset > b.Offset ) { return false; }
-
-	      if( a.Method < b.Method ) { return true;  }
-	      else if( a.Method > b.Method ) { return false; }
-      }
-
-      return false; 
+      return lhs.Key < rhs.Key;
     }
 
     class ilOutput : public IJobOutput

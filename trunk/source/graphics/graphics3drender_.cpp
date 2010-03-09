@@ -84,6 +84,41 @@ static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
 ;
 
 
+
+//  カラーを送るだけ
+static const char* PSCODE_COLOR = 
+"\n struct PS_INPUT"
+"\n {"
+"\n     float4 Position : SV_Position;"
+"\n     float4 Color    : COLOR0;"
+"\n };"
+"\n"
+"\n float4 main( PS_INPUT input) : SV_Target"
+"\n {"
+"\n     return input.Color;"
+"\n }"
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //  MQO に座標と色とuvがあって、ライトがない
 static const char* VSCODE_TEXTURE_LIGHT0 = 
 "\n cbuffer cbPerObject"
@@ -170,22 +205,6 @@ static const char* VSCODE_TEXTURE_DIRECTIONALLIGHT =
 
 
 
-//  カラーを送るだけ
-static const char* PSCODE_COLOR = 
-"\n struct PS_INPUT"
-"\n {"
-"\n     float4 Position : SV_Position;"
-"\n     float4 Color    : COLOR0;"
-"\n };"
-"\n"
-"\n float4 main( PS_INPUT input) : SV_Target"
-"\n {"
-"\n     return input.Color;"
-"\n }"
-;
-
-
-
 //  テクスチャとカラーを合成
 static const char* PSCODE_TEXTURECOLOR = 
 "\n Texture2D<float4> texture_slot0;"
@@ -204,7 +223,6 @@ static const char* PSCODE_TEXTURECOLOR =
 "\n float4 main( PS_INPUT input) : SV_Target"
 "\n {"
 "\n     return texture_slot0.Sample(sampler_slot0,input.TexUV) * input.Color;"
-//"\n     return texture_slot0.Sample(sampler_slot0,input.TexUV);"
 "\n }"
 ;
 
@@ -259,7 +277,6 @@ void Graphics3DRender::MQOShaderCreate()
       {
         {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
         {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-        {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
         {"TEXCOORD", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT2, 3, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
       };
       m_MQOLayout[id].Create( element, NUMELEMENTS(element), vs_code );
