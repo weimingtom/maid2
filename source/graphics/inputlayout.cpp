@@ -37,5 +37,6 @@ namespace Maid
 
     const_cast<InputLayout*>(this)->IInputLayout::Set( m_Cache.GetOutput().pLayout );
     return false;
+
   }
 }
