@@ -27,11 +27,11 @@ namespace Maid
 
   struct MQOMATERIAL
   {
-    COLOR_R32G32B32A32F Color;
-    float Diffuse;
-    float Ambient;
+    COLOR_R32G32B32A32F Color;  //  モデルそのものの色。Textureがある場合は無効
+    float Diffuse;  //  光源からの反射率
+    float Ambient;  //  環境光からの反射率
+  	float Emissive; //  自己発光度
     float Specular;
-  	float Emissive;
     float Power;
     Texture2D Texture;
     Texture2D Bump;

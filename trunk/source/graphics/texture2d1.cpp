@@ -329,7 +329,7 @@ void Texture2D::Delete()
 bool Texture2D::IsLoading()const
 {
   //  ポインタが存在してるならすでに作ってる
-  if( IsSetupped() ) { return false; }
+  if( Texture2DBase::IsSetupped() ) { return false; }
 
   //  処理が終わるまでは忙しい
   if( m_Cache.IsExecuting() ) { return true; }
@@ -358,6 +358,19 @@ String Texture2D::GetLoadText() const
 
   return m_LoadText;
 }
+
+//! このインスタンスを使用する準備ができているか？
+/*!
+    @return  使えるなら true
+ */
+bool Texture2D::IsSetupped() const
+{
+  if( IsEmpty() ) { return false; }
+  if( IsLoading() ) { return false; }
+
+  return true;
+}
+
 
 
 void Texture2D::SendCommand( const KEEPOUT::tex2dInput::CREATECONFIG& Command )

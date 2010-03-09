@@ -77,6 +77,19 @@ SPJOBSTATUS JobPool::AddJob( const SPJOBINPOUT& pInput, const SPJOBFUNCTION& pFu
 {
   SPJOBSTATUS pStatus( new JobStatus(pInput,pFunc,pOutput) ); 
 
+  {
+    //  投げてきたスレッドと、処理するスレッドが同じ＝＝先に処理しないと止まる
+    if( m_Thread.size()==1 )
+    {
+      if( ThreadController::GetCurrentID()==m_Thread[0].GetID() )
+      {
+         ExecuteJob( pStatus );
+         return pStatus;
+      }
+    }
+  }
+
+
   #pragma COMPILERMSG("TODO:ひとつのキューを取り合うよりも、あいてるスレッドにキューを投げるほうがいいかも。デッドロックする？")	
   {
     ThreadMutexLocker Lock(m_Mutex);

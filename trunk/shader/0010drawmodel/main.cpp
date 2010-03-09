@@ -6,6 +6,7 @@
 #include"../../source/framework/gameframework.h"
 #include"../../source/graphics/graphics3drender.h"
 #include"../../source/graphics/graphics2drender.h"
+#include"../../source/graphics/texture2d.h"
 
 #include"../../source/graphics/modelmqo.h"
 #include"../../source/graphics/camera.h"
@@ -37,10 +38,14 @@ protected:
   void Initialize()
   {
     m_Command.Initialize();
-    m_Render.Initialize( );
-    m_2DRender.Initialize( );
+    m_Render.Initialize();
+    m_2DRender.Initialize();
+
+//    m_Texture.LoadFile( MAIDTEXT("nc1673.bmp") );
+
 //    m_Model.Load( MAIDTEXT("box.mqo") );
-    m_Model.Load( MAIDTEXT("boxsphere.mqo") );
+//    m_Model.Load( MAIDTEXT("boxsphere.mqo") );
+    m_Model.Load( MAIDTEXT("boxspheretexture.mqo") );
 
     const SIZE2DF Screen = GetDefaultConfig().Graphics.ScreenSize;
 
@@ -52,8 +57,8 @@ protected:
     m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
     m_LightRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
 
-//    m_ModelRotate.ResetStep(5);
     m_Font.Create( SIZE2DI(8,16), true );
+    m_IsLight = false;
   }
 
   void UpdateFrame()
@@ -69,6 +74,8 @@ protected:
     else if( k.IsDown(Keybord::BUTTON_LEFT) ) { ++m_ModelRotate; }
     if( k.IsDown('A')     ) { --m_LightRotate; }
     else if( k.IsDown('S') ) { ++m_LightRotate; }
+
+    if( k.IsIn('Q')     ) { m_IsLight = !m_IsLight; }
   }
 
   void UpdateDraw()
@@ -88,24 +95,25 @@ protected:
 
     m_Render.SetCamera(m_Camera);
 
-    LIGHT light;
     {
-      light.Type = LIGHT::DIRECTIONAL;
-      light.Diffuse = COLOR_R32G32B32A32F(1,1,1,1);
-      light.Direction = VECTOR3DF(1,1,0);
+      std::vector<LIGHT> LightList;
+      if( m_IsLight )
+      {
+        LIGHT light;
+        light.Type = LIGHT::DIRECTIONAL;
+        light.Diffuse = COLOR_R32G32B32A32F(1,1,1,1);
+        light.Direction = VECTOR3DF(1,1,0);
 
-      float aa = DEGtoRAD(90);
-      const float rot = m_LightRotate;
-      const float s = Math<float>::sin(rot);
-      const float c = Math<float>::cos(rot);
+        const float rot = m_LightRotate;
+        const float s = Math<float>::sin(rot);
+        const float c = Math<float>::cos(rot);
 
-      light.Direction = VECTOR3DF(c,s,0).Normalize();
+        light.Direction = VECTOR3DF(c,s,0).Normalize();
+
+        LightList.push_back(light);
+      }
+      m_Render.SetLight( LightList );
     }
-
-
-    std::vector<LIGHT> LightList;
-    LightList.push_back(light);
-    m_Render.SetLight( LightList );
 
     {
       const MATRIX4DF pos = MATRIX4DF().SetTranslate(0,0,0);
@@ -121,10 +129,14 @@ protected:
     }
 
     {
+      const String str = MAIDTEXT( "←→でモデル回転　ASでライト回転 QでライトＯＮＯＦＦ" );
+      m_2DRender.BltText( POINT2DI(0,0), m_Font, str );
+    }
+    {
       const float o = RADtoDEG(m_ModelRotate);
       const float l = RADtoDEG(m_LightRotate);
       const String str = String::PrintFormat( "objrot:%f, lightrot:%f", o, l );
-      m_2DRender.BltText( POINT2DI(0,0), m_Font, str );
+      m_2DRender.BltText( POINT2DI(0,20), m_Font, str );
     }
 
     m_Command.End();
@@ -141,11 +153,13 @@ private:
   Graphics2DRender  m_2DRender;
   Graphics3DRender  m_Render;
   ModelMQO          m_Model;
+  Texture2D         m_Texture;
 
   Camera  m_Camera;
   LoopCounter<float>   m_LightRotate;
   LoopCounter<float>   m_ModelRotate;
   Font  m_Font;
+  bool  m_IsLight;
 };
 
 
