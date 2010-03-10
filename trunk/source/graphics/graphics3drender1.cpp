@@ -6,14 +6,12 @@ namespace Maid
 {
 
 Graphics3DRender::Graphics3DRender( GraphicsCommandControl& com )
-  :m_ViewMatrix(MATRIX4DF().SetIdentity())
-  ,m_ProjectionMatrix(MATRIX4DF().SetIdentity())
-  ,m_State(STATE_EMPTY)
+  :m_State(STATE_EMPTY)
   ,m_SpriteBltState(BLENDSTATE_ALPHA)
   ,m_SpriteFilter(TEXTUREFILTER_LINEAR)
   ,m_IsDepthWrite(true)
   ,m_CommandCtl(com)
-  ,m_Ambient(1,1,1,1)
+  ,m_Ambient(0,0,0,1)
 {
 
 }
@@ -218,8 +216,7 @@ void Graphics3DRender::SetDepthWrite( bool IsOn )
 
 void Graphics3DRender::SetCamera( const Camera& cam )
 {
-  m_ViewMatrix = cam.GetViewMatrix();
-  m_ProjectionMatrix = cam.GetProjectionMatrix();
+  m_Camera = cam;
 }
 
 
@@ -278,7 +275,7 @@ bool Graphics3DRender::IsMemberLoading() const
 
 MATRIX4DF	Graphics3DRender::GetCameraMatrix() const
 {
-  return m_ViewMatrix * m_ProjectionMatrix;
+  return m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
 }
 
 

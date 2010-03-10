@@ -59,7 +59,7 @@ void Graphics3DRender::SpriteFill( const MATRIX4DF& world, const COLOR_R32G32B32
   const IVertex& vertex = m_SpriteVertex;
   int VertexSize = 0;
 
-  const MATRIX4DF mat = world * m_ViewMatrix * m_ProjectionMatrix;
+  const MATRIX4DF mat = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
 
   {
     const int sub = 0;
