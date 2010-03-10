@@ -45,8 +45,11 @@ namespace Maid
 
     void SetDepthWrite( bool IsOn );
 
-    void Blt( const POINT3DF& Pos, const ModelMQO& model );
-    void Blt( const MATRIX4DF& mat, const ModelMQO& model );
+    void Blt( const POINT3DF& Pos, const ModelMQO& model, float alpha );
+    void BltS ( const POINT3DF& Pos, const ModelMQO& model, float alpha, const SIZE3DF& Scale );
+    void BltR ( const POINT3DF& Pos, const ModelMQO& model, float alpha, float Rotate, const VECTOR3DF& vec );
+    void BltSR( const POINT3DF& Pos, const ModelMQO& model, float alpha, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
+    void Blt( const MATRIX4DF& mat, const ModelMQO& model, float alpha );
  
     void SetAmbient( const COLOR_R32G32B32A32F& amb );
     void SetLight( const std::vector<LIGHT>& light );
@@ -109,7 +112,7 @@ namespace Maid
 
     void MQOShaderCreate();
     bool MQOShaderIsLoading()const;
-    void MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat );
+    void MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha );
 
 
 
@@ -189,8 +192,7 @@ namespace Maid
     SamplerState  m_SamplerPoint;
 
 
-		MATRIX4DF	m_ViewMatrix;
-		MATRIX4DF	m_ProjectionMatrix;
+    Camera    m_Camera;
 
     std::vector<LIGHT>  m_Light;
     COLOR_R32G32B32A32F m_Ambient;

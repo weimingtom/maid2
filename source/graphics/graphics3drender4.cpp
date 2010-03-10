@@ -65,7 +65,7 @@ void Graphics3DRender::SpriteMaskBlt  ( const MATRIX4DF& world, const Texture2DB
   const IVertex& vertex = m_SpriteVertex;
   int VertexStructSize = 0;
 
-  const MATRIX4DF mat = world * m_ViewMatrix * m_ProjectionMatrix;
+  const MATRIX4DF mat = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
 
   COLOR_R32G32B32A32F vcol = Color;
   bool AlphaAdd = false;

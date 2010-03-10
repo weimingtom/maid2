@@ -8,7 +8,8 @@
 struct CONSTANT0100
 {
   Maid::MATRIX4DF s_mWVP;
-  Maid::COLOR_R32G32B32A32F s_MaterialColor;  //  マテリアルの色
+  Maid::COLOR_R32G32B32A32F s_MaterialColor;  //  素材そのものの色
+  float s_Alpha;  //  プログラム側で調節するモデルの透明度
 };
 
 struct CONSTANT_COLOR_DIRECTIONALLIGHT
@@ -20,6 +21,12 @@ struct CONSTANT_COLOR_DIRECTIONALLIGHT
   Maid::VECTOR4DF           s_LightDir;       // 平行光源の向き
   Maid::COLOR_R32G32B32A32F s_LightColor;     // 平行光源の色
   Maid::COLOR_R32G32B32A32F s_Ambient;        // ワールド全体の明るさ
+  float           s_Alpha;  //  プログラム側で調節するモデルの透明度
+  float32         s_Tmp[3];       //  s_Alphaレジスタの空き
+  Maid::VECTOR4DF s_Eye;       // 視線ベクトル
+  float           s_Speculer;     //  スペキュラの効き具合
+  float           s_SpeculerPow;  //  スペキュラのパワー
+  float32         s_Tmp2[2];      //  s_Speculerレジスタの空き
 };
 
 
@@ -27,7 +34,8 @@ struct CONSTANT_TEXTURE_COLOR_LIGHT0
 {
   Maid::MATRIX4DF s_mWVP;
   Maid::SIZE2DF   s_TextureScale; //  テクスチャのＵＶとデータ上のＵＶを調節するための値
-  float32         s_Tmp[2];       //  c4レジスタの空き
+  float32         s_Tmp[2];       //  s_TextureScaleレジスタの空き
+  float s_Alpha;  //  プログラム側で調節するモデルの透明度
 };
 
 struct CONSTANT_TEXTURE_DIRECTIONALLIGHT
@@ -40,6 +48,12 @@ struct CONSTANT_TEXTURE_DIRECTIONALLIGHT
   Maid::COLOR_R32G32B32A32F s_Ambient;        // ワールド全体の明るさ
   Maid::SIZE2DF   s_TextureScale; //  テクスチャのＵＶとデータ上のＵＶを調節するための値
   float32         s_Tmp[2];       //  c4レジスタの空き
+  float s_Alpha;  //  プログラム側で調節するモデルの透明度
+  float32         s_Tmp2[3];       //  s_Alphaレジスタの空き
+  Maid::VECTOR4DF s_Eye;       // 視線ベクトル
+  float           s_Speculer;     //  スペキュラの効き具合
+  float           s_SpeculerPow;  //  スペキュラのパワー
+  float32         s_Tmp3[2];      //  s_Speculerレジスタの空き
 };
 
 

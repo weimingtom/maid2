@@ -9,94 +9,107 @@ namespace Maid
 
 //  MQO に座標と色があって、ライトがない
 static const char* VSCODE_COLOR_LIGHT0 = 
-"\n cbuffer cbPerObject"
-"\n {"
-"\n   matrix s_mWVP  : packoffset( c0 );"
-"\n   float4 s_MaterialColor : packoffset( c4 );"
-"\n };"
-"\n"
-"\n struct VS_INPUT"
-"\n {"
-"\n   float4 Position    : POSITION;"    //頂点座標
-"\n   float4 Diffuse     : COLOR0; "     //デフューズ色
-"\n };"
-"\n"
-"\n struct VS_OUTPUT"
-"\n {"
-"\n   float4 Position    : SV_Position; "   //頂点座標
-"\n   float4 Diffuse     : COLOR0;  "    //デフューズ色
-"\n };"
-"\n"
-"\n VS_OUTPUT main(VS_INPUT Input)"
-"\n {"
-"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n   Out.Position = mul( Input.Position, s_mWVP );"
-"\n   Out.Diffuse = Input.Diffuse * s_MaterialColor;"
-"\n"
-"\n   return Out;"
-"\n }"
+"cbuffer cbPerObject"
+"{"
+"  matrix s_mWVP  : packoffset( c0 );"
+"  float4 s_MaterialColor : packoffset( c4 );"
+"  float1 s_Alpha: packoffset( c5 );" // プログラム側で調節する透明度
+"};"
+""
+"struct VS_INPUT"
+"{"
+"  float4 Position    : POSITION;"    //頂点座標
+"  float4 Diffuse     : COLOR0;"      //デフューズ色
+"};"
+""
+"struct VS_OUTPUT"
+"{"
+"  float4 Position    : SV_Position;"   //頂点座標
+"  float4 Diffuse     : COLOR0;"      //デフューズ色
+"};"
+""
+"VS_OUTPUT main(VS_INPUT Input)"
+"{"
+"  VS_OUTPUT Out = (VS_OUTPUT)0;"
+"  Out.Position = mul( Input.Position, s_mWVP );"
+"  Out.Diffuse = Input.Diffuse * s_MaterialColor;"
+"  Out.Diffuse.a *= s_Alpha;"
+""
+"  return Out;"
+"}"
 ;
-
-
 
 //  MQO に座標と色があって、平行光源のみ
 static const char* VSCODE_COLOR_DIRECTIONALLIGHT =
-"\n cbuffer cbPerObject"
-"\n {"
-"\n   matrix s_mWVP  : packoffset( c0 );"
-"\n   float4 s_MaterialColor : packoffset( c4 );" // 素材そのものの色
-"\n   float4 s_MaterialLight : packoffset( c5 );" // 素材の光源反射率
-"\n   float4 s_MaterialEmissive : packoffset( c6 );" // 素材の自己発光量
-"\n   float4 s_LightDir     : packoffset( c7 );"  // 平行光源の向き
-"\n   float4 s_LightColor   : packoffset( c8 );"  // 平行光源の色
-"\n   float4 s_Ambient      : packoffset( c9 );"  // ワールド全体の明るさ
-"\n };"
-"\n "
-"\n struct VS_INPUT"
-"\n {"
-"\n   float4 Position    : POSITION;"   //頂点座標
-"\n   float4 Diffuse     : COLOR0;"     //頂点色影響度
-"\n   float4 Normal      : NORMAL;"     //法線
-"\n };"
-"\n "
-"\n struct VS_OUTPUT"
-"\n {"
-"\n   float4 Position    : SV_Position;"  //頂点座標
-"\n   float4 Diffuse     : COLOR0;"     //デフューズ色
-"\n };"
-"\n "
-"\n VS_OUTPUT main(VS_INPUT Input)"
-"\n {"
-"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n "
-"\n   float  lightpow = dot(Input.Normal,-s_LightDir);"
-"\n   float4 lightcol = s_LightColor * lightpow;"
-"\n "
-"\n  float4 matcolor = max(0.0,  s_MaterialColor * s_MaterialLight * lightcol );"
-"\n  float4 emi = s_MaterialColor * s_MaterialEmissive;"
-"\n  float4 worldcolor = emi + matcolor + s_Ambient;"
-"\n "
-"\n   Out.Position = mul( Input.Position, s_mWVP );"
-"\n   Out.Diffuse = Input.Diffuse * worldcolor;"
-"\n "
-"\n   return Out;"
-"\n }"
+"cbuffer cbPerObject"
+"{"
+"  matrix s_mWVP  : packoffset( c0 );"
+"  float4 s_MaterialColor : packoffset( c4 );" // 素材そのものの色
+"  float4 s_MaterialLight : packoffset( c5 );" // 素材の光源反射率
+"  float4 s_MaterialEmissive : packoffset( c6 );" // 素材の自己発光量
+"  float4 s_LightDir     : packoffset( c7 );"  // 平行光源の向き
+"  float4 s_LightColor   : packoffset( c8 );"  // 平行光源の色
+"  float4 s_Ambient      : packoffset( c9 );"  // ワールド全体の明るさ
+"  float1 s_Alpha        : packoffset( c10 );" // プログラム側で調節する透明度
+"  float4 s_Eye          : packoffset( c11 );" // 視線ベクトル
+"  float2 s_Speculer     : packoffset( c12 );" // スペキュラの強さ
+"};"
+""
+"struct VS_INPUT"
+"{"
+"  float4 Position    : POSITION; "  //頂点座標
+"  float4 Diffuse     : COLOR0;"     //頂点色影響度
+"  float4 Normal      : NORMAL;"     //法線
+"};"
+""
+"struct VS_OUTPUT"
+"{"
+"  float4 Position    : SV_Position;" //頂点座標
+"  float4 Diffuse     : COLOR0;"      //デフューズ色
+"};"
+""
+"VS_OUTPUT main(VS_INPUT Input)"
+"{"
+"  VS_OUTPUT Out = (VS_OUTPUT)0;"
+""
+"  float  lightpow = dot(Input.Normal,-s_LightDir);"
+"  float4 lightcol = s_LightColor * lightpow;"
+""
+"  float4 matcolor = max(0.0,  s_MaterialColor * s_MaterialLight * lightcol );"
+"  float4 emi = s_MaterialColor * s_MaterialEmissive;"
+""
+"  float3 eye  = normalize(s_Eye-Input.Position.xyz);"
+"  float3 half = normalize(-s_LightDir+eye);"
+"  float  spc  = pow(max(0.0,dot(Input.Normal,half)),s_Speculer.y) * s_Speculer.x;"
+""
+"  float4 worldcolor = emi + matcolor + s_Ambient + spc;"
+"  worldcolor.a = s_MaterialColor.a;"
+""
+"  Out.Position = mul( Input.Position, s_mWVP );"
+"  Out.Diffuse = Input.Diffuse * worldcolor;"
+"  Out.Diffuse.a *= s_Alpha;"
+""
+"  return Out;"
+"}"
 ;
+
+
+
 
 
 
 //  カラーを送るだけ
 static const char* PSCODE_COLOR = 
-"\n struct PS_INPUT"
-"\n {"
-"\n     float4 Position : SV_Position;"
-"\n     float4 Color    : COLOR0;"
-"\n };"
-"\n"
-"\n float4 main( PS_INPUT input) : SV_Target"
-"\n {"
-"\n     return input.Color;"
-"\n }"
+"struct PS_INPUT"
+"{"
+"  float4 Position : SV_Position;"
+"  float4 Color    : COLOR0;"
+"};"
+""
+"float4 main( PS_INPUT input) : SV_Target"
+"{"
+"  return input.Color;"
+"}"
 ;
 
 
@@ -121,109 +134,166 @@ static const char* PSCODE_COLOR =
 
 //  MQO に座標と色とuvがあって、ライトがない
 static const char* VSCODE_TEXTURE_LIGHT0 = 
-"\n cbuffer cbPerObject"
-"\n {"
-"\n   matrix s_mWVP  : packoffset( c0 );"
-"\n   float2 s_TextureScale : packoffset( c4 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
-"\n };"
-"\n "
-"\n struct VS_INPUT"
-"\n {"
-"\n   float4 Position    : POSITION; "   //頂点座標
-"\n   float4 Diffuse     : COLOR0; "     //デフューズ色
-"\n   float2 TexCoords   : TEXCOORD0; "  //テクスチャUV
-"\n };"
-"\n" 
-"\n struct VS_OUTPUT"
-"\n {"
-"\n   float4 Position    : SV_Position; "//頂点座標
-"\n   float4 Diffuse     : COLOR0; "     //デフューズ色
-"\n   float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
-"\n };"
-"\n "
-"\n VS_OUTPUT main(VS_INPUT Input)"
-"\n {"
-"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n   Out.Position = mul( Input.Position, s_mWVP );"
-"\n   Out.Diffuse  = Input.Diffuse;"
-"\n   Out.TexCoords = Input.TexCoords * s_TextureScale;"
-"\n "
-"\n   return Out;"
-"\n }"
+"cbuffer cbPerObject"
+"{"
+"  matrix s_mWVP  : packoffset( c0 );"
+"  float2 s_TextureScale : packoffset( c4 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
+"  float  s_Alpha : packoffset( c5 );"   //プログラム側で調節する透明度
+"};"
+""
+"struct VS_INPUT"
+"{"
+"  float4 Position    : POSITION;"    //頂点座標
+"  float4 Diffuse     : COLOR0; "     //デフューズ色
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"};"
+""
+"struct VS_OUTPUT"
+"{"
+"  float4 Position    : SV_Position;" //頂点座標
+"  float4 Diffuse     : COLOR0;"      //デフューズ色
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"};"
+""
+"VS_OUTPUT main(VS_INPUT Input)"
+"{"
+"  VS_OUTPUT Out = (VS_OUTPUT)0;"
+"  Out.Position = mul( Input.Position, s_mWVP );"
+"  Out.Diffuse  = Input.Diffuse;"
+"  Out.Diffuse.a*= s_Alpha;"
+"  Out.TexCoords = Input.TexCoords * s_TextureScale;"
+""
+"  return Out;"
+"}"
 ;
 
 
-
+#if 0
 //  MQO に座標と色とuvがあって、平行光源がある
 static const char* VSCODE_TEXTURE_DIRECTIONALLIGHT = 
-"\n cbuffer cbPerObject"
-"\n {"
-"\n   matrix s_mWVP  : packoffset( c0 );"
-"\n   float4 s_MaterialLight : packoffset( c4 );" // 素材の光反射率
-"\n   float4 s_MaterialEmissive : packoffset( c5 );" // 素材の光反射率
-"\n   float4 s_LightDir     : packoffset( c6 );"  // 平行光源の向き
-"\n   float4 s_LightColor   : packoffset( c7 );"  // 平行光源の色
-"\n   float4 s_Ambient      : packoffset( c8 );"  // ワールド全体の明るさ
-"\n   float2 s_TextureScale : packoffset( c9 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
-"\n };"
-"\n "
-"\n struct VS_INPUT"
-"\n {"
-"\n   float4 Position    : POSITION;"   //頂点座標
-"\n   float4 Diffuse     : COLOR0;"     //頂点色影響度
-"\n   float4 Normal      : NORMAL;"     //法線
-"\n   float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
-"\n };"
-"\n "
-"\n struct VS_OUTPUT"
-"\n {"
-"\n   float4 Position    : SV_Position;"  //頂点座標
-"\n   float4 Diffuse     : COLOR0;"     //デフューズ色
-"\n   float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
-"\n };"
-"\n "
-"\n VS_OUTPUT main(VS_INPUT Input)"
-"\n {"
-"\n   VS_OUTPUT Out = (VS_OUTPUT)0;"
-"\n "
-"\n   float  lightpow = dot(Input.Normal,-s_LightDir);"
-"\n   float4 lightcol = s_LightColor * lightpow;"
-"\n "
-"\n   float4 matcolor = max(0.0, s_MaterialLight * lightcol );"
-"\n   float4 worldcolor = s_MaterialEmissive + matcolor + s_Ambient;"
-"\n "
-"\n   Out.Position = mul( Input.Position, s_mWVP );"
-"\n   Out.Diffuse = Input.Diffuse * worldcolor;"
-"\n   Out.TexCoords = Input.TexCoords * s_TextureScale;"
-"\n "
-"\n   return Out;"
-"\n }"
+"cbuffer cbPerObject"
+"{"
+"  matrix s_mWVP  : packoffset( c0 );"
+"  float4 s_MaterialLight : packoffset( c4 );" // 素材の光反射率
+"  float4 s_MaterialEmissive : packoffset( c5 );" // 素材の光反射率
+"  float4 s_LightDir     : packoffset( c6 );"  // 平行光源の向き
+"  float4 s_LightColor   : packoffset( c7 );"  // 平行光源の色
+"  float4 s_Ambient      : packoffset( c8 );"  // ワールド全体の明るさ
+"  float2 s_TextureScale : packoffset( c9 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
+"  float  s_Alpha : packoffset( c10 );"   //プログラム側で調節する透明度
+"};"
+""
+"struct VS_INPUT"
+"{"
+"  float4 Position    : POSITION;"   //頂点座標
+"  float4 Diffuse     : COLOR0;"     //頂点色影響度
+"  float4 Normal      : NORMAL;"     //法線
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"};"
+""
+"struct VS_OUTPUT"
+"{"
+"  float4 Position    : SV_Position;"  //頂点座標
+"  float4 Diffuse     : COLOR0;"     //デフューズ色
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"};"
+""
+"VS_OUTPUT main(VS_INPUT Input)"
+"{"
+"  VS_OUTPUT Out = (VS_OUTPUT)0;"
+""
+"  float  lightpow = dot(Input.Normal,-s_LightDir);"
+"  float4 lightcol = s_LightColor * lightpow;"
+""
+"  float4 matcolor = max(0.0, s_MaterialLight * lightcol );"
+"  float4 worldcolor = s_MaterialEmissive + matcolor + s_Ambient;"
+"  worldcolor.a = s_Alpha;"
+""
+"  Out.Position = mul( Input.Position, s_mWVP );"
+"  Out.Diffuse = Input.Diffuse * worldcolor;"
+"  Out.TexCoords = Input.TexCoords * s_TextureScale;"
+""
+"  return Out;"
+"}"
 ;
 
-
+#endif
+//  MQO に座標と色とuvがあって、平行光源がある
+static const char* VSCODE_TEXTURE_DIRECTIONALLIGHT = 
+"cbuffer cbPerObject"
+"{"
+"  matrix s_mWVP  : packoffset( c0 );"
+"  float4 s_MaterialLight : packoffset( c4 );" // 素材の光反射率
+"  float4 s_MaterialEmissive : packoffset( c5 );" // 素材の光反射率
+"  float4 s_LightDir     : packoffset( c6 );"  // 平行光源の向き
+"  float4 s_LightColor   : packoffset( c7 );"  // 平行光源の色
+"  float4 s_Ambient      : packoffset( c8 );"  // ワールド全体の明るさ
+"  float2 s_TextureScale : packoffset( c9 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
+"  float  s_Alpha : packoffset( c10 );"   //プログラム側で調節する透明度
+"  float4 s_Eye          : packoffset( c11 );" // 視線ベクトル
+"  float2 s_Speculer     : packoffset( c12 );" // スペキュラの強さ
+"};"
+""
+"struct VS_INPUT"
+"{"
+"  float4 Position    : POSITION;"   //頂点座標
+"  float4 Diffuse     : COLOR0;"     //頂点色影響度
+"  float4 Normal      : NORMAL; "    //法線
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"};"
+""
+"struct VS_OUTPUT"
+"{"
+"  float4 Position    : SV_Position;"  //頂点座標
+"  float4 Diffuse     : COLOR0;"     //デフューズ色
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"};"
+""
+"VS_OUTPUT main(VS_INPUT Input)"
+"{"
+"  VS_OUTPUT Out = (VS_OUTPUT)0;"
+""
+"  float  lightpow = dot(Input.Normal,-s_LightDir);"
+"  float4 lightcol = s_LightColor * lightpow;"
+""
+"  float3 eye  = normalize(s_Eye-Input.Position.xyz);"
+"  float3 half = normalize(-s_LightDir+eye);"
+"  float  spc  = pow(max(0.0,dot(Input.Normal,half)),s_Speculer.y) * s_Speculer.x;"
+""
+"  float4 matcolor = max(0.0, s_MaterialLight * lightcol );"
+"  float4 worldcolor = s_MaterialEmissive + matcolor + s_Ambient + spc;"
+"  worldcolor.a = s_Alpha;"
+""
+"  Out.Position = mul( Input.Position, s_mWVP );"
+"  Out.Diffuse = Input.Diffuse * worldcolor;"
+"  Out.TexCoords = Input.TexCoords * s_TextureScale;"
+""
+"  return Out;"
+"}"
+;
 
 
 
 
 //  テクスチャとカラーを合成
 static const char* PSCODE_TEXTURECOLOR = 
-"\n Texture2D<float4> texture_slot0;"
-"\n sampler sampler_slot0 = sampler_state"
-"\n {"
-"\n     Texture   = <texture_slot0>;"
-"\n };"
-"\n "
-"\n struct PS_INPUT"
-"\n {"
-"\n     float4 Position : SV_Position;"
-"\n     float4 Color : COLOR0;"
-"\n     float2 TexUV : TEXCOORD0;"
-"\n };"
-"\n "
-"\n float4 main( PS_INPUT input) : SV_Target"
-"\n {"
-"\n     return texture_slot0.Sample(sampler_slot0,input.TexUV) * input.Color;"
-"\n }"
+"Texture2D<float4> texture_slot0;"
+"sampler sampler_slot0 = sampler_state"
+"{"
+"    Texture   = <texture_slot0>;"
+"};"
+""
+"struct PS_INPUT"
+"{"
+"    float4 Position : SV_Position;"
+"    float4 Color : COLOR0;"
+"    float2 TexUV : TEXCOORD0;"
+"};"
+""
+"float4 main( PS_INPUT input) : SV_Target"
+"{"
+"    return texture_slot0.Sample(sampler_slot0,input.TexUV) * input.Color;"
+"}"
 ;
 
 void Graphics3DRender::MQOShaderCreate()
@@ -311,7 +381,7 @@ void Graphics3DRender::MQOShaderCreate()
     m_MQORasterizer.Create( param );
   }
   {
-    m_MQOBlendState.Create( BlendState::TEMPLATE_NORMAL );
+    m_MQOBlendState.Create( BlendState::TEMPLATE_ALPHA );
   }
 
 }
@@ -339,7 +409,7 @@ bool Graphics3DRender::MQOShaderIsLoading() const
   return false;
 }
 
-void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat )
+void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha )
 {
   //  マテリアルの状況からシェーダ、パラメータを設定する
   int MaterialType = 0;
@@ -372,6 +442,7 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
         CONSTANT0100& dst = *((CONSTANT0100*)map.pData);
         dst.s_mWVP  = wvp.GetTranspose();
         dst.s_MaterialColor = mat.Color;
+        dst.s_Alpha = alpha;
       }break;
 
     case 1:
@@ -392,7 +463,12 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
         dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
         dst.s_LightDir = v;
         dst.s_LightColor = light.Diffuse;
-        dst.s_Ambient = COLOR_R32G32B32A32F(0,0,0,1);
+        dst.s_Ambient = m_Ambient;
+        dst.s_Alpha = alpha;
+
+        dst.s_Eye = VECTOR4DF(0,0,0,1) * (world*m_Camera.GetViewMatrix()).GetInverse();
+        dst.s_Speculer = mat.Specular;
+        dst.s_SpeculerPow = mat.Power;
       }break;
 
     case 10:
@@ -400,6 +476,7 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
         CONSTANT_TEXTURE_COLOR_LIGHT0& dst = *((CONSTANT_TEXTURE_COLOR_LIGHT0*)map.pData);
         dst.s_mWVP  = wvp.GetTranspose();
         dst.s_TextureScale = SIZE2DF(1.0f,1.0f);
+        dst.s_Alpha = alpha;
 
         if( mat.Texture.IsSetupped() )
         {
@@ -429,8 +506,13 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
         dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
         dst.s_LightDir = v;
         dst.s_LightColor = light.Diffuse;
-        dst.s_Ambient = COLOR_R32G32B32A32F(0,0,0,1);
+        dst.s_Ambient = m_Ambient;
         dst.s_TextureScale = SIZE2DF(1.0f,1.0f);
+        dst.s_Alpha = alpha;
+
+        dst.s_Eye = VECTOR4DF(0,0,0,1) * (world*m_Camera.GetViewMatrix()).GetInverse();
+        dst.s_Speculer = mat.Specular;
+        dst.s_SpeculerPow = mat.Power;
 
         if( mat.Texture.IsSetupped() )
         {
@@ -457,16 +539,44 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
   }
 }
 
-void Graphics3DRender::Blt( const POINT3DF& Pos, const ModelMQO& model )
+void Graphics3DRender::Blt( const POINT3DF& Pos, const ModelMQO& model, float alpha )
 {
   const MATRIX4DF world = MATRIX4DF().SetTranslate(Pos.x,Pos.y,Pos.z);
-  Blt( world, model );
+  Blt( world, model, alpha );
+}
+
+void Graphics3DRender::BltS ( const POINT3DF& Pos, const ModelMQO& model, float alpha, const SIZE3DF& Scale )
+{
+  const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
+  const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
+
+  const MATRIX4DF world = s*t;
+  Blt( world, model, alpha );
+}
+
+void Graphics3DRender::BltR ( const POINT3DF& Pos, const ModelMQO& model, float alpha, float Rotate, const VECTOR3DF& vec )
+{
+  const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
+  const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
+
+  const MATRIX4DF world = r*t;
+  Blt( world, model, alpha );
+}
+
+void Graphics3DRender::BltSR( const POINT3DF& Pos, const ModelMQO& model, float alpha, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec )
+{
+  const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
+  const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
+  const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
+
+  const MATRIX4DF world = s*r*t;
+  Blt( world, model, alpha );
 }
 
 
-void Graphics3DRender::Blt( const MATRIX4DF& world, const ModelMQO& model )
+void Graphics3DRender::Blt( const MATRIX4DF& world, const ModelMQO& model, float alpha )
 {
-  const MATRIX4DF wvp = world * m_ViewMatrix * m_ProjectionMatrix;
+  const MATRIX4DF wvp = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
   Graphics::IDrawCommand& Command = GetCommand();
 
   //  このステートは固定
@@ -479,7 +589,6 @@ void Graphics3DRender::Blt( const MATRIX4DF& world, const ModelMQO& model )
     }
 
     {
-//      IDepthStencilState& state = m_DepthOff;
       IDepthStencilState& state = m_DepthOn;
       Command.SetDepthStencilState( state.Get() );
     }
@@ -518,7 +627,7 @@ void Graphics3DRender::Blt( const MATRIX4DF& world, const ModelMQO& model )
       {
         //  マテリアルの状態から vshader, pshader, m_ShaderConstant を決める
         const MQOMATERIAL& mat = matlist[prim.MaterialNo];
-        MQOShaderSetup( world, wvp, mat );
+        MQOShaderSetup( world, wvp, mat, alpha );
         Command.SetIndex( index.Get(), 0 );
         Command.DrawIndexed( size/2, 0, 0 );
       }else
