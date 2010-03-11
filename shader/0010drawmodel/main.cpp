@@ -42,11 +42,10 @@ protected:
     m_Render.Initialize();
     m_2DRender.Initialize();
 
-//    m_Texture.LoadFile( MAIDTEXT("nc1673.bmp") );
-
 //    m_Model.Load( MAIDTEXT("box.mqo") );
 //    m_Model.Load( MAIDTEXT("boxsphere.mqo") );
     m_Model.Load( MAIDTEXT("boxspheretexture.mqo") );
+//    m_Model.Load( MAIDTEXT("boxspheretexturebump.mqo") );
 
     const SIZE2DF Screen = GetDefaultConfig().Graphics.ScreenSize;
 

@@ -168,56 +168,6 @@ static const char* VSCODE_TEXTURE_LIGHT0 =
 ;
 
 
-#if 0
-//  MQO に座標と色とuvがあって、平行光源がある
-static const char* VSCODE_TEXTURE_DIRECTIONALLIGHT = 
-"cbuffer cbPerObject"
-"{"
-"  matrix s_mWVP  : packoffset( c0 );"
-"  float4 s_MaterialLight : packoffset( c4 );" // 素材の光反射率
-"  float4 s_MaterialEmissive : packoffset( c5 );" // 素材の光反射率
-"  float4 s_LightDir     : packoffset( c6 );"  // 平行光源の向き
-"  float4 s_LightColor   : packoffset( c7 );"  // 平行光源の色
-"  float4 s_Ambient      : packoffset( c8 );"  // ワールド全体の明るさ
-"  float2 s_TextureScale : packoffset( c9 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
-"  float  s_Alpha : packoffset( c10 );"   //プログラム側で調節する透明度
-"};"
-""
-"struct VS_INPUT"
-"{"
-"  float4 Position    : POSITION;"   //頂点座標
-"  float4 Diffuse     : COLOR0;"     //頂点色影響度
-"  float4 Normal      : NORMAL;"     //法線
-"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
-"};"
-""
-"struct VS_OUTPUT"
-"{"
-"  float4 Position    : SV_Position;"  //頂点座標
-"  float4 Diffuse     : COLOR0;"     //デフューズ色
-"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
-"};"
-""
-"VS_OUTPUT main(VS_INPUT Input)"
-"{"
-"  VS_OUTPUT Out = (VS_OUTPUT)0;"
-""
-"  float  lightpow = dot(Input.Normal,-s_LightDir);"
-"  float4 lightcol = s_LightColor * lightpow;"
-""
-"  float4 matcolor = max(0.0, s_MaterialLight * lightcol );"
-"  float4 worldcolor = s_MaterialEmissive + matcolor + s_Ambient;"
-"  worldcolor.a = s_Alpha;"
-""
-"  Out.Position = mul( Input.Position, s_mWVP );"
-"  Out.Diffuse = Input.Diffuse * worldcolor;"
-"  Out.TexCoords = Input.TexCoords * s_TextureScale;"
-""
-"  return Out;"
-"}"
-;
-
-#endif
 //  MQO に座標と色とuvがあって、平行光源がある
 static const char* VSCODE_TEXTURE_DIRECTIONALLIGHT = 
 "cbuffer cbPerObject"
@@ -419,7 +369,10 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
   }else
   {
     if( mat.Bump.IsEmpty() ){ MaterialType = 1; }
-    else                    { MaterialType = 2; }
+    else
+    {
+      MaterialType = 2; 
+    }
   }
   int LightingType = 0;
   {

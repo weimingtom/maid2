@@ -51,6 +51,7 @@ namespace Maid
     Vertex Normal;
     Vertex UV;
     Vertex Color;
+    Vertex Tangent;
 
     struct PRIMITIVE
     {
