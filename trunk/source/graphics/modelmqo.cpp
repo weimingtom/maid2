@@ -122,12 +122,14 @@ namespace Maid
       #pragma COMPILERMSG("TODO:この後にやっている法線の計算も結構重いはずなので、最後にチェックするほうがパフォーマンス出るかもしれない")	
     }
 
+
     void MQOFunction::CreateObject( const Metasequoia::DATA::OBJECT& src, MQOOBJECT& dst )
     {
       std::vector<POINT3DF>             VertexPoint;  //  最終的に作成する座標
       std::vector<VECTOR3DF>            VertexNormal; //  最終的に作成する法線
       std::vector<POINT2DF>             VertexUV;     //  最終的に作成するUV
       std::vector<COLOR_R32G32B32A32F>  VertexColor;  //  最終的に作成する色
+      std::vector<VECTOR3DF>            VertexTangent;//  最終的に作成する接ベクトル
 
       typedef std::map<int,std::vector<unt16> > INDEXMAP;
       INDEXMAP IndexMap; //  マテリアル番号を元にインデックスが並んでる
@@ -191,12 +193,55 @@ namespace Maid
         }
       }
 
+      {
+        VertexTangent= std::vector<VECTOR3DF>( VertexPoint.size(), VECTOR3DF(0,0,0) );
+
+        //  接ベクトルの計算
+        //  DirectX9シェーダプログラミングブック ISBN4-8399-1247-5 (P277) を参照
+        for( INDEXMAP::const_iterator ite=IndexMap.begin(); ite!=IndexMap.end(); ++ite )
+        {
+          const std::vector<unt16>& IndexList = ite->second;
+          MAID_ASSERT( IndexList.size()%3!=0, "インデックスの数が合いません " << IndexList.size() );
+          for( int i=0; i<(int)IndexList.size(); i+=3 )
+          {
+            const unt16 index0 = IndexList[i+0];
+            const unt16 index1 = IndexList[i+1];
+            const unt16 index2 = IndexList[i+2];
+
+            const POINT3DF& p0 = VertexPoint[index0];
+            const POINT3DF& p1 = VertexPoint[index1];
+            const POINT3DF& p2 = VertexPoint[index2];
+
+            const POINT2DF& uv0 = VertexUV[index0];
+            const POINT2DF& uv1 = VertexUV[index1];
+            const POINT2DF& uv2 = VertexUV[index2];
+
+            const VECTOR3DF& norm = VertexNormal[index0];
+
+            const float u20 = uv2.x - uv0.x;
+            const float u10 = uv1.x - uv0.x;
+            
+            const VECTOR3DF Bdash   = (VECTOR3DF(p0,p1) * (-u20)) + (VECTOR3DF(p0,p2)*u10);
+            const VECTOR3DF Tangent = VectorCross( Bdash, norm ).Normalize();
+
+            VertexTangent[index0] += Tangent;
+            VertexTangent[index1] += Tangent;
+            VertexTangent[index2] += Tangent;
+          }
+
+          for( int i=0; i<(int)VertexTangent.size(); ++i )
+          {
+            VertexTangent[i].Normalize();
+          }
+        }
+      }
       //  これで全部そろったので、頂点の作成
 
       dst.Point.Create( &(VertexPoint[0]), VertexPoint.size()*sizeof(POINT3DF) );
       dst.Normal.Create( &(VertexNormal[0]), VertexNormal.size()*sizeof(VECTOR3DF) );
       dst.UV.Create( &(VertexUV[0]), VertexUV.size()*sizeof(POINT2DF) );
       dst.Color.Create( &(VertexColor[0]), VertexColor.size()*sizeof(COLOR_R32G32B32A32F) );
+      dst.Tangent.Create( &(VertexTangent[0]), VertexTangent.size()*sizeof(VECTOR3DF) );
 
       for( INDEXMAP::iterator ite=IndexMap.begin(); ite!=IndexMap.end(); ++ite )
       {
@@ -219,7 +264,6 @@ namespace Maid
     void MQOFunction::CreateNormal( const Metasequoia::DATA::OBJECT& src, std::vector<VECTOR3DF>& normal )
     {
       //  法線を作る作業
-      std::vector<int> SherdCount( src.Point.size(), 0 ); //  各頂点が何個の面で共有されているか
       for( int facepos=0; facepos < (int)src.Face.size(); ++facepos )
       {
         const Metasequoia::DATA::OBJECT::FACE& face = src.Face[facepos];
@@ -235,17 +279,12 @@ namespace Maid
 
         VECTOR3DF vec( VectorCross( VECTOR3DF(p0,p1), VECTOR3DF(p0,p2) ) );
         vec.Normalize();
-        normal[index0] += vec; SherdCount[index0] += 1;
-        normal[index1] += vec; SherdCount[index1] += 1;
-        normal[index2] += vec; SherdCount[index2] += 1;
+        normal[index0] += vec;
+        normal[index1] += vec;
+        normal[index2] += vec;
       }
       for( int i=0; i<(int)normal.size(); ++i )
       {
-        const float total = (float)SherdCount[i];
-        normal[i].x /= total;
-        normal[i].y /= total;
-        normal[i].z /= total;
-
         normal[i].Normalize();
       }
     }

@@ -292,6 +292,7 @@ int ParseMaterial( const char*& p, std::vector<DATA::MATERIAL>& MaterialList )
 			else if( a.Type=="spc"   ) { material.Specular = (float)atof(a.Data[0].c_str()); }
 			else if( a.Type=="power" ) { material.Power    = (float)atof(a.Data[0].c_str()); }
       else if( a.Type=="tex"   ) { material.Texture  = String::ConvertSJIStoMAID( DivFileName(a.Data[0]) );    }
+      else if( a.Type=="bump"  ) { material.Bump     = String::ConvertSJIStoMAID( DivFileName(a.Data[0]) );    }
 		}
 
 		NextLine(p);
