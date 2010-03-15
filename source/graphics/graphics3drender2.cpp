@@ -55,7 +55,7 @@ void Graphics3DRender::SpriteFillSR( const POINT3DF& Pos, const COLOR_R32G32B32A
 void Graphics3DRender::SpriteFill( const MATRIX4DF& world, const COLOR_R32G32B32A32F& Color, const SIZE2DI& Size, const POINT3DF& Center )
 {
   Graphics::IDrawCommand& Com = GetCommand();
-  const IConstant& constant = m_ShaderConstant;
+  const IConstant& constant = m_ShaderConstantVS;
   const IVertex& vertex = m_SpriteVertex;
   int VertexSize = 0;
 

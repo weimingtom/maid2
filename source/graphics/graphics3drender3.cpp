@@ -57,7 +57,7 @@ void Graphics3DRender::SpriteBltSR( const POINT3DF& Pos, const Texture2DBase& Te
 void Graphics3DRender::SpriteBlt  ( const MATRIX4DF& world, const Texture2DBase& Texture, const COLOR_R32G32B32A32F& Color, const RECT2DI& rc, const POINT3DF& Center )
 {
   Graphics::IDrawCommand& Com = GetCommand();
-  const IConstant& constant = m_ShaderConstant;
+  const IConstant& constant = m_ShaderConstantVS;
   const IVertex& vertex = m_SpriteVertex;
   int VertexStructSize = 0;
 

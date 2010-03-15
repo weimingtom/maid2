@@ -54,7 +54,7 @@ void Graphics3DRender::SpriteMixBltSR( const POINT3DF& Pos, const Texture2DBase&
 void Graphics3DRender::SpriteMixBlt( const MATRIX4DF& world, const Texture2DBase& TexBegin, const RECT2DI& BeginRect, const POINT3DF& Center, float alpha, const Texture2DBase& TexEnd, const RECT2DI& EndRect, float pow )
 {
   Graphics::IDrawCommand& Com = GetCommand();
-  const IConstant& constant = m_ShaderConstant;
+  const IConstant& constant = m_ShaderConstantVS;
   const IVertex& vertex = m_SpriteVertex;
   int VertexStructSize = 0;
 

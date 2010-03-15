@@ -44,8 +44,8 @@ protected:
 
 //    m_Model.Load( MAIDTEXT("box.mqo") );
 //    m_Model.Load( MAIDTEXT("boxsphere.mqo") );
-    m_Model.Load( MAIDTEXT("boxspheretexture.mqo") );
-//    m_Model.Load( MAIDTEXT("boxspheretexturebump.mqo") );
+//    m_Model.Load( MAIDTEXT("boxspheretexture.mqo") );
+    m_Model.Load( MAIDTEXT("boxspheretexturebump.mqo") );
 
     const SIZE2DF Screen = GetDefaultConfig().Graphics.ScreenSize;
 

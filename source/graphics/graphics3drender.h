@@ -178,7 +178,8 @@ namespace Maid
 
     bool  m_IsDepthWrite;
 
-    ShaderConstant  m_ShaderConstant;
+    ShaderConstant  m_ShaderConstantVS;
+    ShaderConstant  m_ShaderConstantPS; //  ピクセルシェーダで使う定数
     RasterizerState m_Rasterizer;
 
     SamplerState  m_Sampler;
