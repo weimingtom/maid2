@@ -33,7 +33,8 @@ void Graphics3DRender::Initialize()
 
   {
     //  256 byteもあれば十分でしょう
-    m_ShaderConstant.Create( 4*64 );
+    m_ShaderConstantVS.Create( 4*64 );
+    m_ShaderConstantPS.Create( 4*64 );
   }
 
   {
