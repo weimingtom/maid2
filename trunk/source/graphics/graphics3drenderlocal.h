@@ -78,16 +78,6 @@ struct CONSTANT_TEXTURE_DIRECTIONALLIGHT_PS
 };
 
 
-/*
-"cbuffer cbPerObject"
-"{"
-"  matrix s_mWVP  : packoffset( c0 );"
-"  float4 s_Eye   : packoffset( c4 );" // カメラの向き
-"  float4 s_LightDir     : packoffset( c5 );"  // 平行光源の向き
-"  float2 s_TextureScale : packoffset( c6 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
-"};"
-*/
-
 struct CONSTANT_BUMP_DIRECTIONALLIGHT_VS
 {
   Maid::MATRIX4DF s_mWVP;
@@ -97,17 +87,6 @@ struct CONSTANT_BUMP_DIRECTIONALLIGHT_VS
   float32         s_Tmp[2];       //  s_TextureScaleレジスタの空き
 };
 
-/*
-"cbuffer cbPerObject"
-"{"
-"  float4 s_MaterialLight : packoffset( c0 );" // 素材の光源反射率
-"  float4 s_MaterialEmissive : packoffset( c1 );" // 素材の自己発光量
-"  float4 s_LightColor   : packoffset( c2 );"  // 平行光源の色
-"  float4 s_Ambient      : packoffset( c3 );"  // ワールド全体の明るさ
-"  float1 s_Alpha        : packoffset( c4 );" // プログラム側で調節する透明度
-"  float2 s_Speculer     : packoffset( c5 );" // スペキュラの強さ
-"};"
-*/
 
 struct CONSTANT_BUMP_DIRECTIONALLIGHT_PS
 {
@@ -121,6 +100,21 @@ struct CONSTANT_BUMP_DIRECTIONALLIGHT_PS
   float           s_SpeculerPow;  //  スペキュラのパワー
   float32         s_Tmp3[2];      //  s_Speculerレジスタの空き
 };
+
+
+
+
+
+
+
+
+
+
+struct CONSTANT_SHADOWMAP
+{
+  Maid::MATRIX4DF mWVP; //  カメラ座標系
+};
+
 
 #endif
 
