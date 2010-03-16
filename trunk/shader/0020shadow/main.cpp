@@ -109,7 +109,7 @@ protected:
 
     m_Command.Begin();
 
-
+    Camera  ShadowMapCamera;  //  シャドウマップを作成するときに使うカメラ
     {
       //  シャドウマップの作成
       const RenderTargetBase& rt = m_ShadowBuffer;
@@ -129,7 +129,7 @@ protected:
       }
 
       const Camera&  nc = m_Camera;
-      Camera  sc;  //  シャドウマップを作成するときに使うカメラ
+      Camera&  sc = ShadowMapCamera;  //  シャドウマップを作成するときに使うカメラ
 
       //  シャドウマップを作るために光源にカメラ(shadow camera=sc)を置くわけですが
       //  角度以外の設定をレンダリングに使うカメラ(normal camera=nc)から導く
@@ -202,7 +202,14 @@ protected:
         m_Render.SetAmbient( COLOR_R32G32B32A32F(amb,amb,amb,1) );
       }
 
-      m_Render.Blt( POINT3DF(0,0,0), m_Field, 1 );
+//void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap )
+
+      //const VECTOR4DF pos_w = VECTOR4DF(1,1,1,1) * (nc.GetViewMatrix()*nc.GetProjectionMatrix()).GetInverse();
+
+      const MATRIX4DF mat = ShadowMapCamera.GetViewMatrix() * ShadowMapCamera.GetProjectionMatrix();
+      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Field, mat, m_ShadowBuffer );
+
+//      m_Render.Blt( POINT3DF(0,0,0), m_Field, 1 );
       m_Render.BltR( s_OBJECT1POS, m_Model, 1, m_ModelRotate, VECTOR3DF(0,1,0) );
       m_Render.Blt( s_OBJECT2POS, m_Model, m_ModelAlpha );
     }
