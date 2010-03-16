@@ -1,5 +1,10 @@
 ﻿/*
   3Dモデルを表示するだけの雛形
+・モデルを表示する
+・テクスチャ付きで表示
+・モデルを表示する（平行光源つき）
+・テクスチャ付きで表示（平行光源つき）
+・テクスチャ付きで表示（平行光源バンプマップつき）
 */
 
 
@@ -18,6 +23,25 @@
 #include"startupdialog.h"
 
 using namespace Maid;
+
+
+
+
+/*
+・1.0f を 1メートルとした現実的な数値を想定する
+・サンプルに使っている３Ｄモデルは500mm*1000mm ぐらいがいいか
+*/
+
+
+static const POINT3DF s_OBJECT1POS(0,0,0);  //  回転操作できるモデルの配置座標
+static const POINT3DF s_OBJECT2POS(1.5f,0,0); //  透明度操作できるモデルの配置座標
+
+
+static const float s_CAMERA_NEAR = 0.5f;  //  カメラの手前カリング位置 50cm 先から見える
+static const float s_CAMERA_FAR = 30.0f;  //  カメラの奥カリング位置   30mmまで見える
+static const POINT3DF s_CAMERAPOS(0,1,-3); //  カメラの設置位置（注視はs_OBJECT1POSを見ている）
+
+
 
 class MyApp : public IGameThread
 {
@@ -49,9 +73,9 @@ protected:
 
     const SIZE2DF Screen = GetDefaultConfig().Graphics.ScreenSize;
 
-    m_Camera.SetPerspective( DEGtoRAD(60.0f), Screen.w/Screen.h, 1.0f, 500.0f );
-    m_Camera.SetPosition( POINT3DF(0,30,-90) );
-    m_Camera.SetTarget( POINT3DF(0,0,0) );
+    m_Camera.SetPerspective( DEGtoRAD(60.0f), Screen.w/Screen.h, s_CAMERA_NEAR, s_CAMERA_FAR );
+    m_Camera.SetPosition( s_CAMERAPOS );
+    m_Camera.SetTarget( s_OBJECT1POS );
     m_Camera.SetUpVector( VECTOR3DF(0,1,0) );
 
     m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
@@ -121,14 +145,12 @@ protected:
     }
 
     {
-      m_Render.BltR( POINT3DF(0,0,0), m_Model, 1, m_ModelRotate, VECTOR3DF(0,1,0) );
+      m_Render.BltR( s_OBJECT1POS, m_Model, 1, m_ModelRotate, VECTOR3DF(0,1,0) );
     }
     {
-      const MATRIX4DF pos = MATRIX4DF().SetTranslate(40,0,0);
-      const MATRIX4DF rot = MATRIX4DF().SetRotationY(0);
       const float alpha = m_ModelAlpha;
 
-      m_Render.Blt( rot*pos, m_Model, alpha );
+      m_Render.Blt( s_OBJECT2POS, m_Model, alpha );
     }
 
     {

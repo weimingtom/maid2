@@ -437,8 +437,8 @@ static const char* CODE_BUMP_DIRECTIONALLIGHT_PS =
 
 
 
-//  シャドウマップ用シェーダ
-static const char* CODE_SHADOW_DIRECTIONALLIGHT_VS = 
+//  シャドウマップ用シェーダ(1pass目)
+static const char* CODE_SHADOW1_VS = 
 "cbuffer cbPerObject"
 "{"
 "  matrix s_mWVP  : packoffset( c0 );"
@@ -468,7 +468,7 @@ static const char* CODE_SHADOW_DIRECTIONALLIGHT_VS =
 ;
 
 
-static const char* CODE_SHADOW_DIRECTIONALLIGHT_PS = 
+static const char* CODE_SHADOW1_PS = 
 "struct PS_INPUT"
 "{"
 "  float4 Position : SV_Position;"
@@ -484,6 +484,102 @@ static const char* CODE_SHADOW_DIRECTIONALLIGHT_PS =
 "  return Out;"
 "}"
 ;
+
+
+
+
+
+
+//  シャドウマップ用シェーダ(2pass目・テクスチャ無し)
+static const char* CODE_COLOR_SHADOW2_VS = 
+"cbuffer cbPerObject"
+"{"
+"  matrix s_mWVP        : packoffset( c0 );" // ローカルから射影空間への座標変換
+"  matrix s_mWLightP    : packoffset( c4 );" // ローカルからライト射影空間への座標変換
+"  matrix s_mWLightPTex : packoffset( c8 );" // ローカルからライト射影空間->テクスチャ座標への座標変換
+"};"
+""
+"struct VS_INPUT"
+"{"
+"  float4 Position    : POSITION;"   //頂点座標
+"  float4 Diffuse     : COLOR0;"     //頂点色影響度
+"  float4 Normal      : NORMAL;"     //法線
+"};"
+""
+"struct VS_OUTPUT"
+"{"
+"  float4 Position    : SV_Position;" //頂点座標
+"  float4 Diffuse     : COLOR0;"     //頂点色影響度
+"  float4 Normal      : TEXCOORD0;"
+"  float2 ShadowMapUV : TEXCOORD1;"
+"  float4 Depth       : TEXCOORD2;"
+"};"
+""
+"VS_OUTPUT main(VS_INPUT Input)"
+"{"
+"  VS_OUTPUT Out = (VS_OUTPUT)0;"
+""
+"  Out.Position = mul( Input.Position, s_mWVP );"
+"  Out.Diffuse = Input.Diffuse;"
+"  Out.Normal  = Input.Normal;"
+"  Out.ShadowMapUV  = mul( Input.Position, s_mWLightPTex );"
+"  Out.Depth  = mul( Input.Position, s_mWLightP );"
+""
+"  return Out;"
+"}"
+;
+
+
+
+
+
+//  シャドウマップ用シェーダ(2pass目・テクスチャ無し)
+static const char* CODE_COLOR_SHADOW2_PS = 
+"Texture2D<float4> texture_slot0;"
+"sampler sampler_slot0 = sampler_state"
+"{"
+"    Texture   = <texture_slot0>;"
+"};"
+""
+"cbuffer cbPerObject"
+"{"
+"  float4 s_MaterialColor : packoffset( c0 );"  // 素材そのものの色
+"};"
+""
+"struct PS_INPUT"
+"{"
+"  float4 Position    : SV_Position;" //頂点座標
+"  float4 Diffuse     : COLOR0;  "    //頂点色影響度
+"  float4 Normal      : TEXCOORD0;"
+"  float2 ShadowMapUV : TEXCOORD1;"
+"  float4 Depth       : TEXCOORD2;"
+"};"
+""
+"float4 main(PS_INPUT Input) : SV_Target"
+"{"
+"  float4 Color = 0.0;"
+"  float  shadow = texture_slot0.Sample(sampler_slot0, Input.ShadowMapUV ).x;"
+"  "
+"  Color = ((shadow * Input.Depth.w < Input.Depth.z-0.03f) ? 0 : s_MaterialColor);"
+""
+"  return Color;"
+"}"
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -597,16 +693,33 @@ void Graphics3DRender::MQOShaderCreate()
     }
   }
 
-  {
-    const String vs_code = MAIDTEXT(CODE_SHADOW_DIRECTIONALLIGHT_VS);
-    const String ps_code = MAIDTEXT(CODE_SHADOW_DIRECTIONALLIGHT_PS);
-    Graphics::INPUT_ELEMENT element[] =
+  { //  シャドウマップ用準備
     {
-      {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
-    };
-    m_ShadowVertexShader.Create( vs_code );
-    m_ShadowLayout.Create( element, NUMELEMENTS(element), vs_code );
-    m_ShadowPixelShader.Create( ps_code );
+      const int passid = 1*10 + 0;  //  1pass目は共通
+      const String vs_code = MAIDTEXT(CODE_SHADOW1_VS);
+      const String ps_code = MAIDTEXT(CODE_SHADOW1_PS);
+      Graphics::INPUT_ELEMENT element[] =
+      {
+        {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+      };
+      m_ShadowVertexShader[passid].Create( vs_code );
+      m_ShadowLayout[passid].Create( element, NUMELEMENTS(element), vs_code );
+      m_ShadowPixelShader[passid].Create( ps_code );
+    }
+    {
+      const int passid = 2*10 + 0;  //  2pass目・色のみ
+      const String vs_code = MAIDTEXT(CODE_COLOR_SHADOW2_VS);
+      const String ps_code = MAIDTEXT(CODE_COLOR_SHADOW2_PS);
+      Graphics::INPUT_ELEMENT element[] =
+      {
+        {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+      };
+      m_ShadowVertexShader[passid].Create( vs_code );
+      m_ShadowLayout[passid].Create( element, NUMELEMENTS(element), vs_code );
+      m_ShadowPixelShader[passid].Create( ps_code );
+    }
   }
   {
     Graphics::RASTERIZERSTATEPARAM param;
@@ -625,27 +738,44 @@ void Graphics3DRender::MQOShaderCreate()
 
 bool Graphics3DRender::MQOShaderIsLoading() const
 {
-  for( std::map<int,InputLayout>::const_iterator ite=m_MQOLayout.begin();
-                            ite!=m_MQOLayout.end(); ++ite )
   {
-    if( ite->second.IsCompiling() ) { return true; }
+    for( std::map<int,InputLayout>::const_iterator ite=m_MQOLayout.begin();
+                              ite!=m_MQOLayout.end(); ++ite )
+    {
+      if( ite->second.IsCompiling() ) { return true; }
+    }
+
+    for( std::map<int,VertexShader>::const_iterator ite=m_MQOVertexShader.begin();
+                              ite!=m_MQOVertexShader.end(); ++ite )
+    {
+      if( ite->second.IsCompiling() ) { return true; }
+    }
+
+    for( std::map<int,PixelShader>::const_iterator ite=m_MQOPixelShader.begin();
+                              ite!=m_MQOPixelShader.end(); ++ite )
+    {
+      if( ite->second.IsCompiling() ) { return true; }
+    }
   }
 
-  for( std::map<int,VertexShader>::const_iterator ite=m_MQOVertexShader.begin();
-                            ite!=m_MQOVertexShader.end(); ++ite )
   {
-    if( ite->second.IsCompiling() ) { return true; }
-  }
+    for( std::map<int,InputLayout>::const_iterator ite=m_ShadowLayout.begin();
+                              ite!=m_ShadowLayout.end(); ++ite )
+    {
+      if( ite->second.IsCompiling() ) { return true; }
+    }
 
-  for( std::map<int,PixelShader>::const_iterator ite=m_MQOPixelShader.begin();
-                            ite!=m_MQOPixelShader.end(); ++ite )
-  {
-    if( ite->second.IsCompiling() ) { return true; }
-  }
-  {
-    if( m_ShadowLayout.IsCompiling() ) { return true; }
-    if( m_ShadowVertexShader.IsCompiling() ) { return true; }
-    if( m_ShadowPixelShader.IsCompiling() ) { return true; }
+    for( std::map<int,VertexShader>::const_iterator ite=m_ShadowVertexShader.begin();
+                              ite!=m_ShadowVertexShader.end(); ++ite )
+    {
+      if( ite->second.IsCompiling() ) { return true; }
+    }
+
+    for( std::map<int,PixelShader>::const_iterator ite=m_ShadowPixelShader.begin();
+                              ite!=m_ShadowPixelShader.end(); ++ite )
+    {
+      if( ite->second.IsCompiling() ) { return true; }
+    }
   }
 
   return false;
@@ -954,44 +1084,48 @@ void Graphics3DRender::Blt( const MATRIX4DF& world, const ModelMQO& model, float
 
 
 
-
-void Graphics3DRender::BltShadow( const POINT3DF& Pos, const ModelMQO& model )
+//! シャドウマップにレンダリングするための関数(１パス目)
+/*!
+    @param	Pos   [i ]	描画開始座標
+    @param	model [i ]	描画するもの
+ */
+void Graphics3DRender::BltShadow1( const POINT3DF& Pos, const ModelMQO& model )
 {
   const MATRIX4DF world = MATRIX4DF().SetTranslate(Pos.x,Pos.y,Pos.z);
-  BltShadow( world, model );
+  BltShadow1( world, model );
 }
 
-void Graphics3DRender::BltShadowS ( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale )
+void Graphics3DRender::BltShadow1S ( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale )
 {
   const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
   const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
 
   const MATRIX4DF world = s*t;
-  BltShadow( world, model );
+  BltShadow1( world, model );
 }
 
-void Graphics3DRender::BltShadowR ( const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec )
+void Graphics3DRender::BltShadow1R ( const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec )
 {
   const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
   const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
 
   const MATRIX4DF world = r*t;
-  BltShadow( world, model );
+  BltShadow1( world, model );
 }
 
-void Graphics3DRender::BltShadowSR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec )
+void Graphics3DRender::BltShadow1SR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec )
 {
   const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
   const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
   const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
 
   const MATRIX4DF world = s*r*t;
-  BltShadow( world, model );
+  BltShadow1( world, model );
 }
 
 
 
-void Graphics3DRender::BltShadow( const MATRIX4DF& world, const ModelMQO& model )
+void Graphics3DRender::BltShadow1( const MATRIX4DF& world, const ModelMQO& model )
 {
   const MATRIX4DF wvp = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
   Graphics::IDrawCommand& Command = GetCommand();
@@ -1043,16 +1177,16 @@ void Graphics3DRender::BltShadow( const MATRIX4DF& world, const ModelMQO& model 
           const int sub = 0;
           Graphics::MAPPEDRESOURCE map_vs;
           Command.ResourceMap( con_vs.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_vs );
-          CONSTANT0100& dst = *((CONSTANT0100*)map_vs.pData);
+          CONSTANT_SHADOWMAP_1pass_VS& dst = *((CONSTANT_SHADOWMAP_1pass_VS*)map_vs.pData);
           dst.s_mWVP  = wvp.GetTranspose();
           Command.ResourceUnmap( con_vs.Get(), sub );
         }
 
         Command.VSSetConstant( 0, con_vs.Get() );
 
-        const IInputLayout&  layout = m_ShadowLayout;
-        const IVertexShader& vs = m_ShadowVertexShader;
-        const IPixelShader&  ps = m_ShadowPixelShader;
+        const IInputLayout&  layout = m_ShadowLayout[10];
+        const IVertexShader& vs = m_ShadowVertexShader[10];
+        const IPixelShader&  ps = m_ShadowPixelShader[10];
 
         Command.SetInputLayout( layout.Get() );
         Command.VSSetShader( vs.Get() );
@@ -1076,6 +1210,105 @@ void Graphics3DRender::BltShadow( const MATRIX4DF& world, const ModelMQO& model 
 
 
 
+
+void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model )
+{
+  const MATRIX4DF wvp = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
+  Graphics::IDrawCommand& Command = GetCommand();
+
+  //  このステートは固定
+  {
+    Command.SetPrimitiveTopology( Graphics::IDrawCommand::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+
+    {
+      IBlendState& state = m_MQOBlendState;
+      Command.SetBlendState( state.Get() );
+    }
+
+    {
+      IDepthStencilState& state = m_DepthOn;
+      Command.SetDepthStencilState( state.Get() );
+    }
+
+    {
+      IRasterizerState& raster = m_MQORasterizer;
+      Command.SetRasterizerState( raster.Get() );
+    }
+  }
+
+
+  const MQOSCENE& Scene = model.GetScene();
+  const std::vector<MQOMATERIAL>& matlist = model.GetMaterialList();
+  const std::vector<boost::shared_ptr<MQOOBJECT> >& objlist = model.GetObjectList();
+
+  for( int i=0; i<(int)objlist.size(); ++i )
+  {
+    const MQOOBJECT& Obj = *(objlist[i]);
+    const IVertex& point = Obj.Point;
+
+    Command.SetVertex( 0, point.Get(), 0, sizeof(POINT3DF) );
+
+    for( int j=0; j<(int)Obj.Primitive.size(); ++j )
+    {
+      const MQOOBJECT::PRIMITIVE& prim = Obj.Primitive[j];
+      const IIndex& index = prim.Index;
+      const size_t size = prim.Index.GetSize();
+
+      if( prim.MaterialNo!=MQOOBJECT::PRIMITIVE::MATERIAL_NONE )
+      {
+        //  マテリアルの状態から vshader, pshader, m_ShaderConstant を決める
+        const IConstant& con_vs = m_ShaderConstantVS;
+
+        {
+          const int sub = 0;
+          Graphics::MAPPEDRESOURCE map_vs;
+          Command.ResourceMap( con_vs.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_vs );
+          CONSTANT_SHADOWMAP_2pass_VS& dst = *((CONSTANT_SHADOWMAP_2pass_VS*)map_vs.pData);
+          dst.s_mWVP  = wvp.GetTranspose();
+//  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
+//  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
+/*
+
+struct CONSTANT_SHADOWMAP_1pass_VS
+{
+  Maid::MATRIX4DF mWVP; //  カメラ座標系
+};
+
+struct CONSTANT_SHADOWMAP_2pass_VS
+{
+  Maid::MATRIX4DF s_mWVP;         //  カメラ座標系
+  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
+  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
+};
+
+struct CONSTANT_SHADOWMAP_2pass_COLOR_PS
+{
+  Maid::COLOR_R32G32B32A32F s_MaterialColor;  // 素材そのものの色
+};
+*/
+          Command.ResourceUnmap( con_vs.Get(), sub );
+        }
+
+        Command.VSSetConstant( 0, con_vs.Get() );
+
+        const IInputLayout&  layout = m_ShadowLayout[20];
+        const IVertexShader& vs = m_ShadowVertexShader[20];
+        const IPixelShader&  ps = m_ShadowPixelShader[20];
+
+        Command.SetInputLayout( layout.Get() );
+        Command.VSSetShader( vs.Get() );
+        Command.PSSetShader( ps.Get() );
+
+        Command.SetIndex( index.Get(), 0 );
+        Command.DrawIndexed( size/2, 0, 0 );
+      }else
+      {
+        //  マテリアルがない時は描画しない
+      }
+    }
+  }
+
+}
 
 
 

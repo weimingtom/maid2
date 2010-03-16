@@ -40,7 +40,7 @@ namespace Maid
     */
     const VECTOR& Normalize()
     {
-      const TYPE f = Math<TYPE>::sqrt(x*x+y*y+z*z+w*w);
+      const TYPE f = Length();
       *this /= f;
       return *this;
     }
@@ -67,6 +67,11 @@ namespace Maid
       y = pos.y;
       z = pos.z;
       w = pos.w;
+    }
+
+    TYPE Length() const
+    {
+      return Math<TYPE>::sqrt(x*x+y*y+z*z+w*w);
     }
 
     //	単項演算子

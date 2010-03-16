@@ -36,7 +36,7 @@ namespace Maid
     */
     const VECTOR& Normalize()
     {
-	    const TYPE f = Math<TYPE>::sqrt(x*x+y*y);
+	    const TYPE f = Length();
 	    *this /= f;
 	    return *this;
     }
@@ -61,6 +61,12 @@ namespace Maid
 	    x = pos.x;
 	    y = pos.y;
     }
+
+    TYPE Length() const
+    {
+      return Math<TYPE>::sqrt(x*x+y*y);
+    }
+
 
     POINT ConvertPOINT2D() { return POINT(x,y); }
 

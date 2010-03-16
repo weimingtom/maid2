@@ -38,7 +38,7 @@ namespace Maid
     */
     const VECTOR& Normalize()
     {
-      const TYPE f = Math<TYPE>::sqrt(x*x+y*y+z*z);
+      const TYPE f = Length();
       *this /= f;
       return *this;
     }
@@ -63,6 +63,11 @@ namespace Maid
       x = pos.x;
       y = pos.y;
       z = pos.z;
+    }
+
+    TYPE Length() const
+    {
+      return Math<TYPE>::sqrt(x*x+y*y+z*z);
     }
 
     VECTOR4D_TEMPLATE<TYPE> Convert4D()const
