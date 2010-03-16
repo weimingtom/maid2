@@ -1211,7 +1211,7 @@ void Graphics3DRender::BltShadow1( const MATRIX4DF& world, const ModelMQO& model
 
 
 
-void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model )
+void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap )
 {
   const MATRIX4DF wvp = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
   Graphics::IDrawCommand& Command = GetCommand();
@@ -1258,38 +1258,45 @@ void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model
       {
         //  マテリアルの状態から vshader, pshader, m_ShaderConstant を決める
         const IConstant& con_vs = m_ShaderConstantVS;
+        const IConstant& con_ps = m_ShaderConstantPS;
+        const MQOMATERIAL& mat = matlist[prim.MaterialNo];
 
         {
           const int sub = 0;
           Graphics::MAPPEDRESOURCE map_vs;
+          Graphics::MAPPEDRESOURCE map_ps;
           Command.ResourceMap( con_vs.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_vs );
-          CONSTANT_SHADOWMAP_2pass_VS& dst = *((CONSTANT_SHADOWMAP_2pass_VS*)map_vs.pData);
-          dst.s_mWVP  = wvp.GetTranspose();
-//  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
-//  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
-/*
+          Command.ResourceMap( con_ps.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_ps );
+          {
+            CONSTANT_SHADOWMAP_2pass_VS& dst = *((CONSTANT_SHADOWMAP_2pass_VS*)map_vs.pData);
+            dst.s_mWVP  = wvp.GetTranspose();
+            dst.s_mWLightP  = (world * LightMat).GetTranspose();
 
-struct CONSTANT_SHADOWMAP_1pass_VS
-{
-  Maid::MATRIX4DF mWVP; //  カメラ座標系
-};
+            {
+              const SIZE2DI size = ShadowMap.GetTextureSize();
 
-struct CONSTANT_SHADOWMAP_2pass_VS
-{
-  Maid::MATRIX4DF s_mWVP;         //  カメラ座標系
-  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
-  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
-};
+	            const float x = 0.5f + (0.5f / (float)size.w);
+	            const float y = 0.5f + (0.5f / (float)size.h);
+	            MATRIX4DF bias(	0.5f, 0.0f, 0.0f, 0.0f,
+							                0.0f,-0.5f, 0.0f, 0.0f,
+							                0.0f, 0.0f, 0.0f,	0.0f,
+							                   x,    y, 0.0f, 1.0f );
 
-struct CONSTANT_SHADOWMAP_2pass_COLOR_PS
-{
-  Maid::COLOR_R32G32B32A32F s_MaterialColor;  // 素材そのものの色
-};
-*/
+              dst.s_mWLightPTex  = (world * LightMat * bias).GetTranspose();
+            }
+          }
+          {
+            CONSTANT_SHADOWMAP_2pass_COLOR_PS& dst = *((CONSTANT_SHADOWMAP_2pass_COLOR_PS*)map_ps.pData);
+            dst.s_MaterialColor = mat.Color;
+
+          }
+
           Command.ResourceUnmap( con_vs.Get(), sub );
+          Command.ResourceUnmap( con_ps.Get(), sub );
         }
 
         Command.VSSetConstant( 0, con_vs.Get() );
+        Command.PSSetConstant( 0, con_ps.Get() );
 
         const IInputLayout&  layout = m_ShadowLayout[20];
         const IVertexShader& vs = m_ShadowVertexShader[20];

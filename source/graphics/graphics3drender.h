@@ -57,7 +57,7 @@ namespace Maid
     void BltShadow1SR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
     void BltShadow1( const MATRIX4DF& world, const ModelMQO& model );
 
-    void BltShadow2( const MATRIX4DF& world, const ModelMQO& model );
+    void BltShadow2( const MATRIX4DF& world, const ModelMQO& model, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap );
 
     void SetAmbient( const COLOR_R32G32B32A32F& amb );
     void SetLight( const std::vector<LIGHT>& light );
