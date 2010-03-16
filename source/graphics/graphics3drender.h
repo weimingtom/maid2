@@ -51,12 +51,13 @@ namespace Maid
     void BltSR( const POINT3DF& Pos, const ModelMQO& model, float alpha, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
     void Blt( const MATRIX4DF& mat, const ModelMQO& model, float alpha );
  
-    void BltShadow( const POINT3DF& Pos, const ModelMQO& model );
-    void BltShadowS ( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale );
-    void BltShadowR ( const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec );
-    void BltShadowSR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
-    void BltShadow( const MATRIX4DF& world, const ModelMQO& model );
+    void BltShadow1( const POINT3DF& Pos, const ModelMQO& model );
+    void BltShadow1S ( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale );
+    void BltShadow1R ( const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec );
+    void BltShadow1SR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
+    void BltShadow1( const MATRIX4DF& world, const ModelMQO& model );
 
+    void BltShadow2( const MATRIX4DF& world, const ModelMQO& model );
 
     void SetAmbient( const COLOR_R32G32B32A32F& amb );
     void SetLight( const std::vector<LIGHT>& light );
@@ -151,9 +152,9 @@ namespace Maid
     BlendState      m_MQOBlendState;
     RasterizerState m_MQORasterizer;
 
-    InputLayout  m_ShadowLayout;
-    VertexShader m_ShadowVertexShader;
-    PixelShader  m_ShadowPixelShader;
+    std::map<int,InputLayout>   m_ShadowLayout;
+    std::map<int,VertexShader>  m_ShadowVertexShader;
+    std::map<int,PixelShader>   m_ShadowPixelShader;
 
 
     Vertex          m_SpriteVertex;  //  スプライトで使うバッファ
