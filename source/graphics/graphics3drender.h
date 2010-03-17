@@ -51,13 +51,13 @@ namespace Maid
     void BltSR( const POINT3DF& Pos, const ModelMQO& model, float alpha, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
     void Blt( const MATRIX4DF& mat, const ModelMQO& model, float alpha );
  
-    void BltShadow1( const POINT3DF& Pos, const ModelMQO& model );
-    void BltShadow1S ( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale );
-    void BltShadow1R ( const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec );
-    void BltShadow1SR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
-    void BltShadow1( const MATRIX4DF& world, const ModelMQO& model );
+    void BltShadow1( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model );
+    void BltShadow1S ( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale );
+    void BltShadow1R ( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec );
+    void BltShadow1SR( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
+    void BltShadow1( const MATRIX4DF& LightP, const MATRIX4DF& world, const ModelMQO& model );
 
-    void BltShadow2( const MATRIX4DF& world, const ModelMQO& model, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap );
+    void BltShadow2( const MATRIX4DF& world, const ModelMQO& model, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap );
 
     void SetAmbient( const COLOR_R32G32B32A32F& amb );
     void SetLight( const std::vector<LIGHT>& light );
@@ -122,6 +122,9 @@ namespace Maid
     bool MQOShaderIsLoading()const;
     void MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha );
 
+    void MQOShadowShaderCreate();
+    bool MQOShadowShaderIsLoading()const;
+    void MQOShadowShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap );
 
 
 

@@ -67,14 +67,14 @@ protected:
     m_Camera.SetTarget( s_OBJECT1POS );
     m_Camera.SetUpVector( VECTOR3DF(0,1,0) );
 
-    m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
-    m_LightRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
+    m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 120 );
+    m_LightRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 120 );
     m_ModelAlpha.Set( 0.0f, 1.0f, 60 );
 
     m_Font.Create( SIZE2DI(8,16), true );
     m_IsLight = false;
 
-    m_ShadowBuffer.Create( SIZE2DI(1024,1024), PIXELFORMAT_X08R08G08B08I );
+    m_ShadowBuffer.Create( SIZE2DI(2048,2048), PIXELFORMAT_X08R08G08B08I );
     m_ShadowDepth.CreateCompatible( m_ShadowBuffer, PIXELFORMAT_D32I );
 
   }
@@ -109,14 +109,14 @@ protected:
 
     m_Command.Begin();
 
-    Camera  ShadowMapCamera;  //  シャドウマップを作成するときに使うカメラ
+    MATRIX4DF WLightP;
     {
       //  シャドウマップの作成
       const RenderTargetBase& rt = m_ShadowBuffer;
       const IDepthStencil& ds = m_ShadowDepth;
 
       m_Command.SetRenderTarget( rt, ds );
-      m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,0,0,0) );
+      m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,1,1,1) );
       m_Command.ClearDepth( 1.0f );
 
       VECTOR3DF LightDir;
@@ -129,7 +129,7 @@ protected:
       }
 
       const Camera&  nc = m_Camera;
-      Camera&  sc = ShadowMapCamera;  //  シャドウマップを作成するときに使うカメラ
+      Camera  sc;  //  シャドウマップを作成するときに使うカメラ
 
       //  シャドウマップを作るために光源にカメラ(shadow camera=sc)を置くわけですが
       //  角度以外の設定をレンダリングに使うカメラ(normal camera=nc)から導く
@@ -159,16 +159,19 @@ protected:
       const POINT3DF target = center;
       const POINT3DF pos = target - (LightDir*CullR);
 
-      sc.SetPerspective( DEGtoRAD(60.0f), size.w/size.h, 1.0f, CullR*2 );
+//      sc.SetPerspective( DEGtoRAD(60.0f), size.w/size.h, 1.0f, CullR*2 );
+      sc.SetPerspective( DEGtoRAD(60.0f), size.w/size.h, CullR*0.1f, CullR*2 );
       sc.SetPosition( pos );
       sc.SetTarget( target );
       sc.SetUpVector( VECTOR3DF(0,1,0) );
 
       m_Render.SetCamera(sc);
 
-      m_Render.BltShadow1( POINT3DF(0,0,0), m_Field );
-      m_Render.BltShadow1R( s_OBJECT1POS, m_Model, m_ModelRotate, VECTOR3DF(0,1,0) );
-      m_Render.BltShadow1( s_OBJECT2POS, m_Model );
+      WLightP = sc.GetViewMatrix() * sc.GetProjectionMatrix();
+
+      m_Render.BltShadow1( WLightP, POINT3DF(0,0,0), m_Field );
+      m_Render.BltShadow1R( WLightP, s_OBJECT1POS, m_Model, m_ModelRotate, VECTOR3DF(0,1,0) );
+      m_Render.BltShadow1( WLightP, s_OBJECT2POS, m_Model );
 
     }
     {
@@ -206,12 +209,18 @@ protected:
 
       //const VECTOR4DF pos_w = VECTOR4DF(1,1,1,1) * (nc.GetViewMatrix()*nc.GetProjectionMatrix()).GetInverse();
 
-      const MATRIX4DF mat = ShadowMapCamera.GetViewMatrix() * ShadowMapCamera.GetProjectionMatrix();
-      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Field, mat, m_ShadowBuffer );
+      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Field, 1.0f, WLightP, m_ShadowBuffer );
 
 //      m_Render.Blt( POINT3DF(0,0,0), m_Field, 1 );
-      m_Render.BltR( s_OBJECT1POS, m_Model, 1, m_ModelRotate, VECTOR3DF(0,1,0) );
-      m_Render.Blt( s_OBJECT2POS, m_Model, m_ModelAlpha );
+
+      MATRIX4DF mat = MATRIX4DF().SetRotationY(m_ModelRotate)
+        * MATRIX4DF().SetTranslate(s_OBJECT1POS.x,s_OBJECT1POS.y,s_OBJECT1POS.z)
+        ;
+
+      m_Render.BltShadow2( mat, m_Model, 1.0f, WLightP, m_ShadowBuffer );
+//      m_Render.BltR( s_OBJECT1POS, m_Model, 1, m_ModelRotate, VECTOR3DF(0,1,0) );
+//      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Model, m_ModelAlpha, WLightP, m_ShadowBuffer );
+//      m_Render.Blt( s_OBJECT2POS, m_Model, m_ModelAlpha );
     }
 
     {
