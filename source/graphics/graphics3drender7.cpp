@@ -269,7 +269,7 @@ static const char* CODE_TEXTURE_SHADOW2_PS =
 ""
 "  float LightZ = texture_slot1.Sample(sampler_slot1, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
 "  float PointZ  = Input.Depth.z / Input.Depth.w;" // ライト方向からの現在Ｚ値
-"  float shadow = (LightZ < PointZ-0.03f)? 0.5:1.0;"
+"  float shadow = (LightZ < PointZ-0.03f)? 0.1:1.0;"
 "  float4 matcolor = max(0.0,  s_MaterialLight * lightcol );"
 "  float4 emi = s_MaterialEmissive;"
 "  float4 amb = s_Ambient;"
@@ -506,110 +506,139 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
   const IConstant& con_vs = m_ShaderConstantVS;
   const IConstant& con_ps = m_ShaderConstantPS;
 
+  const MATRIX4DF wlp = world * LightMat;
+        MATRIX4DF wlptx;
   {
-    const int sub = 0;
-    Graphics::MAPPEDRESOURCE map_vs;
-    Command.ResourceMap( con_vs.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_vs );
-    {
-      CONSTANT_SHADOWMAP_2pass_VS& dst = *((CONSTANT_SHADOWMAP_2pass_VS*)map_vs.pData);
-      dst.s_mWVP  = wvp.GetTranspose();
-      dst.s_mWLightP  = (world * LightMat).GetTranspose();
+    const SIZE2DI size = ShadowMap.GetTextureSize();
 
-      {
-        const SIZE2DI size = ShadowMap.GetTextureSize();
-
-        const float x = 0.5f + (0.5f / (float)size.w);
-        const float y = 0.5f + (0.5f / (float)size.h);
-        MATRIX4DF bias(	0.5f, 0.0f, 0.0f, 0.0f,
-	                      0.0f,-0.5f, 0.0f, 0.0f,
-	                      0.0f, 0.0f, 0.0f,	0.0f,
-	                         x,    y, 0.0f, 1.0f );
-
-        dst.s_mWLightPTex  = (world * LightMat * bias).GetTranspose();
-      }
-      dst.s_Eye = VECTOR4DF(0,0,0,1) * (world*m_Camera.GetViewMatrix()).GetInverse();
-    }
-    Command.ResourceUnmap( con_vs.Get(), sub );
+    const float x = 0.5f + (0.5f / (float)size.w);
+    const float y = 0.5f + (0.5f / (float)size.h);
+    MATRIX4DF bias(	0.5f, 0.0f, 0.0f, 0.0f,
+                    0.0f,-0.5f, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f,	0.0f,
+                       x,    y, 0.0f, 1.0f );
+    wlptx  = (wlp * bias).GetTranspose();
   }
+
+  const VECTOR4DF eye = VECTOR4DF(0,0,0,1) * (world*m_Camera.GetViewMatrix()).GetInverse();
+
 
   switch( ShaderID )
   {
   case 20:
     {
-      const int sub = 0;
-      Graphics::MAPPEDRESOURCE map_ps;
-      Command.ResourceMap( con_ps.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_ps );
-
       {
-        //  ライトをまわしてシェーダ演算量を減らす
-        CONSTANT_SHADOWMAP_2pass_COLOR_PS& dst = *((CONSTANT_SHADOWMAP_2pass_COLOR_PS*)map_ps.pData);
-        dst.s_MaterialColor = mat.Color;
-        dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
-        dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
-
-        if( !m_Light.empty() )
+        const int sub = 0;
+        Graphics::MAPPEDRESOURCE map_vs;
+        Command.ResourceMap( con_vs.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_vs );
         {
-          const LIGHT& light = m_Light[0];
-          const VECTOR4DF v = 
-            (VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
-            * world.GetInverse()).Normalize()
-            ;
-          dst.s_LightDir = v;
-          dst.s_LightColor = light.Diffuse;
-        }else
-        {
-          dst.s_LightDir = VECTOR4DF(1,0,0,1);
-          dst.s_LightColor = COLOR_R32G32B32A32F(1,1,1,1);
+          CONSTANT_SHADOWMAP_2pass_COLOR_VS& dst = *((CONSTANT_SHADOWMAP_2pass_COLOR_VS*)map_vs.pData);
+          dst.s_mWVP  = wvp.GetTranspose();
+          dst.s_mWLightP    = wlp.GetTranspose();
+          dst.s_mWLightPTex = wlptx.GetTranspose();
+          dst.s_Eye = eye;
         }
-
-        dst.s_Ambient = m_Ambient;
-        dst.s_Alpha = alpha;
-
-        dst.s_Speculer = mat.Specular;
-        dst.s_SpeculerPow = mat.Power;
+        Command.ResourceUnmap( con_vs.Get(), sub );
       }
 
-      Command.ResourceUnmap( con_ps.Get(), sub );
+      {
+        const int sub = 0;
+        Graphics::MAPPEDRESOURCE map_ps;
+        Command.ResourceMap( con_ps.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_ps );
+
+        {
+          //  ライトをまわしてシェーダ演算量を減らす
+          CONSTANT_SHADOWMAP_2pass_COLOR_PS& dst = *((CONSTANT_SHADOWMAP_2pass_COLOR_PS*)map_ps.pData);
+          dst.s_MaterialColor = mat.Color;
+          dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
+          dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
+
+          if( !m_Light.empty() )
+          {
+            const LIGHT& light = m_Light[0];
+            const VECTOR4DF v = 
+              (VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
+              * world.GetInverse()).Normalize()
+              ;
+            dst.s_LightDir = v;
+            dst.s_LightColor = light.Diffuse;
+          }else
+          {
+            dst.s_LightDir = VECTOR4DF(1,0,0,1);
+            dst.s_LightColor = COLOR_R32G32B32A32F(1,1,1,1);
+          }
+
+          dst.s_Ambient = m_Ambient;
+          dst.s_Alpha = alpha;
+
+          dst.s_Speculer = mat.Specular;
+          dst.s_SpeculerPow = mat.Power;
+        }
+        Command.ResourceUnmap( con_ps.Get(), sub );
+      }
+
       const IMaterial&  m = ShadowMap;
       Command.PSSetMaterial(0, m.Get() );
     }break;
 
   case 21:
     {
-      const int sub = 0;
-      Graphics::MAPPEDRESOURCE map_ps;
-      Command.ResourceMap( con_ps.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_ps );
-
       {
-        //  ライトをまわしてシェーダ演算量を減らす
-        CONSTANT_SHADOWMAP_2pass_COLOR_PS& dst = *((CONSTANT_SHADOWMAP_2pass_COLOR_PS*)map_ps.pData);
-        dst.s_MaterialColor = mat.Color;
-        dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
-        dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
-
-        if( !m_Light.empty() )
+        const int sub = 0;
+        Graphics::MAPPEDRESOURCE map_vs;
+        Command.ResourceMap( con_vs.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_vs );
         {
-          const LIGHT& light = m_Light[0];
-          const VECTOR4DF v = 
-            (VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
-            * world.GetInverse()).Normalize()
-            ;
-          dst.s_LightDir = v;
-          dst.s_LightColor = light.Diffuse;
-        }else
-        {
-          dst.s_LightDir = VECTOR4DF(1,0,0,1);
-          dst.s_LightColor = COLOR_R32G32B32A32F(1,1,1,1);
+          CONSTANT_SHADOWMAP_2pass_TEXTURE_VS& dst = *((CONSTANT_SHADOWMAP_2pass_TEXTURE_VS*)map_vs.pData);
+          dst.s_mWVP  = wvp.GetTranspose();
+          dst.s_mWLightP    = wlp.GetTranspose();
+          dst.s_mWLightPTex = wlptx.GetTranspose();
+          dst.s_Eye = eye;
+          if( mat.Texture.IsSetupped() )
+          {
+            const SIZE2DF real = mat.Texture.GetRealSize();
+            const SIZE2DF tex  = mat.Texture.GetTextureSize();
+            dst.s_TextureScale = SIZE2DF(real.w/tex.w,real.h/tex.h);
+          }
         }
-
-        dst.s_Ambient = m_Ambient;
-        dst.s_Alpha = alpha;
-
-        dst.s_Speculer = mat.Specular;
-        dst.s_SpeculerPow = mat.Power;
+        Command.ResourceUnmap( con_vs.Get(), sub );
       }
 
-      Command.ResourceUnmap( con_ps.Get(), sub );
+      {
+        const int sub = 0;
+        Graphics::MAPPEDRESOURCE map_ps;
+        Command.ResourceMap( con_ps.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_ps );
+
+        {
+          //  ライトをまわしてシェーダ演算量を減らす
+          CONSTANT_SHADOWMAP_2pass_TEXTURE_PS& dst = *((CONSTANT_SHADOWMAP_2pass_TEXTURE_PS*)map_ps.pData);
+          dst.s_MaterialColor = mat.Color;
+          dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
+          dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
+
+          if( !m_Light.empty() )
+          {
+            const LIGHT& light = m_Light[0];
+            const VECTOR4DF v = 
+              (VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
+              * world.GetInverse()).Normalize()
+              ;
+            dst.s_LightDir = v;
+            dst.s_LightColor = light.Diffuse;
+          }else
+          {
+            dst.s_LightDir = VECTOR4DF(1,0,0,1);
+            dst.s_LightColor = COLOR_R32G32B32A32F(1,1,1,1);
+          }
+
+          dst.s_Ambient = m_Ambient;
+          dst.s_Alpha = alpha;
+
+          dst.s_Speculer = mat.Specular;
+          dst.s_SpeculerPow = mat.Power;
+        }
+        Command.ResourceUnmap( con_ps.Get(), sub );
+      }
+
       const IMaterial&  t = mat.Texture;
       Command.PSSetMaterial(0, t.Get() );
       const IMaterial&  s = ShadowMap;

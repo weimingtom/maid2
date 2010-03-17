@@ -117,7 +117,7 @@ struct CONSTANT_SHADOWMAP_1pass_VS
   Maid::MATRIX4DF s_mWVP; //  カメラ座標系
 };
 
-struct CONSTANT_SHADOWMAP_2pass_VS
+struct CONSTANT_SHADOWMAP_2pass_COLOR_VS
 {
   Maid::MATRIX4DF s_mWVP;         //  カメラ座標系
   Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
@@ -140,6 +140,16 @@ struct CONSTANT_SHADOWMAP_2pass_COLOR_PS
   float32         s_Tmp2[2];      //  s_Speculerレジスタの空き
 };
 
+
+
+struct CONSTANT_SHADOWMAP_2pass_TEXTURE_VS
+{
+  Maid::MATRIX4DF s_mWVP;         //  カメラ座標系
+  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
+  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
+  Maid::VECTOR4DF s_Eye;          //  カメラの向き
+  Maid::SIZE2DF   s_TextureScale; //  テクスチャのＵＶとデータ上のＵＶを調節するための値
+};
 
 
 struct CONSTANT_SHADOWMAP_2pass_TEXTURE_PS
