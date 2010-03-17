@@ -29,6 +29,7 @@ void Graphics3DRender::Initialize()
   m_State = STATE_LOADING;
 
   MQOShaderCreate();
+  MQOShadowShaderCreate();
 
 
   {
@@ -245,6 +246,7 @@ bool Graphics3DRender::IsInitializing() const
 bool Graphics3DRender::IsMemberLoading() const
 {
   return  MQOShaderIsLoading()
+    ||    MQOShadowShaderIsLoading()
 
     ||    m_SpriteFillLayout.IsCompiling()
     ||    m_SpriteFillVertexShader.IsCompiling()
