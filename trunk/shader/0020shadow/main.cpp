@@ -67,8 +67,8 @@ protected:
     m_Camera.SetTarget( s_OBJECT1POS );
     m_Camera.SetUpVector( VECTOR3DF(0,1,0) );
 
-    m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 120 );
-    m_LightRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 120 );
+    m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
+    m_LightRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 240 );
     m_ModelAlpha.Set( 0.0f, 1.0f, 60 );
 
     m_Font.Create( SIZE2DI(8,16), true );
@@ -110,6 +110,14 @@ protected:
     m_Command.Begin();
 
     MATRIX4DF WLightP;
+    VECTOR3DF LightDir;
+    {
+      const float rot = m_LightRotate;
+      const float s = Math<float>::sin(rot);
+      const float c = Math<float>::cos(rot);
+
+      LightDir = VECTOR3DF(c,s,0).Normalize();
+    }
     {
       //  シャドウマップの作成
       const RenderTargetBase& rt = m_ShadowBuffer;
@@ -119,14 +127,6 @@ protected:
       m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,1,1,1) );
       m_Command.ClearDepth( 1.0f );
 
-      VECTOR3DF LightDir;
-      {
-        const float rot = m_LightRotate;
-        const float s = Math<float>::sin(rot);
-        const float c = Math<float>::cos(rot);
-
-        LightDir = VECTOR3DF(c,s,0).Normalize();
-      }
 
       const Camera&  nc = m_Camera;
       Camera  sc;  //  シャドウマップを作成するときに使うカメラ
@@ -190,13 +190,7 @@ protected:
           LIGHT light;
           light.Type = LIGHT::DIRECTIONAL;
           light.Diffuse = COLOR_R32G32B32A32F(1,1,1,1);
-          light.Direction = VECTOR3DF(1,1,0);
-
-          const float rot = m_LightRotate;
-          const float s = Math<float>::sin(rot);
-          const float c = Math<float>::cos(rot);
-
-          light.Direction = VECTOR3DF(c,s,0).Normalize();
+          light.Direction = LightDir;
 
           LightList.push_back(light);
         }
