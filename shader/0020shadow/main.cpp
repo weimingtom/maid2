@@ -21,14 +21,13 @@ using namespace Maid;
 
 
 
-static const POINT3DF s_OBJECT1POS(0,0,0);  //  回転操作できるモデルの配置座標
+static const POINT3DF s_OBJECT1POS(0,-0.5f,0);  //  回転操作できるモデルの配置座標
 static const POINT3DF s_OBJECT2POS(1.5f,0,0); //  透明度操作できるモデルの配置座標
 
 
-static const float s_CAMERA_NEAR = 0.5f;  //  カメラの手前カリング位置 50cm 先から見える
-static const float s_CAMERA_FAR = 50.0f;  //  カメラの奥カリング位置   30mmまで見える
-static const POINT3DF s_CAMERAPOS(0,1,-3); //  カメラの設置位置（注視はs_OBJECT1POSを見ている）
-
+static const float s_CAMERA_NEAR = 0.5f;  //  カメラの手前カリング位置 0.5m 先から見える
+static const float s_CAMERA_FAR = 50.0f;  //  カメラの奥カリング位置   50mまで見える
+static const POINT3DF s_CAMERAPOS(0,1,-3); //  カメラの設置位置（注視は(0,0,0)を見ている）
 
 
 class MyApp : public IGameThread
@@ -64,7 +63,7 @@ protected:
 
     m_Camera.SetPerspective( DEGtoRAD(60.0f), Screen.w/Screen.h, s_CAMERA_NEAR, s_CAMERA_FAR );
     m_Camera.SetPosition( s_CAMERAPOS );
-    m_Camera.SetTarget( s_OBJECT1POS );
+    m_Camera.SetTarget( POINT3DF(0,0,0) );
     m_Camera.SetUpVector( VECTOR3DF(0,1,0) );
 
     m_ModelRotate.Set( DEGtoRAD(0), DEGtoRAD(360), 60 );
@@ -72,7 +71,6 @@ protected:
     m_ModelAlpha.Set( 0.0f, 1.0f, 60 );
 
     m_Font.Create( SIZE2DI(8,16), true );
-    m_IsLight = false;
 
     m_ShadowBuffer.Create( SIZE2DI(2048,2048), PIXELFORMAT_X08R08G08B08I );
     m_ShadowDepth.CreateCompatible( m_ShadowBuffer, PIXELFORMAT_D32I );
@@ -95,8 +93,6 @@ protected:
     else if( k.IsDown(Keybord::BUTTON_DOWN) ) { --m_ModelAlpha; }
     if( k.IsDown('A')     ) { --m_LightRotate; }
     else if( k.IsDown('S') ) { ++m_LightRotate; }
-
-    if( k.IsIn('Q')     ) { m_IsLight = !m_IsLight; }
   }
 
   void UpdateDraw()
@@ -109,7 +105,7 @@ protected:
 
     m_Command.Begin();
 
-    MATRIX4DF WLightP;
+    MATRIX4DF LightVP;
     VECTOR3DF LightDir;
     {
       const float rot = m_LightRotate;
@@ -129,7 +125,6 @@ protected:
 
 
       const Camera&  nc = m_Camera;
-      Camera  sc;  //  シャドウマップを作成するときに使うカメラ
 
       //  シャドウマップを作るために光源にカメラ(shadow camera=sc)を置くわけですが
       //  角度以外の設定をレンダリングに使うカメラ(normal camera=nc)から導く
@@ -148,30 +143,22 @@ protected:
       }
 
       //  これで center を中心とした半径 CullR がすっぽり入るシャドウマップを作れる
-
-
-//      const VECTOR4DF _pos_w = pos * (nc.GetViewMatrix()*nc.GetProjectionMatrix());
-//      const VECTOR4DF _pos = VECTOR4DF(_pos_w.x/_pos_w.w, _pos_w.y/_pos_w.w, _pos_w.z/_pos_w.w, 1 );
-
-      int k=0;
-
+      //  8bit channel にレンダリングするので 精度は (fat-near) / 2^8  単位になる
       const SIZE2DF size = static_cast<Texture2DBase&>(m_ShadowBuffer).GetTextureSize();
-      const POINT3DF target = center;
+      const POINT3DF target(0,0,0);
       const POINT3DF pos = target - (LightDir*CullR);
+      Camera  sc;  //  シャドウマップを作成するときに使うカメラ
 
-//      sc.SetPerspective( DEGtoRAD(60.0f), size.w/size.h, 1.0f, CullR*2 );
-      sc.SetPerspective( DEGtoRAD(60.0f), size.w/size.h, CullR*0.1f, CullR*2 );
+      sc.SetPerspective( DEGtoRAD(60.0f), size.w/size.h, CullR*0.6f, CullR*1.3f );
       sc.SetPosition( pos );
       sc.SetTarget( target );
       sc.SetUpVector( VECTOR3DF(0,1,0) );
 
-      m_Render.SetCamera(sc);
+      LightVP = sc.GetViewMatrix() * sc.GetProjectionMatrix();
 
-      WLightP = sc.GetViewMatrix() * sc.GetProjectionMatrix();
-
-      m_Render.BltShadow1( WLightP, POINT3DF(0,0,0), m_Field );
-      m_Render.BltShadow1R( WLightP, s_OBJECT1POS, m_Model, m_ModelRotate, VECTOR3DF(0,1,0) );
-      m_Render.BltShadow1( WLightP, s_OBJECT2POS, m_Model );
+      m_Render.BltShadow1( LightVP, POINT3DF(0,0,0), m_Field );
+      m_Render.BltShadow1R( LightVP, s_OBJECT1POS, m_Model, m_ModelRotate, VECTOR3DF(0,1,0) );
+      m_Render.BltShadow1( LightVP, s_OBJECT2POS, m_Model );
 
     }
     {
@@ -179,13 +166,12 @@ protected:
       const IDepthStencil& ds = GetGraphicsCore().GetDepthStencil();
 
       m_Command.SetRenderTarget( rt, ds );
-      m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,0.5f,0,0) );
+      m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,0,0,0) );
       m_Command.ClearDepthStencil( 1.0f, 0x00 );
       m_Render.SetCamera(m_Camera);
 
       {
         std::vector<LIGHT> LightList;
-        if( m_IsLight )
         {
           LIGHT light;
           light.Type = LIGHT::DIRECTIONAL;
@@ -203,7 +189,7 @@ protected:
 
       //const VECTOR4DF pos_w = VECTOR4DF(1,1,1,1) * (nc.GetViewMatrix()*nc.GetProjectionMatrix()).GetInverse();
 
-      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Field, 1.0f, WLightP, m_ShadowBuffer );
+      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Field, 1.0f, LightVP, m_ShadowBuffer );
 
 //      m_Render.Blt( POINT3DF(0,0,0), m_Field, 1 );
 
@@ -211,14 +197,14 @@ protected:
         * MATRIX4DF().SetTranslate(s_OBJECT1POS.x,s_OBJECT1POS.y,s_OBJECT1POS.z)
         ;
 
-      m_Render.BltShadow2( mat, m_Model, 1.0f, WLightP, m_ShadowBuffer );
+      m_Render.BltShadow2( mat, m_Model, 1.0f, LightVP, m_ShadowBuffer );
 //      m_Render.BltR( s_OBJECT1POS, m_Model, 1, m_ModelRotate, VECTOR3DF(0,1,0) );
 //      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Model, m_ModelAlpha, WLightP, m_ShadowBuffer );
 //      m_Render.Blt( s_OBJECT2POS, m_Model, m_ModelAlpha );
     }
 
     {
-      const String str = MAIDTEXT( "←→でモデル回転　↑↓でモデル透明　ASでライト回転 QでライトＯＮＯＦＦ" );
+      const String str = MAIDTEXT( "←→でモデル回転　↑↓でモデル透明　ASでライト回転" );
       m_2DRender.BltText( POINT2DI(0,0), m_Font, str );
     }
     {
@@ -260,7 +246,6 @@ private:
   LoopCounter<float>   m_ModelRotate;
   LinearCounter<float>   m_ModelAlpha;
   Font  m_Font;
-  bool  m_IsLight;
 };
 
 

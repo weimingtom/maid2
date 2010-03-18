@@ -51,10 +51,14 @@ static const char* CODE_SHADOW1_PS =
 "  float4 Out;"
 ""
 "  Out = input.Depth.z / input.Depth.w;"
-""
+"  Out.a = 1; "
 "  return Out;"
 "}"
 ;
+
+
+
+
 
 
 
@@ -134,7 +138,6 @@ static const char* CODE_COLOR_SHADOW2_PS =
 "  float4 ShadowMapUV : TEXCOORD2;"
 "  float4 Depth       : TEXCOORD3;"
 "};"
-""
 "float4 main(PS_INPUT Input) : SV_Target"
 "{"
 "  float3 N = normalize(Input.Normal);"
@@ -145,16 +148,15 @@ static const char* CODE_COLOR_SHADOW2_PS =
 "  float LightZ = texture_slot0.Sample(sampler_slot0, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
 "  float PointZ  = Input.Depth.z / Input.Depth.w;" // ライト方向からの現在Ｚ値
 "  float shadow = (LightZ < PointZ-0.03f)? 0.5:1.0;"
-"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol );"
+"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol * shadow);"
 "  float4 emi = s_MaterialEmissive;"
 "  float4 amb = s_Ambient;"
 ""
 "  float3 eye  = normalize(Input.Eye);"
 "  float3 half = normalize(-s_LightDir+eye);"
-"  float  spc  = pow(max(0.0,dot(N,half)),s_Speculer.y) * s_Speculer.x;"
+"  float  spc  = pow(max(0.0,dot(N,half)),max(1,s_Speculer.y)) * s_Speculer.x;"
 ""
 "  float4 worldcolor = s_MaterialColor*(emi + matcolor + s_Ambient) + spc;"
-"  worldcolor *= shadow;"
 "  worldcolor.a = s_MaterialColor.a;"
 ""
 "  float4 ret = Input.Color * worldcolor;"
@@ -269,17 +271,16 @@ static const char* CODE_TEXTURE_SHADOW2_PS =
 ""
 "  float LightZ = texture_slot1.Sample(sampler_slot1, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
 "  float PointZ  = Input.Depth.z / Input.Depth.w;" // ライト方向からの現在Ｚ値
-"  float shadow = (LightZ < PointZ-0.03f)? 0.1:1.0;"
-"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol );"
+"  float shadow = (LightZ < PointZ-0.03f)? 0.5:1.0;"
+"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol * shadow );"
 "  float4 emi = s_MaterialEmissive;"
 "  float4 amb = s_Ambient;"
 ""
 "  float3 eye  = normalize(Input.Eye);"
 "  float3 half = normalize(-s_LightDir+eye);"
-"  float  spc  = pow(max(0.0,dot(N,half)),s_Speculer.y) * s_Speculer.x;"
+"  float  spc  = pow(max(0.0,dot(N,half)),max(1,s_Speculer.y)) * s_Speculer.x;"
 ""
 "  float4 worldcolor = MatColor*(emi + matcolor + s_Ambient) + spc;"
-"  worldcolor *= shadow;"
 "  worldcolor.a = s_MaterialColor.a;"
 ""
 "  float4 ret = Input.Color * worldcolor;"
@@ -290,6 +291,140 @@ static const char* CODE_TEXTURE_SHADOW2_PS =
 ;
 
 
+
+
+
+
+
+
+
+//  シャドウマップ用シェーダ(2pass目・テクスチャあり法線マップあり)
+static const char* CODE_BUMP_SHADOW2_VS = 
+"cbuffer cbPerObject"
+"{"
+"  matrix s_mWVP        : packoffset( c0 );" // ローカルから射影空間への座標変換
+"  matrix s_mWLightP    : packoffset( c4 );" // ローカルからライト射影空間への座標変換
+"  matrix s_mWLightPTex : packoffset( c8 );" // ローカルからライト射影空間->テクスチャ座標への座標変換
+"  float4 s_Eye   : packoffset( c12 );" // カメラの向き
+"  float4 s_LightDir     : packoffset( c13 );"  // 平行光源の向き
+"  float2 s_TextureScale : packoffset( c14 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
+"};"
+""
+"struct VS_INPUT"
+"{"
+"  float4 Position    : POSITION;"   //頂点座標
+"  float4 Diffuse     : COLOR0;"     //頂点色影響度
+"  float4 Normal      : NORMAL;"     //法線
+"  float2 TexCoords   : TEXCOORD0;"  //テクスチャUV
+"  float3 Tangent     : TANGENT0;"   //接ベクトル
+"};"
+""
+"struct VS_OUTPUT"
+"{"
+"  float4 Position    : SV_Position;" //頂点座標
+"  float4 Diffuse     : COLOR0;"      //頂点色影響度
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"  float3 Eye         : TEXCOORD1;"   // 視線ベクトル
+"  float3 L           : TEXCOORD2;"   // ライトベクトル
+"  float4 ShadowMapUV : TEXCOORD3;"
+"  float4 Depth       : TEXCOORD4;"
+"};"
+""
+"VS_OUTPUT main(VS_INPUT Input)"
+"{"
+"  VS_OUTPUT Out = (VS_OUTPUT)0;"
+""
+"  Out.Position = mul( Input.Position, s_mWVP );"
+"  Out.Diffuse = Input.Diffuse;"
+"  Out.TexCoords  = Input.TexCoords* s_TextureScale;"
+"  Out.ShadowMapUV  = mul( Input.Position, s_mWLightPTex );"
+"  Out.Depth  = mul( Input.Position, s_mWLightP );"
+""
+"  float3 N = Input.Normal;"
+"  float3 T = Input.Tangent;"
+"  float3 B = cross(N,T);"
+""
+"  float3 E = s_Eye - Input.Position.xyz;"	// 視線ベクトル
+"  Out.Eye.x = dot(E,T);"
+"  Out.Eye.y = dot(E,B);"
+"  Out.Eye.z = dot(E,N);"
+""
+"  float3 L = -s_LightDir.xyz;"		// ライトベクトル
+"  Out.L.x = dot(L,T);"
+"  Out.L.y = dot(L,B);"
+"  Out.L.z = dot(L,N);"
+""
+"  return Out;"
+"}"
+;
+
+;
+
+//  シャドウマップ用シェーダ(2pass目・テクスチャあり法線マップあり)
+static const char* CODE_BUMP_SHADOW2_PS = 
+"Texture2D<float4> texture_slot0;"
+"sampler sampler_slot0 = sampler_state"
+"{"
+"    Texture   = <texture_slot0>;"
+"};"
+""
+"Texture2D<float4> texture_slot1;"
+"sampler sampler_slot1 = sampler_state"
+"{"
+"    Texture   = <texture_slot1>;"
+"};"
+""
+"cbuffer cbPerObject"
+"{"
+"  float4 s_MaterialColor : packoffset( c0 );"  // 素材そのものの色
+"  float4 s_MaterialLight : packoffset( c1 );" // 素材の光源反射率
+"  float4 s_MaterialEmissive : packoffset( c2 );" // 素材の自己発光量
+"  float4 s_LightDir     : packoffset( c3 );"  // 平行光源の向き
+"  float4 s_LightColor   : packoffset( c4 );"  // 平行光源の色
+"  float4 s_Ambient      : packoffset( c5 );"  // ワールド全体の明るさ
+"  float1 s_Alpha        : packoffset( c6 );" // プログラム側で調節する透明度
+"  float2 s_Speculer     : packoffset( c7 );" // スペキュラの強さ
+"};"
+""
+"struct PS_INPUT"
+"{"
+"  float4 Position    : SV_Position;" //頂点座標
+"  float4 Color       : COLOR0;"      //頂点色影響度
+"  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
+"  float4 Normal      : TEXCOORD1;"
+"  float3 Eye         : TEXCOORD2;"   // 視線ベクトル
+"  float4 ShadowMapUV : TEXCOORD3;"
+"  float4 Depth       : TEXCOORD4;"
+"};"
+""
+"float4 main(PS_INPUT Input) : SV_Target"
+"{"
+"  float4 MatColor = texture_slot0.Sample(sampler_slot0,Input.TexCoords) * s_MaterialColor;"
+"  float3 N = normalize(Input.Normal);"
+""
+"  float  lightpow = dot(N,-s_LightDir);"
+"  float4 lightcol = s_LightColor * lightpow;"
+""
+"  float LightZ = texture_slot1.Sample(sampler_slot1, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
+"  float PointZ  = Input.Depth.z / Input.Depth.w;" // ライト方向からの現在Ｚ値
+"  float shadow = (LightZ < PointZ-0.03f)? 0.5:1.0;"
+"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol * shadow );"
+"  float4 emi = s_MaterialEmissive;"
+"  float4 amb = s_Ambient;"
+""
+"  float3 eye  = normalize(Input.Eye);"
+"  float3 half = normalize(-s_LightDir+eye);"
+"  float  spc  = pow(max(0.0,dot(N,half)),max(1,s_Speculer.y)) * s_Speculer.x;"
+""
+"  float4 worldcolor = MatColor*(emi + matcolor + s_Ambient) + spc;"
+"  worldcolor.a = s_MaterialColor.a;"
+""
+"  float4 ret = Input.Color * worldcolor;"
+"  ret.a *= s_Alpha;"
+""
+"  return ret;"
+"}"
+;
 
 
 
@@ -375,45 +510,45 @@ bool Graphics3DRender::MQOShadowShaderIsLoading() const
     @param	Pos   [i ]	描画開始座標
     @param	model [i ]	描画するもの
  */
-void Graphics3DRender::BltShadow1( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model )
+void Graphics3DRender::BltShadow1( const MATRIX4DF& LightVP, const POINT3DF& Pos, const ModelMQO& model )
 {
   const MATRIX4DF world = MATRIX4DF().SetTranslate(Pos.x,Pos.y,Pos.z);
-  BltShadow1( LightP, world, model );
+  BltShadow1( LightVP, world, model );
 }
 
-void Graphics3DRender::BltShadow1S ( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale )
+void Graphics3DRender::BltShadow1S ( const MATRIX4DF& LightVP, const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale )
 {
   const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
   const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
 
   const MATRIX4DF world = s*t;
-  BltShadow1( LightP, world, model );
+  BltShadow1( LightVP, world, model );
 }
 
-void Graphics3DRender::BltShadow1R ( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec )
+void Graphics3DRender::BltShadow1R ( const MATRIX4DF& LightVP, const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec )
 {
   const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
   const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
 
   const MATRIX4DF world = r*t;
-  BltShadow1( LightP, world, model );
+  BltShadow1( LightVP, world, model );
 }
 
-void Graphics3DRender::BltShadow1SR( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec )
+void Graphics3DRender::BltShadow1SR( const MATRIX4DF& LightVP, const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec )
 {
   const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
   const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
   const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
 
   const MATRIX4DF world = s*r*t;
-  BltShadow1( LightP, world, model );
+  BltShadow1( LightVP, world, model );
 }
 
 
 
-void Graphics3DRender::BltShadow1( const MATRIX4DF& LightP, const MATRIX4DF& world, const ModelMQO& model )
+void Graphics3DRender::BltShadow1( const MATRIX4DF& LightVP, const MATRIX4DF& world, const ModelMQO& model )
 {
-  const MATRIX4DF wvp = world * LightP;
+  const MATRIX4DF wvp = world * LightVP;
   Graphics::IDrawCommand& Command = GetCommand();
 
   //  このステートは固定
@@ -448,9 +583,10 @@ void Graphics3DRender::BltShadow1( const MATRIX4DF& LightP, const MATRIX4DF& wor
 
   Command.VSSetConstant( 0, con_vs.Get() );
 
-  const IInputLayout&  layout = m_ShadowLayout[10];
-  const IVertexShader& vs = m_ShadowVertexShader[10];
-  const IPixelShader&  ps = m_ShadowPixelShader[10];
+  const int shaderid = 10;
+  const IInputLayout&  layout = m_ShadowLayout[shaderid];
+  const IVertexShader& vs = m_ShadowVertexShader[shaderid];
+  const IPixelShader&  ps = m_ShadowPixelShader[shaderid];
 
   Command.SetInputLayout( layout.Get() );
   Command.VSSetShader( vs.Get() );
@@ -488,7 +624,7 @@ void Graphics3DRender::BltShadow1( const MATRIX4DF& LightP, const MATRIX4DF& wor
 
 
 
-void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap )
+void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap )
 {
   int MaterialType = 0;
   if( mat.Texture.IsEmpty() )
@@ -506,7 +642,7 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
   const IConstant& con_vs = m_ShaderConstantVS;
   const IConstant& con_ps = m_ShaderConstantPS;
 
-  const MATRIX4DF wlp = world * LightMat;
+  const MATRIX4DF wlp = world * LightVP;
         MATRIX4DF wlptx;
   {
     const SIZE2DI size = ShadowMap.GetTextureSize();
@@ -517,7 +653,7 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
                     0.0f,-0.5f, 0.0f, 0.0f,
                     0.0f, 0.0f, 0.0f,	0.0f,
                        x,    y, 0.0f, 1.0f );
-    wlptx  = (wlp * bias).GetTranspose();
+    wlptx  = wlp * bias;
   }
 
   const VECTOR4DF eye = VECTOR4DF(0,0,0,1) * (world*m_Camera.GetViewMatrix()).GetInverse();
@@ -665,7 +801,7 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
 
 
 
-void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap )
+void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap )
 {
   const MATRIX4DF wvp = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
   Graphics::IDrawCommand& Command = GetCommand();
@@ -721,7 +857,7 @@ void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model
         //  マテリアルの状態から vshader, pshader, m_ShaderConstant を決める
         const MQOMATERIAL& mat = matlist[prim.MaterialNo];
 
-        MQOShadowShaderSetup( world, wvp, mat, alpha, LightMat, ShadowMap );
+        MQOShadowShaderSetup( world, wvp, mat, alpha, LightVP, ShadowMap );
         Command.SetIndex( index.Get(), 0 );
         Command.DrawIndexed( size/2, 0, 0 );
       }else
