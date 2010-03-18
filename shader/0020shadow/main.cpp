@@ -181,7 +181,7 @@ protected:
           LightList.push_back(light);
         }
         m_Render.SetLight( LightList );
-        const float amb = 0.5f;
+        const float amb = 0.1f;
         m_Render.SetAmbient( COLOR_R32G32B32A32F(amb,amb,amb,1) );
       }
 
