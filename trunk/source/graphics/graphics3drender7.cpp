@@ -156,13 +156,10 @@ static const char* CODE_COLOR_SHADOW2_PS =
 "  float3 half = normalize(-s_LightDir+eye);"
 "  float  spc  = pow(max(0.0,dot(N,half)),max(1,s_Speculer.y)) * s_Speculer.x;"
 ""
-"  float4 worldcolor = s_MaterialColor*(emi + matcolor + s_Ambient) + spc;"
-"  worldcolor.a = s_MaterialColor.a;"
+"  float4 worldcolor = s_MaterialColor*(emi + matcolor)*Input.Color + amb + spc;"
+"  worldcolor.a = s_MaterialColor.a * s_Alpha;"
 ""
-"  float4 ret = Input.Color * worldcolor;"
-"  ret.a *= s_Alpha;"
-""
-"  return ret;"
+"  return worldcolor;"
 "}"
 ;
 
@@ -280,13 +277,10 @@ static const char* CODE_TEXTURE_SHADOW2_PS =
 "  float3 half = normalize(-s_LightDir+eye);"
 "  float  spc  = pow(max(0.0,dot(N,half)),max(1,s_Speculer.y)) * s_Speculer.x;"
 ""
-"  float4 worldcolor = MatColor*(emi + matcolor + s_Ambient) + spc;"
-"  worldcolor.a = s_MaterialColor.a;"
+"  float4 worldcolor = MatColor*(emi + matcolor)*Input.Color + amb + spc;"
+"  worldcolor.a = MatColor.a * s_Alpha;"
 ""
-"  float4 ret = Input.Color * worldcolor;"
-"  ret.a *= s_Alpha;"
-""
-"  return ret;"
+"  return worldcolor;"
 "}"
 ;
 
@@ -657,6 +651,7 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
   }
 
   const VECTOR4DF eye = VECTOR4DF(0,0,0,1) * (world*m_Camera.GetViewMatrix()).GetInverse();
+  const COLOR_R32G32B32A32F ambient(m_Ambient.GetR()*mat.Ambient, m_Ambient.GetG()*mat.Ambient, m_Ambient.GetB()*mat.Ambient,1);
 
 
   switch( ShaderID )
@@ -704,7 +699,7 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
             dst.s_LightColor = COLOR_R32G32B32A32F(1,1,1,1);
           }
 
-          dst.s_Ambient = m_Ambient;
+          dst.s_Ambient = ambient;
           dst.s_Alpha = alpha;
 
           dst.s_Speculer = mat.Specular;
@@ -766,7 +761,7 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
             dst.s_LightColor = COLOR_R32G32B32A32F(1,1,1,1);
           }
 
-          dst.s_Ambient = m_Ambient;
+          dst.s_Ambient = ambient;
           dst.s_Alpha = alpha;
 
           dst.s_Speculer = mat.Specular;

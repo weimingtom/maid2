@@ -135,12 +135,10 @@ static const char* PSCODE_COLOR_DIRECTIONALLIGHT =
 "  float3 half = normalize(-s_LightDir+eye);"
 "  float  spc  = pow(max(0.0,dot(N,half)),s_Speculer.y) * s_Speculer.x;"
 ""
-"  float4 worldcolor = s_MaterialColor*(emi + matcolor + s_Ambient) + spc;"
-"  worldcolor.a = s_MaterialColor.a;"
+"  float4 worldcolor = s_MaterialColor*(emi + matcolor)*Input.Color + amb + spc;"
+"  worldcolor.a = s_MaterialColor.a * s_Alpha;"
 ""
-"  float4 ret = Input.Color * worldcolor;"
-"  ret.a *= s_Alpha;"
-"  return ret;"
+"  return worldcolor;"
 "}"
 ;
 
@@ -304,12 +302,10 @@ static const char* VSCODE_TEXTURE_DIRECTIONALLIGHT_PS =
 "  float3 half = normalize(-s_LightDir+eye);"
 "  float  spc  = pow(max(0.0,dot(N,half)),max(1,s_Speculer.y)) * s_Speculer.x;"
 ""
-"  float4 worldcolor = MatColor*(emi + matcolor + amb) + spc;"
-"  worldcolor.a = MatColor.a;"
+"  float4 worldcolor = s_MaterialColor*(emi + matcolor)*Input.Color + amb + spc;"
+"  worldcolor.a = s_MaterialColor.a * s_Alpha;"
 ""
-"  float4 ret = Input.Color * worldcolor;"
-"  ret.a *= s_Alpha;"
-"  return ret;"
+"  return worldcolor;"
 "}"
 ;
 
@@ -400,7 +396,7 @@ static const char* CODE_BUMP_DIRECTIONALLIGHT_PS =
 "struct PS_INPUT"
 "{"
 "  float4 Position  : SV_Position;" //頂点座標
-"  float4 Diffuse   : COLOR0;"      //デフューズ色
+"  float4 Color   : COLOR0;"      //デフューズ色
 "  float2 TexCoords : TEXCOORD0;"   // テクスチャUV
 "  float3 L    : TEXCOORD1;"   // ライトベクトル
 "  float3 E    : TEXCOORD2;"   // 視線ベクトル
@@ -423,12 +419,10 @@ static const char* CODE_BUMP_DIRECTIONALLIGHT_PS =
 ""
 "  float  spc  = pow(max(0.0,dot(R,L)),max(1,s_Speculer.y)) * s_Speculer.x;"
 ""
-"  float4 worldcolor = MatColor*(emi + matcolor + s_Ambient) + spc;"
-"  worldcolor.a = MatColor.a;"
+"  float4 worldcolor = s_MaterialColor*(emi + matcolor)*Input.Color + amb + spc;"
+"  worldcolor.a = s_MaterialColor.a * s_Alpha;"
 ""
-"  float4 ret = Input.Diffuse * worldcolor;"
-"  ret.a *= s_Alpha;"
-"  return ret;"
+"  return worldcolor;"
 "}"
 ;
 
@@ -612,6 +606,9 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
   Graphics::IDrawCommand& Command = GetCommand();
   const int ShaderID = MaterialType*10 + LightingType;
 
+  const COLOR_R32G32B32A32F ambient(m_Ambient.GetR()*mat.Ambient, m_Ambient.GetG()*mat.Ambient, m_Ambient.GetB()*mat.Ambient,1);
+
+
   {
     const IConstant& con_vs = m_ShaderConstantVS;
     const IConstant& con_ps = m_ShaderConstantPS;
@@ -653,7 +650,7 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
           dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
           dst.s_LightDir = v;
           dst.s_LightColor = light.Diffuse;
-          dst.s_Ambient = m_Ambient;
+          dst.s_Ambient = ambient;
           dst.s_Alpha = alpha;
 
           dst.s_Speculer = mat.Specular;
@@ -712,7 +709,7 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
           dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
           dst.s_LightDir = v;
           dst.s_LightColor = light.Diffuse;
-          dst.s_Ambient = m_Ambient;
+          dst.s_Ambient = ambient;
           dst.s_Alpha = alpha;
 
           dst.s_Speculer = mat.Specular;
@@ -758,7 +755,7 @@ void Graphics3DRender::MQOShaderSetup( const MATRIX4DF& world, const MATRIX4DF& 
           dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
           dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
           dst.s_LightColor = light.Diffuse;
-          dst.s_Ambient = m_Ambient;
+          dst.s_Ambient = ambient;
           dst.s_Alpha = alpha;
 
           dst.s_Speculer = mat.Specular;
