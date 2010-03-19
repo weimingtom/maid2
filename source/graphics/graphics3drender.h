@@ -57,7 +57,11 @@ namespace Maid
     void BltShadow1SR( const MATRIX4DF& LightP, const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec );
     void BltShadow1( const MATRIX4DF& LightP, const MATRIX4DF& world, const ModelMQO& model );
 
-    void BltShadow2( const MATRIX4DF& world, const ModelMQO& model, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap );
+    void BltShadow2( const POINT3DF& Pos, const ModelMQO& model, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap, float ShadowPow );
+    void BltShadow2S ( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap, float ShadowPow );
+    void BltShadow2R ( const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap, float ShadowPow );
+    void BltShadow2SR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap, float ShadowPow );
+    void BltShadow2( const MATRIX4DF& world, const ModelMQO& model, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap, float ShadowPow );
 
     void SetAmbient( const COLOR_R32G32B32A32F& amb );
     void SetLight( const std::vector<LIGHT>& light );
@@ -124,7 +128,7 @@ namespace Maid
 
     void MQOShadowShaderCreate();
     bool MQOShadowShaderIsLoading()const;
-    void MQOShadowShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap );
+    void MQOShadowShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap, float ShadowPow );
 
 
 
