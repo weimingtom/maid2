@@ -154,8 +154,43 @@ protected:
       sc.SetTarget( target );
       sc.SetUpVector( VECTOR3DF(0,1,0) );
 
-      LightVP = sc.GetViewMatrix() * sc.GetProjectionMatrix();
+      const MATRIX4DF CameraView = m_Camera.GetViewMatrix();
+      const MATRIX4DF CameraProj = m_Camera.GetProjectionMatrix();
+      const MATRIX4DF LightView = sc.GetViewMatrix();
+      const MATRIX4DF LightProj = sc.GetProjectionMatrix();
 
+      LightVP = sc.GetViewMatrix() * sc.GetProjectionMatrix();
+//      LightVP = CameraView * CameraProj * CameraView.GetInverse() * LightView * LightProj;
+
+      const VECTOR4DF vec = VECTOR4DF(0,0,0,1) * LightVP;
+/*
+Perspective Shadow Maps
+http://www.t-pot.com/program/48_shadowpers/index.html
+射影変換をしたあとに、スケーリングします。
+これは、透視変換のあとの空間がひしゃげてるので、 いい大きさになるように調整しています。
+そのあとに、透視変換した座標を、もとの世界の真ん中が中心になるようにうごかします。
+そのときに、ビュー行列をつかいます。
+ただし、視点がワールドの中心、見ている向きはZほうこう、上むきは上むきです。
+ただ、そのベクトルは、透視変換で変換したものです（そのあとに、規格化もします）。
+透視変換でうつった世界でのベクトルをつかうと、透視変換した世界での元のワールドの中心がわかります。
+ただ、つくったビュー行列をつかったら、ｘ軸とｙ軸がひっくりかえっていたので、もとにもどす行列をつかいました(べつにいらないけどね)。
+あと、ライトの方向に回したあとは（ライトの方向も、透視変換したあとの向きだよ）、透視変換してテクスチャーにかきます。
+そのとき、最後の深度がいいカンジになるように、射影行列は専用でつくりました。
+あと、真ん中をうごかして、いいかんじの大きさにちょうせいします。
+
+
+/*
+しゃえいへんかんをしたあとに、すけーりんぐします。
+これは、とうしへんかんのあとのくうかんがひしゃげてるので、 いい大きさになるようにちょうせいしています。
+そのあとに、とうしへんかんしたざひょうを、もとのせかいの真ん中がちゅうしんになるようにうごかします。
+そのときに、ビューぎょうれつをつかいます。ただし、してんがワールドのちゅうしん、みているむきはZほうこう、うえむきはうえむきです。
+ただ、そのベクトルは、とうしへんかんでへんかんしたものです（そのあとに、きかくかもします）。
+とうしへんかんでうつったせかいでのベクトルをつかうと、とうしへんかんしたせかいでのもとのワールドのちゅうしんがわかります。
+ただ、つくったビューぎょうれつをつかったら、ｘじくとｙじくがひっくりかえっていたので、もとにもどすぎょうれつをつかいました(べつにいらないけどね)。
+あと、ライトのほうこうにまわしたあとは（ライトのほうこうも、とうしへんかんしたあとのむきだよ）、とうしへんかんしてテクスチャーにかきます。 そのとき、さいごのしんどがいいカンジになるように、しゃえいぎょうれつはせんようでつくりました。
+あと、真ん中をうごかして、いいかんじの大きさにちょうせいします。
+
+*/
       m_Render.BltShadow1( LightVP, POINT3DF(0,0,0), m_Field );
       m_Render.BltShadow1R( LightVP, s_OBJECT1POS, m_Model, m_ModelRotate, VECTOR3DF(0,1,0) );
       m_Render.BltShadow1( LightVP, s_OBJECT2POS, m_Model );
