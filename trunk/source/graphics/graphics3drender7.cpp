@@ -7,6 +7,10 @@ namespace Maid
 {
 
 
+struct CONSTANT_SHADOWMAP_1pass_VS
+{
+  Maid::MATRIX4DF s_mWVP; //  カメラ座標系
+};
 
 //  シャドウマップ用シェーダ(1pass目)
 static const char* CODE_SHADOW1_VS = 
@@ -62,10 +66,15 @@ static const char* CODE_SHADOW1_PS =
 
 
 
-
-
-
 //  シャドウマップ用シェーダ(2pass目・テクスチャ無し)
+struct CONSTANT_SHADOWMAP_2pass_COLOR_VS
+{
+  Maid::MATRIX4DF s_mWVP;         //  カメラ座標系
+  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
+  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
+  Maid::VECTOR4DF s_Eye;          // カメラの向き
+};
+
 static const char* CODE_COLOR_SHADOW2_VS = 
 "cbuffer cbPerObject"
 "{"
@@ -107,9 +116,25 @@ static const char* CODE_COLOR_SHADOW2_VS =
 "}"
 ;
 
-
-
 //  シャドウマップ用シェーダ(2pass目・テクスチャ無し)
+
+struct CONSTANT_SHADOWMAP_2pass_COLOR_PS
+{
+  Maid::COLOR_R32G32B32A32F s_MaterialColor;  // 素材そのものの色
+  Maid::COLOR_R32G32B32A32F s_MaterialLight;  // 素材の光反射率
+  Maid::COLOR_R32G32B32A32F s_MaterialEmissive;  // 素材の自己発光量
+  Maid::VECTOR4DF           s_LightDir;       // 平行光源の向き
+  Maid::COLOR_R32G32B32A32F s_LightColor;     // 平行光源の色
+  Maid::COLOR_R32G32B32A32F s_Ambient;        // ワールド全体の明るさ
+  float           s_Alpha;  //  プログラム側で調節するモデルの透明度
+  float32         s_Tmp[3];       //  s_Alphaレジスタの空き
+  float           s_Speculer;     //  スペキュラの効き具合
+  float           s_SpeculerPow;  //  スペキュラのパワー
+  float32         s_Tmp2[2];      //  s_Speculerレジスタの空き
+  float           s_ShadowPow;    // 影の強さ(0:なし 1.0:真っ黒)
+  float32         s_Tmp3[3];      //  s_ShadowPowレジスタの空き
+};
+
 static const char* CODE_COLOR_SHADOW2_PS = 
 "Texture2D<float4> texture_slot0;"
 "sampler sampler_slot0 = sampler_state"
@@ -127,6 +152,7 @@ static const char* CODE_COLOR_SHADOW2_PS =
 "  float4 s_Ambient      : packoffset( c5 );"  // ワールド全体の明るさ
 "  float1 s_Alpha        : packoffset( c6 );" // プログラム側で調節する透明度
 "  float2 s_Speculer     : packoffset( c7 );" // スペキュラの強さ
+"  float1 s_ShadowPow    : packoffset( c8 );" // 影の強さ(0:なし 1.0:真っ黒)
 "};"
 ""
 "struct PS_INPUT"
@@ -147,8 +173,8 @@ static const char* CODE_COLOR_SHADOW2_PS =
 ""
 "  float LightZ = texture_slot0.Sample(sampler_slot0, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
 "  float PointZ  = Input.Depth.z / Input.Depth.w;" // ライト方向からの現在Ｚ値
-"  float shadow = (LightZ < PointZ-0.03f)? 0.5:1.0;"
-"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol * shadow);"
+"  float shadow = (LightZ < PointZ-0.01f)? s_ShadowPow:0.0;"
+"  float4 matcolor = max(0.0,  s_MaterialLight * (lightcol-shadow));"
 "  float4 emi = s_MaterialEmissive;"
 "  float4 amb = s_Ambient;"
 ""
@@ -173,9 +199,15 @@ static const char* CODE_COLOR_SHADOW2_PS =
 
 
 
-
-
 //  シャドウマップ用シェーダ(2pass目・テクスチャあり)
+struct CONSTANT_SHADOWMAP_2pass_TEXTURE_VS
+{
+  Maid::MATRIX4DF s_mWVP;         //  カメラ座標系
+  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
+  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
+  Maid::VECTOR4DF s_Eye;          //  カメラの向き
+  Maid::SIZE2DF   s_TextureScale; //  テクスチャのＵＶとデータ上のＵＶを調節するための値
+};
 static const char* CODE_TEXTURE_SHADOW2_VS = 
 "cbuffer cbPerObject"
 "{"
@@ -222,17 +254,33 @@ static const char* CODE_TEXTURE_SHADOW2_VS =
 ;
 
 //  シャドウマップ用シェーダ(2pass目・テクスチャあり)
+struct CONSTANT_SHADOWMAP_2pass_TEXTURE_PS
+{
+  Maid::COLOR_R32G32B32A32F s_MaterialColor;  // 素材そのものの色
+  Maid::COLOR_R32G32B32A32F s_MaterialLight;  // 素材の光反射率
+  Maid::COLOR_R32G32B32A32F s_MaterialEmissive;  // 素材の自己発光量
+  Maid::VECTOR4DF           s_LightDir;       // 平行光源の向き
+  Maid::COLOR_R32G32B32A32F s_LightColor;     // 平行光源の色
+  Maid::COLOR_R32G32B32A32F s_Ambient;        // ワールド全体の明るさ
+  float           s_Alpha;  //  プログラム側で調節するモデルの透明度
+  float32         s_Tmp[3];       //  s_Alphaレジスタの空き
+  float           s_Speculer;     //  スペキュラの効き具合
+  float           s_SpeculerPow;  //  スペキュラのパワー
+  float32         s_Tmp2[2];      //  s_Speculerレジスタの空き
+  float           s_ShadowPow;    // 影の強さ(0:なし 1.0:真っ黒)
+  float32         s_Tmp3[3];      //  s_ShadowPowレジスタの空き
+};
 static const char* CODE_TEXTURE_SHADOW2_PS = 
-"Texture2D<float4> texture_slot0;"
-"sampler sampler_slot0 = sampler_state"
+"Texture2D<float4> texture_shadow;"
+"sampler sampler_shadow = sampler_state"
 "{"
-"    Texture   = <texture_slot0>;"
+"    Texture   = <texture_shadow>;"
 "};"
 ""
-"Texture2D<float4> texture_slot1;"
-"sampler sampler_slot1 = sampler_state"
+"Texture2D<float4> texture_decal;"
+"sampler sampler_decal = sampler_state"
 "{"
-"    Texture   = <texture_slot1>;"
+"    Texture   = <texture_decal>;"
 "};"
 ""
 "cbuffer cbPerObject"
@@ -245,6 +293,7 @@ static const char* CODE_TEXTURE_SHADOW2_PS =
 "  float4 s_Ambient      : packoffset( c5 );"  // ワールド全体の明るさ
 "  float1 s_Alpha        : packoffset( c6 );" // プログラム側で調節する透明度
 "  float2 s_Speculer     : packoffset( c7 );" // スペキュラの強さ
+"  float1 s_ShadowPow    : packoffset( c8 );" // 影の強さ(0:なし 1.0:真っ黒)
 "};"
 ""
 "struct PS_INPUT"
@@ -260,16 +309,16 @@ static const char* CODE_TEXTURE_SHADOW2_PS =
 ""
 "float4 main(PS_INPUT Input) : SV_Target"
 "{"
-"  float4 MatColor = texture_slot0.Sample(sampler_slot0,Input.TexCoords) * s_MaterialColor;"
+"  float4 MatColor = texture_decal.Sample(sampler_decal,Input.TexCoords) * s_MaterialColor;"
 "  float3 N = normalize(Input.Normal);"
 ""
 "  float  lightpow = dot(N,-s_LightDir);"
 "  float4 lightcol = s_LightColor * lightpow;"
 ""
-"  float LightZ = texture_slot1.Sample(sampler_slot1, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
+"  float LightZ = texture_shadow.Sample(sampler_shadow, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
 "  float PointZ  = Input.Depth.z / Input.Depth.w;" // ライト方向からの現在Ｚ値
-"  float shadow = (LightZ < PointZ-0.03f)? 0.5:1.0;"
-"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol * shadow );"
+"  float shadow = (LightZ < PointZ-0.01f)? s_ShadowPow:0.0;"
+"  float4 matcolor = max(0.0,  s_MaterialLight * (lightcol-shadow) );"
 "  float4 emi = s_MaterialEmissive;"
 "  float4 amb = s_Ambient;"
 ""
@@ -293,6 +342,15 @@ static const char* CODE_TEXTURE_SHADOW2_PS =
 
 
 //  シャドウマップ用シェーダ(2pass目・テクスチャあり法線マップあり)
+struct CONSTANT_SHADOWMAP_2pass_BUMP_VS
+{
+  Maid::MATRIX4DF s_mWVP;         //  カメラ座標系
+  Maid::MATRIX4DF s_mWLightP;     //  ライト射影空間
+  Maid::MATRIX4DF s_mWLightPTex;  //  ライト射影空間->テクスチャ座標系
+  Maid::VECTOR4DF s_Eye;          //  カメラの向き
+  Maid::VECTOR4DF s_LightDir;     //  平行光源の向き
+  Maid::SIZE2DF   s_TextureScale; //  テクスチャのＵＶとデータ上のＵＶを調節するための値
+};
 static const char* CODE_BUMP_SHADOW2_VS = 
 "cbuffer cbPerObject"
 "{"
@@ -301,7 +359,7 @@ static const char* CODE_BUMP_SHADOW2_VS =
 "  matrix s_mWLightPTex : packoffset( c8 );" // ローカルからライト射影空間->テクスチャ座標への座標変換
 "  float4 s_Eye   : packoffset( c12 );" // カメラの向き
 "  float4 s_LightDir     : packoffset( c13 );"  // 平行光源の向き
-"  float2 s_TextureScale : packoffset( c14 );"   //テクスチャのＵＶとデータ上のＵＶを調節するための値
+"  float2 s_TextureScale : packoffset( c14 );"  //テクスチャのＵＶとデータ上のＵＶを調節するための値
 "};"
 ""
 "struct VS_INPUT"
@@ -352,20 +410,39 @@ static const char* CODE_BUMP_SHADOW2_VS =
 "}"
 ;
 
-;
-
 //  シャドウマップ用シェーダ(2pass目・テクスチャあり法線マップあり)
+struct CONSTANT_SHADOWMAP_2pass_BUMP_PS
+{
+  Maid::COLOR_R32G32B32A32F s_MaterialColor;  // 素材そのものの色
+  Maid::COLOR_R32G32B32A32F s_MaterialLight;  // 素材の光反射率
+  Maid::COLOR_R32G32B32A32F s_MaterialEmissive;  // 素材の自己発光量
+  Maid::COLOR_R32G32B32A32F s_LightColor;     // 平行光源の色
+  Maid::COLOR_R32G32B32A32F s_Ambient;        // ワールド全体の明るさ
+  float           s_Alpha;  //  プログラム側で調節するモデルの透明度
+  float32         s_Tmp[3];       //  s_Alphaレジスタの空き
+  float           s_Speculer;     //  スペキュラの効き具合
+  float           s_SpeculerPow;  //  スペキュラのパワー
+  float32         s_Tmp2[2];      //  s_Speculerレジスタの空き
+  float           s_ShadowPow;    // 影の強さ(0:なし 1.0:真っ黒)
+  float32         s_Tmp3[3];      //  s_ShadowPowレジスタの空き
+};
 static const char* CODE_BUMP_SHADOW2_PS = 
-"Texture2D<float4> texture_slot0;"
-"sampler sampler_slot0 = sampler_state"
+"Texture2D<float4> texture_shadow;"
+"sampler sampler_shadow = sampler_state"
 "{"
-"    Texture   = <texture_slot0>;"
+"    Texture   = <texture_shadow>;"
 "};"
 ""
-"Texture2D<float4> texture_slot1;"
-"sampler sampler_slot1 = sampler_state"
+"Texture2D<float4> texture_decal;"
+"sampler sampler_decal = sampler_state"
 "{"
-"    Texture   = <texture_slot1>;"
+"    Texture   = <texture_decal>;"
+"};"
+""
+"Texture2D<float4> texture_normal;"
+"sampler sampler_normal = sampler_state"
+"{"
+"    Texture   = <texture_normal>;"
 "};"
 ""
 "cbuffer cbPerObject"
@@ -373,50 +450,47 @@ static const char* CODE_BUMP_SHADOW2_PS =
 "  float4 s_MaterialColor : packoffset( c0 );"  // 素材そのものの色
 "  float4 s_MaterialLight : packoffset( c1 );" // 素材の光源反射率
 "  float4 s_MaterialEmissive : packoffset( c2 );" // 素材の自己発光量
-"  float4 s_LightDir     : packoffset( c3 );"  // 平行光源の向き
-"  float4 s_LightColor   : packoffset( c4 );"  // 平行光源の色
-"  float4 s_Ambient      : packoffset( c5 );"  // ワールド全体の明るさ
-"  float1 s_Alpha        : packoffset( c6 );" // プログラム側で調節する透明度
-"  float2 s_Speculer     : packoffset( c7 );" // スペキュラの強さ
+"  float4 s_LightColor   : packoffset( c3 );"  // 平行光源の色
+"  float4 s_Ambient      : packoffset( c4 );"  // ワールド全体の明るさ
+"  float1 s_Alpha        : packoffset( c5 );" // プログラム側で調節する透明度
+"  float2 s_Speculer     : packoffset( c6 );" // スペキュラの強さ
+"  float1 s_ShadowPow    : packoffset( c7 );" // 影の強さ(0:なし 1.0:真っ黒)
 "};"
 ""
 "struct PS_INPUT"
 "{"
 "  float4 Position    : SV_Position;" //頂点座標
-"  float4 Color       : COLOR0;"      //頂点色影響度
+"  float4 Color       : COLOR0; "     //頂点色影響度
 "  float2 TexCoords   : TEXCOORD0;"   //テクスチャUV
-"  float4 Normal      : TEXCOORD1;"
-"  float3 Eye         : TEXCOORD2;"   // 視線ベクトル
+"  float3 E           : TEXCOORD1;"   // 視線ベクトル
+"  float4 L           : TEXCOORD2;"
 "  float4 ShadowMapUV : TEXCOORD3;"
 "  float4 Depth       : TEXCOORD4;"
 "};"
 ""
 "float4 main(PS_INPUT Input) : SV_Target"
 "{"
-"  float4 MatColor = texture_slot0.Sample(sampler_slot0,Input.TexCoords) * s_MaterialColor;"
-"  float3 N = normalize(Input.Normal);"
+"  float4 MatColor = texture_decal.Sample(sampler_decal,Input.TexCoords) * s_MaterialColor;"
+"  float3 N = 2.0f*texture_normal.Sample(sampler_normal,Input.TexCoords).xyz-1.0;"
+"  float3 L = normalize(Input.L);"					// ライトベクトル
+"  float3 R = reflect(-normalize(Input.E), N);"		// 反射ベクトル
 ""
-"  float  lightpow = dot(N,-s_LightDir);"
+"  float  lightpow = max(0.0,  dot(N,L));"
 "  float4 lightcol = s_LightColor * lightpow;"
 ""
-"  float LightZ = texture_slot1.Sample(sampler_slot1, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
+"  float LightZ = texture_shadow.Sample(sampler_shadow, Input.ShadowMapUV.xy/Input.ShadowMapUV.ww ).r;" // ライト方向からの最前面Ｚ値
 "  float PointZ  = Input.Depth.z / Input.Depth.w;" // ライト方向からの現在Ｚ値
-"  float shadow = (LightZ < PointZ-0.03f)? 0.5:1.0;"
-"  float4 matcolor = max(0.0,  s_MaterialLight * lightcol * shadow );"
+"  float shadow = (LightZ < PointZ-0.01f)? s_ShadowPow:0.0;"
+"  float4 matcolor = max(0.0,  s_MaterialLight * (lightcol - shadow) );"
 "  float4 emi = s_MaterialEmissive;"
 "  float4 amb = s_Ambient;"
 ""
-"  float3 eye  = normalize(Input.Eye);"
-"  float3 half = normalize(-s_LightDir+eye);"
-"  float  spc  = pow(max(0.0,dot(N,half)),max(1,s_Speculer.y)) * s_Speculer.x;"
+"  float  spc  = pow(max(0.0,dot(R,L)),max(1,s_Speculer.y)) * s_Speculer.x;"
 ""
-"  float4 worldcolor = MatColor*(emi + matcolor + s_Ambient) + spc;"
-"  worldcolor.a = s_MaterialColor.a;"
+"  float4 worldcolor = MatColor*(emi + matcolor)*Input.Color + amb + spc;"
+"  worldcolor.a = s_MaterialColor.a*s_Alpha;"
 ""
-"  float4 ret = Input.Color * worldcolor;"
-"  ret.a *= s_Alpha;"
-""
-"  return ret;"
+"  return worldcolor;"
 "}"
 ;
 
@@ -461,6 +535,22 @@ void Graphics3DRender::MQOShadowShaderCreate()
         {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
         {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
         {"TEXCOORD", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT2, 3, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+      };
+      m_ShadowVertexShader[passid].Create( vs_code );
+      m_ShadowLayout[passid].Create( element, NUMELEMENTS(element), vs_code );
+      m_ShadowPixelShader[passid].Create( ps_code );
+    }
+    {
+      const int passid = 2*10 + 2;  //  2pass目・テクスチャアリ、バンプアリ
+      const String vs_code = MAIDTEXT(CODE_BUMP_SHADOW2_VS);
+      const String ps_code = MAIDTEXT(CODE_BUMP_SHADOW2_PS);
+      Graphics::INPUT_ELEMENT element[] =
+      {
+        {"POSITION", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 0, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"COLOR",    0, Graphics::INPUT_ELEMENT::TYPE_FLOAT4, 1, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"NORMAL",   0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 2, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"TEXCOORD", 0, Graphics::INPUT_ELEMENT::TYPE_FLOAT2, 3, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
+        {"TANGENT",  0, Graphics::INPUT_ELEMENT::TYPE_FLOAT3, 4, 0, Graphics::INPUT_ELEMENT::METHOD_DEFAULT},
       };
       m_ShadowVertexShader[passid].Create( vs_code );
       m_ShadowLayout[passid].Create( element, NUMELEMENTS(element), vs_code );
@@ -618,7 +708,7 @@ void Graphics3DRender::BltShadow1( const MATRIX4DF& LightVP, const MATRIX4DF& wo
 
 
 
-void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap )
+void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRIX4DF& wvp, const MQOMATERIAL& mat, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap, float ShadowPow )
 {
   int MaterialType = 0;
   if( mat.Texture.IsEmpty() )
@@ -626,9 +716,8 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
     MaterialType = 0;
   }else
   {
-    MaterialType = 1;
-//    if( mat.Bump.IsEmpty() ){ MaterialType = 1; }
-//    else                    { MaterialType = 2; }
+    if( mat.Bump.IsEmpty() ){ MaterialType = 1; }
+    else                    { MaterialType = 2; }
   }
   Graphics::IDrawCommand& Command = GetCommand();
   const int ShaderID = 20+MaterialType;
@@ -640,9 +729,10 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
         MATRIX4DF wlptx;
   {
     const SIZE2DI size = ShadowMap.GetTextureSize();
+    const float texel = m_CommandCtl.GetTexelMapValue();
 
-    const float x = 0.5f + (0.5f / (float)size.w);
-    const float y = 0.5f + (0.5f / (float)size.h);
+    const float x = 0.5f - (texel / (float)size.w);
+    const float y = 0.5f - (texel / (float)size.h);
     MATRIX4DF bias(	0.5f, 0.0f, 0.0f, 0.0f,
                     0.0f,-0.5f, 0.0f, 0.0f,
                     0.0f, 0.0f, 0.0f,	0.0f,
@@ -653,6 +743,8 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
   const VECTOR4DF eye = VECTOR4DF(0,0,0,1) * (world*m_Camera.GetViewMatrix()).GetInverse();
   const COLOR_R32G32B32A32F ambient(m_Ambient.GetR()*mat.Ambient, m_Ambient.GetG()*mat.Ambient, m_Ambient.GetB()*mat.Ambient,1);
 
+  const IMaterial&  m = ShadowMap;
+  Command.PSSetMaterial(0, m.Get() );
 
   switch( ShaderID )
   {
@@ -704,12 +796,11 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
 
           dst.s_Speculer = mat.Specular;
           dst.s_SpeculerPow = mat.Power;
+          dst.s_ShadowPow = ShadowPow;
         }
         Command.ResourceUnmap( con_ps.Get(), sub );
       }
 
-      const IMaterial&  m = ShadowMap;
-      Command.PSSetMaterial(0, m.Get() );
     }break;
 
   case 21:
@@ -769,12 +860,75 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
         }
         Command.ResourceUnmap( con_ps.Get(), sub );
       }
-
       const IMaterial&  t = mat.Texture;
-      Command.PSSetMaterial(0, t.Get() );
-      const IMaterial&  s = ShadowMap;
-      Command.PSSetMaterial(1, s.Get() );
+      Command.PSSetMaterial(1, t.Get() );
+    }break;
 
+  case 22:
+    {
+      VECTOR4DF LightDir; 
+      COLOR_R32G32B32A32F LightColor;
+      {
+        if( !m_Light.empty() )
+        {
+          const LIGHT& light = m_Light[0];
+          const VECTOR4DF v = 
+            (VECTOR4DF(light.Direction.x, light.Direction.y, light.Direction.z, 0 )
+            * world.GetInverse()).Normalize()
+            ;
+          LightDir = v;
+          LightColor = light.Diffuse;
+        }else
+        {
+          LightDir = VECTOR4DF(1,0,0,1);
+          LightColor = COLOR_R32G32B32A32F(1,1,1,1);
+        }
+      }
+      {
+        const int sub = 0;
+        Graphics::MAPPEDRESOURCE map_vs;
+        Command.ResourceMap( con_vs.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_vs );
+        {
+          CONSTANT_SHADOWMAP_2pass_BUMP_VS& dst = *((CONSTANT_SHADOWMAP_2pass_BUMP_VS*)map_vs.pData);
+          dst.s_mWVP  = wvp.GetTranspose();
+          dst.s_mWLightP    = wlp.GetTranspose();
+          dst.s_mWLightPTex = wlptx.GetTranspose();
+          dst.s_Eye = eye;
+          dst.s_LightDir = LightDir;
+          if( mat.Texture.IsSetupped() )
+          {
+            const SIZE2DF real = mat.Texture.GetRealSize();
+            const SIZE2DF tex  = mat.Texture.GetTextureSize();
+            dst.s_TextureScale = SIZE2DF(real.w/tex.w,real.h/tex.h);
+          }
+        }
+        Command.ResourceUnmap( con_vs.Get(), sub );
+      }
+
+      {
+        const int sub = 0;
+        Graphics::MAPPEDRESOURCE map_ps;
+        Command.ResourceMap( con_ps.Get(), sub, Graphics::IDrawCommand::MAPTYPE_WRITE_DISCARD, 0, map_ps );
+
+        {
+          //  ライトをまわしてシェーダ演算量を減らす
+          CONSTANT_SHADOWMAP_2pass_BUMP_PS& dst = *((CONSTANT_SHADOWMAP_2pass_BUMP_PS*)map_ps.pData);
+          dst.s_MaterialColor = mat.Color;
+          dst.s_MaterialLight = COLOR_R32G32B32A32F(mat.Diffuse,mat.Diffuse,mat.Diffuse,1);
+          dst.s_MaterialEmissive = COLOR_R32G32B32A32F(mat.Emissive,mat.Emissive,mat.Emissive,1);
+          dst.s_LightColor = LightColor;
+          dst.s_Ambient = ambient;
+          dst.s_Alpha = alpha;
+
+          dst.s_Speculer = mat.Specular;
+          dst.s_SpeculerPow = mat.Power;
+        }
+        Command.ResourceUnmap( con_ps.Get(), sub );
+      }
+      const IMaterial&  t = mat.Texture;
+      Command.PSSetMaterial(1, t.Get() );
+      const IMaterial&  b = mat.Bump;
+      Command.PSSetMaterial(2, b.Get() );
     }break;
   }
 
@@ -789,14 +943,53 @@ void Graphics3DRender::MQOShadowShaderSetup( const MATRIX4DF& world, const MATRI
   Command.VSSetShader( vs.Get() );
   Command.PSSetShader( ps.Get() );
 
+  {
+    const ISamplerState& state = m_SamplerLinar;
+    Command.PSSetSamplerState( 0, state.Get() );
+    Command.PSSetSamplerState( 1, state.Get() );
+    Command.PSSetSamplerState( 2, state.Get() );
+  }
+
 }
 
 
 
+void Graphics3DRender::BltShadow2( const POINT3DF& Pos, const ModelMQO& model, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap, float ShadowPow )
+{
+  const MATRIX4DF world = MATRIX4DF().SetTranslate(Pos.x,Pos.y,Pos.z);
+  BltShadow2( world, model, alpha, LightVP, ShadowMap, ShadowPow );
+}
+
+void Graphics3DRender::BltShadow2S ( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap, float ShadowPow )
+{
+  const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
+  const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
+
+  const MATRIX4DF world = s*t;
+  BltShadow2( world, model, alpha, LightVP, ShadowMap, ShadowPow );
+}
+
+void Graphics3DRender::BltShadow2R ( const POINT3DF& Pos, const ModelMQO& model, float Rotate, const VECTOR3DF& vec, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap, float ShadowPow )
+{
+  const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
+  const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
+
+  const MATRIX4DF world = r*t;
+  BltShadow2( world, model, alpha, LightVP, ShadowMap, ShadowPow );
+}
+
+void Graphics3DRender::BltShadow2SR( const POINT3DF& Pos, const ModelMQO& model, const SIZE3DF& Scale, float Rotate, const VECTOR3DF& vec, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap, float ShadowPow )
+{
+  const MATRIX4DF t = MATRIX4DF().SetTranslate( Pos.x, Pos.y, Pos.z );
+  const MATRIX4DF s = MATRIX4DF().SetScale( Scale.w, Scale.h, Scale.d );
+  const MATRIX4DF r = MATRIX4DF().SetRotationXYZ( Rotate, vec );
+
+  const MATRIX4DF world = s*r*t;
+  BltShadow2( world, model, alpha, LightVP, ShadowMap, ShadowPow );
+}
 
 
-
-void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap )
+void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model, float alpha, const MATRIX4DF& LightVP, const Texture2DBase& ShadowMap, float ShadowPow )
 {
   const MATRIX4DF wvp = world * m_Camera.GetViewMatrix() * m_Camera.GetProjectionMatrix();
   Graphics::IDrawCommand& Command = GetCommand();
@@ -852,7 +1045,7 @@ void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model
         //  マテリアルの状態から vshader, pshader, m_ShaderConstant を決める
         const MQOMATERIAL& mat = matlist[prim.MaterialNo];
 
-        MQOShadowShaderSetup( world, wvp, mat, alpha, LightVP, ShadowMap );
+        MQOShadowShaderSetup( world, wvp, mat, alpha, LightVP, ShadowMap, ShadowPow );
         Command.SetIndex( index.Get(), 0 );
         Command.DrawIndexed( size/2, 0, 0 );
       }else

@@ -166,7 +166,7 @@ protected:
       const IDepthStencil& ds = GetGraphicsCore().GetDepthStencil();
 
       m_Command.SetRenderTarget( rt, ds );
-      m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,0,0,0) );
+      m_Command.ClearRenderTarget( COLOR_A32B32G32R32F(1,1,0.5f,0) );
       m_Command.ClearDepthStencil( 1.0f, 0x00 );
       m_Render.SetCamera(m_Camera);
 
@@ -185,22 +185,10 @@ protected:
         m_Render.SetAmbient( COLOR_R32G32B32A32F(amb,amb,amb,1) );
       }
 
-//void Graphics3DRender::BltShadow2( const MATRIX4DF& world, const ModelMQO& model, const MATRIX4DF& LightMat, const Texture2DBase& ShadowMap )
-
-      //const VECTOR4DF pos_w = VECTOR4DF(1,1,1,1) * (nc.GetViewMatrix()*nc.GetProjectionMatrix()).GetInverse();
-
-      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Field, 1.0f, LightVP, m_ShadowBuffer );
-
-//      m_Render.Blt( POINT3DF(0,0,0), m_Field, 1 );
-
-      MATRIX4DF mat = MATRIX4DF().SetRotationY(m_ModelRotate)
-        * MATRIX4DF().SetTranslate(s_OBJECT1POS.x,s_OBJECT1POS.y,s_OBJECT1POS.z)
-        ;
-
-      m_Render.BltShadow2( mat, m_Model, 1.0f, LightVP, m_ShadowBuffer );
-//      m_Render.BltR( s_OBJECT1POS, m_Model, 1, m_ModelRotate, VECTOR3DF(0,1,0) );
-//      m_Render.BltShadow2( MATRIX4DF().SetTranslate(0,0,0), m_Model, m_ModelAlpha, WLightP, m_ShadowBuffer );
-//      m_Render.Blt( s_OBJECT2POS, m_Model, m_ModelAlpha );
+      const float shadowpow = 0.2f;
+      m_Render.BltShadow2( POINT3DF(0,0,0), m_Field, 1.0f, LightVP, m_ShadowBuffer, shadowpow );
+      m_Render.BltShadow2R( s_OBJECT1POS, m_Model, m_ModelRotate, VECTOR3DF(0,1,0), 1.0f, LightVP, m_ShadowBuffer, shadowpow );
+      m_Render.BltShadow2( s_OBJECT2POS, m_Model, m_ModelAlpha, LightVP, m_ShadowBuffer, shadowpow );
     }
 
     {

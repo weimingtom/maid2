@@ -11,9 +11,9 @@ Scene {
 	amb 0.250 0.250 0.250
 }
 Material 3 {
-	"mat1" shader(3) col(0.000 1.000 0.000 1.000) dif(0.800) amb(0.600) emi(0.000) spc(0.000) power(5.00)
-	"mat2" shader(3) col(1.000 1.000 1.000 1.000) dif(0.800) amb(0.600) emi(0.000) spc(0.000) power(5.00) tex("D:\works\maid2\shader\bin\nc1673.bmp")
-	"バンプ" shader(3) col(1.000 1.000 1.000 1.000) dif(0.800) amb(0.600) emi(0.000) spc(0.000) power(5.00) tex("D:\works\maid2\shader\bin\nc1673.bmp") bump("D:\works\maid2\shader\bin\normal.bmp")
+	"mat1" shader(3) col(0.000 1.000 0.000 1.000) dif(0.800) amb(1.000) emi(0.100) spc(1.000) power(5.00)
+	"mat2" shader(3) col(1.000 1.000 1.000 1.000) dif(0.800) amb(0.600) emi(0.100) spc(0.000) power(5.00) tex("D:\works\maid2\shader\bin\nc1673.bmp")
+	"バンプ" shader(3) col(1.000 1.000 1.000 1.000) dif(0.800) amb(0.600) emi(0.100) spc(0.000) power(5.00) tex("D:\works\maid2\shader\bin\nc1673.bmp") bump("D:\works\maid2\shader\bin\normal.bmp")
 }
 Object "obj1" {
 	depth 0
