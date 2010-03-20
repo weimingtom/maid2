@@ -144,6 +144,7 @@ protected:
 
       //  これで center を中心とした半径 CullR がすっぽり入るシャドウマップを作れる
       //  8bit channel にレンダリングするので 精度は (fat-near) / 2^8  単位になる
+#if 1
       const SIZE2DF size = static_cast<Texture2DBase&>(m_ShadowBuffer).GetTextureSize();
       const POINT3DF target(0,0,0);
       const POINT3DF pos = target - (LightDir*CullR);
@@ -154,15 +155,9 @@ protected:
       sc.SetTarget( target );
       sc.SetUpVector( VECTOR3DF(0,1,0) );
 
-      const MATRIX4DF CameraView = m_Camera.GetViewMatrix();
-      const MATRIX4DF CameraProj = m_Camera.GetProjectionMatrix();
-      const MATRIX4DF LightView = sc.GetViewMatrix();
-      const MATRIX4DF LightProj = sc.GetProjectionMatrix();
-
       LightVP = sc.GetViewMatrix() * sc.GetProjectionMatrix();
-//      LightVP = CameraView * CameraProj * CameraView.GetInverse() * LightView * LightProj;
-
-      const VECTOR4DF vec = VECTOR4DF(0,0,0,1) * LightVP;
+#else
+      // PSM がうまく動かないのでスルー
 /*
 Perspective Shadow Maps
 http://www.t-pot.com/program/48_shadowpers/index.html
@@ -177,20 +172,53 @@ http://www.t-pot.com/program/48_shadowpers/index.html
 あと、ライトの方向に回したあとは（ライトの方向も、透視変換したあとの向きだよ）、透視変換してテクスチャーにかきます。
 そのとき、最後の深度がいいカンジになるように、射影行列は専用でつくりました。
 あと、真ん中をうごかして、いいかんじの大きさにちょうせいします。
-
-
-/*
-しゃえいへんかんをしたあとに、すけーりんぐします。
-これは、とうしへんかんのあとのくうかんがひしゃげてるので、 いい大きさになるようにちょうせいしています。
-そのあとに、とうしへんかんしたざひょうを、もとのせかいの真ん中がちゅうしんになるようにうごかします。
-そのときに、ビューぎょうれつをつかいます。ただし、してんがワールドのちゅうしん、みているむきはZほうこう、うえむきはうえむきです。
-ただ、そのベクトルは、とうしへんかんでへんかんしたものです（そのあとに、きかくかもします）。
-とうしへんかんでうつったせかいでのベクトルをつかうと、とうしへんかんしたせかいでのもとのワールドのちゅうしんがわかります。
-ただ、つくったビューぎょうれつをつかったら、ｘじくとｙじくがひっくりかえっていたので、もとにもどすぎょうれつをつかいました(べつにいらないけどね)。
-あと、ライトのほうこうにまわしたあとは（ライトのほうこうも、とうしへんかんしたあとのむきだよ）、とうしへんかんしてテクスチャーにかきます。 そのとき、さいごのしんどがいいカンジになるように、しゃえいぎょうれつはせんようでつくりました。
-あと、真ん中をうごかして、いいかんじの大きさにちょうせいします。
-
 */
+
+      const MATRIX4DF CameraView = nc.GetViewMatrix();
+      const MATRIX4DF CameraProj = nc.GetProjectionMatrix();
+
+            MATRIX4DF PSMVP;
+            {
+              const float d = VECTOR3DF(m_Camera.GetPosition(), m_Camera.GetTarget()).Length();
+              const MATRIX4DF s = MATRIX4DF().SetScale( d, d, 10000*d*d );
+
+              const float q = 1.0f/(s_CAMERA_FAR-s_CAMERA_NEAR);
+              const MATRIX4DF PSMProj = MATRIX4DF(1,0,0,0,
+                                                  0,1,0,0,
+                                                  0,0,q,1,
+                                                  0,0,-q*s_CAMERA_NEAR,0 ) * s;
+
+              const MATRIX4DF vp = CameraView * PSMProj;
+              VECTOR4DF c = VECTOR4DF(0,0,0,1) * vp;
+              VECTOR4DF t = VECTOR4DF(0,0,1,1) * vp;
+              VECTOR4DF u = VECTOR4DF(0,1,0,1) * vp;
+
+              const POINT3DF  eye   ( c.x/c.w, c.y/c.w, c.z/c.w );
+              const POINT3DF  target( t.x/t.w, t.y/t.w, t.z/t.w );
+              const VECTOR3DF up    ( u.x/u.w, u.y/u.w, u.z/u.w );
+
+              const MATRIX4DF PSMViewI = MATRIX4DF().SetLookAt( eye, target, up );
+              const MATRIX4DF Sign = MATRIX4DF().SetScale(-1,-1, 1);
+
+              PSMVP = CameraView * PSMProj * PSMViewI * Sign;
+            }
+            {
+              const float zoom = 10.0f;
+              VECTOR4DF v = VECTOR4DF(LightDir.x*zoom,LightDir.y*zoom,LightDir.z*zoom,1) * PSMVP;
+              const POINT3DF  eye   ( v.x/v.w, v.y/v.w, v.z/v.w );
+              const POINT3DF  target( 0,0,0 );
+              const VECTOR3DF up    ( 0,1,0 );
+
+              const MATRIX4DF View = MATRIX4DF().SetLookAt( eye, target, up );
+//              const MATRIX4DF Proj = MATRIX4DF().SetPerspective( DEGtoRAD(60.0f), 1, CullR*0.6f, CullR*1.3f );
+              const MATRIX4DF Proj = MATRIX4DF().SetPerspective( DEGtoRAD(60.0f), 1, 1, CullR*2 );
+              const MATRIX4DF Shift = MATRIX4DF().SetTranslate(-0.5f,0.5f, 0);
+
+              LightVP = PSMVP * View * Proj * Shift;
+            }
+#endif
+
+
       m_Render.BltShadow1( LightVP, POINT3DF(0,0,0), m_Field );
       m_Render.BltShadow1R( LightVP, s_OBJECT1POS, m_Model, m_ModelRotate, VECTOR3DF(0,1,0) );
       m_Render.BltShadow1( LightVP, s_OBJECT2POS, m_Model );
