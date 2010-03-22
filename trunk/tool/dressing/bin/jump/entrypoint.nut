@@ -1,5 +1,3 @@
-import( "math.nut" );
-import( "collision.nut" );
 import( "gameroutine.nut" );
 
 

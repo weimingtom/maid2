@@ -110,7 +110,7 @@ class SceneStage extends IScene
     foreach( block in _Block )
     {
       local b = block.GetCollision()
-      if( COLLISION.RectRect( rect, b ) )
+      if( COLLISION.RECT2DRECT2D( rect, b ) )
       {
         return block
       }
