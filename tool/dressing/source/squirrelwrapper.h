@@ -45,6 +45,13 @@ public:
   typedef std::vector<CppDrawObject*> OBJECTLIST;
   struct SCENEINFO
   {
+    Maid::POINT3DF CameraEye;
+    Maid::POINT3DF CameraTarget;
+    Maid::POINT3DF CameraUp;
+    float CameraFov;
+    float CameraAspect;
+    float CameraNear;
+    float CameraFar;
     OBJECTLIST ObjectList;
   };
 
@@ -72,6 +79,12 @@ private:
 
   Maid::FUNCTIONRESULT  ReadStorageArray( HSQUIRRELVM v, Maid::XMLWriter& xml );
   Maid::FUNCTIONRESULT  ReadStorageTable( HSQUIRRELVM v, Maid::XMLWriter& xml );
+
+  Maid::FUNCTIONRESULT  ReadCameraData( HSQUIRRELVM v, SCENEINFO& info );
+  Maid::FUNCTIONRESULT  ReadDrawObject( HSQUIRRELVM v, SCENEINFO& info );
+
+  float GetFloat( HSQUIRRELVM v, const SQChar* p );
+  int   GetInteger( HSQUIRRELVM v, const SQChar* p );
 
 private:
   HSQUIRRELVM m_SquirrelVM;

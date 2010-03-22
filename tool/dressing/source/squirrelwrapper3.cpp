@@ -114,6 +114,7 @@ FUNCTIONRESULT SquirrelWrapper::WakeupInputState( const Maid::Keybord& key, cons
   return Wakeup( ret );
 }
 
+
 FUNCTIONRESULT SquirrelWrapper::WakeupStorageLoad( XMLReader& reader, RETURNCODE& ret )
 {
 /*

@@ -47,6 +47,9 @@ void MyApp::GameDraw()
 
     std::sort( dat.begin(), dat.end(), DRAWLISTLess() );
 
+    GraphicsCommandControl& Command = m_Command;
+    Command.ClearDepth(); //  シーンごとにZをクリア
+
     for( int j=0; j<(int)dat.size(); ++j )
     {
       DRAWLIST& obj = dat[j];

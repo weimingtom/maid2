@@ -133,30 +133,30 @@ class Hero extends DrawObject
   function GetTopCollision()
   {
     local tmp = GetCollision()
-    return RECT(tmp.left+10, tmp.top, tmp.w-10-10, 10 );
+    return RECT2D(tmp.left+10, tmp.top, tmp.w-10-10, 10 );
   }
 
   function GetBottomCollision()
   {
     local tmp = GetCollision()
-    return RECT(tmp.left+10, tmp.bottom-5, tmp.w-10-10, 10 );
+    return RECT2D(tmp.left+10, tmp.bottom-5, tmp.w-10-10, 10 );
   }
 
   function GetRightCollision()
   {
     local tmp = GetCollision()
-    return RECT( tmp.right-5, tmp.top+5, 5, tmp.h-5-5 );
+    return RECT2D( tmp.right-5, tmp.top+5, 5, tmp.h-5-5 );
   }
 
   function GetLeftCollision()
   {
     local tmp = GetCollision()
-    return RECT( tmp.left, tmp.top+5, 5, tmp.h-5-5 );
+    return RECT2D( tmp.left, tmp.top+5, 5, tmp.h-5-5 );
   }
 
   function GetCollision()
   {
-    return RECT( x-Type.CenterX, y-Type.CenterY, Type.Width, Type.Height )
+    return RECT2D( x-Type.CenterX, y-Type.CenterY, Type.Width, Type.Height )
   
   }
 }

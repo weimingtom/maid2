@@ -17,11 +17,17 @@ static int RandI( int min, int max )
   return GlobalRand::GetI( min, max );
 }
 
+static float mysqrt( float val )
+{
+  return Math<float>::sqrt( val );
+}
+
 void SquirrelWrapper::SetupBindObject()
 {
   {
     RootTable()
       .Func( _SC("RandI") , &RandI )
+      .Func( _SC("sqrt") , &mysqrt )
       ;
 
   }
@@ -49,7 +55,7 @@ void SquirrelWrapper::ReleaseBindObject()
 
 }
 
-
+#if 0
 FUNCTIONRESULT SquirrelWrapper::GetDrawObjectList( SCENEINFOLIST& list )
 {
   HSQUIRRELVM v = m_SquirrelVM;
@@ -102,6 +108,156 @@ FUNCTIONRESULT SquirrelWrapper::GetDrawObjectList( SCENEINFOLIST& list )
 
   return FUNCTIONRESULT_OK;
 }
+
+#else
+FUNCTIONRESULT SquirrelWrapper::GetDrawObjectList( SCENEINFOLIST& list )
+{
+  HSQUIRRELVM v = m_SquirrelVM;
+
+  sq_pushroottable(v);
+  sq_pushstring( v, L"admin", -1 );
+  SQRESULT ret_admin = sq_get(v, -2);
+  if( SQ_FAILED(ret_admin) ) { sq_pop( v, 1 ); return FUNCTIONRESULT_ERROR; }
+  sq_pushstring( v, L"GetDrawObject", -1 );
+  SQRESULT ret_GetGameObject = sq_get(v, -2);
+  if( SQ_FAILED(ret_GetGameObject) ) { sq_pop( v, 2 ); return FUNCTIONRESULT_ERROR; }
+  sq_pushstring( v, L"admin", -1 );
+  SQRESULT ret_admin_ = sq_get(v, -4);
+  if( SQ_FAILED(ret_admin_) ) { sq_pop( v, 3 ); return FUNCTIONRESULT_ERROR; }
+
+  const SQRESULT ret_call = sq_call(v, 1,  SQTrue, IsRaiseError() );
+  const SQObjectType resulttype = sq_gettype(v, -1);
+
+  sq_pushnull(v);
+  while( true )
+  {
+    const SQRESULT next_ret = sq_next(v,-2);
+    if( SQ_FAILED(next_ret) ) { break; }
+
+    const SQObjectType keytype = sq_gettype(v, -2);
+    const SQObjectType valuetype = sq_gettype(v, -1);
+
+    SCENEINFO sceneinfo;
+    sq_pushnull(v);
+    while( true )
+    {
+      const SQRESULT next_ret = sq_next(v,-2);
+      if( SQ_FAILED(next_ret) ) { break; }
+
+      const SQObjectType keytype = sq_gettype(v, -2);
+      const SQObjectType valuetype = sq_gettype(v, -1);
+
+      String KeyName;
+      {
+        const SQChar* p;
+        sq_getstring(v,-2, &p );
+        KeyName = String::ConvertUNICODEtoMAID(p);
+      }
+
+      if( KeyName==MAIDTEXT("camera") )
+      {
+        ReadCameraData( v, sceneinfo );
+      }
+      else if( KeyName==MAIDTEXT("object") )
+      {
+        ReadDrawObject( v, sceneinfo );
+      }
+
+      sq_pop( v, 2 );
+    }
+    sq_pop( v, 1 );
+    list.push_back(sceneinfo);
+
+    sq_pop( v, 2 );
+  }
+  sq_pop( v, 6 ); // nullとcall の戻り値と &GameObject, &admin, v
+
+  return FUNCTIONRESULT_OK;
+}
+#endif
+
+FUNCTIONRESULT  SquirrelWrapper::ReadCameraData( HSQUIRRELVM v, SCENEINFO& info )
+{
+  {
+    sq_pushstring( v, L"Eye", -1 );
+    SQRESULT ret = sq_get(v, -2);
+
+    info.CameraEye = POINT3DF( GetFloat(v,L"x"), GetFloat(v,L"y"), GetFloat(v,L"z") );
+    sq_pop( v, 1 );
+  }
+  {
+    sq_pushstring( v, L"Target", -1 );
+    SQRESULT ret = sq_get(v, -2);
+
+    info.CameraTarget = POINT3DF( GetFloat(v,L"x"), GetFloat(v,L"y"), GetFloat(v,L"z") );
+    sq_pop( v, 1 );
+  }
+
+  {
+    sq_pushstring( v, L"Up", -1 );
+    SQRESULT ret = sq_get(v, -2);
+
+    info.CameraUp = POINT3DF( GetFloat(v,L"x"), GetFloat(v,L"y"), GetFloat(v,L"z") );
+    sq_pop( v, 1 );
+  }
+
+  info.CameraFov    = GetFloat( v, L"Fov") ;
+  info.CameraAspect = GetFloat( v, L"Aspect") ;
+  info.CameraNear   = GetFloat( v, L"Near") ;
+  info.CameraFar    = GetFloat( v, L"Far") ;
+
+  return FUNCTIONRESULT_OK;
+}
+
+float SquirrelWrapper::GetFloat( HSQUIRRELVM v, const SQChar* p )
+{
+  sq_pushstring( v, p, -1 );
+  SQRESULT ret__GetGameObject = sq_get(v, -2);
+
+  float val;
+  sq_getfloat( v, -1, &val );
+
+  sq_pop( v, 1 );
+  return val;
+}
+
+int   SquirrelWrapper::GetInteger( HSQUIRRELVM v, const SQChar* p )
+{
+  sq_pushstring( v, p, -1 );
+  SQRESULT ret__GetGameObject = sq_get(v, -2);
+
+  int val;
+  sq_getinteger( v, -1, &val );
+
+  sq_pop( v, 1 );
+  return val;
+}
+
+
+FUNCTIONRESULT  SquirrelWrapper::ReadDrawObject( HSQUIRRELVM v, SCENEINFO& info )
+{
+  sq_pushnull(v);
+  while( true )
+  {
+    const SQRESULT next_ret = sq_next(v,-2);
+    if( SQ_FAILED(next_ret) ) { break; }
+
+    const SQObjectType keytype = sq_gettype(v, -2);
+    const SQObjectType valuetype = sq_gettype(v, -1);
+    {
+      CppDrawObject* pObj = NULL;
+      const SQRESULT ret_get = sq_getinstanceup( v, -1, (SQUserPointer*)&pObj, NULL );
+      if( SQ_FAILED(ret_get) ) { continue; }
+
+      info.ObjectList.push_back( pObj );
+    }
+    sq_pop( v, 2 );
+  }
+  sq_pop( v, 1 );
+
+  return FUNCTIONRESULT_OK;
+}
+
 
 FUNCTIONRESULT SquirrelWrapper::GetStorageData( XMLWriter& xml )
 {

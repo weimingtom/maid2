@@ -4,6 +4,8 @@ class IScene
   _DrawObjectManager = null;
   _Admin = null;  //  ‚±‚ÌƒV[ƒ“‚ğŠÇ—‚µ‚Ä‚é SceneAdmin
 
+  _Camera = null
+
   constructor()
   {
   }
@@ -13,6 +15,7 @@ class IScene
   // –ß‚è’l‚È‚µ
   function Initialize()
   {
+    _Camera = Camera()
     _TaskManager = TaskManager();
     _DrawObjectManager = DrawObjectManager();
     _TaskManager.Initialize();
@@ -98,7 +101,6 @@ class SceneAdmin
   {
     if( _SceneStack.top().IsExit() )
     {
-
       suspend(["scenefade",100]);
       local retcode = _SceneStack.top().Finalize();
       _GameRoutine.CreateNextScene( retcode );
@@ -113,7 +115,12 @@ class SceneAdmin
     local ret = [];
     foreach( scene in _SceneStack )
     {
-      ret.push( scene.GetAllDrawObject() );
+      local tmp = 
+      {
+        camera = scene._Camera,
+        object = scene.GetAllDrawObject()
+      }
+      ret.push( tmp );
     }
     return ret;
   }

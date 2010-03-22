@@ -29,7 +29,7 @@ class Block extends DrawObject
   
   function GetCollision()
   {
-    return RECT(x-Type.CenterX, y-Type.CenterY, Type.Width, Type.Height )
+    return RECT2D(x-Type.CenterX, y-Type.CenterY, Type.Width, Type.Height )
   }
 }
 

@@ -69,9 +69,13 @@ void MyApp::Initialize()
   m_Squirrel.BindFunction( &::Import, MAIDTEXT("Import") );
 
   m_CompileList.push_back( MAIDTEXT("core/define.nut") );
+  m_CompileList.push_back( MAIDTEXT("core/collision.nut") );
+  m_CompileList.push_back( MAIDTEXT("core/vector.nut") );
+  m_CompileList.push_back( MAIDTEXT("core/math.nut") );
   m_CompileList.push_back( MAIDTEXT("core/input.nut") );
   m_CompileList.push_back( MAIDTEXT("core/task.nut") );
   m_CompileList.push_back( MAIDTEXT("core/drawobject.nut") );
+  m_CompileList.push_back( MAIDTEXT("core/camera.nut") );
   m_CompileList.push_back( MAIDTEXT("core/scene.nut") );
   m_CompileList.push_back( MAIDTEXT("core/gameroutine.nut") );
   m_CompileList.push_back( MAIDTEXT("core/function.nut") );
