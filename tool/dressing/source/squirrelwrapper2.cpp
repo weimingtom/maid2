@@ -197,7 +197,7 @@ FUNCTIONRESULT  SquirrelWrapper::ReadCameraData( HSQUIRRELVM v, SCENEINFO& info 
     sq_pushstring( v, L"Up", -1 );
     SQRESULT ret = sq_get(v, -2);
 
-    info.CameraUp = POINT3DF( GetFloat(v,L"x"), GetFloat(v,L"y"), GetFloat(v,L"z") );
+    info.CameraUp = VECTOR3DF( GetFloat(v,L"x"), GetFloat(v,L"y"), GetFloat(v,L"z") );
     sq_pop( v, 1 );
   }
 

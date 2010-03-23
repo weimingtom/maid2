@@ -33,7 +33,8 @@ void MyApp::GameDraw()
 
   for( int i=0; i<(int)SceneInfoList.size(); ++i )
   {
-    const SquirrelWrapper::OBJECTLIST& ObjList = SceneInfoList[i].ObjectList;
+    const SquirrelWrapper::SCENEINFO& scene = SceneInfoList[i];
+    const SquirrelWrapper::OBJECTLIST& ObjList = scene.ObjectList;
 
     //  取得したリストをカメラから遠いい順にソートする
     //  今現在カメラを作っていないので、Zの大きい順にソート
@@ -47,9 +48,17 @@ void MyApp::GameDraw()
 
     std::sort( dat.begin(), dat.end(), DRAWLISTLess() );
 
+    Camera camera;
+    camera.SetPerspective( DEGtoRAD(scene.CameraFov), scene.CameraAspect, scene.CameraNear, scene.CameraFar );
+    camera.SetPosition( scene.CameraEye );
+    camera.SetTarget  ( scene.CameraTarget );
+    camera.SetUpVector( scene.CameraUp );
+
+    
     GraphicsCommandControl& Command = m_Command;
     Command.ClearDepth(); //  シーンごとにZをクリア
 
+    m_3DRender.SetCamera( camera );
     for( int j=0; j<(int)dat.size(); ++j )
     {
       DRAWLIST& obj = dat[j];

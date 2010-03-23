@@ -47,7 +47,7 @@ public:
   {
     Maid::POINT3DF CameraEye;
     Maid::POINT3DF CameraTarget;
-    Maid::POINT3DF CameraUp;
+    Maid::VECTOR3DF CameraUp;
     float CameraFov;
     float CameraAspect;
     float CameraNear;

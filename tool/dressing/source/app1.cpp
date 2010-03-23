@@ -38,6 +38,7 @@ static SQInteger Import( HSQUIRRELVM v )
 
 MyApp::MyApp()
   :m_2DRender(m_Command)
+  ,m_3DRender(m_Command)
 {
 
 }
@@ -62,6 +63,7 @@ void MyApp::Initialize()
 
   m_Command.Initialize();
   m_2DRender.Initialize();
+  m_3DRender.Initialize();
   m_Sound.Initialize();
 
   m_SystemFont.Create( SIZE2DI(8,16), true );
@@ -88,6 +90,7 @@ void MyApp::Initialize()
 bool MyApp::Initializing() const
 {
   if( m_2DRender.IsInitializing() ) { return true; }
+  if( m_3DRender.IsInitializing() ) { return true; }
 
   return false;
 }
