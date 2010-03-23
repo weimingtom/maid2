@@ -18,8 +18,10 @@
 
 #include"../../../source/graphics/graphicscommandcontrol.h"
 #include"../../../source/graphics/graphics2drender.h"
+#include"../../../source/graphics/graphics3drender.h"
 #include"../../../source/graphics/texture2d.h"
 #include"../../../source/graphics/font.h"
+#include"../../../source/graphics/camera.h"
 
 #include"../../../source/sound/gamesound.h"
 #include"../../../source/sound/gamesoundmanager.h"

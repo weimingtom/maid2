@@ -53,6 +53,7 @@ private:
 private:
   Maid::GraphicsCommandControl  m_Command;
   Maid::Graphics2DRender  m_2DRender;
+  Maid::Graphics3DRender  m_3DRender;
   Maid::GameSoundManager  m_Sound;
 
   STATE m_State;
