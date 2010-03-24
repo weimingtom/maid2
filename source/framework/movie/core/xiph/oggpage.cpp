@@ -8,17 +8,17 @@ namespace Maid { namespace Movie { namespace Xiph {
 
 OggPage::OggPage( ogg_page& src )
 {
-  m_Header = std::vector<unsigned char>( src.header, src.header+src.header_len );
-  m_Body   = std::vector<unsigned char>( src.body, src.body+src.body_len );
- 
-  if( !m_Header.empty() )
+  ZERO( &m_Page, sizeof(m_Page) );
+  if( src.header_len!=0 )
   {
+    m_Header = std::vector<unsigned char>( src.header, src.header+src.header_len );
     m_Page.header     = &(m_Header[0]);
     m_Page.header_len = m_Header.size();
   }
 
-  if( !m_Body.empty() )
+  if( src.body_len!=0 )
   {
+    m_Body   = std::vector<unsigned char>( src.body, src.body+src.body_len );
     m_Page.body     = &(m_Body[0]);
     m_Page.body_len = m_Body.size();
   }
