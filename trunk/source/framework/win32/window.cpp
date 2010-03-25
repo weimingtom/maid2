@@ -180,6 +180,7 @@ void Window::SetClientSize( const SIZE2DI& size )
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! ウィンドウスタイルの変更
 /*!
+    @param Style [i ] 設定するスタイル http://msdn.microsoft.com/ja-jp/library/cc411203.aspx を参照
  */
 void Window::SetStyle( DWORD Style )
 {
@@ -195,12 +196,22 @@ void Window::SetStyle( DWORD Style )
 			SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_FRAMECHANGED );
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! ウィンドウタイトルの変更
+/*!
+    @param Name [i ] 設定する文字列
+ */
 void Window::SetCaption( const String& Name )
 {
   MAID_ASSERT( !IsCreated(), "まだ作成されていません" );
   ::SetWindowText( m_hWnd, String::ConvertMAIDtoUNICODE(Name).c_str() );
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 奥方向の並びを変更する
+/*!
+    @param order [i ] 比較するウィンドウ。　このウィンドウの後ろに並ぶ
+ */
 void Window::SetZOrder( HWND order )
 {
   MAID_ASSERT( !IsCreated(), "まだ作成されていません" );
@@ -210,6 +221,31 @@ void Window::SetZOrder( HWND order )
 			SWP_NOMOVE|SWP_NOSIZE );
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 今現在最小化されているかどうか
+/*!
+    @return 最小化されているなら true
+            そうでないなら false
+ */
+bool Window::IsMinimized() const
+{
+  BOOL ret = ::IsIconic( m_hWnd );
+
+  return ret!=0;
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 今現在最大化されているかどうか
+/*!
+    @return 最大化されているなら true
+            そうでないなら false
+ */
+bool Window::IsMaximized() const
+{
+  BOOL ret = ::IsZoomed( m_hWnd );
+
+  return ret!=0;
+}
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! このウィンドウへのＤ＆Ｄを許可するか？

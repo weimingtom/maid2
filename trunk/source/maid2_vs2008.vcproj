@@ -155,6 +155,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\config\definelocal.h"
+				>
+			</File>
+			<File
 				RelativePath=".\config\typedef.h"
 				>
 			</File>
