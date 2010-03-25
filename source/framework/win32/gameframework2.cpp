@@ -35,33 +35,15 @@ Window::CALLBACKCODE GameFrameWork::wmActivate( WindowsMessage& msg )
 {
 	const bool IsMinimized = msg.GetWPARAM(WindowsMessage::PARAM_HI) != 0;
 
-	bool IsActive = false;
+  if( IsMinimized )
+  {
+    ExecMessage(Base(Base::PUSHMINIMIZEBUTTON));
+  }else
+  {
+    ExecMessage(Base(Base::PUSHRESTOREBUTTON));
+  }
 
-	switch( msg.GetWPARAM(WindowsMessage::PARAM_LO) )
-	{
-	case WA_ACTIVE:
-	case WA_CLICKACTIVE:
-		{
-			if( IsMinimized )
-			{
-				return Window::CALLBACKCODE_DEFAULT;
-			}else
-			{
-				IsActive = true;
-			}
-		}break;
-
-
-	case WA_INACTIVE:
-		{
-			IsActive = false;
-		}break;
-	}
-
-	OSMessage::Activate Mess;
-	Mess.IsActive = IsActive;
-
-	return ExecMessage(Mess);
+	return Window::CALLBACKCODE_DEFAULT;
 }
 
 
@@ -78,8 +60,10 @@ Window::CALLBACKCODE GameFrameWork::wmActivateApp( WindowsMessage& msg )
 	Mess.IsActive = IsActive;
 
 	return ExecMessage(Mess);
-
 }
+
+
+
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! WM_NCLBUTTONDBLCLKがきたときの処理
@@ -125,7 +109,7 @@ Window::CALLBACKCODE	GameFrameWork::wmSysCommand( WindowsMessage& msg )
 		break;
 	}
 
-	return Window::CALLBACKCODE_DEFAULT;
+  return Window::CALLBACKCODE_DEFAULT;
 }
 
 

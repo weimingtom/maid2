@@ -65,6 +65,8 @@ namespace Maid
 		void Create( const String& Caption, const POINT2DI& Pos, const SIZE2DI& Size, DWORD Style );
 		void Destory();
     bool IsCreated()const;
+    bool IsMinimized() const;
+    bool IsMaximized() const;
 
 		virtual MessageHook::RETURNCODE OnMessage( WindowsMessage& Param );
 
