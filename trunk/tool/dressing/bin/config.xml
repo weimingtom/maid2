@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<Root>
+  <parallax>
+    <mode>on</mode>
+    <eye>1</eye>
+    <target>1</target>
+    <left>
+      <x>700</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+    </left>
+    <right>
+      <x>730</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+    </right>
+  </parallax>
+</Root>
