@@ -28,7 +28,7 @@ public:
 void MyApp::GameDraw()
 {
   SquirrelWrapper::SCENEINFOLIST SceneInfoList;
-  const FUNCTIONRESULT ret = m_Squirrel.GetDrawObjectList( SceneInfoList );
+  const FUNCTIONRESULT ret = m_Squirrel.GetSceneInfo( SceneInfoList );
   if( FUNCTIONRESULT_FAILE(ret) ) { return ; }
 
   for( int i=0; i<(int)SceneInfoList.size(); ++i )
@@ -48,13 +48,28 @@ void MyApp::GameDraw()
 
     std::sort( dat.begin(), dat.end(), DRAWLISTLess() );
 
-    Camera camera;
-    camera.SetPerspective( DEGtoRAD(scene.CameraFov), scene.CameraAspect, scene.CameraNear, scene.CameraFar );
-    camera.SetPosition( scene.CameraEye );
-    camera.SetTarget  ( scene.CameraTarget );
-    camera.SetUpVector( scene.CameraUp );
+    VECTOR3DF OffsetEye(0,0,0);
+    VECTOR3DF OffsetTarget(0,0,0);
+    if( m_ParallaxInfo.Start )
+    {
+      const float r = m_ParallaxInfo.BltType? DEGtoRAD(90.0f) : DEGtoRAD(-90.0f);
 
-    
+      const VECTOR3DF& u = scene.CameraUp;
+      VECTOR3DF v;
+      v.x = u.x * Math<float>::cos(r) - u.y * Math<float>::sin(r);
+      v.y = u.x * Math<float>::sin(r) + u.y * Math<float>::cos(r);
+      v.z = 0.0f;
+
+      OffsetEye = v * scene.CameraParallaxEye * m_ParallaxInfo.Eye;
+      OffsetTarget = v * scene.CameraParallaxTarget * m_ParallaxInfo.Target;
+    }
+
+    Camera camera;
+    camera.SetPerspective( scene.CameraFov, scene.CameraAspect, scene.CameraNear, scene.CameraFar );
+    camera.SetPosition( scene.CameraEye + OffsetEye );
+    camera.SetTarget  ( scene.CameraTarget + OffsetTarget );
+    camera.SetUpVector( scene.CameraUp );
+  
     GraphicsCommandControl& Command = m_Command;
     Command.ClearDepth(); //  シーンごとにZをクリア
 
@@ -67,6 +82,27 @@ void MyApp::GameDraw()
       const POINT3DF& pos = obj.Pos;
       obj.pObject->GetType()->Draw( time, pos );
     }
+  }
+
+  if( m_ParallaxInfo.Start )
+  {
+    const COLOR_R32G32B32A32F black(0,0,0,1);
+    const COLOR_R32G32B32A32F white(1,1,1,1);
+    const COLOR_R32G32B32A32F lc = m_ParallaxInfo.BltType? black : white;
+    const COLOR_R32G32B32A32F rc = m_ParallaxInfo.BltType? white : black;
+
+    for( int i=0; i<(int)m_ParallaxInfo.Left.size(); ++i )
+    {
+      const RECT2DI& rect = m_ParallaxInfo.Left[i];
+      m_2DRender.Fill( rect.GetPoint(), lc, rect.GetSize(), POINT2DI(0,0) );
+    }
+    for( int i=0; i<(int)m_ParallaxInfo.Right.size(); ++i )
+    {
+      const RECT2DI& rect = m_ParallaxInfo.Right[i];
+      m_2DRender.Fill( rect.GetPoint(), rc, rect.GetSize(), POINT2DI(0,0) );
+    }
+
+    m_ParallaxInfo.BltType = !m_ParallaxInfo.BltType;
   }
 }
 

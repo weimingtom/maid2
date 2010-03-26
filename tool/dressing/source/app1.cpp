@@ -44,6 +44,7 @@ MyApp::MyApp()
 }
 
 Maid::Graphics2DRender&  MyApp::Get2DRender() { return m_2DRender; }
+Maid::Graphics3DRender&  MyApp::Get3DRender() { return m_3DRender; }
 
 
 bool MyApp::SelectDevice( const DEVICELIST& DeviceList, DEFAULTCONFIG& conf )
@@ -85,12 +86,18 @@ void MyApp::Initialize()
 
   m_FadeAlpha.Set(0,0,0);
   SetState(STATE_INITIALIZING);
+
+  m_ConfigFile.Load( MAIDTEXT("config.xml") );
+  m_ParallaxInfo.BltType = false;
+  m_ParallaxInfo.Eye     = 1;
+  m_ParallaxInfo.Target  = 1;
 }
 
 bool MyApp::Initializing() const
 {
   if( m_2DRender.IsInitializing() ) { return true; }
   if( m_3DRender.IsInitializing() ) { return true; }
+  if( m_ConfigFile.IsLoading() ) { return true; }
 
   return false;
 }
@@ -128,6 +135,11 @@ void MyApp::UpdateFrame()
     {
       //  squirrel以外の初期化をしてます。
       if( Initializing() ) { break ; }
+
+      {
+        //  アプリの設定を読み込む
+        ReadConfigData( m_ConfigFile.GetReader() );
+      }
       SetState(STATE_SCRIPTSETUP);
 
       m_CompileSource.Open( m_CompileList.front() );
@@ -386,4 +398,91 @@ void MyApp::ImportSquirrelFile( const String& FileName )
 
   const FUNCTIONRESULT ret = m_Squirrel.Import( SourceCode, FileName );
   if( FUNCTIONRESULT_FAILE(ret) ) { SetState(STATE_ERROR); return; }
+}
+
+FUNCTIONRESULT  MyApp::ReadConfigData( XMLReader& reader )
+{
+  reader.AscendNode();
+
+  while( true )
+  {
+    if( reader.IsEndNode() ) { break; }
+
+    if( reader.GetNodeName()==MAIDTEXT("parallax") ){ ReadConfigDataParallax(reader); }
+    reader.NextNode();
+  }
+  reader.DescendNode();
+
+  return FUNCTIONRESULT_OK;
+}
+
+FUNCTIONRESULT  MyApp::ReadConfigDataParallax( XMLReader& reader )
+{
+  bool Start = false;
+  float Eye = 1;
+  float Target = 1;
+  std::vector<Maid::RECT2DI>  Left;
+  std::vector<Maid::RECT2DI>  Right;
+
+  reader.AscendNode();
+
+  while( true )
+  {
+    if( reader.IsEndNode() ) { break; }
+
+    const String str = reader.GetNodeName();
+
+         if( str==MAIDTEXT("eye")    ) { Eye = reader.GetFloat(); }
+    else if( str==MAIDTEXT("mode") )
+    { 
+      Start = reader.GetString()==MAIDTEXT("on");
+    }
+    else if( str==MAIDTEXT("target") ) { Target = reader.GetFloat(); }
+    else if( str==MAIDTEXT("left") )
+    {
+      RECT2DI rc;
+      ReadConfigDataRect( reader, rc );
+      Left.push_back( rc );
+    }
+    else if( str==MAIDTEXT("right") )
+    {
+      RECT2DI rc;
+      ReadConfigDataRect( reader, rc );
+      Right.push_back( rc );
+    }
+    reader.NextNode();
+  }
+  reader.DescendNode();
+
+  m_ParallaxInfo.Start  = Start;
+  m_ParallaxInfo.Eye    = Eye;
+  m_ParallaxInfo.Target = Target;
+  m_ParallaxInfo.Left   = Left;
+  m_ParallaxInfo.Right  = Right;
+  return FUNCTIONRESULT_OK;
+}
+
+FUNCTIONRESULT  MyApp::ReadConfigDataRect( Maid::XMLReader& reader, RECT2DI& rc )
+{
+  reader.AscendNode();
+
+  int x = 0;
+  int y = 0;
+  int w = 0;
+  int h = 0;
+  while( true )
+  {
+    if( reader.IsEndNode() ) { break; }
+    const String str = reader.GetNodeName();
+
+         if( str==MAIDTEXT("x") ){ x = reader.GetInteger(); }
+    else if( str==MAIDTEXT("y") ){ y = reader.GetInteger(); }
+    else if( str==MAIDTEXT("width") ){ w = reader.GetInteger(); }
+    else if( str==MAIDTEXT("height") ){ h = reader.GetInteger(); }
+    reader.NextNode();
+  }
+  reader.DescendNode();
+
+  rc = RECT2DI(x,y,w,h);
+  return FUNCTIONRESULT_OK;
 }

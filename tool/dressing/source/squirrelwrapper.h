@@ -52,12 +52,14 @@ public:
     float CameraAspect;
     float CameraNear;
     float CameraFar;
+    float CameraParallaxEye;
+    float CameraParallaxTarget;
     OBJECTLIST ObjectList;
   };
 
   typedef std::vector<SCENEINFO> SCENEINFOLIST;
 
-  Maid::FUNCTIONRESULT GetDrawObjectList( SCENEINFOLIST& list );
+  Maid::FUNCTIONRESULT GetSceneInfo( SCENEINFOLIST& list );
   Maid::FUNCTIONRESULT GetStorageData( Maid::XMLWriter& xml );
 
   void ExitGameLoop();
@@ -85,6 +87,7 @@ private:
 
   float GetFloat( HSQUIRRELVM v, const SQChar* p );
   int   GetInteger( HSQUIRRELVM v, const SQChar* p );
+
 
 private:
   HSQUIRRELVM m_SquirrelVM;

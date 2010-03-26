@@ -15,6 +15,7 @@ class MyApp
 public:
   MyApp();
   Maid::Graphics2DRender&  Get2DRender();
+  Maid::Graphics3DRender&  Get3DRender();
 
   const Maid::String& GetCurrentDirectry() const;
 
@@ -50,6 +51,11 @@ private:
   STATE GetState()const;
   void  SetState( STATE s );
 
+  Maid::FUNCTIONRESULT  ReadConfigData( Maid::XMLReader& reader );
+  Maid::FUNCTIONRESULT  ReadConfigDataParallax( Maid::XMLReader& reader );
+  Maid::FUNCTIONRESULT  ReadConfigDataRect( Maid::XMLReader& reader,  Maid::RECT2DI& rc );
+
+
 private:
   Maid::GraphicsCommandControl  m_Command;
   Maid::Graphics2DRender  m_2DRender;
@@ -73,6 +79,21 @@ private:
 
   boost::shared_ptr<Maid::XMLFileReader> m_pStorageFile;
   boost::shared_ptr<Maid::FileWriter> m_pStorageSave;
+
+
+  //  立体視用設定
+  struct PARALLAXINFO
+  {
+    bool  Start;
+    float Eye;
+    float Target;
+    std::vector<Maid::RECT2DI>  Left;
+    std::vector<Maid::RECT2DI>  Right;
+    bool BltType; //  false で左 trueで右描画
+  };
+  PARALLAXINFO          m_ParallaxInfo;
+  Maid::XMLFileReader   m_ConfigFile;
+
 };
 
 

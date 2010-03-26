@@ -181,6 +181,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\bindobject\colorrect3d.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\bindobject\colorrect3d.h"
+				>
+			</File>
+			<File
 				RelativePath=".\bindobject\colortext.cpp"
 				>
 			</File>
@@ -226,6 +234,14 @@
 			</File>
 			<File
 				RelativePath=".\bindobject\imagerect.h"
+				>
+			</File>
+			<File
+				RelativePath=".\bindobject\imagerect3d.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\bindobject\imagerect3d.h"
 				>
 			</File>
 			<File
