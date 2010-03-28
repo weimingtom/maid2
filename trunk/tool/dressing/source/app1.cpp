@@ -74,6 +74,7 @@ void MyApp::Initialize()
   m_CompileList.push_back( MAIDTEXT("core/define.nut") );
   m_CompileList.push_back( MAIDTEXT("core/collision.nut") );
   m_CompileList.push_back( MAIDTEXT("core/vector.nut") );
+  m_CompileList.push_back( MAIDTEXT("core/matrix.nut") );
   m_CompileList.push_back( MAIDTEXT("core/math.nut") );
   m_CompileList.push_back( MAIDTEXT("core/input.nut") );
   m_CompileList.push_back( MAIDTEXT("core/task.nut") );

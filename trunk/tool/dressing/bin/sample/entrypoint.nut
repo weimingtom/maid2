@@ -135,10 +135,3 @@ class GameRoutine extends IGameRoutine
 //	いろいろ定義したのでゲーム開始！
 Run( GameRoutine() );
 
-
-/*
-非同期読み込み
-import
-
-
-*/
