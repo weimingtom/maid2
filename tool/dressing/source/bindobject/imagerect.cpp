@@ -7,22 +7,13 @@ using namespace Maid;
 using namespace Sqrat;
 
 
-ImageRect::ImageRect()
-  :CenterX(0)
-  ,CenterY(0)
-  ,RectX(0)
-  ,RectY(0)
-  ,RectW(0)
-  ,RectH(0)
-  ,Alpha(1)
-{
-}
 
 void ImageRect::Register()
 {
   RootTable().Bind(
     _SC("ImageRect"), 
-    DerivedClass<ImageRect,CppDrawType>()
+    DerivedClassEx<ImageRect,CppDrawType,ImageRectAllocator>()
+	  .SqObject(_SC("Matrix" ), &ImageRect::Matrix)
 	  .Var(_SC("CenterX"), &ImageRect::CenterX)
 	  .Var(_SC("CenterY"), &ImageRect::CenterY)
 	  .Var(_SC("RectX"  ), &ImageRect::RectX)
@@ -32,6 +23,29 @@ void ImageRect::Register()
 	  .Var(_SC("Alpha"  ), &ImageRect::Alpha)
     .Prop(_SC("FileName"), &ImageRect::GetFileName, &ImageRect::SetFileName)
   );
+}
+
+
+
+ImageRect::ImageRect()
+  :CenterX(0)
+  ,CenterY(0)
+  ,RectX(0)
+  ,RectY(0)
+  ,RectW(0)
+  ,RectH(0)
+  ,Alpha(1)
+{
+  HSQUIRRELVM v = DefaultVM::Get();
+  MAID_ASSERT( v==NULL, "VMが設定されていません" );
+  sq_resetobject( &Matrix );
+}
+
+ImageRect::~ImageRect()
+{
+  HSQUIRRELVM v = DefaultVM::Get();
+  MAID_ASSERT( v==NULL, "VMが設定されていません" );
+  const SQBool drawtype = sq_release( v, &Matrix );
 }
 
 
@@ -52,6 +66,7 @@ void ImageRect::SetFileName(const Sqrat::string& name)
   Texture.LoadFile( dir + MAIDTEXT("\\") + str );
 }
 
+static const MATRIX4DF idx( MATRIX4DF().SetIdentity() );
 
 void ImageRect::Draw( float time, const Maid::POINT3DF& pos )
 {
@@ -62,6 +77,8 @@ void ImageRect::Draw( float time, const Maid::POINT3DF& pos )
   const POINT2DI center(CenterX,CenterY);
   const RECT2DI rc(RectX,RectY,RectW,RectH);
 
-  GetApp().Get2DRender().Blt( point, Texture, rc, center, Alpha );
+  const CppMatrix* p  = (const CppMatrix*)sq_objtoinstance(&Matrix);
+  const MATRIX4DF& mat = p==NULL? idx : p->GetMatrix();
 
+  GetApp().Get2DRender().Blt( point, Texture, rc, center, Alpha, mat );
 }

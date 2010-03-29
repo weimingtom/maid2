@@ -7,22 +7,14 @@ using namespace Maid;
 using namespace Sqrat;
 
 
-ImageRect3D::ImageRect3D()
-  :CenterX(0)
-  ,CenterY(0)
-  ,RectX(0)
-  ,RectY(0)
-  ,RectW(0)
-  ,RectH(0)
-  ,Alpha(1)
-{
-}
+
 
 void ImageRect3D::Register()
 {
   RootTable().Bind(
     _SC("ImageRect3D"), 
-    DerivedClass<ImageRect3D,CppDrawType>()
+    DerivedClassEx<ImageRect3D,CppDrawType,ImageRect3DAllocator>()
+	  .SqObject(_SC("Matrix" ), &ImageRect3D::Matrix)
 	  .Var(_SC("CenterX"), &ImageRect3D::CenterX)
 	  .Var(_SC("CenterY"), &ImageRect3D::CenterY)
 	  .Var(_SC("RectX"  ), &ImageRect3D::RectX)
@@ -34,6 +26,26 @@ void ImageRect3D::Register()
   );
 }
 
+ImageRect3D::ImageRect3D()
+  :CenterX(0)
+  ,CenterY(0)
+  ,RectX(0)
+  ,RectY(0)
+  ,RectW(0)
+  ,RectH(0)
+  ,Alpha(1)
+{
+  HSQUIRRELVM v = DefaultVM::Get();
+  MAID_ASSERT( v==NULL, "VMが設定されていません" );
+  sq_resetobject( &Matrix );
+}
+
+ImageRect3D::~ImageRect3D()
+{
+  HSQUIRRELVM v = DefaultVM::Get();
+  MAID_ASSERT( v==NULL, "VMが設定されていません" );
+  const SQBool drawtype = sq_release( v, &Matrix );
+}
 
 Sqrat::string ImageRect3D::GetFileName() const
 {
@@ -52,17 +64,21 @@ void ImageRect3D::SetFileName(const Sqrat::string& name)
   Texture.LoadFile( dir + MAIDTEXT("\\") + str );
 }
 
+static const MATRIX4DF idx( MATRIX4DF().SetIdentity() );
 
 void ImageRect3D::Draw( float time, const Maid::POINT3DF& pos )
 {
   if( Texture.IsEmpty() ) { return ; }
   if( Texture.IsLoading() ) { return ; }
 
-  const POINT2DI center(CenterX,CenterY);
+  const POINT3DF center(CenterX,CenterY,0);
   const RECT2DI  rc(RectX,RectY,RectW,RectH);
+  const COLOR_R32G32B32A32F col(1,1,1,Alpha);
 
-  GetApp().Get3DRender().SpriteBlt( pos, Texture, rc, center, Alpha );
+  const CppMatrix* p  = (const CppMatrix*)sq_objtoinstance(&Matrix);
+  const MATRIX4DF& mat = p==NULL? idx : p->GetMatrix();
+  const MATRIX4DF t = mat * MATRIX4DF().SetTranslate( pos.x, pos.y, pos.z );
 
-//    void SpriteBlt  ( const POINT3DF& Pos, const Texture2DBase& Texture, const RECT2DI& rc, const POINT2DI& Center, float alpha );
+  GetApp().Get3DRender().SpriteBlt( t, Texture, col, rc, center );
 
 }

@@ -6,14 +6,14 @@ class DrawObjectImage extends DrawObject
   {
     DrawObject.constructor();
 
-    Type = ImageRect();   //  画像ファイルを表示するクラス
+    Type = ImageRect3D();   //  画像ファイルを表示するクラス
     Type.FileName = "nc1673.bmp"; //  表示するファイル名。対応ファイルは bmp,png,jpeg
     Type.RectX = 10;  //  表示範囲Ｘ
     Type.RectY = 10;  //  表示範囲Ｙ
     Type.RectW = 100; //  表示範囲width
     Type.RectH = 200; //  height
     Type.Alpha = 1.0  //  透明度
-    
+  
     //  画像ファイルは読み込み処理がある都合上、即座には表示されません
     //  この問題はそのうち解決する予定(パラメータを追加する等)
   }
@@ -46,11 +46,8 @@ class SceneSample extends IScene
   {
     IScene.UpdateFrame();
     
-    local x = GetInput().GetPos(MOUSE.X);
-    local y = GetInput().GetPos(MOUSE.Y);
-    
-    _obj.x = x;
-    _obj.y = y;
+    _obj.x = 400;
+    _obj.y = 300;
 
     // Lボタンをおしてる間、不透明になる。
     if( GetInput().IsDown(MOUSE.L) )

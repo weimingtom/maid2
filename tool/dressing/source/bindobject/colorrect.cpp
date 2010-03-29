@@ -8,22 +8,6 @@ using namespace Sqrat;
 
 void ColorRect::Register()
 {
-/*
-  RootTable().Bind(
-    _SC("ColorRect"), 
-    DerivedClass<ColorRect,CppDrawType>()
-	  .Var(_SC("CenterX"), &ColorRect::CenterX)
-	  .Var(_SC("CenterY"), &ColorRect::CenterY)
-	  .Var(_SC("Width"  ), &ColorRect::Width)
-	  .Var(_SC("Height" ), &ColorRect::Height)
-	  .Var(_SC("ColorR" ), &ColorRect::ColorR)
-	  .Var(_SC("ColorG" ), &ColorRect::ColorG)
-	  .Var(_SC("ColorB" ), &ColorRect::ColorB)
-	  .Var(_SC("Alpha" ), &ColorRect::Alpha)
-  );
-/*
-*/
-
   RootTable().Bind(
     _SC("ColorRect"), 
     DerivedClassEx<ColorRect,CppDrawType, ColorRectAllocator>()
@@ -63,6 +47,9 @@ ColorRect::~ColorRect()
 }
 
 
+static const MATRIX4DF idx( MATRIX4DF().SetIdentity() );
+
+
 void ColorRect::Draw( float time, const Maid::POINT3DF& pos )
 {
   const POINT2DI point( pos.x, pos.y );
@@ -71,6 +58,7 @@ void ColorRect::Draw( float time, const Maid::POINT3DF& pos )
   const COLOR_R32G32B32A32F col(ColorR,ColorG,ColorB,Alpha);
 
   const CppMatrix* p  = (const CppMatrix*)sq_objtoinstance(&Matrix);
+  const MATRIX4DF& mat = p==NULL? idx : p->GetMatrix();
 
-  GetApp().Get2DRender().FillMatrix( point, col, size, center, p->GetMatrix() );
+  GetApp().Get2DRender().FillMatrix( point, col, size, center, mat );
 }
