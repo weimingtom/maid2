@@ -94,6 +94,21 @@ void Graphics2DRender::BltSR( const POINT2DI& Pos, const Texture2DBase& Texture,
   Blt( info.Model, m, Texture, rc, col );
 }
 
+void Graphics2DRender::Blt( const POINT2DI& Pos, const Texture2DBase& Texture, const RECT2DI& rc, const POINT2DI& Center, float alpha, const MATRIX4DF& mat )
+{
+  MAID_ASSERT( IsInitializing(), "初期化中は呼ばないこと" );
+
+  const COLOR_R32G32B32A32F col(1,1,1,alpha);
+
+  MODELINFO info;
+  CreateVirtualScreenModel( Pos, rc.GetSize(), Center, info );
+
+  const MATRIX4DF m = mat * info.Translate;
+
+  Blt( info.Model, m, Texture, rc, col );
+
+}
+
 void Graphics2DRender::Blt( const VECTOR4DF* Model, const MATRIX4DF& mat, const Texture2DBase& Texture,  const RECT2DI& rc, const COLOR_R32G32B32A32F& Color )
 {
   //  uvの計算

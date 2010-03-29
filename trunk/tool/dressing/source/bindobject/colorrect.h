@@ -28,7 +28,7 @@ public:
 };
 
 
-// CppDrawObject専用アロケータ
+// ColorRect専用アロケータ
 class ColorRectAllocator {
 public:
 	static SQInteger New(HSQUIRRELVM vm) {
