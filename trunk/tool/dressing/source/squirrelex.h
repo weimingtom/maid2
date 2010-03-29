@@ -60,6 +60,22 @@ public:
 	}
 };
 
+template<class C, class B, class A>
+class DerivedClassEx : public DerivedClass<C,B,A> {
+public:
+
+  DerivedClassEx(HSQUIRRELVM v = DefaultVM::Get()) : DerivedClass<C,B,A>(v){}
+
+	DerivedClassEx& SqObject(const SQChar* name, HSQOBJECT C::* var) {
+		// Add the getter
+		BindAccessor(name, &var, sizeof(var), &sqHSQOBJECTGet<C>, ClassType<C>::GetTable());
+
+		// Add the setter
+		BindAccessor(name, &var, sizeof(var), &sqHSQOBJECTSet<C>, ClassType<C>::SetTable());
+
+		return *this;
+	}
+};
 }
 
 #endif

@@ -1,6 +1,8 @@
 ﻿#ifndef tool_dressing_bindobject_h
 #define tool_dressing_bindobject_h
 
+#include"bindobject/cppmatrix.h"
+
 #include"bindobject/cppdrawtype.h"
 #include"bindobject/cppdrawobject.h"
 #include"bindobject/colorrect.h"

@@ -8,6 +8,7 @@ using namespace Sqrat;
 
 void ColorRect::Register()
 {
+/*
   RootTable().Bind(
     _SC("ColorRect"), 
     DerivedClass<ColorRect,CppDrawType>()
@@ -20,6 +21,23 @@ void ColorRect::Register()
 	  .Var(_SC("ColorB" ), &ColorRect::ColorB)
 	  .Var(_SC("Alpha" ), &ColorRect::Alpha)
   );
+/*
+*/
+
+  RootTable().Bind(
+    _SC("ColorRect"), 
+    DerivedClassEx<ColorRect,CppDrawType, ColorRectAllocator>()
+	  .SqObject(_SC("Matrix" ), &ColorRect::Matrix)
+	  .Var(_SC("CenterX"), &ColorRect::CenterX)
+	  .Var(_SC("CenterY"), &ColorRect::CenterY)
+	  .Var(_SC("Width"  ), &ColorRect::Width)
+	  .Var(_SC("Height" ), &ColorRect::Height)
+	  .Var(_SC("ColorR" ), &ColorRect::ColorR)
+	  .Var(_SC("ColorG" ), &ColorRect::ColorG)
+	  .Var(_SC("ColorB" ), &ColorRect::ColorB)
+	  .Var(_SC("Alpha" ), &ColorRect::Alpha)
+  );
+
 }
 
 ColorRect::ColorRect()
@@ -32,8 +50,17 @@ ColorRect::ColorRect()
   ,ColorB(0)
   ,Alpha(1)
 {
+  HSQUIRRELVM v = DefaultVM::Get();
+  MAID_ASSERT( v==NULL, "VMが設定されていません" );
+  sq_resetobject( &Matrix );
 }
 
+ColorRect::~ColorRect()
+{
+  HSQUIRRELVM v = DefaultVM::Get();
+  MAID_ASSERT( v==NULL, "VMが設定されていません" );
+  const SQBool drawtype = sq_release( v, &Matrix );
+}
 
 
 void ColorRect::Draw( float time, const Maid::POINT3DF& pos )
@@ -43,5 +70,7 @@ void ColorRect::Draw( float time, const Maid::POINT3DF& pos )
   const SIZE2DI size(Width,Height);
   const COLOR_R32G32B32A32F col(ColorR,ColorG,ColorB,Alpha);
 
-  GetApp().Get2DRender().Fill( point, col, size, center );
+  const CppMatrix* p  = (const CppMatrix*)sq_objtoinstance(&Matrix);
+
+  GetApp().Get2DRender().FillMatrix( point, col, size, center, p->GetMatrix() );
 }
