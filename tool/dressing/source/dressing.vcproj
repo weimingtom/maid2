@@ -213,6 +213,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\bindobject\cppmatrix.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\bindobject\cppmatrix.h"
+				>
+			</File>
+			<File
 				RelativePath=".\bindobject\cppsoundobject.cpp"
 				>
 			</File>

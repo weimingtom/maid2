@@ -83,6 +83,20 @@ void Graphics2DRender::FillSR( const POINT2DI& Pos, const COLOR_R32G32B32A32F& C
   Fill( model.Model, m, Color );
 }
 
+void Graphics2DRender::FillMatrix( const POINT2DI& Pos, const COLOR_R32G32B32A32F& Color, const SIZE2DI& Size, const POINT2DI& Center, const MATRIX4DF& mat )
+{
+  MAID_ASSERT( IsInitializing(), "初期化中は呼ばないこと" );
+
+  MODELINFO model;
+  CreateVirtualScreenModel( Pos, Size, Center, model );
+
+  const MATRIX4DF m = mat
+                    * model.Translate;
+
+  Fill( model.Model, m, Color );
+
+}
+
 
 void Graphics2DRender::Fill( const VECTOR4DF* Model, const MATRIX4DF& mat, const COLOR_R32G32B32A32F& Color )
 {

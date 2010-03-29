@@ -52,6 +52,10 @@ void SquirrelWrapper::SetupBindObject()
 
   }
   {
+    CppMatrix::Register();
+
+  }
+  {
     CppDrawType::Register();
     ColorRect::Register();
     ImageRect::Register();
