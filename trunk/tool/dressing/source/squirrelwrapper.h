@@ -54,6 +54,12 @@ public:
     float CameraFar;
     float CameraParallaxEye;
     float CameraParallaxTarget;
+
+    Maid::COLOR_R32G32B32A32F AmbientLight;
+
+    Maid::COLOR_R32G32B32A32F DirectionalLightColor;
+    Maid::VECTOR3DF  DirectionalLightVec;
+
     OBJECTLIST ObjectList;
   };
 
@@ -84,6 +90,7 @@ private:
 
   Maid::FUNCTIONRESULT  ReadCameraData( HSQUIRRELVM v, SCENEINFO& info );
   Maid::FUNCTIONRESULT  ReadDrawObject( HSQUIRRELVM v, SCENEINFO& info );
+  Maid::FUNCTIONRESULT  ReadBaseLight( HSQUIRRELVM v, SCENEINFO& info );
 
   float GetFloat( HSQUIRRELVM v, const SQChar* p );
   int   GetInteger( HSQUIRRELVM v, const SQChar* p );

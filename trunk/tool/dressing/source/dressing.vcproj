@@ -253,6 +253,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\bindobject\modelfile.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\bindobject\modelfile.h"
+				>
+			</File>
+			<File
 				RelativePath=".\bindobject\pcmfile.cpp"
 				>
 			</File>

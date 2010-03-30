@@ -1,6 +1,7 @@
 import("logo.nut")
 import("keyhelp.nut")
 import("test.nut")
+import("model.nut")
 
 class SceneTittle extends IScene
 {
@@ -20,6 +21,10 @@ class SceneTittle extends IScene
 
     {
       local tmp = Test3D();
+      GetDrawObjectManager().InsertDrawObject( tmp );
+    }
+    {
+      local tmp = Model();
       GetDrawObjectManager().InsertDrawObject( tmp );
     }
     _SceneEnd = false

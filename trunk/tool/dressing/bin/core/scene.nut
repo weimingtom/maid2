@@ -5,6 +5,8 @@ class IScene
   _Admin = null;  //  ‚±‚ÌƒV[ƒ“‚ğŠÇ—‚µ‚Ä‚é SceneAdmin
 
   _Camera = null
+  _BaseLight = null
+  _AmbientLight = null
 
   constructor()
   {
@@ -16,6 +18,8 @@ class IScene
   function Initialize()
   {
     _Camera = Camera()
+    _BaseLight = BaseLight()
+    
     _TaskManager = TaskManager();
     _DrawObjectManager = DrawObjectManager();
     _TaskManager.Initialize();
@@ -119,6 +123,7 @@ class SceneAdmin
       {
         camera = scene._Camera,
         object = scene.GetAllDrawObject()
+        baselight = scene._BaseLight,
       }
       ret.push( tmp );
     }
