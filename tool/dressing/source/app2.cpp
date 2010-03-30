@@ -71,9 +71,21 @@ void MyApp::GameDraw()
     camera.SetUpVector( scene.CameraUp );
   
     GraphicsCommandControl& Command = m_Command;
+    std::vector<LIGHT> LightList;
+    {
+      LIGHT l;
+      l.Type = LIGHT::DIRECTIONAL;
+      l.Direction = scene.DirectionalLightVec;
+      l.Diffuse   = scene.DirectionalLightColor;
+
+      LightList.push_back( l );
+    }
+
     Command.ClearDepth(); //  シーンごとにZをクリア
 
     m_3DRender.SetCamera( camera );
+    m_3DRender.SetLight( LightList );
+    m_3DRender.SetAmbient( scene.AmbientLight );
     for( int j=0; j<(int)dat.size(); ++j )
     {
       DRAWLIST& obj = dat[j];

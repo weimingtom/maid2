@@ -61,8 +61,9 @@ void SquirrelWrapper::SetupBindObject()
     ImageRect::Register();
     ColorText::Register();
 
-    ImageRect3D::Register();
     ColorRect3D::Register();
+    ImageRect3D::Register();
+    ModelFile::Register();
   }
   {
     CppDrawObject::Register();
@@ -135,6 +136,10 @@ FUNCTIONRESULT SquirrelWrapper::GetSceneInfo( SCENEINFOLIST& list )
       {
         ReadDrawObject( v, sceneinfo );
       }
+      else if( KeyName==MAIDTEXT("baselight") )
+      {
+        ReadBaseLight( v, sceneinfo );
+      }
 
       sq_pop( v, 2 );
     }
@@ -183,6 +188,41 @@ FUNCTIONRESULT  SquirrelWrapper::ReadCameraData( HSQUIRRELVM v, SCENEINFO& info 
 
   return FUNCTIONRESULT_OK;
 }
+
+FUNCTIONRESULT  SquirrelWrapper::ReadBaseLight( HSQUIRRELVM v, SCENEINFO& info )
+{
+  {
+    sq_pushstring( v, L"Ambient", -1 );
+    SQRESULT ret = sq_get(v, -2);
+
+    info.AmbientLight = COLOR_R32G32B32A32F( GetFloat(v,L"r"), GetFloat(v,L"g"), GetFloat(v,L"b"), GetFloat(v,L"a") );
+    sq_pop( v, 1 );
+
+  }
+
+  {
+    sq_pushstring( v, L"Direction", -1 );
+    SQRESULT ret = sq_get(v, -2);
+    {
+      sq_pushstring( v, L"Color", -1 );
+      SQRESULT ret = sq_get(v, -2);
+
+      info.DirectionalLightColor = COLOR_R32G32B32A32F( GetFloat(v,L"r"), GetFloat(v,L"g"), GetFloat(v,L"b"), GetFloat(v,L"a") );
+      sq_pop( v, 1 );
+    }
+
+    {
+      sq_pushstring( v, L"Direction", -1 );
+      SQRESULT ret = sq_get(v, -2);
+
+      info.DirectionalLightVec = VECTOR3DF( GetFloat(v,L"x"), GetFloat(v,L"y"), GetFloat(v,L"z") );
+      sq_pop( v, 1 );
+    }
+    sq_pop( v, 1 );
+  }
+  return FUNCTIONRESULT_OK;
+}
+
 
 float SquirrelWrapper::GetFloat( HSQUIRRELVM v, const SQChar* p )
 {

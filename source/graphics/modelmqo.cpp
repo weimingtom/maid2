@@ -311,9 +311,21 @@ bool ModelMQO::IsLoading()const
   return false;
 }
 
+bool ModelMQO::IsEmpty()const
+{
+  return m_Cache.IsEmpty();
+}
+
+
 void ModelMQO::Delete()
 {
   m_Cache.Reset();
+}
+
+String ModelMQO::GetFileName() const
+{
+  return m_Cache.GetInput().FileName;
+
 }
 
 const MQOSCENE& ModelMQO::GetScene() const

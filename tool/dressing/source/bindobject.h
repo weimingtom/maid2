@@ -11,6 +11,7 @@
 
 #include"bindobject/colorrect3d.h"
 #include"bindobject/imagerect3d.h"
+#include"bindobject/modelfile.h"
 
 #include"bindobject/cppsoundtype.h"
 #include"bindobject/cppsoundobject.h"

@@ -102,7 +102,9 @@ namespace Maid
     void Load( const String& FileName );
     void Delete();
     bool IsLoading()const;
+    bool IsEmpty()const;
 
+    String GetFileName() const;
 
     const MQOSCENE& GetScene() const;
     const std::vector<MQOMATERIAL>& GetMaterialList() const;
