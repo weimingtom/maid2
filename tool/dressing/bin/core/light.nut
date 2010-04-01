@@ -23,7 +23,6 @@ class BaseLight
   {
     Direction = DirectionalLight()
     Ambient   = COLOR(0,0,0,0)
-  
   }
 
 }
