@@ -40,6 +40,7 @@ class VECTOR3D
     x /= f
     y /= f
     z /= f
+    return this
   }
 }
 
@@ -83,6 +84,7 @@ class VECTOR4D
     y /= f
     z /= f
     w /= f
+    return this
   }
   
   function ConvertVECTOR3D()

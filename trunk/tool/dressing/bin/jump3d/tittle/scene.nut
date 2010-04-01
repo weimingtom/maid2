@@ -1,6 +1,5 @@
 import("logo.nut")
 import("keyhelp.nut")
-import("test.nut")
 import("model.nut")
 
 class SceneTittle extends IScene
@@ -16,11 +15,6 @@ class SceneTittle extends IScene
     }
     {
       local tmp = KeyHelp();
-      GetDrawObjectManager().InsertDrawObject( tmp );
-    }
-
-    {
-      local tmp = Test3D();
       GetDrawObjectManager().InsertDrawObject( tmp );
     }
     {

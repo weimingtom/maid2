@@ -1,6 +1,8 @@
 
 class Model extends DrawObject
 {
+  _Count = 0
+  
   constructor()
   {
     DrawObject.constructor();
@@ -9,13 +11,16 @@ class Model extends DrawObject
     Type.FileName = "block.mqo"
     Type.Alpha = 1;     //  •s“§–¾“x (0.0‚ÅŒ©‚¦‚È‚­‚È‚é)
 
-    x = 400
-    y = 150
+    x = 300
+    y = 400
   }
 
   function UpdateFrame()
   {
-    Type.Matrix = MATRIX4D().SetRotationY( DEGtoRAD(45.0) )
+    _Count += 1;
+    _Count %= 360
+    
+    Type.Matrix = MATRIX4D().SetRotationY( DEGtoRAD(_Count.tofloat()) )
   }
 
 

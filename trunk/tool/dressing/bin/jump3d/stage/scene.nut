@@ -80,6 +80,8 @@ class SceneStage extends IScene
       _HiScore = HiScore(s)
       GetDrawObjectManager().InsertDrawObject( _HiScore );
     }
+    
+    _BaseLight.Direction.Direction = VECTOR3D(1,-1,0).Normalize()
   }
 
   function Finalize()
@@ -226,7 +228,7 @@ class SceneStage extends IScene
     {
       if( _Block.len()==0 ) { break; }
 
-      local w = _Block[0].x + _Block[0].Type.Width
+      local w = _Block[0].x + _Block[0]._Width
       if( w < 0 ) { _Block.remove(0); }
       else { break; }
     }
