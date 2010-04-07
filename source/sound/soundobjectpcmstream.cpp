@@ -61,15 +61,19 @@ void SoundObjectPCMStream::Update()
       {
         UpdateBuffer(); 
       }
-    }else
+    }
+/*
+    else
     {
       //  デコードした位置より先を再生していたら、その時点から再開
+      //  ・・・したいんだけど、ここに書くと末端まで再生されたときにとまってしまう。　どうやろう？
       const bool play = m_pBuffer->IsPlay();
       const size_t pos = m_NowPlayPosition;
       if( play ) { m_pBuffer->Stop(); }
       SetPositionByte( pos );
       if( play ) { m_pBuffer->Play(true); }
     }
+*/
   }
 }
 
