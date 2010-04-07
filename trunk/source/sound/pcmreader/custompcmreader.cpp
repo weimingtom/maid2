@@ -36,6 +36,8 @@ size_t  CustomPCMReader::Read( void* pDst, size_t size )
   size_t pos  = m_pReader->GetPosition();
   size_t lim  = size;
 
+  MAID_WARNING( "size:" << size << "pos:" << pos );
+
   unt08* pNowDst = (unt08*)pDst;
 
   while( true )
