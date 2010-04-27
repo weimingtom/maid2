@@ -213,7 +213,7 @@ namespace Maid
   bool  String::IsHankaku( unt32 c )
   {
     //  半角チェックはここを見る http://ash.jp/code/unitbl1.htm
-    if( 0x20<=c && c<=0x7D ) { return true; }
+    if( c<=0x7F ) { return true; }
     if( c==0x203E ) { return true; }
     if( 0xFF61<=c && c<=0xFF9F ) { return true; }
 
