@@ -31,8 +31,8 @@ namespace Maid
      */
 		void Set()
 		{
-			MAID_ASSERT( s_pPointer!=NULL, "すでに実態が存在します" );
-			s_pPointer = static_cast<TYPE*>(this);
+			MAID_ASSERT( _Get()!=NULL, "すでに実態が存在します" );
+			_Get() = static_cast<TYPE*>(this);
 		}
 
     //! ポインタの取得
@@ -41,14 +41,18 @@ namespace Maid
      */
 		static TYPE* Get()
 		{
-			MAID_ASSERT( s_pPointer==NULL, "まだ設定されていません" );
-			return s_pPointer;
+			MAID_ASSERT( _Get()==NULL, "まだ設定されていません" );
+			return _Get();
 		}
 
-		void Clear() { s_pPointer = NULL; }
+		void Clear() { _Get() = NULL; }
 
 	private:
-		static TYPE*	s_pPointer;
+    static TYPE*& _Get()
+    {
+		  static TYPE*	s_pPointer;
+      return s_pPointer;
+    }
 	};
 
 }

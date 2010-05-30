@@ -10,7 +10,6 @@ namespace Maid
   \n          JobCacheTemplate を使うといろいろベンリです。
   */
 
-JobPool*  GlobalPointer<JobPool>::s_pPointer;
 
 JobPool::JobPool()
 {
