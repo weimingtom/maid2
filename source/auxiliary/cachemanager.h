@@ -17,7 +17,8 @@ namespace Maid
 { 
   /*!
     @class CacheManager cachemanager.h
-    @brief キャッシュコンテナ
+    @brief  キャッシュコンテナ
+  \n        データをどんどん追加していって、特定個数になると使われていない順に自動的に削除してくれます。
    */
   template<class KEY, class DATA>
   class CacheManager

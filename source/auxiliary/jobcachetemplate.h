@@ -26,7 +26,8 @@ namespace Maid
   */
 
   template<class INPUT, class FUNC, class OUTPUT>
-  class JobCacheTemplate : public GlobalPointer<JobPool>
+  class JobCacheTemplate 
+    : public GlobalPointer<JobPool>
   {
   public:
     struct INFO
@@ -72,10 +73,10 @@ namespace Maid
       m_pInput.reset(new INPUT(input));
 
       {
-        ThreadMutexLocker lock(s_Mutex);
-        INFOMAP::iterator ite = s_InfoMap.find(input);
+        ThreadMutexLocker lock(GetMutex());
+        INFOMAP::iterator ite = GetInfoMap().find(input);
 
-        if( ite==s_InfoMap.end() )
+        if( ite==GetInfoMap().end() )
         { //  もし初めての読み込みだったら、ファイトです！
           boost::shared_ptr<FUNC  > pFunc  ( new FUNC   );
           boost::shared_ptr<OUTPUT> pOutput( new OUTPUT );
@@ -83,7 +84,7 @@ namespace Maid
           SPJOBSTATUS pObj = GlobalPointer<JobPool>::Get()->AddJob( m_pInput, pFunc, pOutput );
           const INPUT& in = static_cast<const INPUT&>(*m_pInput.get());
 
-          INFO& info = s_InfoMap[in];
+          INFO& info = GetInfoMap()[in];
 
           info.ReferenceCount = 1;
           info.pStatus   = pObj;
@@ -109,16 +110,16 @@ namespace Maid
       if( IsEmpty() ) { return ; }
 
       {
-        ThreadMutexLocker lock(s_Mutex);
+        ThreadMutexLocker lock(GetMutex());
 
-        INFOMAP::iterator ite = s_InfoMap.find(GetInput());
+        INFOMAP::iterator ite = GetInfoMap().find(GetInput());
 
         m_State = STATE_EMPTY;
         ite->second.ReferenceCount -= 1;
 
         if( ite->second.ReferenceCount==0 )
         {
-          s_InfoMap.erase( ite );
+          GetInfoMap().erase( ite );
         }
       }
     }
@@ -155,9 +156,9 @@ namespace Maid
 
       bool ret = false;
       {
-        ThreadMutexLocker lock(s_Mutex);
+        ThreadMutexLocker lock(GetMutex());
 
-        INFOMAP::iterator ite = s_InfoMap.find(GetInput());
+        INFOMAP::iterator ite = GetInfoMap().find(GetInput());
         ret = ite->second.ReferenceCount==1;
       }
 
@@ -180,12 +181,13 @@ namespace Maid
      */
     const OUTPUT& GetOutput() const
     {
-      const_cast<JobCacheTemplate<INPUT,FUNC,OUTPUT>*>(this)->StateCheck();
+      JobCacheTemplate<INPUT,FUNC,OUTPUT>* pThis = const_cast<JobCacheTemplate<INPUT,FUNC,OUTPUT>*>(this);
+      pThis->StateCheck();
       MAID_ASSERT( IsExecuting(), "まだ処理が終わってません" );
 
-      ThreadMutexLocker lock(s_Mutex);
+      ThreadMutexLocker lock(pThis->GetMutex());
 
-      INFO& info = s_InfoMap[GetInput()];
+      INFO& info = pThis->GetInfoMap()[GetInput()];
 
       return static_cast<const OUTPUT&>(*info.pStatus->GetOutput().get()); 
     }
@@ -200,9 +202,9 @@ namespace Maid
       if( m_State!=STATE_LOADING ) { return; }
 
       {
-        ThreadMutexLocker lock(s_Mutex);
+        ThreadMutexLocker lock(GetMutex());
 
-        INFOMAP::iterator ite = s_InfoMap.find(GetInput());
+        INFOMAP::iterator ite = GetInfoMap().find(GetInput());
         INFO& info = ite->second;
 
         //  実行中ならまだまだ
@@ -212,9 +214,17 @@ namespace Maid
       m_State = STATE_WORKING;
     }
 
+    ThreadMutex& GetMutex()
+    {
+      static ThreadMutex s_Mutex;
+      return s_Mutex;
+    }
 
-    static ThreadMutex s_Mutex;
-    static INFOMAP s_InfoMap;
+    INFOMAP& GetInfoMap()
+    {
+      static INFOMAP s_InfoMap;
+      return s_InfoMap;
+    }
 
     enum STATE
     {
