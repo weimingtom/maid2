@@ -44,8 +44,7 @@ protected:
   {
     //  定期的に描画するとこ
 
-    m_Command.ClearRenderTarget( Maid::COLOR_A32B32G32R32F(1,0,0,0) );
-
+    m_Command.ClearRenderTarget( Maid::COLOR_A32B32G32R32F(1,0.5f,0,0) );
     if( m_Render.IsInitializing() ) { return ; }
     m_Command.Begin();
     {
@@ -78,6 +77,7 @@ protected:
 
         m_Render.FillSR( pos, Maid::COLOR_R32G32B32A32F(0,0,1,1), size, center, SIZE2DF(2,0.3f), DEGtoRAD(-rot), Maid::VECTOR3DF(0,0,1) );
       }
+
     }
     m_Command.End();
   }

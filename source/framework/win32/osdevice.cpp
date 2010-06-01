@@ -14,8 +14,6 @@ namespace Maid
 
 static const wchar_t* DEFAULT_CLASSNAME = L"Maid_application";
 
-OSDevice* GlobalPointer<OSDevice>::s_pPointer;
-
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 //! 起動パラメーターの設定
 /*!

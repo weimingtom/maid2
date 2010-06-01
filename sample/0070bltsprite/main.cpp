@@ -38,11 +38,13 @@ protected:
     m_Texture.LoadFile( MAIDTEXT("nc1673.bmp"), 1 );
     //  ↑を↓のようにすると、アルファとカラーを合成できる
 //    m_Texture.LoadFile( MAIDTEXT("<COLOR:nc1673.bmp><ALPHA:nc1673_mask.bmp>") );
-
     m_Texture2.LoadFile( MAIDTEXT("nc1429.png") );
     m_Texture3.LoadFile( MAIDTEXT("nc10910.jpg") );
     m_Mask.LoadFile( MAIDTEXT("mask.png") );
+
     m_FontM.Create( SIZE2DI(16,32), true );
+
+    m_Texture_Copy = m_Texture;
 
   }
 
@@ -61,6 +63,7 @@ protected:
       || m_Texture2.IsLoading()
       || m_Texture3.IsLoading()
       || m_Mask.IsLoading()
+      || m_Texture_Copy.IsLoading()
       )
     { return ; }
 
@@ -74,8 +77,7 @@ protected:
 		  m_Render.Blt( POINT2DI(400,300), m_Texture, rc, center, 1.0f );
 
       //  横に伸ばして、縦に縮めて、不透明度５０％
-		  m_Render.BltS( POINT2DI(400,100), m_Texture, rc, center, 0.5f, SIZE2DF(1.5f,0.8f) );
-
+		  m_Render.BltS( POINT2DI(400,100), m_Texture_Copy, rc, center, 0.5f, SIZE2DF(1.5f,0.8f) );
       {
 
         static int rot;
@@ -154,6 +156,7 @@ private:
   Texture2D       m_Texture2;
   Texture2D       m_Texture3;
 
+  Texture2D       m_Texture_Copy;
   Texture2D       m_Mask;
 
   Font          m_FontM;

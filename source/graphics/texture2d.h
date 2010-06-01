@@ -10,6 +10,7 @@
 #include"../config/define.h"
 #include"../auxiliary/globalpointer.h"
 #include"../auxiliary/jobcachetemplate.h"
+#include"../auxiliary/globalkeyvaluetable.h"
 #include"../auxiliary/string.h"
 #include"../auxiliary/functionresult.h"
 
@@ -46,11 +47,11 @@ namespace Maid
         ,TextureSize(0,0)
       {}
 
-      Graphics::SPTEXTURE2D pTexture;
-      Graphics::SPMATERIAL  pMaterial;
+      std::vector<SurfaceInstance>  TextureData;  //  作成するテクスチャデータ
       SIZE2DI ImageSize;    //  元画像の大きさ
       SIZE2DI CreateSize;   //  実際に作った大きさ
       SIZE2DI TextureSize;  //  テクスチャバッファの大きさ
+      PIXELFORMAT TextureFormat;  //  TextureData のピクセルフォーマット
       PIXELFORMAT ImageFormat;  //  画像ファイルのフォーマット
     };
 
@@ -69,7 +70,6 @@ namespace Maid
       FUNCTIONRESULT LoadImageFile( const String& filename, std::vector<SurfaceInstance>& dst );
       int CalcMipLevels( const GraphicsCore& core, const tex2dInput::CREATECONFIG& setting, const SIZE2DI& size ) const;
 
-      String DebugString( const tex2dInput::CREATECONFIG& Element )const;
     };
   }
 
@@ -100,6 +100,19 @@ namespace Maid
   private:
     typedef JobCacheTemplate<KEEPOUT::tex2dInput,KEEPOUT::tex2dFunction, KEEPOUT::tex2dOutput> CACHE;
     CACHE m_Cache;
+
+    struct TEXTUREDATA
+    {
+      Graphics::SPTEXTURE2D pTexture;
+      Graphics::SPMATERIAL pMaterial;
+      SIZE2DI     ImageSize;    //  元画像の大きさ
+      SIZE2DI     CreateSize;   //  実際に作った大きさ
+      SIZE2DI     TextureSize;  //  テクスチャバッファの大きさ
+      PIXELFORMAT ImageFormat;  //  画像ファイルのフォーマット
+    };
+
+    typedef GlobalKeyValueTable<KEEPOUT::tex2dInput::CREATECONFIG,TEXTUREDATA>  TEXTURETABLE;
+    TEXTURETABLE  m_Table;
 
     String  m_LoadText;
   };

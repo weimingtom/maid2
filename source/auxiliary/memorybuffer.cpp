@@ -52,6 +52,12 @@ size_t MemoryBuffer::GetSize() const
   return m_Image.size();
 }
 
+
+//! 現在の領域の後ろに連結する
+/*!
+    @param pData  [i ] 追加するデータ
+    @param length [i ] データの長さ
+ */
 void MemoryBuffer::Add( const void* pData, size_t length )
 {
   if( length==0 ) { return ; }
@@ -62,6 +68,12 @@ void MemoryBuffer::Add( const void* pData, size_t length )
   memcpy( _GetPointer(old_size), pData, length );
 }
 
+//! データを読み出す
+/*!
+    @param pDst [ o] 書き込み先
+    @param pos  [i ] データの読み出し位置（バイト単位）
+    @param size [i ] 読み出す長さ
+ */
 void MemoryBuffer::Get( void* pDst, size_t pos, size_t size )const
 {
   if( size==0 ) { return ; }

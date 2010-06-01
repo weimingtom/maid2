@@ -68,7 +68,7 @@ protected:
     m_Command.Begin();
 
     m_Render.SetCamera(m_Camera);
-    m_Render.Blt( POINT3DF(0,0,0), m_Model );
+    m_Render.Blt( POINT3DF(0,0,0), m_Model, 1 );
 //    m_Render.Fill();
 
     m_Command.End();

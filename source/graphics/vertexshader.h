@@ -12,6 +12,7 @@
 #include"../auxiliary/globalpointer.h"
 #include"../auxiliary/jobcachetemplate.h"
 #include"../auxiliary/string.h"
+#include"../auxiliary/globalkeyvaluetable.h"
 
 #include"graphicsobjecttemplate.h"
 #include"graphicscore.h"
@@ -19,6 +20,9 @@
 
 namespace Maid
 {
+
+
+#if 0
   namespace KEEPOUT
   {
     class vsInput : public IJobInput
@@ -70,6 +74,58 @@ namespace Maid
     ShaderCompiler  m_Compiler;
     typedef JobCacheTemplate<KEEPOUT::vsInput,KEEPOUT::vsFunction, KEEPOUT::vsOutput> CACHE;
     CACHE m_Cache;
+  };
+#endif
+
+#if 0
+  class VertexShader
+    :public IVertexShader
+    ,private GlobalPointer<GraphicsCore>
+  {
+  public:
+    virtual ~VertexShader();
+    void Create( const String& ShaderCode );
+    bool IsCompiling()const;
+
+  private:
+    void Delete();
+
+    String          m_ShaderCode;
+    ShaderCompiler  m_Compiler;
+
+    struct SHADERINFO
+    {
+      Graphics::SPVERTEXSHADER pShader;
+    };
+    typedef	boost::shared_ptr<SHADERINFO>	SPSHADERINFO;
+
+    SPSHADERINFO  m_pShaderInfo;
+
+    typedef std::map<String,SPSHADERINFO> SHAREDDATA;
+    static SHAREDDATA s_SharedData;
+  };
+#endif
+
+  class VertexShader
+    :public IVertexShader
+    ,private GlobalPointer<GraphicsCore>
+  {
+  public:
+    virtual ~VertexShader();
+    void Create( const String& ShaderCode );
+    bool IsCompiling()const;
+
+  private:
+    void Delete();
+
+    ShaderCompiler  m_Compiler;
+
+    struct SHADERINFO
+    {
+      Graphics::SPVERTEXSHADER pShader;
+    };
+
+    GlobalKeyValueTable<String,SHADERINFO> m_Table;
   };
 }
 

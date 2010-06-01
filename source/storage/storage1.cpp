@@ -13,8 +13,6 @@ namespace Maid
   \n          ネットワークもストレージ
   */
 
-Storage*  GlobalPointer<Storage>::s_pPointer;
-
 
 Storage::Storage()
   :m_SleepCount(0)

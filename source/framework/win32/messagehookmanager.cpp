@@ -6,8 +6,6 @@
 namespace Maid
 {
 
-MessageHookManager* GlobalPointer<MessageHookManager>::s_pPointer;
-
 
 MessageHookManager::MessageHookManager()
 {

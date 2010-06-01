@@ -48,8 +48,6 @@ inline SIZE2DI CalcQuality( int quality )
 }
 
 
-GraphicsCore*  GlobalPointer<GraphicsCore>::s_pPointer;
-
   /*!
 	 	@class Core core.h
 	 	@brief  グラフィック周りを管理するクラス

@@ -9,7 +9,6 @@ namespace Maid {
               デバイスを管理しています
   */
 
-SoundCore*  GlobalPointer<SoundCore>::s_pPointer;
 
 //  こちらに書く関数はゲームスレッドが使うものとします
 //  2.cppに書くのはサウンド専用スレッドが行います
