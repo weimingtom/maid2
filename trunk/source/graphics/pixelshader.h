@@ -11,6 +11,7 @@
 #include"../auxiliary/debug/assert.h"
 #include"../auxiliary/globalpointer.h"
 #include"../auxiliary/jobcachetemplate.h"
+#include"../auxiliary/globalkeyvaluetable.h"
 
 #include"graphicsobjecttemplate.h"
 #include"graphicscore.h"
@@ -18,6 +19,8 @@
 
 namespace Maid
 {
+
+#if 0
   namespace KEEPOUT
   {
     class psInput : public IJobInput
@@ -70,7 +73,58 @@ namespace Maid
     typedef JobCacheTemplate<KEEPOUT::psInput,KEEPOUT::psFunction, KEEPOUT::psOutput> CACHE;
     CACHE m_Cache;
   }; 
-	
+#endif
+
+#if 0
+  class PixelShader
+    :public IPixelShader
+    ,private GlobalPointer<GraphicsCore>
+  {
+  public:
+    virtual ~PixelShader();
+    void Create( const String& ShaderCode );
+    bool IsCompiling()const;
+
+  private:
+    void Delete();
+
+    String          m_ShaderCode;
+    ShaderCompiler  m_Compiler;
+
+    struct SHADERINFO
+    {
+      Graphics::SPPIXELSHADER pShader;
+    };
+    typedef	boost::shared_ptr<SHADERINFO>	SPSHADERINFO;
+
+    SPSHADERINFO  m_pShaderInfo;
+
+    typedef std::map<String,SPSHADERINFO> SHAREDDATA;
+    static SHAREDDATA s_SharedData;
+  };
+#endif
+
+  class PixelShader
+    :public IPixelShader
+    ,private GlobalPointer<GraphicsCore>
+  {
+  public:
+    virtual ~PixelShader();
+    void Create( const String& ShaderCode );
+    bool IsCompiling()const;
+
+  private:
+    void Delete();
+
+    ShaderCompiler  m_Compiler;
+
+    struct SHADERINFO
+    {
+      Graphics::SPPIXELSHADER pShader;
+    };
+
+    GlobalKeyValueTable<String,SHADERINFO> m_Table;
+  };
 }
 
 

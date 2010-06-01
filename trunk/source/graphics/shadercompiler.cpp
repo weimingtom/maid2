@@ -9,9 +9,6 @@ namespace Maid
   \n          コンパイルはデバイスの仕事なので、このクラスはデバイスが違っても変更しなくてすむ
   */
 
-  ShaderCompiler::CACHE::INFOMAP  ShaderCompiler::CACHE::s_InfoMap;
-  ThreadMutex  ShaderCompiler::CACHE::s_Mutex;
-
   namespace KEEPOUT
   {
     void ShaderFunction::Execute( const IJobInput& Input, IJobOutput& Output )

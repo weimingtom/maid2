@@ -9,6 +9,7 @@
 #include"direct3d10/deviced3d10_1warp.h"
 #include"direct3d11/deviced3d11.h"
 #include"direct3d11/deviced3d11warp.h"
+#include"opengl/deviceopengl.h"
 
 #include"fontdevice.h"
 
@@ -20,6 +21,9 @@ namespace Maid { namespace Graphics {
 //  たとえば Dx10  で adapter:5 なら  100005
 //  たとえば Dx10.1で adapter:5 なら  101005
 //  たとえば Dx11  で adapter:2 なら  110002
+//  OpenGL1は 901001 とする
+//  OpenGL2は 902001 とする
+//  OpenGL3は 903001 とする
 
 //  それぞれのデバイスで adapter:0はデフォルトデバイスとする
 inline int MakeID( int dx, int sub, int no )
@@ -50,6 +54,7 @@ void DeviceList::Initialize()
   InitializeDXGI();
   InitializeD3D10();
   InitializeD3D11();
+  InitializeOpenGL();
 }
 
 
@@ -58,6 +63,8 @@ void DeviceList::GetList( std::vector<INFO>& ret )
   FindAdapterD3D09( ret );
   FindAdapterD3D10( ret );
   FindAdapterD3D11( ret );
+  FindAdapterOpenGL( ret );
+
 }
 
 SPDEVICE DeviceList::Create( int DeviceID )
@@ -144,6 +151,15 @@ SPDEVICE DeviceList::Create( int DeviceID )
         pDevice.reset( new DeviceD3D11( m_D3D11DLL, pAdapter, m_Window ) );
       }
     }break;
+
+  case 90:
+    {
+      pDevice.reset( new DeviceOpenGL( m_Window ) );
+    }break;
+
+/*
+  ret.push_back( INFO(MakeID(90,2,1), tex + MAIDTEXT("OpenGL2.0")) );
+*/
   default:{ MAID_ASSERT( true, "デバイスが選択されていません " << DeviceID ); }break;
   }
 
@@ -417,6 +433,58 @@ void DeviceList::FindAdapterD3D11( std::vector<INFO>& info )
   }
 }
 
+
+
+void DeviceList::InitializeOpenGL()
+{
+  m_OpenGLDLL.Initialize();
+}
+
+void DeviceList::FindAdapterOpenGL( std::vector<INFO>& info )
+{
+	Window win;
+
+	win.Create( MAIDTEXT("this window is dummy for get OpenGL-version"), POINT2DI(0,0), SIZE2DI(100,100), WS_OVERLAPPEDWINDOW );
+
+	// このデバイスコンテキストが欲しいばかりに無駄なウィンドウを作成するという汚い仕様
+	// GetDC(NULL)だとOpenGLのバージョンの取得ができないんだよね（環境によってはできるっぽい）
+  HDC hDC = ::GetDC( win.GetHWND() );
+
+	PIXELFORMATDESCRIPTOR pfd;
+  {
+    ZERO( &pfd, sizeof(pfd) );
+
+	  pfd.nSize = sizeof( pfd );
+	  pfd.nVersion = 1;
+	  pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+	  pfd.iPixelType = PFD_TYPE_RGBA;
+	  pfd.cColorBits = 32;
+	  pfd.cDepthBits = 16;
+	  pfd.iLayerType = PFD_MAIN_PLANE;
+  }
+
+  const int pixelformat = ChoosePixelFormat( hDC, &pfd );
+	SetPixelFormat( hDC, pixelformat, &pfd );
+
+	HGLRC hGLContext = m_OpenGLDLL.wglCreateContext( hDC );
+  m_OpenGLDLL.wglMakeCurrent( hDC, hGLContext );
+
+  const char* pVersionText = (char*)m_OpenGLDLL.glGetString(GL_VERSION);
+
+  if( pVersionText!=NULL && atof(pVersionText)>=2.0f )
+  {
+    const String str = String::PrintFormat("OpenGL %s", pVersionText );
+    const int id = MakeID(90,2,1);
+
+    info.push_back( INFO(id,str) );
+
+  }
+
+	m_OpenGLDLL.wglMakeCurrent( NULL, NULL );
+	m_OpenGLDLL.wglDeleteContext( hGLContext );
+  ::ReleaseDC( NULL, hDC );
+
+}
 
 
 }}

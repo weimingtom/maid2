@@ -12,6 +12,18 @@
 
 namespace Maid
 {
+  String DebugString( const KEEPOUT::tex2dInput::CREATECONFIG& Element )
+  {
+    String ret;
+
+    for( KEEPOUT::tex2dInput::CREATECONFIG::const_iterator ite=Element.begin();
+          ite!=Element.end(); ++ite )
+    {
+      ret += MAIDTEXT("<") + ite->first + MAIDTEXT(":") + ite->second + MAIDTEXT(">");
+    }
+    return ret;
+  }
+
   namespace KEEPOUT
   {
     void tex2dFunction::Execute( const IJobInput& Input, IJobOutput& Output )
@@ -51,22 +63,28 @@ namespace Maid
 
       in.Core->CalcTextureSize( ImgSize, RealSize, TextureSize );
 
-      std::vector<SurfaceInstance> SubResourceSurface;
-
       {
         const int level = CalcMipLevels( *(in.Core), setting, TextureSize );
        
-        SubResourceSurface.resize( level );  
+        out.TextureData.resize( level );  
         SIZE2DI NowSize = TextureSize;
         for( int i=0; i<level; ++i )
         {
-          SubResourceSurface[i].Create( NowSize, DstFormat );
+          out.TextureData[i].Create( NowSize, DstFormat );
           NowSize.w /= 2; if( NowSize.w<1 ) { NowSize.w = 1; }
           NowSize.h /= 2; if( NowSize.h<1 ) { NowSize.h = 1; }
         }
-        ConvertSubResource( ImageSurface, SubResourceSurface  );
+        ConvertSubResource( ImageSurface, out.TextureData  );
       }
 
+
+      out.ImageSize   = ImgSize;
+      out.CreateSize  = RealSize;
+      out.TextureSize = TextureSize;
+      out.TextureFormat = DstFormat;
+      out.ImageFormat = ImageSurface[0].GetPixelFormat();
+
+/*
       //  求まったのでテクスチャを実際に作る
       Graphics::SPTEXTURE2D pTexture;
       {
@@ -117,6 +135,7 @@ namespace Maid
       out.CreateSize  = RealSize;
       out.TextureSize = TextureSize;
       out.ImageFormat = ImageSurface[0].GetPixelFormat();
+*/
     }
 
     int tex2dFunction::CalcMipLevels( const GraphicsCore& core, const tex2dInput::CREATECONFIG& setting, const SIZE2DI& size ) const
@@ -267,22 +286,9 @@ namespace Maid
       }
     }
 
-    String tex2dFunction::DebugString( const tex2dInput::CREATECONFIG& Element )const
-    {
-      String ret;
 
-      for( tex2dInput::CREATECONFIG::const_iterator ite=Element.begin();
-            ite!=Element.end(); ++ite )
-      {
-        ret += MAIDTEXT("<") + ite->first + MAIDTEXT(":") + ite->second + MAIDTEXT(">");
-      }
-      return ret;
-    }
   }
 
-
-Texture2D::CACHE::INFOMAP  Texture2D::CACHE::s_InfoMap;
-ThreadMutex  Texture2D::CACHE::s_Mutex;
 
 void Texture2D::LoadFile( const String& FileName )
 {
@@ -334,9 +340,98 @@ bool Texture2D::IsLoading()const
   //  処理が終わるまでは忙しい
   if( m_Cache.IsExecuting() ) { return true; }
 
+  const KEEPOUT::tex2dInput& in = m_Cache.GetInput();
   const KEEPOUT::tex2dOutput& out = m_Cache.GetOutput();
 
+  //  バッファの作成を　JobCacheTemplate で
+  //  テクスチャの共有を GlobalKeyValueTable
+
+  TEXTURETABLE& tbl = const_cast<Texture2D*>(this)->m_Table;
+  if( m_Table.IsExist(in.Config) ) 
+  {
+    /* KVTのデータを設定する*/
+    tbl.Load(in.Config);
+  }
+  else
+  {
+    //  テクスチャの作成
+
+    Graphics::SPTEXTURE2D pTexture;
+    {
+      Graphics::CREATERETEXTURE2DPARAM param;
+
+      param.Size = out.TextureSize;
+      param.MipLevels = (int)out.TextureData.size();
+      param.ArraySize = 1;
+      param.Format = out.TextureFormat;
+      param.Usage = Graphics::RESOURCEUSAGE_DEFAULT;
+      param.BindFlags = Graphics::RESOURCEBINDFLAG_MATERIAL;
+
+      std::vector<Graphics::SUBRESOURCE> sub;
+      
+      {
+        const int count = (int)out.TextureData.size();
+        for( int i=0; i<count; ++i )
+        {
+          const Surface& surf = out.TextureData[i];
+          Graphics::SUBRESOURCE res;
+          res.pData = surf.GetPlanePTR();
+          res.Pitch = surf.GetPitch();
+          res.Slice = surf.GetPitch() * surf.GetSize().h;
+          sub.push_back(res);
+        }
+      }
+
+      pTexture = in.Core->GetDevice()->CreateTexture2D( param, &(sub[0]) );
+      if( pTexture.get()==NULL ) {
+        MAID_WARNING( MAIDTEXT("テクスチャの作成に失敗 ") << DebugString(in.Config) );
+        return false; 
+      }
+    }
+
+    Graphics::SPMATERIAL pMaterial;
+    {
+      pMaterial = in.Core->GetDevice()->CreateMaterial( pTexture, NULL );
+      if( pMaterial.get()==NULL )
+      {
+        MAID_WARNING( MAIDTEXT("テクスチャの作成に失敗 ") << DebugString(in.Config) );
+        return false; 
+      }
+    }
+
+    TEXTUREDATA dat;
+
+    dat.pTexture  = pTexture;
+    dat.pMaterial = pMaterial;
+    dat.ImageSize   = out.ImageSize;
+    dat.CreateSize  = out.CreateSize;
+    dat.TextureSize = out.TextureSize;
+    dat.ImageFormat = out.ImageFormat;
+
+    tbl.Create(in.Config,dat);
+
+  }
+
+  const TEXTUREDATA& dat = tbl.GetValue();
+  const_cast<Texture2D*>(this)->Setup( dat.pTexture, dat.pMaterial, dat.ImageSize, dat.CreateSize, dat.ImageFormat );
+
+  const_cast<Texture2D*>(this)->m_Cache.Reset();
+
+/*
+
+  if( m_Table.IsExist(Command) )
+  {
+    const TEXTUREDATA& dat = m_Table.GetValue(Command);
+
+    Setup( dat.pTexture, dat.pMaterial, dat.ImageSize, dat.CreateSize, dat.ImageFormat );
+
+  }else
+  {
+    m_Cache.Start( KEEPOUT::tex2dInput(Command, GlobalPointer<GraphicsCore>::Get() ) );
+  }
   const_cast<Texture2D*>(this)->Setup( out.pTexture, out.pMaterial, out.ImageSize, out.CreateSize, out.ImageFormat );
+*/
+
 
   return false;
 
@@ -344,12 +439,12 @@ bool Texture2D::IsLoading()const
 
 const SIZE2DI& Texture2D::GetImageSize()const
 {
-  return m_Cache.GetOutput().ImageSize;
+  return m_Table.GetValue().ImageSize;
 }
 
 bool Texture2D::IsEmpty() const
 {
-  return m_Cache.IsEmpty();
+  return m_Table.IsEmpty();
 }
 
 String Texture2D::GetLoadText() const
@@ -377,7 +472,18 @@ void Texture2D::SendCommand( const KEEPOUT::tex2dInput::CREATECONFIG& Command )
 {
   Texture2DBase::Clear();
   if( Command.empty() ) { return ; }
-  m_Cache.Start( KEEPOUT::tex2dInput(Command, GlobalPointer<GraphicsCore>::Get() ) );
+
+  if( m_Table.IsExist(Command) )
+  {
+    m_Table.Load(Command);
+    const TEXTUREDATA& dat = m_Table.GetValue();
+
+    Setup( dat.pTexture, dat.pMaterial, dat.ImageSize, dat.CreateSize, dat.ImageFormat );
+
+  }else
+  {
+    m_Cache.Start( KEEPOUT::tex2dInput(Command, GlobalPointer<GraphicsCore>::Get() ) );
+  }
 }
 
 

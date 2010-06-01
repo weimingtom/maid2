@@ -11,8 +11,6 @@ namespace Maid {
       @brief  GameSound を管理しているクラス
   */
 
-GameSoundManager*  GlobalPointer<GameSoundManager>::s_pPointer;
-
 GameSoundManager::GameSoundManager()
 :m_FPS(60)
 {

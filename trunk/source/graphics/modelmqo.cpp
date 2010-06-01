@@ -293,9 +293,6 @@ namespace Maid
   }
 
 
-ModelMQO::CACHE::INFOMAP  ModelMQO::CACHE::s_InfoMap;
-ThreadMutex  ModelMQO::CACHE::s_Mutex;
-
 
 
 void ModelMQO::Load( const String& FileName )

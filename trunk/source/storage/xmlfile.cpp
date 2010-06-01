@@ -65,9 +65,6 @@ bool XMLFileWriter::IsWritting() const
 
 
 
-XMLFileReader::CACHE::INFOMAP  XMLFileReader::CACHE::s_InfoMap;
-ThreadMutex  XMLFileReader::CACHE::s_Mutex;
-
 void XMLFileReader::Load( const String& FileName )
 {
   if( FileName.empty() ) { return ; }

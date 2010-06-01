@@ -21,24 +21,50 @@ MoviePlayer::MoviePlayer()
 
 }
 
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! プレイヤーの再生準備を行う
+/*!
+    @param  FileName [i ] 再生させるファイル名（今のところogg/vorbis/theora専用）
+ */
 void MoviePlayer::Initialize( const String& FileName )
 {
   m_FileName = FileName;
   SetPosition(0);
 }
 
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 再生準備が整ったか問い合せる
+/*!
+    @return 準備OKならtrue
+            まだならfalse
+ */
 bool MoviePlayer::IsStandby() const
 {
   if( m_State==STATE_WORKING ) { return true; }
   return false;
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! ファイル情報を取得する
+/*!
+    @return  ファイル情報
+ */
 const MoviePlayer::FILEINFO& MoviePlayer::GetFileInfo() const
 {
   MAID_ASSERT( !IsStandby(), "まだ準備ができていません" );
   return m_FileInfo;
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+//! 現在表示させるべき画像を取得する
+/*!
+    @param  time    [ o]  この画像が表示する時間
+    @param  pOutput [ o]  表示する画像のデータ（）
+    @return 準備OKならtrue
+            まだならfalse
+ */
 void MoviePlayer::FlushImage( double& time, Movie::SPSAMPLEFRAME& pOutput )
 {
   if( m_State!=STATE_WORKING ) { return ; }
@@ -47,7 +73,6 @@ void MoviePlayer::FlushImage( double& time, Movie::SPSAMPLEFRAME& pOutput )
 
   Movie::DECODERSAMPLELIST sample;
   {
-//    ThreadMutexLocker lock(m_ManagerMutex);
     m_pManager->FlushSample( DECODERID_FRAME1, TargetTime, sample );
   }
 

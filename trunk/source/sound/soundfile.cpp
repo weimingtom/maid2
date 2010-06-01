@@ -117,9 +117,6 @@ namespace Maid {
 
   }
 
-SoundFile::CACHE::INFOMAP  SoundFile::CACHE::s_InfoMap;
-ThreadMutex  SoundFile::CACHE::s_Mutex;
-
 
 SoundFile::SoundFile()
   :m_IsPlay(false)

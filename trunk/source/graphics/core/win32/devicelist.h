@@ -19,6 +19,7 @@
 #include"direct3d09/common.h"
 #include"direct3d10/common.h"
 #include"dxgitypedef.h"
+#include"opengl/opengl32dll.h"
 
 namespace Maid { namespace Graphics {
 
@@ -38,10 +39,12 @@ namespace Maid { namespace Graphics {
     void InitializeDXGI();
     void InitializeD3D10();
     void InitializeD3D11();
+    void InitializeOpenGL();
 
     void FindAdapterD3D09( std::vector<INFO>& info );
     void FindAdapterD3D10( std::vector<INFO>& info );
     void FindAdapterD3D11( std::vector<INFO>& info );
+    void FindAdapterOpenGL( std::vector<INFO>& info );
 
   private:
     Window&  m_Window;
@@ -60,6 +63,9 @@ namespace Maid { namespace Graphics {
     DllWrapper     m_D3D10_WARPDLL;
 
     DllWrapper     m_D3D11DLL;
+
+
+    OpenGL32DLL   m_OpenGLDLL;
   };
 }}
 

@@ -3,9 +3,6 @@
 
 namespace Maid
 {
-  InputLayout::CACHE::INFOMAP  InputLayout::CACHE::s_InfoMap;
-  ThreadMutex  InputLayout::CACHE::s_Mutex;
-
   void InputLayout::Create( const Graphics::INPUT_ELEMENT* Element, int Count, const String& ShaderCode )
   {
     IInputLayout::Clear();
