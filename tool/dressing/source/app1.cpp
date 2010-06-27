@@ -10,7 +10,6 @@
 
 using namespace Maid;
 
-MyApp* GlobalPointer<MyApp>::s_pPointer;
 
 
 MyApp* s_pAPP;  //  強引すぎるハック。そのうちなんとかする

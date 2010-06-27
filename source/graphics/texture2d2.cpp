@@ -14,9 +14,6 @@ namespace Maid
 {
   namespace KEEPOUT
   {
-
-
-
     FUNCTIONRESULT tex2dFunction::LoadImageFile( const String& filename, std::vector<SurfaceInstance>& dst )
     {
       FileReaderSync  hFile;

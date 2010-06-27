@@ -11,7 +11,6 @@ namespace Maid {
  */
 PIXELFORMAT GraphicsCore::FindFormatTexture2D( PIXELFORMAT fmt, bool IsRenderTarget )const
 {
-//  const PIXELFORMATLIST& fmtlist = IsRenderTarget? m_TextureFormat : m_RenderTargetTextureFormat;
   const PIXELFORMATLIST& fmtlist = IsRenderTarget? m_RenderTargetTextureFormat : m_TextureFormat;
 
   return FindFormat( fmt, fmtlist );

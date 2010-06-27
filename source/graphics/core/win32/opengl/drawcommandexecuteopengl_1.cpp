@@ -33,7 +33,7 @@ DrawCommandExecuteOpenGL::~DrawCommandExecuteOpenGL()
 
 void DrawCommandExecuteOpenGL::Initialize()
 {
-  m_PrimitiveTopology = PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+  m_PrimitiveTopology = GL_TRIANGLE_STRIP;
 
   m_VertexBuffer.resize( 8 );
 

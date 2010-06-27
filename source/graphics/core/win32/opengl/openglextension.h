@@ -42,6 +42,11 @@ namespace Maid { namespace Graphics {
     void glActiveTexture(	GLenum texture );
 
 
+    void glGenRenderbuffers(	GLsizei n, 	GLuint * renderbuffers);
+    void glBindRenderbuffer(	GLenum target, 	GLuint renderbuffer);
+    void glRenderbufferStorage(	GLenum target, GLenum internalformat, GLsizei width, GLsizei height);
+
+
 
     GLuint glCreateShader(GLenum type);
     void glShaderSource(GLuint shader, GLsizei count, const GLchar** string, const GLint* length );
@@ -69,7 +74,11 @@ namespace Maid { namespace Graphics {
     void glUniform4i(	GLint location,	GLint v0,	GLint v1,	GLint v2,	GLint v3);
 
 
-    void   glDrawArrays( GLenum mode, GLint first, GLsizei count );
+    void glDrawArrays( GLenum mode, GLint first, GLsizei count );
+
+
+    void glBlendEquation(	GLenum mode );
+    void glBlendFuncSeparate(	GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
 
   private:
     bool IsExtensionSupported( const std::string& str ) const;
@@ -90,6 +99,9 @@ namespace Maid { namespace Graphics {
     typedef void (APIENTRY * GLTEXCOORDPOINTER)( GLint size, GLenum type, GLsizei stride, const GLvoid* pointer);  GLTEXCOORDPOINTER m_glTexCoordPointer;
     typedef void (APIENTRY * GLCOLORPOINTER)( GLint size, GLenum type, GLsizei stride, const GLvoid* pointer);  GLCOLORPOINTER m_glColorPointer;
 
+    typedef void (APIENTRY * GLGENRENDERBUFFERS)   ( GLsizei, GLuint*);  GLGENRENDERBUFFERS m_glGenRenderbuffers;
+    typedef void (APIENTRY * GLBINDRENDERBUFFER)   ( GLenum, 	GLuint);   GLBINDRENDERBUFFER m_glBindRenderbuffer;
+    typedef void (APIENTRY * GLRENDERBUFFERSTORAGE)( GLenum,  GLenum, GLsizei, GLsizei);  GLRENDERBUFFERSTORAGE m_glRenderbufferStorage;
 
 
     typedef GLuint (APIENTRY * GLCREATESHADER)  (GLenum type);  GLCREATESHADER m_glCreateShader;
@@ -121,6 +133,8 @@ namespace Maid { namespace Graphics {
 		typedef void (APIENTRY*GLUNIFORM3I)( GLint,	GLint, GLint, GLint);  GLUNIFORM3I  m_glUniform3i;
 		typedef void (APIENTRY*GLUNIFORM4I)( GLint,	GLint, GLint, GLint, GLint);  GLUNIFORM4I  m_glUniform4i;
 
+		typedef void   (WINAPI*GLBLENDEQUATION)(GLenum);  GLBLENDEQUATION  m_glBlendEquation;
+		typedef void   (WINAPI*GLBLENDEFUNCSEPARATE)(GLenum,GLenum,GLenum,GLenum);  GLBLENDEFUNCSEPARATE  m_glBlendFuncSeparate;
 
   };
 

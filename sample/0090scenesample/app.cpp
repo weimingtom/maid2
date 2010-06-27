@@ -6,8 +6,6 @@
 using namespace Maid;
 
 
-App* GlobalPointer<App>::s_pPointer;
-
 App::App()
   :m_Render(m_Command)
 {

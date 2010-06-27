@@ -48,7 +48,9 @@ namespace Maid { namespace Graphics {
     void glBindTexture( GLenum target, GLuint texture );
     void glTexImage2D( GLenum target, GLint level, GLint components, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *pixels );
     void glDeleteTextures( GLsizei n , const GLuint* textures );
+    void glTexParameteri( GLenum target, GLenum pname, GLint param );
 
+    void glPixelStorei(	GLenum pname, GLint param);
 
   private:
     DllWrapper    m_OpenGLDLL;
@@ -87,6 +89,12 @@ namespace Maid { namespace Graphics {
 		typedef void   (WINAPI*GLBINDTEXTURE)( GLenum, GLuint );  GLBINDTEXTURE  m_glBindTexture;
 		typedef void   (WINAPI*GLTEXIMAGE2D)( GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid* );  GLTEXIMAGE2D  m_glTexImage2D;
 		typedef void   (WINAPI*GLDELETETEXTURES)( GLsizei, const GLuint*);  GLDELETETEXTURES  m_glDeleteTextures;
+
+		typedef void   (WINAPI*GLTEXPARAMETERI)( GLenum target, GLenum pname, GLint param );  GLTEXPARAMETERI  m_glTexParameteri;
+
+
+		typedef void   (WINAPI*GLPIXELSTOREI)( GLenum pname, GLint param);  GLPIXELSTOREI  m_glPixelStorei;
+
 
 
   };

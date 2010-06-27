@@ -88,7 +88,7 @@ void BlendState::Create( TEMPLATE type )
       param.Target[0].ColorSrc = Graphics::BLENDSTATEPARAM::TARGET::BLEND_ONE;
       param.Target[0].ColorDst = Graphics::BLENDSTATEPARAM::TARGET::BLEND_INV_SRC_COLOR;
       param.Target[0].ColorOp = Graphics::BLENDSTATEPARAM::TARGET::OPERATION_ADD;
-
+ 
       param.Target[0].AlphaSrc = Graphics::BLENDSTATEPARAM::TARGET::BLEND_ZERO;
       param.Target[0].AlphaDst = Graphics::BLENDSTATEPARAM::TARGET::BLEND_ONE;
       param.Target[0].AlphaOp = Graphics::BLENDSTATEPARAM::TARGET::OPERATION_ADD;

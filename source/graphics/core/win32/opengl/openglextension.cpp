@@ -104,6 +104,17 @@ void OpenGLExtension::Initialize( OpenGL32DLL& gldll )
   }
 
   {
+    m_glGenRenderbuffers = (GLGENRENDERBUFFERS)gldll.wglGetProcAddress("glGenRenderbuffers");
+		if( m_glGenRenderbuffers==NULL ) { MAID_WARNING( "glGenRenderbuffers()が存在してません"); }
+    m_glBindRenderbuffer = (GLBINDRENDERBUFFER)gldll.wglGetProcAddress("glBindRenderbuffer");
+		if( m_glBindRenderbuffer==NULL ) { MAID_WARNING( "glBindRenderbuffer()が存在してません"); }
+    m_glRenderbufferStorage = (GLRENDERBUFFERSTORAGE)gldll.wglGetProcAddress("glRenderbufferStorage");
+		if( m_glRenderbufferStorage==NULL ) { MAID_WARNING( "glRenderbufferStorage()が存在してません"); }
+  }
+
+
+
+  {
     m_glDrawArrays = (GLDRAWARRAYS)gldll.wglGetProcAddress("glDrawArrays");
 		if( m_glDrawArrays==NULL ) { MAID_WARNING( "glDrawArrays()が存在してません"); }
   }
@@ -127,9 +138,13 @@ void OpenGLExtension::Initialize( OpenGL32DLL& gldll )
 		if( m_glUniform3i==NULL ) { MAID_WARNING( "glUniform3i()が存在してません"); }
     m_glUniform4i = (GLUNIFORM4I)gldll.wglGetProcAddress("glUniform4i");
 		if( m_glUniform4i==NULL ) { MAID_WARNING( "glUniform4i()が存在してません"); }
+  }
+  {
+    m_glBlendEquation = (GLBLENDEQUATION)gldll.wglGetProcAddress("glBlendEquation");
+		if( m_glBlendEquation==NULL ) { MAID_WARNING( "glBlendEquation()が存在してません"); }
 
-
-
+    m_glBlendFuncSeparate = (GLBLENDEFUNCSEPARATE)gldll.wglGetProcAddress("glBlendFuncSeparate");
+		if( m_glBlendFuncSeparate==NULL ) { MAID_WARNING( "glBlendFuncSeparate()が存在してません"); }
   }
 }
 
@@ -231,6 +246,23 @@ void OpenGLExtension::glGetShaderInfoLog( GLuint shader,  GLsizei maxLength,	GLs
 
 
 
+void OpenGLExtension::glGenRenderbuffers(	GLsizei n, 	GLuint * renderbuffers)
+{
+  return m_glGenRenderbuffers( n, renderbuffers );
+}
+
+void OpenGLExtension::glBindRenderbuffer(	GLenum target, 	GLuint renderbuffer)
+{
+  return m_glBindRenderbuffer( target, renderbuffer );
+}
+
+void OpenGLExtension::glRenderbufferStorage(	GLenum target, GLenum internalformat, GLsizei width, GLsizei height)
+{
+  return m_glRenderbufferStorage( target, internalformat, width, height );
+}
+
+
+
 GLuint OpenGLExtension::glCreateProgram()
 {
   return m_glCreateProgram();
@@ -313,6 +345,17 @@ void OpenGLExtension::glUniform4i(	GLint location,	GLint v0,	GLint v1,	GLint v2,
 {
   m_glUniform4i( location, v0, v1, v2, v3 );
 }
+
+void OpenGLExtension::glBlendEquation(	GLenum mode )
+{
+  m_glBlendEquation( mode );
+}
+
+void OpenGLExtension::glBlendFuncSeparate(	GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha )
+{
+  m_glBlendFuncSeparate( srcRGB, dstRGB, srcAlpha, dstAlpha );
+}
+
 
 }}
 
