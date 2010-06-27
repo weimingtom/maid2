@@ -89,10 +89,12 @@ namespace Maid { namespace Graphics {
 
     std::vector<VERTEXBUFFER> m_VertexBuffer;
     SPINPUTLAYOUT             m_pInputLayout;
-    PRIMITIVE_TOPOLOGY        m_PrimitiveTopology;
+    GLenum        m_PrimitiveTopology;
 
     SPVERTEXSHADEROPENGL  m_pVertexShader;
     SPPIXELSHADEROPENGL   m_pPixelShader;
+
+    SPMATERIAL  m_pMaterialPS[8];
 
     GLuint  m_ShaderProgramID;
   };

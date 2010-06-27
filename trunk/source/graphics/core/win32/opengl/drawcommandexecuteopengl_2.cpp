@@ -69,20 +69,18 @@ void DrawCommandExecuteOpenGL::SetInputLayout( const SPINPUTLAYOUT& pLayout )
 
 void DrawCommandExecuteOpenGL::SetPrimitiveTopology( PRIMITIVE_TOPOLOGY Topology )
 {
-  m_PrimitiveTopology = Topology;
-/*
-  D3D11_PRIMITIVE_TOPOLOGY t = D3D11_PRIMITIVE_TOPOLOGY_POINTLIST;
+  GLenum t = GL_TRIANGLE_STRIP;
+
   switch( Topology )
   {
-  case PRIMITIVE_TOPOLOGY_POINTLIST:    { t = D3D11_PRIMITIVE_TOPOLOGY_POINTLIST; }break;
-  case PRIMITIVE_TOPOLOGY_LINELIST:     { t = D3D11_PRIMITIVE_TOPOLOGY_LINELIST ; }break;
-  case PRIMITIVE_TOPOLOGY_LINESTRIP:    { t = D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP; }break;
-  case PRIMITIVE_TOPOLOGY_TRIANGLELIST: { t = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST; }break;
-  case PRIMITIVE_TOPOLOGY_TRIANGLESTRIP:{ t = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP; }break;
+  case PRIMITIVE_TOPOLOGY_POINTLIST:    { t = GL_POINTS; }break;
+  case PRIMITIVE_TOPOLOGY_LINELIST:     { t = GL_LINES ; }break;
+  case PRIMITIVE_TOPOLOGY_LINESTRIP:    { t = GL_LINE_STRIP; }break;
+  case PRIMITIVE_TOPOLOGY_TRIANGLELIST: { t = GL_TRIANGLES; }break;
+  case PRIMITIVE_TOPOLOGY_TRIANGLESTRIP:{ t = GL_TRIANGLE_STRIP; }break;
   }
 
-  m_pDevice->IASetPrimitiveTopology( t );
-*/
+  m_PrimitiveTopology = t;
 }
 
 
@@ -116,13 +114,13 @@ void DrawCommandExecuteOpenGL::VSSetSamplerState( int stage, const SPSAMPLERSTAT
 
 void DrawCommandExecuteOpenGL::VSSetShader( const SPVERTEXSHADER& Shader )
 {
-  m_pVertexShader = boost::shared_static_cast<VertexShaderOpenGL>(Shader);
+  const GLuint prog = m_ShaderProgramID;
+  SPVERTEXSHADEROPENGL p = boost::shared_static_cast<VertexShaderOpenGL>(Shader);
 
-/*
-  VertexShaderD3D11* p = static_cast<VertexShaderD3D11*>(Shader.get());
+  if( m_pVertexShader.get()!=NULL ) { m_Ext.glDetachShader( prog, m_pVertexShader->GetID() ); }
+  if( p.get()!=NULL ) { m_Ext.glAttachShader( prog, p->GetID() ); }
 
-  m_pDevice->VSSetShader( p->pShader.get(), NULL, 0 );
-*/
+  m_pVertexShader = p;
 }
 
 
@@ -148,26 +146,24 @@ void DrawCommandExecuteOpenGL::VSSetConstant( int slot, const SPBUFFER& pBuffer 
 
 void DrawCommandExecuteOpenGL::PSSetMaterial( int stage, const SPMATERIAL& pMaterial )
 {
+  MAID_ASSERT( NUMELEMENTS(m_pMaterialPS)<=stage, "stageは８まで " << stage );
+
+  m_pMaterialPS[stage] = pMaterial;
+
+
   MaterialOpenGL* pMat = static_cast<MaterialOpenGL*>(pMaterial.get());
-  Texture2DOpenGL* pTex = static_cast<Texture2DOpenGL*>(pMat->GetResource().get());
 
   m_Ext.glActiveTexture( GL_TEXTURE0+stage );
-  m_Dll.glBindTexture( GL_TEXTURE_2D, pTex->GetID() );
+  if( pMat==NULL )
+  {
+    m_Dll.glDisable( GL_TEXTURE_2D );
+  }else
+  {
+    Texture2DOpenGL* pTex = static_cast<Texture2DOpenGL*>(pMat->GetResource().get());
+    m_Dll.glBindTexture( GL_TEXTURE_2D, pTex->GetID() );
+    m_Dll.glEnable( GL_TEXTURE_2D );
+  }
 
-  /////////////////// マテリアルからテクスチャを取り出して設定。
-  //マルチパスにする
-/*
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, TexId);
-*/
-/*
-  MaterialD3D11* p = static_cast<MaterialD3D11*>(pMaterial.get());
-
-  const UINT NumBuffers = 1;
-  ID3D11ShaderResourceView* pBuff[] = { p->pView.get() };
-
-  m_pDevice->PSSetShaderResources( stage, NumBuffers, pBuff );
-*/
 }
 
 void DrawCommandExecuteOpenGL::PSSetSamplerState( int stage, const SPSAMPLERSTATE& Sampler )
@@ -184,13 +180,13 @@ void DrawCommandExecuteOpenGL::PSSetSamplerState( int stage, const SPSAMPLERSTAT
 
 void DrawCommandExecuteOpenGL::PSSetShader( const SPPIXELSHADER& Shader )
 {
-  m_pPixelShader = boost::shared_static_cast<PixelShaderOpenGL>(Shader);
+  const GLuint prog = m_ShaderProgramID;
+  SPPIXELSHADEROPENGL p = boost::shared_static_cast<PixelShaderOpenGL>(Shader);
 
-/*
-  PixelShaderD3D11* p = static_cast<PixelShaderD3D11*>(Shader.get());
+  if( m_pPixelShader.get()!=NULL ) { m_Ext.glDetachShader( prog, m_pPixelShader->GetID() ); }
+  if( p.get()!=NULL )               { m_Ext.glAttachShader( prog, p->GetID() ); }
 
-  m_pDevice->PSSetShader( p->pShader.get(), NULL, 0 );
-*/
+  m_pPixelShader = p;
 }
 
 void DrawCommandExecuteOpenGL::PSSetConstant( int slot, const SPBUFFER& pBuffer )
@@ -220,18 +216,6 @@ void DrawCommandExecuteOpenGL::SetViewPort( const VIEWPORT& port )
 
   m_Dll.glViewport( x, y, w, h );
   m_Dll.glDepthRange( minz, maxz );
-
-/*
-  D3D11_VIEWPORT vp;
-  vp.TopLeftX = (FLOAT)port.Screen.x;
-  vp.TopLeftY = (FLOAT)port.Screen.y;
-  vp.Width    = (FLOAT)port.Screen.w;
-  vp.Height   = (FLOAT)port.Screen.h;
-  vp.MinDepth = (FLOAT)port.MinZ;
-  vp.MaxDepth = (FLOAT)port.MaxZ;
-
-  m_pDevice->RSSetViewports( 1, &vp );
-*/
 }
 
 void DrawCommandExecuteOpenGL::SetRasterizerState( const SPRASTERIZERSTATE& State )
@@ -263,20 +247,19 @@ void DrawCommandExecuteOpenGL::SetBlendState( const SPBLENDSTATE& State )
     m_Dll.glEnable(GL_BLEND);
 
     {
-      const GLenum src = TARGETBLENDtoGLenum( target.ColorSrc );
-      const GLenum dst = TARGETBLENDtoGLenum( target.ColorDst );
+      const GLenum c_src = TARGETBLENDtoGLenum( target.ColorSrc );
+      const GLenum c_dst = TARGETBLENDtoGLenum( target.ColorDst );
+      const GLenum a_src = TARGETBLENDtoGLenum( target.AlphaSrc );
+      const GLenum a_dst = TARGETBLENDtoGLenum( target.AlphaDst );
 
-      // target.ColorOp はどうやって設定するんだろう？
-      m_Dll.glBlendFunc( src, dst );
+      m_Ext.glBlendFuncSeparate( c_src, c_dst, a_src, a_dst );
     }
-
     {
-      const GLenum src = TARGETBLENDtoGLenum( target.AlphaSrc );
-      const GLenum dst = TARGETBLENDtoGLenum( target.AlphaDst );
-
-      // アルファ設定は はどうやって設定するんだろう？
-      // そもそもどんな効果だっけ？
+      // カラーとアルファで別々に設定できない？
+      const GLenum op = TARGETOPERATIONtoGLenum(target.ColorOp);
+      m_Ext.glBlendEquation(op);
     }
+
   }else
   {
     m_Dll.glDisable(GL_BLEND);

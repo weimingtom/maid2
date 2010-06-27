@@ -35,10 +35,18 @@ void OpenGL32DLL::Initialize()
   m_glDisable = (GLDISABLE)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glDisable"));
   m_glBlendFunc = (GLBLENDFUNC)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glBlendFunc"));
 
+
+
   m_glGenTextures = (GLGENTEXTURES)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glGenTextures"));
   m_glBindTexture = (GLBINDTEXTURE)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glBindTexture"));
   m_glTexImage2D = (GLTEXIMAGE2D)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glTexImage2D"));
   m_glDeleteTextures = (GLDELETETEXTURES)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glDeleteTextures"));
+  m_glTexParameteri = (GLTEXPARAMETERI)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glTexParameteri"));
+
+  m_glPixelStorei = (GLPIXELSTOREI)m_OpenGLDLL.GetProcAddress(MAIDTEXT("glPixelStorei"));
+
+
+
 
 }
 
@@ -153,6 +161,7 @@ void OpenGL32DLL::glBlendFunc( GLenum src, GLenum dst )
 }
 
 
+
 void OpenGL32DLL::glGenTextures( GLsizei n, GLuint* textures )
 {
   m_glGenTextures( n, textures );
@@ -173,7 +182,17 @@ void OpenGL32DLL::glDeleteTextures( GLsizei n , const GLuint* textures )
   m_glDeleteTextures( n, textures );
 }
 
+void OpenGL32DLL::glTexParameteri( GLenum target, GLenum pname, GLint param )
+{
+  m_glTexParameteri( target, pname, param );
+}
 
+
+
+void OpenGL32DLL::glPixelStorei(	GLenum pname, GLint param)
+{
+  m_glPixelStorei( pname, param );
+}
 
 
 

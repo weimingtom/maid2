@@ -34,13 +34,13 @@ namespace Maid
     PIXELFORMAT_A04R04G04B04I,
 
     //  unt 24bit/pixel
-    PIXELFORMAT_R08G08B08I,
-    PIXELFORMAT_B08G08R08I,
+    PIXELFORMAT_R08G08B08I, // bbbbbbbb gggggggg rrrrrrrr
+    PIXELFORMAT_B08G08R08I, // rrrrrrrr gggggggg bbbbbbbb
 
     //  unt 32bit/pixel
-    PIXELFORMAT_A08R08G08B08I,
-    PIXELFORMAT_X08R08G08B08I,
-    PIXELFORMAT_A08B08G08R08I,
+    PIXELFORMAT_A08R08G08B08I, // bbbbbbbb gggggggg rrrrrrrr aaaaaaaa
+    PIXELFORMAT_X08R08G08B08I, // bbbbbbbb gggggggg rrrrrrrr ????????
+    PIXELFORMAT_A08B08G08R08I, // rrrrrrrr gggggggg bbbbbbbb aaaaaaaa
     PIXELFORMAT_A02R10G10B10I,
     PIXELFORMAT_A02B10G10R10I,
 

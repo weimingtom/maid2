@@ -56,28 +56,7 @@ void DeviceOpenGL::Initialize()
 
     IOpenGLObject::SetRuntime( &m_OpenGLDLL, &m_OpenGLExtension );
   }
-/*
-  {
-    SPD3D11DEVICECONTEXT pContext;
-    {
-      ID3D11DeviceContext* p;
-      m_pDevice->GetImmediateContext( &p );
-      pContext.reset(p);
-    }
 
-    //  D3D11はビューポートの設定を自動的にやってくれない
-    D3D11_VIEWPORT vp;
-    vp.TopLeftX = 0;
-    vp.TopLeftY = 0;
-    vp.Width    = m_Window.GetClientSize().w;
-    vp.Height   = m_Window.GetClientSize().h;
-    vp.MinDepth = 0;
-    vp.MaxDepth = 1;
-    pContext->RSSetViewports( 1, &vp );
-
-    m_pDrawCommandExecute.reset(new DrawCommandExecuteD3D11(pContext,GetCurrentRenderTarget()));
-  }
-*/
   {
     const int x = 0;
     const int y = 0;

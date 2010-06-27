@@ -1,13 +1,14 @@
 ﻿#include"drawcommandexecuteopengl.h"
 #include"deviceopengl.h"
 
+#include"bufferopengl.h"
+#include"texture2dopengl.h"
+
 /*
-#include"bufferd3d11.h"
-#include"texture2dd3d11.h"
 #include"rendertargetd3d11.h"
 #include"depthstencild3d11.h"
-#include"materiald3d11.h"
 */
+#include"materialopengl.h"
 #include"inputlayoutopengl.h"
 
 /*
@@ -95,13 +96,10 @@ void DrawCommandExecuteOpenGL::Draw( size_t UseVertexCount, size_t StartVertex )
   {
     const GLuint prog = m_ShaderProgramID;
 
-    m_Ext.glAttachShader( prog, m_pVertexShader->GetID() );
-    m_Ext.glAttachShader( prog, m_pPixelShader->GetID() );
     m_Ext.glLinkProgram( prog );
-
     m_Ext.glUseProgram( prog );
   }
-//*
+
   const std::vector<INPUT_ELEMENT>& InputElement = static_cast<InputLayoutOpenGL*>(m_pInputLayout.get())->Element;
   std::vector<GLenum> EnableList;
 
@@ -134,7 +132,15 @@ void DrawCommandExecuteOpenGL::Draw( size_t UseVertexCount, size_t StartVertex )
       {
         EnableList.push_back( GL_TEXTURE_COORD_ARRAY );
         m_Ext.glTexCoordPointer( cpv, type, stride, (const GLvoid*)(offset) );
-        m_Ext.glUniform1i(m_Ext.glGetUniformLocation(m_ShaderProgramID, "texture"), 0);
+
+        const int idx = ele.SemanticIndex;
+        {
+          char buf[256];
+          sprintf( buf, "texture%0d", idx );
+          const GLint tex_pos = m_Ext.glGetUniformLocation(m_ShaderProgramID, buf);
+          m_Ext.glUniform1i(tex_pos,idx);
+        }
+
       }break;
     }
   }
@@ -145,52 +151,13 @@ void DrawCommandExecuteOpenGL::Draw( size_t UseVertexCount, size_t StartVertex )
     m_Dll.glEnableClientState( EnableList[i] );
   }
 
-  m_Dll.glEnable(GL_TEXTURE_2D);
-  m_Ext.glDrawArrays( GL_TRIANGLE_STRIP, 0, UseVertexCount );
+  m_Ext.glActiveTexture( GL_TEXTURE0 );
+  m_Ext.glDrawArrays( m_PrimitiveTopology, 0, UseVertexCount );
 
   for( int i=0; i<(int)EnableList.size(); ++i )
   {
     m_Dll.glDisableClientState( EnableList[i] );
   }
-//*/
-
-/*
-    {
-      const VERTEXBUFFER& v = m_VertexBuffer[0];
-
-      m_Ext.glBindBuffer( GL_ARRAY_BUFFER, v.pBuffer->GetID() );
-      m_Ext.glVertexPointer( 3, GL_FLOAT, v.Stride, (const GLvoid*)(0) );
-      m_Ext.glBindBuffer( GL_ARRAY_BUFFER, v.pBuffer->GetID() );
-      m_Ext.glColorPointer( 4, GL_FLOAT, v.Stride, (const GLvoid*)(sizeof(float)*3) );
-    }
-  m_Dll.glEnableClientState( GL_VERTEX_ARRAY );
-  m_Dll.glEnableClientState( GL_COLOR_ARRAY );
-
-    m_Ext.glDrawArrays( GL_TRIANGLE_STRIP, 0, UseVertexCount );
-
-  m_Dll.glDisableClientState( GL_VERTEX_ARRAY );
-  m_Dll.glDisableClientState( GL_COLOR_ARRAY );
-*/
-
-/*
-  m_Dll.glEnableClientState( GL_VERTEX_ARRAY );
-  m_Dll.glEnableClientState( GL_COLOR_ARRAY );
-
-
-    {
-      const VERTEXBUFFER& v = m_VertexBuffer[0];
-
-      m_Ext.glBindBuffer( GL_ARRAY_BUFFER, v.pBuffer->GetID() );
-      m_Ext.glVertexPointer( 3, GL_FLOAT, v.Stride, (const GLvoid*)(0) );
-      m_Ext.glColorPointer( 4, GL_FLOAT, v.Stride, (const GLvoid*)(sizeof(float)*3) );
-    }
-
-    m_Ext.glDrawArrays( GL_TRIANGLE_STRIP, 0, UseVertexCount );
-
-  m_Dll.glDisableClientState( GL_VERTEX_ARRAY );
-  m_Dll.glDisableClientState( GL_COLOR_ARRAY );
-*/
-
 }
 
 void DrawCommandExecuteOpenGL::DrawIndexed( size_t UseIndexCount, size_t StartIndex, size_t OffsetVertex )

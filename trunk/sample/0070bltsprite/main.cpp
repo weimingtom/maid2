@@ -38,6 +38,7 @@ protected:
     m_Texture.LoadFile( MAIDTEXT("nc1673.bmp"), 1 );
     //  ↑を↓のようにすると、アルファとカラーを合成できる
 //    m_Texture.LoadFile( MAIDTEXT("<COLOR:nc1673.bmp><ALPHA:nc1673_mask.bmp>") );
+
     m_Texture2.LoadFile( MAIDTEXT("nc1429.png") );
     m_Texture3.LoadFile( MAIDTEXT("nc10910.jpg") );
     m_Mask.LoadFile( MAIDTEXT("mask.png") );
@@ -45,6 +46,8 @@ protected:
     m_FontM.Create( SIZE2DI(16,32), true );
 
     m_Texture_Copy = m_Texture;
+
+    m_FPS = 0.0f;
 
   }
 
@@ -56,7 +59,7 @@ protected:
   {
     //  定期的に描画するとこ
 
-    m_Command.ClearRenderTarget( Maid::COLOR_A32B32G32R32F(1,0,0,0) );
+    m_Command.ClearRenderTarget( Maid::COLOR_A32B32G32R32F(1,0.5f,0,0) );
 
     if(  m_Render.IsInitializing()
       || m_Texture.IsLoading()
@@ -72,9 +75,10 @@ protected:
 
     m_Command.Begin();
     {
+
       //  矩形を普通に描画
-      m_Render.SetBlendState( Graphics2DRender::BLENDSTATE_ALPHA );
-		  m_Render.Blt( POINT2DI(400,300), m_Texture, rc, center, 1.0f );
+        m_Render.SetBlendState( Graphics2DRender::BLENDSTATE_ALPHA );
+  		  m_Render.Blt( POINT2DI(400,300), m_Texture, rc, center, 1.0f );
 
       //  横に伸ばして、縦に縮めて、不透明度５０％
 		  m_Render.BltS( POINT2DI(400,100), m_Texture_Copy, rc, center, 0.5f, SIZE2DF(1.5f,0.8f) );
@@ -83,6 +87,7 @@ protected:
         static int rot;
         rot++;
         rot %= 360;
+
         //  (50,300)に回転させて描画(加算合成)
         m_Render.SetBlendState( Graphics2DRender::BLENDSTATE_ADD );
         m_Render.BltR( POINT2DI(50,300), m_Texture, rc, center, 1.0f, DEGtoRAD(rot), Maid::VECTOR3DF(0,0,1) );
@@ -116,7 +121,6 @@ protected:
           m_Render.SetBlendState( Graphics2DRender::BLENDSTATE_REVERSE );
 		      m_Render.BltMask( POINT2DI(400,300), m_Texture3, rc, center, float(alpha)/180.0f, m_Mask );
         }
-
         {
           static int alpha;
 
@@ -153,11 +157,13 @@ private:
   GraphicsCommandControl  m_Command;
   Graphics2DRender  m_Render;
   Texture2D       m_Texture;
+
   Texture2D       m_Texture2;
   Texture2D       m_Texture3;
 
-  Texture2D       m_Texture_Copy;
   Texture2D       m_Mask;
+
+  Texture2D       m_Texture_Copy;
 
   Font          m_FontM;
   int m_FrameCount;

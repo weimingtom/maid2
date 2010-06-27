@@ -49,14 +49,32 @@ namespace Maid { namespace Graphics {
     return ret;
   }
 
+  inline GLenum TARGETOPERATIONtoGLenum( BLENDSTATEPARAM::TARGET::OPERATION op )
+  {
+    GLenum ret = GL_FUNC_ADD;
+
+    switch( op )
+    {
+    case BLENDSTATEPARAM::TARGET::OPERATION_ADD:          { ret = GL_FUNC_ADD; }break;
+    case BLENDSTATEPARAM::TARGET::OPERATION_SUBTRACT:     { ret = GL_FUNC_SUBTRACT; }break;
+    case BLENDSTATEPARAM::TARGET::OPERATION_REV_SUBTRACT: { ret = GL_FUNC_REVERSE_SUBTRACT; }break;
+    case BLENDSTATEPARAM::TARGET::OPERATION_MIN:          { ret = GL_MIN; }break;
+    case BLENDSTATEPARAM::TARGET::OPERATION_MAX:          { ret = GL_MAX; }break;
+    }
+    return ret;
+  }
+
+
+
   inline GLint PIXELFORMATtoInternalFormat( PIXELFORMAT fmt )
   {
     GLint ret = GL_RGB;
     switch( fmt )
     {
     case PIXELFORMAT_R08G08B08I:    { ret = GL_RGB;  }break;
-    case PIXELFORMAT_A08R08G08B08I: { ret = GL_RGB;  }break;
+    case PIXELFORMAT_A08R08G08B08I: { ret = GL_RGBA;  }break;
     case PIXELFORMAT_X08R08G08B08I: { ret = GL_RGBA; }break;
+    case PIXELFORMAT_A08B08G08R08I: { ret = GL_RGBA; }break;
     case PIXELFORMAT_D15IS1:  { ret = GL_DEPTH_COMPONENT; }break;
     case PIXELFORMAT_D16I:    { ret = GL_DEPTH_COMPONENT; }break;
     case PIXELFORMAT_D32I:    { ret = GL_DEPTH_COMPONENT; }break;
@@ -68,6 +86,7 @@ namespace Maid { namespace Graphics {
 
     return ret;
   }
+
 }}
 
 #endif
