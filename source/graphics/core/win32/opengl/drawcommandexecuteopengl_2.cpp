@@ -43,18 +43,6 @@ void DrawCommandExecuteOpenGL::SetVertex( int Slot, const SPBUFFER& pVertex, int
   m_VertexBuffer[Slot].pBuffer = boost::shared_static_cast<BufferOpenGL>(pVertex);
   m_VertexBuffer[Slot].Offset  = Offset;
   m_VertexBuffer[Slot].Stride  = Stride;
-
-/*
-  BufferD3D11* p = static_cast<BufferD3D11*>(pVertex.get());
-
-  const UINT StartSlot = Slot;
-  const UINT NumBuffers = 1;
-  ID3D11Buffer* pBuff[] = { p->pBuffer.get() };
-  const UINT Strides[] = {Stride};
-  const UINT Offsets[] = {Offset};
-
-  m_pDevice->IASetVertexBuffers( StartSlot, NumBuffers, pBuff, Strides, Offsets );
-*/
 }
 
 void DrawCommandExecuteOpenGL::SetInputLayout( const SPINPUTLAYOUT& pLayout )
@@ -184,7 +172,7 @@ void DrawCommandExecuteOpenGL::PSSetShader( const SPPIXELSHADER& Shader )
   SPPIXELSHADEROPENGL p = boost::shared_static_cast<PixelShaderOpenGL>(Shader);
 
   if( m_pPixelShader.get()!=NULL ) { m_Ext.glDetachShader( prog, m_pPixelShader->GetID() ); }
-  if( p.get()!=NULL )               { m_Ext.glAttachShader( prog, p->GetID() ); }
+  if( p.get()!=NULL )              { m_Ext.glAttachShader( prog, p->GetID() ); }
 
   m_pPixelShader = p;
 }
@@ -291,16 +279,6 @@ void DrawCommandExecuteOpenGL::SetRenderTarget( int no, const SPRENDERTARGET& pC
 
 VIEWPORT DrawCommandExecuteOpenGL::GetViewport()
 {
-/*
-  D3D11_VIEWPORT vp[1];
-  UINT num = NUMELEMENTS(vp);
-
-  m_pDevice->RSGetViewports( &num, vp );
-  
-  const D3D11_VIEWPORT& v = vp[0];
-
-  return VIEWPORT( RECT2DI(v.TopLeftX,v.TopLeftY,v.Width,v.Height), v.MinDepth, v.MaxDepth );
-*/
   return VIEWPORT( RECT2DI(0,0,800,600), 0,1 );
 }
 

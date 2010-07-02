@@ -43,6 +43,10 @@ static const char* s_SHADERCODE0212 =
 
 
 
+
+
+
+
 static const char* s_SHADERCODE0220 = 
 "uniform sampler2D texture0;"
 "uniform sampler2D texture1;"
@@ -113,7 +117,7 @@ static const char* s_SHADERCODE0224 =
 "}"
 ;
 
-
+/*
 static const char* s_SHADERCODE0225 = 
 "uniform sampler2D texture0;"
 "uniform sampler2D texture1;"
@@ -127,6 +131,23 @@ static const char* s_SHADERCODE0225 =
 "  gl_FragColor= vec4( 1.0-color.x, 1.0-color.y, 1.0-color.z, color.w );"
 "}"
 ;
+*/
+
+
+static const char* s_SHADERCODE0225 = 
+"uniform sampler2D texture0;"
+"uniform sampler2D texture1;"
+"void main(void)"
+"{"
+"  vec4 mask = texture2DProj(texture0, gl_TexCoord[0]);"
+"  vec4 color= texture2DProj(texture1, gl_TexCoord[1]);"
+//"  float alpha = mask.w - gl_Color.w;"
+"  color.xyz  *= gl_Color.xyz;"
+//"  color.w *= alpha;"
+"  gl_FragColor= mask;"
+"}"
+;
+
 
 
 
@@ -138,7 +159,7 @@ static const char* s_SHADERCODE0230 =
 "void main(void)"
 "{"
 "  vec4 tex0 = texture2DProj(texture0, gl_TexCoord[0]);"
-"  vec4 tex1= texture2DProj(texture1, gl_TexCoord[1]);"
+"  vec4 tex1 = texture2DProj(texture1, gl_TexCoord[1]);"
 "  float pow = gl_Color.x;"
 "  float alpha = gl_Color.w;"
 ""
